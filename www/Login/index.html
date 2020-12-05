@@ -1,0 +1,30 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://static.sitetest1.mfdlabs.com/lib/jquery.3-5-1.min.js"></script>
+		<script src="https://js.sitetest1.mfdlabs.com/loginpage.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://css.sitetest1.mfdlabs.com/loginpage.css" />
+		<title>sitetest1.mfd</title>
+	</head>
+	<body>
+		<div>
+			<p1 class="home"><b>MFD Login</b></p1>
+			<hr />
+			<hr />
+		</div>
+		<div id="login">
+			<h1>Login</h1>
+			<h4 style="color: red" id="underscare"></h4>
+			<input type="email" id="username" placeholder="Username" autocomplete="username" /><input
+				type="password"
+				id="password"
+				placeholder="password"
+				autocomplete="current-password"
+			/><button
+				onclick="return c(document.getElementById('username').value, document.getElementById('password').value)"
+			>
+				Login
+			</button>
+		</div>
+	</body>
+</html>
