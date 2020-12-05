@@ -4,7 +4,7 @@
 	"description": "mfd",
 	"main": "server.js",
 	"scripts": {
-		"server2-prod": "node --no-deprecation C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfd.com\\lib\\serverv2.js"
+		"server2-prod": "node --no-deprecation C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfdlabs.com\\lib\\serverv2.js"
 	},
 	"author": "mfd",
 	"license": "ISC",
