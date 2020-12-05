@@ -7,7 +7,7 @@
 		"/uptime": {
 			"get": {
 				"tags": ["Tests"],
-				"summary": "First endpoint on mfd.com.",
+				"summary": "First endpoint on mfdlabs.com.",
 				"consumes": [],
 				"produces": ["application/json", "text/json"],
 				"parameters": [],
@@ -29,7 +29,7 @@
 		"/": {
 			"head": {
 				"tags": ["Tests"],
-				"summary": "First endpoint on mfd.com.",
+				"summary": "First endpoint on mfdlabs.com.",
 				"consumes": [],
 				"produces": ["application/json", "text/json"],
 				"parameters": [],
