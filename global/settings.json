@@ -1,0 +1,5 @@
+{
+	"isNewCaptchaEnabled": true,
+	"isXsrfEnabled": true,
+	"isXsrfHardcoded": true
+}
