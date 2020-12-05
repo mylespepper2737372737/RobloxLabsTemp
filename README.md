@@ -1,1 +1,1 @@
-This was moved from https://github.com/mfd-co/mfd.com
+This was moved from https://github.com/mfd-core/mfd.com
