@@ -1,5 +1,1 @@
-lib
-node_modules
-static
-.vscode
 *.js
