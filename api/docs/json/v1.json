@@ -34,7 +34,8 @@
 			"properties": {
 				"message": {
 					"description": "Whether the server is having issues or not.",
-					"type": "string"
+					"type": "string",
+					"example": "OK"
 				}
 			}
 		}
