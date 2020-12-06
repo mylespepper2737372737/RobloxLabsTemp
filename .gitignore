@@ -109,7 +109,6 @@ dist
 *.http
 
 .npmignore
-assets
 
 env.json
 ssl
