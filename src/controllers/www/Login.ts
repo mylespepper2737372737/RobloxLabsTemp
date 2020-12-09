@@ -27,23 +27,35 @@
 
 	***
 */
+
+/* 
+POST https://www.sitetest1.mfdlabs.com/Authorization/Login.fxhx HTTP/2.0
+X-CSRF-TOKEN: token123
+Content-Type: application/x-www-form-urlencoded
+Connection: close
+
+&cvalue=username
+&password=password
+&captchaToken=sessionId+gameId+correctAnswers[].toString()|locale-info
+
+*/
+import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
+import createCaptchaSessionBlob from '../helpers/www/LoginApi/createCaptchaSessionBlob';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
-import crypto from 'crypto';
 const _dirname = 'C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfdlabs.com';
 dotenv.config({ path: _dirname + '\\.env' });
 export default {
 	dir: '/Authorization/Login.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown, number> => {
-		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
-		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
+		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
+		if (request.protocol !== 'https') return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support http method '${request.method}.'`,
-				userfacingmessage: 'Something went wrong.',
+				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
 		const settings = JSON.parse(filestream.readFileSync(_dirname + '\\global\\settings.json', 'ascii'));
@@ -86,51 +98,15 @@ export default {
 			});
 
 		if (settings['isNewCaptchaEnabled']) {
-			console.log({
-				alg: 'sha512',
-				type: 'mfdJWT',
-				sub: request.ip,
-				iat: Math.floor(new Date(Date.now()).getTime() / 1000),
-			});
-			const header = crypto
-				.createHash('sha256')
-				.update(JSON.stringify({ alg: 'sha512', type: 'mfdJWT' }))
-				.digest('base64')
-				.split('/')
-				.join('')
-				.split('+')
-				.join('')
-				.split('=')
-				.join('');
-			const body = crypto
-				.createHash('sha256')
-				.update(JSON.stringify({ sub: request.ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) }))
-				.digest('base64')
-				.split('/')
-				.join('')
-				.split('+')
-				.join('')
-				.split('=')
-				.join('');
-			const signature = crypto
-				.createHash('sha512')
-				.update(header + body)
-				.digest('base64')
-				.split('/')
-				.join('')
-				.split('+')
-				.join('')
-				.split('=')
-				.join('');
-
-			const __captchaSession = `${header}\_${body}\_${signature}`;
-			console.log(__captchaSession);
-			if (request.body['captchaToken']) {
-				if ((request.body['captchaToken'] as string).split('|')[0]) {
+			const __captchaSession = createCaptchaSessionBlob(request.ip);
+			const cToken = request.body['captchaToken'];
+			if (typeof cToken === 'string') {
+				const cAnswer = cToken.split('|')[0];
+				if (cAnswer) {
 					let isCaptchaSessionValid = false;
 					for (const v of sessions) {
 						const sessionId = v.split('.').shift();
-						if (sessionId !== (request.body['captchaToken'] as string).split('|')[0]) continue;
+						if (sessionId !== cAnswer) continue;
 						else {
 							isCaptchaSessionValid = true;
 							break;
@@ -138,9 +114,7 @@ export default {
 					}
 					if (isCaptchaSessionValid) {
 						try {
-							filestream.unlinkSync(
-								_dirname + `\\manifest\\sessions\\${(request.body['captchaToken'] as string).split('|')[0]}.json`,
-							);
+							filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${cAnswer}.json`);
 						} catch {
 							console.warn('Session dead');
 						}
@@ -157,67 +131,13 @@ export default {
 						// } catch {}
 						return response.sendStatus(200);
 					} else {
-						filestream.writeFileSync(
-							_dirname + `\\manifest\\sessions\\${__captchaSession}.json`,
-							JSON.stringify({ sub: request.ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) }),
-							{ encoding: 'ascii' },
-						);
-						setTimeout(() => {
-							try {
-								filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${__captchaSession}.json`);
-							} catch {
-								console.warn('The session is already clear');
-							}
-						}, 60000);
-						response.statusMessage = 'Captcha failed';
-						return response.status(403).header({ expires: 60000 }).send({
-							success: false,
-							message: 'You need to pass the robot test first.',
-							captchaSessionId: __captchaSession,
-							expires: 60000,
-						});
+						return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 					}
 				} else {
-					filestream.writeFileSync(
-						_dirname + `\\manifest\\sessions\\${__captchaSession}.json`,
-						JSON.stringify({ sub: request.ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) }),
-						{ encoding: 'ascii' },
-					);
-					setTimeout(() => {
-						try {
-							filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${__captchaSession}.json`);
-						} catch {
-							console.warn('The session is already clear');
-						}
-					}, 60000);
-					response.statusMessage = 'Captcha failed';
-					return response.status(403).header({ expires: 60000 }).send({
-						success: false,
-						message: 'You need to pass the robot test first.',
-						captchaSessionId: __captchaSession,
-						expires: 60000,
-					});
+					return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 				}
 			} else {
-				filestream.writeFileSync(
-					_dirname + `\\manifest\\sessions\\${__captchaSession}.json`,
-					JSON.stringify({ sub: request.ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) }),
-					{ encoding: 'ascii' },
-				);
-				setTimeout(() => {
-					try {
-						filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${__captchaSession}.json`);
-					} catch {
-						console.warn('The session is already clear');
-					}
-				}, 60000);
-				response.statusMessage = 'Captcha failed';
-				return response.status(403).header({ expires: 60000 }).send({
-					success: false,
-					message: 'You need to pass the robot test first.',
-					captchaSessionId: __captchaSession,
-					expires: 60000,
-				});
+				return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 			}
 		}
 		for (const userId of Object.keys(parsedUsers)) {
