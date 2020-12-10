@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Express as IApplicationBuilder, Request, Response } from 'express-serve-static-core';
-import filestrean from 'fs';
+import filestream from 'fs';
 const _dirname = 'C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfdlabs.com\\lib';
 interface EndpointOpts {
 	path?: string;
@@ -12,7 +10,7 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 	return new Promise((r) => {
 		let controllers: string[];
 		try {
-			controllers = filestrean.readdirSync(
+			controllers = filestream.readdirSync(
 				(opts !== undefined ? opts.path : _dirname + '\\controllers') || _dirname + '\\controllers',
 			);
 		} catch (err) {
