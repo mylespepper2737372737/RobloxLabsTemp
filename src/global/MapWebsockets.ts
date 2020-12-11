@@ -10,8 +10,15 @@ interface wssOpts {
 	apiName?: string;
 	logSetups?: boolean;
 }
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Promise<void> => {
+	let lasthttpsport: number;
+	let lasthttpport: number;
 	return new Promise((resolve, reject) => {
 		let controllers: string[];
 		try {
@@ -37,9 +44,15 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 					if (map.default.func) func = map.default.func;
 					else return;
 					try {
-						if (opts.logSetups) console.log(`Mapping GET wss://${opts.apiName + dir}`);
-						const wsServer = new ws.Server({ path: dir, port: 80, server: HttpServer });
-						const wssServer = new ws.Server({ path: dir, port: 443, server: HttpsServer });
+						let portHttps = getRandomInt(80, 8000);
+						if (portHttps === lasthttpsport) portHttps = getRandomInt(80, 8000);
+						lasthttpsport = portHttps;
+						let portHttp = getRandomInt(80, 8000);
+						if (portHttp === lasthttpport) portHttp = getRandomInt(80, 8000);
+						lasthttpport = portHttp;
+						if (opts.logSetups) console.log(`Mapping GET wss://${opts.apiName + dir}:${portHttps}`);
+						const wsServer = new ws.Server({ path: dir, port: portHttp, server: HttpServer });
+						const wssServer = new ws.Server({ path: dir, port: portHttps, server: HttpsServer });
 						wssServer.on('connection', (socket, request) => func(socket, request));
 						wsServer.on('connection', (socket, request) => func(socket, request));
 						if (opts.shouldHandleUpgrade) {
