@@ -38,6 +38,7 @@
 	***
 */
 
+import mapwss from './modules/constants/ws';
 import mapssl from './modules/constants/ssl';
 import mapconfig from './modules/configs/mapconfig';
 import urls from './modules/constants/urls';
@@ -45,6 +46,7 @@ import defaultMiddleware from './modules/middleware/init_middleware';
 import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
+import { _dirname } from './modules/constants/directories';
 
 (async () => {
 	const www = express();
@@ -87,12 +89,13 @@ import express from 'express';
 		try {
 			mapssl(images, urls['images']);
 			mapssl(www, urls['www']);
-			mapssl(api, urls['api']);
+			const [apiHttp, apiHttps] = mapssl(api, urls['api']);
 			mapssl(staticcdn, urls['staticcdn']);
 			mapssl(js, urls['js']);
 			mapssl(css, urls['css']);
 			mapssl(setup, urls['setup']);
 			mapssl(ephemeralcounters, urls['ephemeralcounters']);
+			mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
 		} catch (e) {
 			throw new Error(e);
 		}
