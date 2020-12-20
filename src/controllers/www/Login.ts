@@ -1,6 +1,6 @@
 /*
 	FileName: controllers/www/Login.ts
-	Written By: Nikita Nicholaevich Pedko - nikita-mfd - Server Vulnerabilities.
+	Written By: Nikita Nikolaevich Petko - nikita-mfd - Server Vulnerabilities.
 	File Type: Module
 	Description: The current Login function.
 			
@@ -39,17 +39,20 @@ Connection: close
 &captchaToken=sessionId+gameId+correctAnswers[].toString()|locale-info
 
 */
+
+// TODO Ensure that this signs more things that are client specific in order for keys to be unique.
 import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
 import createCaptchaSessionBlob from '../helpers/www/LoginApi/createCaptchaSessionBlob';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
-const _dirname = 'C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfdlabs.com';
+import { _dirname } from '../../modules/constants/directories';
 dotenv.config({ path: _dirname + '\\.env' });
 export default {
 	dir: '/Authorization/Login.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown, number> => {
+		request.socket.on('close', (d) => console.log(d.toString()));
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
 		if (request.protocol !== 'https') return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		if (request.method !== 'POST')
@@ -60,7 +63,7 @@ export default {
 		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
 		const settings = JSON.parse(filestream.readFileSync(_dirname + '\\global\\settings.json', 'ascii'));
 		if (settings['isXsrfEnabled']) {
-			console.log(request.headers);
+			// console.log(request.headers);
 
 			if (
 				!request.headers['x-csrf-token'] ||
@@ -106,8 +109,7 @@ export default {
 					let isCaptchaSessionValid = false;
 					for (const v of sessions) {
 						const sessionId = v.split('.').shift();
-						if (sessionId !== cAnswer) continue;
-						else {
+						if (sessionId === cAnswer) {
 							isCaptchaSessionValid = true;
 							break;
 						}
@@ -141,8 +143,7 @@ export default {
 			}
 		}
 		for (const userId of Object.keys(parsedUsers)) {
-			if (parsedUsers[userId] !== request.body['cvalue']) continue;
-			else {
+			if (parsedUsers[userId] === request.body['cvalue']) {
 				isValidUser = true;
 				break;
 			}
