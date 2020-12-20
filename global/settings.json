@@ -1,5 +1,6 @@
 {
-	"isNewCaptchaEnabled": true,
+	"isNewCaptchaEnabled": false,
 	"isXsrfEnabled": true,
-	"isXsrfHardcoded": true
+	"isXsrfHardcoded": true,
+	"useAuthorizationV2": false
 }

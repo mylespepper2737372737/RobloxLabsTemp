@@ -1,13 +1,13 @@
 /*
-	FileName: controllers/www/Login.ts
-	Written By: Nikita Nikolaevich Petko - nikita-mfd - Server Vulnerabilities.
+	FileName: Login.ts
+	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: The current Login function.
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
 	TODO Finish function, then continue on sessions.
-	TODO Simplify this.
+	TODO Move settings to a helper getGlobalSettings
 
 	***
 

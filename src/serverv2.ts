@@ -1,14 +1,14 @@
 /*
 	FileName: serverV2.ts
-	Written By: Nikita Nikolaevich Petko, - nikita-mfd - Server Vulnerabilities.
-				Ivan Ivanov Gregrovnich, - ivan-mfd - Server Management.
-				Aleksej Pushnik Grasnich, - aleksej-g-mfd - Client Types.
-				Tomska Arnold Vandrej, - tomska-mfd - Server Modifications - Compatibility checks for /analytics/{v1|v2|v3}.
-				Tomska Poshkiom Lanska, tomska-l-mfd - Client Response Linting - N/A.
-				Aleksej Brovim Pushnak, aleksej-mfd - Server Enhancements - /{analytics|abtesting}/ performance perks.
-				Ishka Alemdak Rejor, ishka-mfd - Client Compatibility Checks, ClientModels Check.
-				Jack Daniels Alan, j-alan-mfd - Project Management, Name(s) of classes and methods etc.
-				Alanska Ivanski Vosproshchniki. - alanska-v-mfd - Legal Management, Licenses, Rights.
+	Written By: Nikita Nikolaevich Petko,
+				Ivan Ivanov Gregrovnich,
+				Aleksej Pushnik Grasnich,
+				Tomska Arnold Vandrej,
+				Tomska Poshkiom Lanska,
+				Aleksej Brovim Pushnak,
+				Ishka Alemdak Rejor,
+				Jack Daniels Alan,
+				Alanska Ivanski Vosproshchniki
 	File Type: Script
 	Description: The 2nd version of mfdlabs.com (uses a mfdlabs domain).
 					This one is for testing new endpoints and features (such as controllers).
