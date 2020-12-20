@@ -1,21 +1,20 @@
 /*
-	FileName: serverv2.ts
-	Written By: Nikita Nicholaevich Pedko, - nikita-mfd - Server Vulnerabilities.
-				Ivan Ivanovich Gregrovnich, - ivan-mfd - Server Managment.
+	FileName: serverV2.ts
+	Written By: Nikita Nikolaevich Petko, - nikita-mfd - Server Vulnerabilities.
+				Ivan Ivanov Gregrovnich, - ivan-mfd - Server Management.
 				Aleksej Pushnik Grasnich, - aleksej-g-mfd - Client Types.
-				Tomska Arndold Vandrej, - tomska-mfd - Server Modifications - Combatibility checks for /analytics/{v1|v2|v3}.
+				Tomska Arnold Vandrej, - tomska-mfd - Server Modifications - Compatibility checks for /analytics/{v1|v2|v3}.
 				Tomska Poshkiom Lanska, tomska-l-mfd - Client Response Linting - N/A.
-				Aleksej Brovim Pushnak, aleksej-mfd - Server Enhancements - /{analytics|abtesting}/ perfomance perks.
+				Aleksej Brovim Pushnak, aleksej-mfd - Server Enhancements - /{analytics|abtesting}/ performance perks.
 				Ishka Alemdak Rejor, ishka-mfd - Client Compatibility Checks, ClientModels Check.
-				Jack Daniels Alan, j-alan-mfd - Project Managment, Name(s) of classes and methods etc.
-				Alanska Ivanski Vosproshchniki. - alanska-v-mfd - Legal Managment, Licenses, Rights.
+				Jack Daniels Alan, j-alan-mfd - Project Management, Name(s) of classes and methods etc.
+				Alanska Ivanski Vosproshchniki. - alanska-v-mfd - Legal Management, Licenses, Rights.
 	File Type: Script
-	Description: The 2nd version of mfdlabs.com (uses a mfdlabs domain). 
+	Description: The 2nd version of mfdlabs.com (uses a mfdlabs domain).
 					This one is for testing new endpoints and features (such as controllers).
-			
+
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
-	TODO Push this as it's own project.
 	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest1.mfdlabs.com:443 and http://*.sitetest1.mfdlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers
 
@@ -46,8 +45,8 @@ import defaultMiddleware from './modules/middleware/init_middleware';
 import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
-import { _dirname } from './modules/constants/directories';
 
+// TODO Consider clearing cached sessions on start?
 (async () => {
 	const www = express();
 	const staticcdn = express();
@@ -85,7 +84,7 @@ import { _dirname } from './modules/constants/directories';
 	www.use(www404);
 	ephemeralcounters.use(ecs404);
 
-	(async () => {
+	await (async () => {
 		try {
 			mapssl(images, urls['images']);
 			mapssl(www, urls['www']);
@@ -95,7 +94,7 @@ import { _dirname } from './modules/constants/directories';
 			mapssl(css, urls['css']);
 			mapssl(setup, urls['setup']);
 			mapssl(ephemeralcounters, urls['ephemeralcounters']);
-			mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
+			await mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
 		} catch (e) {
 			throw new Error(e);
 		}
