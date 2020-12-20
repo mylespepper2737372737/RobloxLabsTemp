@@ -14,6 +14,8 @@
 
 mfdlabs.com is a site that allows mfd engineers to test new features, it is never guaranteed that this will be up at all times.
 
+This branch is for tests of sessionsv2
+
 ## Installation
 
 You will have to clone the repository and add all the folders and files that this complains about.
