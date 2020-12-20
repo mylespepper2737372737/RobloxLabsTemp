@@ -37,6 +37,7 @@
 	***
 */
 
+import clearCachedSessions from './modules/constants/clearCachedSessions';
 import mapwss from './modules/constants/ws';
 import mapssl from './modules/constants/ssl';
 import mapconfig from './modules/configs/mapconfig';
@@ -48,6 +49,8 @@ import express from 'express';
 
 // TODO Consider clearing cached sessions on start?
 (async () => {
+	await clearCachedSessions();
+
 	const www = express();
 	const staticcdn = express();
 	const js = express();
