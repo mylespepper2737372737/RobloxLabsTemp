@@ -6,8 +6,6 @@
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
-	TODO Try NOT generate random ports for new websockets - https://github.com/mfd-core/mfdlabs.com/issues/5
-
 	***
 
 	Copyright 2015-2020 MFD
@@ -28,7 +26,7 @@
 */
 
 import mapwss from '../../global/MapWebsockets';
-import { _dirname } from '../constants/directories';
+import { _dirname } from './directories';
 import { Server as HttpServer } from 'http';
 import { Server as HttpsServer } from 'https';
 export = async (HttpServer: HttpServer, HttpsServer: HttpsServer, dir: string, apiName: string) => {

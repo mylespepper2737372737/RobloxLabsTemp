@@ -4,8 +4,6 @@
 	File Type: Module
 	Description: Looks in a folder for websockets
 
-	TODO Try NOT generate random ports for new websockets - https://github.com/mfd-core/mfdlabs.com/issues/5
-
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
 	***
@@ -39,17 +37,14 @@ interface wssOpts {
 	apiName?: string;
 	logSetups?: boolean;
 }
-function getRandomInt(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Promise<void> => {
-	let lasthttpsport: number;
-	let lasthttpport: number;
 	return new Promise((resolve, reject) => {
 		let controllers: string[];
+		const maps: {
+			dir: string;
+			func: (request: ws, Response: IncomingMessage) => unknown;
+		}[] = [];
 		try {
 			controllers = filestream.readdirSync((opts !== undefined ? opts.path : _dirname + '\\sockets') || _dirname + '\\sockets');
 		} catch (err) {
@@ -65,45 +60,64 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 				} catch (err) {
 					return console.error(err);
 				}
-				let dir: string;
-				let func: (request: ws, Response: IncomingMessage) => unknown;
 				if (map.default) {
-					if (map.default.dir) dir = map.default.dir;
-					else return;
-					if (map.default.func) func = map.default.func;
-					else return;
-					try {
-						let portHttps = getRandomInt(80, 8000);
-						if (portHttps === lasthttpsport) portHttps = getRandomInt(80, 8000);
-						lasthttpsport = portHttps;
-						let portHttp = getRandomInt(80, 8000);
-						if (portHttp === lasthttpport) portHttp = getRandomInt(80, 8000);
-						lasthttpport = portHttp;
-						if (opts.logSetups) console.log(`Mapping GET wss://${opts.apiName + dir}:${portHttps}`);
-						const wsServer = new ws.Server({ path: dir, port: portHttp, server: HttpServer });
-						const wssServer = new ws.Server({ path: dir, port: portHttps, server: HttpsServer });
-						wssServer.on('connection', (socket, request) => func(socket, request));
-						wsServer.on('connection', (socket, request) => func(socket, request));
-						if (opts.shouldHandleUpgrade) {
-							if (opts.logSetups) console.log(`Mapping UPGRADE https://${opts.apiName}`);
-							HttpsServer.on('upgrade', (request, socket, head) => {
-								wssServer.handleUpgrade(request, socket, head, (socket) => {
-									wssServer.emit('connection', socket, request);
-								});
-							});
-							HttpServer.on('upgrade', (request, socket, head) => {
-								wsServer.handleUpgrade(request, socket, head, (socket) => {
-									wsServer.emit('connection', socket, request);
-								});
-							});
-						}
-					} catch (e) {
-						reject(e);
-					}
+					if (!map.default.dir) return;
+					if (!map.default.func) return;
+					maps.push(map.default);
 				} else {
 					return reject(`${v} had no default export.`);
 				}
 			}
+		});
+		const wsServer = new ws.Server({ server: HttpServer, port: 8000, host: opts.apiName });
+		const wssServer = new ws.Server({ server: HttpsServer, port: 5000, host: opts.apiName });
+		if (opts.logSetups) console.log(`Mapping UPGRADE https://${opts.apiName}:5000`);
+		HttpsServer.on('upgrade', (r, s, h) => {
+			let isValid = false;
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					wssServer.handleUpgrade(r, s, h, (s2) => {
+						wssServer.emit('connection', s2, r);
+					});
+					isValid = true;
+				}
+			});
+			if (!isValid) {
+				s.write('HTTP/1.1 404 Socket Not Found\r\n\r\n');
+				return s.destroy();
+			}
+		});
+		if (opts.logSetups) console.log(`Mapping CONNECT https://${opts.apiName}:5000`);
+		wssServer.on('connection', (s, r) => {
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					return v.func(s, r);
+				}
+			});
+		});
+		if (opts.logSetups) console.log(`Mapping UPGRADE http://${opts.apiName}:8000`);
+		HttpServer.on('upgrade', (r, s, h) => {
+			let isValid = false;
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					wssServer.handleUpgrade(r, s, h, (s2) => {
+						wssServer.emit('connection', s2, r);
+					});
+					isValid = true;
+				}
+			});
+			if (!isValid) {
+				s.write('HTTP/1.1 404 Socket Not Found\r\n\r\n');
+				return s.destroy();
+			}
+		});
+		if (opts.logSetups) console.log(`Mapping CONNECT http://${opts.apiName}:8000`);
+		wsServer.on('connection', (s, r) => {
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					return v.func(s, r);
+				}
+			});
 		});
 		resolve();
 	});
