@@ -1,0 +1,50 @@
+{
+	"FFlag": {
+		"RequireGlobalHTTPS": false,
+		"AutoHTTPSRedirect": false
+	},
+	"DFFlag": {
+		"IsCaptchaV1Enabled": false,
+		"IsCaptchaV1HardCoded": false,
+		"IsCaptchaV2Enabled": false,
+		"IsCaptchaV2Hardcoded": false,
+		"CanCaptchaV2AdminKeyBeUsed": false,
+		"IsCSRFV1Enabled": false,
+		"IsCSRFV1Hardcoded": false,
+		"IsCSRFV2Enabled": false,
+		"IsCSRFV2HardCoded": false,
+		"IsCSRFV2BasedOnAuthenticationId": false,
+		"IsCSRFV2BasedOnIPAddress": false,
+		"IsCSRFV2BasedOnIpAddressAndAuthenticationId": false,
+		"CanCSRFV2AdminKeyBeUsed": false,
+		"IsAuthV1Enabled": false,
+		"IsAuthV2Enabled": false,
+		"IsWWWAuthV1Enabled": true
+	},
+	"FInt": {
+		"CSRFV2Timeout": 120000,
+		"CaptchaV1Timeout": 900000,
+		"CaptchaV2Timeout": 900000,
+		"CaptchaV2TimeoutAdditionAfter200GetImageHashes": 6000000
+	},
+	"DFInt": {
+		"CaptchaV2FailedStatus": 403
+	},
+	"FString": {
+		"CSRFV1FailedResponseStatusText": "Token Validation Failed",
+		"CaptchaV1FailedResponseStatusText": "Captcha Validation Failed",
+		"CSRFV2FailedResponseStatusText": "Token Validation Failed",
+		"CaptchaV2FailedResponseStatusText": "Captcha Validation Failed",
+		"CDNAdminAuthCompletedStatusText": "Verified"
+	},
+	"DFString": {},
+	"FLog": [
+		"CaptchaV1",
+		"CaptchaV2",
+		"CSRFV1",
+		"CSRFV2",
+		"AuthV1",
+		"AuthV2",
+		"WWWAuthV1"
+	]
+}
