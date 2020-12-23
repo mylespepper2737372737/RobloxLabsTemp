@@ -19,7 +19,8 @@
 		"CanCSRFV2AdminKeyBeUsed": false,
 		"IsAuthV1Enabled": false,
 		"IsAuthV2Enabled": false,
-		"IsWWWAuthV1Enabled": true
+		"IsWWWAuthV1Enabled": true,
+		"WWWAuthV1AllowAllMethods": false
 	},
 	"FInt": {
 		"CSRFV2Timeout": 120000,
@@ -28,7 +29,8 @@
 		"CaptchaV2TimeoutAdditionAfter200GetImageHashes": 6000000
 	},
 	"DFInt": {
-		"CaptchaV2FailedStatus": 403
+		"CaptchaV2FailedStatus": 403,
+		"WWWAuthV1MaxAuthIdAge": 946100000000
 	},
 	"FString": {
 		"CSRFV1FailedResponseStatusText": "Token Validation Failed",
