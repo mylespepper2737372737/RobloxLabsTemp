@@ -2,7 +2,7 @@
 	FileName: uptime.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Api's websocket
+	Description: ECS' websocket
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
