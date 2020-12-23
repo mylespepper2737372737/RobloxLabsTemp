@@ -7,7 +7,8 @@
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
 	TODO Finish function, then continue on sessions.
-	TODO Move settings to a helper getGlobalSettings
+	TODO Move DFFlag to a helper getGlobalSettings.
+	TODO Ensure that this signs more things that are client specific in order for keys to be unique.
 
 	***
 
@@ -40,38 +41,55 @@ Connection: close
 
 */
 
-// TODO Ensure that this signs more things that are client specific in order for keys to be unique.
+import SetManifestField from '../../modules/constants/SetManifestField';
+import GetManifests from '../../modules/constants/GetManifests';
+import GetRegisteredUsers from '../../modules/constants/GetRegisteredUsers';
+import { GetSettings, Group } from '../../modules/constants/GetSettings';
 import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
 import createCaptchaSessionBlob from '../helpers/www/LoginApi/createCaptchaSessionBlob';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
+import Crypto from 'crypto';
 import { _dirname } from '../../modules/constants/directories';
+
 dotenv.config({ path: _dirname + '\\.env' });
+
+const FFlag = GetSettings(Group.FFlag);
+const FString = GetSettings(Group.FString);
+
 export default {
 	dir: '/Authorization/Login.fxhx',
 	method: 'All',
-	func: (request: Request, response: Response): Response<unknown, number> => {
-		request.socket.on('close', (d) => console.log(d.toString()));
+	func: (request: Request, response: Response): Response<unknown> => {
+		const DFFlag = GetSettings(Group.DFFlag);
+		const DFInt = GetSettings(Group.DFInt);
+
+		const Manifest = GetManifests();
+
+		if (!DFFlag['IsWWWAuthV1Enabled'])
+			return response.status(503).send({
+				code: 503,
+				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
+				userfacingmessage: 'Service disabled for an unknown amount of time.',
+			});
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (request.protocol !== 'https') return response.status(403).send({ success: false, message: 'HTTPS Required.' });
-		if (request.method !== 'POST')
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
+
+		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
 			return response.status(405).send({
 				success: false,
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
-		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
-		const settings = JSON.parse(filestream.readFileSync(_dirname + '\\global\\settings.json', 'ascii'));
-		if (settings['isXsrfEnabled']) {
-			// console.log(request.headers);
 
+		if (DFFlag['IsCSRFV1Enabled']) {
 			if (
 				!request.headers['x-csrf-token'] ||
-				request.headers['x-csrf-token'] === '' ||
-				(settings['isXsrfHardcoded'] && request.headers['x-csrf-token'] !== process.env['xsrf'])
+				(DFFlag['IsCSRFV1Hardcoded'] && request.headers['x-csrf-token'] !== process.env['xsrf'])
 			) {
-				response.statusMessage = 'Token Validation Failed.';
-				if (settings['isXsrfHardcoded'])
+				response.statusMessage = FString['CSRFV1FailedResponseStatusText'];
+				if (DFFlag['IsCSRFV1Hardcoded'])
 					return response
 						.status(403)
 						.header({
@@ -83,10 +101,9 @@ export default {
 				return response.status(403).send({ success: false, message: 'Token Validation Failed' });
 			}
 		}
-		const registeredUsers = filestream.readFileSync(_dirname + '\\manifest\\users.json', 'ascii');
+		const registeredUsers = GetRegisteredUsers();
+
 		const sessions = filestream.readdirSync(_dirname + '\\manifest\\sessions');
-		let isValidUser = false;
-		const parsedUsers = JSON.parse(registeredUsers);
 		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
 		if (request.body && request.headers['content-type'] !== 'application/x-www-form-urlencoded')
 			return response.status(400).send({
@@ -100,7 +117,7 @@ export default {
 				userfacingmessage: 'The provided credentials were invalid.',
 			});
 
-		if (settings['isNewCaptchaEnabled']) {
+		if (DFFlag['IsCaptchaV1Enabled']) {
 			const __captchaSession = createCaptchaSessionBlob(request.ip);
 			const cToken = request.body['captchaToken'];
 			if (typeof cToken === 'string') {
@@ -118,19 +135,8 @@ export default {
 						try {
 							filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${cAnswer}.json`);
 						} catch {
-							console.warn('Session dead');
+							console.warn("Session has already been cleared or doesn't exist anymore.");
 						}
-						// try {
-						// 	JSON.parse(
-						// 		filestream.readFileSync(
-						// 			_dirname +
-						// 				`\\manifest\\sessions\\${
-						// 					(request.body['captchaToken'] as string).split('|')[0]
-						// 				}.json`,
-						// 			{ encoding: 'ascii' },
-						// 		),
-						// 	);
-						// } catch {}
 						return response.sendStatus(200);
 					} else {
 						return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
@@ -142,9 +148,13 @@ export default {
 				return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 			}
 		}
-		for (const userId of Object.keys(parsedUsers)) {
-			if (parsedUsers[userId] === request.body['cvalue']) {
+
+		let isValidUser = false;
+		let userId = '';
+		for (const id of Object.keys(registeredUsers)) {
+			if (registeredUsers[id] === request.body['cvalue']) {
 				isValidUser = true;
+				userId = id;
 				break;
 			}
 		}
@@ -154,7 +164,26 @@ export default {
 				message: 'User not found.',
 				userfacingmessage: 'Incorrect username or password.',
 			});
+		// let user = undefined;
+		if (!Manifest.get(userId)) return response.send('help me');
+		if (Manifest.get(userId).password !== request.body['password'])
+			return response.status(403).send({
+				success: false,
+				message: 'Incorrect Password.',
+				userfacingmessage: 'Incorrect Password or Username.',
+			});
+		const authId = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
+		SetManifestField(userId, 'sessionIds', authId, true, false, 0, false, false);
+
 		response.shouldKeepAlive = false;
-		response.sendStatus(200);
+		return response
+			.status(200)
+			.cookie('authId', authId, {
+				maxAge: DFInt['WWWAuthV1MaxAuthIdAge'],
+				domain: '.sitetest1.mfdlabs.com',
+				secure: true,
+				sameSite: 'lax',
+			})
+			.send({ success: true, message: 'Success', userfacingmessage: 'Success' });
 	},
 };
