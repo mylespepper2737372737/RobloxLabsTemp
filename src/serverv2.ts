@@ -47,7 +47,6 @@ import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs40
 import Startup from './library/startup';
 import express from 'express';
 
-// TODO Consider clearing cached sessions on start?
 (async () => {
 	await clearCachedSessions();
 
@@ -90,14 +89,16 @@ import express from 'express';
 	await (async () => {
 		try {
 			mapssl(images, urls['images']);
-			mapssl(www, urls['www']);
+			const [wwwHttp, wwwHttps] = mapssl(www, urls['www']);
 			const [apiHttp, apiHttps] = mapssl(api, urls['api']);
 			mapssl(staticcdn, urls['staticcdn']);
 			mapssl(js, urls['js']);
 			mapssl(css, urls['css']);
 			mapssl(setup, urls['setup']);
-			mapssl(ephemeralcounters, urls['ephemeralcounters']);
+			const [ecsHttp, ecsHttps] = mapssl(ephemeralcounters, urls['ephemeralcounters']);
 			await mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
+			await mapwss(wwwHttp, wwwHttps, '\\lib\\sockets\\www', urls['www']);
+			await mapwss(ecsHttp, ecsHttps, '\\lib\\sockets\\ecs', urls['ephemeralcounters']);
 		} catch (e) {
 			throw new Error(e);
 		}
