@@ -34,12 +34,9 @@ interface resmodel1 {
 }
 const c = (username: string, password: string): void => {
 	$.ajax({
-		url: 'https://api.sitetest1.mfdlabs.com/auth/v2/login',
-		data: JSON.stringify({
-			username: username,
-			password: password,
-		}),
-		contentType: 'application/json',
+		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Login.fxhx',
+		data: `cvalue=${username}&password=${password}`,
+		contentType: 'application/x-www-form-urlencoded',
 		method: 'POST',
 		xhrFields: {
 			withCredentials: true,

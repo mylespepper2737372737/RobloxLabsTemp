@@ -31,7 +31,7 @@ if (!(document.cookie || '').match(/authId/)) document.location.replace('https:/
 const d = () => {
 	$.ajax({
 		dataType: 'json',
-		url: 'https://api.sitetest1.mfdlabs.com/auth/v2/logout',
+		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Logout.fxhx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
 	})
@@ -43,5 +43,13 @@ const d = () => {
 				}, 500);
 			}
 		})
-		.catch(() => $('.body').css('color', 'red').text('Something went wrong.'));
+		.catch((response) =>
+			$('.body')
+				.css('color', 'red')
+				.text(
+					(response as JQuery.jqXHR).responseJSON
+						? (response as JQuery.jqXHR).responseJSON['userfacingmessage']
+						: 'Something went wrong.',
+				),
+		);
 };
