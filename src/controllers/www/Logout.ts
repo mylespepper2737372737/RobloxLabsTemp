@@ -6,10 +6,6 @@
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
-	TODO Finish function, then continue on sessions.
-	TODO Move DFFlag to a helper getGlobalSettings.
-	TODO Ensure that this signs more things that are client specific in order for keys to be unique.
-
 	***
 
 	Copyright 2015-2020 MFD
@@ -39,7 +35,7 @@ Cookie: authId=AUTH_ID
 */
 
 import SetManifestField from '../../modules/constants/SetManifestField';
-import GetManifests from '../../modules/constants/GetManifests';
+import { GetManifests } from '../../modules/constants/GetManifests';
 import { GetSettings, Group } from '../../modules/constants/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
@@ -118,6 +114,9 @@ export default {
 		SetManifestField(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
 
 		response.shouldKeepAlive = false;
-		return response.status(200).clearCookie('authId', {domain: '.sitetest1.mfdlabs.com'}).send({ success: true, message: 'Success', userfacingmessage: 'Success' });
+		return response
+			.status(200)
+			.clearCookie('authId', { domain: '.sitetest1.mfdlabs.com' })
+			.send({ success: true, message: 'Success', userfacingmessage: 'Success' });
 	},
 };

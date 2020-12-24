@@ -6,10 +6,6 @@
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
-	TODO Finish function, then continue on sessions.
-	TODO Move DFFlag to a helper getGlobalSettings.
-	TODO Ensure that this signs more things that are client specific in order for keys to be unique.
-
 	***
 
 	Copyright 2015-2020 MFD
@@ -42,7 +38,7 @@ Connection: close
 */
 
 import SetManifestField from '../../modules/constants/SetManifestField';
-import GetManifests from '../../modules/constants/GetManifests';
+import { GetManifests } from '../../modules/constants/GetManifests';
 import GetRegisteredUsers from '../../modules/constants/GetRegisteredUsers';
 import { GetSettings, Group } from '../../modules/constants/GetSettings';
 import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
@@ -64,9 +60,7 @@ export default {
 	func: (request: Request, response: Response): Response<unknown> => {
 		const DFFlag = GetSettings(Group.DFFlag);
 		const DFInt = GetSettings(Group.DFInt);
-
 		const Manifest = GetManifests();
-
 		if (!DFFlag['IsWWWAuthV1Enabled'])
 			return response.status(503).send({
 				code: 503,
