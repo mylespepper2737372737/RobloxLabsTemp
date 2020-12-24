@@ -23,9 +23,9 @@
 	},
 	"FInt": {
 		"CSRFV2Timeout": 120000,
-		"CaptchaV1Timeout": 900000,
-		"CaptchaV2Timeout": 900000,
-		"CaptchaV2TimeoutAdditionAfter200GetImageHashes": 6000000
+		"CaptchaV1Timeout": 60000,
+		"CaptchaV2Timeout": 60000,
+		"CaptchaV2TimeoutAdditionAfter200GetImageHashes": 900000
 	},
 	"DFInt": {
 		"CaptchaV2FailedStatus": 403,
