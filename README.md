@@ -6,7 +6,6 @@
 <p align="center">
   <a href="#about">About</a> •
   <a href="#installation">Installation</a> •
-  <a href="#documentation">Docs</a> •
   <a href="#credits">Credits</a>
 </p>
 
@@ -27,7 +26,9 @@ $ git clone https://github.com/mfd-core/mfdlabs.com.git
 
 That's it!
 
-
 ## Credits
 
 -   [MFD CO](https://github.com/mfd-core) - MFD Engine and backend Team
+
+## Notices
+Consider moving DFFlagIsAuthV2Enabled to FFlagIsAuthV2Enabled
