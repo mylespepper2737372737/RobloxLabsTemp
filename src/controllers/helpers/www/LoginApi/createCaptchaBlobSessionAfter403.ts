@@ -28,6 +28,9 @@
 import filestream from 'fs';
 import { Response } from 'express-serve-static-core';
 import { _dirname } from '../../../../modules/constants/directories';
+import { GetSettings, Group } from '../../../../modules/constants/GetSettings';
+const FInt = GetSettings(Group.FInt);
+
 export = (response: Response, captchaBLOB: string, ip: string) => {
 	const dataToRefer = { sub: ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) };
 	filestream.writeFileSync(_dirname + `\\manifest\\sessions\\${captchaBLOB}.json`, JSON.stringify(dataToRefer), { encoding: 'ascii' });
@@ -37,12 +40,12 @@ export = (response: Response, captchaBLOB: string, ip: string) => {
 		} catch {
 			console.warn('The session is already clear');
 		}
-	}, 60000);
+	}, FInt['CaptchaV2Timeout']);
 	response.statusMessage = 'Captcha failed';
-	return response.status(403).header({ expires: 60000 }).send({
+	return response.status(403).header({ expires: FInt['CaptchaV2Timeout'] }).send({
 		success: false,
 		message: 'You need to pass the robot test first.',
 		blob: captchaBLOB,
-		expires: 60000,
+		expires: FInt['CaptchaV2Timeout'],
 	});
 };
