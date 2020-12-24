@@ -43,7 +43,7 @@ import mapssl from './modules/constants/ssl';
 import mapconfig from './modules/configs/mapconfig';
 import urls from './modules/constants/urls';
 import defaultMiddleware from './modules/middleware/init_middleware';
-import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs404 } from './modules/middleware/404';
+import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs404, ti404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
 
@@ -58,6 +58,7 @@ import express from 'express';
 	const setup = express();
 	const api = express();
 	const ephemeralcounters = express();
+	const temp_images = express();
 
 	www.use(defaultMiddleware);
 	staticcdn.use(defaultMiddleware);
@@ -67,6 +68,7 @@ import express from 'express';
 	setup.use(defaultMiddleware);
 	api.use(defaultMiddleware);
 	ephemeralcounters.use(defaultMiddleware);
+	temp_images.use(defaultMiddleware);
 
 	await Startup.Configure(mapconfig(staticcdn, '\\static', '\\lib\\controllers\\static', urls['staticcdn']));
 	await Startup.Configure(mapconfig(js, '\\lib\\js', '\\lib\\controllers\\js', urls['js']));
@@ -76,6 +78,7 @@ import express from 'express';
 	await Startup.Configure(mapconfig(setup, '\\setup', '\\lib\\controllers\\setup', urls['setup']));
 	await Startup.Configure(mapconfig(www, '\\www', '\\lib\\controllers\\www', urls['www'], true));
 	await Startup.Configure(mapconfig(ephemeralcounters, '\\ecs', '\\lib\\controllers\\ecs', urls['ephemeralcounters']));
+	await Startup.Configure(mapconfig(temp_images, '\\temp', '\\lib\\controllers\\temp', urls['temporary_images']));
 
 	api.use(api404);
 	staticcdn.use(staticcdn404);
@@ -85,6 +88,7 @@ import express from 'express';
 	setup.use(setup404);
 	www.use(www404);
 	ephemeralcounters.use(ecs404);
+	temp_images.use(ti404);
 
 	await (async () => {
 		try {
@@ -95,6 +99,7 @@ import express from 'express';
 			mapssl(js, urls['js']);
 			mapssl(css, urls['css']);
 			mapssl(setup, urls['setup']);
+			mapssl(temp_images, urls['temporary_images']);
 			const [ecsHttp, ecsHttps] = mapssl(ephemeralcounters, urls['ephemeralcounters']);
 			await mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
 			await mapwss(wwwHttp, wwwHttps, '\\lib\\sockets\\www', urls['www']);

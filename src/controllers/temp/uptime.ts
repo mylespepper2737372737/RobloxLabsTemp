@@ -1,8 +1,8 @@
 /*
-	FileName: urls.ts
-	Written By: Aleksej Brovim Pushnak,
+	FileName: uptime.ts
+	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Add global URLS that are being used or will be used to this.
+	Description: Tester for mapControllers
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
@@ -26,13 +26,9 @@
 */
 
 export default {
-	www: 'www.sitetest1.mfdlabs.com',
-	api: 'api.sitetest1.mfdlabs.com',
-	staticcdn: 'static.sitetest1.mfdlabs.com',
-	js: 'js.sitetest1.mfdlabs.com',
-	css: 'css.sitetest1.mfdlabs.com',
-	images: 'images.sitetest1.mfdlabs.com',
-	setup: 'setup.sitetest1.mfdlabs.com',
-	ephemeralcounters: 'ephemeralcounters.api.sitetest1.mfdlabs.com',
-	temporary_images: 'ti.sitetest1.mfdlabs.com',
+	dir: '/uptime',
+	method: 'all',
+	func: (_req: unknown, res: { send: (arg0: { message: string }) => void }): void => {
+		res.send({ message: 'OK' });
+	},
 };
