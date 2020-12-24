@@ -1,9 +1,9 @@
 import filestream from 'fs';
 import { _dirname } from './directories';
 
-type userType = { password: string; username: string; sessionIds: string[] };
+export type userType = { password: string; username: string; sessionIds: string[]; userId: string };
 
-export = () => {
+export const GetManifests = () => {
 	const map = filestream.readdirSync(_dirname + '\\manifest\\users');
 	const users = new Map<string, userType>();
 	map.forEach((v) => {
