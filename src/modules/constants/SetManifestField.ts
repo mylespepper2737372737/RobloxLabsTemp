@@ -39,5 +39,5 @@ export = (
 			}
 		}
 	}
-	return filestream.writeFileSync(_dirname + `\\manifest\\users\\${userId}.json`, JSON.stringify(user), { encoding: 'utf-8' });
+	return filestream.writeFileSync(_dirname + `\\manifest\\users\\${userId}.json`, JSON.stringify(user, undefined, 4), { encoding: 'utf-8' });
 };
