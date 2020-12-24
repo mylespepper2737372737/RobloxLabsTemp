@@ -41,8 +41,10 @@ import SetManifestField from '../../modules/constants/SetManifestField';
 import { GetManifests } from '../../modules/constants/GetManifests';
 import GetRegisteredUsers from '../../modules/constants/GetRegisteredUsers';
 import { GetSettings, Group } from '../../modules/constants/GetSettings';
+import GetSessions from '../../modules/constants/GetSessions';
 import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
 import createCaptchaSessionBlob from '../helpers/www/LoginApi/createCaptchaSessionBlob';
+import DeleteCaptchaSession from '../../modules/constants/DeleteCaptchaSession';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
@@ -111,27 +113,27 @@ export default {
 				userfacingmessage: 'The provided credentials were invalid.',
 			});
 
+		const Sessions = GetSessions();
 		if (DFFlag['IsCaptchaV1Enabled']) {
 			const __captchaSession = createCaptchaSessionBlob(request.ip);
 			const cToken = request.body['captchaToken'];
 			if (typeof cToken === 'string') {
-				const cAnswer = cToken.split('|')[0];
-				if (cAnswer) {
+				const cSession = cToken.split('|')[0];
+				if (cSession) {
 					let isCaptchaSessionValid = false;
 					for (const v of sessions) {
 						const sessionId = v.split('.').shift();
-						if (sessionId === cAnswer) {
+						if (sessionId === cSession) {
 							isCaptchaSessionValid = true;
 							break;
 						}
 					}
 					if (isCaptchaSessionValid) {
-						try {
-							filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${cAnswer}.json`);
-						} catch {
-							console.warn("Session has already been cleared or doesn't exist anymore.");
-						}
-						return response.sendStatus(200);
+						const cAnswer = cToken.split('|')[1];
+						if (!Sessions.has(cSession)) return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+						if (Sessions.get(cSession).answer !== cAnswer)
+							return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+						DeleteCaptchaSession(cSession);
 					} else {
 						return createCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 					}
