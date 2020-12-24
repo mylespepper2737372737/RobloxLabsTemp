@@ -13,7 +13,7 @@ export enum Group {
 
 export const GetSettings = <SettingsGroup extends Group>(settingsGroup?: SettingsGroup): Record<string, unknown> | string[] | Error => {
 	const settings = JSON.parse(filestream.readFileSync(_dirname + '\\global\\flags.json', 'ascii'));
-	if (settingsGroup) {
+	if (settingsGroup || settingsGroup === 0 || settingsGroup === Group.FFlag) {
 		switch (settingsGroup as Group) {
 			case Group.FFlag:
 				return settings['FFlag'] as Record<string, boolean>;
