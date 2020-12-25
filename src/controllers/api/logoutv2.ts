@@ -27,8 +27,9 @@
 */
 
 import filestream from 'fs';
-import { GetSettings, Group } from '../../modules/constants/GetSettings';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { _dirname } from '../../modules/constants/directories';
+
 export default {
 	dir: '/auth/v2/logout',
 	method: 'ALL',
