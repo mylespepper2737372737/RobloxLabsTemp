@@ -20,7 +20,8 @@
 		"CanCSRFV2AdminKeyBeUsed": false,
 		"IsAuthV2Enabled": false,
 		"IsWWWAuthV1Enabled": true,
-		"WWWAuthV1AllowAllMethods": false
+		"WWWAuthV1AllowAllMethods": false,
+		"IsClientSettingsAPIEnabled": false
 	},
 	"FInt": {
 		"CSRFV2Timeout": 120000,
