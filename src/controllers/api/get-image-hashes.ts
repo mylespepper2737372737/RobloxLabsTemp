@@ -4,6 +4,8 @@
 	File Type: Module
 	Description: https://api.sitetest1.mfdlabs.com/captcha/v1/get-image-hashes,
 
+	TODO Implement this for captcha front end
+
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
 	***
@@ -25,14 +27,18 @@
 	***
 */
 
-import SetCaptchaSessionField from '../../modules/constants/SetCaptchaSessiontField';
+// TODO: Should we deprecate DFFlagIsCaptchaV1Enabled? V2 is used more.
+
+import SetCaptchaSessionField from '../../modules/Helpers/SetCaptchaSessiontField';
 import crypto from 'crypto';
-import { GetCaptchaImages } from '../../modules/constants/GetCaptchaImages';
-import GetSessions from '../../modules/constants/GetSessions';
-import { GetSettings, Group } from '../../modules/constants/GetSettings';
+import { GetCaptchaImages } from '../../modules/Helpers/GetCaptchaImages';
+import GetSessions from '../../modules/Helpers/GetSessions';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import filestream from 'fs';
 import { _dirname } from '../../modules/constants/directories';
+import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
+import shuffleArray from '../helpers/www/shuffleArray';
 
 const FString = GetSettings(Group.FString);
 const FInt = GetSettings(Group.FInt);
@@ -59,7 +65,11 @@ export default {
 				message: `The requested resource does not support http method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
-		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
+		if (JSON.stringify(request.body) === '{}')
+			return response.status(400).send({
+				success: false,
+				message: 'No body was provided.',
+			});
 		if (request.body && request.headers['content-type'] !== 'application/x-www-form-urlencoded')
 			return response.status(400).send({
 				success: false,
@@ -82,9 +92,11 @@ export default {
 				.send({ success: false, message: 'The current CAPTCHA_PROVIDER is not valid' });
 		const Sessions = GetSessions();
 		if (!Sessions.get(request.body['captchaHash']))
-			return response
-				.status(404)
-				.send({ success: false, message: 'The captchaToken supplied is not valid.', userfacingmessage: 'Bad Token Request' });
+			return response.status(404).send({
+				success: false,
+				message: 'The captchaToken supplied is not valid.',
+				userfacingmessage: 'Bad Token Request',
+			});
 		const imageCache = GetCaptchaImages();
 		const images = [];
 		const newHash = request.body['captchaHash'] + '0x0ff';
@@ -95,6 +107,7 @@ export default {
 				encoding: 'utf-8',
 			},
 		);
+		DeleteCaptchaSession(request.body['captchaHash']);
 		setTimeout(() => {
 			try {
 				filestream.unlinkSync(_dirname + `\\manifest\\sessions\\${newHash}.json`);
@@ -110,6 +123,10 @@ export default {
 		response
 			.status(200)
 			.contentType('application/json')
-			.send({ data: images, captchaHash: newHash, expires: FInt['CaptchaV2TimeoutAdditionAfter200GetImageHashes'] });
+			.send({
+				data: shuffleArray(images),
+				captchaHash: newHash,
+				expires: FInt['CaptchaV2TimeoutAdditionAfter200GetImageHashes'],
+			});
 	},
 };
