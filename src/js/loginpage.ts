@@ -48,14 +48,10 @@ const c = (username: string, password: string): void => {
 				document.location.replace('https://www.sitetest1.mfdlabs.com');
 			}, 500);
 		})
-		.catch((response) => {
+		.catch((response: JQuery.jqXHR) => {
 			console.log(response);
 			$('#underscare')
 				.css('color', 'red')
-				.text(
-					(response as JQuery.jqXHR).responseJSON
-						? (response as JQuery.jqXHR).responseJSON['userfacingmessage']
-						: 'Something went wrong.',
-				);
+				.text(response.responseJSON ? response.responseJSON['userfacingmessage'] : 'Something went wrong.');
 		});
 };
