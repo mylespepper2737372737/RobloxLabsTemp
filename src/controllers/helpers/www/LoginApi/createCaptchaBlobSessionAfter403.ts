@@ -28,7 +28,8 @@
 import filestream from 'fs';
 import { Response } from 'express-serve-static-core';
 import { _dirname } from '../../../../modules/constants/directories';
-import { GetSettings, Group } from '../../../../modules/constants/GetSettings';
+import { GetSettings, Group } from '../../../../modules/Helpers/GetSettings';
+
 const FInt = GetSettings(Group.FInt);
 
 export = (response: Response, captchaBLOB: string, ip: string) => {
