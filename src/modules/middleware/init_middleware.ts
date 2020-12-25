@@ -28,6 +28,7 @@
 import crypto from 'crypto';
 import headers from '../constants/headers';
 import { RequestHandler } from 'express-serve-static-core';
+
 export = ((
 	req: { headers: { cookie: string }; hostname: string; method: string; header: (arg0: string) => any },
 	res: {
