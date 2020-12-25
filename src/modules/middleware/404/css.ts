@@ -26,6 +26,7 @@
 */
 
 import crypto from 'crypto';
+
 export default (
 	req: { query: { apiKey: string }; method: string; url: string },
 	res: {
