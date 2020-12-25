@@ -37,14 +37,14 @@ Connection: close
 
 */
 
-import SetManifestField from '../../modules/constants/SetManifestField';
-import { GetManifests } from '../../modules/constants/GetManifests';
-import GetRegisteredUsers from '../../modules/constants/GetRegisteredUsers';
-import { GetSettings, Group } from '../../modules/constants/GetSettings';
-import GetSessions from '../../modules/constants/GetSessions';
+import SetManifestField from '../../modules/Helpers/SetManifestField';
+import { GetManifests } from '../../modules/Helpers/GetManifests';
+import GetRegisteredUsers from '../../modules/Helpers/GetRegisteredUsers';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import GetSessions from '../../modules/Helpers/GetSessions';
 import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
 import createCaptchaSessionBlob from '../helpers/www/LoginApi/createCaptchaSessionBlob';
-import DeleteCaptchaSession from '../../modules/constants/DeleteCaptchaSession';
+import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
@@ -79,18 +79,18 @@ export default {
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		if (DFFlag['IsCSRFV1Enabled']) {
+		if (DFFlag['IsCSRFV2Enabled']) {
 			if (
 				!request.headers['x-csrf-token'] ||
-				(DFFlag['IsCSRFV1Hardcoded'] && request.headers['x-csrf-token'] !== process.env['xsrf'])
+				(DFFlag['IsCSRFV2Hardcoded'] && request.headers['x-csrf-token'] !== FString['CSRFV2HardcodedKey'])
 			) {
 				response.statusMessage = FString['CSRFV1FailedResponseStatusText'];
-				if (DFFlag['IsCSRFV1Hardcoded'])
+				if (DFFlag['IsCSRFV2Hardcoded'])
 					return response
 						.status(403)
 						.header({
 							'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-							'x-csrf-token': process.env['xsrf'],
+							'x-csrf-token': FString['CSRFV2HardcodedKey'],
 							'api-transfer': 'Expose-Hardcoded-Session-Token#433',
 						})
 						.send({ success: false, message: 'Token Validation Failed' });
@@ -114,7 +114,7 @@ export default {
 			});
 
 		const Sessions = GetSessions();
-		if (DFFlag['IsCaptchaV1Enabled']) {
+		if (DFFlag['IsCaptchaV2Enabled']) {
 			const __captchaSession = createCaptchaSessionBlob(request.ip);
 			const cToken = request.body['captchaToken'];
 			if (typeof cToken === 'string') {
