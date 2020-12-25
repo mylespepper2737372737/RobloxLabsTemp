@@ -34,13 +34,14 @@ Cookie: authId=AUTH_ID
 
 */
 
-import SetManifestField from '../../modules/constants/SetManifestField';
-import { GetManifests, userType } from '../../modules/constants/GetManifests';
-import { GetSettings, Group } from '../../modules/constants/GetSettings';
+import SetManifestField from '../../modules/Helpers/SetManifestField';
+import { GetManifests, userType } from '../../modules/Helpers/GetManifests';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';
 import Crypto from 'crypto';
+import { LOGGROUP, FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/Log';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
@@ -52,50 +53,63 @@ export default {
 	dir: '/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
+		LOGGROUP('WWWAuthV1');
 		// Anything up here is dynamic,
 		// these flags are 'Run-Time flags'
 		const DFFlag = GetSettings(Group.DFFlag);
 		const DFInt = GetSettings(Group.DFInt);
 		const Manifest = GetManifests();
 
-		if (!DFFlag['IsWWWAuthV1Enabled'])
+		if (!DFFlag['IsWWWAuthV1Enabled']) {
+			FASTLOG4(FLog['WWWAuthV1'], 'The service is disabled currently.');
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
+		}
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+			FASTLOG6(FLog['WWWAuthV1'], 'HTTPS was not given where it was required.');
 			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
+		}
 
-		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
+		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods']) {
+			FASTLOG6(FLog['WWWAuthV1'], `${request.method} is not supported`);
 			return response.status(405).send({
 				success: false,
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
+		}
 
-		if (DFFlag['IsCSRFV1Enabled']) {
+		if (DFFlag['IsCSRFV2Enabled']) {
 			if (
 				!request.headers['x-csrf-token'] ||
-				(DFFlag['IsCSRFV1Hardcoded'] && request.headers['x-csrf-token'] !== process.env['xsrf'])
+				(DFFlag['IsCSRFV2Hardcoded'] && request.headers['x-csrf-token'] !== FString['CSRFV2HardcodedKey'])
 			) {
-				response.statusMessage = FString['CSRFV1FailedResponseStatusText'];
-				if (DFFlag['IsCSRFV1Hardcoded'])
+				response.statusMessage = FString['CSRFV2FailedResponseStatusText'];
+				if (DFFlag['IsCSRFV2Hardcoded']) {
+					FASTLOG4(FLog['WWWAuthV1'], FString['CSRFV2FailedResponseStatusText']);
 					return response
 						.status(403)
 						.header({
 							'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-							'x-csrf-token': process.env['xsrf'],
+							'x-csrf-token': FString['CSRFV2HardcodedKey'],
 							'api-transfer': 'Expose-Hardcoded-Session-Token#433',
 						})
 						.send({ success: false, message: 'Token Validation Failed' });
-				return response.status(403).send({ success: false, message: 'Token Validation Failed' });
+				}
+				FASTLOG4(FLog['WWWAuthV1'], 'Token Validation Failed.');
+				return response.status(403).send({ success: false, message: FString['CSRFV2FailedResponseStatusText'] });
 			}
 		}
 		let validUser: userType = undefined;
 		let isValidId = false;
-		if (!request.cookies['authId']) return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
+		if (!request.cookies['authId']) {
+			FASTLOG6(FLog['WWWAuthV1'], 'AuthId did not exist on the request.');
+			return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
+		}
 		Manifest.forEach((user) => {
 			user.sessionIds.forEach((sessionId) => {
 				if (sessionId === request.cookies['authId']) {
@@ -104,18 +118,21 @@ export default {
 				}
 			});
 		});
-		if (!isValidId)
+		if (!isValidId) {
+			FASTLOG4(FLog['WWWAuthV1'], `The user matching ${request.cookies['authId']} was not found.`);
 			return response.status(404).send({
 				success: false,
 				message: 'AuthId not found.',
 				userfacingmessage: 'The current credentials are invalid, please manually remove them and log in again.',
 			});
+		}
 
 		SetManifestField(validUser.userId, 'sessionIds', [], false, false, 0, false, false);
 		const authId = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
 		SetManifestField(validUser.userId, 'sessionIds', authId, true, false, 0, false, false);
 
 		response.shouldKeepAlive = false;
+		FASTLOG1(FLog['WWWAuthV1'], 'Request success, no issues.');
 		return response
 			.status(200)
 			.cookie('authId', authId, {
