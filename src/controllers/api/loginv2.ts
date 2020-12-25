@@ -29,7 +29,7 @@
 import filestream from 'fs';
 import crypto from 'crypto';
 import { _dirname } from '../../modules/constants/directories';
-import { GetSettings, Group } from '../../modules/constants/GetSettings';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 
 /**
  * @deprecated
@@ -84,7 +84,11 @@ export default {
 			request.body === null ||
 			request.body === undefined
 		)
-			return response.status(400).send({ code: 400, message: 'Body was null.', userfacingmessage: 'Something went wrong.' });
+			return response.status(400).send({
+				code: 400,
+				message: 'Body was null.',
+				userfacingmessage: 'Something went wrong.',
+			});
 		if (request.headers['content-type'] !== 'application/json')
 			return response.status(400).send({
 				code: 400,
