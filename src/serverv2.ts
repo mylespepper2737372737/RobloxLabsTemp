@@ -37,15 +37,18 @@
 	***
 */
 
-import clearCachedSessions from './modules/constants/clearCachedSessions';
-import mapwss from './modules/constants/ws';
-import mapssl from './modules/constants/ssl';
+import clearCachedSessions from './modules/Helpers/clearCachedSessions';
+import mapwss from './modules/Helpers/ws';
+import mapssl from './modules/Helpers/ssl';
 import mapconfig from './modules/configs/mapconfig';
 import urls from './modules/constants/urls';
 import defaultMiddleware from './modules/middleware/init_middleware';
-import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs404, ti404 } from './modules/middleware/404';
+import { api404, css404, ecs404, images404, js404, setup404, staticcdn404, ti404, www404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
+import { LOGGROUP, FLog, FASTLOG6 } from './modules/Helpers/Log';
+
+LOGGROUP('Tasks');
 
 (async () => {
 	await clearCachedSessions();
@@ -105,7 +108,7 @@ import express from 'express';
 			await mapwss(wwwHttp, wwwHttps, '\\lib\\sockets\\www', urls['www']);
 			await mapwss(ecsHttp, ecsHttps, '\\lib\\sockets\\ecs', urls['ephemeralcounters']);
 		} catch (e) {
-			throw new Error(e);
+			return FASTLOG6(FLog['Tasks'], e);
 		}
 	})();
 })();
