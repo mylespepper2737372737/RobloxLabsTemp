@@ -34,9 +34,9 @@ Cookie: authId=AUTH_ID
 
 */
 
-import SetManifestField from '../../modules/constants/SetManifestField';
-import { GetManifests } from '../../modules/constants/GetManifests';
-import { GetSettings, Group } from '../../modules/constants/GetSettings';
+import SetManifestField from '../../modules/Helpers/SetManifestField';
+import { GetManifests } from '../../modules/Helpers/GetManifests';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';
@@ -73,22 +73,22 @@ export default {
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		if (DFFlag['IsCSRFV1Enabled']) {
+		if (DFFlag['IsCSRFV2Enabled']) {
 			if (
 				!request.headers['x-csrf-token'] ||
-				(DFFlag['IsCSRFV1Hardcoded'] && request.headers['x-csrf-token'] !== process.env['xsrf'])
+				(DFFlag['IsCSRFV2Hardcoded'] && request.headers['x-csrf-token'] !== FString['CSRFV2HardcodedKey'])
 			) {
-				response.statusMessage = FString['CSRFV1FailedResponseStatusText'];
-				if (DFFlag['IsCSRFV1Hardcoded'])
+				response.statusMessage = FString['CSRFV2FailedResponseStatusText'];
+				if (DFFlag['IsCSRFV2Hardcoded'])
 					return response
 						.status(403)
 						.header({
 							'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-							'x-csrf-token': process.env['xsrf'],
+							'x-csrf-token': FString['CSRFV2HardcodedKey'],
 							'api-transfer': 'Expose-Hardcoded-Session-Token#433',
 						})
 						.send({ success: false, message: 'Token Validation Failed' });
-				return response.status(403).send({ success: false, message: 'Token Validation Failed' });
+				return response.status(403).send({ success: false, message: FString['CSRFV2FailedResponseStatusText'] });
 			}
 		}
 		let validUser = undefined;
