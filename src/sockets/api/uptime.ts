@@ -27,6 +27,7 @@
 
 import ws from 'ws';
 import c from 'crypto';
+
 export default {
 	dir: '/uptime',
 	func: (socket: ws, _req: { headers: any }): void => {
