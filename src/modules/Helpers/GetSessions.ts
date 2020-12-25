@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from './directories';
+import { _dirname } from '../constants/directories';
 
 type captchaSessionType = { subject: string; time: number; answer: string; token: string };
 

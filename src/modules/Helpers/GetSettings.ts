@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from './directories';
+import { _dirname } from '../constants/directories';
 
 export enum Group {
 	FFlag,
@@ -8,7 +8,6 @@ export enum Group {
 	DFInt,
 	FString,
 	DFString,
-	FLog,
 }
 
 export const GetSettings = <SettingsGroup extends Group>(settingsGroup?: SettingsGroup): Record<string, unknown> | string[] | Error => {
@@ -27,8 +26,6 @@ export const GetSettings = <SettingsGroup extends Group>(settingsGroup?: Setting
 				return settings['FString'] as Record<string, string>;
 			case Group.DFString:
 				return settings['DFString'] as Record<string, string>;
-			case Group.FLog:
-				return settings['FLog'] as string[];
 			default:
 				return new Error(`Settings Group '${settingsGroup}' doesn't exist.`);
 		}

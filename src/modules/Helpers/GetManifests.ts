@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from './directories';
+import { _dirname } from '../constants/directories';
 
 export type userType = { password: string; username: string; sessionIds: string[]; userId: string };
 

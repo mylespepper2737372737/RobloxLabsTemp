@@ -1,8 +1,8 @@
 /*
-	FileName: ws.ts
+	FileName: clearCachedSessions.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Wrapper for WS servers and WSS servers, used as a helper.
+	Description: Clears all sessions in /manifests/sessions on start
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
@@ -25,15 +25,17 @@
 	***
 */
 
-import mapwss from '../../global/MapWebsockets';
-import { _dirname } from './directories';
-import { Server as HttpServer } from 'http';
-import { Server as HttpsServer } from 'https';
-export = async (HttpServer: HttpServer, HttpsServer: HttpsServer, dir: string, apiName: string) => {
-	await mapwss(HttpServer, HttpsServer, {
-		path: _dirname + dir,
-		shouldHandleUpgrade: true,
-		apiName: apiName,
-		logSetups: true,
+import fs from 'fs';
+import { _dirname } from '../constants/directories';
+
+export = () => {
+	return new Promise((resolve, reject) => {
+		try {
+			fs.rmdirSync(_dirname + '\\manifest\\sessions', { recursive: true });
+			fs.mkdirSync(_dirname + '\\manifest\\sessions');
+			resolve();
+		} catch (err) {
+			reject(err);
+		}
 	});
 };

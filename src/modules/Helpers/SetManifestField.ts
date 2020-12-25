@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from './directories';
+import { _dirname } from '../constants/directories';
 
 export = (
 	userId: string,
@@ -39,5 +39,7 @@ export = (
 			}
 		}
 	}
-	return filestream.writeFileSync(_dirname + `\\manifest\\users\\${userId}.json`, JSON.stringify(user, undefined, 4), { encoding: 'utf-8' });
+	return filestream.writeFileSync(_dirname + `\\manifest\\users\\${userId}.json`, JSON.stringify(user, undefined, 4), {
+		encoding: 'utf-8',
+	});
 };

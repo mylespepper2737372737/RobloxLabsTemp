@@ -30,10 +30,13 @@ import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { Server as HttpServer } from 'http';
 import { Server as HttpsServer } from 'https';
 import dotenv from 'dotenv';
-import { _sslname, _dirname } from '../constants/directories';
-dotenv.config({ path: _dirname + '\\.env' });
+import { _dirname, _sslname } from '../constants/directories';
 import filestream from 'fs';
+import { FASTLOG3, FLog, LOGGROUP } from './Log';
+
+dotenv.config({ path: _dirname + '\\.env' });
 export = (app: IApplicationBuilder, name: string): [HttpServer, HttpsServer] => {
+	LOGGROUP(name);
 	try {
 		const httpsServer = https2
 			.createServer(
@@ -44,8 +47,8 @@ export = (app: IApplicationBuilder, name: string): [HttpServer, HttpsServer] => 
 				},
 				app,
 			)
-			.listen(443, name, () => console.log(`https://${name}:443 started.`));
-		const httpServer = app.listen(80, name, () => console.log(`http://${name}:80 started.`));
+			.listen(443, name, () => FASTLOG3(FLog[name], `https://${name}:443 started.`));
+		const httpServer = app.listen(80, name, () => FASTLOG3(FLog[name], `http://${name}:80 started.`));
 		return [httpServer, httpsServer];
 	} catch (err) {
 		throw new Error(err);
