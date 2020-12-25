@@ -26,6 +26,7 @@
 */
 
 import crypto from 'crypto';
+
 export = (ip: string) => {
 	const header = crypto
 		.createHash('sha256')
@@ -57,6 +58,5 @@ export = (ip: string) => {
 		.join('')
 		.split('=')
 		.join('');
-	const captchaBLOB = `${header}\_${body}\_${signature}`;
-	return captchaBLOB;
+	return `${header}\_${body}\_${signature}`;
 };
