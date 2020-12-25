@@ -26,6 +26,7 @@
 */
 
 import { _dirname } from '../../modules/constants/directories';
+
 export default {
 	dir: '/v1.0/SequenceStatistics/BatchAddToSequencesV2',
 	method: 'all',
