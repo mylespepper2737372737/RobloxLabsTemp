@@ -30,6 +30,7 @@ import filestream from 'fs';
 import { _dirname } from '../modules/constants/directories';
 import { IncomingMessage, Server as HttpServer } from 'http';
 import { Server as HttpsServer } from 'https';
+import { FASTLOG3, FASTLOG6, FLog, LOGGROUP } from '../modules/Helpers/Log';
 
 interface wssOpts {
 	path?: string;
@@ -39,6 +40,7 @@ interface wssOpts {
 }
 
 export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Promise<void> => {
+	LOGGROUP(opts.apiName);
 	return new Promise((resolve, reject) => {
 		let controllers: string[];
 		const maps: {
@@ -48,18 +50,20 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 		try {
 			controllers = filestream.readdirSync((opts !== undefined ? opts.path : _dirname + '\\sockets') || _dirname + '\\sockets');
 		} catch (err) {
-			return reject(err);
+			return FASTLOG6(FLog[opts.apiName], err);
 		}
 		controllers.forEach((v) => {
 			if (!v.includes('.js.map') || !v.includes('.d.ts')) {
 				let map: {
 					default: { dir: string; func: (request: ws, Response: IncomingMessage) => unknown };
 				};
+
 				try {
 					map = require(((opts !== undefined ? opts.path + '\\' : _dirname + '\\sockets\\') || _dirname + '\\sockets\\') + v);
 				} catch (err) {
 					return console.error(err);
 				}
+
 				if (map.default) {
 					if (!map.default.dir) return;
 					if (!map.default.func) return;
@@ -71,7 +75,7 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 		});
 		const wsServer = new ws.Server({ server: HttpServer, port: 8000, host: opts.apiName });
 		const wssServer = new ws.Server({ server: HttpsServer, port: 5000, host: opts.apiName });
-		if (opts.logSetups) console.log(`Mapping UPGRADE https://${opts.apiName}:5000`);
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping UPGRADE https://${opts.apiName}:5000`);
 		HttpsServer.on('upgrade', (r, s, h) => {
 			let isValid = false;
 			maps.forEach((v) => {
@@ -87,7 +91,7 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 				return s.destroy();
 			}
 		});
-		if (opts.logSetups) console.log(`Mapping CONNECT https://${opts.apiName}:5000`);
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping CONNECT https://${opts.apiName}:5000`);
 		wssServer.on('connection', (s, r) => {
 			maps.forEach((v) => {
 				if (r.url.split('?').shift() === v.dir) {
@@ -95,7 +99,7 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 				}
 			});
 		});
-		if (opts.logSetups) console.log(`Mapping UPGRADE http://${opts.apiName}:8000`);
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping UPGRADE http://${opts.apiName}:8000`);
 		HttpServer.on('upgrade', (r, s, h) => {
 			let isValid = false;
 			maps.forEach((v) => {
@@ -111,7 +115,7 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 				return s.destroy();
 			}
 		});
-		if (opts.logSetups) console.log(`Mapping CONNECT http://${opts.apiName}:8000`);
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping CONNECT http://${opts.apiName}:8000`);
 		wsServer.on('connection', (s, r) => {
 			maps.forEach((v) => {
 				if (r.url.split('?').shift() === v.dir) {
