@@ -36,3 +36,5 @@ Consider moving DFFlagIsAuthV2Enabled to FFlagIsAuthV2Enabled.
 Consider making X-CSRF-TOKEN system a run-time middleware/helper.
 
 DO NOT use FastLog just to log every open request, log fails or important info etc
+
+Consider moving https redirection to Config.ts as an optional middleware
