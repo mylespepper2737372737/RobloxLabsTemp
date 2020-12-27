@@ -85,7 +85,7 @@ LOGGROUP(urls['temporary_images']);
 	temp_images.use(defaultMiddleware);
 
 	await Startup.Configure(mapconfig(staticcdn, '\\static', '\\lib\\controllers\\static', urls['staticcdn']));
-	await Startup.Configure(mapconfig(js, '\\lib\\js', '\\lib\\controllers\\js', urls['js']));
+	await Startup.Configure(mapconfig(js, '\\dist', '\\lib\\controllers\\js', urls['js']));
 	await Startup.Configure(mapconfig(css, '\\css', '\\lib\\controllers\\css', urls['css']));
 	await Startup.Configure(mapconfig(images, '\\images', '\\lib\\controllers\\images', urls['images']));
 	await Startup.Configure(mapconfig(api, '\\api', '\\lib\\controllers\\api', urls['api']));
