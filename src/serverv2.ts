@@ -124,9 +124,9 @@ LOGGROUP(urls['temporary_images']);
 })();
 
 process.stdin.resume();
-function exitHandler(options: { exit: boolean }) {
+function exitHandler(options: { exit: boolean }, c: number) {
 	if (options.exit) {
-		FASTLOG2(FLog['Tasks'], 'Process exited with code 0.', true);
+		FASTLOG2(FLog['Tasks'], `Process exited with code ${typeof c === 'number' ? c : '1'}.`, true);
 		process.exit();
 	}
 }
