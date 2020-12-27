@@ -26,12 +26,11 @@
 */
 
 if (document.location.protocol !== 'https:')
-	document.location.replace(`https://${document.location.href.toString().split('http://').join('')}`);
-if ((document.cookie || '').match(/authId/)) document.location.replace('https://www.sitetest1.mfdlabs.com');
+	document.location.replace('https://' + document.location.href.toString().split('http://').join(''));
 const c = (username: string, password: string): void => {
 	$.ajax({
 		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Login.fxhx',
-		data: `cvalue=${username}&password=${password}`,
+		data: 'cvalue=' + username + '&password=' + password,
 		contentType: 'application/x-www-form-urlencoded',
 		method: 'POST',
 		xhrFields: {
