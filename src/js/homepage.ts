@@ -34,22 +34,19 @@ const d = () => {
 		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Logout.fxhx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
-	})
-		.then((_body, _status, response) => {
+		success: (_a, _b, response) => {
 			if (response.status === 200) {
 				$('.body').css('color', 'green').text('Success!');
 				setTimeout(() => {
 					document.location.replace('https://www.sitetest1.mfdlabs.com');
 				}, 500);
+			} else {
+				console.log(response);
 			}
-		})
-		.catch((response) =>
-			$('.body')
-				.css('color', 'red')
-				.text(
-					(response as JQuery.jqXHR).responseJSON
-						? (response as JQuery.jqXHR).responseJSON['userfacingmessage']
-						: 'Something went wrong.',
-				),
-		);
+		},
+	}).fail((response: JQuery.jqXHR) =>
+		$('.body')
+			.css('color', 'red')
+			.text(response.responseJSON ? response.responseJSON['userfacingmessage'] : 'Something went wrong.'),
+	);
 };
