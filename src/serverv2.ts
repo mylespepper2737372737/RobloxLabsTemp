@@ -46,9 +46,19 @@ import defaultMiddleware from './modules/middleware/init_middleware';
 import { api404, css404, ecs404, images404, js404, setup404, staticcdn404, ti404, www404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
-import { LOGGROUP, FLog, FASTLOG6 } from './modules/Helpers/Log';
+import { LOGGROUP, FLog, FASTLOG6, FASTLOG2 } from './modules/Helpers/Log';
 
+LOGGROUP('WWWAuthV1');
 LOGGROUP('Tasks');
+LOGGROUP(urls['www']);
+LOGGROUP(urls['api']);
+LOGGROUP(urls['staticcdn']);
+LOGGROUP(urls['js']);
+LOGGROUP(urls['css']);
+LOGGROUP(urls['images']);
+LOGGROUP(urls['setup']);
+LOGGROUP(urls['ephemeralcounters']);
+LOGGROUP(urls['temporary_images']);
 
 (async () => {
 	await clearCachedSessions();
@@ -112,3 +122,15 @@ LOGGROUP('Tasks');
 		}
 	})();
 })();
+
+process.stdin.resume();
+function exitHandler(options: { exit: boolean }) {
+	if (options.exit) {
+		FASTLOG2(FLog['Tasks'], 'Process exited with code 0.', true);
+		process.exit();
+	}
+}
+process.on('SIGINT', exitHandler.bind(null, { exit: true }));
+process.on('SIGUSR1', exitHandler.bind(null, { exit: true }));
+process.on('SIGUSR2', exitHandler.bind(null, { exit: true }));
+process.on('uncaughtException', exitHandler.bind(null, { exit: true }));
