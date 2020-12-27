@@ -29,8 +29,8 @@ import ws from 'ws';
 import filestream from 'fs';
 import { _dirname } from '../modules/constants/directories';
 import { IncomingMessage, Server as HttpServer } from 'http';
-import { Server as HttpsServer } from 'https';
 import { FASTLOG3, FASTLOG6, FLog } from '../modules/Helpers/Log';
+import { Server as HttpsServer } from 'https';
 
 interface wssOpts {
 	path?: string;
@@ -39,8 +39,12 @@ interface wssOpts {
 	logSetups?: boolean;
 }
 
-export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Promise<void> => {
-	return new Promise((resolve, reject) => {
+export = (
+	HttpServer: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
+	HttpsServer: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
+	opts?: { path: filestream.PathLike; apiName: string; logSetups: any } | wssOpts,
+): Promise<void> => {
+	return new Promise<void>((resolve: (value?: PromiseLike<void> | void) => void, reject: (reason?: any) => void) => {
 		let controllers: string[];
 		const maps: {
 			dir: string;
@@ -72,8 +76,8 @@ export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Pro
 				}
 			}
 		});
-		const wsServer = new ws.Server({ server: HttpServer, port: 8000, host: opts.apiName });
-		const wssServer = new ws.Server({ server: HttpsServer, port: 5000, host: opts.apiName });
+		const wsServer = new ws.Server({ server: <HttpServer>HttpServer, port: 8000, host: opts.apiName });
+		const wssServer = new ws.Server({ server: <HttpsServer>HttpsServer, port: 5000, host: opts.apiName });
 		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping UPGRADE https://${opts.apiName}:5000`);
 		HttpsServer.on('upgrade', (r, s, h) => {
 			let isValid = false;
