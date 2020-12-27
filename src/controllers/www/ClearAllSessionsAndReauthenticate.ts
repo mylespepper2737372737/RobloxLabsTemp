@@ -139,6 +139,7 @@ export default {
 				domain: '.sitetest1.mfdlabs.com',
 				secure: true,
 				sameSite: 'lax',
+				httpOnly: true,
 			})
 			.send({ success: true, message: 'Success', userfacingmessage: 'Success' });
 	},
