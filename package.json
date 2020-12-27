@@ -4,7 +4,7 @@
 	"description": "mfd",
 	"main": "server.js",
 	"scripts": {
-		"server2-prod": "node --no-deprecation C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\lib\\serverv2.js"
+		"server2-prod": "node --no-deprecation --no-warnings --report-filename=C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\report.log --diagnostic-dir=C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\diag --cpu-prof --heap-prof C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\lib\\serverv2.js"
 	},
 	"author": "mfd",
 	"license": "ISC",
