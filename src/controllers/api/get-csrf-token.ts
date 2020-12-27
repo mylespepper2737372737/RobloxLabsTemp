@@ -46,12 +46,14 @@ export default {
 
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
 			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
+
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				success: false,
 				message: `The requested resource does not support http method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
+
 		if (DFFlag['IsCSRFV2Hardcoded']) {
 			return response
 				.status(200)
