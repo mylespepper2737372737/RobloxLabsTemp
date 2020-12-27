@@ -7,7 +7,7 @@
 	"DFFlag": {
 		"IsCaptchaV1Enabled": false,
 		"IsCaptchaV1HardCoded": false,
-		"IsCaptchaV2Enabled": true,
+		"IsCaptchaV2Enabled": false,
 		"IsCaptchaV2Hardcoded": false,
 		"CanCaptchaV2AdminKeyBeUsed": false,
 		"IsCSRFV1Enabled": false,
