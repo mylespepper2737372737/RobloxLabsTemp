@@ -25,12 +25,11 @@
 	***
 */
 
-import ws from 'ws';
 import c from 'crypto';
 
 export default {
 	dir: '/uptime',
-	func: (socket: ws, _req: { headers: any }): void => {
+	func: (socket: { send: (arg0: string) => void; close: () => void }): void => {
 		let n = 0;
 		const i = setInterval(() => {
 			socket.send(c.createHash('sha512').update(c.randomBytes(1000)).digest('hex'));
