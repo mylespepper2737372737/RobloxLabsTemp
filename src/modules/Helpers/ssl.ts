@@ -32,11 +32,10 @@ import { Server as HttpsServer } from 'https';
 import dotenv from 'dotenv';
 import { _dirname, _sslname } from '../constants/directories';
 import filestream from 'fs';
-import { FASTLOG3, FLog, LOGGROUP } from './Log';
+import { FASTLOG3, FLog } from './Log';
 
 dotenv.config({ path: _dirname + '\\.env' });
 export = (app: IApplicationBuilder, name: string): [HttpServer, HttpsServer] => {
-	LOGGROUP(name);
 	try {
 		const httpsServer = https2
 			.createServer(
@@ -44,6 +43,8 @@ export = (app: IApplicationBuilder, name: string): [HttpServer, HttpsServer] => 
 					cert: filestream.readFileSync(_sslname + '\\mfdlabs.crt', 'utf-8'),
 					key: filestream.readFileSync(_sslname + '\\mfdlabsprivate.key', 'utf-8'),
 					passphrase: process.env['mfdlabs_pc'],
+					maxVersion: 'TLSv1.3',
+					minVersion: 'TLSv1.3',
 				},
 				app,
 			)
