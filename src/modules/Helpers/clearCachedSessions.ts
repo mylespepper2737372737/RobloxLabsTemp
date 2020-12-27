@@ -34,7 +34,7 @@ export = () => {
 			fs.rmdirSync(_dirname + '\\manifest\\sessions', { recursive: true });
 			fs.mkdirSync(_dirname + '\\manifest\\sessions');
 			resolve();
-		} catch (err) {
+		} catch (err: unknown) {
 			reject(err);
 		}
 	});
