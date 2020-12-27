@@ -29,7 +29,7 @@ import fs from 'fs';
 import { _dirname } from '../constants/directories';
 
 export = () => {
-	return new Promise((resolve, reject) => {
+	return new Promise<void>((resolve, reject) => {
 		try {
 			fs.rmdirSync(_dirname + '\\manifest\\sessions', { recursive: true });
 			fs.mkdirSync(_dirname + '\\manifest\\sessions');
