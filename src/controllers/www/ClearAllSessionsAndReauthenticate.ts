@@ -41,7 +41,7 @@ import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';
 import Crypto from 'crypto';
-import { LOGGROUP, FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/Log';
+import { FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/Log';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
@@ -53,7 +53,6 @@ export default {
 	dir: '/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
-		LOGGROUP('WWWAuthV1');
 		// Anything up here is dynamic,
 		// these flags are 'Run-Time flags'
 		const DFFlag = GetSettings(Group.DFFlag);
@@ -61,7 +60,7 @@ export default {
 		const Manifest = GetManifests();
 
 		if (!DFFlag['IsWWWAuthV1Enabled']) {
-			FASTLOG4(FLog['WWWAuthV1'], 'The service is disabled currently.');
+			FASTLOG4(FLog['WWWAuthV1'], 'The service is disabled currently.', true);
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
@@ -71,7 +70,7 @@ export default {
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
-			FASTLOG6(FLog['WWWAuthV1'], 'HTTPS was not given where it was required.');
+			FASTLOG6(FLog['WWWAuthV1'], 'HTTPS was not given where it was required.', true);
 			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		}
 
@@ -90,7 +89,7 @@ export default {
 			) {
 				response.statusMessage = FString['CSRFV2FailedResponseStatusText'];
 				if (DFFlag['IsCSRFV2Hardcoded']) {
-					FASTLOG4(FLog['WWWAuthV1'], FString['CSRFV2FailedResponseStatusText']);
+					FASTLOG4(FLog['WWWAuthV1'], FString['CSRFV2FailedResponseStatusText'], true);
 					return response
 						.status(403)
 						.header({
@@ -107,7 +106,7 @@ export default {
 		let validUser: userType = undefined;
 		let isValidId = false;
 		if (!request.cookies['authId']) {
-			FASTLOG6(FLog['WWWAuthV1'], 'AuthId did not exist on the request.');
+			FASTLOG6(FLog['WWWAuthV1'], 'AuthId did not exist on the request.', true);
 			return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
 		}
 		Manifest.forEach((user) => {
@@ -119,7 +118,7 @@ export default {
 			});
 		});
 		if (!isValidId) {
-			FASTLOG4(FLog['WWWAuthV1'], `The user matching ${request.cookies['authId']} was not found.`);
+			FASTLOG4(FLog['WWWAuthV1'], `The user matching ${request.cookies['authId']} was not found.`, true);
 			return response.status(404).send({
 				success: false,
 				message: 'AuthId not found.',
@@ -132,7 +131,7 @@ export default {
 		SetManifestField(validUser.userId, 'sessionIds', authId, true, false, 0, false, false);
 
 		response.shouldKeepAlive = false;
-		FASTLOG1(FLog['WWWAuthV1'], 'Request success, no issues.');
+		FASTLOG1(FLog['WWWAuthV1'], `Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['authId']}]`, true);
 		return response
 			.status(200)
 			.cookie('authId', authId, {
