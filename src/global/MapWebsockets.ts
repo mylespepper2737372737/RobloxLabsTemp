@@ -30,7 +30,7 @@ import filestream from 'fs';
 import { _dirname } from '../modules/constants/directories';
 import { IncomingMessage, Server as HttpServer } from 'http';
 import { Server as HttpsServer } from 'https';
-import { FASTLOG3, FASTLOG6, FLog, LOGGROUP } from '../modules/Helpers/Log';
+import { FASTLOG3, FASTLOG6, FLog } from '../modules/Helpers/Log';
 
 interface wssOpts {
 	path?: string;
@@ -40,7 +40,6 @@ interface wssOpts {
 }
 
 export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Promise<void> => {
-	LOGGROUP(opts.apiName);
 	return new Promise((resolve, reject) => {
 		let controllers: string[];
 		const maps: {

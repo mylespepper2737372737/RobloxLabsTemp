@@ -27,7 +27,7 @@
 
 import { Express as IApplicationBuilder, Request, Response } from 'express-serve-static-core';
 import filestream from 'fs';
-import { FASTLOG3, FASTLOG6, FLog, LOGGROUP } from '../modules/Helpers/Log';
+import { FASTLOG3, FASTLOG6, FLog } from '../modules/Helpers/Log';
 import { _dirname } from '../modules/constants/directories';
 
 interface EndpointOpts {
@@ -36,8 +36,6 @@ interface EndpointOpts {
 	apiName?: string;
 }
 const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise<void> => {
-	LOGGROUP(opts.apiName);
-
 	return new Promise((r) => {
 		let controllers: string[];
 
