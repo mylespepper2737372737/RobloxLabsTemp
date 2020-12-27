@@ -55,6 +55,7 @@ document.Mfd.XsrfToken = (function () {
 	function registerToken() {
 		const xhr = new XMLHttpRequest();
 		xhr.open('POST', 'https://api.sitetest1.mfdlabs.com/csrf/v1/get-csrf-token');
+		xhr.withCredentials = true;
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
 				const t = xhr.getResponseHeader(csrfTokenHeader);
