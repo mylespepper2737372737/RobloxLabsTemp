@@ -33,7 +33,6 @@ document.Mfd.XsrfToken = (function () {
 				}
 				currentToken = newToken;
 				$.ajax(options).then((a, b, c) => {
-					console.log(options);
 					if (options.success) {
 						options.success(a, b, c);
 					}
