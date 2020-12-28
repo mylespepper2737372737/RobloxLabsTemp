@@ -37,6 +37,7 @@ Connection: close
 
 */
 
+import createCsrfSessionFile from '../../modules/Helpers/createCsrfSessionFile';
 import SetManifestField from '../../modules/Helpers/SetManifestField';
 import { GetManifests } from '../../modules/Helpers/GetManifests';
 import GetRegisteredUsers from '../../modules/Helpers/GetRegisteredUsers';
@@ -153,6 +154,7 @@ export default {
 			});
 		const authId = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
 		SetManifestField(userId, 'sessionIds', authId, true, false, 0, false, false);
+		createCsrfSessionFile(authId);
 
 		response.shouldKeepAlive = false;
 		return response
