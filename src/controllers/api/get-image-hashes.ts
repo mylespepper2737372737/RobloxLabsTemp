@@ -38,7 +38,7 @@ import { Request, Response } from 'express-serve-static-core';
 import filestream from 'fs';
 import { _dirname } from '../../modules/constants/directories';
 import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
-import shuffleArray from '../helpers/www/shuffleArray';
+import shuffleArray from '../../modules/Helpers/shuffleArray';
 
 const FString = GetSettings(Group.FString);
 const FInt = GetSettings(Group.FInt);
