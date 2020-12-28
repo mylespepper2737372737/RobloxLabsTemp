@@ -33,6 +33,8 @@ export = () => {
 		try {
 			fs.rmdirSync(_dirname + '\\manifest\\sessions', { recursive: true });
 			fs.mkdirSync(_dirname + '\\manifest\\sessions');
+			fs.rmdirSync(_dirname + '\\manifest\\csrf', { recursive: true });
+			fs.mkdirSync(_dirname + '\\manifest\\csrf');
 			resolve();
 		} catch (err: unknown) {
 			reject(err);
