@@ -26,6 +26,9 @@
 */
 
 import crypto from 'crypto';
+import { GetSettings, Group } from '../../Helpers/GetSettings';
+
+const FString = GetSettings(Group.FString);
 
 export default (
 	req: { query: { apiKey: string }; method: string; url: string },
@@ -68,6 +71,6 @@ export default (
 					.update(crypto.randomBytes(1000))
 					.digest('base64')}</HostId></Error>`,
 			);
-	res.statusMessage = 'Verified';
+	res.statusMessage = FString['CDNAdminAuthCompletedStatusText'];
 	res.status(200).send({ env: process.env });
 };
