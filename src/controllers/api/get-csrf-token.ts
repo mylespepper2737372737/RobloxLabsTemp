@@ -27,8 +27,8 @@
 
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
+import createOrGetXsrfSession from '../../modules/Helpers/createOrGetXsrfSession';
 
-const FString = GetSettings(Group.FString);
 const FFlag = GetSettings(Group.FFlag);
 
 export default {
@@ -54,15 +54,6 @@ export default {
 				userfacingmessage: 'Something went wrong.',
 			});
 
-		if (DFFlag['IsCSRFV2Hardcoded']) {
-			return response
-				.status(200)
-				.header({
-					'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-					'x-csrf-token': FString['CSRFV2HardcodedKey'],
-					'api-transfer': 'Expose-Hardcoded-Session-Token#433',
-				})
-				.send({ success: true, message: 'OK' });
-		}
+		if (!createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response, true)) return;
 	},
 };
