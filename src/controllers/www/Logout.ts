@@ -35,6 +35,7 @@ Cookie: authId=AUTH_ID
 */
 
 import SetManifestField from '../../modules/Helpers/SetManifestField';
+import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
 import { GetManifests } from '../../modules/Helpers/GetManifests';
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
@@ -92,6 +93,7 @@ export default {
 				userfacingmessage: 'The current credentials are invalid, please manually remove them and log in again.',
 			});
 
+		deleteCsrfSession(request.cookies['authId']);
 		SetManifestField(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
 
 		response.shouldKeepAlive = false;
