@@ -47,7 +47,6 @@ dotenv.config({ path: _dirname + '\\.env' });
 
 // These flags are 'Launch-Time flags'
 const FFlag = GetSettings(Group.FFlag);
-const FString = GetSettings(Group.FString);
 
 export default {
 	dir: '/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
@@ -82,27 +81,6 @@ export default {
 			});
 		}
 
-		if (DFFlag['IsCSRFV2Enabled']) {
-			if (
-				!request.headers['x-csrf-token'] ||
-				(DFFlag['IsCSRFV2Hardcoded'] && request.headers['x-csrf-token'] !== FString['CSRFV2HardcodedKey'])
-			) {
-				response.statusMessage = FString['CSRFV2FailedResponseStatusText'];
-				if (DFFlag['IsCSRFV2Hardcoded']) {
-					FASTLOG4(FLog['WWWAuthV1'], FString['CSRFV2FailedResponseStatusText'], true);
-					return response
-						.status(403)
-						.header({
-							'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-							'x-csrf-token': FString['CSRFV2HardcodedKey'],
-							'api-transfer': 'Expose-Hardcoded-Session-Token#433',
-						})
-						.send({ success: false, message: 'Token Validation Failed' });
-				}
-				FASTLOG4(FLog['WWWAuthV1'], 'Token Validation Failed.');
-				return response.status(403).send({ success: false, message: FString['CSRFV2FailedResponseStatusText'] });
-			}
-		}
 		let validUser: userType = undefined;
 		let isValidId = false;
 		if (!request.cookies['authId']) {

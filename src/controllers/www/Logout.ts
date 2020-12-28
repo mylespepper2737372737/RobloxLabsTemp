@@ -45,7 +45,6 @@ dotenv.config({ path: _dirname + '\\.env' });
 
 // These flags are 'Launch-Time flags'
 const FFlag = GetSettings(Group.FFlag);
-const FString = GetSettings(Group.FString);
 
 export default {
 	dir: '/Authorization/Logout.fxhx',
@@ -73,24 +72,6 @@ export default {
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		if (DFFlag['IsCSRFV2Enabled']) {
-			if (
-				!request.headers['x-csrf-token'] ||
-				(DFFlag['IsCSRFV2Hardcoded'] && request.headers['x-csrf-token'] !== FString['CSRFV2HardcodedKey'])
-			) {
-				response.statusMessage = FString['CSRFV2FailedResponseStatusText'];
-				if (DFFlag['IsCSRFV2Hardcoded'])
-					return response
-						.status(403)
-						.header({
-							'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-							'x-csrf-token': FString['CSRFV2HardcodedKey'],
-							'api-transfer': 'Expose-Hardcoded-Session-Token#433',
-						})
-						.send({ success: false, message: FString['CSRFV2FailedResponseStatusText'] });
-				return response.status(403).send({ success: false, message: FString['CSRFV2FailedResponseStatusText'] });
-			}
-		}
 		let validUser = undefined;
 		let isValidId = false;
 		let validIdx = 0;

@@ -42,9 +42,10 @@ import { GetManifests } from '../../modules/Helpers/GetManifests';
 import GetRegisteredUsers from '../../modules/Helpers/GetRegisteredUsers';
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import GetSessions from '../../modules/Helpers/GetSessions';
-import createCaptchaBlobSessionAfter403 from '../helpers/www/LoginApi/createCaptchaBlobSessionAfter403';
-import createCaptchaSessionBlob from '../helpers/www/LoginApi/createCaptchaSessionBlob';
+import createCaptchaBlobSessionAfter403 from '../../modules/Helpers/createCaptchaBlobSessionAfter403';
+import createCaptchaSessionBlob from '../../modules/Helpers/createCaptchaSessionBlob';
 import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
+// import createOrGetXsrfSession from '../../modules/Helpers/createOrGetXsrfSession';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
@@ -54,12 +55,11 @@ import { _dirname } from '../../modules/constants/directories';
 dotenv.config({ path: _dirname + '\\.env' });
 
 const FFlag = GetSettings(Group.FFlag);
-const FString = GetSettings(Group.FString);
 
 export default {
 	dir: '/Authorization/Login.fxhx',
 	method: 'All',
-	func: (request: Request, response: Response): Response<unknown> => {
+	func: (request: Request, response: Response): Response<unknown> | void => {
 		const DFFlag = GetSettings(Group.DFFlag);
 		const DFInt = GetSettings(Group.DFInt);
 		const Manifest = GetManifests();
@@ -79,24 +79,7 @@ export default {
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		if (DFFlag['IsCSRFV2Enabled']) {
-			if (
-				!request.headers['x-csrf-token'] ||
-				(DFFlag['IsCSRFV2Hardcoded'] && request.headers['x-csrf-token'] !== FString['CSRFV2HardcodedKey'])
-			) {
-				response.statusMessage = FString['CSRFV1FailedResponseStatusText'];
-				if (DFFlag['IsCSRFV2Hardcoded'])
-					return response
-						.status(403)
-						.header({
-							'access-control-expose-headers': 'X-CSRF-TOKEN, API-TRANSFER',
-							'x-csrf-token': FString['CSRFV2HardcodedKey'],
-							'api-transfer': 'Expose-Hardcoded-Session-Token#433',
-						})
-						.send({ success: false, message: 'Token Validation Failed' });
-				return response.status(403).send({ success: false, message: 'Token Validation Failed' });
-			}
-		}
+		// if (!createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response)) return;
 		const registeredUsers = GetRegisteredUsers();
 
 		const sessions = filestream.readdirSync(_dirname + '\\manifest\\sessions');
