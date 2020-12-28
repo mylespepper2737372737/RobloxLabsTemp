@@ -27,8 +27,8 @@
 
 import filestream from 'fs';
 import { Response } from 'express-serve-static-core';
-import { _dirname } from '../../../../modules/constants/directories';
-import { GetSettings, Group } from '../../../../modules/Helpers/GetSettings';
+import { _dirname } from '../constants/directories';
+import { GetSettings, Group } from './GetSettings';
 
 const FInt = GetSettings(Group.FInt);
 
@@ -43,10 +43,11 @@ export = (response: Response, captchaBLOB: string, ip: string) => {
 		}
 	}, FInt['CaptchaV2Timeout']);
 	response.statusMessage = 'Captcha failed';
-	return response.status(403).header({ expires: FInt['CaptchaV2Timeout'] }).send({
+	response.status(403).header({ expires: FInt['CaptchaV2Timeout'] }).send({
 		success: false,
 		message: 'You need to pass the robot test first.',
 		blob: captchaBLOB,
 		expires: FInt['CaptchaV2Timeout'],
 	});
+	return;
 };
