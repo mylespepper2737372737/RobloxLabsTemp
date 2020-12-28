@@ -43,7 +43,6 @@ const c = (username: string, password: string): void => {
 			}, 500);
 		},
 	}).fail((response: JQuery.jqXHR) => {
-		console.log(response);
 		$('.body')
 			.css('color', 'red')
 			.text(response.responseJSON ? response.responseJSON['userfacingmessage'] : 'Something went wrong.');
