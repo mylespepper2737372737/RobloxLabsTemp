@@ -34,6 +34,7 @@ import css_import from './css';
 import images_import from './images';
 import setup_import from './setup';
 import ecs_import from './ecs';
+import ti_import from './ti';
 
 export const www404 = (www_import as unknown) as RequestHandler;
 export const api404 = (api_import as unknown) as RequestHandler;
@@ -43,3 +44,4 @@ export const css404 = (css_import as unknown) as RequestHandler;
 export const images404 = (images_import as unknown) as RequestHandler;
 export const setup404 = (setup_import as unknown) as RequestHandler;
 export const ecs404 = (ecs_import as unknown) as RequestHandler;
+export const ti404 = (ti_import as unknown) as RequestHandler;

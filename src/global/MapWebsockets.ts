@@ -4,8 +4,6 @@
 	File Type: Module
 	Description: Looks in a folder for websockets
 
-	TODO Try NOT generate random ports for new websockets - https://github.com/mfd-core/mfdlabs.com/issues/5
-
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
 	***
@@ -31,6 +29,7 @@ import ws from 'ws';
 import filestream from 'fs';
 import { _dirname } from '../modules/constants/directories';
 import { IncomingMessage, Server as HttpServer } from 'http';
+import { FASTLOG3, FASTLOG6, FLog } from '../modules/Helpers/Log';
 import { Server as HttpsServer } from 'https';
 
 interface wssOpts {
@@ -39,71 +38,93 @@ interface wssOpts {
 	apiName?: string;
 	logSetups?: boolean;
 }
-function getRandomInt(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
-export = (HttpServer: HttpServer, HttpsServer: HttpsServer, opts?: wssOpts): Promise<void> => {
-	let lasthttpsport: number;
-	let lasthttpport: number;
-	return new Promise((resolve, reject) => {
+export = (
+	HttpServer: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
+	HttpsServer: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
+	opts?: { path: filestream.PathLike; apiName: string; logSetups: any } | wssOpts,
+): Promise<void> => {
+	return new Promise<void>((resolve: (value?: PromiseLike<void> | void) => void, reject: (reason?: any) => void) => {
 		let controllers: string[];
+		const maps: {
+			dir: string;
+			func: (request: ws, Response: IncomingMessage) => unknown;
+		}[] = [];
 		try {
 			controllers = filestream.readdirSync((opts !== undefined ? opts.path : _dirname + '\\sockets') || _dirname + '\\sockets');
 		} catch (err) {
-			return reject(err);
+			return FASTLOG6(FLog[opts.apiName], err);
 		}
 		controllers.forEach((v) => {
 			if (!v.includes('.js.map') || !v.includes('.d.ts')) {
 				let map: {
 					default: { dir: string; func: (request: ws, Response: IncomingMessage) => unknown };
 				};
+
 				try {
 					map = require(((opts !== undefined ? opts.path + '\\' : _dirname + '\\sockets\\') || _dirname + '\\sockets\\') + v);
 				} catch (err) {
 					return console.error(err);
 				}
-				let dir: string;
-				let func: (request: ws, Response: IncomingMessage) => unknown;
+
 				if (map.default) {
-					if (map.default.dir) dir = map.default.dir;
-					else return;
-					if (map.default.func) func = map.default.func;
-					else return;
-					try {
-						let portHttps = getRandomInt(80, 8000);
-						if (portHttps === lasthttpsport) portHttps = getRandomInt(80, 8000);
-						lasthttpsport = portHttps;
-						let portHttp = getRandomInt(80, 8000);
-						if (portHttp === lasthttpport) portHttp = getRandomInt(80, 8000);
-						lasthttpport = portHttp;
-						if (opts.logSetups) console.log(`Mapping GET wss://${opts.apiName + dir}:${portHttps}`);
-						const wsServer = new ws.Server({ path: dir, port: portHttp, server: HttpServer });
-						const wssServer = new ws.Server({ path: dir, port: portHttps, server: HttpsServer });
-						wssServer.on('connection', (socket, request) => func(socket, request));
-						wsServer.on('connection', (socket, request) => func(socket, request));
-						if (opts.shouldHandleUpgrade) {
-							if (opts.logSetups) console.log(`Mapping UPGRADE https://${opts.apiName}`);
-							HttpsServer.on('upgrade', (request, socket, head) => {
-								wssServer.handleUpgrade(request, socket, head, (socket) => {
-									wssServer.emit('connection', socket, request);
-								});
-							});
-							HttpServer.on('upgrade', (request, socket, head) => {
-								wsServer.handleUpgrade(request, socket, head, (socket) => {
-									wsServer.emit('connection', socket, request);
-								});
-							});
-						}
-					} catch (e) {
-						reject(e);
-					}
+					if (!map.default.dir) return;
+					if (!map.default.func) return;
+					maps.push(map.default);
 				} else {
 					return reject(`${v} had no default export.`);
 				}
 			}
+		});
+		const wsServer = new ws.Server({ server: <HttpServer>HttpServer, port: 8000, host: opts.apiName });
+		const wssServer = new ws.Server({ server: <HttpsServer>HttpsServer, port: 5000, host: opts.apiName });
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping UPGRADE https://${opts.apiName}:5000`);
+		HttpsServer.on('upgrade', (r, s, h) => {
+			let isValid = false;
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					wssServer.handleUpgrade(r, s, h, (s2) => {
+						wssServer.emit('connection', s2, r);
+					});
+					isValid = true;
+				}
+			});
+			if (!isValid) {
+				s.write('HTTP/1.1 404 Socket Not Found\r\n\r\n');
+				return s.destroy();
+			}
+		});
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping CONNECT https://${opts.apiName}:5000`);
+		wssServer.on('connection', (s, r) => {
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					return v.func(s, r);
+				}
+			});
+		});
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping UPGRADE http://${opts.apiName}:8000`);
+		HttpServer.on('upgrade', (r, s, h) => {
+			let isValid = false;
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					wssServer.handleUpgrade(r, s, h, (s2) => {
+						wssServer.emit('connection', s2, r);
+					});
+					isValid = true;
+				}
+			});
+			if (!isValid) {
+				s.write('HTTP/1.1 404 Socket Not Found\r\n\r\n');
+				return s.destroy();
+			}
+		});
+		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping CONNECT http://${opts.apiName}:8000`);
+		wsServer.on('connection', (s, r) => {
+			maps.forEach((v) => {
+				if (r.url.split('?').shift() === v.dir) {
+					return v.func(s, r);
+				}
+			});
 		});
 		resolve();
 	});

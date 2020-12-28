@@ -26,22 +26,43 @@
 */
 
 if (document.location.protocol !== 'https:')
-	document.location.replace(`https://${document.location.href.toString().split('http://').join('')}`);
-if (!(document.cookie || '').match(/authId/)) document.location.replace('https://www.sitetest1.mfdlabs.com/Login');
+	document.location.replace('https://' + document.location.href.toString().split('http://').join(''));
 const d = () => {
 	$.ajax({
 		dataType: 'json',
-		url: 'https://api.sitetest1.mfdlabs.com/auth/v2/logout',
+		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Logout.fxhx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
-	})
-		.then((_body, _status, response) => {
+		success: (_data, _status, response) => {
 			if (response.status === 200) {
 				$('.body').css('color', 'green').text('Success!');
 				setTimeout(() => {
 					document.location.replace('https://www.sitetest1.mfdlabs.com');
 				}, 500);
+			} else {
+				console.log(response);
 			}
-		})
-		.catch(() => $('.body').css('color', 'red').text('Something went wrong.'));
+		},
+	}).fail((response: JQuery.jqXHR) =>
+		$('.body')
+			.css('color', 'red')
+			.text(response.responseJSON ? response.responseJSON['userfacingmessage'] : 'Something went wrong.'),
+	);
+};
+const x = () => {
+	$.ajax({
+		url: 'https://www.sitetest1.mfdlabs.com/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
+		method: 'POST',
+		xhrFields: { withCredentials: true },
+		success: (_data, _status, response) => {
+			if (response.status === 200) {
+				$('.body').css('color', 'green').text('Success!');
+				setTimeout(() => {
+					$('.body').text('');
+				}, 1000);
+			} else {
+				console.log(response);
+			}
+		},
+	});
 };

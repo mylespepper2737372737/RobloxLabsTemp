@@ -1,0 +1,54 @@
+{
+	"Web": {
+		"FFlag": {
+			"RequireGlobalHTTPS": true,
+			"AutoHTTPSRedirect": false,
+			"AreLogsEnabled": true
+		},
+		"DFFlag": {
+			"IsCaptchaV2Enabled": false,
+			"IsCaptchaV2Hardcoded": false,
+			"CanCaptchaV2AdminKeyBeUsed": false,
+			"IsCSRFV2Enabled": true,
+			"IsCSRFV2Hardcoded": false,
+			"IsCSRFV2BasedOnAuthenticationId": false,
+			"IsCSRFV2BasedOnIPAddress": false,
+			"IsCSRFV2BasedOnIpAddressAndAuthenticationId": true,
+			"CanCSRFV2AdminKeyBeUsed": false,
+			"IsAuthV2Enabled": false,
+			"IsWWWAuthV1Enabled": true,
+			"WWWAuthV1AllowAllMethods": false,
+			"IsClientSettingsAPIEnabled": true
+		},
+		"FInt": {
+			"CSRFV2Timeout": 120000,
+			"CSRFV2MaxRefreshCount": 100,
+			"CaptchaV2Timeout": 60000,
+			"CaptchaV2TimeoutAdditionAfter200GetImageHashes": 900000
+		},
+		"DFInt": {
+			"CaptchaV2FailedStatus": 403,
+			"WWWAuthV1MaxAuthIdAge": 946100000000
+		},
+		"FString": {
+			"CSRFV2FailedResponseStatusText": "Token Validation Failed",
+			"CaptchaV2FailedResponseStatusText": "Captcha Validation Failed",
+			"CDNAdminAuthCompletedStatusText": "Verified",
+			"CaptchaV2CaptchaProvider": "PROVIDER_MFD_LABS_300",
+			"CSRFV2HardcodedKey": "TestKey"
+		},
+		"DFString": {}
+	},
+	"WebMobile": {
+		"FFlag": {},
+		"DFFlag": {},
+		"FInt": {},
+		"DFInt": {},
+		"FString": {},
+		"DFString": {}
+	},
+	"FSettings": [
+		"Web",
+		"WebMobile"
+	]
+}

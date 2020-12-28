@@ -4,8 +4,6 @@
 	File Type: Module
 	Description: Api's websocket
 
-	TODO Try NOT generate random ports for new websockets - https://github.com/mfd-core/mfdlabs.com/issues/5
-
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
 	***
@@ -27,12 +25,11 @@
 	***
 */
 
-import ws from 'ws';
 import c from 'crypto';
+
 export default {
 	dir: '/uptime',
-	func: (socket: ws, req: { headers: any }): void => {
-		console.log(req, req.headers);
+	func: (socket: { send: (arg0: string) => void; close: () => void }): void => {
 		let n = 0;
 		const i = setInterval(() => {
 			socket.send(c.createHash('sha512').update(c.randomBytes(1000)).digest('hex'));

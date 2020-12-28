@@ -34,4 +34,5 @@ export default {
 	images: 'images.sitetest1.mfdlabs.com',
 	setup: 'setup.sitetest1.mfdlabs.com',
 	ephemeralcounters: 'ephemeralcounters.api.sitetest1.mfdlabs.com',
+	temporary_images: 'ti.sitetest1.mfdlabs.com',
 };

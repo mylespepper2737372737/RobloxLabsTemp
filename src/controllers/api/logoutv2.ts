@@ -27,7 +27,9 @@
 */
 
 import filestream from 'fs';
-const _dirname = 'C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfdlabs.com';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import { _dirname } from '../../modules/constants/directories';
+
 export default {
 	dir: '/auth/v2/logout',
 	method: 'ALL',
@@ -44,12 +46,15 @@ export default {
 			clearCookie: (arg0: string, arg1: { domain: string; path: string }) => { send: (body: any) => void };
 		},
 	) => {
-		const settings = JSON.parse(filestream.readFileSync(_dirname + '\\global\\settings.json', 'ascii'));
-		if (!settings['useAuthorizationV2'])
-			return response
-				.status(503)
-				.send({ code: 503, message: 'The server cannot handle the request (because it is overloaded or down for maintenance)' });
+		const DFFlag = GetSettings(Group.DFFlag);
+		const FFlag = GetSettings(Group.FFlag);
 		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
+		if (!DFFlag['IsAuthV2Enabled'])
+			return response.status(503).send({
+				code: 503,
+				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
+				userfacingmessage: 'Service disabled for an unknown amount of time.',
+			});
 		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
@@ -57,7 +62,8 @@ export default {
 				message: `The requested resource does not support http method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
-		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
 		const data = JSON.parse(filestream.readFileSync(_dirname + '/lib/env.json', { encoding: 'utf-8' }));
 		const authId: string =
 			request.cookies.authId ||

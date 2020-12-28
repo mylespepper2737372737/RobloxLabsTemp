@@ -28,7 +28,8 @@
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { static as Pages } from 'express';
 import { OutgoingMessage } from 'http';
-const _dirname = 'C:\\Users\\Padraig\\Git\\Mfd\\Web\\mfdlabs.com\\lib';
+import { _dirname } from '../modules/constants/directories';
+
 interface PageDirOpts {
 	path?: string;
 }
