@@ -29,7 +29,7 @@ import crypto from 'crypto';
 import headers from '../constants/headers';
 import { RequestHandler } from 'express-serve-static-core';
 import createOrGetXsrfSession from '../Helpers/createOrGetXsrfSession';
-// import { FASTLOG6, FLog } from '../Helpers/Log';
+import { FASTLOG6, FLog } from '../Helpers/Log';
 
 export = ((req, res, next) => {
 	res.header(headers);
@@ -40,7 +40,6 @@ export = ((req, res, next) => {
 		});
 
 	if (req.method !== 'GET') {
-		// console.log((req.headers.cookie as string).split(';'));
 		res.header('Access-Control-Allow-Headers', 'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN');
 		res.header('Access-Control-Allow-Origin', req.headers.origin || req.headers.referer);
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -62,7 +61,7 @@ export = ((req, res, next) => {
 			)
 				return;
 		} catch (e) {
-			// FASTLOG6(FLog['Tasks'], e);
+			FASTLOG6(FLog['Tasks'], e);
 		}
 	}
 	if (req.headers.cookie && !req.headers.cookie.includes('authId') && req.hostname === 'www.sitetest1.mfdlabs.com' && req.path === '/') {

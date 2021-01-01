@@ -1,8 +1,8 @@
 /*
-	FileName: ClearAllSessionsAndReauthenticate.ts
+	FileName: Logout.fxhx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: The current ClearAllSessionsAndReauthenticate function.
+	Description: The current Logout function.
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
@@ -26,7 +26,7 @@
 */
 
 /*
-POST https://www.sitetest1.mfdlabs.com/Authorization/ClearAllSessionsAndReauthenticate.fxhx HTTP/2.0
+POST https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -34,16 +34,13 @@ Cookie: authId=AUTH_ID
 
 */
 
-import createCsrfSessionFile from '../../modules/Helpers/createCsrfSessionFile';
 import SetManifestField from '../../modules/Helpers/SetManifestField';
-import { GetManifests, userType } from '../../modules/Helpers/GetManifests';
+import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
+import { GetManifests } from '../../modules/Helpers/GetManifests';
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';
-import Crypto from 'crypto';
-import { FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/Log';
-import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
@@ -51,86 +48,63 @@ dotenv.config({ path: _dirname + '\\.env' });
 const FFlag = GetSettings(Group.FFlag);
 
 export default {
-	dir: '/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
+	dir: '/Authentication/Logout.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
 		// Anything up here is dynamic,
 		// these flags are 'Run-Time flags'
 		const DFFlag = GetSettings(Group.DFFlag);
-		const DFInt = GetSettings(Group.DFInt);
 		const Manifest = GetManifests();
 
-		if (!DFFlag['IsWWWAuthV1Enabled']) {
-			FASTLOG4(FLog['WWWAuthV1'], 'The service is disabled currently.', true);
+		if (!DFFlag['IsWWWAuthV1Enabled'])
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
-		}
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
-			FASTLOG6(FLog['WWWAuthV1'], 'HTTPS was not given where it was required.', true);
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
 			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
-		}
 
-		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods']) {
-			FASTLOG6(FLog['WWWAuthV1'], `${request.method} is not supported`);
+		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
 			return response.status(405).send({
 				success: false,
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
-		}
 
-		let validUser: userType = undefined;
+		let validUser = undefined;
 		let isValidId = false;
-		if (!request.cookies['authId']) {
-			FASTLOG6(FLog['WWWAuthV1'], 'AuthId did not exist on the request.', true);
+		let validIdx = 0;
+		if (!request.cookies['authId'])
 			return response.status(400).send({
 				success: false,
 				message: 'AuthId was not supplied',
 				userfacingmessage: 'Unknown authId, why are you on a page that requires auth without and Id?',
 			});
-		}
 		Manifest.forEach((user) => {
-			user.sessionIds.forEach((sessionId) => {
+			user.sessionIds.forEach((sessionId, idx) => {
 				if (sessionId === request.cookies['authId']) {
 					isValidId = true;
 					validUser = user;
+					validIdx = idx;
 				}
 			});
 		});
-		if (!isValidId) {
-			FASTLOG4(FLog['WWWAuthV1'], `The user matching ${request.cookies['authId']} was not found.`, true);
+		if (!isValidId)
 			return response.status(404).send({
 				success: false,
 				message: 'AuthId not found.',
 				userfacingmessage: 'The current credentials are invalid, please manually remove them and log in again.',
 			});
-		}
 
 		deleteCsrfSession(request.cookies['authId']);
-		SetManifestField(validUser.userId, 'sessionIds', [], false, false, 0, false, false);
-		const authId = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
-		SetManifestField(validUser.userId, 'sessionIds', authId, true, false, 0, false, false);
-		createCsrfSessionFile(authId);
+		SetManifestField(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
 
 		response.shouldKeepAlive = false;
-		FASTLOG1(
-			FLog['WWWAuthV1'],
-			`Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['authId']}]`,
-			true,
-		);
 		return response
 			.status(200)
-			.cookie('authId', authId, {
-				maxAge: DFInt['WWWAuthV1MaxAuthIdAge'],
-				domain: '.sitetest1.mfdlabs.com',
-				secure: true,
-				sameSite: 'lax',
-				httpOnly: true,
-			})
+			.clearCookie('authId', { domain: '.sitetest1.mfdlabs.com' })
 			.send({ success: true, message: 'Success', userfacingmessage: 'Success' });
 	},
 };

@@ -4,10 +4,11 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "server2-prod",
+			"name": "server2-for-vsc",
 			"cwd": "${workspaceFolder}",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run-script", "server2-prod"]
+			"runtimeArgs": ["run-script", "server2-for-vsc"],
+			"envFile": "${workspaceFolder}/.env"
 		}
 	],
 	"compounds": []
