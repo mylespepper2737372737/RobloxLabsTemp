@@ -90,7 +90,7 @@ export default {
 
 		data['userIds'][userId].loggedOn = false;
 		data['userIds'][userId].sessionId = '';
-		filestream.writeFile(_dirname + '/lib/env.json', JSON.stringify(data), () =>
+		filestream.writeFile(_dirname + '/lib/env.json', JSON.stringify(data, undefined, 4), () =>
 			response.clearCookie('authId', { domain: '.sitetest1.mfdlabs.com', path: '/' }).send({ success: true, message: 'Success' }),
 		);
 	},

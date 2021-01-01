@@ -30,4 +30,6 @@ export default {
 	apiVersion: '2',
 	pragma: 'no-cache',
 	expires: '-1',
+	'x-powered-by': 'servers.fx',
+	server: 'mfd-arg-12',
 };

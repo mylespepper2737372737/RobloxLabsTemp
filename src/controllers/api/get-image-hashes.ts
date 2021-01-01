@@ -27,8 +27,6 @@
 	***
 */
 
-// TODO: Should we deprecate DFFlagIsCaptchaV1Enabled? V2 is used more.
-
 import SetCaptchaSessionField from '../../modules/Helpers/SetCaptchaSessiontField';
 import crypto from 'crypto';
 import { GetCaptchaImages } from '../../modules/Helpers/GetCaptchaImages';

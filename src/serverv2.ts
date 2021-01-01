@@ -48,6 +48,7 @@ import Startup from './library/startup';
 import express from 'express';
 import { LOGGROUP, FLog, FASTLOG6, FASTLOG2 } from './modules/Helpers/Log';
 
+LOGGROUP('CsrfAPIV1');
 LOGGROUP('ClientSettingsAPIV1');
 LOGGROUP('WWWAuthV1');
 LOGGROUP('Tasks');

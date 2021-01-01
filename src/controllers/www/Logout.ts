@@ -35,6 +35,7 @@ Cookie: authId=AUTH_ID
 */
 
 import SetManifestField from '../../modules/Helpers/SetManifestField';
+import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
 import { GetManifests } from '../../modules/Helpers/GetManifests';
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
@@ -75,7 +76,12 @@ export default {
 		let validUser = undefined;
 		let isValidId = false;
 		let validIdx = 0;
-		if (!request.cookies['authId']) return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
+		if (!request.cookies['authId'])
+			return response.status(400).send({
+				success: false,
+				message: 'AuthId was not supplied',
+				userfacingmessage: 'Unknown authId, why are you on a page that requires auth without and Id?',
+			});
 		Manifest.forEach((user) => {
 			user.sessionIds.forEach((sessionId, idx) => {
 				if (sessionId === request.cookies['authId']) {
@@ -92,6 +98,7 @@ export default {
 				userfacingmessage: 'The current credentials are invalid, please manually remove them and log in again.',
 			});
 
+		deleteCsrfSession(request.cookies['authId']);
 		SetManifestField(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
 
 		response.shouldKeepAlive = false;

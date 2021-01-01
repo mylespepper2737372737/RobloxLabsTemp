@@ -34,6 +34,7 @@ Cookie: authId=AUTH_ID
 
 */
 
+import createCsrfSessionFile from '../../modules/Helpers/createCsrfSessionFile';
 import SetManifestField from '../../modules/Helpers/SetManifestField';
 import { GetManifests, userType } from '../../modules/Helpers/GetManifests';
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
@@ -42,6 +43,7 @@ import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';
 import Crypto from 'crypto';
 import { FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/Log';
+import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
@@ -85,7 +87,11 @@ export default {
 		let isValidId = false;
 		if (!request.cookies['authId']) {
 			FASTLOG6(FLog['WWWAuthV1'], 'AuthId did not exist on the request.', true);
-			return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
+			return response.status(400).send({
+				success: false,
+				message: 'AuthId was not supplied',
+				userfacingmessage: 'Unknown authId, why are you on a page that requires auth without and Id?',
+			});
 		}
 		Manifest.forEach((user) => {
 			user.sessionIds.forEach((sessionId) => {
@@ -104,12 +110,18 @@ export default {
 			});
 		}
 
+		deleteCsrfSession(request.cookies['authId']);
 		SetManifestField(validUser.userId, 'sessionIds', [], false, false, 0, false, false);
 		const authId = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
 		SetManifestField(validUser.userId, 'sessionIds', authId, true, false, 0, false, false);
+		createCsrfSessionFile(authId);
 
 		response.shouldKeepAlive = false;
-		FASTLOG1(FLog['WWWAuthV1'], `Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['authId']}]`, true);
+		FASTLOG1(
+			FLog['WWWAuthV1'],
+			`Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['authId']}]`,
+			true,
+		);
 		return response
 			.status(200)
 			.cookie('authId', authId, {

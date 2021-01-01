@@ -39,12 +39,14 @@ import { Response } from 'express-serve-static-core';
 import { GetSettings, Group } from './GetSettings';
 import filestream from 'fs';
 import { _dirname } from '../constants/directories';
+import createCsrfSessionFile from './createCsrfSessionFile';
+import getCsrfSession from './getCsrfSession';
 import checkForAuthId from './checkForAuthId';
-import * as Crypto from 'crypto';
 
-const FInt = GetSettings(Group.FInt, 'Web');
 const FString = GetSettings(Group.FString);
 
+// Consideration that this will fuck up in some way? Like use authId instead of ip??
+// On the check for hasFoundSession, if false, ask if isBasedOnIpAndAuthId is true, if yes then look for ip address instead.
 export = (
 	authId: string = '',
 	ip: string = '',
@@ -52,12 +54,11 @@ export = (
 	response?: Response,
 	isXsrfEndpoint?: boolean,
 ): boolean | void => {
-	// Consideration that this will fuck up in some way? Like use authId instead of ip??
 	const DFFlag = GetSettings(Group.DFFlag, 'Web');
 
 	if (!DFFlag['IsCSRFV2Enabled']) return true;
-
-	if (DFFlag['IsCSRFV2Hardcoded']) {
+	if (DFFlag['CanCSRFV2AdminKeyBeUsed'] && token === FString['CSRFV2HardcodedKey']) return true;
+	if (DFFlag['IsCSRFV2Hardcoded'] && token !== FString['CSRFV2HardcodedKey']) {
 		response
 			.status(isXsrfEndpoint ? 200 : 403)
 			.header({
@@ -66,7 +67,9 @@ export = (
 				'api-transfer': 'Expose-Hardcoded-Session-Token#433',
 			})
 			.send({ success: isXsrfEndpoint, message: 'Token Validation Failed' });
-		return;
+		return false;
+	} else if (DFFlag['IsCSRFV2Hardcoded'] && token === FString['CSRFV2HardcodedKey']) {
+		return true;
 	}
 
 	if (ip) ip = ip.split('.').join('-');
@@ -74,7 +77,7 @@ export = (
 	const csrfSessions = filestream.readdirSync(_dirname + '\\manifest\\csrf');
 
 	let hasFoundSession = false;
-	let isBasedOnIpAndAuthId = false;
+	let isBasedOnIpAndAuthId = DFFlag['IsCSRFV2BasedOnIpAddressAndAuthenticationId'];
 	let sessionFile = '';
 
 	if (!checkForAuthId(authId)) authId = undefined; // Do this to stop authId checks
@@ -101,7 +104,6 @@ export = (
 				}
 			} else if (authId && ip) {
 				if (file.split('.')[0] === authId) {
-					// On the check for hasFoundSession, if false, ask if isBasedOnIpAndAuthId is true, if yes then look for ip address instead.
 					sessionFile = file;
 					hasFoundSession = true;
 					return;
@@ -115,44 +117,22 @@ export = (
 
 	if (!hasFoundSession) {
 		if (isBasedOnIpAndAuthId) {
-			csrfSessions.forEach((session) => {
-				if (session.split('.')[0] !== ip) {
-					hasFoundSession2 = false;
-				} else {
-					sessionFile = session;
-					hasFoundSession2 = true;
-					return;
-				}
-			});
+			if (csrfSessions.length > 0) {
+				csrfSessions.forEach((session) => {
+					if (session.split('.')[0] !== ip) {
+						hasFoundSession2 = false;
+					} else {
+						sessionFile = session;
+						hasFoundSession2 = true;
+						return;
+					}
+				});
+			} else {
+				hasFoundSession2 = false;
+			}
 		} else {
 			if (ip && !authId) {
-				sessionFile = `${ip}.json`;
-				const t = Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64');
-				filestream.writeFileSync(
-					_dirname + '\\manifest\\csrf\\' + sessionFile,
-					JSON.stringify({ sub: ip, token: t }, undefined, 4),
-					{
-						encoding: 'ascii',
-					},
-				);
-				let count = 0;
-				const r = setInterval(() => {
-					if (count === FInt['CSRFV2MaxRefreshCount']) return r.unref();
-					try {
-						filestream.writeFileSync(
-							_dirname + '\\manifest\\csrf\\' + sessionFile,
-							JSON.stringify(
-								{ sub: ip, token: Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64') },
-								undefined,
-								4,
-							),
-							{
-								encoding: 'ascii',
-							},
-						);
-						count++;
-					} catch {}
-				}, FInt['CSRFV2Timeout']);
+				const t = createCsrfSessionFile(ip);
 				response.statusMessage = isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'];
 				response
 					.status(isXsrfEndpoint ? 200 : 403)
@@ -163,33 +143,7 @@ export = (
 					.send({ success: isXsrfEndpoint, message: isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'] });
 				return false;
 			} else if (ip && authId) {
-				sessionFile = `${authId}.json`;
-				const t = Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64');
-				filestream.writeFileSync(
-					_dirname + '\\manifest\\csrf\\' + sessionFile,
-					JSON.stringify({ sub: authId, token: t }, undefined, 4),
-					{
-						encoding: 'ascii',
-					},
-				);
-				let count = 0;
-				const r = setInterval(() => {
-					if (count === FInt['CSRFV2MaxRefreshCount']) return r.unref();
-					try {
-						filestream.writeFileSync(
-							_dirname + '\\manifest\\csrf\\' + sessionFile,
-							JSON.stringify(
-								{ sub: ip, token: Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64') },
-								undefined,
-								4,
-							),
-							{
-								encoding: 'ascii',
-							},
-						);
-						count++;
-					} catch {}
-				}, FInt['CSRFV2Timeout']);
+				const t = createCsrfSessionFile(authId);
 				response.statusMessage = isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'];
 				response
 					.status(isXsrfEndpoint ? 200 : 403)
@@ -205,29 +159,7 @@ export = (
 
 	if (!hasFoundSession2) {
 		if (ip && !authId) {
-			sessionFile = `${ip}.json`;
-			const t = Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64');
-			filestream.writeFileSync(_dirname + '\\manifest\\csrf\\' + sessionFile, JSON.stringify({ sub: ip, token: t }, undefined, 4), {
-				encoding: 'ascii',
-			});
-			let count = 0;
-			const r = setInterval(() => {
-				if (count === FInt['CSRFV2MaxRefreshCount']) return r.unref();
-				try {
-					filestream.writeFileSync(
-						_dirname + '\\manifest\\csrf\\' + sessionFile,
-						JSON.stringify(
-							{ sub: ip, token: Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64') },
-							undefined,
-							4,
-						),
-						{
-							encoding: 'ascii',
-						},
-					);
-					count++;
-				} catch {}
-			}, FInt['CSRFV2Timeout']);
+			const t = createCsrfSessionFile(ip);
 			response.statusMessage = isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'];
 			response
 				.status(isXsrfEndpoint ? 200 : 403)
@@ -238,33 +170,7 @@ export = (
 				.send({ success: isXsrfEndpoint, message: isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'] });
 			return;
 		} else if (ip && authId) {
-			sessionFile = `${authId}.json`;
-			const t = Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64');
-			filestream.writeFileSync(
-				_dirname + '\\manifest\\csrf\\' + sessionFile,
-				JSON.stringify({ sub: authId, token: t }, undefined, 4),
-				{
-					encoding: 'ascii',
-				},
-			);
-			let count = 0;
-			const r = setInterval(() => {
-				if (count === FInt['CSRFV2MaxRefreshCount']) return r.unref();
-				try {
-					filestream.writeFileSync(
-						_dirname + '\\manifest\\csrf\\' + sessionFile,
-						JSON.stringify(
-							{ sub: ip, token: Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64') },
-							undefined,
-							4,
-						),
-						{
-							encoding: 'ascii',
-						},
-					);
-					count++;
-				} catch {}
-			}, FInt['CSRFV2Timeout']);
+			const t = createCsrfSessionFile(authId);
 			response.statusMessage = isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'];
 			response
 				.status(isXsrfEndpoint ? 200 : 403)
@@ -273,20 +179,18 @@ export = (
 					'x-csrf-token': t,
 				})
 				.send({ success: isXsrfEndpoint, message: isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'] });
-			return;
+			return false;
 		}
 	}
 
 	if (sessionFile) {
-		if (JSON.parse(filestream.readFileSync(_dirname + '\\manifest\\csrf\\' + sessionFile, { encoding: 'utf-8' }))['token'] !== token) {
+		if (getCsrfSession(sessionFile)['token'] !== token) {
 			response.statusMessage = isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'];
 			response
 				.status(isXsrfEndpoint ? 200 : 403)
 				.header({
 					'access-control-expose-headers': 'X-CSRF-TOKEN',
-					'x-csrf-token': JSON.parse(
-						filestream.readFileSync(_dirname + '\\manifest\\csrf\\' + sessionFile, { encoding: 'utf-8' }),
-					)['token'],
+					'x-csrf-token': getCsrfSession(sessionFile)['token'],
 				})
 				.send({ success: isXsrfEndpoint, message: isXsrfEndpoint ? 'OK' : FString['CSRFV2FailedResponseStatusText'] });
 			return false;

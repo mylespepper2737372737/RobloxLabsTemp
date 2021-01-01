@@ -50,5 +50,17 @@
 	"FSettings": [
 		"Web",
 		"WebMobile"
+	],
+	"TODO": [
+		"Change FIntCSRFV2MaxRefreshCount and FIntCSRFV2Timeout to make the sessions last 2 hours only",
+		"Consider moving DFFlagIsAuthV2Enabled to FFlagIsAuthV2Enabled.",
+		"Consider making X-CSRF-TOKEN system a run-time middleware/helper.",
+		"DO NOT use FastLog just to log every open request, log fails or important info etc",
+		"Consider moving HTTPS redirection to Config.ts as an optional middleware",
+		"Only use DFFlagCanCSRFV2AdminKeyBeUsed when the session tokens are enabled, this allows FStringCSRFV2HardcodedKey to be used with the sessions.",
+		"Consider calling clearAllSessions on program exit?",
+		"Deprecate DFFlagIsCaptchaV1Enabled?",
+		"Ensure that DFFlagCanCSRFV2AdminKeyBeUsed is disabled at all times until the server is reliant on IP Address validation.",
+		"Add DFFlagIsFrontendExemptFromCaptchaV2"
 	]
 }

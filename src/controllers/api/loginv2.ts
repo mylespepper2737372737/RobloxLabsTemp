@@ -33,7 +33,7 @@ import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 
 /**
  * @deprecated
- * */
+ */
 export default {
 	dir: '/auth/v2/login',
 	method: 'ALL',
@@ -132,7 +132,7 @@ export default {
 		}
 
 		user['sessionId'] = authId;
-		filestream.writeFile(_dirname + '/lib/env.json', JSON.stringify(data), () => {
+		filestream.writeFile(_dirname + '/lib/env.json', JSON.stringify(data, undefined, 4), () => {
 			response
 				.status(200)
 				.cookie('authId', authId, {
