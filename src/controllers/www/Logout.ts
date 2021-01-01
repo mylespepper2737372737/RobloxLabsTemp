@@ -76,7 +76,12 @@ export default {
 		let validUser = undefined;
 		let isValidId = false;
 		let validIdx = 0;
-		if (!request.cookies['authId']) return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
+		if (!request.cookies['authId'])
+			return response.status(400).send({
+				success: false,
+				message: 'AuthId was not supplied',
+				userfacingmessage: 'Unknown authId, why are you on a page that requires auth without and Id?',
+			});
 		Manifest.forEach((user) => {
 			user.sessionIds.forEach((sessionId, idx) => {
 				if (sessionId === request.cookies['authId']) {
