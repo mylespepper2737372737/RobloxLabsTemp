@@ -1,5 +1,5 @@
 /*
-	FileName: Logout.ts
+	FileName: Logout.fxhx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: The current Logout function.
@@ -26,7 +26,7 @@
 */
 
 /*
-POST https://www.sitetest1.mfdlabs.com/Authorization/Logout.fxhx HTTP/2.0
+POST https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -48,7 +48,7 @@ dotenv.config({ path: _dirname + '\\.env' });
 const FFlag = GetSettings(Group.FFlag);
 
 export default {
-	dir: '/Authorization/Logout.fxhx',
+	dir: '/Authentication/Logout.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
 		// Anything up here is dynamic,
