@@ -1,11 +1,11 @@
 $(function () {
-    var versionSelector = $("#version-selector");
-    var urlVersion = (location.hash.match(/v[\d\.]+/i) || [""])[0];
-    var defaultVersion = versionSelector.val() || "v1";
-    var initVersion = (versionSelector.find("option[value='" + urlVersion + "']").length > 0 ? urlVersion : defaultVersion).toLowerCase();
+	const versionSelector = $('#version-selector');
+	const urlVersion = (location.hash.match(/v[\d\.]+/i) || [''])[0];
+	const defaultVersion = versionSelector.val() || 'v1';
+	const initVersion = (versionSelector.find('option[value=\'' + urlVersion + '\']').length > 0 ? urlVersion : defaultVersion).toLowerCase();
 
-    function getDocsJsonUrl(version) {
-        return "/docs/json/" + version.toLowerCase() + '.json';
+	function getDocsJsonUrl(version) {
+        return document.location.pathname + "json/" + version.toLowerCase() + '.json';
     }
 
 
@@ -13,7 +13,7 @@ $(function () {
         window.SwaggerTranslator.translate();
     }
 
-    if (initVersion != defaultVersion) {
+    if (initVersion !== defaultVersion) {
         versionSelector.val(initVersion);
     }
 
@@ -35,10 +35,10 @@ $(function () {
 
             swaggerApi.apisArray.forEach(function (api) {
                 api.operationsArray.forEach(function (operation) {
-                    var id = operation.encodedParentId + "_" + operation.nickname;
-                    var properties = operation.operation.properties;
-                    
-                    if (properties.internal) {
+					const id = operation.encodedParentId + '_' + operation.nickname;
+					const properties = operation.operation.properties;
+
+					if (properties.internal) {
                         $("#" + id + "_content").prepend("<h4><span class=\"internal-text\" data-sw-translate>Internal: This endpoint is not public documented.</span></h4>");
                     }
 
@@ -84,8 +84,8 @@ $(function () {
         }
     };
     Object.keys(takeoverSlides).forEach(function (method) {
-        var original = $.fn[method];
-        $.fn[method] = function () {
+		const original = $.fn[method];
+		$.fn[method] = function () {
             $(this).trigger(method);
             original.apply(this, arguments);
         };
