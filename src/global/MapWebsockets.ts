@@ -90,7 +90,7 @@ export = (
 				}
 			});
 			if (!isValid) {
-				s.write('HTTP/1.1 404 Socket Not Found\r\n\r\n');
+				s.write('HTTP/3.0 404 Socket Not Found\r\n\r\n');
 				return s.destroy();
 			}
 		});
@@ -114,7 +114,7 @@ export = (
 				}
 			});
 			if (!isValid) {
-				s.write('HTTP/1.1 404 Socket Not Found\r\n\r\n');
+				s.write('HTTP/3.0 404 Socket Not Found\r\n\r\n');
 				return s.destroy();
 			}
 		});
