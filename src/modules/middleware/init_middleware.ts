@@ -29,8 +29,10 @@ import crypto from 'crypto';
 import headers from '../constants/headers';
 import { RequestHandler } from 'express-serve-static-core';
 import createOrGetXsrfSession from '../Helpers/createOrGetXsrfSession';
+// import { FASTLOG6, FLog } from '../Helpers/Log';
 
 export = ((req, res, next) => {
+	res.header(headers);
 	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest1.mfdlabs.com'))
 		res.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {
 			maxAge: 3.154e14,
@@ -39,8 +41,8 @@ export = ((req, res, next) => {
 
 	if (req.method !== 'GET') {
 		// console.log((req.headers.cookie as string).split(';'));
-		res.header('Access-Control-Allow-Headers', 'Origin, Referer, X-Requested-With, Content-Type');
-		res.header('Access-Control-Allow-Origin', req.headers['origin'] || req.headers['referer']);
+		res.header('Access-Control-Allow-Headers', 'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN');
+		res.header('Access-Control-Allow-Origin', req.headers.origin || req.headers.referer);
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
 		res.header('Access-Control-Allow-Credentials', 'true');
 		try {
@@ -59,9 +61,10 @@ export = ((req, res, next) => {
 				)
 			)
 				return;
-		} catch {}
+		} catch (e) {
+			// FASTLOG6(FLog['Tasks'], e);
+		}
 	}
-	res.header(headers);
 	if (req.headers.cookie && !req.headers.cookie.includes('authId') && req.hostname === 'www.sitetest1.mfdlabs.com' && req.path === '/') {
 		return res.redirect('https://www.sitetest1.mfdlabs.com/Login/');
 	}
