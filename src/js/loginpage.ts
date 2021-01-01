@@ -29,7 +29,7 @@ if (document.location.protocol !== 'https:')
 	document.location.replace('https://' + document.location.href.toString().split('http://').join(''));
 const c = (username: string, password: string): void => {
 	$.ajax({
-		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Login.fxhx',
+		url: 'https://www.sitetest1.mfdlabs.com/Authentication/Login.fxhx',
 		data: 'cvalue=' + username + '&password=' + password,
 		contentType: 'application/x-www-form-urlencoded',
 		method: 'POST',

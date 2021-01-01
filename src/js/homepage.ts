@@ -30,7 +30,7 @@ if (document.location.protocol !== 'https:')
 const d = () => {
 	$.ajax({
 		dataType: 'json',
-		url: 'https://www.sitetest1.mfdlabs.com/Authorization/Logout.fxhx',
+		url: 'https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
 		success: () => {
@@ -47,7 +47,7 @@ const d = () => {
 };
 const x = () => {
 	$.ajax({
-		url: 'https://www.sitetest1.mfdlabs.com/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
+		url: 'https://www.sitetest1.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
 		success: () => {
