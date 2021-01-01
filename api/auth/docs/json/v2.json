@@ -48,7 +48,7 @@
 				"properties": {
 					"internal": false,
 					"metricIds": ["CSRF:getToken"],
-					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest1.mfdlabs.com/Authorization/Login.fxhx"
+					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest1.mfdlabs.com/Authentication/Login.fxhx"
 				},
 				"deprecated": true
 			}
@@ -84,7 +84,7 @@
 				"properties": {
 					"internal": false,
 					"metricIds": ["CSRF:getToken"],
-					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest1.mfdlabs.com/Authorization/Logout.fxhx"
+					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx"
 				},
 				"deprecated": true
 			}
