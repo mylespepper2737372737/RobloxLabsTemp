@@ -87,7 +87,11 @@ export default {
 		let isValidId = false;
 		if (!request.cookies['authId']) {
 			FASTLOG6(FLog['WWWAuthV1'], 'AuthId did not exist on the request.', true);
-			return response.status(400).send({ success: false, message: 'AuthId was not supplied' });
+			return response.status(400).send({
+				success: false,
+				message: 'AuthId was not supplied',
+				userfacingmessage: 'Unknown authId, why are you on a page that requires auth without and Id?',
+			});
 		}
 		Manifest.forEach((user) => {
 			user.sessionIds.forEach((sessionId) => {
@@ -113,7 +117,11 @@ export default {
 		createCsrfSessionFile(authId);
 
 		response.shouldKeepAlive = false;
-		FASTLOG1(FLog['WWWAuthV1'], `Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['authId']}]`, true);
+		FASTLOG1(
+			FLog['WWWAuthV1'],
+			`Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['authId']}]`,
+			true,
+		);
 		return response
 			.status(200)
 			.cookie('authId', authId, {
