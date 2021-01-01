@@ -4,7 +4,10 @@
 	"description": "mfd",
 	"main": "server.js",
 	"scripts": {
-		"server2": "node --no-deprecation --no-warnings --report-filename=C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\report.log --diagnostic-dir=C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\diag C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com\\lib\\serverv2.js"
+		"server2": "node --no-deprecation --no-warnings --report-filename=eport.log --diagnostic-dir=diag lib/serverv2.js",
+		"lint": "eslint . --fix --ext .ts",
+		"server2-for-vsc": "npm run lint && npm run build && npm run server2",
+		"build": "tsc --skipLibCheck"
 	},
 	"author": "mfd",
 	"license": "ISC",
