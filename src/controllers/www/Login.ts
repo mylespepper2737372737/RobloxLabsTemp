@@ -145,7 +145,6 @@ export default {
 				userfacingmessage: 'Incorrect username or password.',
 			});
 		// let user = undefined;
-		if (!Manifest.get(userId)) return response.send('help me');
 		if (Manifest.get(userId).password !== request.body['password'])
 			return response.status(403).send({
 				success: false,
