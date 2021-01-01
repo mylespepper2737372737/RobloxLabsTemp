@@ -54,3 +54,4 @@ tests
 .idea
 diag
 report.log
+package-lock.json
