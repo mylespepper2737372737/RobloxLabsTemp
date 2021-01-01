@@ -29,6 +29,7 @@
 import filestream from 'fs';
 import crypto from 'crypto';
 import { _dirname } from '../../modules/constants/directories';
+import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 
 /**
  * @deprecated
@@ -59,13 +60,17 @@ export default {
 			};
 		},
 	) => {
-		const settings = JSON.parse(filestream.readFileSync(_dirname + '\\global\\settings.json', 'ascii'));
-		if (!settings['useAuthorizationV2'])
-			return response
-				.status(503)
-				.send({ code: 503, message: 'The server cannot handle the request (because it is overloaded or down for maintenance)' });
+		const DFFlag = GetSettings(Group.DFFlag);
+		const FFlag = GetSettings(Group.FFlag);
 		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
-		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
+		if (!DFFlag['IsAuthV2Enabled'])
+			return response.status(503).send({
+				code: 503,
+				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
+				userfacingmessage: 'Service disabled for an unknown amount of time.',
+			});
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				code: 405,
@@ -79,7 +84,11 @@ export default {
 			request.body === null ||
 			request.body === undefined
 		)
-			return response.status(400).send({ code: 400, message: 'Body was null.', userfacingmessage: 'Something went wrong.' });
+			return response.status(400).send({
+				code: 400,
+				message: 'Body was null.',
+				userfacingmessage: 'Something went wrong.',
+			});
 		if (request.headers['content-type'] !== 'application/json')
 			return response.status(400).send({
 				code: 400,

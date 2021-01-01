@@ -37,17 +37,30 @@
 	***
 */
 
-import clearCachedSessions from './modules/constants/clearCachedSessions';
-import mapwss from './modules/constants/ws';
-import mapssl from './modules/constants/ssl';
+import clearCachedSessions from './modules/Helpers/clearCachedSessions';
+import mapwss from './modules/Helpers/ws';
+import mapssl from './modules/Helpers/ssl';
 import mapconfig from './modules/configs/mapconfig';
 import urls from './modules/constants/urls';
 import defaultMiddleware from './modules/middleware/init_middleware';
-import { www404, api404, staticcdn404, js404, css404, images404, setup404, ecs404 } from './modules/middleware/404';
+import { api404, css404, ecs404, images404, js404, setup404, staticcdn404, ti404, www404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
+import { LOGGROUP, FLog, FASTLOG6, FASTLOG2 } from './modules/Helpers/Log';
 
-// TODO Consider clearing cached sessions on start?
+LOGGROUP('ClientSettingsAPIV1');
+LOGGROUP('WWWAuthV1');
+LOGGROUP('Tasks');
+LOGGROUP(urls['www']);
+LOGGROUP(urls['api']);
+LOGGROUP(urls['staticcdn']);
+LOGGROUP(urls['js']);
+LOGGROUP(urls['css']);
+LOGGROUP(urls['images']);
+LOGGROUP(urls['setup']);
+LOGGROUP(urls['ephemeralcounters']);
+LOGGROUP(urls['temporary_images']);
+
 (async () => {
 	await clearCachedSessions();
 
@@ -59,6 +72,7 @@ import express from 'express';
 	const setup = express();
 	const api = express();
 	const ephemeralcounters = express();
+	const temp_images = express();
 
 	www.use(defaultMiddleware);
 	staticcdn.use(defaultMiddleware);
@@ -68,15 +82,17 @@ import express from 'express';
 	setup.use(defaultMiddleware);
 	api.use(defaultMiddleware);
 	ephemeralcounters.use(defaultMiddleware);
+	temp_images.use(defaultMiddleware);
 
 	await Startup.Configure(mapconfig(staticcdn, '\\static', '\\lib\\controllers\\static', urls['staticcdn']));
-	await Startup.Configure(mapconfig(js, '\\lib\\js', '\\lib\\controllers\\js', urls['js']));
+	await Startup.Configure(mapconfig(js, '\\dist', '\\lib\\controllers\\js', urls['js']));
 	await Startup.Configure(mapconfig(css, '\\css', '\\lib\\controllers\\css', urls['css']));
 	await Startup.Configure(mapconfig(images, '\\images', '\\lib\\controllers\\images', urls['images']));
 	await Startup.Configure(mapconfig(api, '\\api', '\\lib\\controllers\\api', urls['api']));
 	await Startup.Configure(mapconfig(setup, '\\setup', '\\lib\\controllers\\setup', urls['setup']));
 	await Startup.Configure(mapconfig(www, '\\www', '\\lib\\controllers\\www', urls['www'], true));
 	await Startup.Configure(mapconfig(ephemeralcounters, '\\ecs', '\\lib\\controllers\\ecs', urls['ephemeralcounters']));
+	await Startup.Configure(mapconfig(temp_images, '\\temp', '\\lib\\controllers\\temp', urls['temporary_images']));
 
 	api.use(api404);
 	staticcdn.use(staticcdn404);
@@ -86,20 +102,36 @@ import express from 'express';
 	setup.use(setup404);
 	www.use(www404);
 	ephemeralcounters.use(ecs404);
+	temp_images.use(ti404);
 
 	await (async () => {
 		try {
 			mapssl(images, urls['images']);
-			mapssl(www, urls['www']);
+			const [wwwHttp, wwwHttps] = mapssl(www, urls['www']);
 			const [apiHttp, apiHttps] = mapssl(api, urls['api']);
 			mapssl(staticcdn, urls['staticcdn']);
 			mapssl(js, urls['js']);
 			mapssl(css, urls['css']);
 			mapssl(setup, urls['setup']);
-			mapssl(ephemeralcounters, urls['ephemeralcounters']);
+			mapssl(temp_images, urls['temporary_images']);
+			const [ecsHttp, ecsHttps] = mapssl(ephemeralcounters, urls['ephemeralcounters']);
 			await mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
+			await mapwss(wwwHttp, wwwHttps, '\\lib\\sockets\\www', urls['www']);
+			await mapwss(ecsHttp, ecsHttps, '\\lib\\sockets\\ecs', urls['ephemeralcounters']);
 		} catch (e) {
-			throw new Error(e);
+			return FASTLOG6(FLog['Tasks'], e);
 		}
 	})();
 })();
+
+process.stdin.resume();
+function exitHandler(options: { exit: boolean }, c: number) {
+	if (options.exit) {
+		FASTLOG2(FLog['Tasks'], `Process exited with code ${typeof c === 'number' ? c : '1'}.`, true);
+		process.exit();
+	}
+}
+process.on('SIGINT', exitHandler.bind(null, { exit: true }));
+process.on('SIGUSR1', exitHandler.bind(null, { exit: true }));
+process.on('SIGUSR2', exitHandler.bind(null, { exit: true }));
+process.on('uncaughtException', exitHandler.bind(null, { exit: true }));
