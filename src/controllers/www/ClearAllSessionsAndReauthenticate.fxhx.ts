@@ -1,5 +1,5 @@
 /*
-	FileName: ClearAllSessionsAndReauthenticate.ts
+	FileName: ClearAllSessionsAndReauthenticate.fxhx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: The current ClearAllSessionsAndReauthenticate function.
@@ -26,7 +26,7 @@
 */
 
 /*
-POST https://www.sitetest1.mfdlabs.com/Authorization/ClearAllSessionsAndReauthenticate.fxhx HTTP/2.0
+POST https://www.sitetest1.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -51,7 +51,7 @@ dotenv.config({ path: _dirname + '\\.env' });
 const FFlag = GetSettings(Group.FFlag);
 
 export default {
-	dir: '/Authorization/ClearAllSessionsAndReauthenticate.fxhx',
+	dir: '/Authentication/ClearAllSessionsAndReauthenticate.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
 		// Anything up here is dynamic,
