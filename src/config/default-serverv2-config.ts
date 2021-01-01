@@ -32,7 +32,8 @@ export default {
 		redirect: true,
 		lastModified: false,
 		setHeaders: (res: { set: (arg0: string, arg1: string) => void }): void => {
-			res.set('Hoster', 'Servers.fx');
+			res.set('x-powered-by', 'servers.fx');
+			res.set('server', 'mfd-arg-12');
 		},
 	},
 	UseEndpoints: true,
