@@ -1,5 +1,5 @@
 /*
-	FileName: Login.ts
+	FileName: Login.fxhx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: The current Login function.
@@ -26,7 +26,7 @@
 */
 
 /* 
-POST https://www.sitetest1.mfdlabs.com/Authorization/Login.fxhx HTTP/2.0
+POST https://www.sitetest1.mfdlabs.com/Authentication/Login.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -46,7 +46,6 @@ import GetSessions from '../../modules/Helpers/GetSessions';
 import createCaptchaBlobSessionAfter403 from '../../modules/Helpers/createCaptchaBlobSessionAfter403';
 import createCaptchaSessionBlob from '../../modules/Helpers/createCaptchaSessionBlob';
 import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
-// import createOrGetXsrfSession from '../../modules/Helpers/createOrGetXsrfSession';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
@@ -58,7 +57,7 @@ dotenv.config({ path: _dirname + '\\.env' });
 const FFlag = GetSettings(Group.FFlag);
 
 export default {
-	dir: '/Authorization/Login.fxhx',
+	dir: '/Authentication/Login.fxhx',
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> | void => {
 		const DFFlag = GetSettings(Group.DFFlag);
@@ -80,7 +79,6 @@ export default {
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		// if (!createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response)) return;
 		const registeredUsers = GetRegisteredUsers();
 
 		const sessions = filestream.readdirSync(_dirname + '\\manifest\\sessions');
