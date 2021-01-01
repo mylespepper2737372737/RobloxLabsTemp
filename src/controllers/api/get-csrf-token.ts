@@ -28,6 +28,7 @@
 import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import createOrGetXsrfSession from '../../modules/Helpers/createOrGetXsrfSession';
+import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../modules/Helpers/Log';
 
 const FFlag = GetSettings(Group.FFlag);
 
@@ -36,24 +37,42 @@ export default {
 	method: 'ALL',
 	func: (request: Request, response: Response) => {
 		const DFFlag = GetSettings(Group.DFFlag);
-		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (!DFFlag['IsCSRFV2Enabled'])
+
+		if (!DFFlag['IsCSRFV2Enabled']) {
+			FASTLOG4(FLog['CsrfAPIV1'], 'The service is disabled currently.', true);
 			return response.status(503).send({
 				success: false,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
+		}
 
-		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
+
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+			FASTLOG6(FLog['CsrfAPIV1'], 'HTTPS was not given where it was required.', true);
 			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
+		}
 
-		if (request.method !== 'POST')
+		if (request.method !== 'POST') {
+			FASTLOG6(FLog['CsrfAPIV1'], `${request.method} is not supported`);
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support http method '${request.method}.'`,
-				userfacingmessage: 'Something went wrong.',
+				message: `The requested resource does not support http method '${request.method}'.`,
 			});
+		}
 
-		if (!createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response, true)) return;
+		if (!createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response, true)) {
+			FASTLOG4(
+				FLog['CsrfAPIV1'],
+				`Gave CSRF for subject ${request.cookies['authId'] || 'No AuthId'} [${request.ip}], the session probably didn't exist.`,
+			);
+			return;
+		} else {
+			FASTLOG1(
+				FLog['CsrfAPIV1'],
+				`Gave CSRF for subject ${request.cookies['authId'] || 'No AuthId'} [${request.ip}], the session probably existed.`,
+			);
+		}
 	},
 };
