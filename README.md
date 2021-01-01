@@ -1,10 +1,8 @@
 <h4 align="center">A Node.js version of MFD's TestSite.</h4>
 <br>
-<div style='text-align: center'>
-	<p>
-		<a href="https://discord.gg/afahYa5VvX"><img src="https://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
-	</p>
-</div>
+<p align='center'>
+	<a href="https://discord.gg/afahYa5VvX"><img src="https://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
+</p>
 <br>
 
 # About
