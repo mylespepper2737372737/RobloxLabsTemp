@@ -67,7 +67,12 @@ export = ((req, res, next) => {
 				return;
 		} catch {}
 	}
-	if (req.headers.cookie && !req.headers.cookie.includes('authId') && req.hostname === 'www.sitetest1.mfdlabs.com' && req.path === '/') {
+	if (
+		req.headers.cookie &&
+		!req.headers.cookie.includes('authId') &&
+		(req.hostname === 'www.sitetest1.mfdlabs.com' || req.hostname === 'sitetest1.mfdlabs.com') &&
+		req.path === '/'
+	) {
 		return res.redirect('https://www.sitetest1.mfdlabs.com/Login/');
 	}
 	if (
