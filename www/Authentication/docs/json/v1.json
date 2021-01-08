@@ -196,7 +196,7 @@
 						"description": "AuthId was not supplied."
 					},
 					"404": {
-						"description": "No body provided.\\nThe Content-Type {request.headers['content-type']} is not supported.\\nThe body provided was invalid.\\nThe password provided was not accepted.\""
+						"description": "No body provided.\nThe Content-Type {request.headers['content-type']} is not supported.\nThe body provided was invalid.\nThe password provided was not accepted."
 					}
 				},
 				"properties": {
