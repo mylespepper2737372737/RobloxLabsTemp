@@ -25,5 +25,5 @@
 	***
 */
 
-export const _dirname = 'C:\\Users\\minig\\Git\\Mfd\\Web\\mfdlabs.com';
+export const _dirname = 'C:\\dev\\web\\mfdlabs.com';
 export const _sslname = _dirname + '\\ssl';
