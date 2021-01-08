@@ -63,7 +63,7 @@ export default {
 		// const DFInt = GetSettings(Group.DFInt);
 		// const Manifest = GetManifests();
 
-		if (!DFFlag['IsWWWAuthV1Enabled'])
+		if (!DFFlag['IsWWWAuthV1Enabled'] || !DFFlag['IsWWWAuthSignupPubliclyListed'])
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
