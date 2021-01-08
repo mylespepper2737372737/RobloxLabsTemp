@@ -26,6 +26,7 @@
 */
 
 import crypto from 'crypto';
+import escape from 'escape-html';
 import { GetSettings, Group } from '../../Helpers/GetSettings';
 
 const FString = GetSettings(Group.FString);
@@ -53,7 +54,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://css.sitetest1.mfdlabs.com' + req.url
+					'https://css.sitetest1.mfdlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))
@@ -65,7 +66,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://css.sitetest1.mfdlabs.com' + req.url
+					'https://css.sitetest1.mfdlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))

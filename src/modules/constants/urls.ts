@@ -26,6 +26,7 @@
 */
 
 export default {
+	apex: 'sitetest1.mfdlabs.com',
 	www: 'www.sitetest1.mfdlabs.com',
 	api: 'api.sitetest1.mfdlabs.com',
 	staticcdn: 'static.sitetest1.mfdlabs.com',

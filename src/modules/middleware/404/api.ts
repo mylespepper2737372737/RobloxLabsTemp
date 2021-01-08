@@ -39,13 +39,13 @@ export default (
 ) => {
 	return res.status(req.method === 'OPTIONS' ? 200 : 404).send({
 		code: 404,
-		message: 'https://' + req.hostname + req.url + ' NotFound.',
+		message: 'https://' + escape(req.hostname) + escape(req.url) + ' NotFound.',
 		userfacingmessage:
 			'404 Not Found, the endpoint (https://' +
-			req.hostname +
-			req.url +
+			escape(req.hostname) +
+			escape(req.url) +
 			') that you requested from ' +
-			req.headers['origin'] +
+			escape(req.headers['origin']) +
 			' is invalid, please contact a developer or check status on https://www.sitetest1.mfdlabs.com/status.ashx',
 	});
 };
