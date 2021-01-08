@@ -85,15 +85,15 @@ LOGGROUP(urls['temporary_images']);
 	ephemeralcounters.use(defaultMiddleware);
 	temp_images.use(defaultMiddleware);
 
-	await Startup.Configure(mapconfig(staticcdn, '\\static', '\\lib\\controllers\\static', urls['staticcdn']));
-	await Startup.Configure(mapconfig(js, '\\dist', '\\lib\\controllers\\js', urls['js']));
-	await Startup.Configure(mapconfig(css, '\\css', '\\lib\\controllers\\css', urls['css']));
-	await Startup.Configure(mapconfig(images, '\\images', '\\lib\\controllers\\images', urls['images']));
-	await Startup.Configure(mapconfig(api, '\\api', '\\lib\\controllers\\api', urls['api']));
-	await Startup.Configure(mapconfig(setup, '\\setup', '\\lib\\controllers\\setup', urls['setup']));
-	await Startup.Configure(mapconfig(www, '\\www', '\\lib\\controllers\\www', urls['www'], true));
-	await Startup.Configure(mapconfig(ephemeralcounters, '\\ecs', '\\lib\\controllers\\ecs', urls['ephemeralcounters']));
-	await Startup.Configure(mapconfig(temp_images, '\\temp', '\\lib\\controllers\\temp', urls['temporary_images']));
+	await Startup.Configure(mapconfig(staticcdn, '\\static', '\\server\\controllers\\static', urls['staticcdn']));
+	await Startup.Configure(mapconfig(js, '\\dist', '\\server\\controllers\\js', urls['js']));
+	await Startup.Configure(mapconfig(css, '\\css', '\\server\\controllers\\css', urls['css']));
+	await Startup.Configure(mapconfig(images, '\\images', '\\server\\controllers\\images', urls['images']));
+	await Startup.Configure(mapconfig(api, '\\api', '\\server\\controllers\\api', urls['api']));
+	await Startup.Configure(mapconfig(setup, '\\setup', '\\server\\controllers\\setup', urls['setup']));
+	await Startup.Configure(mapconfig(www, '\\www', '\\server\\controllers\\www', urls['www'], true));
+	await Startup.Configure(mapconfig(ephemeralcounters, '\\ecs', '\\server\\controllers\\ecs', urls['ephemeralcounters']));
+	await Startup.Configure(mapconfig(temp_images, '\\temp', '\\server\\controllers\\temp', urls['temporary_images']));
 
 	api.use(api404);
 	staticcdn.use(staticcdn404);
@@ -116,11 +116,11 @@ LOGGROUP(urls['temporary_images']);
 			mapssl(setup, urls['setup']);
 			mapssl(temp_images, urls['temporary_images']);
 			const [ecsHttp, ecsHttps] = mapssl(ephemeralcounters, urls['ephemeralcounters']);
-			await mapwss(apiHttp, apiHttps, '\\lib\\sockets\\api', urls['api']);
-			await mapwss(wwwHttp, wwwHttps, '\\lib\\sockets\\www', urls['www']);
-			await mapwss(ecsHttp, ecsHttps, '\\lib\\sockets\\ecs', urls['ephemeralcounters']);
+			await mapwss(apiHttp, apiHttps, '\\server\\sockets\\api', urls['api']);
+			await mapwss(wwwHttp, wwwHttps, '\\server\\sockets\\www', urls['www']);
+			await mapwss(ecsHttp, ecsHttps, '\\server\\sockets\\ecs', urls['ephemeralcounters']);
 		} catch (e) {
-			return FASTLOG6(FLog['Tasks'], e);
+			return FASTLOG6(FLog['Tasks'], e.message);
 		}
 	})();
 })();

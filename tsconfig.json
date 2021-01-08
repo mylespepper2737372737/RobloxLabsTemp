@@ -3,7 +3,7 @@
 		"target": "es2020",
 		"module": "commonjs",
 		"jsx": "react",
-		"outDir": "lib",
+		"outDir": "server",
 		"rootDir": "src",
 		"noUnusedLocals": true,
 		"esModuleInterop": true,
