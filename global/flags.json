@@ -18,7 +18,8 @@
 			"IsAuthV2Enabled": false,
 			"IsWWWAuthV1Enabled": true,
 			"WWWAuthV1AllowAllMethods": false,
-			"IsClientSettingsAPIEnabled": true
+			"IsClientSettingsAPIEnabled": true,
+			"IsWWWAuthSignupPubliclyListed": false
 		},
 		"FInt": {
 			"CSRFV2Timeout": 120000,
