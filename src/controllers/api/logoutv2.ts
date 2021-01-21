@@ -2,8 +2,8 @@
 	FileName: logoutV2.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: https://api.sitetest1.mfdlabs.com/auth/v2/logout,
-				 deprecated for https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx
+	Description: https://api.mfdlabs.com/auth/v2/logout,
+				 deprecated for https://www.mfdlabs.com/Authentication/Logout.fxhx
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
@@ -91,7 +91,7 @@ export default {
 		data['userIds'][userId].loggedOn = false;
 		data['userIds'][userId].sessionId = '';
 		filestream.writeFile(_dirname + '/lib/env.json', JSON.stringify(data, undefined, 4), () =>
-			response.clearCookie('authId', { domain: '.sitetest1.mfdlabs.com', path: '/' }).send({ success: true, message: 'Success' }),
+			response.clearCookie('authId', { domain: 'mfdlabs.com', path: '/' }).send({ success: true, message: 'Success' }),
 		);
 	},
 };
