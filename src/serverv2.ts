@@ -15,7 +15,7 @@
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
-	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest1.mfdlabs.com:443 and http://*.sitetest1.mfdlabs.com:80.
+	NOTICE This Application Programming Interface will be hosted on both https://*mfdlabs.com:443 and http://*mfdlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers
 
 	***
@@ -38,7 +38,6 @@
 */
 
 import clearCachedSessions from './modules/Helpers/clearCachedSessions';
-import mapwss from './modules/Helpers/ws';
 import mapssl from './modules/Helpers/ssl';
 import mapconfig from './modules/configs/mapconfig';
 import urls from './modules/constants/urls';
@@ -61,6 +60,10 @@ LOGGROUP(urls['images']);
 LOGGROUP(urls['setup']);
 LOGGROUP(urls['ephemeralcounters']);
 LOGGROUP(urls['temporary_images']);
+LOGGROUP(urls['versioncompatibility']);
+LOGGROUP(urls['clientsettings']);
+LOGGROUP(urls['assetgame']);
+LOGGROUP(urls['ephemeralcountersv2']);
 
 (async () => {
 	await clearCachedSessions();
@@ -73,7 +76,11 @@ LOGGROUP(urls['temporary_images']);
 	const setup = express();
 	const api = express();
 	const ephemeralcounters = express();
+	const ephemeralcountersv2 = express();
 	const temp_images = express();
+	const vc = express();
+	const cs = express();
+	const ag = express();
 
 	www.use(defaultMiddleware);
 	staticcdn.use(defaultMiddleware);
@@ -83,17 +90,27 @@ LOGGROUP(urls['temporary_images']);
 	setup.use(defaultMiddleware);
 	api.use(defaultMiddleware);
 	ephemeralcounters.use(defaultMiddleware);
+	ephemeralcountersv2.use(defaultMiddleware);
 	temp_images.use(defaultMiddleware);
+	vc.use(defaultMiddleware);
+	cs.use(defaultMiddleware);
+	ag.use(defaultMiddleware);
 
-	await Startup.Configure(mapconfig(staticcdn, '\\static', '\\server\\controllers\\static', urls['staticcdn']));
-	await Startup.Configure(mapconfig(js, '\\dist', '\\server\\controllers\\js', urls['js']));
-	await Startup.Configure(mapconfig(css, '\\css', '\\server\\controllers\\css', urls['css']));
-	await Startup.Configure(mapconfig(images, '\\images', '\\server\\controllers\\images', urls['images']));
-	await Startup.Configure(mapconfig(api, '\\api', '\\server\\controllers\\api', urls['api']));
-	await Startup.Configure(mapconfig(setup, '\\setup', '\\server\\controllers\\setup', urls['setup']));
-	await Startup.Configure(mapconfig(www, '\\www', '\\server\\controllers\\www', urls['www'], true));
-	await Startup.Configure(mapconfig(ephemeralcounters, '\\ecs', '\\server\\controllers\\ecs', urls['ephemeralcounters']));
-	await Startup.Configure(mapconfig(temp_images, '\\temp', '\\server\\controllers\\temp', urls['temporary_images']));
+	await Startup.Configure(mapconfig(staticcdn, '\\pages\\static', '\\server\\controllers\\static', urls['staticcdn']));
+	await Startup.Configure(mapconfig(js, '\\pages\\dist', '\\server\\controllers\\js', urls['js']));
+	await Startup.Configure(mapconfig(css, '\\pages\\css', '\\server\\controllers\\css', urls['css']));
+	await Startup.Configure(mapconfig(images, '\\pages\\images', '\\server\\controllers\\images', urls['images']));
+	await Startup.Configure(mapconfig(api, '\\pages\\api', '\\server\\controllers\\api', urls['api']));
+	await Startup.Configure(mapconfig(setup, '\\pages\\setup', '\\server\\controllers\\setup', urls['setup']));
+	await Startup.Configure(mapconfig(www, '\\pages\\www', '\\server\\controllers\\www', urls['www'], true));
+	await Startup.Configure(mapconfig(ephemeralcounters, '\\pages\\ecs', '\\server\\controllers\\ecs', urls['ephemeralcounters']));
+	await Startup.Configure(mapconfig(ephemeralcountersv2, '\\pages\\ecsv2', '\\server\\controllers\\ecsv2', urls['ephemeralcountersv2']));
+	await Startup.Configure(mapconfig(temp_images, '\\pages\\temp', '\\server\\controllers\\temp', urls['temporary_images']));
+	await Startup.Configure(
+		mapconfig(vc, '\\pages\\versioncompatibility', '\\server\\controllers\\versioncompatibility', urls['versioncompatibility']),
+	);
+	await Startup.Configure(mapconfig(cs, '\\pages\\clientsettings', '\\server\\controllers\\clientsettings', urls['clientsettings']));
+	await Startup.Configure(mapconfig(ag, '\\pages\\assetgame', '\\server\\controllers\\assetgame', urls['assetgame']));
 
 	api.use(api404);
 	staticcdn.use(staticcdn404);
@@ -103,22 +120,27 @@ LOGGROUP(urls['temporary_images']);
 	setup.use(setup404);
 	www.use(www404);
 	ephemeralcounters.use(ecs404);
+	ephemeralcountersv2.use(ecs404);
 	temp_images.use(ti404);
+	vc.use(ecs404);
+	cs.use(ecs404);
+	ag.use(ecs404);
 
 	await (async () => {
 		try {
 			mapssl(images, urls['images']);
-			const [wwwHttp, wwwHttps] = mapssl(www, urls['www']);
-			const [apiHttp, apiHttps] = mapssl(api, urls['api']);
+			mapssl(www, urls['www']);
+			mapssl(api, urls['api']);
 			mapssl(staticcdn, urls['staticcdn']);
 			mapssl(js, urls['js']);
 			mapssl(css, urls['css']);
 			mapssl(setup, urls['setup']);
 			mapssl(temp_images, urls['temporary_images']);
-			const [ecsHttp, ecsHttps] = mapssl(ephemeralcounters, urls['ephemeralcounters']);
-			await mapwss(apiHttp, apiHttps, '\\server\\sockets\\api', urls['api']);
-			await mapwss(wwwHttp, wwwHttps, '\\server\\sockets\\www', urls['www']);
-			await mapwss(ecsHttp, ecsHttps, '\\server\\sockets\\ecs', urls['ephemeralcounters']);
+			mapssl(vc, urls['versioncompatibility']);
+			mapssl(cs, urls['clientsettings']);
+			mapssl(ag, urls['assetgame']);
+			mapssl(ephemeralcounters, urls['ephemeralcounters']);
+			mapssl(ephemeralcountersv2, urls['ephemeralcountersv2']);
 		} catch (e) {
 			return FASTLOG6(FLog['Tasks'], e.message);
 		}
