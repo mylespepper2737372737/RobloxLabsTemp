@@ -1,5 +1,5 @@
 {
-	"discord.enabled": true,
+	"discord.enabled": false,
 	"todo-tree.tree.showBadges": true,
 	"todo-tree.tree.showCountsInTree": true
 }
