@@ -53,7 +53,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://setup.sitetest1.mfdlabs.com' + escape(req.url)
+					'https://setupmfdlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))
@@ -65,7 +65,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://setup.sitetest1.mfdlabs.com' + escape(req.url)
+					'https://setupmfdlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))
