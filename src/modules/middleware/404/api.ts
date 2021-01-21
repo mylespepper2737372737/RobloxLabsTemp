@@ -46,6 +46,6 @@ export default (
 			escape(req.url) +
 			') that you requested from ' +
 			escape(req.headers['origin']) +
-			' is invalid, please contact a developer or check status on https://www.sitetest1.mfdlabs.com/status.ashx',
+			' is invalid, please contact a developer or check status on https://www.mfdlabs.com/status.ashx',
 	});
 };
