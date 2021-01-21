@@ -26,7 +26,7 @@
 */
 
 /* 
-POST https://www.sitetest1.mfdlabs.com/Authentication/Signup.fxhx HTTP/2.0
+POST https://www.mfdlabs.com/Authentication/Signup.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
