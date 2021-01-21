@@ -1,8 +1,0 @@
-{
-	"swagger": "2.0",
-	"info": { "version": "v1.0", "title": "Ephemeral Counters Api v1.0" },
-	"host": "ephemeralcounters.api.sitetest1.mfdlabs.com",
-	"schemes": ["https", "http"],
-	"paths": {},
-	"definitions": {}
-}
