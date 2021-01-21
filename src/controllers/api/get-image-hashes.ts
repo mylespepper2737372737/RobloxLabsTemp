@@ -2,7 +2,7 @@
 	FileName: get-captcha-hashes.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: https://api.sitetest1.mfdlabs.com/captcha/v1/get-image-hashes,
+	Description: https://api.mfdlabs.com/captcha/v1/get-image-hashes,
 
 	TODO Implement this for captcha front end
 
