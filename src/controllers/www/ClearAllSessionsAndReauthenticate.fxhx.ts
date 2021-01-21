@@ -26,7 +26,7 @@
 */
 
 /*
-POST https://www.sitetest1.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx HTTP/2.0
+POST https://www.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -126,7 +126,7 @@ export default {
 			.status(200)
 			.cookie('authId', authId, {
 				maxAge: DFInt['WWWAuthV1MaxAuthIdAge'],
-				domain: '.sitetest1.mfdlabs.com',
+				domain: 'mfdlabs.com',
 				secure: true,
 				sameSite: 'lax',
 				httpOnly: true,
