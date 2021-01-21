@@ -7,7 +7,7 @@
 			"name": "server2-for-vsc",
 			"cwd": "${workspaceFolder}",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run-script", "server2-for-vsc"],
+			"runtimeArgs": ["run-script", "start"],
 			"envFile": "${workspaceFolder}/.env"
 		}
 	],
