@@ -26,7 +26,7 @@
 */
 
 /*
-POST https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx HTTP/2.0
+POST https://www.mfdlabs.com/Authentication/Logout.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -104,7 +104,7 @@ export default {
 		response.shouldKeepAlive = false;
 		return response
 			.status(200)
-			.clearCookie('authId', { domain: '.sitetest1.mfdlabs.com' })
+			.clearCookie('authId', { domain: 'mfdlabs.com' })
 			.send({ success: true, message: 'Success', userfacingmessage: 'Success' });
 	},
 };
