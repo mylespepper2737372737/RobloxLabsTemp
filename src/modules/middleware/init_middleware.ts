@@ -30,25 +30,30 @@ import headers from '../constants/headers';
 import { RequestHandler } from 'express-serve-static-core';
 import createOrGetXsrfSession from '../Helpers/createOrGetXsrfSession';
 import whitelist from '../constants/urls';
+import { FASTLOG6 } from '../Helpers/Log';
 
 export = ((req, res, next) => {
 	res.header(headers);
-	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest1.mfdlabs.com'))
+	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.mfdlabs.com'))
 		res.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {
 			maxAge: 3.154e14,
-			domain: '.sitetest1.mfdlabs.com',
+			domain: 'mfdlabs.com',
 		});
 
 	if (req.method !== 'GET') {
 		res.header('Access-Control-Allow-Headers', 'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN');
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-		Object.values(whitelist).forEach((v) => {
-			if (req.headers['origin'].replace(req.protocol + '://', '') === v) {
-				res.setHeader('Access-Control-Allow-Origin', req.headers['origin']);
-				res.setHeader('Access-Control-Allow-Credentials', 'true');
-				return;
-			}
-		});
+		try {
+			Object.values(whitelist).forEach((v) => {
+				if (req.headers['origin'].replace(req.protocol + '://', '') === v) {
+					res.setHeader('Access-Control-Allow-Origin', req.headers['origin']);
+					res.setHeader('Access-Control-Allow-Credentials', 'true');
+					return;
+				}
+			});
+		} catch (e) {
+			FASTLOG6('tasks', e.message);
+		}
 		try {
 			if (
 				!createOrGetXsrfSession(
@@ -61,27 +66,29 @@ export = ((req, res, next) => {
 					req.ip,
 					req.headers['x-csrf-token'],
 					res,
-					req.hostname === 'api.sitetest1.mfdlabs.com' && req.path === '/csrf/v1/get-csrf-token',
+					req.hostname === 'api.mfdlabs.com' && req.path === '/csrf/v1/get-csrf-token',
 				)
 			)
 				return;
-		} catch {}
+		} catch (e) {
+			FASTLOG6('tasks', e.message);
+		}
 	}
 	if (
 		req.headers.cookie &&
 		!req.headers.cookie.includes('authId') &&
-		(req.hostname === 'www.sitetest1.mfdlabs.com' || req.hostname === 'sitetest1.mfdlabs.com') &&
+		(req.hostname === 'www.mfdlabs.com' || req.hostname === 'mfdlabs.com') &&
 		req.path === '/'
 	) {
-		return res.redirect('https://www.sitetest1.mfdlabs.com/Login/');
+		return res.redirect('https://www.mfdlabs.com/Login/');
 	}
 	if (
 		req.headers.cookie &&
 		req.headers.cookie.includes('authId') &&
-		req.hostname === 'www.sitetest1.mfdlabs.com' &&
+		req.hostname === 'www.mfdlabs.com' &&
 		(req.path === '/Login' || req.path === '/Login/')
 	) {
-		return res.redirect('https://www.sitetest1.mfdlabs.com/');
+		return res.redirect('https://www.mfdlabs.com/');
 	}
 	next();
 }) as RequestHandler;
