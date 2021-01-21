@@ -2,12 +2,13 @@
 	"name": "mfd",
 	"version": "1.0.0",
 	"description": "mfd",
-	"main": "server.js",
+	"main": "server/serverv2.js",
 	"scripts": {
 		"server2": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag server/serverv2.js",
 		"lint": "eslint . --fix --ext .ts",
 		"server2-for-vsc": "npm run lint && npm run build && npm run server2",
-		"build": "tsc --skipLibCheck"
+		"build": "tsc --skipLibCheck",
+		"start": "node server/serverv2.js"
 	},
 	"author": "mfd",
 	"license": "Apache-2.0",
@@ -28,10 +29,14 @@
 		"typescript": "^4.0.5"
 	},
 	"dependencies": {
+		"@types/request": "^2.48.5",
 		"body-parser": "^1.19.0",
 		"cookie-parser": "^1.4.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
+		"openssl": "^1.1.0",
+		"request": "^2.88.2",
+		"request-promise": "^4.2.6",
 		"spdy": "^4.0.2",
 		"ws": "^7.4.2"
 	}
