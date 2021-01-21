@@ -26,14 +26,18 @@
 */
 
 export default {
-	apex: 'sitetest1.mfdlabs.com',
-	www: 'www.sitetest1.mfdlabs.com',
-	api: 'api.sitetest1.mfdlabs.com',
-	staticcdn: 'static.sitetest1.mfdlabs.com',
-	js: 'js.sitetest1.mfdlabs.com',
-	css: 'css.sitetest1.mfdlabs.com',
-	images: 'images.sitetest1.mfdlabs.com',
-	setup: 'setup.sitetest1.mfdlabs.com',
-	ephemeralcounters: 'ephemeralcounters.api.sitetest1.mfdlabs.com',
-	temporary_images: 'ti.sitetest1.mfdlabs.com',
+	apex: 'mfdlabs.com',
+	www: 'www.mfdlabs.com',
+	api: 'api.mfdlabs.com',
+	staticcdn: 'static.mfdlabs.com',
+	js: 'js.mfdlabs.com',
+	css: 'css.mfdlabs.com',
+	images: 'images.mfdlabs.com',
+	setup: 'setup.mfdlabs.com',
+	ephemeralcounters: 'ephemeralcounters.api.mfdlabs.com',
+	ephemeralcountersv2: 'ecsv2.mfdlabs.com',
+	temporary_images: 'ti.mfdlabs.com',
+	versioncompatibility: 'versioncompatibility.api.mfdlabs.com',
+	clientsettings: 'clientsettings.api.mfdlabs.com',
+	assetgame: 'assetgame.mfdlabs.com',
 };
