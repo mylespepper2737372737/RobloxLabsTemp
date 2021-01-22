@@ -398,6 +398,7 @@ export default {
 			FIntValidateLauncherPercent: '100',
 			FFlagCSGDataLossFixEnabled: 'True',
 			DFStringRobloxAnalyticsURL: 'http://ecsv2.mfdlabs.com/',
+			DFFlagDataStoresV2Enabled: true,
 			DFFlagRobloxAnalyticsTrackingEnabled: 'True',
 			FFlagStudioOpenLastSaved: 'False',
 			FFlagStudioShowTutorialsByDefault: 'True',
