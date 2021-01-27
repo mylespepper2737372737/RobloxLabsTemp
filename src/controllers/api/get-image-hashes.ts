@@ -27,16 +27,16 @@
 	***
 */
 
-import SetCaptchaSessionField from '../../modules/Helpers/SetCaptchaSessiontField';
+import SetCaptchaSessionField from '../../modules/Helpers/session/SetCaptchaSessiontField';
 import crypto from 'crypto';
-import { GetCaptchaImages } from '../../modules/Helpers/GetCaptchaImages';
-import GetSessions from '../../modules/Helpers/GetSessions';
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import { GetCaptchaImages } from '../../modules/Helpers/auth/GetCaptchaImages';
+import GetSessions from '../../modules/Helpers/manifest/GetSessions';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import filestream from 'fs';
 import { _dirname } from '../../modules/constants/directories';
-import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
-import shuffleArray from '../../modules/Helpers/shuffleArray';
+import DeleteCaptchaSession from '../../modules/Helpers/session/DeleteCaptchaSession';
+import shuffleArray from '../../modules/Helpers/util/shuffleArray';
 
 const FString = GetSettings(Group.FString);
 const FInt = GetSettings(Group.FInt);

@@ -29,7 +29,7 @@
 import filestream from 'fs';
 import crypto from 'crypto';
 import { _dirname } from '../../modules/constants/directories';
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 
 /**
  * @deprecated

@@ -34,10 +34,10 @@ Cookie: authId=AUTH_ID
 
 */
 
-import SetManifestField from '../../modules/Helpers/SetManifestField';
-import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
-import { GetManifests } from '../../modules/Helpers/GetManifests';
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import SetManifestField from '../../modules/Helpers/manifest/SetManifestField';
+import deleteCsrfSession from '../../modules/Helpers/session/deleteCsrfSession';
+import { GetManifests } from '../../modules/Helpers/manifest/GetManifests';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';

@@ -15,8 +15,8 @@
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 
-	NOTICE This Application Programming Interface will be hosted on both https://*mfdlabs.com:443 and http://*mfdlabs.com:80.
-	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers
+	NOTICE This Application Programming Interface will be hosted on both https://*.mfdlabs.com:443 and http://*.mfdlabs.com:80.
+	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers, silence with --no-deprecation
 
 	***
 
@@ -37,15 +37,15 @@
 	***
 */
 
-import clearCachedSessions from './modules/Helpers/clearCachedSessions';
-import mapssl from './modules/Helpers/ssl';
+import clearCachedSessions from './modules/Helpers/session/clearCachedSessions';
+import mapssl from './modules/Helpers/web/ssl';
 import mapconfig from './modules/configs/mapconfig';
 import urls from './modules/constants/urls';
 import defaultMiddleware from './modules/middleware/init_middleware';
 import { api404, css404, ecs404, images404, js404, setup404, staticcdn404, ti404, www404 } from './modules/middleware/404';
 import Startup from './library/startup';
 import express from 'express';
-import { LOGGROUP, FLog, FASTLOG6, FASTLOG2 } from './modules/Helpers/Log';
+import { LOGGROUP, FLog, FASTLOG6 /* , FASTLOG2 */ } from './modules/Helpers/util/Log';
 
 LOGGROUP('CsrfAPIV1');
 LOGGROUP('ClientSettingsAPIV1');
@@ -150,7 +150,7 @@ LOGGROUP(urls['ephemeralcountersv2']);
 process.stdin.resume();
 function exitHandler(options: { exit: boolean }, c: number) {
 	if (options.exit) {
-		FASTLOG2(FLog['Tasks'], `Process exited with code ${typeof c === 'number' ? c : '1'}.`, true);
+		// FASTLOG2(FLog['Tasks'], `Process exited with code ${typeof c === 'number' ? c : '1'}.`, true);
 		process.exit();
 	}
 }

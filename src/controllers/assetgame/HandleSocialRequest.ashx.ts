@@ -25,28 +25,30 @@
 	***
 */
 
-import { Request } from 'express-serve-static-core';
+import { Request, Response } from 'express-serve-static-core';
 
 export default {
 	dir: '/Game/LuaWebService/HandleSocialRequest.ashx',
 	method: 'all',
-	func: (req: Request, res): void => {
+	func: (req: Request, res: Response): void => {
+		res.contentType('application/xml;charset=utf-8');
 		switch (req.query.method) {
 			case 'IsFriendsWith':
-				res.send('<Value type="boolean">false</Value>');
+				res.send('<Value Type="boolean">false</Value>');
 				break;
 			case 'IsBestFriendsWith':
-				res.send('<Value type="boolean">false</Value>');
+				res.send('<Value Type="boolean">false</Value>');
 				break;
 			case 'IsInGroup':
-				res.send('<Value type="boolean">true</Value>');
+				res.send('<Value Type="boolean">false</Value>');
 				break;
 			case 'GetGroupRank':
-				res.send('<Value type="integer">0</Value>');
+				res.send('<Value Type="integer">100</Value>');
 				break;
 			case 'GetGroupRole':
-				res.send('<Value type="string">faggot</Value>');
+				res.send('');
 				break;
 		}
 	},
 };
+// SEC::<YES>,EXP::<2031-01-20T07:30:09Z>,COOK::<_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlYjY1Yjc0Zi1kZGFiLTRhNGItYTdlNy0zMWNkNDM3MDg5ZDUiLCJzdWIiOjY4MzQ5MTIwMX0.wAV4Xmo_a8nTnivQjo-_xwJ9N9m5FjdoqmyecDNJXNk>

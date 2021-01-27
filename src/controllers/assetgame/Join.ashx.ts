@@ -1,11 +1,13 @@
 import crypto from 'crypto';
 import fs from 'fs';
 import { _dirname } from '../../modules/constants/directories';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 
 export default {
 	dir: '/Game/Join.ashx',
 	method: 'all',
 	func: (_req, res: { send: (arg0: string) => void }): void => {
+		const DFString = GetSettings(Group.DFString, 'Web');
 		const txt = {
 			ClientPort: 0,
 			MachineAddress: '127.0.0.1',
@@ -18,7 +20,7 @@ export default {
 			RobloxLocale: 'en_us',
 			GameLocale: 'en_us',
 			SuperSafeChat: false,
-			CharacterAppearance: 'http://api.roblox.com/v1.1/avatar-fetch/?placeId=6561742&userId=' + (_req.query['userId'] || '1'),
+			CharacterAppearance: DFString['CharacterAppearanceUrl'],
 			ClientTicket: '',
 			NewClientTicket: '',
 			GameId: '00000000-0000-0000-0000-000000000000',
@@ -32,7 +34,7 @@ export default {
 			VideoInfo: '',
 			CreatorId: 0,
 			CreatorTypeEnum: 'User',
-			MembershipType: 'None',
+			MembershipType: 'OutrageousBuildersClub',
 			AccountAge: 0,
 			CookieStoreFirstTimePlayKey: 'rbx_evt_ftp',
 			CookieStoreFiveMinutePlayKey: 'rbx_evt_fmp',

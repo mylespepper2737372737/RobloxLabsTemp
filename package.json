@@ -6,9 +6,9 @@
 	"scripts": {
 		"server2": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag server/serverv2.js",
 		"lint": "eslint . --fix --ext .ts",
-		"server2-for-vsc": "npm run lint && npm run build && npm run server2",
+		"server2-for-vsc": "npm run build && npm run server2",
 		"build": "tsc --skipLibCheck",
-		"start": "node server/serverv2.js"
+		"start": "node --trace-deprecation server/serverv2.js"
 	},
 	"author": "mfd",
 	"license": "Apache-2.0",

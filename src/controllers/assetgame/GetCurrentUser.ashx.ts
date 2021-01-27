@@ -29,6 +29,6 @@ export default {
 	dir: '/Game/GetCurrentUser.ashx',
 	method: 'all',
 	func: async (_req, res) => {
-		return res.send('1');
+		return res.send('87877');
 	},
 };

@@ -37,15 +37,15 @@ Connection: close
 
 */
 
-import createCsrfSessionFile from '../../modules/Helpers/createCsrfSessionFile';
-import SetManifestField from '../../modules/Helpers/SetManifestField';
-import { GetManifests } from '../../modules/Helpers/GetManifests';
-import GetRegisteredUsers from '../../modules/Helpers/GetRegisteredUsers';
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
-import GetSessions from '../../modules/Helpers/GetSessions';
-import createCaptchaBlobSessionAfter403 from '../../modules/Helpers/createCaptchaBlobSessionAfter403';
-import createCaptchaSessionBlob from '../../modules/Helpers/createCaptchaSessionBlob';
-import DeleteCaptchaSession from '../../modules/Helpers/DeleteCaptchaSession';
+import createCsrfSessionFile from '../../modules/Helpers/session/createCsrfSessionFile';
+import SetManifestField from '../../modules/Helpers/manifest/SetManifestField';
+import { GetManifests } from '../../modules/Helpers/manifest/GetManifests';
+import GetRegisteredUsers from '../../modules/Helpers/manifest/GetRegisteredUsers';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
+import GetSessions from '../../modules/Helpers/manifest/GetSessions';
+import createCaptchaBlobSessionAfter403 from '../../modules/Helpers/session/createCaptchaBlobSessionAfter403';
+import createCaptchaSessionBlob from '../../modules/Helpers/session/createCaptchaSessionBlob';
+import DeleteCaptchaSession from '../../modules/Helpers/session/DeleteCaptchaSession';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';

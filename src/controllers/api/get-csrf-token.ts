@@ -25,10 +25,10 @@
 	***
 */
 
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
-import createOrGetXsrfSession from '../../modules/Helpers/createOrGetXsrfSession';
-import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../modules/Helpers/Log';
+import createOrGetXsrfSession from '../../modules/Helpers/session/createOrGetXsrfSession';
+import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../modules/Helpers/util/Log';
 
 const FFlag = GetSettings(Group.FFlag);
 
@@ -62,17 +62,18 @@ export default {
 			});
 		}
 
-		if (!createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response, true)) {
+		const res = createOrGetXsrfSession(request.cookies['authId'], request.ip, request.headers['x-csrf-token'], response, true);
+		console.log(res);
+		if (!res) {
 			FASTLOG4(
 				FLog['CsrfAPIV1'],
 				`Gave CSRF for subject ${request.cookies['authId'] || 'No AuthId'} [${request.ip}], the session probably didn't exist.`,
 			);
 			return;
-		} else {
-			FASTLOG1(
-				FLog['CsrfAPIV1'],
-				`Gave CSRF for subject ${request.cookies['authId'] || 'No AuthId'} [${request.ip}], the session probably existed.`,
-			);
 		}
+		FASTLOG1(
+			FLog['CsrfAPIV1'],
+			`Gave CSRF for subject ${request.cookies['authId'] || 'No AuthId'} [${request.ip}], the session probably existed.`,
+		);
 	},
 };

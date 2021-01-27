@@ -27,7 +27,7 @@
 */
 
 import filestream from 'fs';
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 import { _dirname } from '../../modules/constants/directories';
 
 export default {

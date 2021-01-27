@@ -27,7 +27,7 @@
 
 import crypto from 'crypto';
 import escape from 'escape-html';
-import { GetSettings, Group } from '../../Helpers/GetSettings';
+import { GetSettings, Group } from '../../Helpers/util/GetSettings';
 
 const FString = GetSettings(Group.FString);
 

@@ -49,7 +49,7 @@ dist
 .npmignore
 env.json
 ssl
-manifest
+/manifest
 tests
 .idea
 diag

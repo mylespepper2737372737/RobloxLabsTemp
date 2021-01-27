@@ -29,7 +29,7 @@ import ws from 'ws';
 import filestream from 'fs';
 import { _dirname } from '../modules/constants/directories';
 import { IncomingMessage, Server as HttpServer } from 'http';
-import { FASTLOG3, FASTLOG6, FLog } from '../modules/Helpers/Log';
+import { FASTLOG3, FASTLOG6, FLog } from '../modules/Helpers/util/Log';
 import { Server as HttpsServer } from 'https';
 
 interface wssOpts {

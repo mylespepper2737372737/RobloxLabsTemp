@@ -26,7 +26,7 @@
 */
 
 import crypto from 'crypto';
-import { GetSettings, Group } from '../../Helpers/GetSettings';
+import { GetSettings, Group } from '../../Helpers/util/GetSettings';
 
 const FString = GetSettings(Group.FString);
 

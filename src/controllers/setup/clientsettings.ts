@@ -27,8 +27,8 @@
 	***
 */
 
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
-import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../modules/Helpers/Log';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
+import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../modules/Helpers/util/Log';
 
 const FFlag = GetSettings(Group.FFlag);
 const FSettings = <string[]>GetSettings(Group.FSettings);

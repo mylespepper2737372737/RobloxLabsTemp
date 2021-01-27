@@ -2,12 +2,19 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Launch Method Tests",
+			"program": "${workspaceFolder}/server/tests/methodTests.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "server2-for-vsc",
 			"cwd": "${workspaceFolder}",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run-script", "start"],
+			"runtimeArgs": ["run-script", "server2-for-vsc"],
 			"envFile": "${workspaceFolder}/.env"
 		}
 	],

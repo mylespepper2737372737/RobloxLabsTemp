@@ -118,7 +118,7 @@
 					"400": {
 						"description": "AuthId not supplied"
 					},
-					"403": {
+					"404": {
 						"description": "AuthId not found"
 					}
 				},

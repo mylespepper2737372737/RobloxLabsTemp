@@ -28,9 +28,9 @@
 import crypto from 'crypto';
 import headers from '../constants/headers';
 import { RequestHandler } from 'express-serve-static-core';
-import createOrGetXsrfSession from '../Helpers/createOrGetXsrfSession';
-import whitelist from '../constants/urls';
-import { FASTLOG6 } from '../Helpers/Log';
+import createOrGetXsrfSession from '../Helpers/session/createOrGetXsrfSession';
+// import whitelist from '../constants/urls';
+import { FASTLOG6 } from '../Helpers/util/Log';
 
 export = ((req, res, next) => {
 	res.header(headers);
@@ -44,15 +44,15 @@ export = ((req, res, next) => {
 		res.header('Access-Control-Allow-Headers', 'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN');
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
 		try {
-			Object.values(whitelist).forEach((v) => {
-				if (req.headers['origin'].replace(req.protocol + '://', '') === v) {
-					res.setHeader('Access-Control-Allow-Origin', req.headers['origin']);
-					res.setHeader('Access-Control-Allow-Credentials', 'true');
-					return;
-				}
-			});
+			res.setHeader('Access-Control-Allow-Origin', req.headers['origin'] || 'https://www.mfdlabs.com');
+			res.setHeader('Access-Control-Allow-Credentials', 'true');
+			// Object.values(whitelist).forEach((v) => {
+			// 	if (req.headers['origin'].replace(req.protocol + '://', '') === v) {
+			// 		return;
+			// 	}
+			// });
 		} catch (e) {
-			FASTLOG6('tasks', e.message);
+			FASTLOG6('Tasks', e.message);
 		}
 		try {
 			if (

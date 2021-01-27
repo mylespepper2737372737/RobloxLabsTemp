@@ -34,16 +34,16 @@ Cookie: authId=AUTH_ID
 
 */
 
-import createCsrfSessionFile from '../../modules/Helpers/createCsrfSessionFile';
-import SetManifestField from '../../modules/Helpers/SetManifestField';
-import { GetManifests, userType } from '../../modules/Helpers/GetManifests';
-import { GetSettings, Group } from '../../modules/Helpers/GetSettings';
+import createCsrfSessionFile from '../../modules/Helpers/session/createCsrfSessionFile';
+import SetManifestField from '../../modules/Helpers/manifest/SetManifestField';
+import { GetManifests, userType } from '../../modules/Helpers/manifest/GetManifests';
+import { GetSettings, Group } from '../../modules/Helpers/util/GetSettings';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { _dirname } from '../../modules/constants/directories';
 import Crypto from 'crypto';
-import { FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/Log';
-import deleteCsrfSession from '../../modules/Helpers/deleteCsrfSession';
+import { FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../modules/Helpers/util/Log';
+import deleteCsrfSession from '../../modules/Helpers/session/deleteCsrfSession';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
