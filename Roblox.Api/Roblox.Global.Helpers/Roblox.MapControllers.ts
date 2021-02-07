@@ -28,7 +28,7 @@
 import { Express as IApplicationBuilder, Request, Response } from 'express-serve-static-core';
 import { FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 import { _dirname } from '../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
-import { walk } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/walk';
+import { walk } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.FileWalker';
 import filestream from 'fs';
 
 interface EndpointOpts {
