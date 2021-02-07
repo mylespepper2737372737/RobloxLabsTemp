@@ -1,13 +1,15 @@
 <h4 align="center">A Node.js version of MFD's TestSite.</h4>
 <br>
 <p align='center'>
-	<a href="https://discord.gg/afahYa5VvX"><img src="https://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
+	<a href="http://discord.gg/afahYa5VvX"><img src="http://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
 </p>
 <br>
 
 # About
 
-mfdlabs.com is a site that allows mfd engineers to test new features, it is never guaranteed that this will be up at all times.
+This server is a meme, just look at my DB, I am storing a Raw JSON, so don't take this seriously
+
+sitetest4.robloxlabs.com is a site that allows mfd engineers to test new features, it is never guaranteed that this will be up at all times.
 
 This branch is for tests of sessionsv2, and many other things that are too unstable for the main branch.
 
@@ -16,15 +18,15 @@ This branch is for tests of sessionsv2, and many other things that are too unsta
 You will have to clone the repository and add all the folders and files that this complains about.
 
 ```bash
-# Run this to install mfdlabs.com
-$ git clone https://github.com/mfd-core/mfdlabs.com.git
+# Run this to install sitetest4.robloxlabs.com
+$ git clone http://github.com/mfd-core/sitetest4.robloxlabs.com.git
 ```
 
 That's it!
 
 # Credits
 
--   [MFD CO](https://github.com/mfd-core) - MFD Engine and backend Team
+-   [MFD CO](http://github.com/mfd-core) - MFD Engine and backend Team
 
 # Persistence
 
