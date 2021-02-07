@@ -1,5 +1,5 @@
 /*
-	FileName: get-captcha-hashes.ts
+	FileName: get-image-hashes.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: http://api.sitetest4.robloxlabs.com/captcha/v1/get-image-hashes,
