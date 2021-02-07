@@ -2,13 +2,13 @@
 	"name": "mfd",
 	"version": "1.0.0",
 	"description": "mfd",
-	"main": "server/serverv2.js",
+	"main": "Implementation/Roblox.IStart.Job.js",
 	"scripts": {
-		"server2": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag server/serverv2.js",
+		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag Implementation/Roblox.IStart.Job.js",
 		"lint": "eslint . --fix --ext .ts",
-		"server2-for-vsc": "npm run build && npm run server2",
+		"Roblox.IStart.Job-for-vsc": "npm run build && npm run Roblox-IStart-Job",
 		"build": "tsc --skipLibCheck",
-		"start": "node --trace-deprecation server/serverv2.js"
+		"start": "node --trace-deprecation Implementation/Roblox.IStart.Job.js"
 	},
 	"author": "mfd",
 	"license": "Apache-2.0",
@@ -38,6 +38,7 @@
 		"request": "^2.88.2",
 		"request-promise": "^4.2.6",
 		"spdy": "^4.0.2",
-		"ws": "^7.4.2"
+		"ws": "^7.4.2",
+		"zlib": "^1.0.5"
 	}
 }
