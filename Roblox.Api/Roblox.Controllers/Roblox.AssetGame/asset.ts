@@ -2,7 +2,7 @@
 	FileName: asset.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/asset, return a thumbnail for the given assetId
+	Description: http://assetgame.sitetest4.robloxlabs.com/asset, This is here incase someone uses assetgame for whatever reason
 
 	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
 
