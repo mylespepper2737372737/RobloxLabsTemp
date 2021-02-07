@@ -1,5 +1,5 @@
 {
-	"discord.enabled": false,
+	"discord.enabled": true,
 	"todo-tree.tree.showBadges": true,
 	"todo-tree.tree.showCountsInTree": true,
 	"Lua.diagnostics.disable": [
