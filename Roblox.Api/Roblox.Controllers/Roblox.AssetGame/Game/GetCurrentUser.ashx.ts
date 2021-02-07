@@ -2,7 +2,7 @@
 	FileName: GetCurrentUser.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/game/GetCurrentUser.ashx
+	Description: http://assetgame.sitetest4.robloxlabs.com/game/GetCurrentUser.ashx, returns either null (No user) or a number (there is a user) based on if the AuthTicket matches some account
 
 	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
 
