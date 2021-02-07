@@ -26,7 +26,6 @@
 */
 
 import { FASTLOG1 } from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
-
 export default {
 	method: 'all',
 	func: (
