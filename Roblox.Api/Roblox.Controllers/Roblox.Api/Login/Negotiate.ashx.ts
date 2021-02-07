@@ -2,7 +2,7 @@
 	FileName: Negotiate.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://api.sitetest4.robloxlabs.com/game/players/:userId, Checks the user's current chat filter
+	Description: http://api.sitetest4.robloxlabs.com/Login/Negotiate.ashx, Tries to authenticate the current user based on a query param named 'suggest'.
 
 	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
 
