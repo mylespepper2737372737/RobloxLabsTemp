@@ -2,7 +2,7 @@
 	FileName: Avatar.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/Thumbs/Avatar.ashx
+	Description: http://assetgame.sitetest4.robloxlabs.com/Thumbs/Avatar.ashx, return a thumbnail for the give userId
 
 	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
 
