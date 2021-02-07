@@ -1,8 +1,8 @@
 /*
-	FileName: validate-place-join.ts
+	FileName: _P-placeId.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://api.sitetest4.robloxlabs.com/universes/validate-place-join
+	Description: http://api.sitetest4.robloxlabs.com/users/:userId/canmanage/:placeId, Checks if a user has permission to access a specific place
 
 	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
 
