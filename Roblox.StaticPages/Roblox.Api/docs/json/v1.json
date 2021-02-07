@@ -1,0 +1,43 @@
+{
+	"swagger": "2.0",
+	"info": { "version": "v1", "title": "Root Api v1" },
+	"host": "api.sitetest4.robloxlabs.com",
+	"schemes": ["http", "http"],
+	"paths": {
+		"/uptime": {
+			"get": {
+				"tags": ["Tests"],
+				"summary": "First endpoint on sitetest4.robloxlabs.com.",
+				"consumes": [],
+				"produces": ["application/json", "text/json"],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": { "$ref": "#/definitions/Mfd.Tests.Api.Models.Uptime" }
+					}
+				},
+				"properties": {
+					"internal": false,
+					"metricIds": ["Tests:uptime"],
+					"obsoleteMessage": "DO NOT USE FOR ACTUAL PROJECTS",
+					"deprecationDate": "2021-02-15T00:00:00.000Z"
+				},
+				"deprecated": true
+			}
+		}
+	},
+	"definitions": {
+		"Mfd.Tests.Api.Models.Uptime": {
+			"description": "A model containing information on whether or not the api is up.",
+			"type": "object",
+			"properties": {
+				"message": {
+					"description": "Whether the server is having issues or not.",
+					"type": "string",
+					"example": "OK"
+				}
+			}
+		}
+	}
+}
