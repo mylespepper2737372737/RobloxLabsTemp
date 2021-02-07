@@ -48,13 +48,13 @@ dist
 *.http
 .npmignore
 env.json
-ssl
-/manifest
+Roblox.SSL
+/Roblox.Manifest
 tests
 .idea
 diag
 report.log
 package-lock.json
-server/
+Implementation/
 # This is for the rbx-fork script privatekey.pem
-rbx
+Roblox.Internal.Static
