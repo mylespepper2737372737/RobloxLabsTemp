@@ -2,7 +2,7 @@
 	FileName: validate-place-join.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://api.sitetest4.robloxlabs.com/universes/validate-place-join
+	Description: http://api.sitetest4.robloxlabs.com/universes/validate-place-join, validates if the teleport was legal or not
 
 	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
 
