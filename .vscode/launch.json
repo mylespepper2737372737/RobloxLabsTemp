@@ -2,8 +2,15 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Launch Method Tests",
-			"program": "${workspaceFolder}/server/tests/methodTests.js",
+			"name": "Persistent Data Store Tests",
+			"program": "${workspaceFolder}/Implementation/Roblox.Tests/Roblox.PersistentDataStoreTests.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
+			"name": "Fast Log Tests",
+			"program": "${workspaceFolder}/Implementation/Roblox.Tests/Roblox.FastLogTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
@@ -11,10 +18,10 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "server2-for-vsc",
+			"name": "Roblox.IStart.Job-for-vsc",
 			"cwd": "${workspaceFolder}",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run-script", "server2-for-vsc"],
+			"runtimeArgs": ["run-script", "Roblox.IStart.Job-for-vsc"],
 			"envFile": "${workspaceFolder}/.env"
 		}
 	],
