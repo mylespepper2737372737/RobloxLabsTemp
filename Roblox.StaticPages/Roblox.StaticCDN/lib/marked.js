@@ -113,7 +113,7 @@
 			try {
 				return n && (n = h({}, a.defaults, n)), r.parse(e.lex(t, n), n);
 			} catch (c) {
-				if (((c.message += '\nPlease report this to http://github.com/chjj/marked.'), (n || a.defaults).silent))
+				if (((c.message += '\nPlease report this to https://github.com/chjj/marked.'), (n || a.defaults).silent))
 					return '<p>An error occured:</p><pre>' + s(c.message + '', !0) + '</pre>';
 				throw c;
 			}

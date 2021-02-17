@@ -1,12 +1,12 @@
 if (typeof Roblox === 'undefined') {
 	Roblox = {};
 }
-if (typeof sitetest4.robloxlabs === 'undefined') {
-	sitetest4.robloxlabs = {};
+if (typeof Roblox.Client === 'undefined') {
+	Roblox.Client = {};
 }
 
 Roblox.Client = {};
-sitetest4.robloxlabs.Client = {};
+Roblox.Client = {};
 
 Roblox.Client._legacyLaunch = false;
 
@@ -228,7 +228,7 @@ Roblox.Client.CreateLauncher = function (addLock) {
 	// Define the sitetest4.robloxlabs URI launcher object functions
 
 	// variables
-	sitetest4.robloxlabs.Client.silentModeEnabled = null;
+	Roblox.Client.silentModeEnabled = null;
 	pluginObj.IsGameStarted = null;
 	pluginObj.AuthenticationTicket = null;
 
@@ -237,7 +237,7 @@ Roblox.Client.CreateLauncher = function (addLock) {
 		//document.getElementById("downloadInstallerIFrame").src = "sitetest4.robloxlabs-player:";
 	};
 	pluginObj.SetSilentModeEnabled = function (_silentModeEnabled) {
-		sitetest4.robloxlabs.Client.silentModeEnabled = _silentModeEnabled;
+		Roblox.Client.silentModeEnabled = _silentModeEnabled;
 	};
 	pluginObj.StartGame = function (authenticationUrl, visitUrl) {
 		// TODO: have jquery fetch the authentication ticket using the authenticationUrl and put it into the URI

@@ -1,10 +1,10 @@
 // THIS IS MANUALLY CUSTOMIZED TO WORK WITH jQuery 1.11 !!!
-// http://stackoverflow.com/questions/12046242/simple-modal-jquery-1-8-0-and-ie9/18022855#18022855
-// I pulled the latest from his github at http://github.com/ericmmartin/simplemodal and then applied the fix from stackoverflow
+// https://stackoverflow.com/questions/12046242/simple-modal-jquery-1-8-0-and-ie9/18022855#18022855
+// I pulled the latest from his github at https://github.com/ericmmartin/simplemodal and then applied the fix from stackoverflow
 
 /*
  * SimpleModal @VERSION - jQuery Plugin
- * http://simplemodal.com/
+ * https://simplemodal.com/
  * Copyright (c) 2013 Eric Martin
  * Licensed under MIT and GPL
  * Date:
@@ -61,7 +61,7 @@
  * @type jQuery
  * @requires jQuery v1.3
  * @cat Plugins/Windows and Overlays
- * @author Eric Martin (http://ericmmartin.com)
+ * @author Eric Martin (https://ericmmartin.com)
  * @version @VERSION
  */
 

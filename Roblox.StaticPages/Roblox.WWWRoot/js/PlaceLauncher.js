@@ -199,7 +199,7 @@ RobloxLaunch.StartGame = function (visitUrl, type, authenticationUrl, authentica
 
 RobloxLaunch.StartGameWork = function (visitUrl, type, authenticationUrl, authenticationTicket, isEdit) {
 	//Fix for the HttpSendRequest,err=0x2F7E
-	authenticationUrl = authenticationUrl.replace('http://', 'http://');
+	authenticationUrl = authenticationUrl.replace('https://', 'https://');
 
 	if (visitUrl.indexOf('http') >= 0) {
 		if (typeof RobloxLaunch.SeleniumTestMode === 'undefined') {
@@ -531,7 +531,7 @@ RBX.PlaceLauncher.prototype = {
 				};
 			}
 		}
-		// http://www.ericmmartin.com/projects/simplemodal/
+		// https://www.ericmmartin.com/projects/simplemodal/
 		var self = this;
 		setTimeout(function () {
 			self._popup.modal(_popupOptions);

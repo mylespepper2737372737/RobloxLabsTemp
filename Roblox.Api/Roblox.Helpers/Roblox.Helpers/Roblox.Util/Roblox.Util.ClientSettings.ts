@@ -1,8 +1,8 @@
 /**
  * Jak: Try to shorten this, it's too long!
  * ROBLOX: This is too long, refactor it to happen on files.api
- * This uses http://files.api.roblox.com/ClientSettingsFormatted?clientSettingsType=Client&apiKey=91105AEA-2038-4BFE-B98E-BF6A009E2AF7
- * And http://files.api.roblox.com/WebSettingsFormatted?webSettingsType=Web&apiKey=91105AEA-2038-4BFE-B98E-BF6A009E2AF7
+ * This uses https://files.api.sitetest4.robloxlabs.com/ClientSettingsFormatted?clientSettingsType=Client&apiKey=91105AEA-2038-4BFE-B98E-BF6A009E2AF7
+ * And https://files.api.sitetest4.robloxlabs.com/WebSettingsFormatted?webSettingsType=Web&apiKey=91105AEA-2038-4BFE-B98E-BF6A009E2AF7
  *
  * files.api needs a ROBLOX specific IP for it to actually not infinitely load,
  * why does it do this? It's an internal api, so we don't want people to hack into it because it has archived clientsettings and archived builds,
@@ -115,7 +115,7 @@ export namespace ClientSettings {
 
 	export const GetPlaceIdInPlaceFilter = (key: string, placeId: number, ctx: string = 'Web') => {
 		const FPFilter = ClientSettings.GetFPFilters(ctx);
-		// This should never go through unless files.api.roblox.com/ClientSettingsFormatted dies.
+		// This should never go through unless files.api.sitetest4.robloxlabs.com/ClientSettingsFormatted dies.
 		if (FPFilter === undefined) return false;
 
 		const keyFilter = FPFilter[key] as Record<string, unknown>;

@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Wrapper for WS servers and WSS servers, used as a helper.
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,11 +27,11 @@
 
 import mapwss from '../../../Roblox.Global.Helpers/Roblox.MapWebsockets';
 import { _dirname } from '../../Roblox.Constants/Roblox.Directories';
-import { Server as HttpServer } from 'http';
-import { Server as HttpsServer } from 'http';
+import { Server as httperver } from 'http';
+import { Server as httpServer } from 'http';
 
-export const ROBLOX_SignalR_Config_Helper = async (HttpServer: HttpServer, HttpsServer: HttpsServer, dir: string, apiName: string) => {
-	await mapwss(HttpServer, HttpsServer, {
+export const ROBLOX_SignalR_Config_Helper = async (httperver: httperver, httpServer: httpServer, dir: string, apiName: string) => {
+	await mapwss(httperver, httpServer, {
 		path: _dirname + dir,
 		shouldHandleUpgrade: true,
 		apiName: apiName,

@@ -12,11 +12,11 @@
 	File Type: Script
 	Description: Copy of ROBLOX's Roblox.IStart.Job.cs
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
-	NOTICE This Application Programming Interface will be hosted on both http://*.sitetest4.robloxlabs.com:443 and http://*.sitetest4.robloxlabs.com:80.
+	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest4.robloxlabs.com:443 and https://*.sitetest4.robloxlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers, silence with --no-deprecation
-	FIXME Https redirection is broken, use a different module.
+	FIXME http redirection is broken, use a different module.
 
 	***
 
@@ -26,7 +26,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://ROBLOX_WWW.apache.org/licenses/LICENSE-2.0
+	https://ROBLOX_WWW.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,6 +48,7 @@ import {
 	ROBLOX_404_STATIC_CDN,
 	DEPRECATED_404_TEMPORARY_IMAGES,
 	ROBLOX_404_WWW,
+	ROBLOX_404_DOSARREST_ORIGIN_CORP,
 } from './Roblox.Helpers/Roblox.AfterNext.Middle';
 import { Roblox } from './Roblox.Api';
 import IServer from 'express';
@@ -108,6 +109,33 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_API']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ASSET_GAME']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_MARKETPLACE_API']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_METRICS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AUTH']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_APIS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_LOCALE']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_USERS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_LATENCY_MEASUREMENTS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CHAT']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CONTACTS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_NOTIFICATIONS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_SETTINGS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ADS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TRADES']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_FRIENDS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PRIVATE_MESSAGES']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ECONOMY']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAMES']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_THUMB_NAILS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PRESENCE']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GROUPS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_BADGES']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 
 (async () => {
 	try {
@@ -127,6 +155,33 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
 		const ROBLOX_CLIENT_SETTINGS_API_SERVER = IServer();
 		const ROBLOX_ASSET_GAME_SERVER = IServer();
 		const ROBLOX_GAME_PERSISTENCE_SERVER = IServer();
+		const ROBLOX_DOSARREST_ORIGIN_CORP_SERVER = IServer();
+		const ROBLOX_MARKETPLACE_API_SERVER = IServer();
+		const ROBLOX_METRICS_SERVER = IServer();
+		const ROBLOX_APIS_SERVER = IServer();
+		const ROBLOX_LOCALE_SERVER = IServer();
+		const ROBLOX_AUTH_SERVER = IServer();
+		const ROBLOX_AB_TESTING_SERVER = IServer();
+		const ROBLOX_USERS_SERVER = IServer();
+		const ROBLOX_TWO_STEP_VERIFICATION_SERVER = IServer();
+		const ROBLOX_LATENCY_MEASUREMENTS_SERVER = IServer();
+		const ROBLOX_CHAT_SERVER = IServer();
+		const ROBLOX_CONTACTS_SERVER = IServer();
+		const ROBLOX_NOTIFICATIONS_SERVER = IServer();
+		const ROBLOX_ACCOUNT_SETTINGS_SERVER = IServer();
+		const ROBLOX_ADS_SERVER = IServer();
+		const ROBLOX_TRADES_SERVER = IServer();
+		const ROBLOX_FRIENDS_SERVER = IServer();
+		const ROBLOX_PRIVATE_MESSAGES_SERVER = IServer();
+		const ROBLOX_ECONOMY_SERVER = IServer();
+		const ROBLOX_GAMES_SERVER = IServer();
+		const ROBLOX_REAL_TIME_SERVER = IServer();
+		const ROBLOX_THUMB_NAILS_SERVER = IServer();
+		const ROBLOX_PRESENCE_SERVER = IServer();
+		const ROBLOX_GROUPS_SERVER = IServer();
+		const ROBLOX_ACCOUNT_INFORMATION_SERVER = IServer();
+		const ROBLOX_BADGES_SERVER = IServer();
+		const ROBLOX_DEVELOPER_FORUM_SERVER = IServer();
 
 		ROBLOX_WWW_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_STATIC_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -142,6 +197,33 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
 		ROBLOX_CLIENT_SETTINGS_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_ASSET_GAME_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_GAME_PERSISTENCE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_DOSARREST_ORIGIN_CORP_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_MARKETPLACE_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_METRICS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_APIS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_LOCALE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_AUTH_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_AB_TESTING_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_USERS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_TWO_STEP_VERIFICATION_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_LATENCY_MEASUREMENTS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_CHAT_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_CONTACTS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_NOTIFICATIONS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_ACCOUNT_SETTINGS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_ADS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_TRADES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_FRIENDS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_PRIVATE_MESSAGES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_ECONOMY_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_GAMES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_REAL_TIME_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_THUMB_NAILS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_PRESENCE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_GROUPS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_ACCOUNT_INFORMATION_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_BADGES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_DEVELOPER_FORUM_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 
 		await Roblox.Api.Library.IStartup.Configure(
 			Roblox.Api.Helpers.Config.CONFIG(
@@ -256,6 +338,225 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
 				Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'],
 			),
 		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_DOSARREST_ORIGIN_CORP_SERVER,
+				'\\Roblox.StaticPages\\Roblox.DOSArrest',
+				'\\Implementation\\Roblox.Controllers\\Roblox.DOSArrest',
+				Roblox.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_MARKETPLACE_API_SERVER,
+				'\\Roblox.StaticPages\\Roblox.MarketPlaceApi',
+				'\\Implementation\\Roblox.Controllers\\Roblox.MarketPlaceApi',
+				Roblox.Api.Constants.URLS['ROBLOX_MARKETPLACE_API'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_METRICS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Metrics',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Metrics',
+				Roblox.Api.Constants.URLS['ROBLOX_METRICS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_AUTH_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Auth',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Auth',
+				Roblox.Api.Constants.URLS['ROBLOX_AUTH'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_APIS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Apis',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Apis',
+				Roblox.Api.Constants.URLS['ROBLOX_APIS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_LOCALE_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Locale',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Locale',
+				Roblox.Api.Constants.URLS['ROBLOX_LOCALE'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_AB_TESTING_SERVER,
+				'\\Roblox.StaticPages\\Roblox.AbTesting',
+				'\\Implementation\\Roblox.Controllers\\Roblox.AbTesting',
+				Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_USERS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Users',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Users',
+				Roblox.Api.Constants.URLS['ROBLOX_USERS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_TWO_STEP_VERIFICATION_SERVER,
+				'\\Roblox.StaticPages\\Roblox.TwoStepVerification',
+				'\\Implementation\\Roblox.Controllers\\Roblox.TwoStepVerification',
+				Roblox.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_LATENCY_MEASUREMENTS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.LatencyMeasurements',
+				'\\Implementation\\Roblox.Controllers\\Roblox.LatencyMeasurements',
+				Roblox.Api.Constants.URLS['ROBLOX_LATENCY_MEASUREMENTS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_CHAT_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Chat',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Chat',
+				Roblox.Api.Constants.URLS['ROBLOX_CHAT'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_CONTACTS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Contacts',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Contacts',
+				Roblox.Api.Constants.URLS['ROBLOX_CONTACTS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_NOTIFICATIONS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Notifications',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Notifications',
+				Roblox.Api.Constants.URLS['ROBLOX_NOTIFICATIONS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_ACCOUNT_SETTINGS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.AccountSettings',
+				'\\Implementation\\Roblox.Controllers\\Roblox.AccountSettings',
+				Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_SETTINGS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_ADS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Ads',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Ads',
+				Roblox.Api.Constants.URLS['ROBLOX_ADS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_TRADES_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Trades',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Trades',
+				Roblox.Api.Constants.URLS['ROBLOX_TRADES'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_FRIENDS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Friends',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Friends',
+				Roblox.Api.Constants.URLS['ROBLOX_FRIENDS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_PRIVATE_MESSAGES_SERVER,
+				'\\Roblox.StaticPages\\Roblox.PrivateMessages',
+				'\\Implementation\\Roblox.Controllers\\Roblox.PrivateMessages',
+				Roblox.Api.Constants.URLS['ROBLOX_PRIVATE_MESSAGES'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_ECONOMY_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Economy',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Economy',
+				Roblox.Api.Constants.URLS['ROBLOX_ECONOMY'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_GAMES_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Games',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Games',
+				Roblox.Api.Constants.URLS['ROBLOX_GAMES'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_REAL_TIME_SERVER,
+				'\\Roblox.StaticPages\\Roblox.RealTime',
+				'\\Implementation\\Roblox.Controllers\\Roblox.RealTime',
+				Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_THUMB_NAILS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.ThumbNails',
+				'\\Implementation\\Roblox.Controllers\\Roblox.ThumbNails',
+				Roblox.Api.Constants.URLS['ROBLOX_THUMB_NAILS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_PRESENCE_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Presence',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Presence',
+				Roblox.Api.Constants.URLS['ROBLOX_PRESENCE'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_GROUPS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Groups',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Groups',
+				Roblox.Api.Constants.URLS['ROBLOX_GROUPS'],
+			),
+		);
+
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_ACCOUNT_INFORMATION_SERVER,
+				'\\Roblox.StaticPages\\Roblox.AccountInformation',
+				'\\Implementation\\Roblox.Controllers\\Roblox.AccountInformation',
+				Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION'],
+			),
+		);
+
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_BADGES_SERVER,
+				'\\Roblox.StaticPages\\Roblox.Badges',
+				'\\Implementation\\Roblox.Controllers\\Roblox.Badges',
+				Roblox.Api.Constants.URLS['ROBLOX_BADGES'],
+			),
+		);
+
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_DEVELOPER_FORUM_SERVER,
+				'\\Roblox.StaticPages\\Roblox.DeveloperForum',
+				'\\Implementation\\Roblox.Controllers\\Roblox.DeveloperForum',
+				Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM'],
+			),
+		);
 
 		ROBLOX_API_SERVER.use(ROBLOX_404_API);
 		ROBLOX_STATIC_CDN_SERVER.use(ROBLOX_404_STATIC_CDN);
@@ -271,12 +572,41 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
 		ROBLOX_CLIENT_SETTINGS_API_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		ROBLOX_ASSET_GAME_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		ROBLOX_GAME_PERSISTENCE_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		ROBLOX_DOSARREST_ORIGIN_CORP_SERVER.use(ROBLOX_404_DOSARREST_ORIGIN_CORP);
+		ROBLOX_MARKETPLACE_API_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		ROBLOX_METRICS_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		ROBLOX_AUTH_SERVER.use(ROBLOX_404_API);
+		ROBLOX_APIS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_LOCALE_SERVER.use(ROBLOX_404_API);
+		ROBLOX_AB_TESTING_SERVER.use(ROBLOX_404_API);
+		ROBLOX_USERS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_LATENCY_MEASUREMENTS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_CHAT_SERVER.use(ROBLOX_404_API);
+		ROBLOX_CONTACTS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_NOTIFICATIONS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_ACCOUNT_SETTINGS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_ADS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_TRADES_SERVER.use(ROBLOX_404_API);
+		ROBLOX_FRIENDS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_PRIVATE_MESSAGES_SERVER.use(ROBLOX_404_API);
+		ROBLOX_ECONOMY_SERVER.use(ROBLOX_404_API);
+		ROBLOX_GAMES_SERVER.use(ROBLOX_404_API);
+		ROBLOX_REAL_TIME_SERVER.use(ROBLOX_404_API);
+		ROBLOX_THUMB_NAILS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_PRESENCE_SERVER.use(ROBLOX_404_API);
+		ROBLOX_GROUPS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_ACCOUNT_INFORMATION_SERVER.use(ROBLOX_404_API);
+		ROBLOX_BADGES_SERVER.use(ROBLOX_404_API);
+		ROBLOX_DEVELOPER_FORUM_SERVER.use(ROBLOX_404_API);
 
 		await (async () => {
 			try {
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_IMAGES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_IMAGES']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_WWW_SERVER, Roblox.Api.Constants.URLS['ROBLOX_WWW']);
-				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_API_SERVER, Roblox.Api.Constants.URLS['ROBLOX_API']);
+				const [ROBLOX_API_HTTP] = Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_API_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_API'],
+				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_STATIC_CDN_SERVER, Roblox.Api.Constants.URLS['ROBLOX_STATIC_CDN']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_JS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_JS']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_CSS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_CSS']);
@@ -305,6 +635,63 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
 					ROBLOX_GAME_PERSISTENCE_SERVER,
 					Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_DOSARREST_ORIGIN_CORP_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_METRICS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_METRICS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_AUTH_SERVER, Roblox.Api.Constants.URLS['ROBLOX_AUTH']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_APIS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_APIS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_LOCALE_SERVER, Roblox.Api.Constants.URLS['ROBLOX_LOCALE']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_MARKETPLACE_API_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_MARKETPLACE_API'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_AB_TESTING_SERVER, Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_USERS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_USERS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_TWO_STEP_VERIFICATION_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_LATENCY_MEASUREMENTS_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_LATENCY_MEASUREMENTS'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_CHAT_SERVER, Roblox.Api.Constants.URLS['ROBLOX_CHAT']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_CONTACTS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_CONTACTS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_NOTIFICATIONS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_NOTIFICATIONS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_ACCOUNT_SETTINGS_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_SETTINGS'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_ADS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_ADS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_TRADES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_TRADES']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_FRIENDS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_FRIENDS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_PRIVATE_MESSAGES_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_PRIVATE_MESSAGES'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_ECONOMY_SERVER, Roblox.Api.Constants.URLS['ROBLOX_ECONOMY']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_GAMES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_GAMES']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_REAL_TIME_SERVER, Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_THUMB_NAILS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_THUMB_NAILS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_PRESENCE_SERVER, Roblox.Api.Constants.URLS['ROBLOX_PRESENCE']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_GROUPS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_GROUPS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_ACCOUNT_INFORMATION_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_BADGES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_BADGES']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_DEVELOPER_FORUM_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
+					ROBLOX_API_HTTP,
+					undefined,
+					'\\Implementation\\Roblox.Sockets\\Roblox.Api',
+					Roblox.Api.Constants.URLS.ROBLOX_API,
 				);
 			} catch (e) {
 				return Roblox.Api.Helpers.Util.FastLog.FASTLOG2(

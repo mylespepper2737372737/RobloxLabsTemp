@@ -25,7 +25,7 @@ $(function () {
 				: Roblox.GenericModal.open(
 						'New Project',
 						'/images/Icons/img-alert.png',
-						"To build using this template, open to this page in <a target='_blank' href='http://wiki.roblox.com/index.php/Studio'>ROBLOX Studio</a>.",
+						"To build using this template, open to this page in <a target='_blank' href='https://wiki.roblox.com/index.php/Studio'>ROBLOX Studio</a>.",
 				  );
 		}),
 		$('.template a').removeAttr('href');

@@ -2,9 +2,9 @@
 	FileName: asset.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/asset, This is here incase someone uses assetgame for whatever reason
+	Description: https://assetgame.sitetest4.robloxlabs.com/asset, This is here incase someone uses assetgame for whatever reason
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		return res.redirect('http://www.sitetest4.robloxlabs.com/asset');
+		return res.redirect('https://www.sitetest4.robloxlabs.com/asset');
 	},
 };

@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Analytics, for ecsv2
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	NOTICE DO NOT PUT CSRF PROTECTION ON THIS!
 
@@ -16,7 +16,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,13 +27,14 @@
 	***
 */
 
+import { Roblox } from '../../../Roblox.Api';
 import { FASTLOG2 } from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
+	func: (_req: any, res): void => {
 		FASTLOG2('EphemeralCountersV2', JSON.stringify(_req.query), true);
 		FASTLOG2('EphemeralCountersV2', _req.body instanceof Object ? JSON.stringify(_req.body) : _req.body, true);
-		res.send({ success: true, message: '' });
+		res.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Roblox.Internal.Static\\e.png');
 	},
 };

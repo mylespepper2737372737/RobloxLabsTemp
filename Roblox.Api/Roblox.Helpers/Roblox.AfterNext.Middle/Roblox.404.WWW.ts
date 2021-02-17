@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: root 404 middleware
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,12 +25,10 @@
 	***
 */
 
-export default (req: { url: string }, res: { redirect: (arg0: string) => any }) => {
-	return res.redirect(
-		`http://www.sitetest4.robloxlabs.com/Error.ashx?code=404&message=http://www.sitetest4.robloxlabs.com${escape(req.url)
-			.split('?')
-			.shift()} NotFound&redirect=http://www.sitetest4.robloxlabs.com${escape(req.url)
-			.split('?')
-			.shift()};http://www.sitetest4.robloxlabs.com/Error.ashx`,
-	);
+import { Roblox } from '../../Roblox.Api';
+
+export default (req: { url: string }, res) => {
+	return res
+		.status(404)
+		.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Roblox.ErrorViews\\WWWRoot\\Roblox.404.html');
 };

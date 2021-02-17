@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Increment multiple counters
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	NOTICE DO NOT PUT CSRF PROTECTION ON THIS!
 
@@ -16,7 +16,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,7 +30,6 @@
 import { FASTLOG2 } from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
-	dir: '/v1.0/MultiIncrement/',
 	method: 'all',
 	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
 		FASTLOG2('EphemeralCounters', JSON.stringify(_req.query), true);

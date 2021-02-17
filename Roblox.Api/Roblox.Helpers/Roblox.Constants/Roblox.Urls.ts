@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Add global URLS that are being used or will be used to this.
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -42,4 +42,31 @@ export default {
 	ROBLOX_CLIENT_SETTINGS_API: 'clientsettings.api.sitetest4.robloxlabs.com',
 	ROBLOX_ASSET_GAME: 'assetgame.sitetest4.robloxlabs.com',
 	ROBLOX_GAME_PERSISTENCE: 'gamepersistence.sitetest4.robloxlabs.com',
+	ROBLOX_DOSARREST_ORIGIN_CORP: 'dosarrest.origin.corp.sitetest4.robloxlabs.com',
+	ROBLOX_MARKETPLACE_API: 'marketplace.api.sitetest4.robloxlabs.com',
+	ROBLOX_METRICS: 'metrics.sitetest4.robloxlabs.com',
+	ROBLOX_APIS: 'apis.sitetest4.robloxlabs.com',
+	ROBLOX_AUTH: 'auth.sitetest4.robloxlabs.com',
+	ROBLOX_LOCALE: 'locale.sitetest4.robloxlabs.com',
+	ROBLOX_AB_TESTING: 'abtesting.sitetest4.robloxlabs.com',
+	ROBLOX_USERS: 'users.sitetest4.robloxlabs.com',
+	ROBLOX_TWO_STEP_VERIFICATION: 'twostepverification.sitetest4.robloxlabs.com',
+	ROBLOX_LATENCY_MEASUREMENTS: 'lms.simulpong.com',
+	ROBLOX_CHAT: 'chat.sitetest4.robloxlabs.com',
+	ROBLOX_CONTACTS: 'contacts.sitetest4.robloxlabs.com',
+	ROBLOX_NOTIFICATIONS: 'notifications.sitetest4.robloxlabs.com',
+	ROBLOX_ACCOUNT_SETTINGS: 'accountsettings.sitetest4.robloxlabs.com',
+	ROBLOX_ADS: 'ads.sitetest4.robloxlabs.com',
+	ROBLOX_TRADES: 'trades.sitetest4.robloxlabs.com',
+	ROBLOX_FRIENDS: 'friends.sitetest4.robloxlabs.com',
+	ROBLOX_PRIVATE_MESSAGES: 'privatemessages.sitetest4.robloxlabs.com',
+	ROBLOX_ECONOMY: 'economy.sitetest4.robloxlabs.com',
+	ROBLOX_GAMES: 'games.sitetest4.robloxlabs.com',
+	ROBLOX_REAL_TIME: 'realtime.sitetest4.robloxlabs.com',
+	ROBLOX_THUMB_NAILS: 'thumbnails.sitetest4.robloxlabs.com',
+	ROBLOX_PRESENCE: 'presence.sitetest4.robloxlabs.com',
+	ROBLOX_GROUPS: 'groups.sitetest4.robloxlabs.com',
+	ROBLOX_ACCOUNT_INFORMATION: 'accountinformation.sitetest4.robloxlabs.com',
+	ROBLOX_BADGES: 'badges.sitetest4.robloxlabs.com',
+	ROBLOX_DEVELOPER_FORUM: 'devforum.sitetest4.robloxlabs.com',
 };

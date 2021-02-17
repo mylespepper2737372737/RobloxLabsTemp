@@ -48,7 +48,7 @@
 				"properties": {
 					"internal": false,
 					"metricIds": ["CSRF:getToken"],
-					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use http://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx"
+					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx"
 				},
 				"deprecated": true
 			}
@@ -84,7 +84,7 @@
 				"properties": {
 					"internal": false,
 					"metricIds": ["CSRF:getToken"],
-					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use http://www.sitetest4.robloxlabs.com/Authentication/Logout.fxhx"
+					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest4.robloxlabs.com/Authentication/Logout.fxhx"
 				},
 				"deprecated": true
 			}

@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Wrapper for SSL servers and HTTP servers, used as a helper.
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,30 +25,30 @@
 	***
 */
 
-// import https2 from 'spdy';
+import http2 from 'spdy';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { Server as HttpServer } from 'http';
-import { Server as HttpsServer } from 'http';
+import { Server as httperver } from 'http';
+import { Server as httpServer } from 'http';
 import dotenv from 'dotenv';
-// import filestream from 'fs';
+import filestream from 'fs';
 import { FastLog, FLog } from '../Roblox.Util/Roblox.Util.FastLog';
 import { _dirname, _sslname } from '../../Roblox.Constants/Roblox.Directories';
 
 dotenv.config({ path: _dirname + '\\.env' });
-export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [HttpServer, HttpsServer] => {
+export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httperver, httpServer] => {
 	try {
-		// const httpsServer = https2
-		// 	.createServer(
-		// 		{
-		// 			cert: filestream.readFileSync(_sslname + '\\sitetest4.robloxlabs.crt', 'utf-8'),
-		// 			key: filestream.readFileSync(_sslname + '\\mfdlabsprivate.key', 'utf-8'),
-		// 			passphrase: process.env['mfdlabs_pc'],
-		// 		},
-		// 		app,
-		// 	)
-		// 	.listen(443, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `%s:443 Started`, name));
-		const httpServer = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `http://%s:80 Started`, name));
-		return [httpServer, null];
+		const httpServer = http2
+			.createServer(
+				{
+					cert: filestream.readFileSync(_sslname + '\\ST4.crt', 'utf-8'),
+					key: filestream.readFileSync(_sslname + '\\ST4.key', 'utf-8'),
+					passphrase: process.env['ST4_pw'],
+				},
+				app,
+			)
+			.listen(443, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:443 Started`, name));
+		const httperver = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:80 Started`, name));
+		return [httperver, httpServer];
 	} catch (err) {
 		throw new Error(err);
 	}

@@ -12,11 +12,11 @@
 	File Type: Script
 	Description: Copy of ROBLOX's namspace Roblox.Api
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
-	NOTICE This Application Programming Interface will be hosted on both http://*.sitetest4.robloxlabs.com:443 and http://*.sitetest4.robloxlabs.com:80.
+	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest4.robloxlabs.com:443 and https://*.sitetest4.robloxlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers, silence with --no-deprecation
-	FIXME Https redirection is broken, use a different module.
+	FIXME http redirection is broken, use a different module.
 
 	***
 
@@ -26,7 +26,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://ROBLOX_WWW.apache.org/licenses/LICENSE-2.0
+	https://ROBLOX_WWW.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,

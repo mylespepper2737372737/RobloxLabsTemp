@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Compiles all 404 middlewares together, used as a helper.
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,6 +37,7 @@ import ROBLOX_404_IMAGES_IMPORT from './Roblox.404.Images';
 import ROBLOX_404_SETUP_CDN_IMPORT from './Roblox.404.SetupCDN';
 import ROBLOX_404_EPHEMERAL_COUNTERS_IMPORT from './Roblox.404.EphermeralCounters';
 import DEPRECATED_404_TEMPORARY_IMAGES_IMPORT from './DEPRECATED_Roblox.404.TemporaryImages';
+import ROBLOX_404_DOSARREST_ORIGIN_CORP_IMPORT from './Roblox.404.DosArrest';
 
 // Jak - Export all of these an implement in Roblox.IStart.Job.cs, add as internal middlewares
 export const ROBLOX_404_WWW = (ROBLOX_404_WWW_IMPORT as unknown) as Roblox_Middle_Ware;
@@ -48,3 +49,4 @@ export const ROBLOX_404_IMAGES = (ROBLOX_404_IMAGES_IMPORT as unknown) as Roblox
 export const ROBLOX_404_SETUP_CDN = (ROBLOX_404_SETUP_CDN_IMPORT as unknown) as Roblox_Middle_Ware;
 export const ROBLOX_404_EPHEMERAL_COUNTERS = (ROBLOX_404_EPHEMERAL_COUNTERS_IMPORT as unknown) as Roblox_Middle_Ware;
 export const DEPRECATED_404_TEMPORARY_IMAGES = (DEPRECATED_404_TEMPORARY_IMAGES_IMPORT as unknown) as Roblox_Middle_Ware;
+export const ROBLOX_404_DOSARREST_ORIGIN_CORP = (ROBLOX_404_DOSARREST_ORIGIN_CORP_IMPORT as unknown) as Roblox_Middle_Ware;

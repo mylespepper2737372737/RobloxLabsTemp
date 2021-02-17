@@ -1,7 +1,7 @@
 <h4 align="center">A Node.js version of MFD's TestSite.</h4>
 <br>
 <p align='center'>
-	<a href="http://discord.gg/afahYa5VvX"><img src="http://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
+	<a href="https://discord.gg/afahYa5VvX"><img src="https://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
 </p>
 <br>
 
@@ -19,14 +19,14 @@ You will have to clone the repository and add all the folders and files that thi
 
 ```bash
 # Run this to install sitetest4.robloxlabs.com
-$ git clone http://github.com/mfd-core/sitetest4.robloxlabs.com.git
+$ git clone https://github.com/mfd-core/sitetest4.robloxlabs.com.git
 ```
 
 That's it!
 
 # Credits
 
--   [MFD CO](http://github.com/mfd-core) - MFD Engine and backend Team
+-   [MFD CO](https://github.com/mfd-core) - MFD Engine and backend Team
 
 # Persistence
 

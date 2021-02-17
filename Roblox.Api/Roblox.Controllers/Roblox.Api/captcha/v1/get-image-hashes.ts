@@ -2,11 +2,11 @@
 	FileName: get-image-hashes.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://api.sitetest4.robloxlabs.com/captcha/v1/get-image-hashes,
+	Description: https://api.sitetest4.robloxlabs.com/captcha/v1/get-image-hashes,
 
 	TODO Implement this for captcha front end
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -16,7 +16,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,8 +48,8 @@ export default {
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
 
-		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'http')
-			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http')
+			return response.status(403).send({ success: false, message: 'http Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				success: false,

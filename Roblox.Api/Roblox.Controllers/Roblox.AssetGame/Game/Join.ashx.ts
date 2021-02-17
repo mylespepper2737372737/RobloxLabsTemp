@@ -2,9 +2,9 @@
 	FileName: Join.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/game/Join.ashx, gets join information for the RakPeer in order to connect to that peer.
+	Description: https://assetgame.sitetest4.robloxlabs.com/game/Join.ashx, gets join information for the RakPeer in order to connect to that peer.
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -52,7 +52,7 @@ export default {
 			PlaceId: parseInt(_req.query['placeId']) || 1,
 			MeasurementUrl: '',
 			WaitingForCharacterGuid: '00000000-0000-0000-0000-000000000000',
-			BaseUrl: 'http://www.sitetest4.robloxlabs.com/',
+			BaseUrl: 'https://www.sitetest4.robloxlabs.com/',
 			ChatStyle: 'Classic',
 			VendorId: 0,
 			ScreenShotInfo: '',

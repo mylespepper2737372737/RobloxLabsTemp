@@ -42,7 +42,7 @@ $(function () {
 						);
 					}
 
-					// http://github.com/domaindrivendev/Swashbuckle/issues/502 :sob:
+					// https://github.com/domaindrivendev/Swashbuckle/issues/502 :sob:
 					if (operation.deprecated && properties.obsoleteMessage) {
 						$('#' + id + '_content > h4').each(function () {
 							if ($(this).text().indexOf('Deprecated') >= 0) {

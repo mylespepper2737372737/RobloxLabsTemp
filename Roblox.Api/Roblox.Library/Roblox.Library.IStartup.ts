@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: A mock of ASP.NET and Servers.FX
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -35,6 +35,7 @@ import UseRouting from '../Roblox.Global.Helpers/Roblox.UseRouting';
 import MapControllers from '../Roblox.Global.Helpers/Roblox.MapControllers';
 import UsePages from '../Roblox.Global.Helpers/Roblox.UsePages';
 import { FASTLOG7, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
+import signalr from 'signalrjs';
 
 export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	app: IApplicationBuilder;
@@ -69,33 +70,9 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 		setHeaders?: (res: R, path: string, stat: unknown) => unknown;
 	};
 	errorpage?: boolean;
+	signalr?: boolean;
+	hubs?: string[];
 }
-// export default abstract class Startup {
-// 	public static readonly Configure = async (opts: ConfigOpts): Promise<void> => {
-// 		try {
-// 			opts.app.disable('etag');
-// 			opts.app.disable('case sensitive routing');
-// 			opts.app.enable('trust proxy');
-// 			opts.app.disable('x-powered-by');
-// 			opts.app.disable('strict routing');
-// 			opts.app.use(cparser(), jparser(), bparser.urlencoded({ extended: false }));
-// 			if (opts.UsePages) {
-// 				await UsePages(opts.app, opts.PagesOpts, opts.PageOpts);
-// 			}
-// 			if (opts.UseRouting) {
-// 				await UseRouting(opts.app, opts.RoutingOpts);
-// 			}
-// 			if (opts.UseEndpoints) {
-// 				await MapControllers(opts.app, opts.EndpointOpts);
-// 			}
-// 			if (opts.errorpage) {
-// 				await DeveloperExceptionPage(opts.app);
-// 			}
-// 		} catch (err) {
-// 			throw new Error(err);
-// 		}
-// 	};
-// }
 export namespace IStartup {
 	export const Configure = async (opts: ConfigOpts): Promise<void> => {
 		try {
@@ -116,6 +93,13 @@ export namespace IStartup {
 			}
 			if (opts.errorpage) {
 				await DeveloperExceptionPage(opts.app);
+			}
+			if (opts.signalr) {
+				const sir = signalr();
+				opts.hubs.forEach((v) => {
+					sir.hub(v, () => 0);
+				});
+				opts.app.use(signalr.createListener());
 			}
 		} catch (e) {
 			FASTLOG7(FLog['Tasks'], `Message: ${e.message}, Stack: ${e.stack}`, true);

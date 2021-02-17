@@ -52,7 +52,7 @@ document.Mfd.XsrfToken = (function () {
 	}
 
 	function registerToken() {
-		$.ajax('http://api.sitetest4.robloxlabs.com/csrf/v1/get-csrf-token', {
+		$.ajax('https://api.sitetest4.robloxlabs.com/csrf/v1/get-csrf-token', {
 			crossDomain: true,
 			method: 'POST',
 			success: (_b, _s, response) => {

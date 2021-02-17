@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: setup 404 middleware
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -53,7 +53,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'http://setup.sitetest4.robloxlabs.com' + escape(req.url)
+					'https://setup.sitetest4.robloxlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))
@@ -65,7 +65,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'http://setup.sitetest4.robloxlabs.com' + escape(req.url)
+					'https://setup.sitetest4.robloxlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))

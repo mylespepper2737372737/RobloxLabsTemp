@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Wrapper for server Configurations, used as a helper.
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,7 +28,7 @@
 import { ConfigOpts } from '../../Roblox.Library/Roblox.Library.IStartup';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { _dirname } from '../Roblox.Constants/Roblox.Directories';
-import config from '../../Roblox.Config/Roblox.Api.Config.Config';
+import config from '../../Roblox.Config/Config';
 
 export default (app: IApplicationBuilder, PagesDir: string, EndpointsDir: string, apiName: string, errorpage?: boolean) => {
 	return {

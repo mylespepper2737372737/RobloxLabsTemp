@@ -2,9 +2,9 @@
 	FileName: PlaceLauncher.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/game/PlaceLauncher.ashx, A wrapper of Join.ashx
+	Description: https://assetgame.sitetest4.robloxlabs.com/game/PlaceLauncher.ashx, A wrapper of Join.ashx
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,8 +31,8 @@ export default {
 		const txt = {
 			jobId: '00000000-0000-0000-0000-000000000000',
 			status: 2,
-			joinScriptUrl: 'http://assetgame.sitetest4.robloxlabs.com/Game/Join.ashx?placeId=1818',
-			authenticationUrl: 'http://api.sitetest4.robloxlabs.com/Login/Negotiate.ashx',
+			joinScriptUrl: 'https://assetgame.sitetest4.robloxlabs.com/Game/Join.ashx?placeId=1818',
+			authenticationUrl: 'https://api.sitetest4.robloxlabs.com/Login/Negotiate.ashx',
 			authenticationTicket: 'Guest:-3074',
 		};
 		res.send(txt);

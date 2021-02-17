@@ -22,7 +22,9 @@
 			"WWWAuthV1AllowAllMethods": false,
 			"IsClientSettingsAPIEnabled": true,
 			"IsWWWAuthSignupPubliclyListed": false,
-			"DataStoreV2MaxItemsToReturnShould403OnBadNumber": false
+			"DataStoreV2MaxItemsToReturnShould403OnBadNumber": false,
+			"IsLoginCodeButtonDisplayed": true,
+			"IsCodeValidationDisplayed": true
 		},
 		"SFFlag": {},
 		"FInt": {
@@ -33,7 +35,9 @@
 		},
 		"DFInt": {
 			"CaptchaV2FailedStatus": 403,
-			"WWWAuthV1MaxAuthTokenAge": 946100000000
+			"WWWAuthV1MaxAuthTokenAge": 946100000000,
+			"MetricsLogRatio": 0.05,
+			"MultiGetContactsMaxSize": 200
 		},
 		"FString": {
 			"CSRFV2FailedResponseStatusText": "Token Validation Failed",
@@ -43,8 +47,8 @@
 			"CSRFV2HardcodedKey": "TestKey"
 		},
 		"DFString": {
-			"CharacterAppearanceUrl": "http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx",
-			"CharacterAppearranceTestString": "http://assetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx?userId=0;http://assetgame.sitetest4.robloxlabs.com/Asset?id=554663025;http://assetgame.sitetest4.robloxlabs.com/Asset?id=11748356;http://assetgame.roblox.com/Asset?id=1016143686;http://assetgame.sitetest4.robloxlabs.com/Asset?id=19262627;http://assetgame.sitetest4.robloxlabs.com/Asset?id=134082579"
+			"CharacterAppearanceUrl": "https://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx",
+			"CharacterAppearranceTestString": "https://assetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx?userId=0;https://assetgame.sitetest4.robloxlabs.com/Asset?id=554663025;https://assetgame.sitetest4.robloxlabs.com/Asset?id=11748356;https://assetgame.sitetest4.robloxlabs.com/Asset?id=1016143686;https://assetgame.sitetest4.robloxlabs.com/Asset?id=19262627;https://assetgame.sitetest4.robloxlabs.com/Asset?id=134082579"
 		}
 	},
 	"WebMobile": {
@@ -86,28 +90,29 @@
 			"HttpUseCurlPercentageMacStudio": 100
 		},
 		"FLog": {
-			"Asserts": 7,
-			"CloseDataModel": 7,
-			"ServiceVectorResize": 7,
-			"ServiceCreation": 7,
-			"FullRenderObjects": 7,
-			"HangDetection": 7,
-			"PlayerShutdownLuaTimeoutSeconds": 7,
-			"DXVideoMemory": 7,
+			"Asserts": 0,
+			"DataStore": 7,
+			"CloseDataModel": 0,
+			"ServiceVectorResize": 0,
+			"ServiceCreation": 0,
+			"FullRenderObjects": 0,
+			"HangDetection": 0,
+			"PlayerShutdownLuaTimeoutSeconds": 0,
+			"DXVideoMemory": 0,
 			"OutlineBrightnessMin": 50,
 			"OutlineBrightnessMax": 160,
 			"OutlineThickness": 40,
-			"LuaBridge": 7,
-			"Graphics": 7,
-			"BrowserActivity": 7,
-			"NetworkPacketsReceive": 7,
-			"StepAnimatedJoints": 7,
-			"UseLuaMemoryPool": 7,
-			"LuaAssert": 7,
-			"VR": 7,
-			"Physics": 7,
-			"Network": 7,
-			"TaskSchedulerFindJob": 7
+			"LuaBridge": 0,
+			"Graphics": 0,
+			"BrowserActivity": 0,
+			"NetworkPacketsReceive": 0,
+			"StepAnimatedJoints": 0,
+			"UseLuaMemoryPool": 0,
+			"LuaAssert": 0,
+			"VR": 0,
+			"Physics": 0,
+			"Network": 0,
+			"TaskSchedulerFindJob": 0
 		},
 		"FFlag": {
 			"DebugLocalRccServerConnection": false,
@@ -1238,7 +1243,7 @@
 			"DataStoreDisableReFetchingRecentKeys": true,
 			"DuplicateInstanceReferenceFix": true,
 			"SoundV2LogOnSetSoundId": true,
-			"DataStoresV2GetDataStoresAdminResponse": false
+			"DataStoresV2GetDataStoresAdminResponse": true
 		},
 		"SFFlag": {
 			"InfiniteTerrain": true,
@@ -1353,8 +1358,8 @@
 			"PlaceFilter_InterpolationTimingFix": "True;208770506",
 			"PlaceFilter_SetNetworkOwnerAPIEnabled": "True;13822889;257857728",
 			"PlaceFilter_SetNetworkOwnerAPIEnabledV2": "True;13822889;257857728",
-			"StudioTutorialsUrl": "http://wiki.roblox.com/index.php?title=Studio_Tutorials_Test&studiomode=true",
-			"StudioTutorialsTOCUrl": "http://wiki.roblox.com/index.php?title=Studio_Tutorials_Landing&studiomode=true",
+			"StudioTutorialsUrl": "https://wiki.sitetest4.robloxlabs.com/index.php?title=Studio_Tutorials_Test&studiomode=true",
+			"StudioTutorialsTOCUrl": "https://wiki.sitetest4.robloxlabs.com/index.php?title=Studio_Tutorials_Landing&studiomode=true",
 			"PlaceFilter_ReservedServersEnabled": "True;107715348",
 			"PlaceFilter_UseNewPersistenceSubdomain": "True;359173292",
 			"PlaceFilter_UseNewDataStoreLogging": "True;359173292",
@@ -1373,12 +1378,12 @@
 			"PlaceFilyer_DataStoresV2GetDataStoresAdminResponse": "True;0;1818"
 		},
 		"DFString": {
-			"RobloxAnalyticsURL": "http://ecsv2.sitetest4.robloxlabs.com/",
-			"HttpInfluxURL": "http://ec2-54-84-170-153.compute-1.amazonaws.com:8086",
+			"RobloxAnalyticsURL": "https://ecsv2.sitetest4.robloxlabs.com/",
+			"HttpInfluxURL": "https://ec2-54-84-170-153.compute-1.amazonaws.com:8086",
 			"HttpInfluxDatabase": "prod",
 			"HttpInfluxUser": "rob",
 			"HttpInfluxPassword": "faster1Play",
-			"WorkspaceMessageLink": "http://tinyurl.com/zv9tvjk",
+			"WorkspaceMessageLink": "https://tinyurl.com/zv9tvjk",
 			"WorkspaceMessageText": "Starting May 23 you will no longer be able to use Legacy PhysicalPropertiesMode. Please click here to get more information about migrating your game.",
 			"HttpInfluxWriterPassword": "faster1Play",
 			"DataStoreThrottleMsg": "DataStore request was added to queue. If request queue fills, further requests will be dropped. Try sending fewer requests."

@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: The current Signup function.
 			
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,7 +26,7 @@
 */
 
 /* 
-POST http://www.sitetest4.robloxlabs.com/Authentication/Signup.fxhx HTTP/2.0
+POST https://www.sitetest4.robloxlabs.com/Authentication/Signup.fxhx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -61,8 +61,8 @@ export default {
 			});
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'http')
-			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http')
+			return response.status(403).send({ success: false, message: 'http Required.' });
 
 		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
 			return response.status(405).send({

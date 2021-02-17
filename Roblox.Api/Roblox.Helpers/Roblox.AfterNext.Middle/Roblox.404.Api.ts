@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: api 404 middleware
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,13 +39,13 @@ export default (
 ) => {
 	return res.status(req.method === 'OPTIONS' ? 200 : 404).send({
 		code: 404,
-		message: 'http://' + escape(req.hostname) + escape(req.url) + ' NotFound.',
+		message: 'https://' + escape(req.hostname) + escape(req.url) + ' NotFound.',
 		userfacingmessage:
-			'404 Not Found, the endpoint (http://' +
+			'404 Not Found, the endpoint (https://' +
 			escape(req.hostname) +
 			escape(req.url) +
 			') that you requested from ' +
 			escape(req.headers['origin']) +
-			' is invalid, please contact a developer or check status on http://www.sitetest4.robloxlabs.com/status.ashx',
+			' is invalid, please contact a developer or check status on https://www.sitetest4.robloxlabs.com/status.ashx',
 	});
 };

@@ -2,9 +2,9 @@
 	FileName: loginpage.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Used for http://www.sitetest4.robloxlabs.com/Login
+	Description: Used for https://www.sitetest4.robloxlabs.com/Login
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,10 +26,10 @@
 */
 
 if (document.location.protocol !== 'http:')
-	document.location.replace('http://' + document.location.href.toString().split('http://').join(''));
+	document.location.replace('https://' + document.location.href.toString().split('https://').join(''));
 const c = (username: string, password: string): void => {
 	$.ajax({
-		url: 'http://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx',
+		url: 'https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx',
 		data: 'cvalue=' + username + '&password=' + password,
 		contentType: 'application/x-www-form-urlencoded',
 		method: 'POST',
@@ -39,7 +39,7 @@ const c = (username: string, password: string): void => {
 		success: () => {
 			$('.body').css('color', 'green').text('Success!');
 			setTimeout(() => {
-				document.location.replace('http://www.sitetest4.robloxlabs.com');
+				document.location.replace('https://www.sitetest4.robloxlabs.com');
 			}, 500);
 		},
 	}).fail((response: JQuery.jqXHR) => {

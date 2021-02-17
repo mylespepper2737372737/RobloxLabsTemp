@@ -2,9 +2,9 @@
 	FileName: report-stats.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: http://assetgame.sitetest4.robloxlabs.com/game/report-stats, An endpoint used to report api statistics
+	Description: https://assetgame.sitetest4.robloxlabs.com/game/report-stats, An endpoint used to report api statistics
 
-	All commits will be made on behalf of mfd-co to http://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
 
@@ -14,7 +14,7 @@
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,7 +29,8 @@ import { FASTLOG2 } from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Rob
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
+	func: (_req, res): void => {
+		res.setHeader('Access-Control-Allow-Origin', _req.headers['origin'] || 'https://www.sitetest4.robloxlabs.com');
 		FASTLOG2('Stats', JSON.stringify(_req.query), true);
 		FASTLOG2('Stats', _req.body instanceof Object ? JSON.stringify(_req.body) : _req.body, true);
 		res.send({ success: true, message: '' });

@@ -87,7 +87,7 @@
 				},
 				"imageUri": {
 					"type": "string",
-					"example": "http://ti.sitetest4.robloxlabs.com/..."
+					"example": "https://ti.sitetest4.robloxlabs.com/..."
 				}
 			}
 		}
