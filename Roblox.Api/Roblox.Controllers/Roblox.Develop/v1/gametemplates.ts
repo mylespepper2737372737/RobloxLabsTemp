@@ -31,8 +31,8 @@ export default {
 	method: 'all',
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
-		a.post('https://auth.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, host: 'auth.roblox.com' },
+		a.get('https://develop.roblox.com' + _req.url, {
+			headers: { ..._req.headers, host: 'develop.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
