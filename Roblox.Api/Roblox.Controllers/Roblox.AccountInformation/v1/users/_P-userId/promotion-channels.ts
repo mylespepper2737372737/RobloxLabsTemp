@@ -33,7 +33,7 @@ export default {
 		if (_req.method === 'OPTIONS') return res.send();
 
 		a.get('https://accountinformation.roblox.com' + _req.url, {
-			headers: { ..._req.headers, Host: 'accountinformation.roblox.com' },
+			headers: { ..._req.headers, host: 'accountinformation.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

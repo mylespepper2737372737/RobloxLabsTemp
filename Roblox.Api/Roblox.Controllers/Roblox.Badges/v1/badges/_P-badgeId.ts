@@ -33,7 +33,7 @@ export default {
 		if (_req.method === 'OPTIONS') return res.send();
 		if (_req.method === 'GET') {
 			a.get('https://badges.roblox.com' + _req.url, {
-				headers: { ..._req.headers, Host: 'badges.roblox.com' },
+				headers: { ..._req.headers, host: 'badges.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
@@ -50,7 +50,7 @@ export default {
 				});
 		} else if (_req.method === 'PATCH') {
 			a.patch('https://badges.roblox.com' + _req.url, _req.body, {
-				headers: { ..._req.headers, Host: 'badges.roblox.com' },
+				headers: { ..._req.headers, host: 'badges.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

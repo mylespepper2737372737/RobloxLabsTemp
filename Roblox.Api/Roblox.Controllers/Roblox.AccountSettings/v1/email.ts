@@ -33,7 +33,7 @@ export default {
 		if (_req.method === 'OPTIONS') return res.send();
 		if (_req.method === 'GET') {
 			a.get('https://accountsettings.roblox.com' + _req.url, {
-				headers: { ..._req.headers, Host: 'accountsettings.roblox.com' },
+				headers: { ..._req.headers, host: 'accountsettings.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
@@ -46,7 +46,7 @@ export default {
 				});
 		} else if (_req.method === 'POST') {
 			a.post('https://accountsettings.roblox.com' + _req.url, _req.body, {
-				headers: { ..._req.headers, Host: 'accountsettings.roblox.com' },
+				headers: { ..._req.headers, host: 'accountsettings.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
@@ -59,7 +59,7 @@ export default {
 				});
 		} else if (_req.method === 'PATCH') {
 			a.patch('https://accountsettings.roblox.com' + _req.url, _req.body, {
-				headers: { ..._req.headers, Host: 'accountsettings.roblox.com' },
+				headers: { ..._req.headers, host: 'accountsettings.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

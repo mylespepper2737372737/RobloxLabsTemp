@@ -1,0 +1,26 @@
+[
+    {
+        "keyName": "keyPurgeTest",
+        "created": "2021-02-07T08:45:35.676Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": "keyPurgeTest",
+        "created": "2021-02-07T08:45:35.676Z",
+        "updated": "2021-02-07T08:45:45.835Z",
+        "purged": "2021-02-07T08:45:45.835Z"
+    },
+    {
+        "keyName": "keyPurgeTest",
+        "created": "2021-02-07T08:47:27.111Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": "keyPurgeTest",
+        "created": "2021-02-07T08:47:27.111Z",
+        "updated": "2021-02-07T08:47:27.120Z",
+        "purged": "2021-02-07T08:47:27.120Z"
+    }
+]

@@ -34,7 +34,7 @@ export default {
 	func: (req, res): void => {
 		const userId = parseInt(req.params['userId']);
 		if (isNaN(userId)) return res.redirect('https://www.sitetest4.robloxlabs.com/request-error?code=400');
-		a.get(`https://www.roblox.com/users/${userId.toString()}/profile`, { headers: { ...req.headers, Host: 'www.roblox.com' } })
+		a.get(`https://www.roblox.com/users/${userId.toString()}/profile`, { headers: { ...req.headers, host: 'www.roblox.com' } })
 			.then((re) => {
 				const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

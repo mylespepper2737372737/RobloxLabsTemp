@@ -39,7 +39,7 @@ export default {
 			return;
 		}
 		a.get('https://assetdelivery.roblox.com/v1' + req.url, {
-			headers: { ...req.headers, Host: 'www.roblox.com' },
+			headers: { ...req.headers, host: 'www.roblox.com' },
 		})
 			.then((re) => {
 				// const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');

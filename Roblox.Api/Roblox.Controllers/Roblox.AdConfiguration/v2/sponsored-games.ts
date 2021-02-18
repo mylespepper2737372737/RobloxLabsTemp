@@ -26,13 +26,14 @@
 */
 
 import a from 'axios';
+import { FASTLOG6 } from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	method: 'all',
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
-		a.post('https://contacts.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, Host: 'contacts.roblox.com' },
+		a.get('https://adconfiguration.roblox.com' + _req.url, {
+			headers: { ..._req.headers, host: 'adconfiguration.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
@@ -40,6 +41,7 @@ export default {
 				return res.header(newheaders).send(re.data);
 			})
 			.catch((e) => {
+				FASTLOG6('Tasks', e);
 				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
 				return res.header(newheaders).status(e.response.status).send(e.response.data);
 			});

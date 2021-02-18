@@ -32,7 +32,7 @@ export default {
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
 		a.patch('https://economy.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, Host: 'economy.roblox.com' },
+			headers: { ..._req.headers, host: 'economy.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

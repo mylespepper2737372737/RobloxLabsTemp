@@ -32,7 +32,7 @@ export default {
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
 		a.get('https://realtime.roblox.com' + _req.url, {
-			headers: { ..._req.headers, Host: 'realtime.roblox.com' },
+			headers: { ..._req.headers, host: 'realtime.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

@@ -1,0 +1,62 @@
+[
+    {
+        "keyName": "keyTest",
+        "created": "2021-02-07T08:45:35.605Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": "key2",
+        "created": "2021-02-07T08:45:35.608Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Roblox.Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 1,
+            "created": "2021-02-07T08:45:35.608Z",
+            "lastUpdated": "2021-02-07T08:45:35.608Z"
+        },
+        "created": "2021-02-07T08:45:35.608Z",
+        "updated": "2021-02-07T08:45:35.611Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Roblox.Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 2,
+            "created": "2021-02-07T08:45:35.608Z",
+            "lastUpdated": "2021-02-07T08:45:35.611Z"
+        },
+        "created": "2021-02-07T08:45:35.608Z",
+        "updated": "2021-02-07T08:46:16.176Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Roblox.Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 3,
+            "created": "2021-02-07T08:45:35.608Z",
+            "lastUpdated": "2021-02-07T08:46:16.176Z"
+        },
+        "created": "2021-02-07T08:45:35.608Z",
+        "updated": "2021-02-07T08:46:16.180Z",
+        "purged": null
+    }
+]

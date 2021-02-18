@@ -62,7 +62,7 @@ export default {
 				evt.push(null, null, null);
 			});
 		a.post('https://chat.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, Host: 'chat.roblox.com' },
+			headers: { ..._req.headers, host: 'chat.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

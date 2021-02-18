@@ -1,0 +1,27 @@
+[
+    {
+        "storeName": "storeTest",
+        "created": "2021-02-07T08:45:35.671Z",
+        "purged": null
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-07T08:45:49.057Z",
+        "purged": null
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-07T08:45:49.057Z",
+        "purged": "2021-02-07T08:45:49.551Z"
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-07T08:47:27.133Z",
+        "purged": null
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-07T08:47:27.133Z",
+        "purged": "2021-02-07T08:47:27.144Z"
+    }
+]

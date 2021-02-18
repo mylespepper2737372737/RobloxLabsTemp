@@ -1,0 +1,56 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "testValue",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.676Z"
+    },
+    {
+        "action": "KeyRemoved",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": false,
+                "purged": true,
+                "value": null
+            }
+        ],
+        "date": "2021-02-07T08:45:45.835Z"
+    },
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "testValue",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:47:27.111Z"
+    },
+    {
+        "action": "KeyRemoved",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": false,
+                "purged": true,
+                "value": null
+            }
+        ],
+        "date": "2021-02-07T08:47:27.120Z"
+    }
+]

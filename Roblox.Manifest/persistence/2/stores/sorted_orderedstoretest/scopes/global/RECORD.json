@@ -1,0 +1,47 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "key1",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": 1,
+                    "type": "number"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.582Z"
+    },
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "key2",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": 1,
+                    "type": "number"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.593Z"
+    },
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "key3",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": 1,
+                    "type": "number"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.596Z"
+    }
+]

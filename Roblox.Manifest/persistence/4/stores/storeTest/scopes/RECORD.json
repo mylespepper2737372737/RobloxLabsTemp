@@ -1,0 +1,27 @@
+[
+    {
+        "scopeName": "global",
+        "created": "2021-02-07T08:45:35.673Z",
+        "purged": null
+    },
+    {
+        "scopeName": "scopePurgeTest",
+        "created": "2021-02-07T08:45:47.723Z",
+        "purged": null
+    },
+    {
+        "scopeName": "scopePurgeTest",
+        "created": "2021-02-07T08:45:47.723Z",
+        "purged": "2021-02-07T08:45:48.439Z"
+    },
+    {
+        "scopeName": "scopePurgeTest",
+        "created": "2021-02-07T08:47:27.122Z",
+        "purged": null
+    },
+    {
+        "scopeName": "scopePurgeTest",
+        "created": "2021-02-07T08:47:27.121Z",
+        "purged": "2021-02-07T08:47:27.131Z"
+    }
+]

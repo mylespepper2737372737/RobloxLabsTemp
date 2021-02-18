@@ -1,5 +1,5 @@
-POST http://www.sitetest1.mfdlabs.com/Authentication/Login.fxhx
-user-agent: mfdlabs-tests
+POST https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx
+user-agent: robloxlabs-tests
 X-CSRF-TOKEN: E2dlGxP71VnijP/NIH6+8w==
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -9,7 +9,7 @@ Cookie: authId=b0572679d8d2ad651ec2e0cf0cc1f0ab590fd393ee5d1cb629cd40ef42ac826bd
 
 ###
 
-POST api.sitetest1.mfdlabs.com/auth/v2/login
+POST api.sitetest4.robloxlabs.com/auth/v2/login
 Content-Type: application/json
 
 {
@@ -19,13 +19,13 @@ Content-Type: application/json
 
 ###
 
-POST http://api.sitetest1.mfdlabs.com/auth/v2/logout
+POST https://api.sitetest4.robloxlabs.com/auth/v2/logout
 Cookie: authId=7c808f20db4b3cad19cb69e943d7db6a38abebf9f7dd4de12648ed242c64959a
 
 ###
 
-POST http://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx
-user-agent: mfdlabs-tests
+POST https://www.sitetest4.robloxlabs.com/Authentication/Logout.fxhx
+user-agent: robloxlabs-tests
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -33,8 +33,8 @@ Cookie: authId=439b6795270193548e36e74e0324e8d3f55e28285cfd51aea7b473cc81bb15b0f
 
 ###
 
-POST http://www.sitetest1.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx
-user-agent: mfdlabs-tests
+POST https://www.sitetest4.robloxlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx
+user-agent: robloxlabs-tests
 X-CSRF-TOKEN: TestKey
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -42,8 +42,8 @@ Cookie: authId=e0ef2805c095f52f19d6c8d9a4cbf3ea49b3542f08e67c5e111d0c809ac28961c
 
 ###
 
-POST http://api.sitetest1.mfdlabs.com/captcha/v1/get-image-hashes
-user-agent: mfdlabs-tests
+POST https://api.sitetest4.robloxlabs.com/captcha/v1/get-image-hashes
+user-agent: robloxlabs-tests
 Content-Type: application/x-www-form-urlencoded
 Connection: close
 Cookie: authId=89c4f01c7b45d9e394d4125cf78133a843d3cf760561585d0dda3b943f3c7ef21de4457566703362613af9e696044253110465d749dd6a413c2be6e098c09129
@@ -52,34 +52,34 @@ captchaHash=p7iXXdp6YiGcfeUbQ3nenbJenCEO6baJw8WU48o0E_fph0ciYvfXpYdtq94Jnv0LhpCC
 
 ###
 
-GET http://ti.sitetest1.mfdlabs.com/1.png
+GET https://ti.sitetest4.robloxlabs.com/1.png
 
 ###
 
-GET http://setup.sitetest1.mfdlabs.com/clientsettings/v1/get-flags?settingsGroup=Web
+GET https://setup.sitetest4.robloxlabs.com/clientsettings/v1/get-flags?settingsGroup=Web
 
 ###
 
-POST http://api.sitetest1.mfdlabs.com/csrf/v1/get-csrf-token
+POST https://api.sitetest4.robloxlabs.com/csrf/v1/get-csrf-token
 
 ###
 
-POST http://gamepersistence.roblox.com/v2/persistence/1/datastores
+POST https://gamepersistence.roblox.com/v2/persistence/1/datastores
 
 ###
-GET http://premiumfeatures.roblox.com/v1/users/1/validate-membership-rcc
+GET https://premiumfeatures.roblox.com/v1/users/1/validate-membership-rcc
 
 ###
 
-GET http://www.mfdlabs.com/Logins
+GET https://www.robloxlabs.com/Logins
 
 ###
-POST http://localhost:64989
+POST https://localhost:64989
 Content-Type: text/xml;charset=utf-8
 SOAPAction: Execute
 
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://roblox.com/RCCServiceSoap" xmlns:ns1="http://roblox.com/" xmlns:ns3="http://roblox.com/RCCServiceSoap12">    
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="https://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="https://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:ns2="https://roblox.com/RCCServiceSoap" xmlns:ns1="https://roblox.com/" xmlns:ns3="https://roblox.com/RCCServiceSoap12">    
 <SOAP-ENV:Body>
     <ns1:Execute>
 		<ns1:jobID>Test</ns1:jobID>
@@ -95,14 +95,14 @@ SOAPAction: Execute
 ###
 
 POST /Thumbs/Asset.asmx HTTP/1.1
-Host: www.sitetest2.robloxlabs.com
+host: www.sitetest2.robloxlabs.com
 Content-Type: text/xml; charset=utf-8
-SOAPAction: "http://roblox.com/RequestThumbnail"
+SOAPAction: "https://roblox.com/RequestThumbnail"
 
 <?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Envelope xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:soap="https://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
-    <RequestThumbnail xmlns="http://roblox.com/">
+    <RequestThumbnail xmlns="https://roblox.com/">
       <assetId>301549746</assetId>
 	  <assetVersionId></assetVersionId>
       <width>100</width>
@@ -115,21 +115,21 @@ SOAPAction: "http://roblox.com/RequestThumbnail"
 
 ###
 
-POST http://api.roblox.com/reservedservers/create?placeId=5889263700 HTTP/1.1
+POST https://api.roblox.com/reservedservers/create?placeId=5889263700 HTTP/1.1
 Accept: */*
 Cookie: RBXSessionTracker=sessionid=3552f012-963c-4d10-8c2b-84ae9dd8c6cc; RBXEventTrackerV2=CreateDate=2/3/2021 11:00:14 AM&rbxid=156632429&browserid=77573487973; .ROBLOSECURITY=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_17C72C899CBC3234814E29DAE3D53CE5A8DA38A31F571A5BB5789F6F46AC3465C9157876C2EEEF8BC6998349A1F0D3AF00C29937F11D081954528433BE031487D7B43B08E7E5CB5C50291D63EDF48D26BD3F721D1A33CD3C29CA21C6F78E1B06A29C02F9DF0A67AC9837CC0D0088D9438D1FA9B60B037033D625F213451919E1483C6C1944E0A8983E29BB261342ECD97208174D72304D14C52A200ABFBBE25B0C229B5DE5C95CA92F1BAC3D96E8D69B1CE0C191F237120153DCEF00528C7C741E56B7439F71DB5F2FC80C5554E427FCFE55E234B1FAB827CA61D7ECA6014A7701A7903773725B86DB61D69402169B2E4F260416710FEC58559FB0DC2A63C07DE14688019029D318631BA097736BD90F226EBF62F14BECD8939C445607448C09D4B2F1D1; .RBXIDCHECK=ea781d95-9459-47c5-8a8c-b4bd46533bfb,3c66bb46-dd98-4c4b-85ff-ded47f1c657a; RBXSource=rbx_acquisition_time=2/3/2021 11:00:14 AM&rbx_acquisition_referrer=&rbx_medium=Direct&rbx_source=&rbx_campaign=&rbx_adgroup=&rbx_keyword=&rbx_matchtype=&rbx_send_info=0; GuestData=UserID=-54374785; rbx-ip2=; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiMjZkNTA5ZS04YWYwLTQzZmYtODVjMi01NmQ1MmEwYzA3MGEiLCJzdWIiOjY4MjE3MDR9.pyKMBt4u975QFvkpDVpe64FNTQvZvkc79nLntGpeYTY
 Accept-Encoding: gzip, deflate
 Cache-Control: no-cache
 Connection: keep-alive
 User-Agent: Roblox/WinHttp
-Origin: http://www.roblox.com
+Origin: https://www.roblox.com
 Content-Type: application/x-www-form-urlencoded
 X-CSRF-TOKEN: apsooVAYhnmX
 Content-Length: 0
 
 ###
 
-GET www.mfdlabs.com/asset/?id=2537274968 HTTP/1.1
+GET www.robloxlabs.com/asset/?id=2537274968 HTTP/1.1
 Connection: Keep-Alive
 Accept-Encoding: gzip
 User-Agent: Roblox/WinInet
@@ -139,8 +139,8 @@ Roblox-Game-Id: Test
 
 ###
 
-POST http://messagerouter.api.roblox.com/v1/router/signalr
+POST https://messagerouter.api.roblox.com/v1/router/signalr
 
 ###
 
-GET http://dosarrest.origin.corp.roblox.com
+GET https://dosarrest.origin.corp.roblox.com

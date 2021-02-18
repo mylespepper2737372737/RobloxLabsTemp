@@ -1,0 +1,57 @@
+[
+    {
+        "action": "ScopeAdded",
+        "data": [
+            {
+                "name": "global",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:45:35.673Z"
+    },
+    {
+        "action": "ScopeAdded",
+        "data": [
+            {
+                "name": "scopePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:45:47.723Z"
+    },
+    {
+        "action": "ScopeRemoved",
+        "data": [
+            {
+                "name": "scopePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-07T08:45:48.438Z"
+    },
+    {
+        "action": "ScopeAdded",
+        "data": [
+            {
+                "name": "scopePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:47:27.122Z"
+    },
+    {
+        "action": "ScopeRemoved",
+        "data": [
+            {
+                "name": "scopePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-07T08:47:27.130Z"
+    }
+]

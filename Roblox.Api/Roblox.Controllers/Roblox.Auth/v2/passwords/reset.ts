@@ -34,7 +34,7 @@ export default {
 
 		if (_req.method === 'GET') {
 			a.get('https://auth.roblox.com' + _req.url, {
-				headers: { ..._req.headers, Host: 'auth.roblox.com' },
+				headers: { ..._req.headers, host: 'auth.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
@@ -47,7 +47,7 @@ export default {
 				});
 		} else if (_req.method === 'POST') {
 			a.post('https://auth.roblox.com' + _req.url, _req.body, {
-				headers: { ..._req.headers, Host: 'auth.roblox.com' },
+				headers: { ..._req.headers, host: 'auth.roblox.com' },
 			})
 				.then((re) => {
 					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

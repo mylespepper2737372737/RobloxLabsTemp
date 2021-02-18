@@ -32,7 +32,7 @@ import a from 'axios';
 export default {
 	method: 'all',
 	func: (req, res): void => {
-		a.get(`https://www.roblox.com/my/account`, { headers: { ...req.headers, Host: 'www.roblox.com' } })
+		a.get(`https://www.roblox.com/my/account`, { headers: { ...req.headers, host: 'www.roblox.com' } })
 			.then((re) => {
 				const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

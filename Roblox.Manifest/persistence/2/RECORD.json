@@ -1,0 +1,24 @@
+[
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "sorted_orderedstoretest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:45:35.584Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:45:35.600Z"
+    }
+]

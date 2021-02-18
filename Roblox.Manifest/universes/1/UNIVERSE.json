@@ -1,0 +1,40 @@
+{
+	"id": 1,
+	"rootPlaceId": 0,
+	"places": [
+		{
+			"placeId": 0,
+			"placeName": "testPlace",
+			"isRoot": true
+		}
+	],
+	"name": "test",
+	"description": "Testing MfdCore --nocache on S3",
+	"creator": {
+		"id": 1,
+		"name": "nsg",
+		"type": "User"
+	},
+	"price": null,
+	"allowedGearGenres": ["All"],
+	"allowedGearCategories": [],
+	"playing": 0,
+	"visits": 0,
+	"maxPlayers": 500,
+	"created": "2018-11-02T21:28:05.23Z",
+	"updated": "2021-01-24T09:11:26.083Z",
+	"studioAccessToApisAllowed": true,
+	"createVipServersAllowed": true,
+	"universeAvatarType": "PlayerChoice",
+	"genre": "All",
+	"media": [
+		{
+			"assetTypeId": 1,
+			"assetType": "Image",
+			"imageId": 3,
+			"videoHash": null,
+			"videoTitle": null,
+			"approved": true
+		}
+	]
+}

@@ -33,7 +33,7 @@ export default {
 		if (_req.method === 'OPTIONS') return res.send();
 
 		a.post('https://ads.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, Host: 'ads.roblox.com' },
+			headers: { ..._req.headers, host: 'ads.roblox.com' },
 		})
 			.then((re) => {
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

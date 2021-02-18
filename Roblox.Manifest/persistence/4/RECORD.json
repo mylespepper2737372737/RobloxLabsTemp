@@ -1,0 +1,57 @@
+[
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:45:35.671Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:45:49.057Z"
+    },
+    {
+        "action": "StoreRemoved",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-07T08:45:49.551Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-07T08:47:27.133Z"
+    },
+    {
+        "action": "StoreRemoved",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-07T08:47:27.143Z"
+    }
+]

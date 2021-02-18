@@ -1,0 +1,27 @@
+[
+    {
+        "storeName": "123",
+        "created": "2021-02-07T18:45:39.735Z",
+        "purged": null
+    },
+    {
+        "storeName": "123s",
+        "created": "2021-02-07T18:49:13.129Z",
+        "purged": null
+    },
+    {
+        "storeName": "213",
+        "created": "2021-02-07T18:50:45.778Z",
+        "purged": null
+    },
+    {
+        "storeName": "132",
+        "created": "2021-02-07T18:51:41.222Z",
+        "purged": null
+    },
+    {
+        "storeName": "E",
+        "created": "2021-02-14T20:46:19.393Z",
+        "purged": null
+    }
+]

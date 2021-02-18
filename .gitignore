@@ -44,16 +44,7 @@ dist
 .dynamodb/
 .tern-port
 .vscode-test
-*.https
 .npmignore
-env.json
-Roblox.SSL
-/Roblox.Manifest
-tests
-.idea
-diag
 package-lock.json
 # We don't want the js'
 Implementation/
-# This is for the rbx-fork script privatekey.pem
-Roblox.Internal.Static
