@@ -1,0 +1,11 @@
+C:\buildAgent\CRAC\CRAC\bin\Debug\CRAC.exe.config
+C:\buildAgent\CRAC\CRAC\bin\Debug\CRAC.exe
+C:\buildAgent\CRAC\CRAC\bin\Debug\CRAC.pdb
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.csprojAssemblyReference.cache
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.mainWindow.resources
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.Properties.Resources.resources
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.csproj.GenerateResource.cache
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.csproj.CoreCompileInputs.cache
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.exe
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.pdb
+C:\buildAgent\CRAC\CRAC\obj\Debug\CRAC.Login.resources

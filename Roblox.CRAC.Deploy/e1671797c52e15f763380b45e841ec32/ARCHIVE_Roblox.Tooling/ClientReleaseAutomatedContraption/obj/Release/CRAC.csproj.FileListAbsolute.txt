@@ -1,0 +1,10 @@
+C:\buildAgent\CRAC\CRAC\bin\Release\CRAC.exe.config
+C:\buildAgent\CRAC\CRAC\bin\Release\CRAC.exe
+C:\buildAgent\CRAC\CRAC\bin\Release\CRAC.pdb
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.Login.resources
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.MainWindow.resources
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.Properties.Resources.resources
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.csproj.GenerateResource.cache
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.csproj.CoreCompileInputs.cache
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.exe
+C:\buildAgent\CRAC\CRAC\obj\Release\CRAC.pdb
