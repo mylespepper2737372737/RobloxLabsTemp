@@ -1,9 +1,9 @@
 /*
-	FileName: GetCurrentUser.ashx.ts
+	FileName: LoadPlaceInfo.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: https://assetgame.sitetest4.robloxlabs.com/game/GetCurrentUser.ashx, returns either null (No user) or a number (there is a user) based on if the AuthTicket matches some account
-
+	Description: Load Place info script
+			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		return res.send('158190828');
+		res.send(null);
 	},
 };

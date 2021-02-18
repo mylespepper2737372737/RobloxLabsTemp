@@ -826,7 +826,7 @@
 	li.operation
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	text-transform: uppercase;
 	text-decoration: none;
@@ -1041,7 +1041,7 @@
 	li.operation.put
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	background-color: #c5862b;
 }
@@ -1109,7 +1109,7 @@
 	li.operation.head
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	text-transform: uppercase;
 	background-color: #ffd20f;
@@ -1178,7 +1178,7 @@
 	li.operation.delete
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	text-transform: uppercase;
 	background-color: #a41e22;
@@ -1246,7 +1246,7 @@
 	li.operation.post
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	background-color: #10a54a;
 }
@@ -1313,7 +1313,7 @@
 	li.operation.patch
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	background-color: #d38042;
 }
@@ -1380,7 +1380,7 @@
 	li.operation.get
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	background-color: #0f6ab4;
 }
@@ -1447,7 +1447,7 @@
 	li.operation.options
 	div.heading
 	h3
-	span.http_method
+	span.https_method
 	a {
 	background-color: #0f6ab4;
 }

@@ -3584,9 +3584,9 @@ Sys._Application.prototype._updateHiddenField = function (b) {
 		if (a) a.value = b;
 	}
 };
-if (!window.XMLHttpRequest)
-	window.XMLHttpRequest = function () {
-		var b = ['Msxml2.XMLHTTP.3.0', 'Msxml2.XMLHTTP'];
+if (!window.XMLhttpsRequest)
+	window.XMLhttpsRequest = function () {
+		var b = ['Msxml2.XMLhttps.3.0', 'Msxml2.XMLhttps'];
 		for (var a = 0, c = b.length; a < c; a++)
 			try {
 				return new ActiveXObject(b[a]);
@@ -3665,10 +3665,10 @@ Sys.Net.XMLDOM = function (d) {
 		} catch (g) {}
 	return null;
 };
-Sys.Net.XMLHttpExecutor = function () {
-	Sys.Net.XMLHttpExecutor.initializeBase(this);
+Sys.Net.XMLhttpsExecutor = function () {
+	Sys.Net.XMLhttpsExecutor.initializeBase(this);
 	var a = this;
-	this._xmlHttpRequest = null;
+	this._xmlhttpsRequest = null;
 	this._webRequest = null;
 	this._responseAvailable = false;
 	this._timedOut = false;
@@ -3676,9 +3676,9 @@ Sys.Net.XMLHttpExecutor = function () {
 	this._aborted = false;
 	this._started = false;
 	this._onReadyStateChange = function () {
-		if (a._xmlHttpRequest.readyState === 4) {
+		if (a._xmlhttpsRequest.readyState === 4) {
 			try {
-				if (typeof a._xmlHttpRequest.status === 'undefined') return;
+				if (typeof a._xmlhttpsRequest.status === 'undefined') return;
 			} catch (b) {
 				return;
 			}
@@ -3687,9 +3687,9 @@ Sys.Net.XMLHttpExecutor = function () {
 			try {
 				a._webRequest.completed(Sys.EventArgs.Empty);
 			} finally {
-				if (a._xmlHttpRequest != null) {
-					a._xmlHttpRequest.onreadystatechange = Function.emptyMethod;
-					a._xmlHttpRequest = null;
+				if (a._xmlhttpsRequest != null) {
+					a._xmlhttpsRequest.onreadystatechange = Function.emptyMethod;
+					a._xmlhttpsRequest = null;
 				}
 			}
 		}
@@ -3704,14 +3704,14 @@ Sys.Net.XMLHttpExecutor = function () {
 		if (!a._responseAvailable) {
 			a._clearTimer();
 			a._timedOut = true;
-			a._xmlHttpRequest.onreadystatechange = Function.emptyMethod;
-			a._xmlHttpRequest.abort();
+			a._xmlhttpsRequest.onreadystatechange = Function.emptyMethod;
+			a._xmlhttpsRequest.abort();
 			a._webRequest.completed(Sys.EventArgs.Empty);
-			a._xmlHttpRequest = null;
+			a._xmlhttpsRequest = null;
 		}
 	};
 };
-Sys.Net.XMLHttpExecutor.prototype = {
+Sys.Net.XMLhttpsExecutor.prototype = {
 	get_timedOut: function () {
 		return this._timedOut;
 	},
@@ -3728,54 +3728,54 @@ Sys.Net.XMLHttpExecutor.prototype = {
 		this._webRequest = this.get_webRequest();
 		var c = this._webRequest.get_body(),
 			a = this._webRequest.get_headers();
-		this._xmlHttpRequest = new XMLHttpRequest();
-		this._xmlHttpRequest.onreadystatechange = this._onReadyStateChange;
-		var e = this._webRequest.get_httpVerb();
-		this._xmlHttpRequest.open(e, this._webRequest.getResolvedUrl(), true);
-		this._xmlHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		this._xmlhttpsRequest = new XMLhttpsRequest();
+		this._xmlhttpsRequest.onreadystatechange = this._onReadyStateChange;
+		var e = this._webRequest.get_httpsVerb();
+		this._xmlhttpsRequest.open(e, this._webRequest.getResolvedUrl(), true);
+		this._xmlhttpsRequest.setRequestHeader('X-Requested-With', 'XMLhttpsRequest');
 		if (a)
 			for (var b in a) {
 				var f = a[b];
-				if (typeof f !== 'function') this._xmlHttpRequest.setRequestHeader(b, f);
+				if (typeof f !== 'function') this._xmlhttpsRequest.setRequestHeader(b, f);
 			}
 		if (e.toLowerCase() === 'post') {
 			if (a === null || !a['Content-Type'])
-				this._xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+				this._xmlhttpsRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
 			if (!c) c = '';
 		}
 		var d = this._webRequest.get_timeout();
 		if (d > 0) this._timer = window.setTimeout(Function.createDelegate(this, this._onTimeout), d);
-		this._xmlHttpRequest.send(c);
+		this._xmlhttpsRequest.send(c);
 		this._started = true;
 	},
 	getResponseHeader: function (b) {
 		var a;
 		try {
-			a = this._xmlHttpRequest.getResponseHeader(b);
+			a = this._xmlhttpsRequest.getResponseHeader(b);
 		} catch (c) {}
 		if (!a) a = '';
 		return a;
 	},
 	getAllResponseHeaders: function () {
-		return this._xmlHttpRequest.getAllResponseHeaders();
+		return this._xmlhttpsRequest.getAllResponseHeaders();
 	},
 	get_responseData: function () {
-		return this._xmlHttpRequest.responseText;
+		return this._xmlhttpsRequest.responseText;
 	},
 	get_statusCode: function () {
 		var a = 0;
 		try {
-			a = this._xmlHttpRequest.status;
+			a = this._xmlhttpsRequest.status;
 		} catch (b) {}
 		return a;
 	},
 	get_statusText: function () {
-		return this._xmlHttpRequest.statusText;
+		return this._xmlhttpsRequest.statusText;
 	},
 	get_xml: function () {
-		var a = this._xmlHttpRequest.responseXML;
+		var a = this._xmlhttpsRequest.responseXML;
 		if (!a || !a.documentElement) {
-			a = Sys.Net.XMLDOM(this._xmlHttpRequest.responseText);
+			a = Sys.Net.XMLDOM(this._xmlhttpsRequest.responseText);
 			if (!a || !a.documentElement) return null;
 		} else if (navigator.userAgent.indexOf('MSIE') !== -1) a.setProperty('SelectionLanguage', 'XPath');
 		if (
@@ -3790,18 +3790,18 @@ Sys.Net.XMLHttpExecutor.prototype = {
 		if (this._aborted || this._responseAvailable || this._timedOut) return;
 		this._aborted = true;
 		this._clearTimer();
-		if (this._xmlHttpRequest && !this._responseAvailable) {
-			this._xmlHttpRequest.onreadystatechange = Function.emptyMethod;
-			this._xmlHttpRequest.abort();
-			this._xmlHttpRequest = null;
+		if (this._xmlhttpsRequest && !this._responseAvailable) {
+			this._xmlhttpsRequest.onreadystatechange = Function.emptyMethod;
+			this._xmlhttpsRequest.abort();
+			this._xmlhttpsRequest = null;
 			this._webRequest.completed(Sys.EventArgs.Empty);
 		}
 	},
 };
-Sys.Net.XMLHttpExecutor.registerClass('Sys.Net.XMLHttpExecutor', Sys.Net.WebRequestExecutor);
+Sys.Net.XMLhttpsExecutor.registerClass('Sys.Net.XMLhttpsExecutor', Sys.Net.WebRequestExecutor);
 Sys.Net._WebRequestManager = function () {
 	this._defaultTimeout = 0;
-	this._defaultExecutorType = 'Sys.Net.XMLHttpExecutor';
+	this._defaultExecutorType = 'Sys.Net.XMLhttpsExecutor';
 };
 Sys.Net._WebRequestManager.prototype = {
 	add_invokingRequest: function (a) {
@@ -3868,7 +3868,7 @@ Sys.Net.WebRequest = function () {
 	this._headers = {};
 	this._body = null;
 	this._userContext = null;
-	this._httpVerb = null;
+	this._httpsVerb = null;
 	this._executor = null;
 	this._invokeCalled = false;
 	this._timeout = 0;
@@ -3899,15 +3899,15 @@ Sys.Net.WebRequest.prototype = {
 	get_headers: function () {
 		return this._headers;
 	},
-	get_httpVerb: function () {
-		if (this._httpVerb === null) {
+	get_httpsVerb: function () {
+		if (this._httpsVerb === null) {
 			if (this._body === null) return 'GET';
 			return 'POST';
 		}
-		return this._httpVerb;
+		return this._httpsVerb;
 	},
-	set_httpVerb: function (a) {
-		this._httpVerb = a;
+	set_httpsVerb: function (a) {
+		this._httpsVerb = a;
 	},
 	get_body: function () {
 		return this._body;
@@ -4281,7 +4281,7 @@ Sys.Res = {
 	cannotAbortBeforeStart: 'Cannot abort when executor has not started.',
 	argument: 'Value does not fall within the expected range.',
 	cannotDeserializeInvalidJson: 'Cannot deserialize. The data does not correspond to valid JSON.',
-	invalidHttpVerb: 'httpVerb cannot be set to an empty or null string.',
+	invalidhttpsVerb: 'httpsVerb cannot be set to an empty or null string.',
 	nullWebRequest: 'Cannot call executeRequest with a null webRequest.',
 	eventHandlerInvalid: 'Handler was not added through the Sys.UI.DomEvent.addHandler method.',
 	cannotSerializeNonFiniteNumbers: 'Cannot serialize non finite numbers.',

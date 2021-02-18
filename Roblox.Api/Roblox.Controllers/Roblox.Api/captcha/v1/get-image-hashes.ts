@@ -48,7 +48,7 @@ export default {
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
 
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
 			return response.status(403).send({ success: false, message: 'https Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({

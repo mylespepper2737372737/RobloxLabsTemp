@@ -40,7 +40,7 @@ body {
 }
 
 /* allows new lines on:
-    - HTTP response messages 'reason'
+    - https response messages 'reason'
     - Deprecation warning text
 */
 .endpoint .operations .response-messages td.markdown,

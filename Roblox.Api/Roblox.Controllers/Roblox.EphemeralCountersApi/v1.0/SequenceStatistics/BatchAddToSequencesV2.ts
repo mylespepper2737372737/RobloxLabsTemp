@@ -1,10 +1,12 @@
 /*
-	FileName: BatchAddToSequencesV2.ts
+	FileName: MultiIncrememnt.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Deprecated
+	Description: Increment multiple counters
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+
+	NOTICE DO NOT PUT CSRF PROTECTION ON THIS!
 
 	***
 
@@ -25,14 +27,13 @@
 	***
 */
 
-import { _dirname } from '../../../../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
+import { FASTLOG2 } from '../../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	method: 'all',
-	func: (
-		_req: any,
-		res: { status: (arg0: number) => { (): any; new (): any; sendFile: { (arg0: string): void; new (): any } } },
-	): void => {
-		res.status(503).sendFile(_dirname + '\\Roblox.ErrorViews\\Roblox.503.html');
+	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
+		FASTLOG2('EphemeralCounters', JSON.stringify(_req.query), true);
+		FASTLOG2('EphemeralCounters', JSON.stringify(_req.body), true);
+		res.send({ success: true, message: '' });
 	},
 };

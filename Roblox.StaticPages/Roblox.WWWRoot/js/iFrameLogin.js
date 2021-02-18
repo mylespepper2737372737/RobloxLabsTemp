@@ -13,7 +13,7 @@ Roblox.iFrameLogin = new (function () {
 	var CaptchaValidationError = '8';
 
 	function init() {
-		var requireRedirect = $(document.body).data('redirecttohttp');
+		var requireRedirect = $(document.body).data('redirecttohttps');
 		var captchaOn = $(document.body).data('captchaon');
 		var holdOnAnotherEnter = false;
 		var inValidUserName = true;

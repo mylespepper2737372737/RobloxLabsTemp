@@ -31,17 +31,58 @@ export default {
 	method: 'all',
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
-		a.get('https://auth.roblox.com' + _req.url, {
-			headers: { ..._req.headers, Host: 'auth.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
+		if (_req.method === 'GET') {
+			a.get('https://auth.roblox.com' + _req.url, {
+				headers: { ..._req.headers, Host: 'auth.roblox.com' },
 			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		} else if (_req.method === 'POST') {
+			a.post('https://auth.roblox.com' + _req.url, _req.body, {
+				headers: { ..._req.headers, Host: 'auth.roblox.com' },
+			})
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		} else if (_req.method === 'PATCH') {
+			a.patch('https://auth.roblox.com' + _req.url, _req.body, {
+				headers: { ..._req.headers, Host: 'auth.roblox.com' },
+			})
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		} else if (_req.method === 'DELETE') {
+			a.delete('https://auth.roblox.com' + _req.url, {
+				headers: { ..._req.headers, Host: 'auth.roblox.com' },
+			})
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		}
 	},
 };

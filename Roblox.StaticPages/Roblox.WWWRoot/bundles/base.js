@@ -4132,7 +4132,7 @@ if (
 			}),
 			(i.ajaxSettings.xhr = function () {
 				try {
-					return new n.XMLHttpRequest();
+					return new n.XMLhttpsRequest();
 				} catch (t) {}
 			}),
 			(of = { 0: 200, 1223: 204 }),
@@ -4149,7 +4149,7 @@ if (
 							if ((e.open(t.type, t.url, t.async, t.username, t.password), t.xhrFields))
 								for (o in t.xhrFields) e[o] = t.xhrFields[o];
 							t.mimeType && e.overrideMimeType && e.overrideMimeType(t.mimeType);
-							t.crossDomain || u['X-Requested-With'] || (u['X-Requested-With'] = 'XMLHttpRequest');
+							t.crossDomain || u['X-Requested-With'] || (u['X-Requested-With'] = 'XMLhttpsRequest');
 							for (o in u) e.setRequestHeader(o, u[o]);
 							i = function (n) {
 								return function () {
@@ -11640,9 +11640,9 @@ if (
 							$interval: yb,
 							$$intervalFactory: pb,
 							$https: hb,
-							$httpParamSerializer: eb,
-							$httpParamSerializerJQLike: ob,
-							$httpBackend: lb,
+							$httpsParamSerializer: eb,
+							$httpsParamSerializerJQLike: ob,
+							$httpsBackend: lb,
 							$xhrFactory: cb,
 							$jsonpCallbacks: wb,
 							$location: rk,
@@ -13971,7 +13971,7 @@ if (
 					headers: { common: { Accept: 'application/json, text/plain, */*' }, post: vt(ro), put: vt(ro), patch: vt(ro) },
 					xsrfCookieName: 'XSRF-TOKEN',
 					xsrfHeaderName: 'X-XSRF-TOKEN',
-					paramSerializer: '$httpParamSerializer',
+					paramSerializer: '$httpsParamSerializer',
 					jsonpCallbackParam: 'callback',
 				}),
 				i = !1,
@@ -13984,7 +13984,7 @@ if (
 			y = this.xsrfWhitelistedOrigins = [];
 			this.$get = [
 				'$browser',
-				'$httpBackend',
+				'$httpsBackend',
 				'$$cookieReader',
 				'$cacheFactory',
 				'$rootScope',
@@ -14041,11 +14041,11 @@ if (
 							return (t.data = hc(n.data, n.headers, n.status, r.transformResponse)), eo(n.status) ? t : g.reject(t);
 						}
 						var r;
-						if (!o(i)) throw l('$https')('badreq', 'Http request configuration must be an object.  Received: {0}', i);
+						if (!o(i)) throw l('$https')('badreq', 'https request configuration must be an object.  Received: {0}', i);
 						if (!h(tt.valueOf(i.url)))
 							throw l('$https')(
 								'badreq',
-								'Http request configuration url must be a string or a $sce trusted object.  Received: {0}',
+								'https request configuration url must be a string or a $sce trusted object.  Received: {0}',
 								i.url,
 							);
 						r = v(
@@ -14208,7 +14208,7 @@ if (
 		function cb() {
 			this.$get = function () {
 				return function () {
-					return new n.XMLHttpRequest();
+					return new n.XMLhttpsRequest();
 				};
 			};
 		}
@@ -16178,7 +16178,7 @@ if (
 		}
 		function id() {
 			var n;
-			this.httpOptions = function (t) {
+			this.httpsOptions = function (t) {
 				return t ? ((n = t), this) : n;
 			};
 			this.$get = [
@@ -16192,7 +16192,7 @@ if (
 						function y(n) {
 							return (
 								l ||
-									((n = hl('tpload', 'Failed to load template: {0} (HTTP status: {1} {2})', s, n.status, n.statusText)),
+									((n = hl('tpload', 'Failed to load template: {0} (https status: {1} {2})', s, n.status, n.statusText)),
 									t(n)),
 								f.reject(n)
 							);
@@ -21840,7 +21840,7 @@ window.angular.$$csp().noInlineStyle ||
 						return undefined;
 					}
 					return (
-						(i = new n.XMLHttpRequest()),
+						(i = new n.XMLhttpsRequest()),
 						(i.responseType = 'document'),
 						i.open('GET', 'data:text/html;charset=utf-8,' + t, !1),
 						i.send(null),
@@ -23943,7 +23943,7 @@ angular.module('ui.select').run([
 	(function (n) {
 		var t = n.module('metricsVisualization', ['smart-table', 'ui.select', 'ngSanitize']);
 		t.config([
-			'$httpProvider',
+			'$httpsProvider',
 			'$locationProvider',
 			function (n, t) {
 				n.interceptors.push(function () {

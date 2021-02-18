@@ -2,7 +2,7 @@
 	FileName: Roblox.SSL.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Wrapper for SSL servers and HTTP servers, used as a helper.
+	Description: Wrapper for SSL servers and https servers, used as a helper.
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -25,9 +25,9 @@
 	***
 */
 
-import http2 from 'spdy';
+import https2 from 'spdy';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { Server as httpServer } from 'http';
+import { Server as httpserver } from 'http';
 import { Server as httpsServer } from 'https';
 import dotenv from 'dotenv';
 import filestream from 'fs';
@@ -35,9 +35,9 @@ import { FastLog, FLog } from '../Roblox.Util/Roblox.Util.FastLog';
 import { _dirname, _sslname } from '../../Roblox.Constants/Roblox.Directories';
 
 dotenv.config({ path: _dirname + '\\.env' });
-export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpServer, httpsServer] => {
+export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpserver, httpsServer] => {
 	try {
-		const httpsServer = http2
+		const httpsServer = https2
 			.createServer(
 				{
 					cert: filestream.readFileSync(_sslname + '\\ST4.crt', 'utf-8'),
@@ -47,7 +47,7 @@ export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpSer
 				app,
 			)
 			.listen(443, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:443 Started`, name));
-		const httpServer = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `http://%s:80 Started`, name));
+		const httpServer = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:80 Started`, name));
 		return [httpServer, httpsServer];
 	} catch (err) {
 		throw new Error(err);

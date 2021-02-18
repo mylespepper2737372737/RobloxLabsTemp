@@ -47,7 +47,7 @@ export default {
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
 
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https') {
+		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https') {
 			FASTLOG6(FLog['CsrfAPIV1'], 'https was not given where it was required.', true);
 			return response.status(403).send({ success: false, message: 'https Required.' });
 		}

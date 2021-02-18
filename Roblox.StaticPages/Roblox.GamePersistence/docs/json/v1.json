@@ -407,7 +407,7 @@
 				"responses": {
 					"200": {
 						"x-nullable": true,
-						"description": "[{\n    \"Id\": 696519,\n    \"Name\": \"Orinthians\",\n    \"EmblemId\": 135321582,\n    \"EmblemUrl\": \"http://www.roblox.com/asset/?id=135321582\",\n    \"Rank\": 254,\n    \"Role\": \"Council\",\n    \"IsInClan\": false,\n    \"IsPrimary\": false\n}, {\n    \"Id\": 679727,\n    \"Name\": \"ROBLOX Community Staff and Forum Users\",\n    \"EmblemId\": 90708870,\n    \"EmblemUrl\": \"http://www.roblox.com/asset/?id=90708870\",\n    \"Rank\": 245,\n    \"Role\": \"Other Staff\",\n    \"IsInClan\": false,\n    \"IsPrimary\": false\n}]",
+						"description": "[{\n    \"Id\": 696519,\n    \"Name\": \"Orinthians\",\n    \"EmblemId\": 135321582,\n    \"EmblemUrl\": \"https://www.roblox.com/asset/?id=135321582\",\n    \"Rank\": 254,\n    \"Role\": \"Council\",\n    \"IsInClan\": false,\n    \"IsPrimary\": false\n}, {\n    \"Id\": 679727,\n    \"Name\": \"ROBLOX Community Staff and Forum Users\",\n    \"EmblemId\": 90708870,\n    \"EmblemUrl\": \"https://www.roblox.com/asset/?id=90708870\",\n    \"Rank\": 245,\n    \"Role\": \"Other Staff\",\n    \"IsInClan\": false,\n    \"IsPrimary\": false\n}]",
 						"schema": {
 							"type": "file"
 						}
@@ -434,7 +434,7 @@
 				"responses": {
 					"200": {
 						"x-nullable": true,
-						"description": "{\n    \"Name\":\"Group name\",\n    \"Id\":1234567,\n    \"Owner\":\n    {\n       \"Name\":\"owner\",\n       \"Id\":12345678\n    },\n    \"EmblemUrl\":\"http://www.roblox.com/asset/?id=12345678\",\n    \"Description\":\"\",\n    \"Roles\":[{\"Name\":\"Panem Citizens\",\"Rank\":1}]\n}",
+						"description": "{\n    \"Name\":\"Group name\",\n    \"Id\":1234567,\n    \"Owner\":\n    {\n       \"Name\":\"owner\",\n       \"Id\":12345678\n    },\n    \"EmblemUrl\":\"https://www.roblox.com/asset/?id=12345678\",\n    \"Description\":\"\",\n    \"Roles\":[{\"Name\":\"Panem Citizens\",\"Rank\":1}]\n}",
 						"schema": {
 							"type": "file"
 						}
@@ -470,7 +470,7 @@
 				"responses": {
 					"200": {
 						"x-nullable": true,
-						"description": "{\n\"Groups\":\n[\n{\"Name\":\"\",\n \"Id\":123456,\n \"Owner\":{\n   \"Name\":\"\",\n   \"Id\":23456789\n  },\n  \"EmblemUrl\":\"http://www.roblox.com/asset/?id=189284884\",\n  \"Description\":\"\",\n  \"Roles\":[{\"Name\":\"Advisor\",\"Rank\":1}]\n }\n],\n\"FinalPage\":true\n            }",
+						"description": "{\n\"Groups\":\n[\n{\"Name\":\"\",\n \"Id\":123456,\n \"Owner\":{\n   \"Name\":\"\",\n   \"Id\":23456789\n  },\n  \"EmblemUrl\":\"https://www.roblox.com/asset/?id=189284884\",\n  \"Description\":\"\",\n  \"Roles\":[{\"Name\":\"Advisor\",\"Rank\":1}]\n }\n],\n\"FinalPage\":true\n            }",
 						"schema": {
 							"type": "file"
 						}
@@ -506,7 +506,7 @@
 				"responses": {
 					"200": {
 						"x-nullable": true,
-						"description": "{\n\"Groups\":\n[\n{\"Name\":\"\",\n \"Id\":123456,\n \"Owner\":{\n   \"Name\":\"\",\n   \"Id\":23456789\n  },\n  \"EmblemUrl\":\"http://www.roblox.com/asset/?id=189284884\",\n  \"Description\":\"\",\n  \"Roles\":[{\"Name\":\"Advisor\",\"Rank\":1}]\n }\n],\n\"FinalPage\":true\n            }",
+						"description": "{\n\"Groups\":\n[\n{\"Name\":\"\",\n \"Id\":123456,\n \"Owner\":{\n   \"Name\":\"\",\n   \"Id\":23456789\n  },\n  \"EmblemUrl\":\"https://www.roblox.com/asset/?id=189284884\",\n  \"Description\":\"\",\n  \"Roles\":[{\"Name\":\"Advisor\",\"Rank\":1}]\n }\n],\n\"FinalPage\":true\n            }",
 						"schema": {
 							"type": "file"
 						}

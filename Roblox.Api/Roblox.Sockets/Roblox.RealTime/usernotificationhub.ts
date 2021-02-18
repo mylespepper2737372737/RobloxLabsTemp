@@ -20,13 +20,98 @@
 
 //{"C":"d-9042436C-B,0|z9cD,1|z8Ru,5|z9cE,1","M":[{"H":"UserNotificationHub","M":"notification","A":["FriendshipNotifications","{\"Type\":\"FriendshipRequested\",\"EventArgs\":{\"UserId1\":2377893199,\"UserId2\":158190828},\"SequenceNumber\":49}",0]}]}
 
+import evt from '../../Roblox.Helpers/Roblox.Helpers/Roblox.Events/Roblox.Notifications';
+import a from 'axios';
+import evts from 'events';
 import { IncomingMessage } from 'http';
 import ws from 'ws';
-import { FASTLOG3 } from '../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG3, FASTLOG6 } from '../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	dir: '/notifications/connect',
 	func: (socket: ws, req: IncomingMessage): void => {
+		let seq = 1;
+		const e = new evts.EventEmitter();
+		evt.subscribe(e);
+		e.on('message', (m, uid) => {
+			console.log(m, uid);
+			a.get('https://assetgame.roblox.com/Game/GetCurrentUser.ashx', {
+				headers: { Cookie: req.headers.cookie },
+			})
+				.then((re2) => {
+					let iscurrentuser = false;
+					uid.forEach((element) => {
+						console.log(element.toString() === re2.data, element === re2.data, element === parseInt(re2.data));
+						if (element === re2.data) iscurrentuser = true;
+					});
+					if (iscurrentuser) {
+						console.log(m);
+						socket.send(
+							JSON.stringify({
+								C: 'd-5D8C14A5-B,0|F2hw,1|F2BE,2|F2hx,1',
+								M: [
+									{
+										H: 'UserNotificationHub',
+										M: 'notification',
+										A: [
+											'ChatNotifications',
+											JSON.stringify({
+												ConversationId: m,
+												ActorTargetId: null,
+												ActorType: null,
+												Type: 'NewMessage',
+												SequenceNumber: 130 + seq,
+											}),
+											0,
+										],
+									},
+								],
+							}),
+						);
+						seq++;
+					}
+				})
+				.catch((e) => {
+					FASTLOG6('WebSockets', e);
+					return;
+				});
+		});
+		e.on('typing', (uid) => {
+			console.log(uid);
+			a.get('https://assetgame.roblox.com/Game/GetCurrentUser.ashx', {
+				headers: { Cookie: req.headers.cookie },
+			})
+				.then((re2) => {
+					let iscurrentuser = false;
+					uid.forEach((element) => {
+						console.log(element.toString() === re2.data, element === re2.data, element === parseInt(re2.data));
+						if (element === re2.data) iscurrentuser = true;
+					});
+					if (iscurrentuser) {
+						socket.send(
+							JSON.stringify({
+								C: 'd-5D8C14A5-B,0|F2hw,1|F2BE,3|F2hx,1',
+								M: [
+									{
+										H: 'UserNotificationHub',
+										M: 'notification',
+										A: [
+											'ChatNotifications',
+											'{"UserId":2377893199,"IsTyping":true,"ConversationId":9629329337,"ActorTargetId":null,"ActorType":null,"Type":"ParticipantTyping","SequenceNumber":133}',
+											0,
+										],
+									},
+								],
+							}),
+						);
+						seq++;
+					}
+				})
+				.catch((e) => {
+					FASTLOG6('WebSockets', e);
+					return;
+				});
+		});
 		FASTLOG3('WebSockets', 'Connection opened for realtime, echoeing back and closing');
 		socket.send(JSON.stringify({ C: 'd-9042436C-B,0|z9cD,0|z8Ru,0|z9cE,1', S: 1, M: [] }));
 		socket.send(

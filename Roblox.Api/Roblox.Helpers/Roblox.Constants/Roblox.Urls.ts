@@ -70,4 +70,6 @@ export default {
 	ROBLOX_BADGES: 'badges.sitetest4.robloxlabs.com',
 	ROBLOX_DEVELOPER_FORUM: 'devforum.sitetest4.robloxlabs.com',
 	ROBLOX_PREMIUM_FEATURES: 'premiumfeatures.sitetest4.robloxlabs.com',
+	ROBLOX_CLIENT_SETTINGS: 'clientsettings.sitetest4.robloxlabs.com',
+	ROBLOX_CLIENT_SETTINGS_CDN: 'clientsettingscdn.sitetest4.robloxlabs.com',
 };

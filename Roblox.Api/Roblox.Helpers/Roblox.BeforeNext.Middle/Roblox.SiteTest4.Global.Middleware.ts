@@ -34,7 +34,7 @@ import { FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Util/Roblox.U
 
 export const GlobalMiddleware = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
-	FASTLOG3(FLog['Protocol77'], `${req.method.toUpperCase()} REQUEST ON ${req.protocol}://${req.hostname}${req.url}`);
+	FASTLOG3(FLog['Protocol77'], `${req.method.toUpperCase()} REQUEST ON ${req.protocol}://${req.hostname}${req.url}`, false);
 	res.header(headers);
 	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest4.robloxlabs.com'))
 		res.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {
@@ -81,10 +81,21 @@ export const GlobalMiddleware = ((req, res, next) => {
 
 	// TODO: Validate AuthToken before we redirect, it may be hacked
 	if (
+		req.headers['user-agent'] &&
+		req.headers['user-agent'].includes('robloxlabsStudio') &&
+		req.hostname === 'www.sitetest4.robloxlabs.com' &&
+		req.path.toLowerCase() === '/'
+	) {
+		return res.redirect('http://www.sitetest4.robloxlabs.com/roblox.html');
+	}
+	if (
 		req.headers.cookie &&
 		!req.headers.cookie.includes('.ROBLOSECURITY') &&
 		(req.hostname === 'www.sitetest4.robloxlabs.com' || req.hostname === 'sitetest4.robloxlabs.com') &&
-		(req.path === '/home/' || req.path === '/home')
+		req.path.toLocaleLowerCase() !== '/login/' &&
+		req.path.toLocaleLowerCase() !== '/login' &&
+		req.path !== '/' &&
+		req.path !== '/roblox.html'
 	) {
 		return res.redirect('https://www.sitetest4.robloxlabs.com/Login/');
 	}
@@ -92,9 +103,10 @@ export const GlobalMiddleware = ((req, res, next) => {
 		req.headers.cookie &&
 		req.headers.cookie.includes('.ROBLOSECURITY') &&
 		req.hostname === 'www.sitetest4.robloxlabs.com' &&
-		(req.path === '/Login' || req.path === '/Login/' || req.path === '/')
+		(req.path.toLowerCase() === '/login' || req.path.toLowerCase() === '/login/' || req.path === '/')
 	) {
 		return res.redirect('https://www.sitetest4.robloxlabs.com/home');
 	}
+
 	next();
 }) as RequestHandler;

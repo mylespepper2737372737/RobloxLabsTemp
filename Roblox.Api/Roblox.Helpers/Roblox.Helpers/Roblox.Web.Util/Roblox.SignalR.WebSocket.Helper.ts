@@ -27,11 +27,11 @@
 
 import mapwss from '../../../Roblox.Global.Helpers/Roblox.MapWebsockets';
 import { _dirname } from '../../Roblox.Constants/Roblox.Directories';
-import { Server as httpServer } from 'http';
+import { Server as httpserver } from 'http';
 import { Server as httpsServer } from 'https';
 
-export const ROBLOX_SignalR_Config_Helper = async (httpServer: httpServer, httpsServer: httpsServer, dir: string, apiName: string) => {
-	await mapwss(httpServer, httpsServer, {
+export const ROBLOX_SignalR_Config_Helper = async (httpserver: httpserver, httpsServer: httpsServer, dir: string, apiName: string) => {
+	await mapwss(httpserver, httpsServer, {
 		path: _dirname + dir,
 		shouldHandleUpgrade: true,
 		apiName: apiName,

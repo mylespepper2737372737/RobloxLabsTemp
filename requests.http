@@ -1,4 +1,4 @@
-POST https://www.sitetest1.mfdlabs.com/Authentication/Login.fxhx
+POST http://www.sitetest1.mfdlabs.com/Authentication/Login.fxhx
 user-agent: mfdlabs-tests
 X-CSRF-TOKEN: E2dlGxP71VnijP/NIH6+8w==
 Content-Type: application/x-www-form-urlencoded
@@ -19,12 +19,12 @@ Content-Type: application/json
 
 ###
 
-POST https://api.sitetest1.mfdlabs.com/auth/v2/logout
+POST http://api.sitetest1.mfdlabs.com/auth/v2/logout
 Cookie: authId=7c808f20db4b3cad19cb69e943d7db6a38abebf9f7dd4de12648ed242c64959a
 
 ###
 
-POST https://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx
+POST http://www.sitetest1.mfdlabs.com/Authentication/Logout.fxhx
 user-agent: mfdlabs-tests
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
@@ -33,7 +33,7 @@ Cookie: authId=439b6795270193548e36e74e0324e8d3f55e28285cfd51aea7b473cc81bb15b0f
 
 ###
 
-POST https://www.sitetest1.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx
+POST http://www.sitetest1.mfdlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx
 user-agent: mfdlabs-tests
 X-CSRF-TOKEN: TestKey
 Content-Type: application/x-www-form-urlencoded
@@ -42,7 +42,7 @@ Cookie: authId=e0ef2805c095f52f19d6c8d9a4cbf3ea49b3542f08e67c5e111d0c809ac28961c
 
 ###
 
-POST https://api.sitetest1.mfdlabs.com/captcha/v1/get-image-hashes
+POST http://api.sitetest1.mfdlabs.com/captcha/v1/get-image-hashes
 user-agent: mfdlabs-tests
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -52,26 +52,26 @@ captchaHash=p7iXXdp6YiGcfeUbQ3nenbJenCEO6baJw8WU48o0E_fph0ciYvfXpYdtq94Jnv0LhpCC
 
 ###
 
-GET https://ti.sitetest1.mfdlabs.com/1.png
+GET http://ti.sitetest1.mfdlabs.com/1.png
 
 ###
 
-GET https://setup.sitetest1.mfdlabs.com/clientsettings/v1/get-flags?settingsGroup=Web
+GET http://setup.sitetest1.mfdlabs.com/clientsettings/v1/get-flags?settingsGroup=Web
 
 ###
 
-POST https://api.sitetest1.mfdlabs.com/csrf/v1/get-csrf-token
+POST http://api.sitetest1.mfdlabs.com/csrf/v1/get-csrf-token
 
 ###
 
 POST http://gamepersistence.roblox.com/v2/persistence/1/datastores
 
 ###
-GET https://premiumfeatures.roblox.com/v1/users/1/validate-membership-rcc
+GET http://premiumfeatures.roblox.com/v1/users/1/validate-membership-rcc
 
 ###
 
-GET https://www.mfdlabs.com/Logins
+GET http://www.mfdlabs.com/Logins
 
 ###
 POST http://localhost:64989
@@ -115,7 +115,7 @@ SOAPAction: "http://roblox.com/RequestThumbnail"
 
 ###
 
-POST https://api.roblox.com/reservedservers/create?placeId=5889263700 HTTP/1.1
+POST http://api.roblox.com/reservedservers/create?placeId=5889263700 HTTP/1.1
 Accept: */*
 Cookie: RBXSessionTracker=sessionid=3552f012-963c-4d10-8c2b-84ae9dd8c6cc; RBXEventTrackerV2=CreateDate=2/3/2021 11:00:14 AM&rbxid=156632429&browserid=77573487973; .ROBLOSECURITY=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_17C72C899CBC3234814E29DAE3D53CE5A8DA38A31F571A5BB5789F6F46AC3465C9157876C2EEEF8BC6998349A1F0D3AF00C29937F11D081954528433BE031487D7B43B08E7E5CB5C50291D63EDF48D26BD3F721D1A33CD3C29CA21C6F78E1B06A29C02F9DF0A67AC9837CC0D0088D9438D1FA9B60B037033D625F213451919E1483C6C1944E0A8983E29BB261342ECD97208174D72304D14C52A200ABFBBE25B0C229B5DE5C95CA92F1BAC3D96E8D69B1CE0C191F237120153DCEF00528C7C741E56B7439F71DB5F2FC80C5554E427FCFE55E234B1FAB827CA61D7ECA6014A7701A7903773725B86DB61D69402169B2E4F260416710FEC58559FB0DC2A63C07DE14688019029D318631BA097736BD90F226EBF62F14BECD8939C445607448C09D4B2F1D1; .RBXIDCHECK=ea781d95-9459-47c5-8a8c-b4bd46533bfb,3c66bb46-dd98-4c4b-85ff-ded47f1c657a; RBXSource=rbx_acquisition_time=2/3/2021 11:00:14 AM&rbx_acquisition_referrer=&rbx_medium=Direct&rbx_source=&rbx_campaign=&rbx_adgroup=&rbx_keyword=&rbx_matchtype=&rbx_send_info=0; GuestData=UserID=-54374785; rbx-ip2=; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiMjZkNTA5ZS04YWYwLTQzZmYtODVjMi01NmQ1MmEwYzA3MGEiLCJzdWIiOjY4MjE3MDR9.pyKMBt4u975QFvkpDVpe64FNTQvZvkc79nLntGpeYTY
 Accept-Encoding: gzip, deflate
@@ -139,8 +139,8 @@ Roblox-Game-Id: Test
 
 ###
 
-POST https://messagerouter.api.roblox.com/v1/router/signalr
+POST http://messagerouter.api.roblox.com/v1/router/signalr
 
 ###
 
-GET https://dosarrest.origin.corp.roblox.com
+GET http://dosarrest.origin.corp.roblox.com

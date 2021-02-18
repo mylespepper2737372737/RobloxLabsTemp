@@ -62,7 +62,7 @@ export default {
 				message: `The requested resource does not support https method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
 			return response.status(403).send({ code: 403, message: 'https Required.' });
 		const data = JSON.parse(
 			filestream.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),

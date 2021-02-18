@@ -26,11 +26,41 @@
 */
 
 import a from 'axios';
+import evt from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Events/Roblox.Notifications';
+import { FASTLOG6 } from '../../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	method: 'all',
 	func: async (_req, res) => {
+		// evt.push(_req.body.conversationId);
 		if (_req.method === 'OPTIONS') return res.send();
+		a.get('https://assetgame.roblox.com/Game/GetCurrentUser.ashx', {
+			headers: { Cookie: _req.headers.cookie },
+		})
+			.then((re2) => {
+				console.log(re2.data);
+				a.get('https://chat.roblox.com/v2/get-conversations?conversationIds=' + _req.body.conversationId, {
+					headers: { Cookie: _req.headers.cookie },
+				})
+					.then((re) => {
+						console.log(re.data);
+						const ids = [];
+						re.data[0].participants.forEach((element) => {
+							console.log(element.targetId.toString() !== re2.data, element.targetId !== parseInt(re2.data));
+							if (element.targetId !== parseInt(re2.data)) ids.push(element.targetId);
+						});
+						console.log(ids);
+						// evt.push(_req.body.conversationId, ids);
+					})
+					.catch((e) => {
+						FASTLOG6('chat', e);
+						evt.push(null, null, null);
+					});
+			})
+			.catch((e) => {
+				FASTLOG6('chat', e);
+				evt.push(null, null, null);
+			});
 		a.post('https://chat.roblox.com' + _req.url, _req.body, {
 			headers: { ..._req.headers, Host: 'chat.roblox.com' },
 		})

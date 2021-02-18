@@ -27,6 +27,7 @@
 
 import dotenv from 'dotenv';
 import { _dirname } from '../../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
+import a from 'axios';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
@@ -34,9 +35,21 @@ export default {
 	method: 'all',
 	func: (req, res): void => {
 		if (req.query.id === '1') {
-			res.redirect('https://static.sitetest4.robloxlabs.com/rbx/1.rbxlx');
+			res.redirect('http://static.sitetest4.robloxlabs.com/rbx/1.rbxlx');
 			return;
 		}
-		res.redirect(`https://assetdelivery.sitetest4.robloxlabs.com/v1${req.url}`);
+		a.get('https://assetdelivery.roblox.com/v1' + req.url, {
+			headers: { ...req.headers, Host: 'www.roblox.com' },
+		})
+			.then((re) => {
+				// const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
+				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+				return res.header(newheaders).send(re.data);
+			})
+			.catch((e) => {
+				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+				return res.header(newheaders).status(e.response.status).send(e.response.data);
+			});
 	},
 };

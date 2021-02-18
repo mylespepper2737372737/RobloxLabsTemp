@@ -198,7 +198,7 @@ RobloxLaunch.StartGame = function (visitUrl, type, authenticationUrl, authentica
 };
 
 RobloxLaunch.StartGameWork = function (visitUrl, type, authenticationUrl, authenticationTicket, isEdit) {
-	//Fix for the HttpSendRequest,err=0x2F7E
+	//Fix for the httpsendRequest,err=0x2F7E
 	authenticationUrl = authenticationUrl.replace('https://', 'https://');
 
 	if (visitUrl.indexOf('https') >= 0) {
@@ -301,9 +301,9 @@ RobloxLaunch.StartGameWork = function (visitUrl, type, authenticationUrl, authen
 			return false;
 		}
 		try {
-			var y = new ActiveXObject('Microsoft.XMLHTTP');
+			var y = new ActiveXObject('Microsoft.XMLhttps');
 		} catch (err3) {
-			message = 'FailedXMLHTTP/' + message;
+			message = 'FailedXMLhttps/' + message;
 		}
 
 		if (!Roblox.Client.isRobloxBrowser()) {
@@ -413,9 +413,9 @@ RobloxLaunch.StartAppWork = function (startScriptUrl, authenticationUrl, authent
 			return false;
 		}
 		try {
-			new ActiveXObject('Microsoft.XMLHTTP');
+			new ActiveXObject('Microsoft.XMLhttps');
 		} catch (err3) {
-			message = 'FailedXMLHTTP/' + message;
+			message = 'FailedXMLhttps/' + message;
 		}
 		if (!Roblox.Client.isRobloxBrowser()) {
 			window.location = RobloxLaunch.launchGamePage;

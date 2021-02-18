@@ -50,7 +50,7 @@ export default {
 				new (): any;
 				send: { (arg0: { code: number; message: string; userfacingmessage?: string }): any; new (): any };
 				cookie: {
-					(arg0: string, arg1: string, arg2: { domain: string; expires: Date; httpOnly: boolean }): {
+					(arg0: string, arg1: string, arg2: { domain: string; expires: Date; httpsOnly: boolean }): {
 						send: (arg3: any) => void;
 					};
 					new (): any;
@@ -66,7 +66,7 @@ export default {
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
 			return response.status(403).send({ code: 403, message: 'https Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
@@ -140,7 +140,7 @@ export default {
 					.cookie('AuthToken', AuthToken, {
 						domain: 'sitetest4.robloxlabs.com',
 						expires: new Date('2050'),
-						httpOnly: false,
+						httpsOnly: false,
 					})
 					.send({
 						success: true,

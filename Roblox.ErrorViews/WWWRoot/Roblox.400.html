@@ -134,7 +134,7 @@ Roblox.BundleDetector = (function () {
 
         getCdnProviderName: function (bundleUrl, callBack) {
             if (Roblox.BundleVerifierConstants.cdnLoggingEnabled) {
-                var xhr = new XMLHttpRequest();
+                var xhr = new XMLhttpsRequest();
                 xhr.open('GET', bundleUrl, true);
 
                 xhr.onreadystatechange = function () {
@@ -178,7 +178,7 @@ Roblox.BundleDetector = (function () {
                 return;
             }
 
-            var xhr = new XMLHttpRequest();
+            var xhr = new XMLhttpsRequest();
             var metricsApiUrl = (Roblox.EnvironmentUrls && Roblox.EnvironmentUrls.metricsApi) || "https://metrics.sitetest4.robloxlabs.com";
 
             xhr.open("POST", metricsApiUrl + "/v1/bundle-metrics/report", true);
@@ -198,7 +198,7 @@ Roblox.BundleDetector = (function () {
             var deviceType = Roblox.BundleVerifierConstants.deviceType;
             sequenceName += "_" + deviceType;
 
-            var xhr = new XMLHttpRequest();
+            var xhr = new XMLhttpsRequest();
             xhr.open('POST', '/game/report-stats?name=' + sequenceName + "&value=" + value, true);
             xhr.withCredentials = true;
             xhr.send();
@@ -208,7 +208,7 @@ Roblox.BundleDetector = (function () {
             var deviceType = Roblox.BundleVerifierConstants.deviceType;
             ephemeralCounterName += "_" + deviceType;
             //log to ephemeral counters - taken from eventTracker.js
-            var xhr = new XMLHttpRequest();
+            var xhr = new XMLhttpsRequest();
             xhr.open('POST', '/game/report-event?name=' + ephemeralCounterName, true);
             xhr.withCredentials = true;
             xhr.send();
@@ -221,7 +221,7 @@ Roblox.BundleDetector = (function () {
             var deviceType = Roblox.BundleVerifierConstants.deviceType;
             ctx += "_" + deviceType;
             //try and grab performance data.
-            //Note that this is the performance of the xmlhttprequest rather than the original resource load.
+            //Note that this is the performance of the xmlhttpsrequest rather than the original resource load.
             var duration = 0;
             if (window.performance) {
                 var perfTiming = window.performance.getEntriesByName(failedBundle);
@@ -242,7 +242,7 @@ Roblox.BundleDetector = (function () {
 
         getCdnInfo: function (failedBundle, ctx, fileType) {
             if (Roblox.BundleVerifierConstants.cdnLoggingEnabled) {
-                var xhr = new XMLHttpRequest();
+                var xhr = new XMLhttpsRequest();
                 var counter = this.counterNames;
                 xhr.open('GET', failedBundle, true);
                 var cdnProvider;

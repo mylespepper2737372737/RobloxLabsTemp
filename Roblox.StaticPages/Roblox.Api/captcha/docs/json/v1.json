@@ -35,7 +35,7 @@
 						"description": "The service is currently disabled or is experiencing an attack"
 					},
 					"403": {
-						"description": "Token Validation Failed.\nHTTPS Required."
+						"description": "Token Validation Failed.\nhttps Required."
 					},
 					"405": {
 						"description": "The requested resource does not support https method '{request.method}'."

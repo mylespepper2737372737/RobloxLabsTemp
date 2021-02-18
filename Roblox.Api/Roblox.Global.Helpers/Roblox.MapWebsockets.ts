@@ -28,8 +28,8 @@
 import ws from 'ws';
 import filestream from 'fs';
 import { _dirname } from '../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
-import { IncomingMessage, Server as httpServer } from 'http';
-import { FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
+import { IncomingMessage, Server as httpserver } from 'http';
+import { FASTLOG2, FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 import { Server as httpsServer } from 'https';
 
 interface wssOpts {
@@ -40,22 +40,23 @@ interface wssOpts {
 }
 
 export = (
-	httpServer: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
+	httpserver: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
 	httpsServer?: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
 	opts?: { path: filestream.PathLike; apiName: string; logSetups: any } | wssOpts,
 ): Promise<void> => {
 	return new Promise<void>((resolve: (value?: PromiseLike<void> | void) => void, reject: (reason?: any) => void) => {
-		let Controllers: string[];
+		let Sockets: string[];
 		const maps: {
 			dir: string;
 			func: (request: ws, Response: IncomingMessage) => unknown;
 		}[] = [];
 		try {
-			Controllers = filestream.readdirSync((opts !== undefined ? opts.path : _dirname + '\\sockets') || _dirname + '\\sockets');
+			Sockets = filestream.readdirSync((opts !== undefined ? opts.path : _dirname + '\\sockets') || _dirname + '\\sockets');
 		} catch (err) {
 			return FASTLOG6(FLog[opts.apiName], err.message, true);
 		}
-		Controllers.forEach((v) => {
+		FASTLOG2(opts.apiName, `https://${opts.apiName} has ${Sockets.length} websocket(s)`, true);
+		Sockets.forEach((v) => {
 			if (!v.includes('.js.map') || !v.includes('.d.ts')) {
 				let map: {
 					default: { dir: string; func: (request: ws, Response: IncomingMessage) => unknown };
@@ -91,7 +92,7 @@ export = (
 					}
 				});
 				if (!isValid) {
-					s.write('HTTP/3.0 404 Socket Not Found\r\n\r\n');
+					s.write('https/3.0 404 Socket Not Found\r\n\r\n');
 					return s.destroy();
 				}
 			});
@@ -104,9 +105,9 @@ export = (
 				});
 			});
 		}
-		const wsServer = new ws.Server({ server: <httpServer>httpServer, port: 5000, host: opts.apiName });
+		const wsServer = new ws.Server({ server: <httpserver>httpserver, port: 5000, host: opts.apiName });
 		if (opts.logSetups) FASTLOG3(FLog[opts.apiName], `Mapping UPGRADE http://${opts.apiName}:5000`);
-		httpServer.on('upgrade', (r, s, h) => {
+		httpserver.on('upgrade', (r, s, h) => {
 			let isValid = false;
 			maps.forEach((v) => {
 				if (r.url.split('?').shift() === v.dir) {
@@ -117,7 +118,7 @@ export = (
 				}
 			});
 			if (!isValid) {
-				s.write('HTTP/3.0 404 Socket Not Found\r\n\r\n');
+				s.write('https/3.0 404 Socket Not Found\r\n\r\n');
 				return s.destroy();
 			}
 		});

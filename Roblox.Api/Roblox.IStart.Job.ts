@@ -137,6 +137,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_BADGES']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_CDN']);
 
 (async () => {
 	try {
@@ -184,6 +186,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 		const ROBLOX_BADGES_SERVER = IServer();
 		const ROBLOX_DEVELOPER_FORUM_SERVER = IServer();
 		const ROBLOX_PREMIUM_FEATURES_SERVER = IServer();
+		const ROBLOX_CLIENT_SETTINGS_SERVER = IServer();
+		const ROBLOX_CLIENT_SETTINGS_CDN_SERVER = IServer();
 
 		ROBLOX_WWW_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_STATIC_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -227,6 +231,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 		ROBLOX_BADGES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_DEVELOPER_FORUM_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_PREMIUM_FEATURES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_CLIENT_SETTINGS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_CLIENT_SETTINGS_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 
 		await Roblox.Api.Library.IStartup.Configure(
 			Roblox.Api.Helpers.Config.CONFIG(
@@ -282,7 +288,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 				'\\Roblox.StaticPages\\Roblox.WWWRoot',
 				'\\Implementation\\Roblox.Controllers\\Roblox.WWWRoot',
 				Roblox.Api.Constants.URLS['ROBLOX_WWW'],
-				true,
+				false,
 			),
 		);
 		await Roblox.Api.Library.IStartup.Configure(
@@ -569,6 +575,22 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 				Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES'],
 			),
 		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_CLIENT_SETTINGS_SERVER,
+				'\\Roblox.StaticPages\\Roblox.ClientSettings',
+				'\\Implementation\\Roblox.Controllers\\Roblox.ClientSettings',
+				Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_CLIENT_SETTINGS_CDN_SERVER,
+				'\\Roblox.StaticPages\\Roblox.ClientSettingsCDN',
+				'\\Implementation\\Roblox.Controllers\\Roblox.ClientSettingsCDN',
+				Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_CDN'],
+			),
+		);
 
 		ROBLOX_API_SERVER.use(ROBLOX_404_API);
 		ROBLOX_STATIC_CDN_SERVER.use(ROBLOX_404_STATIC_CDN);
@@ -611,12 +633,14 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 		ROBLOX_BADGES_SERVER.use(ROBLOX_404_API);
 		ROBLOX_DEVELOPER_FORUM_SERVER.use(ROBLOX_404_API);
 		ROBLOX_PREMIUM_FEATURES_SERVER.use(ROBLOX_404_API);
+		ROBLOX_CLIENT_SETTINGS_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		ROBLOX_CLIENT_SETTINGS_CDN_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 
 		await (async () => {
 			try {
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_IMAGES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_IMAGES']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_WWW_SERVER, Roblox.Api.Constants.URLS['ROBLOX_WWW']);
-				const [ROBLOX_API_HTTPS] = Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
 					ROBLOX_API_SERVER,
 					Roblox.Api.Constants.URLS['ROBLOX_API'],
 				);
@@ -707,9 +731,17 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 					ROBLOX_PREMIUM_FEATURES_SERVER,
 					Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES'],
 				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_CLIENT_SETTINGS_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS'],
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_CLIENT_SETTINGS_CDN_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_CDN'],
+				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
+					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,
-					undefined,
 					'\\Implementation\\Roblox.Sockets\\Roblox.Api',
 					Roblox.Api.Constants.URLS.ROBLOX_API,
 				);

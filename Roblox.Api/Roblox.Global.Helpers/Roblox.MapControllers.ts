@@ -26,7 +26,7 @@
 */
 
 import { Express as IApplicationBuilder, Request, Response } from 'express-serve-static-core';
-import { FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG2, FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 import { _dirname } from '../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
 import { walk } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.FileWalker';
 import filestream from 'fs';
@@ -41,12 +41,14 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 		const directory = (opts !== undefined ? opts.path : _dirname + '\\Controllers') || _dirname + '\\Controllers';
 		if (!filestream.existsSync(directory)) return resumeFunc();
 		const r = walk(directory);
+		let count = 0;
 		r.forEach((v) => {
 			let name = v.replace(directory, '');
 			if (name.match(/.+\.js/)) {
 				name = name.replace('.js', '');
 				name = name.split('_P-').join(':');
 				name = name.split('\\').join('/');
+				if (name === '/__pageIndex') name = '/';
 				let map: {
 					default: { func: (request: Request, Response: Response) => unknown; method: string };
 				};
@@ -63,7 +65,7 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 					else return;
 					if (map.default.method) method = map.default.method.toLowerCase();
 					else return;
-
+					count++;
 					try {
 						if (method === 'get') {
 							if (opts.logSetups)
@@ -116,6 +118,7 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 				}
 			}
 		});
+		FASTLOG2(opts.apiName, `https://${opts.apiName} has ${count} controller(s)`, true);
 		resumeFunc();
 	});
 };
