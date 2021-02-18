@@ -16,7 +16,7 @@
 
 	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest4.robloxlabs.com:443 and https://*.sitetest4.robloxlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers, silence with --no-deprecation
-	FIXME http redirection is broken, use a different module.
+	FIXME https redirection is broken, use a different module.
 
 	***
 
@@ -136,6 +136,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GROUPS']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_BADGES']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
 
 (async () => {
 	try {
@@ -182,6 +183,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 		const ROBLOX_ACCOUNT_INFORMATION_SERVER = IServer();
 		const ROBLOX_BADGES_SERVER = IServer();
 		const ROBLOX_DEVELOPER_FORUM_SERVER = IServer();
+		const ROBLOX_PREMIUM_FEATURES_SERVER = IServer();
 
 		ROBLOX_WWW_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_STATIC_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -224,6 +226,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 		ROBLOX_ACCOUNT_INFORMATION_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_BADGES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_DEVELOPER_FORUM_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_PREMIUM_FEATURES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 
 		await Roblox.Api.Library.IStartup.Configure(
 			Roblox.Api.Helpers.Config.CONFIG(
@@ -558,6 +561,15 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 			),
 		);
 
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_PREMIUM_FEATURES_SERVER,
+				'\\Roblox.StaticPages\\Roblox.PremiumFeatures',
+				'\\Implementation\\Roblox.Controllers\\Roblox.PremiumFeatures',
+				Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES'],
+			),
+		);
+
 		ROBLOX_API_SERVER.use(ROBLOX_404_API);
 		ROBLOX_STATIC_CDN_SERVER.use(ROBLOX_404_STATIC_CDN);
 		ROBLOX_JS_SERVER.use(ROBLOX_404_JS);
@@ -598,12 +610,13 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 		ROBLOX_ACCOUNT_INFORMATION_SERVER.use(ROBLOX_404_API);
 		ROBLOX_BADGES_SERVER.use(ROBLOX_404_API);
 		ROBLOX_DEVELOPER_FORUM_SERVER.use(ROBLOX_404_API);
+		ROBLOX_PREMIUM_FEATURES_SERVER.use(ROBLOX_404_API);
 
 		await (async () => {
 			try {
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_IMAGES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_IMAGES']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_WWW_SERVER, Roblox.Api.Constants.URLS['ROBLOX_WWW']);
-				const [ROBLOX_API_HTTP] = Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+				const [ROBLOX_API_HTTPS] = Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
 					ROBLOX_API_SERVER,
 					Roblox.Api.Constants.URLS['ROBLOX_API'],
 				);
@@ -674,7 +687,10 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_ECONOMY_SERVER, Roblox.Api.Constants.URLS['ROBLOX_ECONOMY']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_GAMES_SERVER, Roblox.Api.Constants.URLS['ROBLOX_GAMES']);
-				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_REAL_TIME_SERVER, Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME']);
+				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_REAL_TIME_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME'],
+				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_THUMB_NAILS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_THUMB_NAILS']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_PRESENCE_SERVER, Roblox.Api.Constants.URLS['ROBLOX_PRESENCE']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_GROUPS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_GROUPS']);
@@ -687,11 +703,21 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
 					ROBLOX_DEVELOPER_FORUM_SERVER,
 					Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM'],
 				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_PREMIUM_FEATURES_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES'],
+				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
-					ROBLOX_API_HTTP,
+					ROBLOX_API_HTTPS,
 					undefined,
 					'\\Implementation\\Roblox.Sockets\\Roblox.Api',
 					Roblox.Api.Constants.URLS.ROBLOX_API,
+				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
+					ROBLOX_REAL_TIME_HTTP,
+					ROBLOX_REAL_TIME_HTTPS,
+					'\\Implementation\\Roblox.Sockets\\Roblox.RealTime',
+					Roblox.Api.Constants.URLS.ROBLOX_REAL_TIME,
 				);
 			} catch (e) {
 				return Roblox.Api.Helpers.Util.FastLog.FASTLOG2(

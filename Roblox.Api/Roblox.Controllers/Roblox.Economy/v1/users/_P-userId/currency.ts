@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		return res.send({ robux: 299213112 });
+		return res.send({ robux: 2992131128712 });
 	},
 };

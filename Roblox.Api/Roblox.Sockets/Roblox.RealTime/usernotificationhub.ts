@@ -18,12 +18,39 @@
 	***
 */
 
-// import sr from 'signalr-client';
+//{"C":"d-9042436C-B,0|z9cD,1|z8Ru,5|z9cE,1","M":[{"H":"UserNotificationHub","M":"notification","A":["FriendshipNotifications","{\"Type\":\"FriendshipRequested\",\"EventArgs\":{\"UserId1\":2377893199,\"UserId2\":158190828},\"SequenceNumber\":49}",0]}]}
+
+import { IncomingMessage } from 'http';
 import ws from 'ws';
+import { FASTLOG3 } from '../../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	dir: '/notifications/connect',
-	func: (socket: ws): void => {
-		// const c = new sr.client(socket.url, 'usernotificationhub');
+	func: (socket: ws, req: IncomingMessage): void => {
+		FASTLOG3('WebSockets', 'Connection opened for realtime, echoeing back and closing');
+		socket.send(JSON.stringify({ C: 'd-9042436C-B,0|z9cD,0|z8Ru,0|z9cE,1', S: 1, M: [] }));
+		socket.send(
+			JSON.stringify({
+				C: 'd-9042436C-B,0|z9cD,1|z8Ru,0|z9cE,1',
+				M: [
+					{
+						H: 'UserNotificationHub',
+						M: 'subscriptionStatus',
+						A: [
+							'Subscribed',
+							'{"MillisecondsBeforeHandlingReconnect":0,"SequenceNumber":4852,"NamespaceSequenceNumbers":{"GameCloseNotifications":286,"CloudEditChatNotifications":152,"AuthenticationNotifications":30,"ChatNotifications":86,"FriendshipNotifications":48,"UserTagChangeNotification":3,"AvatarAssetOwnershipNotifications":3,"NotificationStream":13,"GameFavoriteNotifications":1}}',
+						],
+					},
+				],
+			}),
+		);
+		let r = setInterval(() => {
+			socket.send('{}');
+		}, 10000);
+		socket.on('close', () => {
+			r.unref();
+			r = undefined;
+			socket.close();
+		});
 	},
 };

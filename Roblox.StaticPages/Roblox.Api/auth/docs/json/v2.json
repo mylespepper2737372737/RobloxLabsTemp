@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v2", "title": "Auth Api v2" },
 	"host": "api.sitetest4.robloxlabs.com",
-	"schemes": ["http", "http"],
+	"schemes": ["https", "https"],
 	"paths": {
 		"/auth/v2/login": {
 			"post": {
@@ -36,7 +36,7 @@
 						"description": "Authorization has been denied for this request."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"400": {
 						"description": "Body was null.\nRequest body was given but no/incorrect Content-Type was given.\nThe body provided was invalid."
@@ -48,7 +48,7 @@
 				"properties": {
 					"internal": false,
 					"metricIds": ["CSRF:getToken"],
-					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx"
+					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest4.robloxlabs.com/Authentication/Login.ashx"
 				},
 				"deprecated": true
 			}
@@ -75,7 +75,7 @@
 						"description": "Authorization has been denied for this request."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"404": {
 						"description": "User not found."
@@ -84,7 +84,7 @@
 				"properties": {
 					"internal": false,
 					"metricIds": ["CSRF:getToken"],
-					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest4.robloxlabs.com/Authentication/Logout.fxhx"
+					"obsoleteMessage": "Deprecated for the WWWAuthAPIV1, use https://www.sitetest4.robloxlabs.com/Authentication/Logout.ashx"
 				},
 				"deprecated": true
 			}

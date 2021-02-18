@@ -49,16 +49,16 @@ export default {
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
 
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http') {
-			FASTLOG6(FLog['ClientSettingsAPIV1'], 'http was not given where it was required.', true);
-			return response.status(403).send({ success: false, message: 'http Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https') {
+			FASTLOG6(FLog['ClientSettingsAPIV1'], 'https was not given where it was required.', true);
+			return response.status(403).send({ success: false, message: 'https Required.' });
 		}
 
 		if (request.method !== 'GET') {
 			FASTLOG6(FLog['ClientSettingsAPIV1'], `${request.method} is not supported`);
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support http method '${request.method}'.`,
+				message: `The requested resource does not support https method '${request.method}'.`,
 			});
 		}
 

@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v1.0", "title": "Ephemeral Counters Api v1.0" },
 	"host": "ephemeralcounters.api.sitetest4.robloxlabs.com",
-	"schemes": ["http", "http"],
+	"schemes": ["https", "https"],
 	"paths": {},
 	"definitions": {}
 }

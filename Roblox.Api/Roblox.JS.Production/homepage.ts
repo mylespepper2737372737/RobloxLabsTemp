@@ -25,12 +25,12 @@
 	***
 */
 
-if (document.location.protocol !== 'http:')
+if (document.location.protocol !== 'https:')
 	document.location.replace('https://' + document.location.href.toString().split('https://').join(''));
 const d = () => {
 	$.ajax({
 		dataType: 'json',
-		url: 'https://www.sitetest4.robloxlabs.com/Authentication/Logout.fxhx',
+		url: 'https://www.sitetest4.robloxlabs.com/Authentication/Logout.ashx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
 		success: () => {
@@ -47,7 +47,7 @@ const d = () => {
 };
 const x = () => {
 	$.ajax({
-		url: 'https://www.sitetest4.robloxlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx',
+		url: 'https://www.sitetest4.robloxlabs.com/Authentication/ClearAllSessionsAndReauthenticate.ashx',
 		method: 'POST',
 		xhrFields: { withCredentials: true },
 		success: () => {

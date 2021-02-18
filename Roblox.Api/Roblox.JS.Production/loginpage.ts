@@ -25,11 +25,11 @@
 	***
 */
 
-if (document.location.protocol !== 'http:')
+if (document.location.protocol !== 'https:')
 	document.location.replace('https://' + document.location.href.toString().split('https://').join(''));
 const c = (username: string, password: string): void => {
 	$.ajax({
-		url: 'https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx',
+		url: 'https://www.sitetest4.robloxlabs.com/Authentication/Login.ashx',
 		data: 'cvalue=' + username + '&password=' + password,
 		contentType: 'application/x-www-form-urlencoded',
 		method: 'POST',

@@ -16,7 +16,7 @@
 
 	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest4.robloxlabs.com:443 and https://*.sitetest4.robloxlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers, silence with --no-deprecation
-	FIXME http redirection is broken, use a different module.
+	FIXME https redirection is broken, use a different module.
 
 	***
 

@@ -86,7 +86,7 @@ Roblox.iFrameLogin = new (function () {
 			var onSuccess = (onError = function (result, context) {
 				if (result.IsValid) {
 					var topUrl;
-					//Redirect based on http/http
+					//Redirect based on https/https
 					if (requireRedirect) {
 						topUrl = $(document.body).data('parent-url');
 					} else {

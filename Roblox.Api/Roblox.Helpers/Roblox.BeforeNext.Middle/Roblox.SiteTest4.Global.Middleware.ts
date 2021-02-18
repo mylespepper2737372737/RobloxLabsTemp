@@ -57,24 +57,26 @@ export const GlobalMiddleware = ((req, res, next) => {
 	} catch (e) {
 		FASTLOG6('tasks', `Message: ${e.message}, Stack: ${e.stack}`, true);
 	}
-	try {
-		let cookie = req.headers.cookie;
-		if (cookie === undefined) cookie = '';
-		cookie = (cookie as string).split(';').find((AuthToken) => {
-			return AuthToken.startsWith(' AuthToken') || AuthToken.startsWith('AuthToken');
-		});
-		if (
-			!CreateOrGetXsrfSession(
-				typeof cookie !== 'string' ? '' : cookie.split('=')[1],
-				req.ip,
-				req.headers['x-csrf-token'],
-				res,
-				req.hostname === 'api.sitetest4.robloxlabs.com' && req.path === '/csrf/v1/get-csrf-token',
+	if (req.method !== 'GET') {
+		try {
+			let cookie = req.headers.cookie;
+			if (cookie === undefined) cookie = '';
+			cookie = (cookie as string).split(';').find((AuthToken) => {
+				return AuthToken.startsWith(' AuthToken') || AuthToken.startsWith('AuthToken');
+			});
+			if (
+				!CreateOrGetXsrfSession(
+					typeof cookie !== 'string' ? '' : cookie.split('=')[1],
+					req.ip,
+					req.headers['x-csrf-token'],
+					res,
+					req.hostname === 'api.sitetest4.robloxlabs.com' && req.path === '/csrf/v1/get-csrf-token',
+				)
 			)
-		)
-			return;
-	} catch (e) {
-		FASTLOG6('tasks', `Message: ${e.message}, Stack: ${e.stack}`, true);
+				return;
+		} catch (e) {
+			FASTLOG6('tasks', `Message: ${e.message}, Stack: ${e.stack}`, true);
+		}
 	}
 
 	// TODO: Validate AuthToken before we redirect, it may be hacked

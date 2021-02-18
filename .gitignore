@@ -44,7 +44,7 @@ dist
 .dynamodb/
 .tern-port
 .vscode-test
-*.http
+*.https
 .npmignore
 env.json
 Roblox.SSL

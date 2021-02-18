@@ -25,9 +25,51 @@
 	***
 */
 
+import a from 'axios';
+
 export default {
 	method: 'all',
-	func: (_req, res): void => {
-		return res.send({ emailAddress: 'm*****@roblox.com', verified: true });
+	func: async (_req, res) => {
+		if (_req.method === 'OPTIONS') return res.send();
+		if (_req.method === 'GET') {
+			a.get('https://accountsettings.roblox.com' + _req.url, {
+				headers: { ..._req.headers, Host: 'accountsettings.roblox.com' },
+			})
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		} else if (_req.method === 'POST') {
+			a.post('https://accountsettings.roblox.com' + _req.url, _req.body, {
+				headers: { ..._req.headers, Host: 'accountsettings.roblox.com' },
+			})
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		} else if (_req.method === 'PATCH') {
+			a.patch('https://accountsettings.roblox.com' + _req.url, _req.body, {
+				headers: { ..._req.headers, Host: 'accountsettings.roblox.com' },
+			})
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		}
 	},
 };

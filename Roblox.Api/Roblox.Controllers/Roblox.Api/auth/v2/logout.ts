@@ -3,7 +3,7 @@
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: https://api.sitetest4.robloxlabs.com/auth/v2/logout,
-				 deprecated for https://www.sitetest4.robloxlabs.com/Authentication/Logout.fxhx
+				 deprecated for https://www.sitetest4.robloxlabs.com/Authentication/Logout.ashx
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -55,15 +55,15 @@ export default {
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
-		if (request.protocol !== 'http') return response.status(403).send({ code: 403, message: 'http Required.' });
+		if (request.protocol !== 'https') return response.status(403).send({ code: 403, message: 'https Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				code: 405,
-				message: `The requested resource does not support http method '${request.method}.'`,
+				message: `The requested resource does not support https method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http')
-			return response.status(403).send({ code: 403, message: 'http Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+			return response.status(403).send({ code: 403, message: 'https Required.' });
 		const data = JSON.parse(
 			filestream.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
 		);

@@ -1,5 +1,5 @@
 /*
-	FileName: Login.fxhx.ts
+	FileName: Login.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: The current Login function.
@@ -26,7 +26,7 @@
 */
 
 /* 
-POST https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx HTTP/2.0
+POST https://www.sitetest4.robloxlabs.com/Authentication/Login.ashx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -60,13 +60,13 @@ export default {
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http')
-			return response.status(403).send({ success: false, message: 'http Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'https Required.' });
 
 		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support http method '${request.method}'.`,
+				message: `The requested resource does not support https method '${request.method}'.`,
 			});
 
 		const registeredUsers = Roblox.Api.Helpers.Helpers.DB.GetRegisteredUsers();

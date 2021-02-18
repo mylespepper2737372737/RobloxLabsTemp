@@ -27,17 +27,17 @@
 
 import http2 from 'spdy';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { Server as httperver } from 'http';
 import { Server as httpServer } from 'http';
+import { Server as httpsServer } from 'https';
 import dotenv from 'dotenv';
 import filestream from 'fs';
 import { FastLog, FLog } from '../Roblox.Util/Roblox.Util.FastLog';
 import { _dirname, _sslname } from '../../Roblox.Constants/Roblox.Directories';
 
 dotenv.config({ path: _dirname + '\\.env' });
-export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httperver, httpServer] => {
+export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpServer, httpsServer] => {
 	try {
-		const httpServer = http2
+		const httpsServer = http2
 			.createServer(
 				{
 					cert: filestream.readFileSync(_sslname + '\\ST4.crt', 'utf-8'),
@@ -47,8 +47,8 @@ export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httperv
 				app,
 			)
 			.listen(443, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:443 Started`, name));
-		const httperver = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:80 Started`, name));
-		return [httperver, httpServer];
+		const httpServer = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `http://%s:80 Started`, name));
+		return [httpServer, httpsServer];
 	} catch (err) {
 		throw new Error(err);
 	}

@@ -201,7 +201,7 @@ RobloxLaunch.StartGameWork = function (visitUrl, type, authenticationUrl, authen
 	//Fix for the HttpSendRequest,err=0x2F7E
 	authenticationUrl = authenticationUrl.replace('https://', 'https://');
 
-	if (visitUrl.indexOf('http') >= 0) {
+	if (visitUrl.indexOf('https') >= 0) {
 		if (typeof RobloxLaunch.SeleniumTestMode === 'undefined') {
 			visitUrl = visitUrl + '&testmode=false';
 		} else {

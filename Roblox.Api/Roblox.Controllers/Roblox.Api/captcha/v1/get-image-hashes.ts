@@ -48,12 +48,12 @@ export default {
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
 
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http')
-			return response.status(403).send({ success: false, message: 'http Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'https Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support http method '${request.method}.'`,
+				message: `The requested resource does not support https method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
 		if (JSON.stringify(request.body) === '{}')

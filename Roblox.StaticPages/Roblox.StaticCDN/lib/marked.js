@@ -313,9 +313,9 @@
 		})),
 		(u.gfm = h({}, u.normal, {
 			escape: l(u.escape)('])', '~|])')(),
-			url: /^(http?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
+			url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
 			del: /^~~(?=\S)([\s\S]*?\S)~~/,
-			text: l(u.text)(']|', '~]|')('|', '|http?://|')(),
+			text: l(u.text)(']|', '~]|')('|', '|https?://|')(),
 		})),
 		(u.breaks = h({}, u.gfm, { br: l(u.br)('{2,}', '*')(), text: l(u.gfm.text)('{2,}', '*')() })),
 		(t.rules = u),

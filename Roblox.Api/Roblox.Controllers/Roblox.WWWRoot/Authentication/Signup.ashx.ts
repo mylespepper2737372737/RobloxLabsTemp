@@ -1,5 +1,5 @@
 /*
-	FileName: Signup.fxhx.ts
+	FileName: Signup.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: The current Signup function.
@@ -26,7 +26,7 @@
 */
 
 /* 
-POST https://www.sitetest4.robloxlabs.com/Authentication/Signup.fxhx HTTP/2.0
+POST https://www.sitetest4.robloxlabs.com/Authentication/Signup.ashx HTTP/2.0
 X-CSRF-TOKEN: token123
 Content-Type: application/x-www-form-urlencoded
 Connection: close
@@ -61,13 +61,13 @@ export default {
 			});
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'http')
-			return response.status(403).send({ success: false, message: 'http Required.' });
+		if (FFlag['RequireGlobalhttp'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'https Required.' });
 
 		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support http method '${request.method}'.`,
+				message: `The requested resource does not support https method '${request.method}'.`,
 			});
 
 		const sessions = filestream.readdirSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Roblox.Manifest\\sessions');

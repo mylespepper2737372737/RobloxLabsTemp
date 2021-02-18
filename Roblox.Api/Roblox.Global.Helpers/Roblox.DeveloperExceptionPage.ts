@@ -41,12 +41,12 @@ const DeveloperExceptionPage = (app: IApplicationBuilder): Promise<void> => {
 				Message: `${msg || (response.statusCode === 400 ? 'BadRequest' : response.statusCode === 404 ? 'NotFound' : '')}`,
 				Redirect: request.query.redirect
 					? `Redirect from: ${
-							(request.query.redirect as string).split(';')[0].startsWith('http')
+							(request.query.redirect as string).split(';')[0].startsWith('https')
 								? (request.query.redirect as string).split(';')[0]
 								: 'unknownuri'
 					  } to ${
 							((request.query.redirect as string).split(';')[1]
-								? (request.query.redirect as string).split(';')[1].startsWith('http')
+								? (request.query.redirect as string).split(';')[1].startsWith('https')
 									? (request.query.redirect as string).split(';')[1]
 									: 'unknownuri'
 								: 'unknownuri') || 'unknownuri'

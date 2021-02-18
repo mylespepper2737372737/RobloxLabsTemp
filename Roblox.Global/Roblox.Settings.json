@@ -21,7 +21,7 @@
 			"IsWWWAuthV1Enabled": true,
 			"WWWAuthV1AllowAllMethods": false,
 			"IsClientSettingsAPIEnabled": true,
-			"IsWWWAuthSignupPubliclyListed": false,
+			"IsWWWAuthSignupPubliclyListed": true,
 			"DataStoreV2MaxItemsToReturnShould403OnBadNumber": false,
 			"IsLoginCodeButtonDisplayed": true,
 			"IsCodeValidationDisplayed": true

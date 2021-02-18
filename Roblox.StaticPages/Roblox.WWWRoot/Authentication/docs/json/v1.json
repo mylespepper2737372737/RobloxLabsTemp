@@ -2,9 +2,9 @@
 	"swagger": "2.0",
 	"info": { "version": "v1", "title": "WWW Auth Api v1" },
 	"host": "www.sitetest4.robloxlabs.com",
-	"schemes": ["http", "http"],
+	"schemes": ["https", "https"],
 	"paths": {
-		"/Authentication/Login.fxhx": {
+		"/Authentication/Login.ashx": {
 			"post": {
 				"tags": ["Authentication"],
 				"summary": "Used to Login and register new AuthToken csrf sessions.",
@@ -45,7 +45,7 @@
 						"description": "Token Validation Failed.\nHTTPS Required.\nCaptcha Validation Failed.\nIncorrect Password."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"400": {
 						"description": "No body provided.\nThe Content-Type {request.headers['content-type']} is not supported.\nThe body provided was invalid."
@@ -60,7 +60,7 @@
 				}
 			}
 		},
-		"/Authentication/Logout.fxhx": {
+		"/Authentication/Logout.ashx": {
 			"post": {
 				"tags": ["Authentication"],
 				"consumes": [],
@@ -79,7 +79,7 @@
 						"description": "Token Validation Failed.\nHTTPS Required."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"400": {
 						"description": "AuthToken was not supplied."
@@ -94,7 +94,7 @@
 				}
 			}
 		},
-		"/Authentication/ClearAllSessionsAndReauthenticate.fxhx": {
+		"/Authentication/ClearAllSessionsAndReauthenticate.ashx": {
 			"post": {
 				"tags": ["Authentication"],
 				"consumes": [],
@@ -113,7 +113,7 @@
 						"description": "Token Validation Failed.\nHTTPS Required."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"400": {
 						"description": "AuthToken not supplied"
@@ -128,7 +128,7 @@
 				}
 			}
 		},
-		"/Authentication/Signup.fxhx": {
+		"/Authentication/Signup.ashx": {
 			"post": {
 				"tags": ["Authentication"],
 				"consumes": ["application/x-www-form-urlencoded"],
@@ -190,7 +190,7 @@
 						"description": "Token Validation Failed.\nHTTPS Required.\nCaptcha Validation Failed.\nThe ToS Agreement Box wasn't ticked."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"400": {
 						"description": "AuthToken was not supplied."

@@ -11223,8 +11223,8 @@ if (
 							var i = t.createElement('a');
 							if (((i.href = n.value), t.location.origin === i.origin)) return !0;
 							switch (i.protocol) {
-								case 'http:':
-								case 'http:':
+								case 'https:':
+								case 'https:':
 								case 'ftp:':
 								case 'blob:':
 								case 'file:':
@@ -11639,7 +11639,7 @@ if (
 							$interpolate: vb,
 							$interval: yb,
 							$$intervalFactory: pb,
-							$http: hb,
+							$https: hb,
 							$httpParamSerializer: eb,
 							$httpParamSerializerJQLike: ob,
 							$httpBackend: lb,
@@ -12325,7 +12325,7 @@ if (
 			h.$$checkUrlChange = it;
 			h.baseHref = function () {
 				var n = ft.attr('href');
-				return n ? n.replace(/^(http?:)?\/\/[^/]*/, '') : '';
+				return n ? n.replace(/^(https?:)?\/\/[^/]*/, '') : '';
 			};
 			h.defer = function (n, t, i) {
 				var r;
@@ -13998,7 +13998,7 @@ if (
 							return (t.length = 0), n;
 						}
 						function k() {
-							p.$$completeOutstandingRequest(s, '$http');
+							p.$$completeOutstandingRequest(s, '$https');
 						}
 						function d(n, i) {
 							var r,
@@ -14041,9 +14041,9 @@ if (
 							return (t.data = hc(n.data, n.headers, n.status, r.transformResponse)), eo(n.status) ? t : g.reject(t);
 						}
 						var r;
-						if (!o(i)) throw l('$http')('badreq', 'Http request configuration must be an object.  Received: {0}', i);
+						if (!o(i)) throw l('$https')('badreq', 'Http request configuration must be an object.  Received: {0}', i);
 						if (!h(tt.valueOf(i.url)))
-							throw l('$http')(
+							throw l('$https')(
 								'badreq',
 								'Http request configuration url must be a string or a $sce trusted object.  Received: {0}',
 								i.url,
@@ -14061,7 +14061,7 @@ if (
 						r.headers = it(i);
 						r.method = su(r.method);
 						r.paramSerializer = h(r.paramSerializer) ? nt.get(r.paramSerializer) : r.paramSerializer;
-						p.$$incOutstandingRequestCount('$http');
+						p.$$incOutstandingRequestCount('$https');
 						var c = [],
 							y = [],
 							f = g.resolve(r);
@@ -14186,7 +14186,7 @@ if (
 							(n += (n.indexOf('?') === -1 ? '?' : '&') + i + '=JSON_CALLBACK')
 						);
 					}
-					var ft = k('$http'),
+					var ft = k('$https'),
 						rt,
 						ut;
 					return (
@@ -15893,8 +15893,8 @@ if (
 			];
 		}
 		function pk() {
-			var n = /^\s*(http?|s?ftp|mailto|tel|file):/,
-				t = /^\s*((http?|ftp|file|blob):|data:image\/)/;
+			var n = /^\s*(https?|s?ftp|mailto|tel|file):/,
+				t = /^\s*((https?|ftp|file|blob):|data:image\/)/;
 			this.aHrefSanitizationWhitelist = function (t) {
 				return r(t) ? ((n = t), this) : n;
 			};
@@ -16184,7 +16184,7 @@ if (
 			this.$get = [
 				'$exceptionHandler',
 				'$templateCache',
-				'$http',
+				'$https',
 				'$q',
 				'$sce',
 				function (t, i, r, f, e) {
@@ -18309,7 +18309,7 @@ if (
 			rb = /^\[|^\{(?!\{)/,
 			ub = { '[': /]$/, '{': /}$/ },
 			fb = /^\)]\}',?\n/,
-			ff = l('$http');
+			ff = l('$https');
 		ri = ft.$interpolateMinErr = l('$interpolate');
 		ri.throwNoconcat = function (n) {
 			throw ri(
@@ -18355,7 +18355,7 @@ if (
 				};
 			},
 			bb = /^([^?#]*)(\?([^#]*))?(#(.*))?$/,
-			kb = { http: 80, http: 443, ftp: 21 },
+			kb = { https: 80, https: 443, ftp: 21 },
 			gr = l('$location');
 		ac = /^\s*[\\/]{2,}/;
 		pc = {
@@ -21894,7 +21894,7 @@ window.angular.$$csp().noInlineStyle ||
 		t.module('ngSanitize').filter('linky', [
 			'$sanitize',
 			function (n) {
-				var i = /((s?ftp|http?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,
+				var i = /((s?ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,
 					r = /^mailto:/i,
 					u = t.$$minErr('linky'),
 					f = t.isDefined,
@@ -22132,7 +22132,7 @@ window.angular.$$csp().noInlineStyle ||
 				var n = angular.$$minErr('ui.select');
 				return function () {
 					var t = n.apply(this, arguments),
-						i = t.message.replace(new RegExp('\nhttp://errors.angularjs.org/.*'), '');
+						i = t.message.replace(new RegExp('\nhttps://errors.angularjs.org/.*'), '');
 					return new Error(i);
 				};
 			})
@@ -24041,14 +24041,14 @@ LocationService = (function () {
 angular.module('metricsVisualization').service('LocationService', LocationService);
 SystemEventsService = (function () {
 	function n(n, t) {
-		this.$http = n;
+		this.$https = n;
 		this.$q = t;
 	}
 	return (
 		(n.prototype.queryEvents = function (n, t, i, r, u) {
 			return i === null || i === undefined
 				? this.$q.when({ PageItems: [], Count: 0 })
-				: this.$http({
+				: this.$https({
 						method: 'GET',
 						url: '/query-system-events',
 						params: { pageSize: r, startDate: n.toISOString(), endDate: t.toISOString(), page: u, eventType: i },
@@ -24081,9 +24081,9 @@ SystemEventsService = (function () {
 		}),
 		(n.prototype.addAdhocEvent = function (n, t) {
 			var i = { method: 'POST', url: '/add-adhoc-event', params: { summary: n, timestamp: t.toISOString() } };
-			return this.$http(i);
+			return this.$https(i);
 		}),
-		(n.$inject = ['$http', '$q']),
+		(n.$inject = ['$https', '$q']),
 		n
 	);
 })();

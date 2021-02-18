@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v1", "title": "GamePersistence Api Legacy NoOpt" },
 	"host": "gamepersistence.sitetest4.robloxlabs.com",
-	"schemes": ["http", "http"],
+	"schemes": ["https", "https"],
 	"paths": {
 		"/persistence/getV2": {
 			"post": {

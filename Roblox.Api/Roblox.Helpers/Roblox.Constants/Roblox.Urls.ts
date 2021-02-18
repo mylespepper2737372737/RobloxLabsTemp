@@ -69,4 +69,5 @@ export default {
 	ROBLOX_ACCOUNT_INFORMATION: 'accountinformation.sitetest4.robloxlabs.com',
 	ROBLOX_BADGES: 'badges.sitetest4.robloxlabs.com',
 	ROBLOX_DEVELOPER_FORUM: 'devforum.sitetest4.robloxlabs.com',
+	ROBLOX_PREMIUM_FEATURES: 'premiumfeatures.sitetest4.robloxlabs.com',
 };

@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v1", "title": "Captcha Api v1" },
 	"host": "api.sitetest4.robloxlabs.com",
-	"schemes": ["http", "http"],
+	"schemes": ["https", "https"],
 	"paths": {
 		"/captcha/v1/get-image-hashes": {
 			"post": {
@@ -38,7 +38,7 @@
 						"description": "Token Validation Failed.\nHTTPS Required."
 					},
 					"405": {
-						"description": "The requested resource does not support http method '{request.method}'."
+						"description": "The requested resource does not support https method '{request.method}'."
 					},
 					"400": {
 						"description": "No body provided.\nThe Content-Type {request.headers['content-type']} is not supported.\nThe body provided was invalid.\nThe current CAPTCHA_PROVIDER is not valid"
