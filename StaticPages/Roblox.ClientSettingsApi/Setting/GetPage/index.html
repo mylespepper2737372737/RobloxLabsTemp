@@ -1,0 +1,543 @@
+<html>
+	<head>
+		<title>Runtime Error</title>
+		<meta name="viewport" content="width=device-width" />
+		<style>
+			body {
+				font-family: 'Verdana';
+				font-weight: normal;
+				font-size: 0.7em;
+				color: black;
+			}
+			p {
+				font-family: 'Verdana';
+				font-weight: normal;
+				color: black;
+				margin-top: -5px;
+			}
+			b {
+				font-family: 'Verdana';
+				font-weight: bold;
+				color: black;
+				margin-top: -5px;
+			}
+			H1 {
+				font-family: 'Verdana';
+				font-weight: normal;
+				font-size: 18pt;
+				color: red;
+			}
+			H2 {
+				font-family: 'Verdana';
+				font-weight: normal;
+				font-size: 14pt;
+				color: maroon;
+			}
+			pre {
+				font-family: 'Consolas', 'Lucida Console', Monospace;
+				font-size: 11pt;
+				margin: 0;
+				padding: 0.5em;
+				line-height: 14pt;
+			}
+			.marker {
+				font-weight: bold;
+				color: black;
+				text-decoration: none;
+			}
+			.version {
+				color: gray;
+			}
+			.error {
+				margin-bottom: 10px;
+			}
+			.expandable {
+				text-decoration: underline;
+				font-weight: bold;
+				color: navy;
+				cursor: hand;
+			}
+			@media screen and (max-width: 639px) {
+				pre {
+					width: 440px;
+					overflow: auto;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+				}
+			}
+			@media screen and (max-width: 479px) {
+				pre {
+					width: 280px;
+				}
+			}
+		</style>
+		<svg id="dark-reader-svg" style="height: 0px; width: 0px">
+			<filter id="dark-reader-filter" x="0" y="0" width="99999" height="99999" style="color-interpolation-filters: srgb">
+				<feColorMatrix
+					type="matrix"
+					values="0.175 -0.350 -0.350 0.000 0.775 -0.350 0.175 -0.350 0.000 0.775 -0.350 -0.350 0.175 0.000 0.775 0.000 0.000 0.000 1.000 0.000"
+				></feColorMatrix>
+			</filter>
+			<filter id="dark-reader-reverse-filter" x="0" y="0" width="99999" height="99999" style="color-interpolation-filters: srgb">
+				<feColorMatrix
+					type="matrix"
+					values="0.333 -0.667 -0.667 0.000 1.000 -0.667 0.333 -0.667 0.000 1.000 -0.667 -0.667 0.333 0.000 1.000 0.000 0.000 0.000 1.000 0.000"
+				></feColorMatrix>
+			</filter>
+		</svg>
+		<style id="dark-reader-style" type="text/css">
+			@media screen {
+				/* Leading rule */
+				html {
+					-webkit-filter: url(#dark-reader-filter) !important;
+					filter: url(#dark-reader-filter) !important;
+				}
+
+				/* Reverse rule */
+				img,
+				video,
+				:not(object):not(body) > embed,
+				object,
+				svg image,
+				[style*='background:url'],
+				[style*='background-image:url'],
+				[style*='background: url'],
+				[style*='background-image: url'],
+				[background],
+				twitterwidget,
+				.thumbnail-span,
+				.color-dot,
+				.avatar-back {
+					-webkit-filter: url(#dark-reader-reverse-filter) !important;
+					filter: url(#dark-reader-reverse-filter) !important;
+				}
+				[style*="background:url"] *,
+[style*="background-image:url"] *,
+[style*="background: url"] *,
+[style*="background-image: url"] *,
+input,
+[background] *,
+img[src^="https://s0.wp.com/latex.php"],
+twitterwidget .NaturalImage-image,
+.thumbnail-span *,
+.avatar-back * {
+					-webkit-filter: none !important;
+					filter: none !important;
+				}
+				.compatibility-with-darkreader-below-4-3-3 {
+					background: white !important;
+				}
+
+				/* Font */
+				*:not(pre) {
+					font-family: Consolas !important;
+				}
+
+				/* Text contrast */
+				html {
+					text-shadow: 0 0 0 !important;
+				}
+
+				/* Full screen */
+				:-webkit-full-screen,
+				:-webkit-full-screen * {
+					-webkit-filter: none !important;
+					filter: none !important;
+				}
+				:-moz-full-screen,
+				:-moz-full-screen * {
+					-webkit-filter: none !important;
+					filter: none !important;
+				}
+				:fullscreen,
+				:fullscreen * {
+					-webkit-filter: none !important;
+					filter: none !important;
+				}
+
+				/* Page background */
+				html {
+					background: rgb(198, 198, 198) !important;
+				}
+
+				/* Custom rules */
+				.compatibility-with-darkreader-below-4-3-3 {
+					background: white !important;
+				}
+				.avatar-thumbnail .enable-three-dee {
+					background-color: #000000;
+					color: #ffffff;
+				}
+			}
+		</style>
+		<style>
+			.rplus-premium-subscriber {
+				background-color: inherit;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme {
+				/* Global rules */
+				/* Group StaticPages */
+				/* Develop page */
+				/* Game Configuration */
+				/* Money */
+				/* VIP Server Configuration */
+				/* Builders Club */
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #Body,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme .tab-content,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme .tab-container + div > div {
+				background: transparent;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h1,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h2,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h3,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h4,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h5,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h6,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h1,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h2,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h3,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h4,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h5,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h6 {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h1 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h2 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h3 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h4 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h5 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] h6 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h1 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h2 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h3 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h4 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h5 a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper h6 a {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .form-label,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .form-label {
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] a:link,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] a:visited,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] a:active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper a:link,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper a:visited,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper a:active {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .btn-control,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .btn-control:active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .btn-control:link,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .btn-control:visited,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .btn-control:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .btn-control,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .btn-control:active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .btn-control:link,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .btn-control:visited,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .btn-control:hover {
+				color: #18191b;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div {
+				background-color: #393b3d;
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div a {
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray a:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div a:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray a:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div a:hover {
+				background-color: transparent;
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray.tab-active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray.selected,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div.tab-active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div.selected,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray.tab-active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray.selected,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div.tab-active,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div.selected {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray:hover a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray.tab-active a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .SquareTabGray.selected a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div:hover a,
+			.rplus-premium-subscriber
+				body.dark-theme.rplus-dark-theme
+				form#upload-form[action^='/build/']
+				.tab-container
+				> div.tab-active
+				a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .tab-container > div.selected a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray:hover a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray.tab-active a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .SquareTabGray.selected a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div:hover a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div.tab-active a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .tab-container > div.selected a {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .verticaltab,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .verticaltab {
+				background-color: #393b3d;
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .verticaltab a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .verticaltab a {
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .verticaltab:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .verticaltab.selected,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .verticaltab:hover,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .verticaltab.selected {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .verticaltab:hover a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .verticaltab.selected a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .verticaltab:hover a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .verticaltab.selected a {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .table-header th,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .table-header th {
+				background-color: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .accord-header,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .accord-header {
+				background: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .status-error,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme form#upload-form[action^='/build/'] .status-confirm,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .status-error,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BodyWrapper .status-confirm {
+				color: #18191b;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #AuditPage h1 a {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #AuditPage h1 a:hover {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #AuditPage .AuditLogContainer tr.header td {
+				background-color: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #update-distribution-form,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #payout-form {
+				color: #18191b;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupTitle a {
+				color: #fff !important;
+				font-style: inherit !important;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab .widget-name,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs .widget-name,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab .widget-name {
+				background-color: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab .gear-button-wrapper,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs .gear-button-wrapper,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab .gear-button-wrapper {
+				background-color: transparent !important;
+				border-color: transparent !important;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab table.section-header label.checkbox-label,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs table.section-header label.checkbox-label,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab table.section-header label.checkbox-label {
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab .item-table .totals-label span,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs .item-table .totals-label span,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab .item-table .totals-label span {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab #build-dropdown-menu a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs #build-dropdown-menu a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab #build-dropdown-menu a {
+				color: #18191b;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab td.menu-area a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs td.menu-area a,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab td.menu-area a {
+				background-color: #393b3d;
+				color: #bdbebe !important;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #MyCreationsTab td.menu-area a.tab-item-selected,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #DevelopTabs td.menu-area a.tab-item-selected,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #GroupCreationsTab td.menu-area a.tab-item-selected {
+				color: #fff !important;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter .CatalogItemInner,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter .SmallCatalogItemView {
+				background: transparent;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter .NotAPrice,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter .HoverInfo {
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter .CatalogItemInfoLabel {
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter:hover .CatalogItemInner,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab .CatalogItemOuter:hover .SmallCatalogItemView {
+				background: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab div#catalog div#dropdown ul li a {
+				color: #bdbebe;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab div#catalog div#dropdown ul li a.selectedAssetTypeFilter,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab div#catalog div#dropdown ul li a:hover {
+				background: #393b3d;
+				color: #fff;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab div#catalog div#dropdown ul#dropdownUl {
+				background: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #LibraryTab #catalog .loading {
+				background-color: #232527;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #universe-configure .missing-start-place {
+				background-color: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #placeForm .headline-banner {
+				background-color: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme .MyMoneyPage #Summary_tab .RobuxColumn,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme .MyMoneyPage #Summary_tab .TicketsColumn,
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme .MyMoneyPage .StandardPanelContainer .StandardPanelWhite {
+				background: transparent;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme .MyMoneyPage .loading {
+				background: #232527 url(https://static.rbxcdn.com/images/ProgressIndicator4.gif) no-repeat center !important;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #configure-form #whitelist.disabled {
+				background: #393b3d;
+			}
+			.rplus-premium-subscriber body.dark-theme.rplus-dark-theme #BCPageContainer .product-summary .product-description {
+				color: #bdbebe;
+			}
+		</style>
+		<style>
+			/* css/rplus/images.css [5/18/2017] */
+			*[class^='rplus-icon-'] {
+				padding: 0px !important;
+				background-size: 100%;
+			}
+
+			.rplus-icon-32x32 {
+				background-image: url(chrome-extension://jfbnmfgkohlfclfnplnlenbalpppohkm/images/icons/icon_32x32.png);
+				width: 32px;
+				height: 32px;
+			}
+
+			/* WebGL3D */
+		</style>
+		<style>
+			/* customIcon.css [4/4/2016] */
+			/* Basic Roblox */
+			#navigation .rplus-icon {
+				background-image: url(chrome-extension://jfbnmfgkohlfclfnplnlenbalpppohkm/images/icon_outline_black.svg);
+			}
+
+			#navigation.dark-theme .rplus-icon,
+			.dark-theme #navigation .rplus-icon {
+				background-image: url(chrome-extension://jfbnmfgkohlfclfnplnlenbalpppohkm/images/icon_outline_grey.svg);
+			}
+
+			#navigation li:hover .rplus-icon {
+				background-image: url(chrome-extension://jfbnmfgkohlfclfnplnlenbalpppohkm/images/icon_outline_red.svg);
+			}
+
+			#navigation li > a[href*='rplus']:hover {
+				color: rgb(224, 34, 26);
+			}
+
+			/* WebGL3D */
+		</style>
+	</head>
+
+	<body bgcolor="white">
+		<span
+			><h1>
+				Server Error in '/' Application.
+				<hr width="100%" size="1" color="silver" />
+			</h1>
+
+			<h2><i>Runtime Error</i></h2></span
+		>
+
+		<font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+			<b> Description: </b>An application error occurred on the server. The current custom error settings for this application prevent
+			the details of the application error from being viewed remotely (for security reasons). It could, however, be viewed by browsers
+			running on the local server machine. <br /><br />
+
+			<b>Details:</b> To enable the details of this specific error message to be viewable on remote machines, please create a
+			&lt;customErrors&gt; tag within a "web.config" configuration file located in the root directory of the current web application.
+			This &lt;customErrors&gt; tag should then have its "mode" attribute set to "Off".<br /><br />
+
+			<table width="100%" bgcolor="#ffffcc">
+				<tbody>
+					<tr>
+						<td>
+							<code>
+								<pre>
+&lt;!-- Web.Config Configuration File --&gt;
+
+&lt;configuration&gt;
+&lt;system.web&gt;
+	&lt;customErrors mode="Off"/&gt;
+&lt;/system.web&gt;
+&lt;/configuration&gt;</pre
+								>
+							</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<br />
+
+			<b>Notes:</b> The current error page you are seeing can be replaced by a custom error page by modifying the "defaultRedirect"
+			attribute of the application's &lt;customErrors&gt; configuration tag to point to a custom error page URL.<br /><br />
+
+			<table width="100%" bgcolor="#ffffcc">
+				<tbody>
+					<tr>
+						<td>
+							<code>
+								<pre>
+&lt;!-- Web.Config Configuration File --&gt;
+
+&lt;configuration&gt;
+&lt;system.web&gt;
+	&lt;customErrors mode="RemoteOnly" defaultRedirect="mycustompage.htm"/&gt;
+&lt;/system.web&gt;
+&lt;/configuration&gt;</pre
+								>
+							</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<br /> </font
+		><iframe id="roblox-plus-game-launcher" style="display: none"></iframe>
+		<div class="modal-backdrop fade out" style="z-index: 1040; display: none"></div>
+	</body>
+</html>

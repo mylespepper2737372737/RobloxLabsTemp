@@ -1,0 +1,94 @@
+[
+    {
+        "keyName": "keyTest",
+        "created": "2021-02-07T08:45:35.635Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": "key2",
+        "created": "2021-02-07T08:45:35.639Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "global",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\3\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+            "version": 1,
+            "created": "2021-02-07T08:45:35.639Z",
+            "lastUpdated": "2021-02-07T08:45:35.639Z"
+        },
+        "created": "2021-02-07T08:45:35.639Z",
+        "updated": "2021-02-07T08:45:35.642Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "global",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\3\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+            "version": 2,
+            "created": "2021-02-07T08:45:35.639Z",
+            "lastUpdated": "2021-02-07T08:45:35.642Z"
+        },
+        "created": "2021-02-07T08:45:35.639Z",
+        "updated": "2021-02-07T08:46:16.185Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "global",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\3\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+            "version": 3,
+            "created": "2021-02-07T08:45:35.639Z",
+            "lastUpdated": "2021-02-07T08:46:16.185Z"
+        },
+        "created": "2021-02-07T08:45:35.639Z",
+        "updated": "2021-02-07T08:46:16.188Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "global",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\3\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+            "version": 4,
+            "created": "2021-02-07T08:45:35.639Z",
+            "lastUpdated": "2021-02-07T08:46:16.188Z"
+        },
+        "created": "2021-02-07T08:45:35.639Z",
+        "updated": "2021-02-19T07:58:29.398Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "global",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\3\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+            "version": 5,
+            "created": "2021-02-07T08:45:35.639Z",
+            "lastUpdated": "2021-02-19T07:58:29.398Z"
+        },
+        "created": "2021-02-07T08:45:35.639Z",
+        "updated": "2021-02-19T07:58:29.402Z",
+        "purged": null
+    }
+]

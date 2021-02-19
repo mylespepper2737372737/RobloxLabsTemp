@@ -1,0 +1,11 @@
+{
+	"keyName": "keyTest",
+	"scope": "global",
+	"store": "storeTest",
+	"universe": 1,
+	"userIds": 0,
+	"root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\keyTest\\",
+	"version": 1,
+	"created": "2021-02-07T08:45:35.572Z",
+	"lastUpdated": "2021-02-07T08:45:35.572Z"
+}

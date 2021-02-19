@@ -1,0 +1,157 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "keyTest",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "testValue",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.572Z"
+    },
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "key2",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "test2",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.575Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 2,
+                    "created": "2021-02-07T08:45:35.575Z",
+                    "lastUpdated": "2021-02-07T08:45:35.579Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "key updated!",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:45:35.579Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 3,
+                    "created": "2021-02-07T08:45:35.575Z",
+                    "lastUpdated": "2021-02-07T08:46:16.166Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "test2",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:46:16.166Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 4,
+                    "created": "2021-02-07T08:45:35.575Z",
+                    "lastUpdated": "2021-02-07T08:46:16.170Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "key updated!",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-07T08:46:16.170Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 5,
+                    "created": "2021-02-07T08:45:35.575Z",
+                    "lastUpdated": "2021-02-19T07:58:29.377Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "test2",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-19T07:58:29.377Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 6,
+                    "created": "2021-02-07T08:45:35.575Z",
+                    "lastUpdated": "2021-02-19T07:58:29.381Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "key updated!",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-19T07:58:29.381Z"
+    }
+]

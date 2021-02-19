@@ -3,14 +3,14 @@
 	"configurations": [
 		{
 			"name": "Persistent Data Store Tests",
-			"program": "${workspaceFolder}/Implementation/Roblox.Tests/Roblox.PersistentDataStoreTests.js",
+			"program": "${workspaceFolder}/Implementation/Tests/PersistentDataStoreTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Fast Log Tests",
-			"program": "${workspaceFolder}/Implementation/Roblox.Tests/Roblox.FastLogTests.js",
+			"program": "${workspaceFolder}/Implementation/Tests/FastLogTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"

@@ -4,11 +4,11 @@
 	"description": "mfd",
 	"main": "Implementation/Roblox.IStart.Job.js",
 	"scripts": {
-		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag Implementation/Roblox.IStart.Job.js",
+		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag Implementation/IStart.Job.js",
 		"lint": "eslint . --fix --ext .ts",
 		"Roblox.IStart.Job-for-vsc": "npm run build && npm run Roblox-IStart-Job",
 		"build": "tsc --skipLibCheck",
-		"start": "node --trace-deprecation Implementation/Roblox.IStart.Job.js"
+		"start": "node --trace-deprecation Implementation/IStart.Job.js"
 	},
 	"author": "mfd",
 	"license": "Apache-2.0",
