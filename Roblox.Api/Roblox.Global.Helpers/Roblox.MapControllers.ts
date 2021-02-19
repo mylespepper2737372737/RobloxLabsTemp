@@ -26,7 +26,7 @@
 */
 
 import { Express as IApplicationBuilder, Request, Response } from 'express-serve-static-core';
-import { FASTLOG2, FASTLOG3, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG2, FASTLOG3, FASTLOG4, FASTLOG6, FLog } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 import { _dirname } from '../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
 import { walk } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.FileWalker';
 import filestream from 'fs';
@@ -39,7 +39,14 @@ interface EndpointOpts {
 const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise<void> => {
 	return new Promise(async (resumeFunc) => {
 		const directory = (opts !== undefined ? opts.path : _dirname + '\\Controllers') || _dirname + '\\Controllers';
-		if (!filestream.existsSync(directory)) return resumeFunc();
+		if (!filestream.existsSync(directory)) {
+			FASTLOG4(
+				opts.apiName,
+				`The directory ${directory} for the api ${opts.apiName} was not found, make sure you configured your directory correctly.`,
+				true,
+			);
+			return resumeFunc();
+		}
 		const r = walk(directory);
 		let count = 0;
 		r.forEach((v) => {

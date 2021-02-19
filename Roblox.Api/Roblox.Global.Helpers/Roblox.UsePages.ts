@@ -29,6 +29,8 @@ import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { static as Pages } from 'express';
 import { OutgoingMessage } from 'http';
 import { _dirname } from '../Roblox.Helpers/Roblox.Constants/Roblox.Directories';
+import fs from 'fs';
+import { FASTLOG4 } from '../Roblox.Helpers/Roblox.Helpers/Roblox.Util/Roblox.Util.FastLog';
 
 interface PageDirOpts {
 	path?: string;
@@ -49,6 +51,13 @@ interface PageOpts<R extends OutgoingMessage = OutgoingMessage> {
 const UsePages = (app: IApplicationBuilder, opts: PageDirOpts, PagesOpts: PageOpts): Promise<void> => {
 	return new Promise((r) => {
 		const path = (opts !== undefined ? opts.path : _dirname + '\\Roblox.StaticPages') || _dirname + '\\Roblox.StaticPages';
+		if (!fs.existsSync(path)) {
+			FASTLOG4(
+				'Pages',
+				`The directory ${path} was not found, make sure you configured your directory correctly. Static pages, so this will that return ctx::resumeFunc()`,
+				true,
+			);
+		}
 		app.use(Pages(path, PagesOpts));
 		r();
 	});
