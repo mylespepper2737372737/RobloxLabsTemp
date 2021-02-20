@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v1", "title": "CSRF Api v1" },
 	"host": "api.sitetest4.robloxlabs.com",
-	"schemes": ["https", "https"],
+	"schemes": ["http", "https"],
 	"paths": {
 		"/csrf/v1/get-csrf-token": {
 			"post": {

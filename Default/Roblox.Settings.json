@@ -3,7 +3,7 @@
 		"FVariable": {},
 		"FLog": {},
 		"FFlag": {
-			"RequireGlobalhttps": false,
+			"RequireGlobalHTTPS": true,
 			"AutohttpsRedirect": false,
 			"AreLogsEnabled": true
 		},

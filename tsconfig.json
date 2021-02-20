@@ -4,7 +4,7 @@
 		"module": "commonjs",
 		"jsx": "react",
 		"outDir": "Implementation",
-		"rootDir": "Roblox.Web",
+		"rootDir": "Roblox",
 		"noUnusedLocals": true,
 		"esModuleInterop": true,
 		"preserveSymlinks": true,

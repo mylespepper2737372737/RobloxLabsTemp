@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v1", "title": "WWW Root Api v1" },
 	"host": "www.sitetest4.robloxlabs.com",
-	"schemes": ["https", "https"],
+	"schemes": ["http", "https"],
 	"paths": {
 		"/uptime": {
 			"get": {

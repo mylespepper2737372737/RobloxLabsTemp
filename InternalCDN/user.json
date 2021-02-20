@@ -2,7 +2,7 @@
 	"ChangeUsernameEnabled": true,
 	"IsAdmin": true,
 	"UserId": 2,
-	"Name": "nsg",
+	"Name": "RakNetProtocol",
 	"DisplayName": "nsg is coolio",
 	"IsEmailOnFile": true,
 	"IsEmailVerified": true,

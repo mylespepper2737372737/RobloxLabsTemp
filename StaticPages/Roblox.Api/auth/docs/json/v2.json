@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": { "version": "v2", "title": "Auth Api v2" },
 	"host": "api.sitetest4.robloxlabs.com",
-	"schemes": ["https", "https"],
+	"schemes": ["http", "https"],
 	"paths": {
 		"/auth/v2/login": {
 			"post": {
