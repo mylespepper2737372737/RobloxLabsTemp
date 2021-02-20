@@ -28,7 +28,6 @@
 import crypto from 'crypto';
 import headers from '../Constants/Default.OutBound.Headers';
 import { RequestHandler } from 'express-serve-static-core';
-import { CreateOrGetXsrfSession } from '../WebHelpers/Roblox.Sessions/Roblox.Sessions.CreateOrGetXsrfSession';
 // import whitelist from '../constants/urls';
 import { FASTLOG3, FASTLOG6, FLog } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
@@ -59,21 +58,21 @@ export const GlobalMiddleware = ((req, res, next) => {
 	}
 	if (req.method !== 'GET') {
 		try {
-			let cookie = req.headers.cookie;
-			if (cookie === undefined) cookie = '';
-			cookie = (cookie as string).split(';').find((AuthToken) => {
-				return AuthToken.startsWith(' AuthToken') || AuthToken.startsWith('AuthToken');
-			});
-			if (
-				!CreateOrGetXsrfSession(
-					typeof cookie !== 'string' ? '' : cookie.split('=')[1],
-					req.ip,
-					req.headers['x-csrf-token'],
-					res,
-					req.hostname === 'api.sitetest4.robloxlabs.com' && req.path === '/csrf/v1/get-csrf-token',
-				)
-			)
-				return;
+			// let cookie = req.headers.cookie;
+			// if (cookie === undefined) cookie = '';
+			// cookie = (cookie as string).split(';').find((AuthToken) => {
+			// 	return AuthToken.startsWith(' AuthToken') || AuthToken.startsWith('AuthToken');
+			// });
+			// if (
+			// 	!CreateOrGetXsrfSession(
+			// 		typeof cookie !== 'string' ? '' : cookie.split('=')[1],
+			// 		req.ip,
+			// 		req.headers['x-csrf-token'],
+			// 		res,
+			// 		req.hostname === 'api.sitetest4.robloxlabs.com' && req.path === '/csrf/v1/get-csrf-token',
+			// 	)
+			// )
+			// 	return;
 		} catch (e) {
 			FASTLOG6('tasks', `Message: ${e.message}, Stack: ${e.stack}`, true);
 		}

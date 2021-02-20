@@ -143,4 +143,19 @@ POST https://messagerouter.api.roblox.com/v1/router/signalr
 
 ###
 
-GET https://dosarrest.origin.corp.roblox.com
+POST https://abtesting.roblox.com/v1/enrollments
+Content-Type: application/x-www-form-urlencoded
+X-CSRF-TOKEN: RwOpfMIXBTNZ
+
+[
+	{
+		"SubjectType":"BrowserTracker",
+		"SubjectTargetId":"<BROWSERTRACKERIDGOESHERE>",
+		"ExperimentName":"{Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments}"
+	},
+	{
+		"SubjectType":"User",
+		"SubjectTargetId":"<USERIDGOESHERE>",
+		"ExperimentName":"{Roblox.Data.AbTesting.Experiments.UserExperiments}"
+	}
+]

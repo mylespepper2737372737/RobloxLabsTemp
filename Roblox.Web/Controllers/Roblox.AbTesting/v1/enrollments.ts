@@ -66,23 +66,91 @@ origin: Roblox.Tests.Origins.SecureAbTestingOrigin
 // If a query to Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments and Roblox.Data.AbTesting.Experiments.UserExperiments returns with no experiment,
 // this doesn't mean that the experiment doesn't exist, it could be in Roblox.Data.AbTesting.Experiments.SharedExperiments.
 
-import a from 'axios';
+import { Request, Response } from 'express-serve-static-core';
+import dotenv from 'dotenv';
+import { Roblox } from '../../../Api';
+
+dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+
+const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
 
 export default {
-	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		a.post('https://abtesting.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, host: 'abtesting.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+	method: 'All',
+	func: (request: Request, response: Response): Response<unknown> | void => {
+		// const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
 
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
+		if (request.method === 'OPTIONS') return response.status(200).send();
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({
+				errors: [
+					{
+						code: 0,
+						message: 'HTTPS Required',
+					},
+				],
 			});
+
+		if (request.method !== 'POST')
+			return response.status(405).send({
+				errors: [
+					{
+						code: 0,
+						message: `The requested resource does not support http method '${request.method}'.`,
+					},
+				],
+			});
+
+		if (JSON.stringify(request.body) === '{}')
+			return response.status(400).send({
+				errors: [
+					{
+						code: 0,
+						message: 'BadRequest',
+					},
+				],
+			});
+
+		if (request.body && (!request.headers['content-type'] || request.headers['content-type'].length === 0))
+			return response.status(415).send({
+				errors: [
+					{
+						code: 0,
+						message:
+							"The request contains an entity body but no Content-Type header. The inferred media type 'application/octet-stream' is not supported for this resource.",
+					},
+				],
+			});
+		let cookie = request.headers.cookie;
+		if (cookie === undefined) cookie = '';
+		cookie = (cookie as string).split(';').find((AuthToken) => {
+			return AuthToken.startsWith(' .ROBLOSECURITY') || AuthToken.startsWith('.ROBLOSECURITY');
+		});
+		if (cookie) cookie = cookie.split('=')[1];
+		if (
+			!Roblox.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
+				cookie,
+				request.ip,
+				request.headers['x-csrf-token'],
+				response,
+				false,
+			)
+		)
+			return;
+
+		if (Array.isArray(request.body) && request.body.length === 0)
+			return response.status(400).send({
+				errors: [
+					{
+						code: 0,
+						message: 'BadRequest',
+					},
+				],
+			});
+
+		request.body.forEach((element) => {
+			if (element.SubjectType && element.SubjectTargetId && element.ExperimentName) {
+			}
+		});
+		return response.status(200).send({ data: [] });
 	},
 };

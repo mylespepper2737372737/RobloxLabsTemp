@@ -35,10 +35,10 @@ export default {
 			headers: { ..._req.headers, host: 'www.roblox.com' },
 		})
 			.then((re) => {
-				// const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
+				const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
 
-				return res.header(newheaders).send(re.data);
+				return res.header(newheaders).send(newbody);
 			})
 			.catch((e) => {
 				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));

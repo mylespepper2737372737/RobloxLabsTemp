@@ -6444,3 +6444,981 @@
 2021-02-19T07:59:10.441Z,3.2907098,4180,NaN [FLog::usermoderation.sitetest4.robloxlabs.com] https://usermoderation.sitetest4.robloxlabs.com:443 Started
 2021-02-19T07:59:10.443Z,3.2924424,4180,NaN [FLog::voice.sitetest4.robloxlabs.com] https://voice.sitetest4.robloxlabs.com:443 Started
 2021-02-19T07:59:10.445Z,3.2945305,4180,NaN [FLog::voice.sitetest4.robloxlabs.com] https://voice.sitetest4.robloxlabs.com:80 Started
+2021-02-19T08:07:26.223Z [EPHEMERALCOUNTERSV2-INFO] {"screenResolution":"1920x1080","actualScreenSize":"1920x1080","zoomRatio":"1","windowSize":"1918x977","evt":"resolutionMetadata","ctx":"Multiverse","url":"https://www.sitetest4.robloxlabs.com/","lt":"2021-02-19T08:07:26.107Z","gid":"-1551179745"}
+2021-02-19T08:07:26.225Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:27.861Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/","lt":"2021-02-19T08:07:27.849Z","gid":"-1551179745"}
+2021-02-19T08:07:27.862Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:28.373Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/","lt":"2021-02-19T08:07:28.360Z","gid":"-1551179745"}
+2021-02-19T08:07:28.374Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:29.394Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:29.371Z","gid":"-1551179745"}
+2021-02-19T08:07:29.395Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:29.501Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:29.485Z","gid":"-1551179745"}
+2021-02-19T08:07:29.502Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:30.739Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:30.729Z","gid":"-1551179745"}
+2021-02-19T08:07:30.740Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:30.766Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:30.734Z","gid":"-1551179745"}
+2021-02-19T08:07:30.767Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:30.769Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:30.739Z","gid":"-1551179745"}
+2021-02-19T08:07:30.770Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:30.790Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:30.746Z","gid":"-1551179745"}
+2021-02-19T08:07:30.791Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:30.793Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:30.751Z","gid":"-1551179745"}
+2021-02-19T08:07:30.794Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:31.317Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:31.306Z","gid":"-1551179745"}
+2021-02-19T08:07:31.318Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:31.832Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:31.817Z","gid":"-1551179745"}
+2021-02-19T08:07:31.833Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:32.852Z [EVENTS-INFO] {"name":"WebsiteLogin_Attempt"}
+2021-02-19T08:07:32.853Z [EVENTS-INFO] {}
+2021-02-19T08:07:32.860Z [EVENTS-INFO] {"name":"WebsiteLogin_FirstAttempt"}
+2021-02-19T08:07:32.861Z [EVENTS-INFO] {}
+2021-02-19T08:07:32.882Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"click","field":"loginSubmit","evt":"formInteraction","ctx":"loginPage","url":"https://www.sitetest4.robloxlabs.com/login/","lt":"2021-02-19T08:07:32.819Z","gid":"-1551179745"}
+2021-02-19T08:07:32.883Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:32.912Z [EVENTS-INFO] {"name":"WebsiteLogin_Attempt"}
+2021-02-19T08:07:32.914Z [EVENTS-INFO] {}
+2021-02-19T08:07:32.918Z [EVENTS-INFO] {"name":"WebsiteLogin_FirstAttempt"}
+2021-02-19T08:07:32.919Z [EVENTS-INFO] {}
+2021-02-19T08:07:33.177Z [EVENTS-INFO] {"name":"WebsiteLogin_Success"}
+2021-02-19T08:07:33.178Z [EVENTS-INFO] {}
+2021-02-19T08:07:33.202Z [EVENTS-INFO] {"name":"WebsiteLogin_Success"}
+2021-02-19T08:07:33.203Z [EVENTS-INFO] {}
+2021-02-19T08:07:34.223Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:07:34.180Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:34.225Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:35.856Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:07:35.846Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:35.857Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:37.414Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:07:37.400Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:37.415Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:40.323Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/my/messages/#!/inbox","lt":"2021-02-19T08:07:40.242Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:40.324Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:41.525Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/my/messages/#!/inbox","lt":"2021-02-19T08:07:41.514Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:41.526Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:42.058Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/my/messages/#!/inbox","lt":"2021-02-19T08:07:42.046Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:42.058Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:07:50.074Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"https://www.sitetest4.robloxlabs.com/my/messages/#!/inbox","lt":"2021-02-19T08:07:50.062Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:07:50.075Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:08:10.125Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat3","url":"https://www.sitetest4.robloxlabs.com/my/messages/#!/inbox","lt":"2021-02-19T08:08:10.106Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:08:10.126Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:11.125Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat4","url":"https://www.sitetest4.robloxlabs.com/my/messages/#!/inbox","lt":"2021-02-19T08:09:11.105Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:11.126Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:48.568Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:48.482Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:48.570Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:49.250Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:49.184Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:49.251Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:49.925Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:49.881Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:49.927Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:54.095Z [EPHEMERALCOUNTERSV2-INFO] {"friendId":"13948925","position":"0","evt":"openPeopleList","ctx":"hover","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:54.051Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:54.096Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:54.098Z [EPHEMERALCOUNTERSV2-INFO] {"friendId":"36841781","position":"1","evt":"openPeopleList","ctx":"hover","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:54.074Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:54.099Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:54.506Z [EPHEMERALCOUNTERSV2-INFO] {"friendId":"75114643","position":"2","evt":"openPeopleList","ctx":"hover","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:54.492Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:54.507Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:56.558Z [EPHEMERALCOUNTERSV2-INFO] {"friendId":"36841781","position":"1","evt":"openPeopleList","ctx":"hover","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:56.541Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:56.559Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:56.680Z [EPHEMERALCOUNTERSV2-INFO] {"friendId":"13948925","position":"0","evt":"openPeopleList","ctx":"hover","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:56.662Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:56.681Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:57.061Z [EPHEMERALCOUNTERSV2-INFO] {"friendId":"36841781","position":"1","evt":"openPeopleList","ctx":"hover","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:57.046Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:57.062Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:09:57.904Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T08:09:57.891Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:09:57.905Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:10:07.204Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/my/account#!/info","lt":"2021-02-19T08:10:07.158Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:10:07.205Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:10:07.414Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/my/account#!/info","lt":"2021-02-19T08:10:07.225Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:10:07.415Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:10:07.495Z [EVENTS-INFO] {"name":"WebsiteAccountSettingsPolicy_Success"}
+2021-02-19T08:10:07.496Z [EVENTS-INFO] {}
+2021-02-19T08:10:07.564Z [EVENTS-INFO] {"name":"WebsiteAccountSettingsPolicy_Success"}
+2021-02-19T08:10:07.567Z [EVENTS-INFO] {}
+2021-02-19T08:10:08.418Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/my/account#!/info","lt":"2021-02-19T08:10:08.409Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:10:08.419Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:10:17.129Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"https://www.sitetest4.robloxlabs.com/my/account#!/info","lt":"2021-02-19T08:10:17.098Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:10:17.130Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:10:37.127Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat3","url":"https://www.sitetest4.robloxlabs.com/my/account#!/info","lt":"2021-02-19T08:10:37.110Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:10:37.128Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T08:11:38.117Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat4","url":"https://www.sitetest4.robloxlabs.com/my/account#!/info","lt":"2021-02-19T08:11:38.095Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T08:11:38.118Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:22:52.008Z [STATIC.SITETEST4.ROBLOXLABS.COM-INFO] https://static.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.016Z [JS.SITETEST4.ROBLOXLABS.COM-INFO] https://js.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.020Z [CSS.SITETEST4.ROBLOXLABS.COM-INFO] https://css.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.024Z [IMAGES.SITETEST4.ROBLOXLABS.COM-INFO] https://images.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.211Z [API.SITETEST4.ROBLOXLABS.COM-INFO] https://api.sitetest4.robloxlabs.com has 41 controller(s)
+2021-02-19T11:22:52.216Z [SETUP.SITETEST4.ROBLOXLABS.COM-INFO] https://setup.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.325Z [WWW.SITETEST4.ROBLOXLABS.COM-INFO] https://www.sitetest4.robloxlabs.com has 35 controller(s)
+2021-02-19T11:22:52.346Z [EPHEMERALCOUNTERS.API.SITETEST4.ROBLOXLABS.COM-INFO] https://ephemeralcounters.api.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:22:52.356Z [ECSV2.SITETEST4.ROBLOXLABS.COM-INFO] https://ecsv2.sitetest4.robloxlabs.com has 4 controller(s)
+2021-02-19T11:22:52.359Z [TI.SITETEST4.ROBLOXLABS.COM-INFO] https://ti.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.365Z [VERSIONCOMPATIBILITY.API.SITETEST4.ROBLOXLABS.COM-INFO] https://versioncompatibility.api.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:22:52.381Z [CLIENTSETTINGS.API.SITETEST4.ROBLOXLABS.COM-INFO] https://clientsettings.api.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:22:52.518Z [ASSETGAME.SITETEST4.ROBLOXLABS.COM-INFO] https://assetgame.sitetest4.robloxlabs.com has 37 controller(s)
+2021-02-19T11:22:52.543Z [GAMEPERSISTENCE.SITETEST4.ROBLOXLABS.COM-INFO] https://gamepersistence.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:22:52.548Z [DOSARREST.ORIGIN.CORP.SITETEST4.ROBLOXLABS.COM-INFO] https://dosarrest.origin.corp.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.552Z [MARKETPLACE.API.SITETEST4.ROBLOXLABS.COM-INFO] https://marketplace.api.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:52.570Z [METRICS.SITETEST4.ROBLOXLABS.COM-INFO] https://metrics.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:22:52.739Z [AUTH.SITETEST4.ROBLOXLABS.COM-INFO] https://auth.sitetest4.robloxlabs.com has 56 controller(s)
+2021-02-19T11:22:53.017Z [APIS.SITETEST4.ROBLOXLABS.COM-INFO] https://apis.sitetest4.robloxlabs.com has 83 controller(s)
+2021-02-19T11:22:53.036Z [LOCALE.SITETEST4.ROBLOXLABS.COM-INFO] https://locale.sitetest4.robloxlabs.com has 7 controller(s)
+2021-02-19T11:22:53.045Z [ABTESTING.SITETEST4.ROBLOXLABS.COM-INFO] https://abtesting.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:22:53.076Z [USERS.SITETEST4.ROBLOXLABS.COM-INFO] https://users.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:22:53.129Z [TWOSTEPVERIFICATION.SITETEST4.ROBLOXLABS.COM-INFO] https://twostepverification.sitetest4.robloxlabs.com has 15 controller(s)
+2021-02-19T11:22:53.149Z [LMS.SIMULPONG.COM-INFO] https://lms.simulpong.com has 3 controller(s)
+2021-02-19T11:22:53.240Z [CHAT.SITETEST4.ROBLOXLABS.COM-INFO] https://chat.sitetest4.robloxlabs.com has 34 controller(s)
+2021-02-19T11:22:53.260Z [CONTACTS.SITETEST4.ROBLOXLABS.COM-INFO] https://contacts.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:22:53.352Z [NOTIFICATIONS.SITETEST4.ROBLOXLABS.COM-INFO] https://notifications.sitetest4.robloxlabs.com has 36 controller(s)
+2021-02-19T11:22:53.418Z [ACCOUNTSETTINGS.SITETEST4.ROBLOXLABS.COM-INFO] https://accountsettings.sitetest4.robloxlabs.com has 20 controller(s)
+2021-02-19T11:22:53.438Z [ADS.SITETEST4.ROBLOXLABS.COM-INFO] https://ads.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:22:53.474Z [TRADES.SITETEST4.ROBLOXLABS.COM-INFO] https://trades.sitetest4.robloxlabs.com has 11 controller(s)
+2021-02-19T11:22:53.564Z [FRIENDS.SITETEST4.ROBLOXLABS.COM-INFO] https://friends.sitetest4.robloxlabs.com has 28 controller(s)
+2021-02-19T11:22:53.603Z [PRIVATEMESSAGES.SITETEST4.ROBLOXLABS.COM-INFO] https://privatemessages.sitetest4.robloxlabs.com has 12 controller(s)
+2021-02-19T11:22:53.696Z [ECONOMY.SITETEST4.ROBLOXLABS.COM-INFO] https://economy.sitetest4.robloxlabs.com has 19 controller(s)
+2021-02-19T11:22:53.824Z [GAMES.SITETEST4.ROBLOXLABS.COM-INFO] https://games.sitetest4.robloxlabs.com has 31 controller(s)
+2021-02-19T11:22:53.845Z [REALTIME.SITETEST4.ROBLOXLABS.COM-INFO] https://realtime.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:22:53.907Z [THUMBNAILS.SITETEST4.ROBLOXLABS.COM-INFO] https://thumbnails.sitetest4.robloxlabs.com has 18 controller(s)
+2021-02-19T11:22:53.915Z [PRESENCE.SITETEST4.ROBLOXLABS.COM-INFO] https://presence.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:22:54.062Z [GROUPS.SITETEST4.ROBLOXLABS.COM-INFO] https://groups.sitetest4.robloxlabs.com has 50 controller(s)
+2021-02-19T11:22:54.101Z [ACCOUNTINFORMATION.SITETEST4.ROBLOXLABS.COM-INFO] https://accountinformation.sitetest4.robloxlabs.com has 15 controller(s)
+2021-02-19T11:22:54.121Z [BADGES.SITETEST4.ROBLOXLABS.COM-INFO] https://badges.sitetest4.robloxlabs.com has 7 controller(s)
+2021-02-19T11:22:54.145Z [DEVFORUM.SITETEST4.ROBLOXLABS.COM-INFO] https://devforum.sitetest4.robloxlabs.com has 7 controller(s)
+2021-02-19T11:22:54.156Z [PREMIUMFEATURES.SITETEST4.ROBLOXLABS.COM-INFO] https://premiumfeatures.sitetest4.robloxlabs.com has 4 controller(s)
+2021-02-19T11:22:54.192Z [CLIENTSETTINGS.SITETEST4.ROBLOXLABS.COM-INFO] https://clientsettings.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:22:54.225Z [CLIENTSETTINGSCDN.SITETEST4.ROBLOXLABS.COM-INFO] https://clientsettingscdn.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:22:54.243Z [ADCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://adconfiguration.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:22:54.247Z [CLIENT-TELEMENTRY.SITETEST4.ROBLOXLABS.COM-INFO] https://client-telementry.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.282Z [ASSETDELIVERY.SITETEST4.ROBLOXLABS.COM-INFO] https://assetdelivery.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:22:54.332Z [AVATAR.SITETEST4.ROBLOXLABS.COM-INFO] https://avatar.sitetest4.robloxlabs.com has 24 controller(s)
+2021-02-19T11:22:54.424Z [BILLING.SITETEST4.ROBLOXLABS.COM-INFO] https://billing.sitetest4.robloxlabs.com has 35 controller(s)
+2021-02-19T11:22:54.477Z [CATALOG.SITETEST4.ROBLOXLABS.COM-INFO] https://catalog.sitetest4.robloxlabs.com has 19 controller(s)
+2021-02-19T11:22:54.485Z [CDNPROVIDERS.SITETEST4.ROBLOXLABS.COM-INFO] https://cdnproviders.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:22:54.490Z [CHATMODERATION.SITETEST4.ROBLOXLABS.COM-INFO] https://chatmoderation.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.503Z [CONTENTSTORE.SITETEST4.ROBLOXLABS.COM-INFO] https://contentstore.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:22:54.635Z [DEVELOP.SITETEST4.ROBLOXLABS.COM-INFO] https://develop.sitetest4.robloxlabs.com has 47 controller(s)
+2021-02-19T11:22:54.642Z [DISCUSSIONS.SITETEST4.ROBLOXLABS.COM-INFO] https://discussions.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.652Z [ECONOMYCREATORSTATS.SITETEST4.ROBLOXLABS.COM-INFO] https://economycreatorstats.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:22:54.658Z [ENGAGEMENTPAYOUTS.SITETEST4.ROBLOXLABS.COM-INFO] https://engagementpayouts.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:22:54.682Z [FOLLOWINGS.SITETEST4.ROBLOXLABS.COM-INFO] https://followings.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:22:54.719Z [GAMEINTERNATIONALIZATION.SITETEST4.ROBLOXLABS.COM-INFO] https://gameinternationalization.sitetest4.robloxlabs.com has 12 controller(s)
+2021-02-19T11:22:54.742Z [GAMEJOIN.SITETEST4.ROBLOXLABS.COM-INFO] https://gamejoin.sitetest4.robloxlabs.com has 9 controller(s)
+2021-02-19T11:22:54.746Z [GROUPSMODERATION.SITETEST4.ROBLOXLABS.COM-INFO] https://groupsmoderation.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.771Z [ADCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://adconfiguration.sitetest4.robloxlabs.com has 9 controller(s)
+2021-02-19T11:22:54.800Z [ITEMCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://itemconfiguration.sitetest4.robloxlabs.com has 9 controller(s)
+2021-02-19T11:22:54.808Z [ADCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://adconfiguration.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:22:54.813Z [LOCALIZATIONTABLES.SITETEST4.ROBLOXLABS.COM-INFO] https://localizationtables.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.823Z [POINTS.SITETEST4.ROBLOXLABS.COM-INFO] https://points.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:22:54.853Z [PUBLISH.SITETEST4.ROBLOXLABS.COM-INFO] https://publish.sitetest4.robloxlabs.com has 8 controller(s)
+2021-02-19T11:22:54.857Z [PUNISHMENTS.SITETEST4.ROBLOXLABS.COM-INFO] https://punishments.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.861Z [SHARE.SITETEST4.ROBLOXLABS.COM-INFO] https://share.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.869Z [TEXTFILTER.SITETEST4.ROBLOXLABS.COM-INFO] https://textfilter.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.874Z [THEMES.SITETEST4.ROBLOXLABS.COM-INFO] https://themes.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.881Z [THUMBNAILSRESIZER.SITETEST4.ROBLOXLABS.COM-INFO] https://thumbnailsresizer.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:22:54.896Z [TRANSLATIONROLES.SITETEST4.ROBLOXLABS.COM-INFO] https://translationroles.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:22:54.907Z [TRANSLATIONS.SITETEST4.ROBLOXLABS.COM-INFO] https://translations.sitetest4.robloxlabs.com has 4 controller(s)
+2021-02-19T11:22:54.911Z [USERMODERATION.SITETEST4.ROBLOXLABS.COM-INFO] https://usermoderation.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:54.921Z [VOICE.SITETEST4.ROBLOXLABS.COM-INFO] https://voice.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:22:55.033Z [API.SITETEST4.ROBLOXLABS.COM-INFO] https://api.sitetest4.robloxlabs.com has 1 websocket(s)
+2021-02-19T11:22:55.038Z [REALTIME.SITETEST4.ROBLOXLABS.COM-INFO] https://realtime.sitetest4.robloxlabs.com has 1 websocket(s)
+2021-02-19T11:22:55.049Z,4.1187493,b68,NaN [FLog::images.sitetest4.robloxlabs.com] https://images.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.052Z,4.1210595,b68,NaN [FLog::images.sitetest4.robloxlabs.com] https://images.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.053Z,4.1227849,b68,NaN [FLog::www.sitetest4.robloxlabs.com] https://www.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.055Z,4.1245934,b68,NaN [FLog::www.sitetest4.robloxlabs.com] https://www.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.057Z,4.1263429,b68,NaN [FLog::api.sitetest4.robloxlabs.com] https://api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.059Z,4.1280255,b68,NaN [FLog::api.sitetest4.robloxlabs.com] https://api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.060Z,4.1297005,b68,NaN [FLog::static.sitetest4.robloxlabs.com] https://static.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.062Z,4.1313753,b68,NaN [FLog::static.sitetest4.robloxlabs.com] https://static.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.064Z,4.1330608,b68,NaN [FLog::js.sitetest4.robloxlabs.com] https://js.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.065Z,4.1347608,b68,NaN [FLog::js.sitetest4.robloxlabs.com] https://js.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.067Z,4.1364413,b68,NaN [FLog::css.sitetest4.robloxlabs.com] https://css.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.069Z,4.1381254,b68,NaN [FLog::css.sitetest4.robloxlabs.com] https://css.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.070Z,4.1397703,b68,NaN [FLog::setup.sitetest4.robloxlabs.com] https://setup.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.072Z,4.1416782,b68,NaN [FLog::setup.sitetest4.robloxlabs.com] https://setup.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.074Z,4.1437044,b68,NaN [FLog::ti.sitetest4.robloxlabs.com] https://ti.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.076Z,4.1452657,b68,NaN [FLog::ti.sitetest4.robloxlabs.com] https://ti.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.078Z,4.146873,b68,NaN [FLog::versioncompatibility.api.sitetest4.robloxlabs.com] https://versioncompatibility.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.079Z,4.1484342,b68,NaN [FLog::versioncompatibility.api.sitetest4.robloxlabs.com] https://versioncompatibility.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.081Z,4.1500786,b68,NaN [FLog::clientsettings.api.sitetest4.robloxlabs.com] https://clientsettings.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.082Z,4.1517465,b68,NaN [FLog::clientsettings.api.sitetest4.robloxlabs.com] https://clientsettings.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.084Z,4.153445,b68,NaN [FLog::assetgame.sitetest4.robloxlabs.com] https://assetgame.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.086Z,4.1551473,b68,NaN [FLog::assetgame.sitetest4.robloxlabs.com] https://assetgame.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.088Z,4.1568954,b68,NaN [FLog::ephemeralcounters.api.sitetest4.robloxlabs.com] https://ephemeralcounters.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.090Z,4.1591982,b68,NaN [FLog::ephemeralcounters.api.sitetest4.robloxlabs.com] https://ephemeralcounters.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.093Z,4.1619181,b68,NaN [FLog::ecsv2.sitetest4.robloxlabs.com] https://ecsv2.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.095Z,4.1640307,b68,NaN [FLog::ecsv2.sitetest4.robloxlabs.com] https://ecsv2.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.097Z,4.1660176,b68,NaN [FLog::gamepersistence.sitetest4.robloxlabs.com] https://gamepersistence.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.099Z,4.1681305,b68,NaN [FLog::gamepersistence.sitetest4.robloxlabs.com] https://gamepersistence.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.102Z,4.1709493,b68,NaN [FLog::dosarrest.origin.corp.sitetest4.robloxlabs.com] https://dosarrest.origin.corp.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.103Z,4.1728002,b68,NaN [FLog::dosarrest.origin.corp.sitetest4.robloxlabs.com] https://dosarrest.origin.corp.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.105Z,4.1744758,b68,NaN [FLog::metrics.sitetest4.robloxlabs.com] https://metrics.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.107Z,4.1764712,b68,NaN [FLog::metrics.sitetest4.robloxlabs.com] https://metrics.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.109Z,4.1785133,b68,NaN [FLog::auth.sitetest4.robloxlabs.com] https://auth.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.111Z,4.1803132,b68,NaN [FLog::auth.sitetest4.robloxlabs.com] https://auth.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.113Z,4.1825094,b68,NaN [FLog::apis.sitetest4.robloxlabs.com] https://apis.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.115Z,4.1844664,b68,NaN [FLog::apis.sitetest4.robloxlabs.com] https://apis.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.117Z,4.1866646,b68,NaN [FLog::locale.sitetest4.robloxlabs.com] https://locale.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.119Z,4.1886922,b68,NaN [FLog::locale.sitetest4.robloxlabs.com] https://locale.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.121Z,4.1906048,b68,NaN [FLog::marketplace.api.sitetest4.robloxlabs.com] https://marketplace.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.123Z,4.1921693,b68,NaN [FLog::marketplace.api.sitetest4.robloxlabs.com] https://marketplace.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.124Z,4.1937587,b68,NaN [FLog::abtesting.sitetest4.robloxlabs.com] https://abtesting.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.126Z,4.1954771,b68,NaN [FLog::abtesting.sitetest4.robloxlabs.com] https://abtesting.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.128Z,4.197609,b68,NaN [FLog::users.sitetest4.robloxlabs.com] https://users.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.130Z,4.1992214,b68,NaN [FLog::users.sitetest4.robloxlabs.com] https://users.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.132Z,4.2008956,b68,NaN [FLog::twostepverification.sitetest4.robloxlabs.com] https://twostepverification.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.133Z,4.2028214,b68,NaN [FLog::twostepverification.sitetest4.robloxlabs.com] https://twostepverification.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.136Z,4.2053102,b68,NaN [FLog::lms.simulpong.com] https://lms.simulpong.com:443 Started
+2021-02-19T11:22:55.138Z,4.2072396,b68,NaN [FLog::lms.simulpong.com] https://lms.simulpong.com:80 Started
+2021-02-19T11:22:55.140Z,4.2091663,b68,NaN [FLog::chat.sitetest4.robloxlabs.com] https://chat.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.142Z,4.2108797,b68,NaN [FLog::chat.sitetest4.robloxlabs.com] https://chat.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.144Z,4.213189,b68,NaN [FLog::contacts.sitetest4.robloxlabs.com] https://contacts.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.145Z,4.2148129,b68,NaN [FLog::contacts.sitetest4.robloxlabs.com] https://contacts.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.147Z,4.2165762,b68,NaN [FLog::notifications.sitetest4.robloxlabs.com] https://notifications.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.149Z,4.2187049,b68,NaN [FLog::notifications.sitetest4.robloxlabs.com] https://notifications.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.152Z,4.2209021,b68,NaN [FLog::accountsettings.sitetest4.robloxlabs.com] https://accountsettings.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.153Z,4.2227301,b68,NaN [FLog::accountsettings.sitetest4.robloxlabs.com] https://accountsettings.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.156Z,4.2250552,b68,NaN [FLog::ads.sitetest4.robloxlabs.com] https://ads.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.158Z,4.2271324,b68,NaN [FLog::ads.sitetest4.robloxlabs.com] https://ads.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.161Z,4.230103,b68,NaN [FLog::trades.sitetest4.robloxlabs.com] https://trades.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.163Z,4.2320997,b68,NaN [FLog::trades.sitetest4.robloxlabs.com] https://trades.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.164Z,4.2337722,b68,NaN [FLog::friends.sitetest4.robloxlabs.com] https://friends.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.166Z,4.2354315,b68,NaN [FLog::friends.sitetest4.robloxlabs.com] https://friends.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.168Z,4.2377915,b68,NaN [FLog::privatemessages.sitetest4.robloxlabs.com] https://privatemessages.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.170Z,4.2397525,b68,NaN [FLog::privatemessages.sitetest4.robloxlabs.com] https://privatemessages.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.172Z,4.2414159,b68,NaN [FLog::economy.sitetest4.robloxlabs.com] https://economy.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.174Z,4.2433119,b68,NaN [FLog::economy.sitetest4.robloxlabs.com] https://economy.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.176Z,4.2452078,b68,NaN [FLog::games.sitetest4.robloxlabs.com] https://games.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.178Z,4.2472373,b68,NaN [FLog::games.sitetest4.robloxlabs.com] https://games.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.180Z,4.2490887,b68,NaN [FLog::realtime.sitetest4.robloxlabs.com] https://realtime.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.181Z,4.2506316,b68,NaN [FLog::realtime.sitetest4.robloxlabs.com] https://realtime.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.183Z,4.252244,b68,NaN [FLog::thumbnails.sitetest4.robloxlabs.com] https://thumbnails.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.185Z,4.2546569,b68,NaN [FLog::thumbnails.sitetest4.robloxlabs.com] https://thumbnails.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.187Z,4.2562605,b68,NaN [FLog::presence.sitetest4.robloxlabs.com] https://presence.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.189Z,4.2581199,b68,NaN [FLog::presence.sitetest4.robloxlabs.com] https://presence.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.191Z,4.2598518,b68,NaN [FLog::groups.sitetest4.robloxlabs.com] https://groups.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.192Z,4.2617986,b68,NaN [FLog::groups.sitetest4.robloxlabs.com] https://groups.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.194Z,4.263662,b68,NaN [FLog::accountinformation.sitetest4.robloxlabs.com] https://accountinformation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.196Z,4.2655079,b68,NaN [FLog::accountinformation.sitetest4.robloxlabs.com] https://accountinformation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.199Z,4.2682159,b68,NaN [FLog::badges.sitetest4.robloxlabs.com] https://badges.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.201Z,4.2704295,b68,NaN [FLog::badges.sitetest4.robloxlabs.com] https://badges.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.203Z,4.2721766,b68,NaN [FLog::devforum.sitetest4.robloxlabs.com] https://devforum.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.205Z,4.2738884,b68,NaN [FLog::devforum.sitetest4.robloxlabs.com] https://devforum.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.207Z,4.2763052,b68,NaN [FLog::premiumfeatures.sitetest4.robloxlabs.com] https://premiumfeatures.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.209Z,4.2782346,b68,NaN [FLog::premiumfeatures.sitetest4.robloxlabs.com] https://premiumfeatures.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.211Z,4.2800059,b68,NaN [FLog::clientsettings.sitetest4.robloxlabs.com] https://clientsettings.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.213Z,4.2819326,b68,NaN [FLog::clientsettings.sitetest4.robloxlabs.com] https://clientsettings.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.214Z,4.283824,b68,NaN [FLog::clientsettingscdn.sitetest4.robloxlabs.com] https://clientsettingscdn.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.217Z,4.2858774,b68,NaN [FLog::clientsettingscdn.sitetest4.robloxlabs.com] https://clientsettingscdn.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.219Z,4.2880223,b68,NaN [FLog::adconfiguration.sitetest4.robloxlabs.com] https://adconfiguration.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.221Z,4.2903915,b68,NaN [FLog::adconfiguration.sitetest4.robloxlabs.com] https://adconfiguration.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.224Z,4.2931832,b68,NaN [FLog::client-telementry.sitetest4.robloxlabs.com] https://client-telementry.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.226Z,4.2951495,b68,NaN [FLog::client-telementry.sitetest4.robloxlabs.com] https://client-telementry.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.228Z,4.2973607,b68,NaN [FLog::assetdelivery.sitetest4.robloxlabs.com] https://assetdelivery.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.230Z,4.2990923,b68,NaN [FLog::assetdelivery.sitetest4.robloxlabs.com] https://assetdelivery.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.232Z,4.3014155,b68,NaN [FLog::avatar.sitetest4.robloxlabs.com] https://avatar.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.235Z,4.303844,b68,NaN [FLog::avatar.sitetest4.robloxlabs.com] https://avatar.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.236Z,4.3056686,b68,NaN [FLog::billing.sitetest4.robloxlabs.com] https://billing.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.238Z,4.3077559,b68,NaN [FLog::billing.sitetest4.robloxlabs.com] https://billing.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.241Z,4.3099932,b68,NaN [FLog::catalog.sitetest4.robloxlabs.com] https://catalog.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.243Z,4.3119739,b68,NaN [FLog::catalog.sitetest4.robloxlabs.com] https://catalog.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.244Z,4.3138101,b68,NaN [FLog::cdnproviders.sitetest4.robloxlabs.com] https://cdnproviders.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.246Z,4.3158262,b68,NaN [FLog::cdnproviders.sitetest4.robloxlabs.com] https://cdnproviders.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.248Z,4.3177582,b68,NaN [FLog::chatmoderation.sitetest4.robloxlabs.com] https://chatmoderation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.251Z,4.3198819,b68,NaN [FLog::chatmoderation.sitetest4.robloxlabs.com] https://chatmoderation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.253Z,4.3227645,b68,NaN [FLog::contentstore.sitetest4.robloxlabs.com] https://contentstore.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.255Z,4.3246964,b68,NaN [FLog::contentstore.sitetest4.robloxlabs.com] https://contentstore.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.257Z,4.326677,b68,NaN [FLog::develop.sitetest4.robloxlabs.com] https://develop.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.259Z,4.328432,b68,NaN [FLog::develop.sitetest4.robloxlabs.com] https://develop.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.261Z,4.3303607,b68,NaN [FLog::discussions.sitetest4.robloxlabs.com] https://discussions.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.263Z,4.3328099,b68,NaN [FLog::discussions.sitetest4.robloxlabs.com] https://discussions.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.265Z,4.3346614,b68,NaN [FLog::economycreatorstats.sitetest4.robloxlabs.com] https://economycreatorstats.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.269Z,4.3379083,b68,NaN [FLog::economycreatorstats.sitetest4.robloxlabs.com] https://economycreatorstats.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.271Z,4.3400812,b68,NaN [FLog::engagementpayouts.sitetest4.robloxlabs.com] https://engagementpayouts.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.273Z,4.3419001,b68,NaN [FLog::engagementpayouts.sitetest4.robloxlabs.com] https://engagementpayouts.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.275Z,4.3442584,b68,NaN [FLog::followings.sitetest4.robloxlabs.com] https://followings.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.277Z,4.3465996,b68,NaN [FLog::followings.sitetest4.robloxlabs.com] https://followings.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.279Z,4.348586,b68,NaN [FLog::gameinternationalization.sitetest4.robloxlabs.com] https://gameinternationalization.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.282Z,4.3510524,b68,NaN [FLog::gameinternationalization.sitetest4.robloxlabs.com] https://gameinternationalization.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.284Z,4.3536724,b68,NaN [FLog::gamejoin.sitetest4.robloxlabs.com] https://gamejoin.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.286Z,4.3556867,b68,NaN [FLog::gamejoin.sitetest4.robloxlabs.com] https://gamejoin.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.290Z,4.359002,b68,NaN [FLog::groupsmoderation.sitetest4.robloxlabs.com] https://groupsmoderation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.292Z,4.3611266,b68,NaN [FLog::groupsmoderation.sitetest4.robloxlabs.com] https://groupsmoderation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.294Z,4.3631922,b68,NaN [FLog::inventory.sitetest4.robloxlabs.com] https://inventory.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.296Z,4.3653106,b68,NaN [FLog::inventory.sitetest4.robloxlabs.com] https://inventory.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.298Z,4.3675406,b68,NaN [FLog::itemconfiguration.sitetest4.robloxlabs.com] https://itemconfiguration.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.301Z,4.3703404,b68,NaN [FLog::itemconfiguration.sitetest4.robloxlabs.com] https://itemconfiguration.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.303Z,4.3722168,b68,NaN [FLog::localizationtables.sitetest4.robloxlabs.com] https://localizationtables.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.305Z,4.374124,b68,NaN [FLog::localizationtables.sitetest4.robloxlabs.com] https://localizationtables.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.307Z,4.3759451,b68,NaN [FLog::points.sitetest4.robloxlabs.com] https://points.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.308Z,4.3776977,b68,NaN [FLog::points.sitetest4.robloxlabs.com] https://points.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.310Z,4.3794613,b68,NaN [FLog::publish.sitetest4.robloxlabs.com] https://publish.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.312Z,4.3814838,b68,NaN [FLog::publish.sitetest4.robloxlabs.com] https://publish.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.314Z,4.3833064,b68,NaN [FLog::punishments.sitetest4.robloxlabs.com] https://punishments.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.316Z,4.3853927,b68,NaN [FLog::punishments.sitetest4.robloxlabs.com] https://punishments.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.319Z,4.3881474,b68,NaN [FLog::share.sitetest4.robloxlabs.com] https://share.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.321Z,4.3903987,b68,NaN [FLog::share.sitetest4.robloxlabs.com] https://share.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.323Z,4.3925085,b68,NaN [FLog::textfilter.sitetest4.robloxlabs.com] https://textfilter.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.325Z,4.3945879,b68,NaN [FLog::textfilter.sitetest4.robloxlabs.com] https://textfilter.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.328Z,4.3969751,b68,NaN [FLog::themes.sitetest4.robloxlabs.com] https://themes.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.329Z,4.3987614,b68,NaN [FLog::themes.sitetest4.robloxlabs.com] https://themes.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.332Z,4.400913,b68,NaN [FLog::thumbnailsresizer.sitetest4.robloxlabs.com] https://thumbnailsresizer.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.334Z,4.4037232,b68,NaN [FLog::thumbnailsresizer.sitetest4.robloxlabs.com] https://thumbnailsresizer.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.337Z,4.4061015,b68,NaN [FLog::translationroles.sitetest4.robloxlabs.com] https://translationroles.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.339Z,4.407902,b68,NaN [FLog::translationroles.sitetest4.robloxlabs.com] https://translationroles.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.341Z,4.409926,b68,NaN [FLog::translations.sitetest4.robloxlabs.com] https://translations.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.342Z,4.4116033,b68,NaN [FLog::translations.sitetest4.robloxlabs.com] https://translations.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.344Z,4.4133303,b68,NaN [FLog::usermoderation.sitetest4.robloxlabs.com] https://usermoderation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:22:55.346Z,4.4154036,b68,NaN [FLog::usermoderation.sitetest4.robloxlabs.com] https://usermoderation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.350Z,4.4188576,b68,NaN [FLog::voice.sitetest4.robloxlabs.com] https://voice.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:22:55.352Z,4.421521,b68,NaN [FLog::voice.sitetest4.robloxlabs.com] https://voice.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:26:50.440Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:26:50.441Z [EPHEMERALCOUNTERS-INFO] {"StudioCrash":0}
+2021-02-19T11:26:50.473Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734010468","userID":"","placeID":"","category":"Studio","evt":"disableCSGv2InitialState","label":"false","value":"0","platform":"64bit"}
+2021-02-19T11:26:50.474Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:50.585Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:26:50.586Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":0,"StudioProfiler_EntireSession_Started":1}
+2021-02-19T11:26:51.104Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734011100","userID":"","placeID":"","category":"Studio","evt":"StudioBaseUrl","label":"http://www.sitetest4.robloxlabs.com","value":"0","platform":"64bit"}
+2021-02-19T11:26:51.105Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:51.109Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734011100","userID":"","placeID":"","category":"Studio","evt":"ThemeAtAppStart","label":"Dark","value":"0","platform":"64bit"}
+2021-02-19T11:26:51.110Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:51.133Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioLogin.Start.Auto","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"0","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"0","hw_cpu_core":"6","mem_RenderLightGrid":"0","mem_PhysicsWorld":"0","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134213266","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734011102","mem_InstancePart":"0"}
+2021-02-19T11:26:51.134Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.314Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012304","userID":"","placeID":"","category":"Game","evt":"GraphicsFeatureLevel","label":"Win32 D3D11.0","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.316Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.318Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012304","userID":"","placeID":"","category":"Game","evt":"GraphicsFeatureLevelEx","label":"Win32 148.6.2.9200 D3D11.0","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.319Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.409Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012404","userID":"","placeID":"","category":"Game","evt":"ComputerCameraMove","label":"ComputerCameraMoveModeDefault","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.410Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.412Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012404","userID":"","placeID":"","category":"Game","evt":"ComputerMovement","label":"ComputerMovementModeDefault","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.413Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.444Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012436","userID":"","placeID":"","category":"Game","evt":"ComputerCameraMove","label":"ComputerCameraMoveModeDefault","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.445Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.447Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012436","userID":"","placeID":"","category":"Game","evt":"ComputerMovement","label":"ComputerMovementModeDefault","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.449Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.500Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioLogin.End.Failure.GetAccountInfo","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"0","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134212746","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734012471","mem_InstancePart":"0"}
+2021-02-19T11:26:52.502Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.543Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012538","userID":"","placeID":"","category":"Action","evt":"StudioUserAction","label":"advArrowToolAction","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.546Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.596Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012591","userID":"","placeID":"","category":"Studio","evt":"ABTestVariation","label":"StudioDebugBTID","value":"-1","platform":"64bit"}
+2021-02-19T11:26:52.597Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.599Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012591","userID":"","placeID":"","category":"Studio","evt":"ABTestVariation","label":"Xbox.AllUsers.PlayNextGame","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.600Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.605Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734012591","userID":"","placeID":"","category":"Studio","evt":"ABTestVariation","label":"AllUsers.Desktop.NewRobuxIcon","value":"0","platform":"64bit"}
+2021-02-19T11:26:52.606Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.624Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioStartup.End.Success","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"5","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134212740","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734012591","mem_InstancePart":"0"}
+2021-02-19T11:26:52.625Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:26:52.649Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioStartup.Start","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"5","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134212740","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734010076","mem_InstancePart":"0"}
+2021-02-19T11:26:52.651Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:27:21.101Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:27:21.102Z [EPHEMERALCOUNTERS-INFO] [{"Key":"startupController_ABTestLoadingTime_Success","Value":183}]
+2021-02-19T11:27:21.108Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:27:21.109Z [EPHEMERALCOUNTERS-INFO] {"Studio.LoginManager.Login.Failure.GetAccountInfo":1,"FMODReportDeviceInfo-ClientLoad-Success":2,"StartupControllerRequests_ABTests_2xx":1,"Studio.ToolSelected.advArrowToolAction":1,"Studio.Qt.Version.5.6.1":1,"Studio.ClientID.Reused":1}
+2021-02-19T11:27:51.140Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:27:51.142Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:28:51.191Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:28:51.192Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:29:51.243Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:29:51.244Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:30:51.288Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:30:51.289Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:31:52.106Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:31:52.108Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60,"Studio.Regular.Heartbeat.5Min":1,"Studio.Win.Inactive.5Min":1,"Studio.Win.Inactive.10.5Min":1,"Studio.Total.Inactive.5Min":1,"Studio.Total.Heartbeat.5Min":1}
+2021-02-19T11:32:52.146Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:32:52.147Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:33:52.226Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:33:52.227Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:34:52.268Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:34:52.270Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:35:52.308Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:35:52.309Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:36:53.097Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:36:53.098Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60,"Studio.Regular.Heartbeat.5Min":1,"Studio.Win.Inactive.5Min":1,"Studio.Win.Inactive.10.5Min":1,"Studio.Total.Inactive.5Min":1,"Studio.Total.Heartbeat.5Min":1}
+2021-02-19T11:37:53.140Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:37:53.141Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:38:44.457Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734724450","userID":"","placeID":"","category":"Studio","evt":"Active Session","label":"Begin","value":"1","platform":"64bit"}
+2021-02-19T11:38:44.459Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:44.523Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734724516","userID":"","placeID":"","category":"Action","evt":"Studio.LoginManager","label":"Login.Attempt","value":"0","platform":"64bit"}
+2021-02-19T11:38:44.524Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:44.534Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734724518","userID":"","placeID":"","category":"Action","evt":"Studio.LoginManager","label":"Login.Failure.EmptyLoginField","value":"3","platform":"64bit"}
+2021-02-19T11:38:44.535Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:49.533Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734729528","userID":"","placeID":"","category":"Action","evt":"Studio.LoginManager","label":"Login.Attempt","value":"0","platform":"64bit"}
+2021-02-19T11:38:49.534Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:49.582Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioLogin.Start.Manual","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"5","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134212680","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734729528","mem_InstancePart":"0"}
+2021-02-19T11:38:49.583Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:53.674Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:38:53.654Z","gid":"-1055579089","sid":"09a64db4-9f8c-4626-91f3-660bf7bb2ef0"}
+2021-02-19T11:38:53.676Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:53.794Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:38:53.796Z [EPHEMERALCOUNTERS-INFO] [{"Key":"HTTPDelaySuccess-Win32","Value":124.91671428571435},{"Key":"HTTPAccumulatedBytes-Win32","Value":236800},{"Key":"HTTPDelayFailure-Win32","Value":71.60759999999729},{"Key":"HttpCache_Studio_OverallHitRate","Value":0}]
+2021-02-19T11:38:53.805Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:38:53.807Z [EPHEMERALCOUNTERS-INFO] {"Studio.LoginManager.Login.CaptchaRedirectToWeb":1,"HttpCache_Studio_TotalRequests":58,"HTTPFailureDataStore-Win32":0,"HTTPFailure-Win32":3,"HTTPSuccessMarketPlace-Win32":0,"SessionCountSeconds":60,"HTTPFailureMarketPlace-Win32":0,"HTTPSuccessDataStore-Win32":0,"HTTPSuccess-Win32":7}
+2021-02-19T11:38:54.074Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:38:54.068Z","gid":"-1055579089","sid":"09a64db4-9f8c-4626-91f3-660bf7bb2ef0"}
+2021-02-19T11:38:54.075Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:57.330Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioClose.Start","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"5","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134179587","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734737280","mem_InstancePart":"0"}
+2021-02-19T11:38:57.332Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:57.347Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734737329","userID":"","placeID":"","category":"Action","evt":"Game Explorer","label":"load entity settings http failure","value":"0","platform":"64bit"}
+2021-02-19T11:38:57.349Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:38:57.351Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734737330","userID":"","placeID":"","category":"Studio","evt":"Session Length","label":"1","value":"0","platform":"64bit"}
+2021-02-19T11:38:57.353Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:39:01.679Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:39:01.670Z","gid":"-1055579089","sid":"09a64db4-9f8c-4626-91f3-660bf7bb2ef0"}
+2021-02-19T11:39:01.680Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:39:21.681Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat3","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:39:21.675Z","gid":"-1055579089","sid":"09a64db4-9f8c-4626-91f3-660bf7bb2ef0"}
+2021-02-19T11:39:21.682Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:39:27.348Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:39:27.349Z [EPHEMERALCOUNTERS-INFO] {"Studio.Win.Active.5Min":1,"Studio.Win.Active.10.5Min":1,"Studio.Total.Active.5Min":1,"Studio.Total.Active.IE":1}
+2021-02-19T11:39:54.379Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:39:54.380Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:40:21.687Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat4","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:40:21.681Z","gid":"-1055579089","sid":"09a64db4-9f8c-4626-91f3-660bf7bb2ef0"}
+2021-02-19T11:40:21.688Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:40:54.428Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:40:54.429Z [EPHEMERALCOUNTERS-INFO] {"SessionCountSeconds":60}
+2021-02-19T11:41:50.072Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioLogin.Paused.NativeCaptcha","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"5","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134179582","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734910036","mem_InstancePart":"0"}
+2021-02-19T11:41:50.073Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:41:50.960Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","userID":"","placeID":"","category":"Studio","evt":"Performance_Metric","label":"StudioClose.End","value":"0","mem_TerrainPhysics":"0","mem_SoundStream":"0","mem_RenderTextureAsset":"0","mem_TerrainGrid":"0","mem_RenderMesh":"0","mem_RenderTextureLocal":"5","mem_PhysicsSpatialHash":"0","mem_InstanceMesh":"0","gpu_driver_ver":"aticfx64.dll 27.20.14501.18003","mem_PhysicsGeometry":"0","hw_cpu_logical_core":"6","mem_SoundBuffer":"1","hw_cpu_core":"6","mem_RenderLightGrid":"61","mem_PhysicsWorld":"3","gpu_graphics":"AMD Radeon(TM) Graphics","mem_RenderDecal":"0","hw_cpu_speed":"2264","hw_ram_available":"134179581","hw_hd_total":"975620","display_res":"1920x1080","mem_TerrainMesh":"0","hw_hd_availables":"769056","hw_ram_total":"7549","num_studio_instances":"1","os_version":"148.6.2.9200","os_brand":"Windows","mem_SoundDefault":"0","mem_PhysicsJoint":"0","mem_RenderTerrain":"0","mem_RenderTextureComposit":"0","os_platform":"64","machine_timestamp":"1613734910921","mem_InstancePart":"0"}
+2021-02-19T11:41:50.961Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:41:50.970Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734910961","userID":"","placeID":"","category":"Game","evt":"ComputerCameraMovementModeMS","label":"Default","value":"900842","platform":"64bit"}
+2021-02-19T11:41:50.971Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:41:50.976Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734910961","userID":"","placeID":"","category":"Game","evt":"ComputerMovementModeMS","label":"Default","value":"900842","platform":"64bit"}
+2021-02-19T11:41:50.977Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:41:51.008Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734910999","userID":"","placeID":"","category":"Game","evt":"ComputerCameraMovementModeMS","label":"Default","value":"37","platform":"64bit"}
+2021-02-19T11:41:51.009Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:41:51.020Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"C0EDC590-717A-4370-BE9B-9BB502463CF8","clientID":"4D2A8E48-76C3-4AF8-901D-A8A23B5DF731","timestamp":"1613734910999","userID":"","placeID":"","category":"Game","evt":"ComputerMovementModeMS","label":"Default","value":"38","platform":"64bit"}
+2021-02-19T11:41:51.022Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:41:51.057Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:41:51.059Z [EPHEMERALCOUNTERS-INFO] [{"Key":"TrackPlayerTextScraping_QueueExceededCount","Value":0},{"Key":"TrackPlayerTextScraping_QueueExceededCount","Value":0},{"Key":"QuickOpen_OpenCount_Stats","Value":0},{"Key":"StudioProfiler_EntireSession_FPS","Value":59.76261469999382},{"Key":"StudioProfiler_EntireSession_TimeSpan","Value":900.4630418560016},{"Key":"HttpCache_Studio_OverallHitRate","Value":0}]
+2021-02-19T11:41:51.062Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F"}
+2021-02-19T11:41:51.064Z [EPHEMERALCOUNTERS-INFO] {"HttpCache_Studio_TotalRequests":18,"StudioProfiler_EntireSession_Distribution_18":5423,"StudioProfiler_EntireSession_Distribution_25":66,"StudioProfiler_EntireSession_Distribution_50":10,"StudioProfiler_EntireSession_Distribution_100":12,"StudioProfiler_EntireSession_Distribution_500":1,"StudioProfiler_EntireSession_Distribution_1000":1,"PolicyService_PlayerCallbackQueueExceededCount":0}
+2021-02-19T11:46:52.465Z [STATIC.SITETEST4.ROBLOXLABS.COM-INFO] https://static.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:52.470Z [JS.SITETEST4.ROBLOXLABS.COM-INFO] https://js.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:52.474Z [CSS.SITETEST4.ROBLOXLABS.COM-INFO] https://css.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:52.494Z [IMAGES.SITETEST4.ROBLOXLABS.COM-INFO] https://images.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:52.672Z [API.SITETEST4.ROBLOXLABS.COM-INFO] https://api.sitetest4.robloxlabs.com has 41 controller(s)
+2021-02-19T11:46:52.683Z [SETUP.SITETEST4.ROBLOXLABS.COM-INFO] https://setup.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:52.902Z [WWW.SITETEST4.ROBLOXLABS.COM-INFO] https://www.sitetest4.robloxlabs.com has 35 controller(s)
+2021-02-19T11:46:52.913Z [EPHEMERALCOUNTERS.API.SITETEST4.ROBLOXLABS.COM-INFO] https://ephemeralcounters.api.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:46:52.922Z [ECSV2.SITETEST4.ROBLOXLABS.COM-INFO] https://ecsv2.sitetest4.robloxlabs.com has 4 controller(s)
+2021-02-19T11:46:52.925Z [TI.SITETEST4.ROBLOXLABS.COM-INFO] https://ti.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:53.012Z [VERSIONCOMPATIBILITY.API.SITETEST4.ROBLOXLABS.COM-INFO] https://versioncompatibility.api.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:46:53.111Z [CLIENTSETTINGS.API.SITETEST4.ROBLOXLABS.COM-INFO] https://clientsettings.api.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:46:53.548Z [ASSETGAME.SITETEST4.ROBLOXLABS.COM-INFO] https://assetgame.sitetest4.robloxlabs.com has 37 controller(s)
+2021-02-19T11:46:53.640Z [GAMEPERSISTENCE.SITETEST4.ROBLOXLABS.COM-INFO] https://gamepersistence.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:46:53.643Z [DOSARREST.ORIGIN.CORP.SITETEST4.ROBLOXLABS.COM-INFO] https://dosarrest.origin.corp.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:53.646Z [MARKETPLACE.API.SITETEST4.ROBLOXLABS.COM-INFO] https://marketplace.api.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:53.725Z [METRICS.SITETEST4.ROBLOXLABS.COM-INFO] https://metrics.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:46:54.068Z [AUTH.SITETEST4.ROBLOXLABS.COM-INFO] https://auth.sitetest4.robloxlabs.com has 56 controller(s)
+2021-02-19T11:46:54.481Z [APIS.SITETEST4.ROBLOXLABS.COM-INFO] https://apis.sitetest4.robloxlabs.com has 83 controller(s)
+2021-02-19T11:46:54.604Z [LOCALE.SITETEST4.ROBLOXLABS.COM-INFO] https://locale.sitetest4.robloxlabs.com has 7 controller(s)
+2021-02-19T11:46:54.613Z [ABTESTING.SITETEST4.ROBLOXLABS.COM-INFO] https://abtesting.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:46:54.802Z [USERS.SITETEST4.ROBLOXLABS.COM-INFO] https://users.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:46:54.935Z [TWOSTEPVERIFICATION.SITETEST4.ROBLOXLABS.COM-INFO] https://twostepverification.sitetest4.robloxlabs.com has 15 controller(s)
+2021-02-19T11:46:54.945Z [LMS.SIMULPONG.COM-INFO] https://lms.simulpong.com has 3 controller(s)
+2021-02-19T11:46:55.240Z [CHAT.SITETEST4.ROBLOXLABS.COM-INFO] https://chat.sitetest4.robloxlabs.com has 34 controller(s)
+2021-02-19T11:46:55.252Z [CONTACTS.SITETEST4.ROBLOXLABS.COM-INFO] https://contacts.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:46:55.476Z [NOTIFICATIONS.SITETEST4.ROBLOXLABS.COM-INFO] https://notifications.sitetest4.robloxlabs.com has 36 controller(s)
+2021-02-19T11:46:55.594Z [ACCOUNTSETTINGS.SITETEST4.ROBLOXLABS.COM-INFO] https://accountsettings.sitetest4.robloxlabs.com has 20 controller(s)
+2021-02-19T11:46:55.647Z [ADS.SITETEST4.ROBLOXLABS.COM-INFO] https://ads.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:46:55.689Z [TRADES.SITETEST4.ROBLOXLABS.COM-INFO] https://trades.sitetest4.robloxlabs.com has 11 controller(s)
+2021-02-19T11:46:55.809Z [FRIENDS.SITETEST4.ROBLOXLABS.COM-INFO] https://friends.sitetest4.robloxlabs.com has 28 controller(s)
+2021-02-19T11:46:55.889Z [PRIVATEMESSAGES.SITETEST4.ROBLOXLABS.COM-INFO] https://privatemessages.sitetest4.robloxlabs.com has 12 controller(s)
+2021-02-19T11:46:55.946Z [ECONOMY.SITETEST4.ROBLOXLABS.COM-INFO] https://economy.sitetest4.robloxlabs.com has 19 controller(s)
+2021-02-19T11:46:56.096Z [GAMES.SITETEST4.ROBLOXLABS.COM-INFO] https://games.sitetest4.robloxlabs.com has 31 controller(s)
+2021-02-19T11:46:56.108Z [REALTIME.SITETEST4.ROBLOXLABS.COM-INFO] https://realtime.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:46:56.188Z [THUMBNAILS.SITETEST4.ROBLOXLABS.COM-INFO] https://thumbnails.sitetest4.robloxlabs.com has 18 controller(s)
+2021-02-19T11:46:56.272Z [PRESENCE.SITETEST4.ROBLOXLABS.COM-INFO] https://presence.sitetest4.robloxlabs.com has 3 controller(s)
+2021-02-19T11:46:56.529Z [GROUPS.SITETEST4.ROBLOXLABS.COM-INFO] https://groups.sitetest4.robloxlabs.com has 50 controller(s)
+2021-02-19T11:46:56.576Z [ACCOUNTINFORMATION.SITETEST4.ROBLOXLABS.COM-INFO] https://accountinformation.sitetest4.robloxlabs.com has 15 controller(s)
+2021-02-19T11:46:56.604Z [BADGES.SITETEST4.ROBLOXLABS.COM-INFO] https://badges.sitetest4.robloxlabs.com has 7 controller(s)
+2021-02-19T11:46:56.623Z [DEVFORUM.SITETEST4.ROBLOXLABS.COM-INFO] https://devforum.sitetest4.robloxlabs.com has 7 controller(s)
+2021-02-19T11:46:56.664Z [PREMIUMFEATURES.SITETEST4.ROBLOXLABS.COM-INFO] https://premiumfeatures.sitetest4.robloxlabs.com has 4 controller(s)
+2021-02-19T11:46:56.703Z [CLIENTSETTINGS.SITETEST4.ROBLOXLABS.COM-INFO] https://clientsettings.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:46:56.746Z [CLIENTSETTINGSCDN.SITETEST4.ROBLOXLABS.COM-INFO] https://clientsettingscdn.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:46:56.764Z [ADCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://adconfiguration.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:46:56.767Z [CLIENT-TELEMENTRY.SITETEST4.ROBLOXLABS.COM-INFO] https://client-telementry.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:56.816Z [ASSETDELIVERY.SITETEST4.ROBLOXLABS.COM-INFO] https://assetdelivery.sitetest4.robloxlabs.com has 10 controller(s)
+2021-02-19T11:46:56.886Z [AVATAR.SITETEST4.ROBLOXLABS.COM-INFO] https://avatar.sitetest4.robloxlabs.com has 24 controller(s)
+2021-02-19T11:46:56.970Z [BILLING.SITETEST4.ROBLOXLABS.COM-INFO] https://billing.sitetest4.robloxlabs.com has 35 controller(s)
+2021-02-19T11:46:57.023Z [CATALOG.SITETEST4.ROBLOXLABS.COM-INFO] https://catalog.sitetest4.robloxlabs.com has 19 controller(s)
+2021-02-19T11:46:57.029Z [CDNPROVIDERS.SITETEST4.ROBLOXLABS.COM-INFO] https://cdnproviders.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:46:57.033Z [CHATMODERATION.SITETEST4.ROBLOXLABS.COM-INFO] https://chatmoderation.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.046Z [CONTENTSTORE.SITETEST4.ROBLOXLABS.COM-INFO] https://contentstore.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:46:57.212Z [DEVELOP.SITETEST4.ROBLOXLABS.COM-INFO] https://develop.sitetest4.robloxlabs.com has 47 controller(s)
+2021-02-19T11:46:57.216Z [DISCUSSIONS.SITETEST4.ROBLOXLABS.COM-INFO] https://discussions.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.224Z [ECONOMYCREATORSTATS.SITETEST4.ROBLOXLABS.COM-INFO] https://economycreatorstats.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:46:57.230Z [ENGAGEMENTPAYOUTS.SITETEST4.ROBLOXLABS.COM-INFO] https://engagementpayouts.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:46:57.245Z [FOLLOWINGS.SITETEST4.ROBLOXLABS.COM-INFO] https://followings.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:46:57.286Z [GAMEINTERNATIONALIZATION.SITETEST4.ROBLOXLABS.COM-INFO] https://gameinternationalization.sitetest4.robloxlabs.com has 12 controller(s)
+2021-02-19T11:46:57.310Z [GAMEJOIN.SITETEST4.ROBLOXLABS.COM-INFO] https://gamejoin.sitetest4.robloxlabs.com has 9 controller(s)
+2021-02-19T11:46:57.321Z [GROUPSMODERATION.SITETEST4.ROBLOXLABS.COM-INFO] https://groupsmoderation.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.358Z [ADCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://adconfiguration.sitetest4.robloxlabs.com has 9 controller(s)
+2021-02-19T11:46:57.384Z [ITEMCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://itemconfiguration.sitetest4.robloxlabs.com has 9 controller(s)
+2021-02-19T11:46:57.388Z [ADCONFIGURATION.SITETEST4.ROBLOXLABS.COM-INFO] https://adconfiguration.sitetest4.robloxlabs.com has 6 controller(s)
+2021-02-19T11:46:57.391Z [LOCALIZATIONTABLES.SITETEST4.ROBLOXLABS.COM-INFO] https://localizationtables.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.404Z [POINTS.SITETEST4.ROBLOXLABS.COM-INFO] https://points.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:46:57.442Z [PUBLISH.SITETEST4.ROBLOXLABS.COM-INFO] https://publish.sitetest4.robloxlabs.com has 8 controller(s)
+2021-02-19T11:46:57.446Z [PUNISHMENTS.SITETEST4.ROBLOXLABS.COM-INFO] https://punishments.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.451Z [SHARE.SITETEST4.ROBLOXLABS.COM-INFO] https://share.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.455Z [TEXTFILTER.SITETEST4.ROBLOXLABS.COM-INFO] https://textfilter.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.459Z [THEMES.SITETEST4.ROBLOXLABS.COM-INFO] https://themes.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.467Z [THUMBNAILSRESIZER.SITETEST4.ROBLOXLABS.COM-INFO] https://thumbnailsresizer.sitetest4.robloxlabs.com has 2 controller(s)
+2021-02-19T11:46:57.483Z [TRANSLATIONROLES.SITETEST4.ROBLOXLABS.COM-INFO] https://translationroles.sitetest4.robloxlabs.com has 5 controller(s)
+2021-02-19T11:46:57.496Z [TRANSLATIONS.SITETEST4.ROBLOXLABS.COM-INFO] https://translations.sitetest4.robloxlabs.com has 4 controller(s)
+2021-02-19T11:46:57.500Z [USERMODERATION.SITETEST4.ROBLOXLABS.COM-INFO] https://usermoderation.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.504Z [VOICE.SITETEST4.ROBLOXLABS.COM-INFO] https://voice.sitetest4.robloxlabs.com has 1 controller(s)
+2021-02-19T11:46:57.970Z [API.SITETEST4.ROBLOXLABS.COM-INFO] https://api.sitetest4.robloxlabs.com has 1 websocket(s)
+2021-02-19T11:46:57.975Z [REALTIME.SITETEST4.ROBLOXLABS.COM-INFO] https://realtime.sitetest4.robloxlabs.com has 1 websocket(s)
+2021-02-19T11:46:57.985Z,7.4984322,45dc,NaN [FLog::images.sitetest4.robloxlabs.com] https://images.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:57.987Z,7.5008547,45dc,NaN [FLog::images.sitetest4.robloxlabs.com] https://images.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:57.989Z,7.503274,45dc,NaN [FLog::www.sitetest4.robloxlabs.com] https://www.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:57.992Z,7.5055333,45dc,NaN [FLog::www.sitetest4.robloxlabs.com] https://www.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:57.994Z,7.507699,45dc,NaN [FLog::api.sitetest4.robloxlabs.com] https://api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:57.996Z,7.5097582,45dc,NaN [FLog::api.sitetest4.robloxlabs.com] https://api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:57.998Z,7.51182,45dc,NaN [FLog::static.sitetest4.robloxlabs.com] https://static.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.000Z,7.5138366,45dc,NaN [FLog::static.sitetest4.robloxlabs.com] https://static.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.002Z,7.5159493,45dc,NaN [FLog::js.sitetest4.robloxlabs.com] https://js.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.004Z,7.5180189,45dc,NaN [FLog::js.sitetest4.robloxlabs.com] https://js.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.058Z,7.5713549,45dc,NaN [FLog::css.sitetest4.robloxlabs.com] https://css.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.060Z,7.5734176,45dc,NaN [FLog::css.sitetest4.robloxlabs.com] https://css.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.062Z,7.5753464,45dc,NaN [FLog::setup.sitetest4.robloxlabs.com] https://setup.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.064Z,7.5773581,45dc,NaN [FLog::setup.sitetest4.robloxlabs.com] https://setup.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.066Z,7.5793083,45dc,NaN [FLog::ti.sitetest4.robloxlabs.com] https://ti.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.067Z,7.581182,45dc,NaN [FLog::ti.sitetest4.robloxlabs.com] https://ti.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.069Z,7.5832408,45dc,NaN [FLog::versioncompatibility.api.sitetest4.robloxlabs.com] https://versioncompatibility.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.072Z,7.5853322,45dc,NaN [FLog::versioncompatibility.api.sitetest4.robloxlabs.com] https://versioncompatibility.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.116Z,7.6301953,45dc,NaN [FLog::clientsettings.api.sitetest4.robloxlabs.com] https://clientsettings.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.119Z,7.6324698,45dc,NaN [FLog::clientsettings.api.sitetest4.robloxlabs.com] https://clientsettings.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.121Z,7.6346163,45dc,NaN [FLog::assetgame.sitetest4.robloxlabs.com] https://assetgame.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.123Z,7.6366821,45dc,NaN [FLog::assetgame.sitetest4.robloxlabs.com] https://assetgame.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.125Z,7.638741,45dc,NaN [FLog::ephemeralcounters.api.sitetest4.robloxlabs.com] https://ephemeralcounters.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.127Z,7.6407383,45dc,NaN [FLog::ephemeralcounters.api.sitetest4.robloxlabs.com] https://ephemeralcounters.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.132Z,7.64534,45dc,NaN [FLog::ecsv2.sitetest4.robloxlabs.com] https://ecsv2.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.139Z,7.6524412,45dc,NaN [FLog::ecsv2.sitetest4.robloxlabs.com] https://ecsv2.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.141Z,7.6550244,45dc,NaN [FLog::gamepersistence.sitetest4.robloxlabs.com] https://gamepersistence.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.143Z,7.6572135,45dc,NaN [FLog::gamepersistence.sitetest4.robloxlabs.com] https://gamepersistence.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.145Z,7.6590808,45dc,NaN [FLog::dosarrest.origin.corp.sitetest4.robloxlabs.com] https://dosarrest.origin.corp.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.147Z,7.6609414,45dc,NaN [FLog::dosarrest.origin.corp.sitetest4.robloxlabs.com] https://dosarrest.origin.corp.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.150Z,7.6639965,45dc,NaN [FLog::metrics.sitetest4.robloxlabs.com] https://metrics.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.152Z,7.6660344,45dc,NaN [FLog::metrics.sitetest4.robloxlabs.com] https://metrics.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.154Z,7.6682481,45dc,NaN [FLog::auth.sitetest4.robloxlabs.com] https://auth.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.156Z,7.6701199,45dc,NaN [FLog::auth.sitetest4.robloxlabs.com] https://auth.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.158Z,7.6721326,45dc,NaN [FLog::apis.sitetest4.robloxlabs.com] https://apis.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.160Z,7.6740068,45dc,NaN [FLog::apis.sitetest4.robloxlabs.com] https://apis.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.162Z,7.6759996,45dc,NaN [FLog::locale.sitetest4.robloxlabs.com] https://locale.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.164Z,7.677913,45dc,NaN [FLog::locale.sitetest4.robloxlabs.com] https://locale.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.167Z,7.6804958,45dc,NaN [FLog::marketplace.api.sitetest4.robloxlabs.com] https://marketplace.api.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.169Z,7.6823834,45dc,NaN [FLog::marketplace.api.sitetest4.robloxlabs.com] https://marketplace.api.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.171Z,7.6843239,45dc,NaN [FLog::abtesting.sitetest4.robloxlabs.com] https://abtesting.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.173Z,7.6864106,45dc,NaN [FLog::abtesting.sitetest4.robloxlabs.com] https://abtesting.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.175Z,7.6883194,45dc,NaN [FLog::users.sitetest4.robloxlabs.com] https://users.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.176Z,7.6901378,45dc,NaN [FLog::users.sitetest4.robloxlabs.com] https://users.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.178Z,7.6922617,45dc,NaN [FLog::twostepverification.sitetest4.robloxlabs.com] https://twostepverification.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.180Z,7.694186,45dc,NaN [FLog::twostepverification.sitetest4.robloxlabs.com] https://twostepverification.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.183Z,7.6968656,45dc,NaN [FLog::lms.simulpong.com] https://lms.simulpong.com:443 Started
+2021-02-19T11:46:58.185Z,7.6987053,45dc,NaN [FLog::lms.simulpong.com] https://lms.simulpong.com:80 Started
+2021-02-19T11:46:58.187Z,7.7008556,45dc,NaN [FLog::chat.sitetest4.robloxlabs.com] https://chat.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.189Z,7.7027873,45dc,NaN [FLog::chat.sitetest4.robloxlabs.com] https://chat.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.191Z,7.7048125,45dc,NaN [FLog::contacts.sitetest4.robloxlabs.com] https://contacts.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.193Z,7.7067623,45dc,NaN [FLog::contacts.sitetest4.robloxlabs.com] https://contacts.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.195Z,7.708709,45dc,NaN [FLog::notifications.sitetest4.robloxlabs.com] https://notifications.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.197Z,7.7108704,45dc,NaN [FLog::notifications.sitetest4.robloxlabs.com] https://notifications.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.248Z,7.7613042,45dc,NaN [FLog::accountsettings.sitetest4.robloxlabs.com] https://accountsettings.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.250Z,7.7633836,45dc,NaN [FLog::accountsettings.sitetest4.robloxlabs.com] https://accountsettings.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.252Z,7.7655516,45dc,NaN [FLog::ads.sitetest4.robloxlabs.com] https://ads.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.254Z,7.7675581,45dc,NaN [FLog::ads.sitetest4.robloxlabs.com] https://ads.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.256Z,7.7696233,45dc,NaN [FLog::trades.sitetest4.robloxlabs.com] https://trades.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.258Z,7.7720427,45dc,NaN [FLog::trades.sitetest4.robloxlabs.com] https://trades.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.260Z,7.7740796,45dc,NaN [FLog::friends.sitetest4.robloxlabs.com] https://friends.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.263Z,7.7763844,45dc,NaN [FLog::friends.sitetest4.robloxlabs.com] https://friends.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.265Z,7.7783425,45dc,NaN [FLog::privatemessages.sitetest4.robloxlabs.com] https://privatemessages.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.266Z,7.7801435,45dc,NaN [FLog::privatemessages.sitetest4.robloxlabs.com] https://privatemessages.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.268Z,7.7821751,45dc,NaN [FLog::economy.sitetest4.robloxlabs.com] https://economy.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.270Z,7.7840261,45dc,NaN [FLog::economy.sitetest4.robloxlabs.com] https://economy.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.272Z,7.7859726,45dc,NaN [FLog::games.sitetest4.robloxlabs.com] https://games.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.274Z,7.7878579,45dc,NaN [FLog::games.sitetest4.robloxlabs.com] https://games.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.276Z,7.7898183,45dc,NaN [FLog::realtime.sitetest4.robloxlabs.com] https://realtime.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.278Z,7.7921772,45dc,NaN [FLog::realtime.sitetest4.robloxlabs.com] https://realtime.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.340Z,7.8536167,45dc,NaN [FLog::thumbnails.sitetest4.robloxlabs.com] https://thumbnails.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.342Z,7.8559042,45dc,NaN [FLog::thumbnails.sitetest4.robloxlabs.com] https://thumbnails.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.344Z,7.8581906,45dc,NaN [FLog::presence.sitetest4.robloxlabs.com] https://presence.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.346Z,7.8601771,45dc,NaN [FLog::presence.sitetest4.robloxlabs.com] https://presence.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.349Z,7.8624127,45dc,NaN [FLog::groups.sitetest4.robloxlabs.com] https://groups.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.351Z,7.86441,45dc,NaN [FLog::groups.sitetest4.robloxlabs.com] https://groups.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.353Z,7.8665216,45dc,NaN [FLog::accountinformation.sitetest4.robloxlabs.com] https://accountinformation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.355Z,7.8685709,45dc,NaN [FLog::accountinformation.sitetest4.robloxlabs.com] https://accountinformation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.358Z,7.8719233,45dc,NaN [FLog::badges.sitetest4.robloxlabs.com] https://badges.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.360Z,7.8741232,45dc,NaN [FLog::badges.sitetest4.robloxlabs.com] https://badges.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.362Z,7.8762997,45dc,NaN [FLog::devforum.sitetest4.robloxlabs.com] https://devforum.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.365Z,7.8784384,45dc,NaN [FLog::devforum.sitetest4.robloxlabs.com] https://devforum.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.367Z,7.8805651,45dc,NaN [FLog::premiumfeatures.sitetest4.robloxlabs.com] https://premiumfeatures.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.369Z,7.8825652,45dc,NaN [FLog::premiumfeatures.sitetest4.robloxlabs.com] https://premiumfeatures.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.371Z,7.8847112,45dc,NaN [FLog::clientsettings.sitetest4.robloxlabs.com] https://clientsettings.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.374Z,7.8875752,45dc,NaN [FLog::clientsettings.sitetest4.robloxlabs.com] https://clientsettings.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.376Z,7.889914,45dc,NaN [FLog::clientsettingscdn.sitetest4.robloxlabs.com] https://clientsettingscdn.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.378Z,7.8921362,45dc,NaN [FLog::clientsettingscdn.sitetest4.robloxlabs.com] https://clientsettingscdn.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.380Z,7.8941202,45dc,NaN [FLog::adconfiguration.sitetest4.robloxlabs.com] https://adconfiguration.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.383Z,7.8965002,45dc,NaN [FLog::adconfiguration.sitetest4.robloxlabs.com] https://adconfiguration.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.385Z,7.8986192,45dc,NaN [FLog::client-telementry.sitetest4.robloxlabs.com] https://client-telementry.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.387Z,7.9006691,45dc,NaN [FLog::client-telementry.sitetest4.robloxlabs.com] https://client-telementry.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.389Z,7.9029068,45dc,NaN [FLog::assetdelivery.sitetest4.robloxlabs.com] https://assetdelivery.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.391Z,7.9049698,45dc,NaN [FLog::assetdelivery.sitetest4.robloxlabs.com] https://assetdelivery.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.393Z,7.9070786,45dc,NaN [FLog::avatar.sitetest4.robloxlabs.com] https://avatar.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.395Z,7.9091262,45dc,NaN [FLog::avatar.sitetest4.robloxlabs.com] https://avatar.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.398Z,7.9118403,45dc,NaN [FLog::billing.sitetest4.robloxlabs.com] https://billing.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.400Z,7.9142193,45dc,NaN [FLog::billing.sitetest4.robloxlabs.com] https://billing.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.403Z,7.9168875,45dc,NaN [FLog::catalog.sitetest4.robloxlabs.com] https://catalog.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.406Z,7.9197805,45dc,NaN [FLog::catalog.sitetest4.robloxlabs.com] https://catalog.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.408Z,7.9218716,45dc,NaN [FLog::cdnproviders.sitetest4.robloxlabs.com] https://cdnproviders.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.411Z,7.924534,45dc,NaN [FLog::cdnproviders.sitetest4.robloxlabs.com] https://cdnproviders.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.413Z,7.9269104,45dc,NaN [FLog::chatmoderation.sitetest4.robloxlabs.com] https://chatmoderation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.415Z,7.9290359,45dc,NaN [FLog::chatmoderation.sitetest4.robloxlabs.com] https://chatmoderation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.417Z,7.9308727,45dc,NaN [FLog::contentstore.sitetest4.robloxlabs.com] https://contentstore.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.419Z,7.9328236,45dc,NaN [FLog::contentstore.sitetest4.robloxlabs.com] https://contentstore.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.422Z,7.9355066,45dc,NaN [FLog::develop.sitetest4.robloxlabs.com] https://develop.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.424Z,7.9376282,45dc,NaN [FLog::develop.sitetest4.robloxlabs.com] https://develop.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.426Z,7.9401027,45dc,NaN [FLog::discussions.sitetest4.robloxlabs.com] https://discussions.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.428Z,7.9422821,45dc,NaN [FLog::discussions.sitetest4.robloxlabs.com] https://discussions.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.430Z,7.9442445,45dc,NaN [FLog::economycreatorstats.sitetest4.robloxlabs.com] https://economycreatorstats.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.432Z,7.9461584,45dc,NaN [FLog::economycreatorstats.sitetest4.robloxlabs.com] https://economycreatorstats.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.434Z,7.9481572,45dc,NaN [FLog::engagementpayouts.sitetest4.robloxlabs.com] https://engagementpayouts.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.437Z,7.9503823,45dc,NaN [FLog::engagementpayouts.sitetest4.robloxlabs.com] https://engagementpayouts.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.438Z,7.9522895,45dc,NaN [FLog::followings.sitetest4.robloxlabs.com] https://followings.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.441Z,7.9543665,45dc,NaN [FLog::gameinternationalization.sitetest4.robloxlabs.com] https://gameinternationalization.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.443Z,7.956307,45dc,NaN [FLog::followings.sitetest4.robloxlabs.com] https://followings.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.445Z,7.9585823,45dc,NaN [FLog::gamejoin.sitetest4.robloxlabs.com] https://gamejoin.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.447Z,7.9604556,45dc,NaN [FLog::gameinternationalization.sitetest4.robloxlabs.com] https://gameinternationalization.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.449Z,7.9624145,45dc,NaN [FLog::gamejoin.sitetest4.robloxlabs.com] https://gamejoin.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.451Z,7.9645864,45dc,NaN [FLog::groupsmoderation.sitetest4.robloxlabs.com] https://groupsmoderation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.453Z,7.9665103,45dc,NaN [FLog::groupsmoderation.sitetest4.robloxlabs.com] https://groupsmoderation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.455Z,7.9685441,45dc,NaN [FLog::inventory.sitetest4.robloxlabs.com] https://inventory.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.457Z,7.9704852,45dc,NaN [FLog::inventory.sitetest4.robloxlabs.com] https://inventory.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.459Z,7.9724344,45dc,NaN [FLog::itemconfiguration.sitetest4.robloxlabs.com] https://itemconfiguration.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.461Z,7.974422,45dc,NaN [FLog::itemconfiguration.sitetest4.robloxlabs.com] https://itemconfiguration.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.463Z,7.9763079,45dc,NaN [FLog::localizationtables.sitetest4.robloxlabs.com] https://localizationtables.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.464Z,7.9782638,45dc,NaN [FLog::localizationtables.sitetest4.robloxlabs.com] https://localizationtables.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.468Z,7.9817394,45dc,NaN [FLog::points.sitetest4.robloxlabs.com] https://points.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.470Z,7.98352,45dc,NaN [FLog::points.sitetest4.robloxlabs.com] https://points.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.472Z,7.9854571,45dc,NaN [FLog::publish.sitetest4.robloxlabs.com] https://publish.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.474Z,7.98735,45dc,NaN [FLog::publish.sitetest4.robloxlabs.com] https://publish.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.475Z,7.9891985,45dc,NaN [FLog::punishments.sitetest4.robloxlabs.com] https://punishments.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.477Z,7.9910506,45dc,NaN [FLog::punishments.sitetest4.robloxlabs.com] https://punishments.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.479Z,7.9928844,45dc,NaN [FLog::share.sitetest4.robloxlabs.com] https://share.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.481Z,7.9948619,45dc,NaN [FLog::share.sitetest4.robloxlabs.com] https://share.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.550Z,8.0633177,45dc,NaN [FLog::textfilter.sitetest4.robloxlabs.com] https://textfilter.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.552Z,8.0654361,45dc,NaN [FLog::textfilter.sitetest4.robloxlabs.com] https://textfilter.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.554Z,8.0676951,45dc,NaN [FLog::themes.sitetest4.robloxlabs.com] https://themes.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.556Z,8.0698825,45dc,NaN [FLog::themes.sitetest4.robloxlabs.com] https://themes.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.558Z,8.0720133,45dc,NaN [FLog::thumbnailsresizer.sitetest4.robloxlabs.com] https://thumbnailsresizer.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.560Z,8.0741821,45dc,NaN [FLog::thumbnailsresizer.sitetest4.robloxlabs.com] https://thumbnailsresizer.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.563Z,8.0769118,45dc,NaN [FLog::translationroles.sitetest4.robloxlabs.com] https://translationroles.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.565Z,8.0790848,45dc,NaN [FLog::translationroles.sitetest4.robloxlabs.com] https://translationroles.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.567Z,8.0810468,45dc,NaN [FLog::translations.sitetest4.robloxlabs.com] https://translations.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.570Z,8.0833555,45dc,NaN [FLog::translations.sitetest4.robloxlabs.com] https://translations.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.572Z,8.0855494,45dc,NaN [FLog::usermoderation.sitetest4.robloxlabs.com] https://usermoderation.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.574Z,8.0876458,45dc,NaN [FLog::usermoderation.sitetest4.robloxlabs.com] https://usermoderation.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:46:58.576Z,8.0896296,45dc,NaN [FLog::voice.sitetest4.robloxlabs.com] https://voice.sitetest4.robloxlabs.com:443 Started
+2021-02-19T11:46:58.578Z,8.0916853,45dc,NaN [FLog::voice.sitetest4.robloxlabs.com] https://voice.sitetest4.robloxlabs.com:80 Started
+2021-02-19T11:47:47.248Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:47:47.183Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:47:47.250Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:47:48.645Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:47:48.636Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:47:48.646Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:47:49.685Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:47:49.676Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:47:49.686Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:47:56.655Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:47:56.646Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:47:56.656Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:16.420Z [EVENTS-INFO] {"name":"GameLaunchAttempt_Win32"}
+2021-02-19T11:48:16.421Z [EVENTS-INFO] {}
+2021-02-19T11:48:16.432Z [EVENTS-INFO] {"name":"GameLaunchAttempt_Win32_Protocol"}
+2021-02-19T11:48:16.433Z [EVENTS-INFO] {}
+2021-02-19T11:48:16.505Z [EPHEMERALCOUNTERSV2-INFO] {"lType":"protocol","pid":"0","refuid":"","pg":"gameDetail","evt":"developIntent","ctx":"OpenStudio","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:16.373Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:16.507Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:16.511Z [EPHEMERALCOUNTERSV2-INFO] {"lType":"protocol","pid":"","refuid":"","pg":"gameDetail","evt":"clientStartAttempt","ctx":"OpenStudio","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:16.381Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:16.515Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:16.547Z [EVENTS-INFO] {"name":"GameLaunchAttempt_Win32"}
+2021-02-19T11:48:16.548Z [EVENTS-INFO] {}
+2021-02-19T11:48:16.556Z [EVENTS-INFO] {"name":"GameLaunchAttempt_Win32_Protocol"}
+2021-02-19T11:48:16.558Z [EVENTS-INFO] {}
+2021-02-19T11:48:16.661Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat3","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:16.652Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:16.662Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:50.182Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:50.119Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:50.183Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:51.006Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:50.943Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:51.007Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:51.444Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:51.401Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:51.446Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:48:58.962Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"http://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:48:58.946Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:48:58.963Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:06.165Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:49:06.121Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:49:06.166Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:06.873Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:49:06.594Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:49:06.874Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:07.389Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:49:07.128Z","gid":"-1551179745","sid":"009696fd-0817-4675-9acd-5bc3f4d2dcbf"}
+2021-02-19T11:49:07.390Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:14.725Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"https://www.sitetest4.robloxlabs.com/login/return-to-studio?username=mm","lt":"2021-02-19T11:49:14.624Z","gid":"-1551179745"}
+2021-02-19T11:49:14.726Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:16.878Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:16.805Z","gid":"-1551179745"}
+2021-02-19T11:49:16.879Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:17.591Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:17.543Z","gid":"-1551179745"}
+2021-02-19T11:49:17.592Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:17.925Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:17.890Z","gid":"-1551179745"}
+2021-02-19T11:49:17.926Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:21.146Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:21.042Z","gid":"-1551179745"}
+2021-02-19T11:49:21.147Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:21.149Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:21.060Z","gid":"-1551179745"}
+2021-02-19T11:49:21.149Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:21.151Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:21.062Z","gid":"-1551179745"}
+2021-02-19T11:49:21.152Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:21.154Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:21.067Z","gid":"-1551179745"}
+2021-02-19T11:49:21.154Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:22.880Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:22.864Z","gid":"-1551179745"}
+2021-02-19T11:49:22.881Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:23.619Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:23.469Z","gid":"-1551179745"}
+2021-02-19T11:49:23.620Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:23.858Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:23.832Z","gid":"-1551179745"}
+2021-02-19T11:49:23.859Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:24.836Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:24.668Z","gid":"-1551179745"}
+2021-02-19T11:49:24.838Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:24.840Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:24.674Z","gid":"-1551179745"}
+2021-02-19T11:49:24.841Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:24.843Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:24.677Z","gid":"-1551179745"}
+2021-02-19T11:49:24.844Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:24.847Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:24.682Z","gid":"-1551179745"}
+2021-02-19T11:49:24.848Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:24.849Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:24.686Z","gid":"-1551179745"}
+2021-02-19T11:49:24.850Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:25.885Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"focus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:25.854Z","gid":"-1551179745"}
+2021-02-19T11:49:25.886Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:25.888Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"password","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:25.857Z","gid":"-1551179745"}
+2021-02-19T11:49:25.889Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:26.586Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"offFocus","field":"username","evt":"formInteraction","ctx":"LoginForm","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:26.546Z","gid":"-1551179745"}
+2021-02-19T11:49:26.587Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:26.685Z [EVENTS-INFO] {"name":"WebsiteLogin_Attempt"}
+2021-02-19T11:49:26.686Z [EVENTS-INFO] {}
+2021-02-19T11:49:26.692Z [EVENTS-INFO] {"name":"WebsiteLogin_FirstAttempt"}
+2021-02-19T11:49:26.694Z [EVENTS-INFO] {}
+2021-02-19T11:49:26.742Z [EPHEMERALCOUNTERSV2-INFO] {"aType":"click","field":"loginSubmit","evt":"formInteraction","ctx":"loginPage","url":"https://www.sitetest4.robloxlabs.com/Login/","lt":"2021-02-19T11:49:26.622Z","gid":"-1551179745"}
+2021-02-19T11:49:26.744Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:26.776Z [EVENTS-INFO] {"name":"WebsiteLogin_Attempt"}
+2021-02-19T11:49:26.778Z [EVENTS-INFO] {}
+2021-02-19T11:49:26.797Z [EVENTS-INFO] {"name":"WebsiteLogin_FirstAttempt"}
+2021-02-19T11:49:26.799Z [EVENTS-INFO] {}
+2021-02-19T11:49:27.348Z [EVENTS-INFO] {"name":"WebsiteLogin_Success"}
+2021-02-19T11:49:27.350Z [EVENTS-INFO] {}
+2021-02-19T11:49:27.381Z [EVENTS-INFO] {"name":"WebsiteLogin_Success"}
+2021-02-19T11:49:27.382Z [EVENTS-INFO] {}
+2021-02-19T11:49:29.619Z [EPHEMERALCOUNTERSV2-INFO] {"btn":"search","evt":"formInteraction","ctx":"searchAutocomplete","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:49:29.572Z","gid":"-1551179745","sid":"a0a218af-9ba7-431d-bb03-2047f7d1b269"}
+2021-02-19T11:49:29.620Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:31.007Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat1","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:49:30.980Z","gid":"-1551179745","sid":"a0a218af-9ba7-431d-bb03-2047f7d1b269"}
+2021-02-19T11:49:31.009Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:32.850Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"userInteractions","ctx":"mouse","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:49:32.840Z","gid":"-1551179745","sid":"a0a218af-9ba7-431d-bb03-2047f7d1b269"}
+2021-02-19T11:49:32.851Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:49:39.816Z [EPHEMERALCOUNTERSV2-INFO] {"evt":"pageHeartbeat","ctx":"heartbeat2","url":"https://www.sitetest4.robloxlabs.com/home","lt":"2021-02-19T11:49:39.794Z","gid":"-1551179745","sid":"a0a218af-9ba7-431d-bb03-2047f7d1b269"}
+2021-02-19T11:49:39.818Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.434Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"animate hover over On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.435Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.437Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"basic objects display mode On Start","label":"Vertical","value":"0"}
+2021-02-19T11:50:16.438Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.447Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"camera shift speed On Start","label":"0.200000003","value":"0"}
+2021-02-19T11:50:16.448Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.449Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"auto-save enabled On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.450Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.460Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Studio","evt":"Start","label":"IDE","value":"0"}
+2021-02-19T11:50:16.461Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.462Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"always save script changes On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.463Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.475Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Retention-Run","evt":"20210121","label":"20210219","value":"1"}
+2021-02-19T11:50:16.476Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.478Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"auto-save interval (minutes) On Start","label":"5","value":"0"}
+2021-02-19T11:50:16.479Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.490Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Counters","evt":"RibbonBar","label":"Launches","value":"1"}
+2021-02-19T11:50:16.491Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.492Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Studio","evt":"Version","label":"0.140.0.691","value":"0"}
+2021-02-19T11:50:16.493Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.504Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"camera mouse wheel speed On Start","label":"15","value":"0"}
+2021-02-19T11:50:16.505Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.506Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"auto indent On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.507Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.516Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"camera speed On Start","label":"1.5","value":"0"}
+2021-02-19T11:50:16.517Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.520Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"background color On Start","label":"1, 1, 1","value":"0"}
+2021-02-19T11:50:16.521Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.530Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"auto-save path On Start","label":"C:/Users/minig/Documents/sitetest4.robloxlabs/AutoSaves","value":"0"}
+2021-02-19T11:50:16.531Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.533Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"clear output on start On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.534Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.543Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"comment color On Start","label":"0, 0.498039, 0","value":"0"}
+2021-02-19T11:50:16.544Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.546Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"defaultscriptfiledir On Start","label":"C:/Users/minig/Documents/sitetest4.robloxlabs/Scripts","value":"0"}
+2021-02-19T11:50:16.547Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.556Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"deprecatedobjectsshown On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.557Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.559Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"drag multiple parts as single part On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.560Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.569Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"device pairing code On Start","label":"0","value":"0"}
+2021-02-19T11:50:16.570Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.571Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"enable intellisense On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.572Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.581Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"error color On Start","label":"1, 0, 0","value":"0"}
+2021-02-19T11:50:16.583Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.584Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"find selection background color On Start","label":"0.964706, 0.72549, 0.247059","value":"0"}
+2021-02-19T11:50:16.585Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.595Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"font On Start","label":"Courier New,10,-1,5,50,0,0,0,0,0","value":"0"}
+2021-02-19T11:50:16.596Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.597Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"hover animate speed On Start","label":"Slow","value":"0"}
+2021-02-19T11:50:16.598Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.607Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"hover over color On Start","label":"0.7, 0.9, 1","value":"0"}
+2021-02-19T11:50:16.608Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.609Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"keyword color On Start","label":"0, 0, 0.498039","value":"0"}
+2021-02-19T11:50:16.610Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.621Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"line thickness On Start","label":"0.0399999991","value":"0"}
+2021-02-19T11:50:16.622Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.623Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"luadebuggerenabled On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.624Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.634Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"maximum output lines On Start","label":"5000","value":"0"}
+2021-02-19T11:50:16.635Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.637Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"number color On Start","label":"0, 0.498039, 0.498039","value":"0"}
+2021-02-19T11:50:16.638Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.648Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"only play audio from window in focus On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.649Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.650Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"operator color On Start","label":"0.498039, 0.498039, 0","value":"0"}
+2021-02-19T11:50:16.651Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.660Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"output layout mode On Start","label":"Vertical","value":"0"}
+2021-02-19T11:50:16.661Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.663Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"overridecorescripts On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.664Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.673Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"overridecorescriptsdir On Start","label":"C:/Users/minig/AppData/Local/mfdlabs/CoreScriptOverrides","value":"0"}
+2021-02-19T11:50:16.674Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.675Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"permissionlevelshown On Start","label":"Game","value":"0"}
+2021-02-19T11:50:16.676Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.686Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"pluginsdir On Start","label":"C:/Users/minig/AppData/Local/mfdlabs/Plugins","value":"0"}
+2021-02-19T11:50:16.687Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.689Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"preprocessor color On Start","label":"0.498039, 0, 0","value":"0"}
+2021-02-19T11:50:16.690Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.699Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"recentsavesdir On Start","label":"C:/Users/minig/Documents/sitetest4.robloxlabs/RecentSaves","value":"0"}
+2021-02-19T11:50:16.700Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.701Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"render throttle percentage On Start","label":"75","value":"0"}
+2021-02-19T11:50:16.702Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.712Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"runtimeundobehavior On Start","label":"Aggregate","value":"0"}
+2021-02-19T11:50:16.713Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.714Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"select color On Start","label":"0.1, 0.6, 1","value":"0"}
+2021-02-19T11:50:16.715Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.725Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"select/hover color On Start","label":"0.7, 0.7, 0.7","value":"0"}
+2021-02-19T11:50:16.727Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.728Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"selection background color On Start","label":"0.431373, 0.631373, 0.945098","value":"0"}
+2021-02-19T11:50:16.729Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.740Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"selection color On Start","label":"1, 1, 1","value":"0"}
+2021-02-19T11:50:16.741Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.743Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"server audio behavior On Start","label":"OnlineGame","value":"0"}
+2021-02-19T11:50:16.744Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.754Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"show diagnostics bar On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.755Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.756Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"show dragger grid On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.757Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.767Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"show hover over On Start","label":"true","value":"0"}
+2021-02-19T11:50:16.768Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.770Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"string color On Start","label":"0.498039, 0, 0.498039","value":"0"}
+2021-02-19T11:50:16.771Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.780Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"tab width On Start","label":"4","value":"0"}
+2021-02-19T11:50:16.781Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.782Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"text color On Start","label":"0, 0, 0","value":"0"}
+2021-02-19T11:50:16.784Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.800Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"text wrapping On Start","label":"false","value":"0"}
+2021-02-19T11:50:16.801Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.803Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"ui style On Start","label":"RibbonBar","value":"0"}
+2021-02-19T11:50:16.804Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.815Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"StudioSettings","evt":"warning color On Start","label":"0, 0, 1","value":"0"}
+2021-02-19T11:50:16.816Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.817Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Error","evt":"StudioInternetConnection","label":"none","value":"0"}
+2021-02-19T11:50:16.818Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.825Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Web","evt":"URLRequest","label":"http://wiki.sitetest4.robloxlabs.com/index.php?title=Studio_Tutorials_Landing","studiomode":"true","value":"0"}
+2021-02-19T11:50:16.826Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.898Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Web","evt":"URLRequest","label":"http:/ide/welcome/old.html?","filepath":"C:/buildAgent/Roblox.RobloxLabs.SiteTest4/Roblox.StaticPages/Roblox.StaticCDN/rbx/1.rbxlx","filename":"1.rbxlx","value":"0"}
+2021-02-19T11:50:16.899Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:50:16.904Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"","placeID":"","category":"Studio","evt":"EditMode","label":"Edit","value":"0"}
+2021-02-19T11:50:16.905Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:10.452Z [STATS-INFO] {"name":"HTTPDelaySuccess-Win32","value":"30.462965"}
+2021-02-19T11:51:10.454Z [STATS-INFO] {}
+2021-02-19T11:51:10.460Z [STATS-INFO] {"name":"HTTPAccumulatedBytes-Win32","value":"54112.000000"}
+2021-02-19T11:51:10.461Z [STATS-INFO] {}
+2021-02-19T11:51:10.470Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F","counterName":"HTTPSuccessMarketPlace-Win32","amount":"0"}
+2021-02-19T11:51:10.471Z [EPHEMERALCOUNTERS-INFO] {}
+2021-02-19T11:51:10.475Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F","counterName":"HTTPSuccess-Win32","amount":"3"}
+2021-02-19T11:51:10.476Z [EPHEMERALCOUNTERS-INFO] {}
+2021-02-19T11:51:10.483Z [EPHEMERALCOUNTERS-INFO] {"apiKey":"76E5A40C-3AE1-4028-9F10-7C62520BD94F","counterName":"HTTPSuccessDataStore-Win32","amount":"0"}
+2021-02-19T11:51:10.485Z [EPHEMERALCOUNTERS-INFO] {}
+2021-02-19T11:51:31.200Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Game","evt":"ComputerCameraMove","label":"ComputerCameraMoveModeDefault","value":"0"}
+2021-02-19T11:51:31.201Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.203Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Game","evt":"ComputerMovement","label":"ComputerMovementModeDefault","value":"0"}
+2021-02-19T11:51:31.204Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.313Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Game","evt":"PhysicalPropertiesMode_Default","label":"0","value":"0"}
+2021-02-19T11:51:31.315Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.321Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Web","evt":"URLRequest","label":"http://www.sitetest4.robloxlabs.com/IDE/ClientToolbox.aspx","value":"0"}
+2021-02-19T11:51:31.322Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.343Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Game","evt":"LightingObjects","label":"none","value":"0"}
+2021-02-19T11:51:31.344Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.763Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Web","evt":"URLRequest","label":"https://www.sitetest4.robloxlabs.com/Login/","value":"0"}
+2021-02-19T11:51:31.765Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.770Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Studio","evt":"BeginEdit","label":"LocalDocument","value":"0"}
+2021-02-19T11:51:31.771Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.841Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:31.843Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.855Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:31.856Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.858Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:31.859Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.869Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:31.870Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.889Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"fileOpenAction","value":"0"}
+2021-02-19T11:51:31.890Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:31.893Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Studio","evt":"EditMode","label":"Edit","value":"0"}
+2021-02-19T11:51:31.894Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.027Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"playGameActionGroup","value":"0"}
+2021-02-19T11:51:40.028Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.060Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"simulationPlayAction","value":"0"}
+2021-02-19T11:51:40.061Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.183Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Game","evt":"ComputerMovement","label":"ComputerMovementModeDefault","value":"0"}
+2021-02-19T11:51:40.184Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.189Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Game","evt":"ComputerCameraMove","label":"ComputerCameraMoveModeDefault","value":"0"}
+2021-02-19T11:51:40.190Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.287Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:40.288Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.299Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:40.300Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.302Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:40.303Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.313Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:40.314Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:40.673Z [UNIVERSES-COMMENT] {"placeId":"0"}
+2021-02-19T11:51:40.774Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"simulationPlayAction","value":"0"}
+2021-02-19T11:51:40.775Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:41.077Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Game","evt":"RemoteFunction","label":"invokeServer","value":"0"}
+2021-02-19T11:51:41.078Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.213Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"simulationResetAction","value":"0"}
+2021-02-19T11:51:44.214Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.332Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:44.333Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.344Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:44.345Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.347Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:44.348Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.357Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:44.358Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.370Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"simulationResetAction","value":"0"}
+2021-02-19T11:51:44.371Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.820Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"playGameActionGroup","value":"0"}
+2021-02-19T11:51:44.821Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.861Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"simulationPlayAction","value":"0"}
+2021-02-19T11:51:44.862Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.945Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Game","evt":"ComputerMovement","label":"ComputerMovementModeDefault","value":"0"}
+2021-02-19T11:51:44.946Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:44.948Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Game","evt":"ComputerCameraMove","label":"ComputerCameraMoveModeDefault","value":"0"}
+2021-02-19T11:51:44.949Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:45.052Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:45.053Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:45.064Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridToOneAction","value":"0"}
+2021-02-19T11:51:45.065Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:45.067Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:45.068Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:45.078Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"gridSizeToFourAction","value":"0"}
+2021-02-19T11:51:45.079Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:51:45.393Z [UNIVERSES-COMMENT] {"placeId":"0"}
+2021-02-19T11:51:45.450Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Action","evt":"StudioUserAction","label":"simulationPlayAction","value":"0"}
+2021-02-19T11:51:45.451Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:52:06.093Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"Game","evt":"GraphicsFeatureLevel","label":"Win32 D3D11","value":"0"}
+2021-02-19T11:52:06.095Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:52:06.160Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"UsageFeatures","evt":"EditScript","label":"0","value":"1"}
+2021-02-19T11:52:06.161Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:52:06.164Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"UsageFeatures","evt":"ManipulatePart","label":"0","value":"92"}
+2021-02-19T11:52:06.165Z [EPHEMERALCOUNTERSV2-INFO] {}
+2021-02-19T11:52:06.231Z [EPHEMERALCOUNTERSV2-INFO] {"studioSid":"829068B0-6004-4E82-BF01-57678F4C8243","userID":"0","placeID":"0","category":"UsageFeatures","evt":"Inserts","label":"0","value":"0"}
+2021-02-19T11:52:06.232Z [EPHEMERALCOUNTERSV2-INFO] {}
