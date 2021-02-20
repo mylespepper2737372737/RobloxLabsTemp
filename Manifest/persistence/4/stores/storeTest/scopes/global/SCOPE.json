@@ -2,8 +2,8 @@
     "scopeName": "global",
     "store": "storeTest",
     "universe": 4,
-    "keys": 1,
-    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\4\\stores\\storeTest\\scopes\\global\\",
-    "created": "2021-02-07T08:45:35.671Z",
-    "lastUpdated": "2021-02-19T07:58:29.433Z"
+    "keys": 0,
+    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\4\\stores\\storeTest\\scopes\\global\\",
+    "created": "2021-02-20T17:36:57.273Z",
+    "lastUpdated": "2021-02-20T17:42:30.250Z"
 }

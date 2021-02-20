@@ -12,7 +12,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:45:35.676Z"
+        "date": "2021-02-20T17:36:57.278Z"
     },
     {
         "action": "KeyRemoved",
@@ -24,7 +24,7 @@
                 "value": null
             }
         ],
-        "date": "2021-02-07T08:45:45.835Z"
+        "date": "2021-02-20T17:36:57.285Z"
     },
     {
         "action": "KeyAdded",
@@ -39,7 +39,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:47:27.111Z"
+        "date": "2021-02-20T17:42:26.247Z"
     },
     {
         "action": "KeyRemoved",
@@ -51,7 +51,7 @@
                 "value": null
             }
         ],
-        "date": "2021-02-07T08:47:27.120Z"
+        "date": "2021-02-20T17:42:26.261Z"
     },
     {
         "action": "KeyAdded",
@@ -66,6 +66,72 @@
                 }
             }
         ],
-        "date": "2021-02-19T07:58:29.433Z"
+        "date": "2021-02-20T17:42:28.173Z"
+    },
+    {
+        "action": "KeyRemoved",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": false,
+                "purged": true,
+                "value": null
+            }
+        ],
+        "date": "2021-02-20T17:42:28.182Z"
+    },
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "testValue",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-20T17:42:29.385Z"
+    },
+    {
+        "action": "KeyRemoved",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": false,
+                "purged": true,
+                "value": null
+            }
+        ],
+        "date": "2021-02-20T17:42:29.395Z"
+    },
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "testValue",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-20T17:42:30.250Z"
+    },
+    {
+        "action": "KeyRemoved",
+        "data": [
+            {
+                "name": "keyPurgeTest",
+                "created": false,
+                "purged": true,
+                "value": null
+            }
+        ],
+        "date": "2021-02-20T17:42:30.261Z"
     }
 ]

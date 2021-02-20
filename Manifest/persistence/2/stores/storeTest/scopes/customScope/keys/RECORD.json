@@ -1,13 +1,13 @@
 [
     {
         "keyName": "keyTest",
-        "created": "2021-02-07T08:45:35.605Z",
+        "created": "2021-02-20T17:36:57.206Z",
         "updated": null,
         "purged": null
     },
     {
         "keyName": "key2",
-        "created": "2021-02-07T08:45:35.608Z",
+        "created": "2021-02-20T17:36:57.209Z",
         "updated": null,
         "purged": null
     },
@@ -18,13 +18,13 @@
             "store": "storeTest",
             "universe": 1,
             "userIds": 0,
-            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
             "version": 1,
-            "created": "2021-02-07T08:45:35.608Z",
-            "lastUpdated": "2021-02-07T08:45:35.608Z"
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:36:57.209Z"
         },
-        "created": "2021-02-07T08:45:35.608Z",
-        "updated": "2021-02-07T08:45:35.611Z",
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:36:57.212Z",
         "purged": null
     },
     {
@@ -34,13 +34,13 @@
             "store": "storeTest",
             "universe": 1,
             "userIds": 0,
-            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
             "version": 2,
-            "created": "2021-02-07T08:45:35.608Z",
-            "lastUpdated": "2021-02-07T08:45:35.611Z"
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:36:57.212Z"
         },
-        "created": "2021-02-07T08:45:35.608Z",
-        "updated": "2021-02-07T08:46:16.176Z",
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:26.204Z",
         "purged": null
     },
     {
@@ -50,13 +50,13 @@
             "store": "storeTest",
             "universe": 1,
             "userIds": 0,
-            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
             "version": 3,
-            "created": "2021-02-07T08:45:35.608Z",
-            "lastUpdated": "2021-02-07T08:46:16.176Z"
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:26.204Z"
         },
-        "created": "2021-02-07T08:45:35.608Z",
-        "updated": "2021-02-07T08:46:16.180Z",
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:26.207Z",
         "purged": null
     },
     {
@@ -66,13 +66,13 @@
             "store": "storeTest",
             "universe": 1,
             "userIds": 0,
-            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
             "version": 4,
-            "created": "2021-02-07T08:45:35.608Z",
-            "lastUpdated": "2021-02-07T08:46:16.180Z"
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:26.207Z"
         },
-        "created": "2021-02-07T08:45:35.608Z",
-        "updated": "2021-02-19T07:58:29.389Z",
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:28.136Z",
         "purged": null
     },
     {
@@ -82,13 +82,77 @@
             "store": "storeTest",
             "universe": 1,
             "userIds": 0,
-            "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
             "version": 5,
-            "created": "2021-02-07T08:45:35.608Z",
-            "lastUpdated": "2021-02-19T07:58:29.389Z"
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:28.136Z"
         },
-        "created": "2021-02-07T08:45:35.608Z",
-        "updated": "2021-02-19T07:58:29.392Z",
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:28.139Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 6,
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:28.139Z"
+        },
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:29.346Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 7,
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:29.346Z"
+        },
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:29.351Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 8,
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:29.351Z"
+        },
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:30.212Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "key2",
+            "scope": "customScope",
+            "store": "storeTest",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\storeTest\\scopes\\customScope\\keys\\key2\\",
+            "version": 9,
+            "created": "2021-02-20T17:36:57.209Z",
+            "lastUpdated": "2021-02-20T17:42:30.212Z"
+        },
+        "created": "2021-02-20T17:36:57.209Z",
+        "updated": "2021-02-20T17:42:30.215Z",
         "purged": null
     }
 ]

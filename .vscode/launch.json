@@ -2,15 +2,22 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Assets Tests",
+			"program": "${workspaceFolder}/Assemblies/Tests/Assets.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
 			"name": "Persistent Data Store Tests",
-			"program": "${workspaceFolder}/Implementation/Tests/PersistentDataStoreTests.js",
+			"program": "${workspaceFolder}/Assemblies/Tests/PersistentDataStoreTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Fast Log Tests",
-			"program": "${workspaceFolder}/Implementation/Tests/FastLogTests.js",
+			"program": "${workspaceFolder}/Assemblies/Tests/FastLogTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"

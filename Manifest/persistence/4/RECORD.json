@@ -8,7 +8,7 @@
                 "purged": false
             }
         ],
-        "date": "2021-02-07T08:45:35.671Z"
+        "date": "2021-02-20T17:36:57.273Z"
     },
     {
         "action": "StoreAdded",
@@ -19,7 +19,7 @@
                 "purged": false
             }
         ],
-        "date": "2021-02-07T08:45:49.057Z"
+        "date": "2021-02-20T17:36:57.292Z"
     },
     {
         "action": "StoreRemoved",
@@ -30,7 +30,7 @@
                 "purged": true
             }
         ],
-        "date": "2021-02-07T08:45:49.551Z"
+        "date": "2021-02-20T17:36:57.300Z"
     },
     {
         "action": "StoreAdded",
@@ -41,7 +41,7 @@
                 "purged": false
             }
         ],
-        "date": "2021-02-07T08:47:27.133Z"
+        "date": "2021-02-20T17:42:26.274Z"
     },
     {
         "action": "StoreRemoved",
@@ -52,6 +52,72 @@
                 "purged": true
             }
         ],
-        "date": "2021-02-07T08:47:27.143Z"
+        "date": "2021-02-20T17:42:26.287Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-20T17:42:28.193Z"
+    },
+    {
+        "action": "StoreRemoved",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-20T17:42:28.204Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-20T17:42:29.407Z"
+    },
+    {
+        "action": "StoreRemoved",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-20T17:42:29.419Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-20T17:42:30.270Z"
+    },
+    {
+        "action": "StoreRemoved",
+        "data": [
+            {
+                "name": "storePurgeTest",
+                "created": false,
+                "purged": true
+            }
+        ],
+        "date": "2021-02-20T17:42:30.280Z"
     }
 ]

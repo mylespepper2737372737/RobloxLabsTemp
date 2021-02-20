@@ -25,25 +25,16 @@
 	***
 */
 
-import a from 'axios';
-import { FASTLOG6 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { NextFunction } from 'express';
+import { AssetRequestProcessor } from '../../../Web/Assets/Roblox.Web.Assets/AssetRequestProcessor';
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		a.get('https://assetdelivery.roblox.com' + _req.url, {
-			headers: { ..._req.headers, host: 'assetdelivery.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				FASTLOG6('Tasks', e);
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
+	func: async (_req, res, next: NextFunction) => {
+		const [success, uri] = await AssetRequestProcessor.GetUri('', {}, false, false, 'HASHSHSHHSs');
+		if (!success) {
+			// res.status(500).send({ errors: [{ code: 500, message: uri }] });
+			return next(<string>uri);
+		}
 	},
 };

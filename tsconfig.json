@@ -3,7 +3,7 @@
 		"target": "es2020",
 		"module": "commonjs",
 		"jsx": "react",
-		"outDir": "Implementation",
+		"outDir": "Assemblies",
 		"rootDir": "Roblox",
 		"noUnusedLocals": true,
 		"esModuleInterop": true,

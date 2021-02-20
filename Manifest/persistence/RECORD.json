@@ -1,82 +1,72 @@
 [
-	{
-		"universeId": 1,
-		"created": "2021-01-28T15:06:36.098Z",
-		"purged": null
-	},
-	{
-		"universeId": 0,
-		"created": "2021-01-28T15:54:56.932Z",
-		"purged": null
-	},
-	{
-		"universeId": 2,
-		"created": "2021-01-31T12:04:53.886Z",
-		"purged": null
-	},
-	{
-		"universeId": 3,
-		"created": "2021-01-31T12:04:53.953Z",
-		"purged": null
-	},
-	{
-		"universeId": 4,
-		"created": "2021-01-31T12:04:53.996Z",
-		"purged": null
-	},
-	{
-		"universeId": 5,
-		"created": "2021-01-31T12:04:54.031Z",
-		"purged": null
-	},
-	{
-		"universeId": 5,
-		"created": "2021-01-31T12:04:54.031Z",
-		"purged": "2021-01-31T12:04:54.034Z"
-	},
-	{
-		"universeId": 1,
-		"created": "2021-02-07T08:45:35.560Z",
-		"purged": null
-	},
-	{
-		"universeId": 2,
-		"created": "2021-02-07T08:45:35.582Z",
-		"purged": null
-	},
-	{
-		"universeId": 3,
-		"created": "2021-02-07T08:45:35.627Z",
-		"purged": null
-	},
-	{
-		"universeId": 4,
-		"created": "2021-02-07T08:45:35.668Z",
-		"purged": null
-	},
-	{
-		"universeId": 5,
-		"created": "2021-02-07T08:45:49.993Z",
-		"purged": null
-	},
-	{
-		"universeId": 5,
-		"created": "2021-02-07T08:45:49.993Z",
-		"purged": "2021-02-07T08:45:50.396Z"
-	},
-	{
-		"universeId": 5,
-		"created": "2021-02-07T08:47:27.146Z",
-		"purged": null
-	},
-	{
-		"universeId": 5,
-		"created": "2021-02-07T08:47:27.146Z",
-		"purged": "2021-02-07T08:47:27.154Z"
-	},
-	{
-		"universeId": 0,
-		"created": "2021-02-07T18:42:15.759Z",
-		"purged": null
-	}
+    {
+        "universeId": 1,
+        "created": "2021-02-20T17:36:57.158Z",
+        "purged": null
+    },
+    {
+        "universeId": 2,
+        "created": "2021-02-20T17:36:57.182Z",
+        "purged": null
+    },
+    {
+        "universeId": 3,
+        "created": "2021-02-20T17:36:57.229Z",
+        "purged": null
+    },
+    {
+        "universeId": 4,
+        "created": "2021-02-20T17:36:57.270Z",
+        "purged": null
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:36:57.301Z",
+        "purged": null
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:36:57.301Z",
+        "purged": "2021-02-20T17:36:57.305Z"
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:26.288Z",
+        "purged": null
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:26.288Z",
+        "purged": "2021-02-20T17:42:26.296Z"
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:28.205Z",
+        "purged": null
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:28.205Z",
+        "purged": "2021-02-20T17:42:28.213Z"
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:29.420Z",
+        "purged": null
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:29.420Z",
+        "purged": "2021-02-20T17:42:29.428Z"
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:30.281Z",
+        "purged": null
+    },
+    {
+        "universeId": 5,
+        "created": "2021-02-20T17:42:30.281Z",
+        "purged": "2021-02-20T17:42:30.289Z"
+    }
 ]

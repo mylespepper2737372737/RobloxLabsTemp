@@ -1,13 +1,13 @@
 [
-	{
-		"action": "StoreAdded",
-		"data": [
-			{
-				"name": "storeTest",
-				"created": true,
-				"purged": false
-			}
-		],
-		"date": "2021-02-07T08:45:35.630Z"
-	}
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "storeTest",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-20T17:36:57.231Z"
+    }
 ]

@@ -12,7 +12,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:45:35.572Z"
+        "date": "2021-02-20T17:36:57.172Z"
     },
     {
         "action": "KeyAdded",
@@ -27,7 +27,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:45:35.575Z"
+        "date": "2021-02-20T17:36:57.176Z"
     },
     {
         "action": "KeyUpdated",
@@ -39,10 +39,10 @@
                     "store": "storeTest",
                     "universe": 1,
                     "userIds": 0,
-                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
                     "version": 2,
-                    "created": "2021-02-07T08:45:35.575Z",
-                    "lastUpdated": "2021-02-07T08:45:35.579Z"
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:36:57.179Z"
                 },
                 "created": true,
                 "purged": false,
@@ -52,7 +52,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:45:35.579Z"
+        "date": "2021-02-20T17:36:57.179Z"
     },
     {
         "action": "KeyUpdated",
@@ -64,10 +64,10 @@
                     "store": "storeTest",
                     "universe": 1,
                     "userIds": 0,
-                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
                     "version": 3,
-                    "created": "2021-02-07T08:45:35.575Z",
-                    "lastUpdated": "2021-02-07T08:46:16.166Z"
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:26.194Z"
                 },
                 "created": true,
                 "purged": false,
@@ -77,7 +77,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:46:16.166Z"
+        "date": "2021-02-20T17:42:26.194Z"
     },
     {
         "action": "KeyUpdated",
@@ -89,10 +89,10 @@
                     "store": "storeTest",
                     "universe": 1,
                     "userIds": 0,
-                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
                     "version": 4,
-                    "created": "2021-02-07T08:45:35.575Z",
-                    "lastUpdated": "2021-02-07T08:46:16.170Z"
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:26.198Z"
                 },
                 "created": true,
                 "purged": false,
@@ -102,7 +102,7 @@
                 }
             }
         ],
-        "date": "2021-02-07T08:46:16.170Z"
+        "date": "2021-02-20T17:42:26.198Z"
     },
     {
         "action": "KeyUpdated",
@@ -114,10 +114,10 @@
                     "store": "storeTest",
                     "universe": 1,
                     "userIds": 0,
-                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
                     "version": 5,
-                    "created": "2021-02-07T08:45:35.575Z",
-                    "lastUpdated": "2021-02-19T07:58:29.377Z"
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:28.126Z"
                 },
                 "created": true,
                 "purged": false,
@@ -127,7 +127,7 @@
                 }
             }
         ],
-        "date": "2021-02-19T07:58:29.377Z"
+        "date": "2021-02-20T17:42:28.126Z"
     },
     {
         "action": "KeyUpdated",
@@ -139,10 +139,10 @@
                     "store": "storeTest",
                     "universe": 1,
                     "userIds": 0,
-                    "root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
                     "version": 6,
-                    "created": "2021-02-07T08:45:35.575Z",
-                    "lastUpdated": "2021-02-19T07:58:29.381Z"
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:28.129Z"
                 },
                 "created": true,
                 "purged": false,
@@ -152,6 +152,106 @@
                 }
             }
         ],
-        "date": "2021-02-19T07:58:29.381Z"
+        "date": "2021-02-20T17:42:28.129Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 7,
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:29.337Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "test2",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-20T17:42:29.337Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 8,
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:29.340Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "key updated!",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-20T17:42:29.340Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 9,
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:30.202Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "test2",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-20T17:42:30.202Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "key2",
+                    "scope": "global",
+                    "store": "storeTest",
+                    "universe": 1,
+                    "userIds": 0,
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\scopes\\global\\keys\\key2\\",
+                    "version": 10,
+                    "created": "2021-02-20T17:36:57.176Z",
+                    "lastUpdated": "2021-02-20T17:42:30.206Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "key updated!",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-20T17:42:30.206Z"
     }
 ]

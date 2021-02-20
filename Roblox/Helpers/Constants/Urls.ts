@@ -51,7 +51,7 @@ export default {
 	ROBLOX_AB_TESTING: 'abtesting.sitetest4.robloxlabs.com',
 	ROBLOX_USERS: 'users.sitetest4.robloxlabs.com',
 	ROBLOX_TWO_STEP_VERIFICATION: 'twostepverification.sitetest4.robloxlabs.com',
-	ROBLOX_LATENCY_MEASUREMENTS: 'lms.simulpong.com',
+	SIMULPONG_LATENCY_MEASUREMENTS: 'lms.simulpong.com',
 	ROBLOX_CHAT: 'chat.sitetest4.robloxlabs.com',
 	ROBLOX_CONTACTS: 'contacts.sitetest4.robloxlabs.com',
 	ROBLOX_NOTIFICATIONS: 'notifications.sitetest4.robloxlabs.com',
@@ -104,4 +104,5 @@ export default {
 	ROBLOX_USER_MODERATION: 'usermoderation.sitetest4.robloxlabs.com',
 	ROBLOX_VOICE: 'voice.sitetest4.robloxlabs.com',
 	ROBLOX_FILES_API: 'files.api.sitetest4.robloxlabs.com',
+	SIMULPONG_ROBLOX_TEAM_CITY: 'rcity.simulpong.com',
 };

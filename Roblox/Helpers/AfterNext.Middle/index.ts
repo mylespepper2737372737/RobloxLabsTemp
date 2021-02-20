@@ -39,6 +39,7 @@ import ROBLOX_404_EPHEMERAL_COUNTERS_IMPORT from './Roblox.404.EphermeralCounter
 import DEPRECATED_404_TEMPORARY_IMAGES_IMPORT from './DEPRECATED_Roblox.404.TemporaryImages';
 import ROBLOX_404_DOSARREST_ORIGIN_CORP_IMPORT from './Roblox.404.DosArrest';
 import ROBLOX_404_AB_TESTING_IMPORT from './Roblox.404.AbTesting';
+import SIMULPONG_404_IMPORT from './SimulPong.404';
 
 // Jak - Export all of these an implement in Roblox.IStart.Job.cs, add as internal middlewares
 export const ROBLOX_404_WWW = (ROBLOX_404_WWW_IMPORT as unknown) as Roblox_Middle_Ware;
@@ -52,3 +53,4 @@ export const ROBLOX_404_EPHEMERAL_COUNTERS = (ROBLOX_404_EPHEMERAL_COUNTERS_IMPO
 export const DEPRECATED_404_TEMPORARY_IMAGES = (DEPRECATED_404_TEMPORARY_IMAGES_IMPORT as unknown) as Roblox_Middle_Ware;
 export const ROBLOX_404_DOSARREST_ORIGIN_CORP = (ROBLOX_404_DOSARREST_ORIGIN_CORP_IMPORT as unknown) as Roblox_Middle_Ware;
 export const ROBLOX_404_AB_TESTING = (ROBLOX_404_AB_TESTING_IMPORT as unknown) as Roblox_Middle_Ware;
+export const SIMULPONG_404 = (SIMULPONG_404_IMPORT as unknown) as Roblox_Middle_Ware;

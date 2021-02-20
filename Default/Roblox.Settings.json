@@ -725,7 +725,7 @@
 			"SoundServiceGameConfigurerConfigureRunServiceRun": true,
 			"SoundChannelMaxDistanceStopFMODChannel": true,
 			"RCCLoadFMOD": true,
-			"SoundChannelUseV2Implementation": false,
+			"SoundChannelUseV2Assemblies": false,
 			"RenderSoftParticles": true,
 			"ScriptContextSinglePendingThreadsQueue": false,
 			"CSGAllowUnorderedProperties": false,
@@ -762,8 +762,8 @@
 			"DebugCSGExportFailure": false,
 			"FixCrashOnEmptyTextOnAutoComplete": true,
 			"CancelInputOnGuiNavigation": true,
-			"RemoveOldAnalyticsImplementation": true,
-			"RemoveOldCountersImplementation": true,
+			"RemoveOldAnalyticsAssemblies": true,
+			"RemoveOldCountersAssemblies": true,
 			"UseNewAppBridgeStudio": false,
 			"StudioAnalyticsRefactoring": true,
 			"StudioIntellesenseOnAllMembersEnabled": true,
@@ -1265,7 +1265,7 @@
 			"PhysicsPacketSendWorldStepTimestamp": true,
 			"TeamCreateReplicateCollisionFidelity": true,
 			"TeamCreateReplicateTerrainRegion": true,
-			"SoundChannelUseV2Implementation": true,
+			"SoundChannelUseV2Assemblies": true,
 			"UseNewSetFMOD3D": true
 		},
 		"FInt": {
@@ -1373,7 +1373,7 @@
 			"PlaceFilter_PhysicsPacketSendWorldStepTimestamp": "False;424096945",
 			"PlaceFilter_UseHermiteSplineInterpolation": "False;424096945",
 			"PlaceFilter_NoAnimationTrackState": "True;177200271",
-			"PlaceFilter_SoundChannelUseV2Implementation": "True;359173292;9528010;292439477;1818",
+			"PlaceFilter_SoundChannelUseV2Assemblies": "True;359173292;9528010;292439477;1818",
 			"PlaceFilter_UseNewSetFMOD3D": "True;292439477;359173292;270607122;9528010;379011764;1818",
 			"PlaceFilter_DataStoresV2Enabled": "True;0;1818",
 			"PlaceFilyer_DataStoresV2GetDataStoresAdminResponse": "True;0;1818"

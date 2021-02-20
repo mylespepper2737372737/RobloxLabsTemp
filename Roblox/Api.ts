@@ -100,7 +100,7 @@ import {
 } from './Helpers/AfterNext.Middle';
 import { GlobalMiddleware } from './Helpers/BeforeNext.Middle/SiteTest4.Global.Middleware';
 import ConfigImport from './Helpers/Config/MetaData';
-import { Files as FilesA } from './Files';
+import { SimulPingMiddleware } from './Helpers/BeforeNext.Middle/SimulPingMiddleWare';
 
 export namespace Roblox {
 	export namespace Api {
@@ -124,6 +124,7 @@ export namespace Roblox {
 			export namespace BeforeNext {
 				export namespace Middle {
 					export const GLOBAL = GlobalMiddleware;
+					export const SIMULPONG = SimulPingMiddleware;
 				}
 			}
 			export namespace Config {
@@ -210,5 +211,4 @@ export namespace Roblox {
 			export const URLS = RobloxUrls;
 		}
 	}
-	export const Files = FilesA;
 }

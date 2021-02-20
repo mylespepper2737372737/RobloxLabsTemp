@@ -1,9 +1,9 @@
 {
-	"storeName": "storeTest",
-	"type": "Standard",
-	"universe": 1,
-	"scopes": 1,
-	"root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\1\\stores\\storeTest\\",
-	"created": "2021-02-07T08:45:35.565Z",
-	"lastUpdated": "2021-02-07T08:45:35.569Z"
+    "storeName": "storeTest",
+    "type": "Standard",
+    "universe": 1,
+    "scopes": 1,
+    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\1\\stores\\storeTest\\",
+    "created": "2021-02-20T17:36:57.164Z",
+    "lastUpdated": "2021-02-20T17:36:57.168Z"
 }

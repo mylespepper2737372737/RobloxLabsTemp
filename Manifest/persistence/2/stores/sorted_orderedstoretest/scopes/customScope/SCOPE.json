@@ -1,9 +1,9 @@
 {
-	"scopeName": "customScope",
-	"store": "sorted_orderedstoretest",
-	"universe": 2,
-	"keys": 3,
-	"root": "C:\\buildAgent\\Roblox.RobloxLabs.SiteTest4\\Manifest\\persistence\\2\\stores\\sorted_orderedstoretest\\scopes\\customScope\\",
-	"created": "2021-02-07T08:45:35.613Z",
-	"lastUpdated": "2021-02-07T08:45:35.624Z"
+    "scopeName": "customScope",
+    "store": "sorted_orderedstoretest",
+    "universe": 2,
+    "keys": 3,
+    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\sorted_orderedstoretest\\scopes\\customScope\\",
+    "created": "2021-02-20T17:36:57.215Z",
+    "lastUpdated": "2021-02-20T17:36:57.225Z"
 }

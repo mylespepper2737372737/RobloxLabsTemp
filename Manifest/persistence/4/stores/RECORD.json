@@ -1,27 +1,57 @@
 [
     {
         "storeName": "storeTest",
-        "created": "2021-02-07T08:45:35.671Z",
+        "created": "2021-02-20T17:36:57.273Z",
         "purged": null
     },
     {
         "storeName": "storePurgeTest",
-        "created": "2021-02-07T08:45:49.057Z",
+        "created": "2021-02-20T17:36:57.292Z",
         "purged": null
     },
     {
         "storeName": "storePurgeTest",
-        "created": "2021-02-07T08:45:49.057Z",
-        "purged": "2021-02-07T08:45:49.551Z"
+        "created": "2021-02-20T17:36:57.292Z",
+        "purged": "2021-02-20T17:36:57.300Z"
     },
     {
         "storeName": "storePurgeTest",
-        "created": "2021-02-07T08:47:27.133Z",
+        "created": "2021-02-20T17:42:26.274Z",
         "purged": null
     },
     {
         "storeName": "storePurgeTest",
-        "created": "2021-02-07T08:47:27.133Z",
-        "purged": "2021-02-07T08:47:27.144Z"
+        "created": "2021-02-20T17:42:26.274Z",
+        "purged": "2021-02-20T17:42:26.287Z"
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-20T17:42:28.193Z",
+        "purged": null
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-20T17:42:28.193Z",
+        "purged": "2021-02-20T17:42:28.204Z"
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-20T17:42:29.407Z",
+        "purged": null
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-20T17:42:29.407Z",
+        "purged": "2021-02-20T17:42:29.419Z"
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-20T17:42:30.270Z",
+        "purged": null
+    },
+    {
+        "storeName": "storePurgeTest",
+        "created": "2021-02-20T17:42:30.270Z",
+        "purged": "2021-02-20T17:42:30.280Z"
     }
 ]
