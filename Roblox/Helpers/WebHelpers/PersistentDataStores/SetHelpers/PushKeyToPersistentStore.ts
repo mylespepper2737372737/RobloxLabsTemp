@@ -2,6 +2,8 @@ import filestream from 'fs';
 import { _dirname } from '../../../Constants/Directories';
 import { WriteUniverse } from './PushUniverseToDB';
 import { PushPersistentStoreToUniverse } from './PushPersistentStoreToUniverse';
+import Base64 from 'crypto-js/enc-base64';
+import crpto from 'crypto-js';
 
 /**
  * Push to or push a Key to the given PersistentDataStore name.
@@ -120,7 +122,8 @@ export const PushKeyToPersistentStore = (
 			scope: scope,
 			store: name,
 			universe: 1,
-			userIds: 0,
+			userIds: [],
+			attributes: {},
 			root: keyPath + '\\',
 			version: 1,
 			created: time,
@@ -148,6 +151,7 @@ export const PushKeyToPersistentStore = (
 				{
 					value: value,
 					type: typeof value,
+					md5: Base64.stringify(crpto.MD5(value.toString())),
 				},
 				undefined,
 				4,

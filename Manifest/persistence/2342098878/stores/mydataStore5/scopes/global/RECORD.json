@@ -1,0 +1,17 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "Test25",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"This is test data for datastore 5\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-22T10:44:30.555Z"
+    }
+]

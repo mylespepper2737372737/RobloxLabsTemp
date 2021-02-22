@@ -1,9 +1,0 @@
-{
-    "scopeName": "global",
-    "store": "sorted_orderedstoretest",
-    "universe": 2,
-    "keys": 3,
-    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\sorted_orderedstoretest\\scopes\\global\\",
-    "created": "2021-02-20T17:36:57.184Z",
-    "lastUpdated": "2021-02-20T17:36:57.196Z"
-}

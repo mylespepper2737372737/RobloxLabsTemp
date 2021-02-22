@@ -1,0 +1,9 @@
+{
+    "scopeName": "testScopes",
+    "store": "mydataStore3",
+    "universe": 2342098878,
+    "keys": 1,
+    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\2342098878\\stores\\mydataStore3\\scopes\\testScopes\\",
+    "created": "2021-02-22T10:44:30.400Z",
+    "lastUpdated": "2021-02-22T10:44:30.544Z"
+}

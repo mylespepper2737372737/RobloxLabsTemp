@@ -1,0 +1,9 @@
+{
+    "scopeName": "coolScope",
+    "store": "mydataStore",
+    "universe": 2342098878,
+    "keys": 1,
+    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\2342098878\\stores\\mydataStore\\scopes\\coolScope\\",
+    "created": "2021-02-22T10:44:30.497Z",
+    "lastUpdated": "2021-02-22T10:44:30.594Z"
+}

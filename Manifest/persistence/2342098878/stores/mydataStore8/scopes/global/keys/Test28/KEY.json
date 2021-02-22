@@ -1,0 +1,12 @@
+{
+    "keyName": "Test28",
+    "scope": "global",
+    "store": "mydataStore8",
+    "universe": 1,
+    "userIds": [],
+    "attributes": {},
+    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\2342098878\\stores\\mydataStore8\\scopes\\global\\keys\\Test28\\",
+    "version": 1,
+    "created": "2021-02-22T10:44:30.579Z",
+    "lastUpdated": "2021-02-22T10:44:30.579Z"
+}

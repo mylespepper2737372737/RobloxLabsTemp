@@ -1,77 +1,7 @@
 [
     {
-        "universeId": 1,
-        "created": "2021-02-20T17:36:57.158Z",
-        "purged": null
-    },
-    {
-        "universeId": 2,
-        "created": "2021-02-20T17:36:57.182Z",
-        "purged": null
-    },
-    {
-        "universeId": 3,
-        "created": "2021-02-20T17:36:57.229Z",
-        "purged": null
-    },
-    {
-        "universeId": 4,
-        "created": "2021-02-20T17:36:57.270Z",
-        "purged": null
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:36:57.301Z",
-        "purged": null
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:36:57.301Z",
-        "purged": "2021-02-20T17:36:57.305Z"
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:26.288Z",
-        "purged": null
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:26.288Z",
-        "purged": "2021-02-20T17:42:26.296Z"
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:28.205Z",
-        "purged": null
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:28.205Z",
-        "purged": "2021-02-20T17:42:28.213Z"
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:29.420Z",
-        "purged": null
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:29.420Z",
-        "purged": "2021-02-20T17:42:29.428Z"
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:30.281Z",
-        "purged": null
-    },
-    {
-        "universeId": 5,
-        "created": "2021-02-20T17:42:30.281Z",
-        "purged": "2021-02-20T17:42:30.289Z"
-    },
-    {
-        "universeId": 0,
-        "created": "2021-02-21T04:46:22.147Z",
+        "universeId": 2342098878,
+        "created": "2021-02-22T10:44:30.336Z",
         "purged": null
     }
 ]

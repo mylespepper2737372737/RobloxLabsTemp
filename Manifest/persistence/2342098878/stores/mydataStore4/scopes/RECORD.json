@@ -1,0 +1,12 @@
+[
+    {
+        "scopeName": "global",
+        "created": "2021-02-22T10:44:30.407Z",
+        "purged": null
+    },
+    {
+        "scopeName": "testScopes",
+        "created": "2021-02-22T10:44:30.410Z",
+        "purged": null
+    }
+]

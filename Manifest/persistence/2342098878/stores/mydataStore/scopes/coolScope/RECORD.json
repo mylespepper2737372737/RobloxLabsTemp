@@ -1,0 +1,17 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "ok",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": 3,
+                    "type": "number"
+                }
+            }
+        ],
+        "date": "2021-02-22T10:44:30.594Z"
+    }
+]

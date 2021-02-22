@@ -1,9 +1,0 @@
-{
-    "storeName": "sorted_orderedstoretest",
-    "type": "Sorted",
-    "universe": 2,
-    "scopes": 2,
-    "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\2\\stores\\sorted_orderedstoretest\\",
-    "created": "2021-02-20T17:36:57.184Z",
-    "lastUpdated": "2021-02-20T17:36:57.216Z"
-}

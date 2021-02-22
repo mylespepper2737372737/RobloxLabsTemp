@@ -1,0 +1,24 @@
+[
+    {
+        "action": "ScopeAdded",
+        "data": [
+            {
+                "name": "global",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-22T10:44:30.407Z"
+    },
+    {
+        "action": "ScopeAdded",
+        "data": [
+            {
+                "name": "testScopes",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-22T10:44:30.410Z"
+    }
+]

@@ -1,0 +1,503 @@
+{
+	"swagger": "2.0",
+	"info": { "version": "v2", "title": "GamePersistence Api v2" },
+	"host": "gamepersistence.sitetest4.robloxlabs.com",
+	"schemes": ["https"],
+	"paths": {
+		"/v2/persistence/{universeId}/datastores/objects/object": {
+			"get": {
+				"tags": ["Persistence"],
+				"summary": "Gets data for an objectKey in the datastore",
+				"consumes": [],
+				"produces": ["text/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "objectKey",
+						"in": "query",
+						"description": "The objectKey including both scope and key",
+						"required": true,
+						"type": "string"
+					},
+					{ "name": "version", "in": "query", "description": "The version GUID", "required": false, "type": "string" },
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": { "200": { "description": "Get the object succesfully.", "schema": { "type": "object" } } },
+				"properties": { "internal": false, "metricIds": ["GamePersistence:GetByKey"] }
+			},
+			"post": {
+				"tags": ["Persistence"],
+				"summary": "Sets data for an objectKey in the datastore",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "objectKey",
+						"in": "query",
+						"description": "The objectKey including both scope and key",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "Content-MD5",
+						"in": "header",
+						"description": "Base64 of the MD5 of the data",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Object-UserIds",
+						"in": "header",
+						"description": "Array of UserIds",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Object-Attributes",
+						"in": "header",
+						"description": "JSON dictionary representing the attributes",
+						"required": false,
+						"type": "string"
+					},
+					{ "name": "requestBody", "in": "body", "description": "The request body", "required": true, "type": "string" }
+				],
+				"responses": {
+					"200": {
+						"description": "Set the object succesfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"version": { "type": "string", "readOnly": true },
+								"deleted": { "type": "boolean" },
+								"contentLength": { "type": "integer", "format": "in64" },
+								"createdTime": { "type": "string", "readOnly": true },
+								"objectCreatedTime": { "type": "string", "readOnly": true }
+							}
+						}
+					}
+				},
+				"properties": { "internal": false, "metricIds": ["GamePersistence:SetByKey"] }
+			},
+			"delete": {
+				"tags": ["Persistence"],
+				"summary": "Delete existing data for an objectKey in the datastore",
+				"consumes": [],
+				"produces": ["text/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "objectKey",
+						"in": "query",
+						"description": "The objectKey including both scope and key",
+						"required": true,
+						"type": "string"
+					},
+					{ "name": "version", "in": "query", "description": "The version GUID", "required": false, "type": "string" },
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": { "200": { "description": "Deletes the object succesfully.", "schema": { "type": "object" } } },
+				"properties": { "internal": false, "metricIds": ["GamePersistence:RemoveByKey"] }
+			}
+		},
+		"/v2/persistence/{universeId}/datastores/objects/object/increment": {
+			"post": {
+				"tags": ["Persistence"],
+				"summary": "Increments data for an objectKey in the datastore",
+				"consumes": [],
+				"produces": ["text/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "objectKey",
+						"in": "query",
+						"description": "The objectKey including both scope and key",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "incrementBy",
+						"in": "query",
+						"description": "The number to increment the existing data by",
+						"required": true,
+						"type": "number"
+					},
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "Roblox-Object-UserIds",
+						"in": "header",
+						"description": "Array of UserIds",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Object-Attributes",
+						"in": "header",
+						"description": "JSON dictionary representing the attributes",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": { "200": { "description": "Incremented the object succesfully.", "schema": { "type": "object" } } },
+				"properties": { "internal": false, "metricIds": ["GamePersistence:IncrementByKey"] }
+			}
+		},
+		"/v2/persistence/{universeId}/datastores/objects": {
+			"get": {
+				"tags": ["Objects"],
+				"summary": "Get object keys in a datastore",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{ "name": "prefix", "in": "query", "description": "Prefix to search by", "required": false, "type": "string" },
+					{
+						"name": "maxItemsToReturn",
+						"in": "query",
+						"description": "Maximum items to return",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "exclusiveStartKey",
+						"in": "query",
+						"description": "The key to start at",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the objects succesfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"keys": { "type": "array", "items": { "type": "string" } },
+								"lastReturnedKey": { "type": "string", "readOnly": true }
+							}
+						}
+					}
+				},
+				"properties": { "internal": false, "metricIds": ["GamePersistence:ListKeys"] }
+			}
+		},
+		"/v2/persistence/{universeId}/datastores/objects/object/versions": {
+			"get": {
+				"tags": ["Objects"],
+				"summary": "Get object versions for a key in a datastore",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "objectKey",
+						"in": "query",
+						"description": "The objectKey including both scope and key",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "sortOrder",
+						"in": "query",
+						"description": "Order to sort the items by",
+						"required": false,
+						"type": "string",
+						"default": "Ascending",
+						"enum": ["Ascending", "Descending"]
+					},
+					{
+						"name": "startTime",
+						"in": "query",
+						"description": "ISO 8601 date to start with",
+						"required": false,
+						"type": "string"
+					},
+					{ "name": "endTime", "in": "query", "description": "ISO 8601 date to start with", "required": false, "type": "string" },
+					{
+						"name": "maxItemsToReturn",
+						"in": "query",
+						"description": "Maximum items to return",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "exclusiveStartKey",
+						"in": "query",
+						"description": "The key to start at",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the versions succesfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"versions": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"version": { "type": "string", "readOnly": true },
+											"deleted": { "type": "boolean" },
+											"contentLength": { "type": "integer", "format": "int64" },
+											"createdTime": { "type": "string", "readOnly": true },
+											"objectCreatedTime": { "type": "string", "readOnly": true }
+										}
+									}
+								},
+								"lastReturnedKey": { "type": "string", "readOnly": true }
+							}
+						}
+					}
+				},
+				"properties": { "internal": false, "metricIds": ["GamePersistence:ListKeyVersions"] }
+			}
+		},
+		"/v2/persistence/{universeId}/datastores": {
+			"get": {
+				"tags": ["DataStores"],
+				"summary": "Get datastores in a universe",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "prefix", "in": "query", "description": "Prefix to search by", "required": false, "type": "string" },
+					{
+						"name": "maxItemsToReturn",
+						"in": "query",
+						"description": "Maximum items to return",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "exclusiveStartKey",
+						"in": "query",
+						"description": "The key to start at",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the datastores succesfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"datastores": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": { "type": "string" },
+											"createdTime": { "type": "string" },
+											"updatedTime": { "type": "string" },
+											"versioningEnabled": { "type": "boolean" }
+										}
+									}
+								},
+								"lastReturnedKey": { "type": "string", "readOnly": true }
+							}
+						}
+					}
+				},
+				"properties": { "internal": false, "metricIds": ["GamePersistence:ListDataStores"] }
+			}
+		},
+		"/v2/persistence/{universeId}/datastores/datastore": {
+			"get": {
+				"tags": ["DataStores"],
+				"summary": "Get a datastore in a universe",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the datastores succesfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" },
+								"createdTime": { "type": "string" },
+								"updatedTime": { "type": "string" },
+								"versioningEnabled": { "type": "boolean" }
+							}
+						}
+					}
+				},
+				"properties": { "internal": false, "metricIds": ["GamePersistence:GetDataStore"] }
+			},
+			"put": {
+				"tags": ["DataStores"],
+				"summary": "What in the fuck is this?!??!",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "universeId",
+						"in": "path",
+						"description": "The universe id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{ "name": "datastore", "in": "query", "description": "The DataStore name", "required": true, "type": "string" },
+					{
+						"name": "Roblox-Place-Id",
+						"in": "header",
+						"description": "The Roblox Place Id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Fucked the datastore successfully",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" },
+								"createdTime": { "type": "string" },
+								"updatedTime": { "type": "string" },
+								"versioningEnabled": { "type": "boolean" }
+							}
+						}
+					}
+				},
+				"properties": { "internal": false, "metricIds": ["GamePersistence:PutDataStore"] }
+			}
+		}
+	},
+	"definitions": {}
+}

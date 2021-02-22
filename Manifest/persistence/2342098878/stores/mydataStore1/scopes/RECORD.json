@@ -1,0 +1,17 @@
+[
+    {
+        "scopeName": "global",
+        "created": "2021-02-22T10:44:30.359Z",
+        "purged": null
+    },
+    {
+        "scopeName": "sike",
+        "created": "2021-02-22T10:44:30.362Z",
+        "purged": null
+    },
+    {
+        "scopeName": "testScopes",
+        "created": "2021-02-22T10:44:30.365Z",
+        "purged": null
+    }
+]
