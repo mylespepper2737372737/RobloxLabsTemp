@@ -163,7 +163,7 @@ export namespace FastLog {
 	const parameterizedString = (...args: any[]) => {
 		const string = args[0];
 		let i = 1;
-		return string.replace(/%((%)|s|d|f|lf|i|x|X)/g, function (m) {
+		return string.replace(/%((%)|s|d|f|lf|i|x|X)/g, function (m: any) {
 			// m is the matched format, e.g. %s, %d
 			let val = null;
 			if (m[2]) {
@@ -230,9 +230,9 @@ export namespace FastLog {
 	}
 
 	function FastLog(level: number, message: string, arg0: any, arg1: any, arg2: any, arg3: any, arg4: any) {
-		if (level > 5) {
-			printMessage(level, process.pid, new Date(Date.now()).toISOString(), message, arg0, arg1, arg2, arg3, arg4);
-		}
+		// if (level > 5) {
+		printMessage(level, process.pid, new Date(Date.now()).toISOString(), message, arg0, arg1, arg2, arg3, arg4);
+		// }
 	}
 	export const FASTLOG = (group: number, message: string) => {
 		do {

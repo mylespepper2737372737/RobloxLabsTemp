@@ -10,7 +10,7 @@
 
 	***
 
-	Copyright 2015-2020 MFD
+	Copyright 2006-2021 ROBLOX
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ export default {
 			return response
 				.status(400)
 				.header({
-					'access-control-expose-headers': 'MFD-CAPTCHA-PROVIDER, API-TRANSFER',
+					'access-control-expose-headers': 'ROBLOX-CAPTCHA-PROVIDER, API-TRANSFER',
 					'mfd-captcha-provider': FString['CaptchaV2CaptchaProvider'],
 					'api-transfer': 'Expose-Captcha-V2-Provider#503',
 				})

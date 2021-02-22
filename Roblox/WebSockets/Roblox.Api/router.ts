@@ -5,7 +5,7 @@
 	Description: WWW's websocket
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/mfdlabs.com
 	***
-	Copyright 2015-2020 MFD
+	Copyright 2006-2021 ROBLOX
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at

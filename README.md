@@ -1,7 +1,7 @@
-<h4 align="center">A Node.js version of MFD's TestSite.</h4>
+<h4 align="center">A Node.js version of ROBLOX's TestSite.</h4>
 <br>
 <p align='center'>
-	<a href="https://discord.gg/afahYa5VvX"><img src="https://img.shields.io/badge/Discord-MFD%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="MFD Engine Team Discord"/></a>
+	<a href="https://discord.gg/afahYa5VvX"><img src="https://img.shields.io/badge/Discord-ROBLOX%20Engine%20Team%20Chat-blue.svg?style=flat-square" alt="ROBLOX Engine Team Discord"/></a>
 </p>
 <br>
 
@@ -26,7 +26,7 @@ That's it!
 
 # Credits
 
--   [MFD CO](https://github.com/mfd-core) - MFD Engine and backend Team
+-   [ROBLOX CO](https://github.com/mfd-core) - ROBLOX Engine and backend Team
 
 # Persistence
 

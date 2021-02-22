@@ -8,7 +8,7 @@
 
 	***
 
-	Copyright 2015-2020 MFD
+	Copyright 2006-2021 ROBLOX
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@
 
 import dotenv from 'dotenv';
 import { _dirname } from '../../Helpers/Constants/Directories';
-import a from 'axios';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
@@ -38,18 +37,6 @@ export default {
 			res.redirect('http://static.sitetest4.robloxlabs.com/rbx/1.rbxlx');
 			return;
 		}
-		a.get('https://assetdelivery.roblox.com/v1' + req.url, {
-			headers: { ...req.headers, host: 'www.roblox.com' },
-		})
-			.then((re) => {
-				// const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
+		res.redirect('https://assetdelivery.roblox.com/v1' + req.url);
 	},
 };
