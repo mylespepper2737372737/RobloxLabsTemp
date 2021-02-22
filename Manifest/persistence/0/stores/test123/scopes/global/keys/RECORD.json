@@ -1,0 +1,56 @@
+[
+    {
+        "keyName": "test2",
+        "created": "2021-02-21T04:51:51.854Z",
+        "updated": null,
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "test2",
+            "scope": "global",
+            "store": "test123",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\0\\stores\\test123\\scopes\\global\\keys\\test2\\",
+            "version": 1,
+            "created": "2021-02-21T04:51:51.854Z",
+            "lastUpdated": "2021-02-21T04:51:51.854Z"
+        },
+        "created": "2021-02-21T04:51:51.854Z",
+        "updated": "2021-02-21T04:51:52.969Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "test2",
+            "scope": "global",
+            "store": "test123",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\0\\stores\\test123\\scopes\\global\\keys\\test2\\",
+            "version": 2,
+            "created": "2021-02-21T04:51:51.854Z",
+            "lastUpdated": "2021-02-21T04:51:52.969Z"
+        },
+        "created": "2021-02-21T04:51:51.854Z",
+        "updated": "2021-02-21T04:51:53.582Z",
+        "purged": null
+    },
+    {
+        "keyName": {
+            "keyName": "test2",
+            "scope": "global",
+            "store": "test123",
+            "universe": 1,
+            "userIds": 0,
+            "root": "C:\\buildAgent\\work\\0800fc577294c34e0b28ad2839435945\\Manifest\\persistence\\0\\stores\\test123\\scopes\\global\\keys\\test2\\",
+            "version": 3,
+            "created": "2021-02-21T04:51:51.854Z",
+            "lastUpdated": "2021-02-21T04:51:53.582Z"
+        },
+        "created": "2021-02-21T04:51:51.854Z",
+        "updated": "2021-02-21T04:51:54.651Z",
+        "purged": null
+    }
+]

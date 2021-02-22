@@ -46,8 +46,8 @@ export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpser
 				},
 				app,
 			)
-			.listen(443, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `https://%s:443 Started`, name));
-		const httpServer = app.listen(80, name, () => FastLog.FASTLOG1(`FLog::${name}`, FLog[name], `http://%s:80 Started`, name));
+			.listen(443, name, () => FastLog.FASTLOG1(FLog[name], `[FLog::${name}] https://%s:443 Started`, name));
+		const httpServer = app.listen(80, name, () => FastLog.FASTLOG1(FLog[name], `[FLog::${name}] http://%s:80 Started`, name));
 		return [httpServer, httpsServer];
 	} catch (err) {
 		throw new Error(err);

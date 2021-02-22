@@ -11,7 +11,7 @@
 			"IsCaptchaV2Enabled": false,
 			"IsCaptchaV2Hardcoded": false,
 			"CanCaptchaV2AdminKeyBeUsed": false,
-			"IsCSRFV2Enabled": false,
+			"IsCSRFV2Enabled": true,
 			"IsCSRFV2Hardcoded": false,
 			"IsCSRFV2BasedOnAuthenticationId": false,
 			"IsCSRFV2BasedOnIPAddress": false,

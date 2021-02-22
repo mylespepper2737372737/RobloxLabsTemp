@@ -129,7 +129,7 @@ Content-Length: 0
 
 ###
 
-GET www.robloxlabs.com/asset/?id=2537274968 HTTP/1.1
+GET assetdelivery.sitetest4.robloxlabs.com/v1/asset?id=2537274968 HTTP/1.1
 Connection: Keep-Alive
 Accept-Encoding: gzip
 User-Agent: Roblox/WinInet
@@ -143,20 +143,20 @@ POST https://messagerouter.api.roblox.com/v1/router/signalr
 
 ###
 
-POST https://abtesting.roblox.com/v1/enrollments
-Content-Type: application/x-www-form-urlencoded
-X-CSRF-TOKEN: RwOpfMIXBTNZ
+POST https://abtesting.sitetest4.robloxlabs.com/v1/enrollments
+Content-Type: application/json
+X-CSRF-TOKEN: gDA2kZ7YMhW1X0Qw0NJZvQ==
 
 [
 	{
 		"SubjectType":"BrowserTracker",
-		"SubjectTargetId":"<BROWSERTRACKERIDGOESHERE>",
-		"ExperimentName":"{Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments}"
+		"SubjectTargetId":"1",
+		"ExperimentName":"Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments"
 	},
 	{
-		"SubjectType":"User",
-		"SubjectTargetId":"<USERIDGOESHERE>",
-		"ExperimentName":"{Roblox.Data.AbTesting.Experiments.UserExperiments}"
+		"SubjectType":1,
+		"SubjectTargetId":312313123123,
+		"ExperimentName":"Roblox.Data.AbTesting.Experiments.UserExperiments"
 	}
 ]
 
@@ -167,3 +167,7 @@ Host: thumbnails.roblox.com
 DNT: 1
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4424.0 Safari/537.36
+
+###
+
+POST https://api.roblox.com/persistence/getV2

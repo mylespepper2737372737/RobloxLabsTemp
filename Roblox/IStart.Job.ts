@@ -51,6 +51,7 @@ import {
 	ROBLOX_404_WWW,
 	ROBLOX_404_DOSARREST_ORIGIN_CORP,
 	SIMULPONG_404,
+	ROBLOX_404_AB_TESTING,
 } from './Helpers/AfterNext.Middle';
 import { Roblox } from './Api';
 import IServer from 'express';
@@ -84,6 +85,7 @@ import { FASTLOG4, FASTLOG7 /* , LOGGROUP  */, LOGGROUP } from './Helpers/WebHel
 // Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2'], 7);
 // Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'], 7);
 
+LOGGROUP('AandBTusting');
 LOGGROUP('SIMPLEPING');
 LOGGROUP('Protocol77');
 LOGGROUP('DataStoreV2');
@@ -119,6 +121,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AUTH']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_APIS']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_LOCALE']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING']);
+LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING_API']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_USERS']);
 LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION']);
 LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_LATENCY_MEASUREMENTS']);
@@ -201,6 +204,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 		const ROBLOX_LOCALE_SERVER = IServer();
 		const ROBLOX_AUTH_SERVER = IServer();
 		const ROBLOX_AB_TESTING_SERVER = IServer();
+		const ROBLOX_AB_TESTING_API_SERVER = IServer();
 		const ROBLOX_USERS_SERVER = IServer();
 		const ROBLOX_TWO_STEP_VERIFICATION_SERVER = IServer();
 		const SIMULPONG_LATENCY_MEASUREMENTS_SERVER = IServer();
@@ -278,7 +282,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 		ROBLOX_APIS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_LOCALE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_AUTH_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		ROBLOX_AB_TESTING_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_AB_TESTING_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.ABTESTING);
+		ROBLOX_AB_TESTING_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.ABTESTING);
 		ROBLOX_USERS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_TWO_STEP_VERIFICATION_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		SIMULPONG_LATENCY_MEASUREMENTS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.SIMULPONG);
@@ -503,6 +508,14 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 				'\\StaticPages\\Roblox.AbTesting',
 				'\\Assemblies\\Controllers\\Roblox.AbTesting',
 				Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING'],
+			),
+		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_AB_TESTING_API_SERVER,
+				'\\StaticPages\\Roblox.AbTestingApi',
+				'\\Assemblies\\Controllers\\Roblox.AbTestingApi',
+				Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING_API'],
 			),
 		);
 		await Roblox.Api.Library.IStartup.Configure(
@@ -986,7 +999,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 		ROBLOX_AUTH_SERVER.use(ROBLOX_404_API);
 		ROBLOX_APIS_SERVER.use(ROBLOX_404_API);
 		ROBLOX_LOCALE_SERVER.use(ROBLOX_404_API);
-		ROBLOX_AB_TESTING_SERVER.use(ROBLOX_404_API);
+		ROBLOX_AB_TESTING_SERVER.use(ROBLOX_404_AB_TESTING);
+		ROBLOX_AB_TESTING_API_SERVER.use(ROBLOX_404_AB_TESTING);
 		ROBLOX_USERS_SERVER.use(ROBLOX_404_API);
 		SIMULPONG_LATENCY_MEASUREMENTS_SERVER.use(SIMULPONG_404);
 		ROBLOX_CHAT_SERVER.use(ROBLOX_404_API);
@@ -1093,6 +1107,10 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 					Roblox.Api.Constants.URLS['ROBLOX_MARKETPLACE_API'],
 				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_AB_TESTING_SERVER, Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
+					ROBLOX_AB_TESTING_API_SERVER,
+					Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING_API'],
+				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_USERS_SERVER, Roblox.Api.Constants.URLS['ROBLOX_USERS']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(
 					ROBLOX_TWO_STEP_VERIFICATION_SERVER,
@@ -1232,9 +1250,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 				);
 			} catch (e) {
 				return Roblox.Api.Helpers.Util.FastLog.FASTLOG2(
-					'FLog::Tests',
 					Roblox.Api.Helpers.Util.FLog['Tasks'],
-					`Error: %s, Stack Trace: %s`,
+					`[FLog::Tasks] Error: %s, Stack Trace: %s`,
 					e.message,
 					e.stack,
 				);
@@ -1242,9 +1259,8 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 		})();
 	} catch (e) {
 		return Roblox.Api.Helpers.Util.FastLog.FASTLOG2(
-			'FLog::Tests',
 			Roblox.Api.Helpers.Util.FLog['Tasks'],
-			`Error: %s, Stack Trace: %s`,
+			`[FLog::Tasks] Error: %s, Stack Trace: %s`,
 			e.message,
 			e.stack,
 		);

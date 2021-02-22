@@ -1,0 +1,35 @@
+[
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "test123",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-21T04:51:51.836Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "sucksss",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-21T04:52:02.833Z"
+    },
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "suck",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-21T04:52:13.750Z"
+    }
+]

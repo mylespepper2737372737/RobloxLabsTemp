@@ -1,6 +1,4 @@
-export interface IHttpRequest {
-	Url: String;
-}
-export interface IHttpResponse {
-	StatusCode: Number;
-}
+import { Request, Response } from 'express';
+
+export type IHttpRequest = Request;
+export type IHttpResponse = Response;

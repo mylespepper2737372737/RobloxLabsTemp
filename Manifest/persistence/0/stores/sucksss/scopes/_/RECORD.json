@@ -1,0 +1,17 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "your mom",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"niggers\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-21T04:52:02.833Z"
+    }
+]

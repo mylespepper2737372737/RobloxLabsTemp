@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		res.send("lol you're gay");
+		res.send({ name: 'Roblox.AbTesing.Service', status: 'OK' });
 	},
 };

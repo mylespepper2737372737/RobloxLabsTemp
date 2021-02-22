@@ -13,8 +13,6 @@ import {
 	FASTLOG6,
 	FASTLOG7,
 	FLog,
-	SFLog,
-	DFLog,
 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 LOGGROUP('TestsV1');
 
@@ -83,50 +81,3 @@ FastLog.SYNCHRONIZED_LOGGROUP('SomeZeroGroup');
 // No arguments, just message.
 
 // FLog
-FastLog.FASTLOG('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], 'Fast log example on level 7');
-
-// DFLog
-FastLog.FASTLOG('DFLog::SomeSevenGroup', DFLog['SomeSevenGroup'], 'Fast log example on level 7');
-
-// SFLog
-FastLog.FASTLOG('SFLog::SomeSevenGroup', SFLog['SomeSevenGroup'], 'Fast log example on level 7');
-
-// 1 Argument
-FastLog.FASTLOG1('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], 'With arguments like %d!', 10);
-
-// 2 Arguments
-FastLog.FASTLOG2('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], 'With arguments like %d and %f!', 10, 3.2);
-
-// 3 Arguments
-FastLog.FASTLOG3('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], "With arguments like %d and %f, and strings like '%X'!", 10, 3.2, 32);
-
-// 4 Arguments
-FastLog.FASTLOG4(
-	'FLog::SomeSevenGroup',
-	FLog['SomeSevenGroup'],
-	"With arguments like %d and %f, and strings like '%X'! %s is awesome!",
-	10,
-	3.2,
-	32,
-	'this',
-);
-
-// 5 Arguments
-FastLog.FASTLOG5(
-	'FLog::SomeSevenGroup',
-	FLog['SomeSevenGroup'],
-	"With arguments like %d and %f, and strings like '%X'! %s is awesome! Try some floats %f",
-	10,
-	3.2,
-	32,
-	'this',
-	3.323,
-);
-
-// String arg
-FastLog.FASTLOGS('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], 'With arguments like %s', 'STRING!');
-
-// Float args
-FastLog.FASTLOG1F('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], 'With arguments like %f', 88832);
-
-FastLog.FASTLOG2('FLog::SomeSevenGroup', FLog['SomeSevenGroup'], `Error: The method '%s' was unknown, Stack Trace: %s`, 'e', Error().stack);

@@ -101,6 +101,7 @@ import {
 import { GlobalMiddleware } from './Helpers/BeforeNext.Middle/SiteTest4.Global.Middleware';
 import ConfigImport from './Helpers/Config/MetaData';
 import { SimulPingMiddleware } from './Helpers/BeforeNext.Middle/SimulPingMiddleWare';
+import { AbTestingMiddleWare } from './Helpers/BeforeNext.Middle/AbTestingMiddleWare';
 
 export namespace Roblox {
 	export namespace Api {
@@ -125,6 +126,7 @@ export namespace Roblox {
 				export namespace Middle {
 					export const GLOBAL = GlobalMiddleware;
 					export const SIMULPONG = SimulPingMiddleware;
+					export const ABTESTING = AbTestingMiddleWare;
 				}
 			}
 			export namespace Config {

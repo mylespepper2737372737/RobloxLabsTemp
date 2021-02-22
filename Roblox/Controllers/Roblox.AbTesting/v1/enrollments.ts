@@ -25,7 +25,7 @@
 	***
 */
 
-// Roblox.Web.AbTesting.AbTestingRequestProcessor.TryEnrollToExperiments(String experimentName, IUser user, IBrowserTracker browserTracker, Boolean requireSecureUri, Boolean isUpsell)
+// Roblox.Web.AbTesting.AbTestingRequestProcessor.TryEnrollToExperiments(String experimentName, IUser user, IBrowserTracker browserTracker, Boolean requireSecureUri)
 // Request example:
 /*
  
@@ -69,14 +69,21 @@ origin: Roblox.Tests.Origins.SecureAbTestingOrigin
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { Roblox } from '../../../Api';
+import { ISubjectType } from '../../../Platform/AbTesting/ISubjectType';
+import { IUser } from '../../../Platform/Membership/IUser';
+import { IBrowserTracker } from '../../../Platform/Membership/IBrowserTracker';
+import { AbTestingRequestProcessor } from '../../../Web/AbTesting/Roblox.Web.AbTesting/AbTestingRequestProcessor';
+import { UserModelBuildersClubMembershipTypeEnum } from '../../../Platform/Membership/UserModelBuildersClubMembershipTypeEnum';
 
 dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
 const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
 
+// Refactor this to allow it to have multiple browser trackers?
+// Multiple userIds wouldn't make sense as you can't have more than one account per auth token
 export default {
 	method: 'All',
-	func: (request: Request, response: Response): Response<unknown> | void => {
+	func: async (request: Request, response: Response): Promise<Response<unknown> | void> => {
 		// const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
 
 		if (request.method === 'OPTIONS') return response.status(200).send();
@@ -147,10 +154,53 @@ export default {
 				],
 			});
 
-		request.body.forEach((element) => {
-			if (element.SubjectType && element.SubjectTargetId && element.ExperimentName) {
-			}
-		});
-		return response.status(200).send({ data: [] });
+		const experiments = [];
+		let user: IUser = null;
+		let browsertracker: IBrowserTracker = null;
+		let requestInvalid = false;
+		if (Array.isArray(request.body))
+			request.body.forEach((element) => {
+				if (element.SubjectType !== undefined && element.SubjectTargetId !== undefined && element.ExperimentName !== undefined) {
+					if (isNaN(parseInt(element.SubjectTargetId.toString()))) requestInvalid = true;
+
+					if (element.SubjectType === ISubjectType.User || element.SubjectType.toString().toLowerCase() === 'user') {
+						user = <IUser>{};
+						user.UserId = parseInt(element.SubjectTargetId.toString());
+						user.SecurityToken = cookie;
+						user.UserName = '';
+						user.MembershipType = UserModelBuildersClubMembershipTypeEnum.None;
+						experiments.push({ Name: element.ExperimentName, Type: ISubjectType.User });
+					} else if (
+						element.SubjectType === ISubjectType.BrowserTracker ||
+						element.SubjectType.toString().toLowerCase() === 'browsertracker'
+					) {
+						browsertracker = <IBrowserTracker>{};
+
+						browsertracker.BrowserTrackerId = parseInt(element.SubjectTargetId.toString());
+						browsertracker.IpAddress = request.ip;
+						experiments.push({ Name: element.ExperimentName, Type: ISubjectType.BrowserTracker });
+					}
+				}
+			});
+		if (requestInvalid)
+			return response.status(400).send({
+				errors: [
+					{
+						code: 0,
+						message: 'BadRequest',
+					},
+				],
+			});
+		const [successFull, message, code] = await AbTestingRequestProcessor.TryEnrollToExperiments(
+			experiments,
+			user,
+			browsertracker,
+			request.secure && FFlag['RequireGlobalHTTPS'],
+		);
+		if (successFull && message) {
+			response.send(JSON.parse(<string>message));
+		} else {
+			response.status(<number>code).send({ errors: [{ code: code, message: message }] });
+		}
 	},
 };

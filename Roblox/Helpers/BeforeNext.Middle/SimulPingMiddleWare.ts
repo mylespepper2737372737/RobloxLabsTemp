@@ -30,6 +30,15 @@ import { FASTLOG3, FLog } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 export const SimulPingMiddleware = ((req, res, next) => {
 	FASTLOG3(FLog['SIMPLEPING'], `${req.method.toUpperCase()} REQUEST ON ${req.protocol}://${req.hostname}${req.url}`, false);
+	if ((req.path === '/recipe' || req.path === '/report') && req.hostname === 'lms.simulpong.com') {
+		res.header(
+			'Access-Control-Allow-Headers',
+			'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN, Pragma, Cache-Control, expires',
+		);
+		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+		res.setHeader('Access-Control-Allow-Origin', req.headers['origin'] || 'https://www.sitetest4.robloxlabs.com');
+		res.setHeader('Access-Control-Allow-Credentials', 'true');
+	}
 	if (!req.headers.cookie && req.hostname === 'rcity.simulpong.com' && req.path.toLocaleLowerCase() === '/') {
 		return res.redirect('https://rcity.simulpong.com/Login/');
 	}

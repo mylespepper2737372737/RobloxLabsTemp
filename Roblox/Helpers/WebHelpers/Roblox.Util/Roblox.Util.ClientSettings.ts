@@ -18,6 +18,7 @@ export enum Group {
 	'FVariable',
 	'FLog',
 	'DFLog',
+	'SFLog',
 	'FFlag',
 	'DFFlag',
 	'SFFlag',
@@ -27,6 +28,9 @@ export enum Group {
 	'DFString',
 	'FPFilter',
 	'FSettings',
+	'UExperiment',
+	'BTExperiment',
+	'SExperiment',
 	'All',
 }
 
@@ -45,6 +49,8 @@ export namespace ClientSettings {
 					return settings[settingsGroup]['FVariable'];
 				case Group.FLog:
 					return settings[settingsGroup]['FLog'];
+				case Group.SFLog:
+					return settings[settingsGroup]['SFLog'];
 				case Group.DFLog:
 					return settings[settingsGroup]['DFLog'];
 				case Group.FFlag:
@@ -65,6 +71,12 @@ export namespace ClientSettings {
 					return settings[settingsGroup]['FPFilter'];
 				case Group.FSettings:
 					return settings['FSettings'];
+				case Group.UExperiment:
+					return settings[settingsGroup]['UExperiment'];
+				case Group.BTExperiment:
+					return settings[settingsGroup]['BTExperiment'];
+				case Group.SExperiment:
+					return settings[settingsGroup]['SExperiment'];
 				case Group.All:
 					return settings[settingsGroup];
 				default:
@@ -107,6 +119,18 @@ export namespace ClientSettings {
 	};
 	export const GetFSettings = (ctx: string = 'Web') => {
 		return GetSettings(Group.FSettings, ctx);
+	};
+	export const GetUserExperiments = (ctx: string = 'Web') => {
+		return GetSettings(Group.UExperiment, ctx);
+	};
+	export const GetBrowserTrackerExperiments = (ctx: string = 'Web') => {
+		return GetSettings(Group.BTExperiment, ctx);
+	};
+	export const GetSharedExperiments = (ctx: string = 'Web') => {
+		return GetSettings(Group.SExperiment, ctx);
+	};
+	export const GetSFLogs = (ctx: string = 'Web') => {
+		return GetSettings(Group.SFLog, ctx);
 	};
 
 	export const GetAllSettings = (ctx: string = 'Web') => {
