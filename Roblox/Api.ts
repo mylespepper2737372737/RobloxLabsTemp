@@ -102,6 +102,7 @@ import { GlobalMiddleware } from './Helpers/BeforeNext.Middle/SiteTest4.Global.M
 import ConfigImport from './Helpers/Config/MetaData';
 import { SimulPingMiddleware } from './Helpers/BeforeNext.Middle/SimulPingMiddleWare';
 import { AbTestingMiddleWare } from './Helpers/BeforeNext.Middle/AbTestingMiddleWare';
+import { GamePersistenceMiddleware } from './Helpers/BeforeNext.Middle/GamePersistenceMiddleWare';
 
 export namespace Roblox {
 	export namespace Api {
@@ -127,6 +128,7 @@ export namespace Roblox {
 					export const GLOBAL = GlobalMiddleware;
 					export const SIMULPONG = SimulPingMiddleware;
 					export const ABTESTING = AbTestingMiddleWare;
+					export const GAMEPERSISTENCE = GamePersistenceMiddleware;
 				}
 			}
 			export namespace Config {
