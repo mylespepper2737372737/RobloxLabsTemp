@@ -76,8 +76,4 @@ FastLog.DYNAMIC_LOGGROUP('SomeZeroGroup');
 // SFLog
 FastLog.SYNCHRONIZED_LOGGROUP('SomeZeroGroup');
 
-// Logging:
-
-// No arguments, just message.
-
-// FLog
+FastLog.FASTLOG(FLog['SomeOneGroup'], '[FLog::SomeZeroGroup] lol');
