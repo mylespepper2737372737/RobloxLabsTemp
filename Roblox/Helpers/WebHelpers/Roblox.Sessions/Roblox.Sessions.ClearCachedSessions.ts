@@ -35,6 +35,8 @@ export const ClearCachedSessions = () => {
 			fs.mkdirSync(_dirname + '\\Manifest\\sessions');
 			fs.rmdirSync(_dirname + '\\Manifest\\csrf', { recursive: true });
 			fs.mkdirSync(_dirname + '\\Manifest\\csrf');
+			fs.rmdirSync(_dirname + '\\Manifest\\pages', { recursive: true });
+			fs.mkdirSync(_dirname + '\\Manifest\\pages');
 			resolve();
 		} catch (err: unknown) {
 			reject(err);
