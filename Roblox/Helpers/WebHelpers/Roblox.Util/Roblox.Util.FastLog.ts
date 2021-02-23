@@ -151,9 +151,9 @@ export const FASTLOG7 = (Group: string, message: string, LogToFile?: boolean): a
 		});
 };
 
-export let FLog = {};
-export let DFLog = {};
-export let SFLog = {};
+export const FLog = {};
+export const DFLog = {};
+export const SFLog = {};
 
 export const d = {
 	setup: false,
@@ -202,10 +202,27 @@ export namespace FastLog {
 		});
 	};
 
+	/*Updated this so we don't overwrite our LogVariables*/
 	function setUpLogLevels() {
-		FLog = ClientSettings.GetFLogs();
-		DFLog = ClientSettings.GetDFLogs();
-		SFLog = ClientSettings.GetSFLogs();
+		const f = ClientSettings.GetFLogs();
+		const df = ClientSettings.GetDFLogs();
+		const sf = ClientSettings.GetSFLogs();
+
+		if (f) {
+			new Map<string, number>(Object.entries(f)).forEach((value, key) => {
+				FLog[key] = value;
+			});
+		}
+		if (df) {
+			new Map<string, number>(Object.entries(df)).forEach((value, key) => {
+				DFLog[key] = value;
+			});
+		}
+		if (sf) {
+			new Map<string, number>(Object.entries(sf)).forEach((value, key) => {
+				SFLog[key] = value;
+			});
+		}
 		d.setup = true;
 	}
 
@@ -236,58 +253,58 @@ export namespace FastLog {
 	}
 	export const FASTLOG = (group: number, message: string) => {
 		do {
-			if (group) FastLog(group, message, null, null, null, null, null);
+			if (group !== undefined) FastLog(group, message, null, null, null, null, null);
 		} while (0);
 	};
 	export const FASTLOG1 = (group: number, message: string, arg0: any) => {
 		do {
-			if (group) FastLog(group, message, arg0, null, null, null, null);
+			if (group !== undefined) FastLog(group, message, arg0, null, null, null, null);
 		} while (0);
 	};
 	export const FASTLOG2 = (group: number, message: string, arg0: any, arg1: any) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, null, null, null);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, null, null, null);
 		} while (0);
 	};
 	export const FASTLOG3 = (group: number, message: string, arg0: any, arg1: any, arg2: any) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, arg2, null, null);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, arg2, null, null);
 		} while (0);
 	};
 	export const FASTLOG4 = (group: number, message: string, arg0: any, arg1: any, arg2: any, arg3: any) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, arg2, arg3, null);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, arg2, arg3, null);
 		} while (0);
 	};
 	export const FASTLOG5 = (group: number, message: string, arg0: any, arg1: any, arg2: any, arg3: any, arg4: any) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, arg2, arg3, arg4);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, arg2, arg3, arg4);
 		} while (0);
 	};
 
 	export const FASTLOGS = (group: number, message: string, sarg: string) => {
 		do {
-			if (group) FastLog(group, message, sarg, null, null, null, null);
+			if (group !== undefined) FastLog(group, message, sarg, null, null, null, null);
 		} while (0);
 	};
 	export const FASTLOG1F = (group: number, message: string, arg0: number) => {
 		do {
-			if (group) FastLog(group, message, arg0, null, null, null, null);
+			if (group !== undefined) FastLog(group, message, arg0, null, null, null, null);
 		} while (0);
 	};
 	export const FASTLOG2F = (group: number, message: string, arg0: number, arg1: number) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, null, null, null);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, null, null, null);
 		} while (0);
 	};
 	export const FASTLOG3F = (group: number, message: string, arg0: number, arg1: number, arg2: number) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, arg2, null, null);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, arg2, null, null);
 		} while (0);
 	};
 	export const FASTLOG4F = (group: number, message: string, arg0: number, arg1: number, arg2: number, arg3: number) => {
 		do {
-			if (group) FastLog(group, message, arg0, arg1, arg2, arg3, null);
+			if (group !== undefined) FastLog(group, message, arg0, arg1, arg2, arg3, null);
 		} while (0);
 	};
 
