@@ -1,0 +1,17 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "test2",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": -1,
+                    "type": "number"
+                }
+            }
+        ],
+        "date": "2021-02-22T18:49:42.236Z"
+    }
+]

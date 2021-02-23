@@ -1,0 +1,13 @@
+[
+    {
+        "action": "StoreAdded",
+        "data": [
+            {
+                "name": "test123",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-22T18:49:42.237Z"
+    }
+]

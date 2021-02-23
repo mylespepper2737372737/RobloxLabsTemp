@@ -1,0 +1,14 @@
+{
+	"placeId": 6333045331,
+	"name": "DSTestMaster",
+	"description": "",
+	"url": "https://www.sitetest4.robloxlabs.com/games/6333045331/DSTestMaster",
+	"builder": "iplaygame_theory",
+	"builderId": 1325355919,
+	"isPlayable": false,
+	"reasonProhibited": "UniverseRootPlaceIsNotActive",
+	"universeId": 2342098878,
+	"universeRootPlaceId": 6333045331,
+	"price": 0,
+	"imageToken": "T_6333045331_1dee"
+}
