@@ -56,15 +56,15 @@ import { AbTestingService } from '../../../../ApiServices/Roblox.AbTesting.Servi
 
 export default {
 	method: 'All',
-	func: async (request: Request, response: Response): Promise<Response<unknown> | void> => {
-		// const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
-
-		if (request.method !== 'POST')
-			return response.status(405).send({
-				error: `The requested resource does not support http method '${request.method}'.`,
+	func: (request: Request, response: Response): Response<unknown> | void => {
+		if (JSON.stringify(request.body) === '{}')
+			return response.status(400).send({
+				message: new Error(
+					`AbTesting with ApiKey ${
+						request.query.ApiKey || '00000000-0000-0000-0000-00000000000'
+					} failed because the request was invalid`,
+				).stack,
 			});
-
-		if (JSON.stringify(request.body) === '{}') return response.status(400).send();
 
 		if (request.body && (!request.headers['content-type'] || request.headers['content-type'].length === 0))
 			return response.status(415).send({
