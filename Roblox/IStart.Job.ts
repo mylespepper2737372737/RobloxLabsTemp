@@ -85,6 +85,7 @@ import { FASTLOG4, FASTLOG7 /* , LOGGROUP  */, LOGGROUP } from './Helpers/WebHel
 // Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2'], 7);
 // Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'], 7);
 
+LOGGROUP('GumePersistince');
 LOGGROUP('AandBTusting');
 LOGGROUP('SIMPLEPING');
 LOGGROUP('Protocol77');
@@ -275,7 +276,7 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 		ROBLOX_VERSION_COMPATIBILITY_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_CLIENT_SETTINGS_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_ASSET_GAME_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		ROBLOX_GAME_PERSISTENCE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_GAME_PERSISTENCE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GAMEPERSISTENCE);
 		ROBLOX_DOSARREST_ORIGIN_CORP_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_MARKETPLACE_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_METRICS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
