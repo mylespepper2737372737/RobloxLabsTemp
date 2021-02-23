@@ -23,6 +23,8 @@ export const PushKeyToPersistentStore = (
 	key: string = '',
 	value: unknown = undefined,
 	isSorted: boolean = false,
+	userIds = [],
+	attributes = [],
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
 		const path = _dirname + '\\Manifest\\persistence\\' + universeId;
@@ -122,8 +124,8 @@ export const PushKeyToPersistentStore = (
 			scope: scope,
 			store: name,
 			universe: 1,
-			userIds: [],
-			attributes: {},
+			userIds: userIds,
+			attributes: attributes,
 			root: keyPath + '\\',
 			version: 1,
 			created: time,
