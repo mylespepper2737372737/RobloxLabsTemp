@@ -2,6 +2,8 @@
 	"Web": {
 		"FVariable": {},
 		"FLog": {},
+		"DFLog": {},
+		"SFLog": {},
 		"FFlag": {
 			"RequireGlobalHTTPS": true,
 			"AutohttpsRedirect": false,
@@ -40,6 +42,7 @@
 			"MultiGetContactsMaxSize": 200,
 			"CookieLawNoticeTimeout": 20000
 		},
+		"SFInt": {},
 		"FString": {
 			"CSRFV2FailedResponseStatusText": "Token Validation Failed",
 			"CaptchaV2FailedResponseStatusText": "Captcha Validation Failed",
@@ -50,18 +53,23 @@
 		"DFString": {
 			"CharacterAppearanceUrl": "http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx",
 			"CharacterAppearranceTestString": "http://assetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx?userId=0;http://assetgame.sitetest4.robloxlabs.com/Asset?id=21070012;http://assetgame.sitetest4.robloxlabs.com/Asset?id=6395566584"
-		}
+		},
+		"SFString": {}
 	},
 	"WebMobile": {
 		"FVariable": {},
 		"FLog": {},
+		"DFLog": {},
+		"SFLog": {},
 		"FFlag": {},
 		"DFFlag": {},
 		"SFFlag": {},
 		"FInt": {},
 		"DFInt": {},
+		"SFInt": {},
 		"FString": {},
-		"DFString": {}
+		"DFString": {},
+		"SFString": {}
 	},
 	"Client": {
 		"FVariable": {
