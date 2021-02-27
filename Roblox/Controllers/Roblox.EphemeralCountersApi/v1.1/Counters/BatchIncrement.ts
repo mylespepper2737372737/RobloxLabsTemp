@@ -25,13 +25,15 @@
 	***
 */
 
-import { FASTLOG2 } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOGS, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('EphemeralCounters');
 
 export default {
 	method: 'all',
 	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOG2('EphemeralCounters', JSON.stringify(_req.query), true);
-		FASTLOG2('EphemeralCounters', _req.body instanceof Object ? JSON.stringify(_req.body) : _req.body, true);
+		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.query));
+		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.body));
 		res.send({ success: true, message: '' });
 	},
 };

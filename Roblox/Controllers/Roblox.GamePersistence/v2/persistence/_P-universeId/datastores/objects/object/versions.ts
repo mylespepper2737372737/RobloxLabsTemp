@@ -25,13 +25,8 @@
 	***
 */
 import { Request, Response } from 'express-serve-static-core';
-import { FASTLOG1 } from '../../../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	method: 'all',
-	func: async (req: Request, res: Response) => {
-		FASTLOG1('DataStoreV2', JSON.stringify(req.query), true);
-		FASTLOG1('DataStoreV2', JSON.stringify(req.body), true);
-		FASTLOG1('DataStoreV2', JSON.stringify(req.params), true);
-	},
+	func: async (req: Request, res: Response) => {},
 };

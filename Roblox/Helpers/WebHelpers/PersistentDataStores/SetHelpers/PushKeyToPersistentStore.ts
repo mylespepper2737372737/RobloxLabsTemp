@@ -57,6 +57,7 @@ export const PushKeyToPersistentStore = (
 			if (value === record['value']) return resumefunction(true);
 			record['value'] = value;
 			record['type'] = typeof value;
+			record['md5'] = Base64.stringify(crpto.MD5(value.toString()));
 			filestream.writeFileSync(keyPath + '\\VALUE.json', JSON.stringify(record, undefined, 4), {
 				encoding: 'utf-8',
 			});

@@ -75,12 +75,6 @@ import { CreateOrGetXsrfSession as CreateOrGetXsrfSessionImport } from './Helper
 import { CreateCsrfSessionFile as CreateCsrfSessionFileImport } from './Helpers/WebHelpers/Roblox.Sessions/Roblox.Sessions.CreateCsrfSessionFile';
 import { CreateCaptchaSessionBlob as CreateCaptchaSessionBlobImport } from './Helpers/WebHelpers/Roblox.Sessions/Roblox.Sessions.CreateCaptchaSessionBlob';
 import { ClientSettings as ClientSettingsImport } from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
-import {
-	FastLog as FastLogImported,
-	FLog as FLogImported,
-	SFLog as SFLogImported,
-	DFLog as DFLogImported,
-} from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { ROBLOX_Starter as StarterImport } from './Helpers/WebHelpers/Roblox.Web.Util/Roblox.Server.Starter';
 import { ROBLOX_SignalR_Config_Helper as SignalR } from './Helpers/WebHelpers/Roblox.Web.Util/Roblox.SignalR.WebSocket.Helper';
 import HeadersImport from './Helpers/Constants/Default.OutBound.Headers';
@@ -190,10 +184,6 @@ export namespace Roblox {
 			}
 			export namespace Util {
 				export const ClientSettings = ClientSettingsImport;
-				export const FastLog = FastLogImported;
-				export const FLog = FLogImported;
-				export const DFLog = DFLogImported;
-				export const SFLog = SFLogImported;
 				export const ShuffleArray = ShuffleArrayImport;
 			}
 			export namespace Web {

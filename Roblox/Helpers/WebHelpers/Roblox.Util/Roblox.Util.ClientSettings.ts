@@ -24,8 +24,10 @@ export enum Group {
 	'SFFlag',
 	'FInt',
 	'DFInt',
+	'SFInt',
 	'FString',
 	'DFString',
+	'SFString',
 	'FPFilter',
 	'FSettings',
 	'UExperiment',
@@ -63,10 +65,14 @@ export namespace ClientSettings {
 					return settings[settingsGroup]['FInt'];
 				case Group.DFInt:
 					return settings[settingsGroup]['DFInt'];
+				case Group.SFInt:
+					return settings[settingsGroup]['SFInt'];
 				case Group.FString:
 					return settings[settingsGroup]['FString'];
 				case Group.DFString:
 					return settings[settingsGroup]['DFString'];
+				case Group.SFString:
+					return settings[settingsGroup]['SFString'];
 				case Group.FPFilter:
 					return settings[settingsGroup]['FPFilter'];
 				case Group.FSettings:
@@ -108,11 +114,17 @@ export namespace ClientSettings {
 	export const GetDFInts = (ctx: string = 'Web') => {
 		return GetSettings(Group.DFInt, ctx);
 	};
+	export const GetSFInts = (ctx: string = 'Web') => {
+		return GetSettings(Group.SFInt, ctx);
+	};
 	export const GetFStrings = (ctx: string = 'Web') => {
 		return GetSettings(Group.FString, ctx);
 	};
 	export const GetDFStrings = (ctx: string = 'Web') => {
 		return GetSettings(Group.DFString, ctx);
+	};
+	export const GetSFStrings = (ctx: string = 'Web') => {
+		return GetSettings(Group.SFString, ctx);
 	};
 	export const GetFPFilters = (ctx: string = 'Web') => {
 		return GetSettings(Group.FPFilter, ctx);

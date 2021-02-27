@@ -3,8 +3,10 @@ import { IEnrollment } from '../../../../Platform/AbTesting/IEnrollment';
 import Http from 'axios';
 import { ApiKeys } from '../../../../Data/Keys/Api';
 import { BaseURL } from '../../../../Data/Client/BaseUrl';
-import { FASTLOG7 } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import https from 'https';
+
+DYNAMIC_LOGGROUP('Tasks');
 
 export namespace AbTestingClient {
 	/**
@@ -43,7 +45,7 @@ export namespace AbTestingClient {
 	Url: ${(requireSecureUri ? BaseURL.GetSecureBaseURL() : BaseURL.GetBaseURL()).replace(/www/, 'abtesting.api')}/v1/experiments/enrollto
 	Response Machine Id: RA-WEB114
 	Error code: ${Err.message}`).stack;
-						FASTLOG7('Tasks', message);
+						FASTLOGS(DFLog['Tasks'], '[DFLog::Tasks] %s', message);
 						return resumeFunction([false, message, 500]);
 					}
 					resumeFunction([false, Err.response.statusText, Err.response.status]);

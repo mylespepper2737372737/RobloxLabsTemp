@@ -26,11 +26,20 @@
 */
 
 import { RequestHandler } from 'express-serve-static-core';
-import { FASTLOG3, FLog } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('GumePersistince');
 
 export const GamePersistenceMiddleware = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
-	FASTLOG3(FLog['GumePersistince'], `${req.method.toUpperCase()} REQUEST ON ${req.protocol}://${req.hostname}${req.url}`, false);
+	FASTLOG4(
+		FLog['GumePersistince'],
+		`[FLog::GumePersistince] %s REQUEST ON %s://%s%s`,
+		req.method.toUpperCase(),
+		req.protocol,
+		req.hostname,
+		req.url,
+	);
 	res.header({
 		expires: -1,
 		p3p: ' CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"',

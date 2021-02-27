@@ -34,7 +34,7 @@ import DeveloperExceptionPage from '../Global.Helpers/DeveloperExceptionPage';
 import UseRouting from '../Global.Helpers/UseRouting';
 import MapControllers from '../Global.Helpers/MapControllers';
 import UsePages from '../Global.Helpers/UsePages';
-import { FASTLOG7, FLog } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import signalr from 'signalrjs';
 
 export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
@@ -73,6 +73,8 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	signalr?: boolean;
 	hubs?: string[];
 }
+
+DYNAMIC_LOGGROUP('Tasks');
 export namespace IStartup {
 	export const Configure = async (opts: ConfigOpts): Promise<void> => {
 		try {
@@ -102,7 +104,7 @@ export namespace IStartup {
 				opts.app.use(signalr.createListener());
 			}
 		} catch (e) {
-			FASTLOG7(FLog['Tasks'], `Message: ${e.message}, Stack: ${e.stack}`, true);
+			FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 		}
 	};
 }

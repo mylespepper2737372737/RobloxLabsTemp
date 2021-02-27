@@ -74,18 +74,17 @@ import { IUser } from '../../../Platform/Membership/IUser';
 import { IBrowserTracker } from '../../../Platform/Membership/IBrowserTracker';
 import { AbTestingRequestProcessor } from '../../../Web/AbTesting/Roblox.Web.AbTesting/AbTestingRequestProcessor';
 import { UserModelBuildersClubMembershipTypeEnum } from '../../../Platform/Membership/UserModelBuildersClubMembershipTypeEnum';
+import { FASTFLAG, FFlag } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
 
 // Refactor this to allow it to have multiple browser trackers?
 // Multiple userIds wouldn't make sense as you can't have more than one account per auth token
 export default {
 	method: 'All',
 	func: async (request: Request, response: Response): Promise<Response<unknown> | void> => {
-		// const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
-
 		if (request.method === 'OPTIONS') return response.status(200).send();
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
 			return response.status(403).send({

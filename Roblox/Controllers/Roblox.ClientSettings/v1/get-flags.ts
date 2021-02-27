@@ -27,19 +27,31 @@
 	***
 */
 
-import { ClientSettings, Group } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
-import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Roblox } from '../../../Api';
+import { ClientSettings } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
+import {
+	DFFlag,
+	DYNAMIC_FASTFLAGVARIABLE,
+	FASTFLAG,
+	FASTLOG,
+	FASTLOG1,
+	FASTLOGS,
+	FFlag,
+	FLog,
+	FSettings,
+	LOGGROUP,
+} from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
-const FSettings = <string[]>Roblox.Api.Helpers.Util.ClientSettings.GetFSettings();
+FASTFLAG('RequireGlobalHTTPS');
+
+DYNAMIC_FASTFLAGVARIABLE('IsClientSettingsAPIEnabled', true);
+
+LOGGROUP('ClientSettingsAPIV1');
 
 export default {
 	method: 'all',
 	func: (request, response): void => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		if (!DFFlag['IsClientSettingsAPIEnabled']) {
-			FASTLOG4(FLog['ClientSettingsAPIV1'], 'The service is disabled currently.', true);
+			FASTLOG(FLog['ClientSettingsAPIV1'], '[FLog::ClientSettingsAPIV1] The service is disabled currently.');
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
@@ -49,13 +61,13 @@ export default {
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
 
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https') {
-			FASTLOG6(FLog['ClientSettingsAPIV1'], 'https was not given where it was required.', true);
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+			FASTLOG(FLog['ClientSettingsAPIV1'], '[FLog::ClientSettingsAPIV1] HTTPS was not given where it was needed.');
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		}
 
 		if (request.method !== 'GET') {
-			FASTLOG6(FLog['ClientSettingsAPIV1'], `${request.method} is not supported`);
+			FASTLOGS(FLog['ClientSettingsAPIV1'], `[FLog::ClientSettingsAPIV1] The method %s is not supported`, request.method);
 			return response.status(405).send({
 				success: false,
 				message: `The requested resource does not support https method '${request.method}'.`,
@@ -63,7 +75,7 @@ export default {
 		}
 
 		if (!request.query['settingsGroup']) {
-			FASTLOG6(FLog['ClientSettingsAPIV1'], 'settingsGroup did not exist on the request.', true);
+			FASTLOG(FLog['ClientSettingsAPIV1'], '[FLog::ClientSettingsAPIV1] settingsGroup did not exist on the request.');
 			return response.status(400).send({ success: false, message: 'settingsGroup was not supplied' });
 		}
 
@@ -73,15 +85,24 @@ export default {
 				found = true;
 			}
 		});
+
 		if (!found) {
-			FASTLOG4(FLog['ClientSettingsAPIV1'], `The settingsGroup matching ${request.query['settingsGroup']} was not found.`, true);
+			FASTLOGS(
+				FLog['ClientSettingsAPIV1'],
+				`[FLog::ClientSettingsAPIV1] The settingsGroup matching %s was not found.`,
+				request.query['settingsGroup'],
+			);
 			return response.status(404).send({
 				success: false,
 				message: 'settingsGroup not found.',
 				userfacingmessage: `The settingsGroup matching ${request.query['settingsGroup']} was not found.`,
 			});
 		}
-		FASTLOG1(FLog['ClientSettingsAPIV1'], `Successfully got settings for ${request.query['settingsGroup']}`, true);
-		return response.status(200).send(JSON.stringify(ClientSettings.GetSettings(Group.All, request.query['settingsGroup'])));
+		FASTLOG1(
+			FLog['ClientSettingsAPIV1'],
+			`[FLog::ClientSettingsAPIV1] Successfully got settings for %s`,
+			request.query['settingsGroup'],
+		);
+		return response.status(200).send(JSON.stringify(ClientSettings.GetAllSettings(request.query['settingsGroup'])));
 	},
 };

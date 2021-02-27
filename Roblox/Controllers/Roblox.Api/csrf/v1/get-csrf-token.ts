@@ -26,18 +26,30 @@
 */
 
 import { Request, Response } from 'express-serve-static-core';
-import { FASTLOG1, FASTLOG4, FASTLOG6, FLog } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import {
+	DFFlag,
+	DYNAMIC_FASTFLAGVARIABLE,
+	FASTFLAG,
+	FASTLOG,
+	FASTLOG2,
+	FASTLOGS,
+	FFlag,
+	FLog,
+	LOGGROUP,
+} from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Roblox } from '../../../../Api';
 
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
+
+DYNAMIC_FASTFLAGVARIABLE('IsCSRFV2Enabled', true);
+
+LOGGROUP('CsrfAPIV1');
 
 export default {
 	method: 'ALL',
 	func: (request: Request, response: Response) => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
-
 		if (!DFFlag['IsCSRFV2Enabled']) {
-			FASTLOG4(FLog['CsrfAPIV1'], 'The service is disabled currently.', true);
+			FASTLOG(FLog['CsrfAPIV1'], '[FLog::CsrfAPIV1] The service is disabled currently.');
 			return response.status(503).send({
 				success: false,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
@@ -47,16 +59,16 @@ export default {
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
 
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https') {
-			FASTLOG6(FLog['CsrfAPIV1'], 'https was not given where it was required.', true);
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+			FASTLOG(FLog['CsrfAPIV1'], 'https was not given where it was required.');
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		}
 
 		if (request.method !== 'POST') {
-			FASTLOG6(FLog['CsrfAPIV1'], `${request.method} is not supported`, true);
+			FASTLOGS(FLog['CsrfAPIV1'], `[FLog::CsrfAPIV1] The request metod '%s' is not supported`, request.method);
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support https method '${request.method}'.`,
+				message: `The requested resource does not support HTTP method '${request.method}'.`,
 			});
 		}
 
@@ -69,19 +81,19 @@ export default {
 		);
 		console.log(res);
 		if (!res) {
-			FASTLOG4(
+			FASTLOG2(
 				FLog['CsrfAPIV1'],
-				`Gave CSRF for subject ${request.cookies['AuthToken'] || 'No AuthToken'} [${
-					request.ip
-				}], the session probably didn't exist.`,
-				true,
+				`[FLog::CsrfAPIV1] Gave CSRF for subject %s [%s], the session probably didn't exist.`,
+				request.cookies['AuthToken'] || 'No AuthToken',
+				request.ip,
 			);
 			return;
 		}
-		FASTLOG1(
+		FASTLOG2(
 			FLog['CsrfAPIV1'],
-			`Gave CSRF for subject ${request.cookies['AuthToken'] || 'No AuthToken'} [${request.ip}], the session probably existed.`,
-			true,
+			`[FLog::CsrfAPIV1] Gave CSRF for subject %s [%s], the session probably did exist.`,
+			request.cookies['AuthToken'] || 'No AuthToken',
+			request.ip,
 		);
 	},
 };

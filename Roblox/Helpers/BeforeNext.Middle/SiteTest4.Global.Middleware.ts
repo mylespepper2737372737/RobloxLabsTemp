@@ -29,11 +29,21 @@ import crypto from 'crypto';
 import headers from '../Constants/Default.OutBound.Headers';
 import { RequestHandler } from 'express-serve-static-core';
 // import whitelist from '../constants/urls';
-import { FASTLOG3, FASTLOG6, FLog } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('Protocol77');
+DYNAMIC_LOGGROUP('Tasks');
 
 export const GlobalMiddleware = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
-	FASTLOG3(FLog['Protocol77'], `${req.method.toUpperCase()} REQUEST ON ${req.protocol}://${req.hostname}${req.url}`, false);
+	FASTLOG4(
+		FLog['Protocol77'],
+		`[FLog::Protocol77] %s REQUEST ON %s://%s%s`,
+		req.method.toUpperCase(),
+		req.protocol,
+		req.hostname,
+		req.url,
+	);
 	res.header(headers);
 	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest4.robloxlabs.com'))
 		res.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {
@@ -54,7 +64,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 		// 	}
 		// });
 	} catch (e) {
-		FASTLOG6('tasks', `Message: ${e.message}, Stack: ${e.stack}`, true);
+		FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 	}
 	if (req.method !== 'GET') {
 		try {
@@ -74,7 +84,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 			// )
 			// 	return;
 		} catch (e) {
-			FASTLOG6('tasks', `Message: ${e.message}, Stack: ${e.stack}`, true);
+			FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 		}
 	}
 

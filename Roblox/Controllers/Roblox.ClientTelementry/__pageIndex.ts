@@ -25,12 +25,14 @@
 	***
 */
 
-import { FASTLOG1 } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOGS, FLog, LOGGROUP } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('ClientTelementry');
 
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		FASTLOG1('ClientTelementry', _req.body, true);
+		FASTLOGS(FLog['ClientTelementry'], '[FLog::ClientTelementry] %s', _req.body);
 		return res.send();
 	},
 };

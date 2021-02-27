@@ -25,14 +25,15 @@
 	***
 */
 
-import { FASTLOG2 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOGS, FLog, LOGGROUP } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('Stats');
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		res.setHeader('Access-Control-Allow-Origin', _req.headers['origin'] || 'https://www.sitetest4.robloxlabs.com');
-		FASTLOG2('Stats', JSON.stringify(_req.query), true);
-		FASTLOG2('Stats', _req.body instanceof Object ? JSON.stringify(_req.body) : _req.body, true);
+		FASTLOGS(FLog['Stats'], '[FLog::Stats] %s', JSON.stringify(_req.query));
+		FASTLOGS(FLog['Stats'], '[FLog::Stats] %s', JSON.stringify(_req.body));
 		res.send({ success: true, message: '' });
 	},
 };

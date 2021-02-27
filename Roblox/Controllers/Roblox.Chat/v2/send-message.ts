@@ -27,7 +27,6 @@
 
 import a from 'axios';
 import evt from '../../../Helpers/WebHelpers/Events/Notifications';
-import { FASTLOG6 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 export default {
 	method: 'all',
@@ -50,16 +49,14 @@ export default {
 							if (element.targetId !== parseInt(re2.data)) ids.push(element.targetId);
 						});
 						console.log(ids);
-						evt.push(_req.body.conversationId, ids);
+						evt.push(_req.headers.cookie, _req.body.conversationId, ids);
 					})
 					.catch((e) => {
-						FASTLOG6('chat', e);
-						evt.push(null, null);
+						evt.push(_req.headers.cookie, null, null);
 					});
 			})
 			.catch((e) => {
-				FASTLOG6('chat', e);
-				evt.push(null, null);
+				evt.push(_req.headers.cookie, null, null);
 			});
 		a.post('https://chat.roblox.com' + _req.url, _req.body, {
 			headers: { ..._req.headers, host: 'chat.roblox.com' },

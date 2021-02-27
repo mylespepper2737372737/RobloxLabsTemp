@@ -24,16 +24,12 @@
 
 	***
 */
-
-import { FASTLOG1 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Request, Response } from 'express-serve-static-core';
 import { Roblox } from '../../../Api';
 
 export default {
 	method: 'all',
 	func: async (req: Request, res: Response) => {
-		FASTLOG1('DataStore', JSON.stringify(req.query), true);
-		FASTLOG1('DataStore', JSON.stringify(req.body), true);
 		let usequery = false;
 		if (req.headers['roblox-place-id'] === undefined) {
 			usequery = true;

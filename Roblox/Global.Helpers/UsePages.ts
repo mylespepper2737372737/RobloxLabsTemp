@@ -30,7 +30,7 @@ import { static as Pages } from 'express';
 import { OutgoingMessage } from 'http';
 import { _dirname } from '../Helpers/Constants/Directories';
 import fs from 'fs';
-import { FASTLOG4 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOGS, FLog, LOGGROUP } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 interface PageDirOpts {
 	path?: string;
@@ -48,14 +48,17 @@ interface PageOpts<R extends OutgoingMessage = OutgoingMessage> {
 	redirect?: boolean;
 	setHeaders?: (res: R, path: string, stat: unknown) => unknown;
 }
+
+LOGGROUP('Pages');
+
 const UsePages = (app: IApplicationBuilder, opts: PageDirOpts, PagesOpts: PageOpts): Promise<void> => {
 	return new Promise((r) => {
 		const path = (opts !== undefined ? opts.path : _dirname + '\\StaticPages') || _dirname + '\\StaticPages';
 		if (!fs.existsSync(path)) {
-			FASTLOG4(
-				'Pages',
-				`The directory ${path} was not found, make sure you configured your directory correctly. Static pages, so this will that return ctx::resumeFunc()`,
-				true,
+			FASTLOGS(
+				FLog['Pages'],
+				`[FLog::Pages] The directory %s was not found, make sure you configured your directory correctly. Static pages, so this will that return ctx::resumeFunc()`,
+				path,
 			);
 		}
 		app.use(Pages(path, PagesOpts));

@@ -25,12 +25,14 @@
 	***
 */
 
-import { FASTLOG1 } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOGS, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('Metrics');
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		FASTLOG1('Metrics', JSON.stringify(_req.body));
+		FASTLOGS(FLog['Metrics'], '[FLog::Metrics] %s', JSON.stringify(_req.body));
 		res.send();
 	},
 };

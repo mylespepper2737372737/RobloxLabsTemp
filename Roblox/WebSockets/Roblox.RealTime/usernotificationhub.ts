@@ -25,15 +25,21 @@ import a from 'axios';
 import evts from 'events';
 import { IncomingMessage } from 'http';
 import ws from 'ws';
-import { FASTLOG3, FASTLOG6 } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG, FASTLOGS, FLog, LOGGROUP } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('WebSockets');
 
 export default {
 	dir: '/notifications/connect',
 	func: (socket: ws, req: IncomingMessage): void => {
 		let seq = 1;
 		const e = new evts.EventEmitter();
-		evt.subscribe(e);
+		evt.subscribe(req.headers.cookie, e);
 		e.on('message', (m, uid) => {
+			FASTLOG(
+				FLog['WebSockets'],
+				'[FLog::WebSockets] Message request!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ' + m,
+			);
 			console.log(m, uid);
 			a.get('https://assetgame.roblox.com/Game/GetCurrentUser.ashx', {
 				headers: { Cookie: req.headers.cookie },
@@ -72,7 +78,7 @@ export default {
 					}
 				})
 				.catch((e) => {
-					FASTLOG6('WebSockets', e);
+					FASTLOGS(FLog['WebSockets'], '[FLog::WebSockets] There was an error with this because: %s', e.message);
 					return;
 				});
 		});
@@ -108,11 +114,11 @@ export default {
 					}
 				})
 				.catch((e) => {
-					FASTLOG6('WebSockets', e);
+					FASTLOGS(FLog['WebSockets'], '[FLog::WebSockets] There was an error with this because: %s', e.message);
 					return;
 				});
 		});
-		FASTLOG3('WebSockets', 'Connection opened for realtime, echoeing back and closing');
+		FASTLOG(FLog['WebSockets'], '[FLog::WebSockets] Connection opened for realtime, echoeing back');
 		socket.send(JSON.stringify({ C: 'd-9042436C-B,0|z9cD,0|z8Ru,0|z9cE,1', S: 1, M: [] }));
 		socket.send(
 			JSON.stringify({
@@ -136,6 +142,7 @@ export default {
 			r.unref();
 			r = undefined;
 			socket.close();
+			evt.unsubscribe(req.headers.cookie);
 		});
 	},
 };

@@ -55,130 +55,112 @@ import {
 } from './Helpers/AfterNext.Middle';
 import { Roblox } from './Api';
 import IServer from 'express';
-import { FASTLOG4, FASTLOG7 /* , LOGGROUP  */, LOGGROUP } from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import {
+	DFLog,
+	DYNAMIC_LOGVARIABLE,
+	FASTFLAGVARIABLE,
+	FASTLOG2,
+	FASTLOGS,
+	LOGVARIABLE,
+	SYNCHRONIZED_LOGVARIABLE,
+} from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('Protocol77', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('DataStoreV2', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('DataStore', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('EphemeralCountersV2', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('EphemeralCounters', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('Stats', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('universes', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('grid', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('dmp', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('CsrfAPIV1', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('ClientSettingsAPIV1', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('WWWAuthV1', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE('Tasks', 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_WWW'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_API'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_STATIC_CDN'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_JS'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CSS'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_IMAGES'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_SETUP_CDN'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_API'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['DEPRECATED_ROBLOX_TEMPORARY_IMAGES'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_VERSION_COMPATIBILITY_API'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_API'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ASSET_GAME'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2'], 7);
-// Roblox.Api.Helpers.Util.FastLog.LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'], 7);
+LOGVARIABLE('GumePersistince', 7);
+LOGVARIABLE('AandBTusting', 7);
+LOGVARIABLE('SIMPLEPING', 7);
+LOGVARIABLE('Protocol77', 7);
+LOGVARIABLE('DataStoreV2', 7);
+LOGVARIABLE('DataStore', 7);
+LOGVARIABLE('EphemeralCountersV2', 7);
+LOGVARIABLE('EphemeralCounters', 7);
+LOGVARIABLE('Stats', 7);
+LOGVARIABLE('Grid', 7);
+LOGVARIABLE('dmp', 7);
+LOGVARIABLE('CsrfAPIV1', 7);
+LOGVARIABLE('ClientSettingsAPIV1', 7);
+LOGVARIABLE('WWWAuthV1', 7);
+LOGVARIABLE('ClientTelementry', 7);
+DYNAMIC_LOGVARIABLE('Tasks', 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_WWW'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_STATIC_CDN'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_JS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CSS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_IMAGES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_SETUP_CDN'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['DEPRECATED_ROBLOX_TEMPORARY_IMAGES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_VERSION_COMPATIBILITY_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ASSET_GAME'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_MARKETPLACE_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_METRICS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_AUTH'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_APIS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_LOCALE'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_USERS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['SIMULPONG_LATENCY_MEASUREMENTS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CHAT'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CONTACTS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_NOTIFICATIONS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_SETTINGS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ADS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_TRADES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_FRIENDS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_PRIVATE_MESSAGES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ECONOMY'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAMES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_THUMB_NAILS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_PRESENCE'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GROUPS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_BADGES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_CDN'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_AD_CONFIGURATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_TELEMENTRY'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ASSET_DELIVERY'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_AVATAR'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_BILLING'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CATALOG'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CDN_PROVIDERS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CHAT_MODERATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_CONTENT_STORE'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_DEVELOP'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_DISCUSSIONS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ECONOMY_CREATOR_STATS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ENGAGEMENT_PAYOUTS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_FOLLOWINGS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAME_INTERNATIONALIZATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GAME_JOIN'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_GROUPS_MODERATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_INVENTORY'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_ITEM_CONFIGURATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_LOCALIZATION_TABLES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_POINTS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_PUBLISH'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_PUNISHMENTS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_SHARE'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_TEXT_FILTER'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_THEMES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_THUMBNAILS_RESIZER'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_TRANSLATION_ROLES'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_TRANSLATIONS'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_USER_MODERATION'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_VOICE'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_FILES_API'], 7);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'], 7);
 
-LOGGROUP('GumePersistince');
-LOGGROUP('AandBTusting');
-LOGGROUP('SIMPLEPING');
-LOGGROUP('Protocol77');
-LOGGROUP('DataStoreV2');
-LOGGROUP('DataStore');
-LOGGROUP('EphemeralCountersV2');
-LOGGROUP('EphemeralCounters');
-LOGGROUP('Stats');
-LOGGROUP('universes');
-LOGGROUP('grid');
-LOGGROUP('dmp');
-LOGGROUP('CsrfAPIV1');
-LOGGROUP('ClientSettingsAPIV1');
-LOGGROUP('WWWAuthV1');
-LOGGROUP('Tasks');
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_WWW']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_STATIC_CDN']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_JS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CSS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_IMAGES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_SETUP_CDN']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['DEPRECATED_ROBLOX_TEMPORARY_IMAGES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_VERSION_COMPATIBILITY_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ASSET_GAME']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_MARKETPLACE_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_METRICS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AUTH']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_APIS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_LOCALE']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AB_TESTING_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_USERS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_LATENCY_MEASUREMENTS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CHAT']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CONTACTS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_NOTIFICATIONS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_SETTINGS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ADS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TRADES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_FRIENDS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PRIVATE_MESSAGES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ECONOMY']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAMES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_REAL_TIME']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_THUMB_NAILS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PRESENCE']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GROUPS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_BADGES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_CDN']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AD_CONFIGURATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CLIENT_TELEMENTRY']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ASSET_DELIVERY']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_AVATAR']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_BILLING']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CATALOG']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CDN_PROVIDERS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CHAT_MODERATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_CONTENT_STORE']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DEVELOP']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_DISCUSSIONS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ECONOMY_CREATOR_STATS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ENGAGEMENT_PAYOUTS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_FOLLOWINGS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_INTERNATIONALIZATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GAME_JOIN']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_GROUPS_MODERATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_INVENTORY']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_ITEM_CONFIGURATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_LOCALIZATION_TABLES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_POINTS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PUBLISH']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_PUNISHMENTS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_SHARE']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TEXT_FILTER']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_THEMES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_THUMBNAILS_RESIZER']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TRANSLATION_ROLES']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_TRANSLATIONS']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_USER_MODERATION']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_VOICE']);
-LOGGROUP(Roblox.Api.Constants.URLS['ROBLOX_FILES_API']);
-LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
+FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 
 (async () => {
 	try {
@@ -1250,29 +1232,19 @@ LOGGROUP(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY']);
 					Roblox.Api.Constants.URLS.ROBLOX_REAL_TIME,
 				);
 			} catch (e) {
-				return Roblox.Api.Helpers.Util.FastLog.FASTLOG2(
-					Roblox.Api.Helpers.Util.FLog['Tasks'],
-					`[FLog::Tasks] Error: %s, Stack Trace: %s`,
-					e.message,
-					e.stack,
-				);
+				return FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Error: %s, Stack Trace: %s`, e.message, e.stack);
 			}
 		})();
 	} catch (e) {
-		return Roblox.Api.Helpers.Util.FastLog.FASTLOG2(
-			Roblox.Api.Helpers.Util.FLog['Tasks'],
-			`[FLog::Tasks] Error: %s, Stack Trace: %s`,
-			e.message,
-			e.stack,
-		);
+		return FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Error: %s, Stack Trace: %s`, e.message, e.stack);
 	}
 })();
 
 process.stdin.resume();
 function exitHandler(options: { exit: boolean; error: boolean; message?: string; code?: number }) {
 	if (options.exit) {
-		if (options.error) return FASTLOG7('tasks', `Fatal: ${options.message}`, true);
-		if (options.message) return FASTLOG4('tasks', `Warn: ${options.message}`, true);
+		if (options.error) return FASTLOGS(DFLog['Tasks'], `[DFLog::Tasks] %s`, options.message);
+		if (options.message) return FASTLOGS(DFLog['Tasks'], `[DFLog::Tasks] %s`, options.message);
 		process.exit();
 	}
 }

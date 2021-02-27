@@ -26,7 +26,17 @@
 */
 import { Request, Response } from 'express-serve-static-core';
 import { Roblox } from '../../../../../Api';
-import { DFLog, FastLog } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import {
+	DFFlag,
+	DFInt,
+	DFLog,
+	DYNAMIC_FASTFLAGVARIABLE,
+	DYNAMIC_FASTINTVARIABLE,
+	DYNAMIC_LOGVARIABLE,
+	FASTLOG,
+	FASTLOG1,
+	FASTLOGS,
+} from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Pages } from '../../../../../Data/Pages/RobloxPages';
 import { GetRootPlaceIdFromUniverseId } from '../../../../../Helpers/WebHelpers/Universes/GetRootPlaceIdFromUniverseId';
 import { GetPersistentStoresForUniverse } from '../../../../../Helpers/WebHelpers/PersistentDataStores/GetHelpers/GetPersistentStoresForUniverse';
@@ -79,18 +89,19 @@ After 20 minutes, or server retart, the page will be purged and a new page will 
 
 */
 
-FastLog.DYNAMIC_LOGVARIABLE('DataStoresV2', 7);
+DYNAMIC_LOGVARIABLE('DataStoresV2', 7);
+
+DYNAMIC_FASTFLAGVARIABLE('DataStoresV2EnabledForTheWorld', false);
+
+DYNAMIC_FASTINTVARIABLE('DataStoreV2RolloutPercentage', 0);
+DYNAMIC_FASTINTVARIABLE('DataStoreApiRefreshRolloutPercentage', 0);
 
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response) => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
-		const DFInt2 = Roblox.Api.Helpers.Util.ClientSettings.GetDFInts('Client');
-		const DFInt = Roblox.Api.Helpers.Util.ClientSettings.GetDFInts();
-
 		/*Start check for request method*/
 		if (request.method !== 'GET') {
-			FastLog.FASTLOGS(
+			FASTLOGS(
 				DFLog['DataStoreV2'],
 				'[DFLog::DataStoresV2] We got a bad request method, it was %s when GET was expected!',
 				request.method,
@@ -122,7 +133,7 @@ export default {
 		/*Start check for Universe Id*/
 		const universeId = parseInt(request.params['universeId']);
 		if (isNaN(universeId)) {
-			FastLog.FASTLOG(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] We got an Null universe, god damn');
+			FASTLOG(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] We got an Null universe, god damn');
 			return response.status(400).send({
 				errors: [
 					{
@@ -142,26 +153,26 @@ export default {
 			// It's not released yet. Check if the universe is valid.
 			const [success, PlaceId] = GetRootPlaceIdFromUniverseId(universeId);
 			if (!success || PlaceId === null) {
-				FastLog.FASTLOG(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] We got an Null place, that means the universe did not exist');
+				FASTLOG(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] We got an Null place, that means the universe did not exist');
 				return response.status(403).send({
 					errors: [
 						{
 							code: 26,
 							message: 'The universe is not allowed to access the endpoint.',
-							retryable: (DFInt2['DataStoreApiRefreshRolloutPercentage'] || 0) >= 100,
+							retryable: (DFInt['DataStoreApiRefreshRolloutPercentage'] || 0) >= 100,
 						},
 					],
 				});
 			}
 
 			if (!Roblox.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'Client')) {
-				FastLog.FASTLOG1(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
+				FASTLOG1(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
 				return response.status(403).send({
 					errors: [
 						{
 							code: 26,
 							message: 'The universe is not allowed to access the endpoint.',
-							retryable: (DFInt2['DataStoreApiRefreshRolloutPercentage'] || 0) >= 100,
+							retryable: (DFInt['DataStoreApiRefreshRolloutPercentage'] || 0) >= 100,
 						},
 					],
 				});

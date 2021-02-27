@@ -29,7 +29,7 @@ export default {
 	method: 'all',
 	func: async (_req, res) => {
 		res.send({
-			numOfAnnouncements: 7773216,
+			numOfAnnouncements: 0,
 		});
 	},
 };

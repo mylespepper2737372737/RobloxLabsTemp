@@ -1,0 +1,95 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "your mom",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"niggers\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-24T13:45:35.212Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "your mom",
+                    "scope": "_",
+                    "store": "sucksss",
+                    "universe": 1,
+                    "userIds": [],
+                    "attributes": [],
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\0\\stores\\sucksss\\scopes\\_\\keys\\your mom\\",
+                    "version": 2,
+                    "created": "2021-02-24T13:45:35.212Z",
+                    "lastUpdated": "2021-02-24T13:46:19.171Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"niggers12\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-24T13:46:19.171Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "your mom",
+                    "scope": "_",
+                    "store": "sucksss",
+                    "universe": 1,
+                    "userIds": [],
+                    "attributes": [],
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\0\\stores\\sucksss\\scopes\\_\\keys\\your mom\\",
+                    "version": 3,
+                    "created": "2021-02-24T13:45:35.212Z",
+                    "lastUpdated": "2021-02-24T13:48:53.708Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"niggers126\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-24T13:48:53.708Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "your mom",
+                    "scope": "_",
+                    "store": "sucksss",
+                    "universe": 1,
+                    "userIds": [],
+                    "attributes": [],
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\0\\stores\\sucksss\\scopes\\_\\keys\\your mom\\",
+                    "version": 4,
+                    "created": "2021-02-24T13:45:35.212Z",
+                    "lastUpdated": "2021-02-24T13:49:02.272Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "9",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-02-24T13:49:02.272Z"
+    }
+]

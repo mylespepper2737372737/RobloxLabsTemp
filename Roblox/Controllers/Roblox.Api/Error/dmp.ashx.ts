@@ -25,7 +25,9 @@
 	***
 */
 
-import { FASTLOG1 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG1, FLog, LOGGROUP } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('dmp');
 
 export default {
 	method: 'all',
@@ -33,8 +35,8 @@ export default {
 		req: { query: { toString: () => string }; body: string },
 		res: { status: (arg0: number) => { (): any; new (): any; send: { (): void; new (): any } } },
 	): void => {
-		FASTLOG1('dmp', JSON.stringify(req.query), true);
-		FASTLOG1('dmp', JSON.stringify(req.body), true);
+		FASTLOG1(FLog['dmp'], '[FLog::dmp] %S', JSON.stringify(req.query));
+		FASTLOG1(FLog['dmp'], '[FLog::dmp] %S', JSON.stringify(req.body));
 		res.status(200).send();
 	},
 };

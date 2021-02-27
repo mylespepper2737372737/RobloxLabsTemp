@@ -38,50 +38,64 @@ import { userType } from '../../../Helpers/WebHelpers/DataBase/DEPRECATED_GetMan
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import Crypto from 'crypto';
-import { FLog, FASTLOG4, FASTLOG1, FASTLOG6 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import {
+	FLog,
+	FASTFLAG,
+	DYNAMIC_FASTFLAGVARIABLE,
+	LOGGROUP,
+	DYNAMIC_FASTINTVARIABLE,
+	DFFlag,
+	FFlag,
+	DFInt,
+	FASTLOG,
+	FASTLOGS,
+	FASTLOG3,
+} from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Roblox } from '../../../Api';
 
 dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
-// These flags are 'Launch-Time flags'
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
+
+DYNAMIC_FASTFLAGVARIABLE('IsWWWAuthV1Enabled', true);
+DYNAMIC_FASTFLAGVARIABLE('WWWAuthV1AllowAllMethods', false);
+
+DYNAMIC_FASTINTVARIABLE('WWWAuthV1MaxAuthTokenAge', 94610000 * 10000);
+
+LOGGROUP('WWWAuthV1');
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
-		// Anything up here is dynamic,
-		// these flags are 'Run-Time flags'
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
-		const DFInt = Roblox.Api.Helpers.Util.ClientSettings.GetDFInts();
 		const Manifest = Roblox.Api.Helpers.Helpers.DB.GetManifests();
 
 		if (!DFFlag['IsWWWAuthV1Enabled']) {
-			FASTLOG4(FLog['WWWAuthV1'], 'The service is disabled currently.', true);
+			FASTLOG(FLog['WWWAuthV1'], '[FLog::WWWAuthV1] The service is currently disabled.');
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
-				userfacingmessage: 'Service disabled for an unknown amount of time.',
+				userfacingmessage: 'Service unavailable.',
 			});
 		}
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https') {
-			FASTLOG6(FLog['WWWAuthV1'], 'https was not given where it was required.', true);
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+			FASTLOG(FLog['WWWAuthV1'], '[FLog::WWWAuthV1] HTTPS was not given where it was needed.');
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		}
 
 		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods']) {
-			FASTLOG6(FLog['WWWAuthV1'], `${request.method} is not supported`, true);
+			FASTLOGS(FLog['WWWAuthV1'], `[FLog::WWWAuthV1] The method %s is not supported`, request.method);
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support https method '${request.method}'.`,
+				message: `The requested resource does not support HTTP method '${request.method}'.`,
 			});
 		}
 
 		let validUser: userType = undefined;
 		let isValidId = false;
 		if (!request.cookies['AuthToken']) {
-			FASTLOG6(FLog['WWWAuthV1'], 'AuthToken did not exist on the request.', true);
+			FASTLOG(FLog['WWWAuthV1'], '[FLog::WWWAuthV1] AuthToken did not exist on the request.');
 			return response.status(400).send({
 				success: false,
 				message: 'AuthToken was not supplied',
@@ -97,7 +111,8 @@ export default {
 			});
 		});
 		if (!isValidId) {
-			FASTLOG4(FLog['WWWAuthV1'], `The user matching ${request.cookies['AuthToken']} was not found.`, true);
+			FASTLOGS(FLog['WWWAuthV1'], `[FLog::WWWAuthV1] The user matching %s was not found.`, request.cookies['AuthToken']);
+			// We should try and delete the cookie here.
 			return response.status(404).send({
 				success: false,
 				message: 'AuthToken not found.',
@@ -112,10 +127,12 @@ export default {
 		Roblox.Api.Helpers.Helpers.Sessions.CreateCsrfSessionFile(AuthToken);
 
 		response.shouldKeepAlive = false;
-		FASTLOG1(
+		FASTLOG3(
 			FLog['WWWAuthV1'],
-			`Successfully cleared all sessions of ${validUser.username.toString()} [${validUser.userId}-${request.cookies['AuthToken']}]`,
-			true,
+			`Successfully cleared all sessions of %s [%s-%s]`,
+			validUser.username.toString(),
+			validUser.userId,
+			request.cookies['AuthToken'],
 		);
 		return response
 			.status(200)

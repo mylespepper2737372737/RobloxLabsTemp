@@ -25,13 +25,15 @@
 	***
 */
 
-import { FASTLOG2 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOGS, FLog, LOGGROUP } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+LOGGROUP('Events');
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		FASTLOG2('Events', JSON.stringify(_req.query), true);
-		FASTLOG2('Events', _req.body instanceof Object ? JSON.stringify(_req.body) : _req.body, true);
+		FASTLOGS(FLog['Events'], '[FLog::Events] %s', JSON.stringify(_req.query));
+		FASTLOGS(FLog['Events'], '[FLog::Events] %s', JSON.stringify(_req.body));
 		res.send({ success: true, message: '' });
 	},
 };

@@ -1411,6 +1411,7 @@
 		"Consider calling clearAllSessions on program exit?",
 		"Deprecate DFFlagIsCaptchaV1Enabled?",
 		"Ensure that DFFlagCanCSRFV2AdminKeyBeUsed is disabled at all times until the server is reliant on IP Address validation.",
-		"Add DFFlagIsFrontendExemptFromCaptchaV2"
+		"Add DFFlagIsFrontendExemptFromCaptchaV2",
+		"Update the FastLog library"
 	]
 }
