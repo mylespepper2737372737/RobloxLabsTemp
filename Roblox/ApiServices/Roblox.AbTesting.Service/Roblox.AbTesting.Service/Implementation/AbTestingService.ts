@@ -1,8 +1,8 @@
 import { Experiments } from '../../../../Data/AbTesting/Experiments';
 import { IHttpResponse } from '../../../../Http/ServiceClient/Http';
 import { IEnrollment } from '../../../../Platform/AbTesting/IEnrollment';
-import { IExperimentStatus } from '../../../../Platform/AbTesting/IExperimentStatus';
-import { ISubjectType } from '../../../../Platform/AbTesting/ISubjectType';
+import { ExperimentStatusEnum } from '../../../../Platform/AbTesting/ExperimentStatusEnum';
+import { SubjectTypeEnum } from '../../../../Platform/AbTesting/SubjectTypeEnum';
 
 export namespace AbTestingService {
 	export function HandleEnrollTo(enrollments: Array<IEnrollment>, response: IHttpResponse) {
@@ -20,21 +20,21 @@ export namespace AbTestingService {
 					Variation: experiment_status.Variation,
 				};
 				switch (experiment_status.Status) {
-					case IExperimentStatus.Enrolled:
+					case ExperimentStatusEnum.Enrolled:
 						experiment.Status = 'Enrolled';
 						break;
-					case IExperimentStatus.Inactive:
+					case ExperimentStatusEnum.Inactive:
 						experiment.Status = 'Inactive';
 						break;
-					case IExperimentStatus.NoExperiment:
+					case ExperimentStatusEnum.NoExperiment:
 						experiment.Status = 'NoExperiment';
 						break;
 				}
 				switch (experiment_status.SubjectType) {
-					case ISubjectType.User:
+					case SubjectTypeEnum.User:
 						experiment.SubjectType = 'User';
 						break;
-					case ISubjectType.BrowserTracker:
+					case SubjectTypeEnum.BrowserTracker:
 						experiment.SubjectType = 'BrowserTracker';
 						break;
 				}
