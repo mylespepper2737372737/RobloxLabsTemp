@@ -2,7 +2,7 @@ import { IEmail } from '../Credentials/IEmail';
 import { IPassword } from '../Credentials/IPassword';
 import { UserModelBuildersClubMembershipTypeEnum } from './UserModelBuildersClubMembershipTypeEnum';
 export interface IUser {
-	/*Number*/ UserId: Number;
+	/*Int64*/ UserId: Number;
 	/*String*/ UserName: String;
 	/*String*/ DisplayName: String;
 	/*UserModelBuildersClubMembershipTypeEnum*/ MembershipType: UserModelBuildersClubMembershipTypeEnum;
@@ -13,10 +13,10 @@ export interface IUser {
 	/*Boolean*/ IsBanned: Boolean;
 	/*IEmail*/ Email: IEmail;
 	/*Boolean*/ HasPasswordSet: Boolean;
-	/*Number*/ AgeBracket: Number;
+	/*Int32*/ AgeBracket: Number;
 	/*Array*/ Roles: Array<String>;
-	/*Number*/ RobuxBalance: Number;
-	/*Number*/ NotificationCount: Number;
+	/*Int64*/ RobuxBalance: Number;
+	/*Int32*/ NotificationCount: Number;
 	/*Boolean*/ EmailNotificationsEnabled: Boolean;
 	/*String*/ CountryCode: String;
 	/*Boolean*/ UserAbove13: Boolean;
