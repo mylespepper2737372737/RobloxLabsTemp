@@ -11,17 +11,56 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: _dirname + '\\.env' });
 
+export const cache = {
+	DFLog: new Map<string, number>(),
+	DFFlag: new Map<string, boolean>(),
+	DFInt: new Map<string, number>(),
+	DFString: new Map<string, string>(),
+} as const;
+
 export const FLog: Record<string, number> = {};
-export const DFLog: Record<string, number> = {};
+export const DFLog = function (name: string): number {
+	const df = ClientSettings.GetDFLogs();
+	if (df) {
+		new Map<string, number>(Object.entries(df)).forEach((value, key) => {
+			cache.DFLog[key] = value;
+		});
+	}
+	return df[name] || cache.DFLog[name] || 0;
+};
 export const SFLog: Record<string, number> = {};
 export const FFlag: Record<string, boolean> = {};
-export const DFFlag: Record<string, boolean> = {};
+export const DFFlag = function (name: string): boolean {
+	const df = ClientSettings.GetDFFlags();
+	if (df) {
+		new Map<string, boolean>(Object.entries(df)).forEach((value, key) => {
+			cache.DFFlag[key] = value;
+		});
+	}
+	return df[name] || cache.DFFlag[name] || false;
+};
 export const SFFlag: Record<string, boolean> = {};
 export const FInt: Record<string, number> = {};
-export const DFInt: Record<string, number> = {};
+export const DFInt = function (name: string): number {
+	const df = ClientSettings.GetDFInts();
+	if (df) {
+		new Map<string, number>(Object.entries(df)).forEach((value, key) => {
+			cache.DFInt[key] = value;
+		});
+	}
+	return df[name] || cache.DFInt[name] || 0;
+};
 export const SFInt: Record<string, number> = {};
 export const FString: Record<string, string> = {};
-export const DFString: Record<string, string> = {};
+export const DFString = function (name: string): string {
+	const df = ClientSettings.GetDFStrings();
+	if (df) {
+		new Map<string, string>(Object.entries(df)).forEach((value, key) => {
+			cache.DFString[key] = value;
+		});
+	}
+	return df[name] || cache.DFString[name] || '';
+};
 export const SFString: Record<string, string> = {};
 export const FSettings: Array<string> = [];
 
@@ -90,7 +129,7 @@ function setUpFLog() {
 	}
 	if (df) {
 		new Map<string, number>(Object.entries(df)).forEach((value, key) => {
-			DFLog[key] = value;
+			cache.DFLog[key] = value;
 		});
 	}
 	if (sf) {
@@ -106,7 +145,7 @@ function setUpFLog() {
 	}
 	if (dff) {
 		new Map<string, boolean>(Object.entries(dff)).forEach((value, key) => {
-			DFFlag[key] = value;
+			cache.DFFlag[key] = value;
 		});
 	}
 	if (sff) {
@@ -122,7 +161,7 @@ function setUpFLog() {
 	}
 	if (dfi) {
 		new Map<string, number>(Object.entries(dfi)).forEach((value, key) => {
-			DFInt[key] = value;
+			cache.DFInt[key] = value;
 		});
 	}
 	if (sfi) {
@@ -138,7 +177,7 @@ function setUpFLog() {
 	}
 	if (dfs) {
 		new Map<string, string>(Object.entries(dfs)).forEach((value, key) => {
-			DFString[key] = value;
+			cache.DFString[key] = value;
 		});
 	}
 	if (sfs) {
@@ -166,13 +205,14 @@ function printMessage(
 	arg3: any,
 	arg4: any,
 ) {
-	if (!fs.existsSync(__dirname + '\\..\\..\\logs')) fs.mkdirSync(__dirname + '\\..\\..\\logs');
 	const formatted = parameterizedString(message, arg0, arg1, arg2, arg3, arg4);
 	const out = `${timeStamp},${process.uptime().toPrecision(6)},${threadId.toString(16)},${Math.floor(level) || 1} ${formatted}`;
 	console.log(out);
-	fs.appendFileSync(_dirname + `\\report.log`, `${out}\n`, {
-		encoding: 'utf-8',
-	});
+	// We only FLog to file on FastLogss greater than 7
+	if (level >= 7)
+		fs.appendFileSync(_dirname + `\\report.log`, `${out}\n`, {
+			encoding: 'utf-8',
+		});
 }
 function FastLog(level: number, message: string, arg0: any, arg1: any, arg2: any, arg3: any, arg4: any) {
 	if (level > 5) {
@@ -260,13 +300,13 @@ export const DYNAMIC_LOGGROUP = (group: string) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	if (DFLog[group] === undefined) DFLog[group] = 0;
+	if (cache.DFLog[group] === undefined) cache.DFLog[group] = 0;
 };
 export const DYNAMIC_LOGVARIABLE = (group: string, defaulton: number) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	DFLog[group] = DFLog[group] || defaulton;
+	cache.DFLog[group] = cache.DFLog[group] || defaulton;
 };
 
 export const SYNCHRONIZED_LOGGROUP = (group: string) => {
@@ -299,13 +339,13 @@ export const DYNAMIC_FASTFLAG = (v: string) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	if (DFFlag[v] === undefined) DFFlag[v] = false;
+	if (cache.DFFlag[v] === undefined) cache.DFFlag[v] = false;
 };
 export const DYNAMIC_FASTFLAGVARIABLE = (v: string, defaulton: boolean) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	DFFlag[v] = DFFlag[v] || defaulton;
+	cache.DFFlag[v] = cache.DFFlag[v] || defaulton;
 };
 
 export const SYNCHRONIZED_FASTFLAG = (v: string) => {
@@ -338,20 +378,20 @@ export const DYNAMIC_FASTINT = (v: string) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	if (DFInt[v] === undefined) DFInt[v] = 0;
+	if (cache.DFInt[v] === undefined) cache.DFInt[v] = 0;
 };
 export const DYNAMIC_FASTINTVARIABLE = (v: string, defaulton: number) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	DFInt[v] = DFInt[v] || defaulton;
+	cache.DFInt[v] = cache.DFInt[v] || defaulton;
 };
 
 export const SYNCHRONIZED_FASTINT = (v: string) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	if (DFInt[v] === undefined) DFInt[v] = 0;
+	if (SFInt[v] === undefined) SFInt[v] = 0;
 };
 export const SYNCHRONIZED_FASTINTVARIABLE = (v: string, defaulton: number) => {
 	if (!d.setup) {
@@ -377,13 +417,13 @@ export const DYNAMIC_FASTSTRING = (v: string) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	if (DFString[v] === undefined) DFString[v] = '';
+	if (cache.DFString[v] === undefined) cache.DFString[v] = '';
 };
 export const DYNAMIC_FASTSTRINGVARIABLE = (v: string, defaulton: string) => {
 	if (!d.setup) {
 		setUpFLog();
 	}
-	DFString[v] = DFString[v] || defaulton;
+	cache.DFString[v] = cache.DFString[v] || defaulton;
 };
 
 export const SYNCHRONIZED_FASTSTRING = (v: string) => {
