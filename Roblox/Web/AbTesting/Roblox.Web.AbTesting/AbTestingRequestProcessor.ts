@@ -2,7 +2,7 @@ import { AbTestingClient } from '../../../ApiClients/Roblox.AbTesting.Client/Rob
 import { Task } from '../../../Http/Task';
 import { IEnrollment } from '../../../Platform/AbTesting/IEnrollment';
 import { IExperiment } from '../../../Platform/AbTesting/IExperiment';
-import { ISubjectType } from '../../../Platform/AbTesting/ISubjectType';
+import { SubjectTypeEnum } from '../../../Platform/AbTesting/SubjectTypeEnum';
 import { IBrowserTracker } from '../../../Platform/Membership/IBrowserTracker';
 import { IUser } from '../../../Platform/Membership/IUser';
 
@@ -27,14 +27,14 @@ export namespace AbTestingRequestProcessor {
 				enrollments.push({
 					ExperimentName: experimentName,
 					SubjectTargetId: user.UserId,
-					SubjectType: ISubjectType.User,
+					SubjectType: SubjectTypeEnum.User,
 				});
 			}
 			if (browserTracker) {
 				enrollments.push({
 					ExperimentName: experimentName,
 					SubjectTargetId: browserTracker.BrowserTrackerId,
-					SubjectType: ISubjectType.BrowserTracker,
+					SubjectType: SubjectTypeEnum.BrowserTracker,
 				});
 			}
 			const [WasRequestSuccessful, ResponseMessage] = await AbTestingClient.TryEnrollToExperiments(
@@ -63,18 +63,18 @@ export namespace AbTestingRequestProcessor {
 		return new Promise<[Boolean, String, Number | null]>(async (resumeFunction) => {
 			const enrollments: Array<IEnrollment> = [];
 			experiments.forEach((experiment) => {
-				if (user && experiment.Type === ISubjectType.User) {
+				if (user && experiment.Type === SubjectTypeEnum.User) {
 					enrollments.push({
 						ExperimentName: experiment.Name,
 						SubjectTargetId: user.UserId,
-						SubjectType: ISubjectType.User,
+						SubjectType: SubjectTypeEnum.User,
 					});
 				}
-				if (browserTracker && experiment.Type === ISubjectType.BrowserTracker) {
+				if (browserTracker && experiment.Type === SubjectTypeEnum.BrowserTracker) {
 					enrollments.push({
 						ExperimentName: experiment.Name,
 						SubjectTargetId: browserTracker.BrowserTrackerId,
-						SubjectType: ISubjectType.BrowserTracker,
+						SubjectType: SubjectTypeEnum.BrowserTracker,
 					});
 				}
 			});
