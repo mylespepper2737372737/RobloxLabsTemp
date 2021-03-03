@@ -2,9 +2,9 @@ import { ExperimentStatusEnum } from './ExperimentStatusEnum';
 import { SubjectTypeEnum } from './SubjectTypeEnum';
 
 export interface IEnrollmentResponse {
-	/*ISubjectType*/ SubjectType: SubjectTypeEnum;
+	/*SubjectTypeEnum*/ SubjectType: SubjectTypeEnum;
 	/*Number*/ SubjectTargetId: Number;
 	/*String*/ ExperimentName: String;
-	/*IExperimentStatus*/ Status: ExperimentStatusEnum;
+	/*ExperimentStatusEnum*/ Status: ExperimentStatusEnum;
 	/*String*/ Variation: String;
 }
