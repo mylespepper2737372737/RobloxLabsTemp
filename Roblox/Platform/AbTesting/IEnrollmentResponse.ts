@@ -1,10 +1,10 @@
-import { IExperimentStatus } from './IExperimentStatus';
-import { ISubjectType } from './ISubjectType';
+import { ExperimentStatusEnum } from './ExperimentStatusEnum';
+import { SubjectTypeEnum } from './SubjectTypeEnum';
 
 export interface IEnrollmentResponse {
-	/*ISubjectType*/ SubjectType: ISubjectType;
+	/*ISubjectType*/ SubjectType: SubjectTypeEnum;
 	/*Number*/ SubjectTargetId: Number;
 	/*String*/ ExperimentName: String;
-	/*IExperimentStatus*/ Status: IExperimentStatus;
+	/*IExperimentStatus*/ Status: ExperimentStatusEnum;
 	/*String*/ Variation: String;
 }
