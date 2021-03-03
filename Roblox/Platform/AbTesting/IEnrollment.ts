@@ -1,7 +1,7 @@
-import { ISubjectType } from './ISubjectType';
+import { SubjectTypeEnum } from './SubjectTypeEnum';
 
 export interface IEnrollment {
 	/*String*/ ExperimentName: String;
-	/*ISubjectType*/ SubjectType: ISubjectType;
+	/*SubjectTypeEnum*/ SubjectType: SubjectTypeEnum;
 	/*Int*/ SubjectTargetId: Number;
 }
