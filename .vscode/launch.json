@@ -23,6 +23,20 @@
 			"type": "pwa-node"
 		},
 		{
+			"name": "Fast Variable Tests",
+			"program": "${workspaceFolder}/Assemblies/Tests/FastVariableTests.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
+			"name": "Service Client Log Tests",
+			"program": "${workspaceFolder}/Assemblies/Tests/ServiceClientTests.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "Roblox.IStart.Job-for-vsc",
