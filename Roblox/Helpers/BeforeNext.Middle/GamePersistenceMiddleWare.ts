@@ -26,12 +26,29 @@
 */
 
 import { RequestHandler } from 'express-serve-static-core';
+import { ValidateDoesTheWorldGetToViewTheSite } from '../../Util/ValidateDoesTheWorldGetToViewTheSite';
 import { FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 LOGGROUP('GumePersistince');
 
 export const GamePersistenceMiddleware = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
+	let cookie = req.headers.cookie;
+	if (cookie === undefined) cookie = '';
+	cookie = (cookie as string).split(';').find((secToken) => {
+		return secToken.startsWith(' RobloxSecurityToken') || secToken.startsWith('RobloxSecurityToken');
+	});
+	if (cookie) cookie = cookie.split('=')[1];
+	if (
+		!ValidateDoesTheWorldGetToViewTheSite(
+			req.method,
+			encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
+			cookie || <string>req.headers['roblox-security-token'],
+			res,
+			true,
+		)
+	)
+		return res.status(503).send({ errors: [{ code: 0, message: 'Service Undergoing Maintenance' }] });
 	FASTLOG4(
 		FLog['GumePersistince'],
 		`[FLog::GumePersistince] %s REQUEST ON %s://%s%s`,
