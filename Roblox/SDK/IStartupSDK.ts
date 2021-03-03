@@ -104,7 +104,7 @@ export namespace IStartup {
 				opts.app.use(signalr.createListener());
 			}
 		} catch (e) {
-			FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
+			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 		}
 	};
 }
