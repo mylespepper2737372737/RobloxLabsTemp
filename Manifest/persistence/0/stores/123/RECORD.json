@@ -1,0 +1,13 @@
+[
+    {
+        "action": "ScopeAdded",
+        "data": [
+            {
+                "name": "global",
+                "created": true,
+                "purged": false
+            }
+        ],
+        "date": "2021-02-28T02:49:24.226Z"
+    }
+]
