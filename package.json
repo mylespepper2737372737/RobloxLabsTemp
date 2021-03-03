@@ -40,6 +40,7 @@
 		"express": "^4.17.1",
 		"mssql": "^6.3.1",
 		"openssl": "^1.1.0",
+		"querystring": "^0.2.1",
 		"request": "^2.88.2",
 		"request-promise": "^4.2.6",
 		"signalr-client": "^0.0.20",
