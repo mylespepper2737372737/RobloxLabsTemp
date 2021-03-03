@@ -45,7 +45,7 @@ export namespace AbTestingClient {
 	Url: ${(requireSecureUri ? BaseURL.GetSecureBaseURL() : BaseURL.GetBaseURL()).replace(/www/, 'abtesting.api')}/v1/experiments/enrollto
 	Response Machine Id: RA-WEB114
 	Error code: ${Err.message}`).stack;
-						FASTLOGS(DFLog['Tasks'], '[DFLog::Tasks] %s', message);
+						FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] %s', message);
 						return resumeFunction([false, message, 500]);
 					}
 					resumeFunction([false, Err.response.statusText, Err.response.status]);
