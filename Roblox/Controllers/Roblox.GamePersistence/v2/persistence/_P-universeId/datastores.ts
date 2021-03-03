@@ -102,7 +102,7 @@ export default {
 		/*Start check for request method*/
 		if (request.method !== 'GET') {
 			FASTLOGS(
-				DFLog['DataStoreV2'],
+				DFLog('DataStoreV2'),
 				'[DFLog::DataStoresV2] We got a bad request method, it was %s when GET was expected!',
 				request.method,
 			);
@@ -132,8 +132,8 @@ export default {
 
 		/*Start check for Universe Id*/
 		const universeId = parseInt(request.params['universeId']);
-		if (isNaN(universeId)) {
-			FASTLOG(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] We got an Null universe, god damn');
+		if (isNaN(universeId) || (request.params['universeId'] || 'test').match(/[a-zA-Z]+/g)) {
+			FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null universe, god damn');
 			return response.status(400).send({
 				errors: [
 					{
@@ -149,30 +149,30 @@ export default {
 		/*End check for place ownership/permissions*/
 
 		/*Start check for Rollout flag and percentage*/
-		if (!DFFlag['DataStoresV2EnabledForTheWorld'] && (DFInt['DataStoreV2RolloutPercentage'] || 0) < 100) {
+		if (!DFFlag('DataStoresV2EnabledForTheWorld') && DFInt('DataStoreV2RolloutPercentage') < 100) {
 			// It's not released yet. Check if the universe is valid.
 			const [success, PlaceId] = GetRootPlaceIdFromUniverseId(universeId);
 			if (!success || PlaceId === null) {
-				FASTLOG(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] We got an Null place, that means the universe did not exist');
+				FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null place, that means the universe did not exist');
 				return response.status(403).send({
 					errors: [
 						{
 							code: 26,
 							message: 'The universe is not allowed to access the endpoint.',
-							retryable: (DFInt['DataStoreApiRefreshRolloutPercentage'] || 0) >= 100,
+							retryable: DFInt('DataStoreApiRefreshRolloutPercentage') >= 100,
 						},
 					],
 				});
 			}
 
 			if (!Roblox.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'Client')) {
-				FASTLOG1(DFLog['DataStoresV2'], '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
+				FASTLOG1(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
 				return response.status(403).send({
 					errors: [
 						{
 							code: 26,
 							message: 'The universe is not allowed to access the endpoint.',
-							retryable: (DFInt['DataStoreApiRefreshRolloutPercentage'] || 0) >= 100,
+							retryable: DFInt('DataStoreApiRefreshRolloutPercentage') >= 100,
 						},
 					],
 				});
@@ -225,7 +225,7 @@ export default {
 								Name: store.storeName,
 								CreatedTime: store.created,
 								UpdatedTime: store.lastUpdated,
-								VersioningEnabled: DFFlag['DataStoreVersioning'] || false,
+								VersioningEnabled: DFFlag('DataStoreVersioning'),
 							});
 						c = `beta_${store.storeName}_s+${Cursor}`;
 						return;
@@ -236,7 +236,7 @@ export default {
 						Name: store.storeName,
 						CreatedTime: store.created,
 						UpdatedTime: store.lastUpdated,
-						VersioningEnabled: DFFlag['DataStoreVersioning'] || false,
+						VersioningEnabled: DFFlag('DataStoreVersioning'),
 					});
 				c = `beta_${store.storeName}_s+${Cursor}`;
 			});

@@ -50,7 +50,7 @@ LOGGROUP('ClientSettingsAPIV1');
 export default {
 	method: 'all',
 	func: (request, response): void => {
-		if (!DFFlag['IsClientSettingsAPIEnabled']) {
+		if (!DFFlag('IsClientSettingsAPIEnabled')) {
 			FASTLOG(FLog['ClientSettingsAPIV1'], '[FLog::ClientSettingsAPIV1] The service is disabled currently.');
 			return response.status(503).send({
 				code: 503,

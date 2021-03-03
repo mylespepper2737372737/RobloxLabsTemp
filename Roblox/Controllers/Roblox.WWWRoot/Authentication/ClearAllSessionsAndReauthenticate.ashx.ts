@@ -69,7 +69,7 @@ export default {
 	func: (request: Request, response: Response): Response<unknown> => {
 		const Manifest = Roblox.Api.Helpers.Helpers.DB.GetManifests();
 
-		if (!DFFlag['IsWWWAuthV1Enabled']) {
+		if (!DFFlag('IsWWWAuthV1Enabled')) {
 			FASTLOG(FLog['WWWAuthV1'], '[FLog::WWWAuthV1] The service is currently disabled.');
 			return response.status(503).send({
 				code: 503,
@@ -84,7 +84,7 @@ export default {
 			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		}
 
-		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods']) {
+		if (request.method !== 'POST' && !DFFlag('WWWAuthV1AllowAllMethods')) {
 			FASTLOGS(FLog['WWWAuthV1'], `[FLog::WWWAuthV1] The method %s is not supported`, request.method);
 			return response.status(405).send({
 				success: false,
@@ -137,7 +137,7 @@ export default {
 		return response
 			.status(200)
 			.cookie('AuthToken', AuthToken, {
-				maxAge: DFInt['WWWAuthV1MaxAuthTokenAge'],
+				maxAge: DFInt('WWWAuthV1MaxAuthTokenAge'),
 				domain: 'sitetest4.robloxlabs.com',
 				secure: false,
 				sameSite: 'lax',

@@ -25,9 +25,13 @@
 	***
 */
 
+import { ApiKeys } from '../../../Data/Keys/Api';
+import { FetchKeyFromObjectCaseInsensitive } from '../../../Util/FetchKeyFromObjectCaseInsensitive';
+
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		res.send({ countDownTime: '1970-01-01T00:00:00', canAccessSite: false });
+		if (FetchKeyFromObjectCaseInsensitive(_req.query, 'ApiKey') !== ApiKeys.TestApi) return res.status(404).send();
+		res.send('Your apiKey is very funny');
 	},
 };

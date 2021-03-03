@@ -48,7 +48,7 @@ LOGGROUP('CsrfAPIV1');
 export default {
 	method: 'ALL',
 	func: (request: Request, response: Response) => {
-		if (!DFFlag['IsCSRFV2Enabled']) {
+		if (!DFFlag('IsCSRFV2Enabled')) {
 			FASTLOG(FLog['CsrfAPIV1'], '[FLog::CsrfAPIV1] The service is disabled currently.');
 			return response.status(503).send({
 				success: false,

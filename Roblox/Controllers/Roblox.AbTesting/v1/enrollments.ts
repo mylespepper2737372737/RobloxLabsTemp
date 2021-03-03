@@ -69,7 +69,7 @@ origin: Roblox.Tests.Origins.SecureAbTestingOrigin
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { Roblox } from '../../../Api';
-import { ISubjectType } from '../../../Platform/AbTesting/ISubjectType';
+import { SubjectTypeEnum } from '../../../Platform/AbTesting/SubjectTypeEnum';
 import { IUser } from '../../../Platform/Membership/IUser';
 import { IBrowserTracker } from '../../../Platform/Membership/IBrowserTracker';
 import { AbTestingRequestProcessor } from '../../../Web/AbTesting/Roblox.Web.AbTesting/AbTestingRequestProcessor';
@@ -162,22 +162,22 @@ export default {
 				if (element.SubjectType !== undefined && element.SubjectTargetId !== undefined && element.ExperimentName !== undefined) {
 					if (isNaN(parseInt(element.SubjectTargetId.toString()))) requestInvalid = true;
 
-					if (element.SubjectType === ISubjectType.User || element.SubjectType.toString().toLowerCase() === 'user') {
+					if (element.SubjectType === SubjectTypeEnum.User || element.SubjectType.toString().toLowerCase() === 'user') {
 						user = <IUser>{};
 						user.UserId = parseInt(element.SubjectTargetId.toString());
 						user.SecurityToken = cookie;
 						user.UserName = '';
 						user.MembershipType = UserModelBuildersClubMembershipTypeEnum.None;
-						experiments.push({ Name: element.ExperimentName, Type: ISubjectType.User });
+						experiments.push({ Name: element.ExperimentName, Type: SubjectTypeEnum.User });
 					} else if (
-						element.SubjectType === ISubjectType.BrowserTracker ||
+						element.SubjectType === SubjectTypeEnum.BrowserTracker ||
 						element.SubjectType.toString().toLowerCase() === 'browsertracker'
 					) {
 						browsertracker = <IBrowserTracker>{};
 
 						browsertracker.BrowserTrackerId = parseInt(element.SubjectTargetId.toString());
 						browsertracker.IpAddress = request.ip;
-						experiments.push({ Name: element.ExperimentName, Type: ISubjectType.BrowserTracker });
+						experiments.push({ Name: element.ExperimentName, Type: SubjectTypeEnum.BrowserTracker });
 					}
 				}
 			});
