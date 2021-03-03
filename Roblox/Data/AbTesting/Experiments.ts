@@ -1,7 +1,7 @@
 import { Roblox } from '../../Api';
 import { IEnrollment } from '../../Platform/AbTesting/IEnrollment';
 import { IEnrollmentResponse } from '../../Platform/AbTesting/IEnrollmentResponse';
-import { IExperimentStatus } from '../../Platform/AbTesting/IExperimentStatus';
+import { ExperimentStatusEnum } from '../../Platform/AbTesting/ExperimentStatusEnum';
 
 export let UserExperiments = {};
 export let BrowserTrackerExperiments = {};
@@ -22,12 +22,12 @@ export namespace Experiments {
 		if (!Setting.done) {
 			InternalInitializeExperimentsFromManifest();
 		}
-		// Validate the AbTest when we get Roblox.Api.Helpers.Util.AbTestManifest
+		// Validate the AbTest when we get Roblox.Data.Helpers.AbTestManifest
 		return <IEnrollmentResponse>{
 			ExperimentName: enrollment.ExperimentName,
 			SubjectTargetId: enrollment.SubjectTargetId,
 			SubjectType: enrollment.SubjectType,
-			Status: IExperimentStatus.Inactive,
+			Status: ExperimentStatusEnum.Inactive,
 			Variation: null,
 		};
 	}
