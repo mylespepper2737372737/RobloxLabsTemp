@@ -49,3 +49,4 @@ package-lock.json
 # We don't want the js'
 /Assemblies
 DeploymentTooling
+server.log

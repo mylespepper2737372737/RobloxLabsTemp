@@ -4,7 +4,7 @@
 	"description": "mfd",
 	"main": "Assemblies/Roblox.IStart.Job.js",
 	"scripts": {
-		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=report.log --diagnostic-dir=diag Assemblies/IStart.Job.js",
+		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=diag Assemblies/IStart.Job.js",
 		"lint": "eslint . --fix --ext .ts",
 		"Roblox.IStart.Job-for-vsc": "npm run build && npm run Roblox-IStart-Job",
 		"build": "tsc --skipLibCheck",

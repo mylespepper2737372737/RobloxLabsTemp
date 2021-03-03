@@ -210,7 +210,7 @@ function printMessage(
 	console.log(out);
 	// We only FLog to file on FastLogss greater than 7
 	if (level >= 7)
-		fs.appendFileSync(_dirname + `\\report.log`, `${out}\n`, {
+		fs.appendFileSync(_dirname + `\\server.log`, `${out}\n`, {
 			encoding: 'utf-8',
 		});
 }
