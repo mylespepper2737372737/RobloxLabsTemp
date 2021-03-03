@@ -30,12 +30,37 @@ import headers from '../Constants/Default.OutBound.Headers';
 import { RequestHandler } from 'express-serve-static-core';
 // import whitelist from '../constants/urls';
 import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { ValidateDoesTheWorldGetToViewTheSite } from '../../Util/ValidateDoesTheWorldGetToViewTheSite';
+import { StripTheTrailingSlash } from '../../Util/StripTheTrailingSlash';
 
 LOGGROUP('Protocol77');
 DYNAMIC_LOGGROUP('Tasks');
 
 export const GlobalMiddleware = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
+	if (
+		req.path.toLowerCase() !== '/login/maintenance/' &&
+		req.hostname !== 'apis.sitetest4.robloxlabs.com' &&
+		req.hostname !== 'ecsv2.sitetest4.robloxlabs.com' &&
+		req.hostname !== 'metrics.sitetest4.robloxlabs.com'
+	) {
+		let cookie = req.headers.cookie;
+		if (cookie === undefined) cookie = '';
+		cookie = (cookie as string).split(';').find((secToken) => {
+			return secToken.startsWith(' RobloxSecurityToken') || secToken.startsWith('RobloxSecurityToken');
+		});
+		if (cookie) cookie = cookie.split('=')[1];
+		if (
+			!ValidateDoesTheWorldGetToViewTheSite(
+				req.method,
+				encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
+				cookie || <string>req.headers['roblox-security-token'],
+				res,
+			)
+		)
+			return;
+	}
+
 	FASTLOG4(
 		FLog['Protocol77'],
 		`[FLog::Protocol77] %s REQUEST ON %s://%s%s`,
@@ -64,7 +89,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 		// 	}
 		// });
 	} catch (e) {
-		FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
+		FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 	}
 	if (req.method !== 'GET') {
 		try {
@@ -84,7 +109,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 			// )
 			// 	return;
 		} catch (e) {
-			FASTLOG2(DFLog['Tasks'], `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
+			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 		}
 	}
 
@@ -97,12 +122,28 @@ export const GlobalMiddleware = ((req, res, next) => {
 	) {
 		return res.redirect('http://www.sitetest4.robloxlabs.com/roblox.html');
 	}
+
+	if (
+		req.hostname === 'www.sitetest4.robloxlabs.com' &&
+		StripTheTrailingSlash(req.path.toLowerCase()) === '/login/maintenance' &&
+		ValidateDoesTheWorldGetToViewTheSite(
+			req.method,
+			encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
+			<string>req.headers['roblox-security-token'],
+			res,
+			true,
+		)
+	) {
+		return res.redirect('https://www.sitetest4.robloxlabs.com/');
+	}
 	if (
 		req.headers.cookie &&
 		!req.headers.cookie.includes('.ROBLOSECURITY') &&
 		(req.hostname === 'www.sitetest4.robloxlabs.com' || req.hostname === 'sitetest4.robloxlabs.com') &&
 		req.path.toLocaleLowerCase() !== '/login/' &&
 		req.path.toLocaleLowerCase() !== '/login' &&
+		StripTheTrailingSlash(req.path).toLocaleLowerCase() !== '/login/maintenance' &&
+		StripTheTrailingSlash(req.path).toLocaleLowerCase() !== '/login/twostepverification' &&
 		req.path !== '/' &&
 		req.path !== '/roblox.html'
 	) {
