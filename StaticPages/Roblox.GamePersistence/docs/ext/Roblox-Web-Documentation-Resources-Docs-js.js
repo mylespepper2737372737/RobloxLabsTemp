@@ -5,7 +5,7 @@
 	var initVersion = (versionSelector.find("option[value='" + urlVersion + "']").length > 0 ? urlVersion : defaultVersion).toLowerCase();
 
 	function getDocsJsonUrl(version) {
-		return '/docs/json/' + version.toLowerCase() + '.json';
+		return document.location.pathname + 'json/' + version.toLowerCase() + '.json';
 	}
 
 	if (window.SwaggerTranslator) {
@@ -66,7 +66,7 @@
 			$('#doc_info > .info_title').text('Documentation failed to load');
 		},
 		docExpansion: 'list',
-		jsonEditor: true,
+		jsonEditor: false,
 		apisSorter: null, // default to server
 		defaultModelRendering: 'schema',
 		showRequestHeaders: false,
