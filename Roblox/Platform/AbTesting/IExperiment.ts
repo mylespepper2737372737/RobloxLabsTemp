@@ -1,6 +1,6 @@
-import { ISubjectType } from './ISubjectType';
+import { SubjectTypeEnum } from './SubjectTypeEnum';
 
 export interface IExperiment {
 	/*String*/ Name: String;
-	/*ISubjectType*/ Type: ISubjectType;
+	/*SubjectTypeEnum*/ Type: SubjectTypeEnum;
 }
