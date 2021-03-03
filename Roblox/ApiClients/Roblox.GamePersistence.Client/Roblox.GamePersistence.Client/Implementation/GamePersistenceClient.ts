@@ -1,12 +1,8 @@
 import { Task } from '../../../../Http/Task';
-import Http from 'axios';
 import { ApiKeys } from '../../../../Data/Keys/Api';
 import { BaseURL } from '../../../../Data/Client/BaseUrl';
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import https from 'https';
-
-DYNAMIC_LOGGROUP('Tasks');
-
+import { ServiceClient } from '../../../../Http/ServiceClient/HttpClient';
+import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/HttpRequestMethodEnum';
 export namespace GamePersistenceClient {
 	/**
 	 * Try enroll the current IEntrollments.
@@ -20,38 +16,23 @@ export namespace GamePersistenceClient {
 		UserAuthToken: String,
 		requireSecureUri: Boolean,
 	): Task<[Boolean, String, Number | null]> {
-		return new Promise<[Boolean, String, Number | null]>((resumeFunction) => {
-			const AbTestingApiEnrollToExperimentsUrl = `${(requireSecureUri ? BaseURL.GetSecureBaseURL() : BaseURL.GetBaseURL()).replace(
-				/www/,
-				'gamepersistence.api',
-			)}/v4/datastores/fetch-this-universe?ApiKey=${ApiKeys.AbTesingApi}`;
+		return new Promise<[Boolean, String, Number | null]>(async (resumeFunction) => {
+			const GamePersistenceGetTheStoresForThisUniverseUrl = `${(requireSecureUri
+				? BaseURL.GetSecureBaseURL()
+				: BaseURL.GetBaseURL()
+			).replace(/www/, 'gamepersistence.api')}/v4/datastores/fetch-this-universe`;
 			const postData = { universeId };
-			Http.post(AbTestingApiEnrollToExperimentsUrl, postData, {
-				headers: {
-					Cookie: `.ROBLOSECURITY=${UserAuthToken}`,
+			const Client = new ServiceClient.HttpClient({
+				Url: GamePersistenceGetTheStoresForThisUniverseUrl,
+				QueryString: {
+					ApiKey: ApiKeys.GamePersistenceApi,
 				},
-				httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-			})
-				.then((Response) => {
-					resumeFunction([true, JSON.stringify(Response.data), Response.status]);
-				})
-				.catch((Err) => {
-					if (!Err.response) {
-						const message = new Error(`Error enrolling to experiments for the user: ${
-							UserAuthToken || 'NoUser'
-						}. Roblox.Http.ServiceClient.ConnectionException: An error has occurred with your request.
-	Status code: None (None)
-	Url: ${(requireSecureUri ? BaseURL.GetSecureBaseURL() : BaseURL.GetBaseURL()).replace(
-		/www/,
-		'gamepersistence.api',
-	)}/v4/datastores/fetch-this-universe
-	Response Machine Id: RA-WEB82
-	Error code: ${Err.message}`).stack;
-						FASTLOGS(DFLog['Tasks'], '[DFLog::Tasks] %s', message);
-						return resumeFunction([false, message, 500]);
-					}
-					resumeFunction([false, Err.response.statusText, Err.response.status]);
-				});
+				AdditionalHeaders: { Cookie: `.ROBLOSECURITY=${UserAuthToken || ''}` },
+				Payload: JSON.stringify(postData),
+				Method: HttpRequestMethodEnum.POST,
+			});
+			const [Success, Response] = await Client.execute();
+			return resumeFunction([Success, Response.ResponsePayload, Response.StatusCode]);
 		});
 	}
 }
