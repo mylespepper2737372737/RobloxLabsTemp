@@ -4,7 +4,7 @@ import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../Helpers/WebHelpers/R
 DYNAMIC_FASTSTRINGVARIABLE('WebVersion', '0.001.0.000001');
 
 export namespace Version {
-	export function GetVersion() {
-		return DFString['WebVersion'];
+	export function GetVersion(): string {
+		return DFString('WebVersion');
 	}
 }
