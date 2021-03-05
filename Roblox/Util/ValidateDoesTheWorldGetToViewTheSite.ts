@@ -1,3 +1,4 @@
+import { Response } from 'express';
 import { BaseURL } from '../Data/Client/BaseUrl';
 import {
 	DFFlag,
@@ -5,7 +6,6 @@ import {
 	DYNAMIC_FASTFLAGVARIABLE,
 	DYNAMIC_FASTSTRINGVARIABLE,
 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { IHttpResponse } from '../Http/ServiceClient/Http';
 
 DYNAMIC_FASTFLAGVARIABLE('DoesTheWorldGetToViewTheSite', false);
 DYNAMIC_FASTFLAGVARIABLE('CanAdminsBypassTheSystem', false);
@@ -15,7 +15,7 @@ export function ValidateDoesTheWorldGetToViewTheSite(
 	method: string,
 	returnUrl: string,
 	secToken: string,
-	response: IHttpResponse,
+	response: Response,
 	doNotRedirect = false,
 ) {
 	if (method === 'OPTIONS') return true;
