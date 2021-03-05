@@ -52,6 +52,7 @@ import {
 	ROBLOX_404_DOSARREST_ORIGIN_CORP,
 	SIMULPONG_404,
 	ROBLOX_404_AB_TESTING,
+	Kestrel_404,
 } from './Helpers/AfterNext.Middle';
 import { Roblox } from './Api';
 import IServer from 'express';
@@ -67,6 +68,7 @@ import {
 } from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 LOGVARIABLE('GumePersistince', 6);
+LOGVARIABLE('TheAdminsPog', 6);
 LOGVARIABLE('AandBTusting', 6);
 LOGVARIABLE('SIMPLEPING', 6);
 LOGVARIABLE('Protocol77', 6);
@@ -160,6 +162,7 @@ SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_USER_MODERATION'], 6)
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_VOICE'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_FILES_API'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'], 6);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ADMIN_WEB_SITE'], 6);
 
 FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 
@@ -245,6 +248,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		const ROBLOX_VOICE_SERVER = IServer();
 		const ROBLOX_FILES_API_SERVER = IServer();
 		const SIMULPONG_ROBLOX_TEAM_CITY_SERVER = IServer();
+		const ADMIN_WEB_SITE_SERVER = IServer();
 
 		ROBLOX_WWW_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_STATIC_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -263,7 +267,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_DOSARREST_ORIGIN_CORP_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_MARKETPLACE_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_METRICS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		ROBLOX_APIS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_APIS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.KESTREL);
 		ROBLOX_LOCALE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_AUTH_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_AB_TESTING_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.ABTESTING);
@@ -324,6 +328,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_VOICE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_FILES_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		SIMULPONG_ROBLOX_TEAM_CITY_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.SIMULPONG);
+		ADMIN_WEB_SITE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.ADMINWEBSITE);
 
 		await Roblox.Api.Library.IStartup.Configure(
 			Roblox.Api.Helpers.Config.CONFIG(
@@ -962,6 +967,14 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'],
 			),
 		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ADMIN_WEB_SITE_SERVER,
+				'\\StaticPages\\AdminWebsite',
+				'\\Assemblies\\Controllers\\AdminWebsite',
+				Roblox.Api.Constants.URLS['ADMIN_WEB_SITE'],
+			),
+		);
 
 		ROBLOX_API_SERVER.use(ROBLOX_404_API);
 		ROBLOX_STATIC_CDN_SERVER.use(ROBLOX_404_STATIC_CDN);
@@ -981,7 +994,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_MARKETPLACE_API_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		ROBLOX_METRICS_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		ROBLOX_AUTH_SERVER.use(ROBLOX_404_API);
-		ROBLOX_APIS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_APIS_SERVER.use(Kestrel_404);
 		ROBLOX_LOCALE_SERVER.use(ROBLOX_404_API);
 		ROBLOX_AB_TESTING_SERVER.use(ROBLOX_404_AB_TESTING);
 		ROBLOX_AB_TESTING_API_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
@@ -1040,6 +1053,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_VOICE_SERVER.use(ROBLOX_404_API);
 		ROBLOX_FILES_API_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		SIMULPONG_ROBLOX_TEAM_CITY_SERVER.use(SIMULPONG_404);
+		ADMIN_WEB_SITE_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 
 		await (async () => {
 			try {
@@ -1220,6 +1234,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 					SIMULPONG_ROBLOX_TEAM_CITY_SERVER,
 					Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'],
 				);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ADMIN_WEB_SITE_SERVER, Roblox.Api.Constants.URLS['ADMIN_WEB_SITE']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,
