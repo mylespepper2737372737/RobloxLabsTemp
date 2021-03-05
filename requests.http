@@ -1,11 +1,11 @@
-POST https://www.sitetest4.robloxlabs.com/Authentication/Login.fxhx
+POST https://www.sitetest4.robloxlabs.com/Authentication/Login.ashx
 user-agent: robloxlabs-tests
 X-CSRF-TOKEN: E2dlGxP71VnijP/NIH6+8w==
 Content-Type: application/x-www-form-urlencoded
 Connection: close
 Cookie: authId=b0572679d8d2ad651ec2e0cf0cc1f0ab590fd393ee5d1cb629cd40ef42ac826bdf4f6d5513d535a91821a42346c2e207b03e84308afc7adfaded1e889a5e7eb6
 
-&cvalue=somewhatfag&password=password&captchaToken=p7iXXdp6YiGcfeUbQ3nenbJenCEO6baJw8WU48o0E_xUpTfbmsOPDb0ySL7PN2zPqJvYw1eVLUKFhLAgXOxwc_gufeSDtFDL23S7VMtCqieBnR9tfCk0oHIpB926Ov97LExK2rC5mYpCrxTFpQ8rBfMsK72phaMuCPrriOOrbdQ0x0ff|5c912cbede880c96d778db2133eddd2935ff031441a651c646546c3f1b55d7c16f169a3eefca2d26853aa195a05b7101fe610bad0f10a0fb708690c9d5bd6744
+&cvalue=somewhatfag&password=password&captchaToken=p7iXXdp6YiGcfeUbQ3nenbJenCEO6baJw8WU48o0E_BwPyPUairj6nwUuNw06VvGeHD2aF44xr5TCaEtkOabw_7SYvnxojTprgpYGpehrfmO8mOAuYA1y7s7wpDh7cfDdY575TNqXTzL25HO4EZf1m9IxPbqg6JrB7QKzLQ2Ykg0x0ff|d2ef1860bedb6263736d851c18dba3083066e43e44b529efc52b7c0e660465654d4c92dd97bc5468379d52c8bf0814850ab6f52126d7318d8498d49bad4a860e
 
 ###
 
@@ -33,12 +33,12 @@ Cookie: authId=439b6795270193548e36e74e0324e8d3f55e28285cfd51aea7b473cc81bb15b0f
 
 ###
 
-POST https://www.sitetest4.robloxlabs.com/Authentication/ClearAllSessionsAndReauthenticate.fxhx
+POST https://www.sitetest4.robloxlabs.com/Authentication/ClearAllSessionsAndReauthenticate.ashx
 user-agent: robloxlabs-tests
 X-CSRF-TOKEN: TestKey
 Content-Type: application/x-www-form-urlencoded
 Connection: close
-Cookie: authId=e0ef2805c095f52f19d6c8d9a4cbf3ea49b3542f08e67c5e111d0c809ac28961c093a5cc26a6b894059c70f9e0fa165acb988e3ab4a7ebb52dc4b023700ac740
+Cookie: AuthToken=4a821f2d78a519983f36334c6f3f6ef86e46759c71a1430ea448807e8357e1d320b1cb6c1f85fc5d5bbcb8a713f47def50d83943bcdda9118e77e3f28de61f03
 
 ###
 
@@ -48,7 +48,7 @@ Content-Type: application/x-www-form-urlencoded
 Connection: close
 Cookie: authId=89c4f01c7b45d9e394d4125cf78133a843d3cf760561585d0dda3b943f3c7ef21de4457566703362613af9e696044253110465d749dd6a413c2be6e098c09129
 
-captchaHash=p7iXXdp6YiGcfeUbQ3nenbJenCEO6baJw8WU48o0E_fph0ciYvfXpYdtq94Jnv0LhpCCFhU9X9ZVW0DUWEI_Xk6PNbwhjAEODNu5s66SbxPJ7YV551OerZjcQXC6o99SNl9PLskzCtr0TPbnRUn2yXgktvzSfTR4kaOztUTgfg&captchaProvider=PROVIDER_MFD_LABS_300
+captchaHash=p7iXXdp6YiGcfeUbQ3nenbJenCEO6baJw8WU48o0E_BwPyPUairj6nwUuNw06VvGeHD2aF44xr5TCaEtkOabw_7SYvnxojTprgpYGpehrfmO8mOAuYA1y7s7wpDh7cfDdY575TNqXTzL25HO4EZf1m9IxPbqg6JrB7QKzLQ2Ykg&captchaProvider=PROVIDER_MFD_LABS_300
 
 ###
 
@@ -56,7 +56,7 @@ GET https://ti.sitetest4.robloxlabs.com/1.png
 
 ###
 
-GET https://setup.sitetest4.robloxlabs.com/clientsettings/v1/get-flags?settingsGroup=Web
+GET https://clientsettings.api.sitetest4.robloxlabs.com/v1/get-flags?settingsGroup=Client
 
 ###
 
@@ -145,7 +145,7 @@ POST https://messagerouter.api.roblox.com/v1/router/signalr
 
 POST https://abtesting.sitetest4.robloxlabs.com/v1/enrollments
 Content-Type: application/json
-X-CSRF-TOKEN: gDA2kZ7YMhW1X0Qw0NJZvQ==
+X-CSRF-TOKEN: l3jOpcoFS7Hb7euLTe7Orw==
 
 [
 	{
