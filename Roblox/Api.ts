@@ -97,6 +97,8 @@ import ConfigImport from './Helpers/Config/MetaData';
 import { SimulPingMiddleware } from './Helpers/BeforeNext.Middle/SimulPingMiddleWare';
 import { AbTestingMiddleWare } from './Helpers/BeforeNext.Middle/AbTestingMiddleWare';
 import { GamePersistenceMiddleware } from './Helpers/BeforeNext.Middle/GamePersistenceMiddleWare';
+import { AdminWebsiteMiddleWare } from './Helpers/BeforeNext.Middle/AdminWebsiteMiddleWare';
+import { Kestrel } from './Helpers/BeforeNext.Middle/Kestrel';
 
 export namespace Roblox {
 	export namespace Api {
@@ -123,6 +125,8 @@ export namespace Roblox {
 					export const SIMULPONG = SimulPingMiddleware;
 					export const ABTESTING = AbTestingMiddleWare;
 					export const GAMEPERSISTENCE = GamePersistenceMiddleware;
+					export const ADMINWEBSITE = AdminWebsiteMiddleWare;
+					export const KESTREL = Kestrel;
 				}
 			}
 			export namespace Config {
