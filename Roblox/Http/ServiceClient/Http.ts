@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export type IHttpRequest = Request;
-export type IHttpResponse = Response;
+export type IHttpRequest = AxiosRequestConfig;
+export type IHttpResponse = AxiosResponse;
