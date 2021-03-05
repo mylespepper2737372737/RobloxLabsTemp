@@ -4,18 +4,20 @@ import { DFLog, DYNAMIC_LOGVARIABLE, FASTLOGS } from '../Helpers/WebHelpers/Robl
 import { ServiceClient } from '../Http/ServiceClient/HttpClient';
 import { ServiceClientExceptions } from '../Http/ServiceClient/HttpException';
 import { HttpRequestMethodEnum } from '../Http/ServiceClient/HttpRequestMethodEnum';
+import ssl from 'sslkeylog';
+ssl.hookAll();
 
 DYNAMIC_LOGVARIABLE('Debug', 7);
 
 (async () => {
 	const TestUrl = `${BaseURL.GetSecureBaseURL().replace(/www/, 'apis')}/echo-server/test-qs`;
-	const postData = { Hello: 'World' };
+	const postData = { Data: [{ Test: 4, STest: 'TestString' }] };
 	const Client = new ServiceClient.HttpClient({
 		Url: TestUrl,
 		QueryString: {
 			ApiKey: ApiKeys.TestApi,
 		},
-		AdditionalHeaders: { Cookie: `.ROBLOSECURITY=;` },
+		AdditionalHeaders: { Cookie: `.ROBLOSECURITY=;`, 'Content-Type': 'application/json' },
 		Payload: JSON.stringify(postData),
 		Method: HttpRequestMethodEnum.POST,
 	});
