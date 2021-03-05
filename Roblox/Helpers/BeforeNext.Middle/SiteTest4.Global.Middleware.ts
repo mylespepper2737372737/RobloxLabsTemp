@@ -29,7 +29,7 @@ import crypto from 'crypto';
 import headers from '../Constants/Default.OutBound.Headers';
 import { RequestHandler } from 'express-serve-static-core';
 // import whitelist from '../constants/urls';
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { ValidateDoesTheWorldGetToViewTheSite } from '../../Util/ValidateDoesTheWorldGetToViewTheSite';
 import { StripTheTrailingSlash } from '../../Util/StripTheTrailingSlash';
 
@@ -61,13 +61,14 @@ export const GlobalMiddleware = ((req, res, next) => {
 			return;
 	}
 
-	FASTLOG4(
+	FASTLOG5(
 		FLog['Protocol77'],
-		`[FLog::Protocol77] %s REQUEST ON %s://%s%s`,
+		`[FLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
 		req.method.toUpperCase(),
 		req.protocol,
 		req.hostname,
 		req.url,
+		req.headers['user-agent'].toUpperCase(),
 	);
 	res.header(headers);
 	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest4.robloxlabs.com'))
@@ -139,13 +140,15 @@ export const GlobalMiddleware = ((req, res, next) => {
 	if (
 		req.headers.cookie &&
 		!req.headers.cookie.includes('.ROBLOSECURITY') &&
+		!req.headers.cookie.includes('AuthToken') &&
 		(req.hostname === 'www.sitetest4.robloxlabs.com' || req.hostname === 'sitetest4.robloxlabs.com') &&
 		req.path.toLocaleLowerCase() !== '/login/' &&
 		req.path.toLocaleLowerCase() !== '/login' &&
 		StripTheTrailingSlash(req.path).toLocaleLowerCase() !== '/login/maintenance' &&
 		StripTheTrailingSlash(req.path).toLocaleLowerCase() !== '/login/twostepverification' &&
 		req.path !== '/' &&
-		req.path !== '/roblox.html'
+		req.path !== '/roblox.html' &&
+		StripTheTrailingSlash(req.path).toLocaleLowerCase() !== '/authentication/login.ashx'
 	) {
 		return res.redirect('https://www.sitetest4.robloxlabs.com/Login/');
 	}

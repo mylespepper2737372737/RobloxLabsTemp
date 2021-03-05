@@ -26,18 +26,19 @@
 */
 
 import { RequestHandler } from 'express-serve-static-core';
-import { FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 LOGGROUP('SIMPLEPING');
 
 export const SimulPingMiddleware = ((req, res, next) => {
-	FASTLOG4(
+	FASTLOG5(
 		FLog['SIMPLEPING'],
-		`[FLog::SIMPLEPING] %s REQUEST ON %s://%s%s`,
+		`[FLog::SIMPLEPING] %s REQUEST ON %s://%s%s FROM %s`,
 		req.method.toUpperCase(),
 		req.protocol,
 		req.hostname,
 		req.url,
+		req.headers['user-agent'].toUpperCase(),
 	);
 	if ((req.path === '/recipe' || req.path === '/report') && req.hostname === 'lms.simulpong.com') {
 		res.header(

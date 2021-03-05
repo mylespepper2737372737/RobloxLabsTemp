@@ -26,19 +26,20 @@
 */
 
 import { RequestHandler } from 'express-serve-static-core';
-import { FASTLOG4, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 LOGGROUP('AandBTusting');
 
 export const AbTestingMiddleWare = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
-	FASTLOG4(
+	FASTLOG5(
 		FLog['AandBTusting'],
-		`[FLog::AandBTusting] %s REQUEST ON %s://%s%s`,
+		`[FLog::AandBTusting] %s REQUEST ON %s://%s%s FROM %s`,
 		req.method.toUpperCase(),
 		req.protocol,
 		req.hostname,
 		req.url,
+		req.headers['user-agent'].toUpperCase(),
 	);
 	res.header({
 		expires: -1,
