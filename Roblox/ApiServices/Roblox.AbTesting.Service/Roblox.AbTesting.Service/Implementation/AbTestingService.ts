@@ -1,11 +1,11 @@
 import { Experiments } from '../../../../Data/AbTesting/Experiments';
-import { IHttpResponse } from '../../../../Http/ServiceClient/Http';
 import { IEnrollment } from '../../../../Platform/AbTesting/IEnrollment';
 import { ExperimentStatusEnum } from '../../../../Platform/AbTesting/ExperimentStatusEnum';
 import { SubjectTypeEnum } from '../../../../Platform/AbTesting/SubjectTypeEnum';
+import { Response } from 'express';
 
 export namespace AbTestingService {
-	export function HandleEnrollTo(enrollments: Array<IEnrollment>, response: IHttpResponse) {
+	export function HandleEnrollTo(enrollments: Array<IEnrollment>, response: Response) {
 		const experimentStatuses = [];
 		// Begin validations for enrollments
 		enrollments.forEach((enrollment) => {
