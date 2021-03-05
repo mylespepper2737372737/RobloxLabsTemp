@@ -6,12 +6,15 @@
 		"outDir": "Assemblies",
 		"rootDir": "Roblox",
 		"noUnusedLocals": true,
+		"moduleResolution": "node",
 		"esModuleInterop": true,
 		"preserveSymlinks": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"stripInternal": true,
-		"removeComments": true
+		"removeComments": true,
+		"declaration": true,
+		"declarationDir": "Lib"
 	}
 }
