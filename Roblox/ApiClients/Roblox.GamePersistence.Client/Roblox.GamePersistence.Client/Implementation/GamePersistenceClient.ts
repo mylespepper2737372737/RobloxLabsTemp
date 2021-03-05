@@ -26,6 +26,7 @@ export namespace GamePersistenceClient {
 				Url: GamePersistenceGetTheStoresForThisUniverseUrl,
 				QueryString: {
 					ApiKey: ApiKeys.GamePersistenceApi,
+					'Content-Type': 'application/json',
 				},
 				AdditionalHeaders: { Cookie: `.ROBLOSECURITY=${UserAuthToken || ''}` },
 				Payload: JSON.stringify(postData),
