@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-declare const _default: (app: IApplicationBuilder, PagesDir: string, EndpointsDir: string, apiName: string, errorpage?: boolean) => {
+declare const _default: (app: IApplicationBuilder, PagesDir: string, EndpointsDir: string, apiName: string, errorpage?: boolean, fileListings?: boolean) => {
     PagesOpts: {
         path: string;
     };
@@ -10,6 +10,7 @@ declare const _default: (app: IApplicationBuilder, PagesDir: string, EndpointsDi
         apiName: string;
     };
     errorpage: boolean;
+    fileListings: boolean;
     app: IApplicationBuilder;
     UseEndpoints?: boolean;
     UseRouting?: boolean;

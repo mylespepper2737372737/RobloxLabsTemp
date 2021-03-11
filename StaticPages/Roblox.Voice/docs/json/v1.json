@@ -1,0 +1,660 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Voice Api v1"
+  },
+  "host": "voice.roblox.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/settings": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Get voice chat settings for user",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get settings succesfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isVoiceEnabled": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:GetSettings"
+          ]
+        }
+      }
+    },
+    "/v1/turn/auth": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:TurnAuthentication"
+          ]
+        }
+      }
+    },
+    "/v1/clientlog": {
+      "post": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Send client logs to server.",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logged to server successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:ClientLog"
+          ]
+        }
+      }
+    },
+    "/v1/groups": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Create a voice chat group",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created a group successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:CreateGroup"
+          ]
+        }
+      }
+    },
+    "/v1/calls/{channelId}/users": {
+      "get": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Get members of a voice call by channel ID",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "The channel ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get members successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:GetChannelMembers"
+          ]
+        }
+      }
+    },
+    "/v1/calls/join": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Join a voice chat channel",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Joined a voice channel successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:JoinChannel"
+          ]
+        }
+      }
+    },
+    "/v1/calls/leave": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Leave a voice chat channel",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Left a voice channel successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:LeaveChannel"
+          ]
+        }
+      }
+    },
+    "/v1/calls/publish/start": {
+      "post": {
+        "tags": [
+          "Publish"
+        ],
+        "summary": "Start to publish to server",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Started publish to server successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:PublishStart"
+          ]
+        }
+      }
+    },
+    "/v1/calls/publish/pause": {
+      "post": {
+        "tags": [
+          "Publish"
+        ],
+        "summary": "Paused publish to server",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paused publish to server successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:PublishPause"
+          ]
+        }
+      }
+    },
+    "/v1/calls/publish/resume": {
+      "post": {
+        "tags": [
+          "Publish"
+        ],
+        "summary": "Resumed publish to server",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resumed publish to server successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:PublishResume"
+          ]
+        }
+      }
+    },
+    "/v1/calls/publish/trickle": {
+      "post": {
+        "tags": [
+          "Publish"
+        ],
+        "summary": "Trickle publish to server",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trickle publish to server successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:PublishTrickle"
+          ]
+        }
+      }
+    },
+    "/v1/calls/subscriptions/start": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Start call subscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Started call subscription successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:SubscriptionsStart"
+          ]
+        }
+      }
+    },
+    "/v1/calls/subscriptions/pause": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Pause call subscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paused call subscription successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:SubscriptionsPause"
+          ]
+        }
+      }
+    },
+    "/v1/calls/subscriptions/resume": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Resume call subscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resumed call subscription successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:SubscriptionsResume"
+          ]
+        }
+      }
+    },
+    "/v1/calls/subscriptions/cancel": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Cancel call subscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancelled call subscription successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:SubscriptionsCancel"
+          ]
+        }
+      }
+    },
+    "/v1/calls/subscriptions/complete": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Complete call subscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channelId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Completed call subscription successfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "properties": {
+          "internal": false,
+          "metricIds": [
+            "VoiceChat:SubscriptionsComplete"
+          ]
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

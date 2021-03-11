@@ -18,8 +18,8 @@ coverage
 bower_components
 .lock-wscript
 build/Release
-node_modules/
 jspm_packages/
+node_modules/
 typings/
 *.tsbuildinfo
 .npm

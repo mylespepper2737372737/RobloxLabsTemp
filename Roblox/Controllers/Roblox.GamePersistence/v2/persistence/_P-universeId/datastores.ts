@@ -40,7 +40,7 @@ import {
 import { Pages } from '../../../../../Data/Pages/RobloxPages';
 import { GetRootPlaceIdFromUniverseId } from '../../../../../Helpers/WebHelpers/Universes/GetRootPlaceIdFromUniverseId';
 import { GetPersistentStoresForUniverse } from '../../../../../Helpers/WebHelpers/PersistentDataStores/GetHelpers/GetPersistentStoresForUniverse';
-import { IDataStoreRespose } from '../../../../../Platform/Persistence/IDataStoreRespose';
+import { IDataStoreRespose } from '../../../../../Platform/GamePersistence/IDataStoreRespose';
 import Base64 from 'crypto-js/enc-base64';
 import Crpto from 'crypto-js';
 

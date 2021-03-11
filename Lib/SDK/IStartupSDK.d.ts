@@ -35,6 +35,7 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
     errorpage?: boolean;
     signalr?: boolean;
     hubs?: string[];
+    fileListings?: boolean;
 }
 export declare namespace IStartup {
     const Configure: (opts: ConfigOpts) => Promise<void>;

@@ -33,7 +33,7 @@ LOGVARIABLE('Kestrul', 6);
 export const Kestrel = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
 	FASTLOG5(
-		FLog['Ketrul'],
+		FLog['Kestrul'],
 		`[FLog::Kestrul] %s REQUEST ON %s://%s%s FROM %s`,
 		req.method.toUpperCase(),
 		req.protocol,

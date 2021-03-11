@@ -10,29 +10,29 @@ export declare namespace Roblox {
         namespace Helpers {
             namespace AfterNext {
                 namespace Middle {
-                    const API: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const CSS: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const EPHEMERAL_COUNTERS_API: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const IMAGES: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const JS: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const SETUP_CDN: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const STATIC_CDN: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const DEPRECATED_TEMPORARY_IMAGES: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const WWW: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
+                    const API: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const CSS: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const EPHEMERAL_COUNTERS_API: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const IMAGES: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const JS: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const SETUP_CDN: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const STATIC_CDN: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const DEPRECATED_TEMPORARY_IMAGES: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const WWW: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
                 }
             }
             namespace BeforeNext {
                 namespace Middle {
-                    const GLOBAL: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const SIMULPONG: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const ABTESTING: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const GAMEPERSISTENCE: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const ADMINWEBSITE: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
-                    const KESTREL: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs>;
+                    const GLOBAL: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const SIMULPONG: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const ABTESTING: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const GAMEPERSISTENCE: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const ADMINWEBSITE: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+                    const KESTREL: import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
                 }
             }
             namespace Config {
-                const CONFIG: (app: import("express-serve-static-core").Express, PagesDir: string, EndpointsDir: string, apiName: string, errorpage?: boolean) => {
+                const CONFIG: (app: import("express-serve-static-core").Express, PagesDir: string, EndpointsDir: string, apiName: string, errorpage?: boolean, fileListings?: boolean) => {
                     PagesOpts: {
                         path: string;
                     };
@@ -42,6 +42,7 @@ export declare namespace Roblox {
                         apiName: string;
                     };
                     errorpage: boolean;
+                    fileListings: boolean;
                     app: import("express-serve-static-core").Express;
                     UseEndpoints?: boolean;
                     UseRouting?: boolean;
@@ -338,7 +339,7 @@ export declare namespace Roblox {
                 }
                 namespace Sessions {
                     const ClearCachedSessions: () => Promise<void>;
-                    const CreateCaptchaBlobSessionAfter403: (response: import("express-serve-static-core").Response<any, number>, captchaBLOB: string, ip: string) => void;
+                    const CreateCaptchaBlobSessionAfter403: (response: import("express-serve-static-core").Response<any, Record<string, any>, number>, captchaBLOB: string, ip: string) => void;
                     const SetCaptchaSessiontField: (sessionId: string, field: string, value: unknown, concatToString?: boolean, pushIfArray?: boolean, popIfUndefined?: boolean, index?: number, spliceIfIndex?: boolean, createIfDoesntExist?: boolean) => any;
                     const GetCsrfSession: (sessionFile: string) => {
                         sub: string;
@@ -347,7 +348,7 @@ export declare namespace Roblox {
                     };
                     const DeleteCsrfSession: (AuthToken: string) => void;
                     const DeleteCaptchaSession: (sessionId: string) => void;
-                    const CreateOrGetXsrfSession: (AuthToken?: string, ip?: string, token?: string | string[], response?: import("express-serve-static-core").Response<any, number>, isXsrfEndpoint?: boolean) => boolean | void;
+                    const CreateOrGetXsrfSession: (AuthToken?: string, ip?: string, token?: string | string[], response?: import("express-serve-static-core").Response<any, Record<string, any>, number>, isXsrfEndpoint?: boolean) => boolean | void;
                     const CreateCsrfSessionFile: (id: string) => string;
                     const CreateCaptchaSessionBlob: (ip: string) => string;
                 }
@@ -460,6 +461,7 @@ export declare namespace Roblox {
                 SIMULPONG_ROBLOX_TEAM_CITY: string;
                 ROBLOX_AB_TESTING_API: string;
                 ADMIN_WEB_SITE: string;
+                COM_APIS: string;
             };
         }
     }

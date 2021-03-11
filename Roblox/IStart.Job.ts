@@ -55,7 +55,7 @@ import {
 	Kestrel_404,
 } from './Helpers/AfterNext.Middle';
 import { Roblox } from './Api';
-import IServer from 'express';
+import IServer, { NextFunction, Request, Response } from 'express';
 import {
 	DFLog,
 	DYNAMIC_LOGVARIABLE,
@@ -163,6 +163,7 @@ SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_VOICE'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_FILES_API'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ADMIN_WEB_SITE'], 6);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['COM_APIS'], 6);
 
 FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 
@@ -249,6 +250,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		const ROBLOX_FILES_API_SERVER = IServer();
 		const SIMULPONG_ROBLOX_TEAM_CITY_SERVER = IServer();
 		const ADMIN_WEB_SITE_SERVER = IServer();
+		const COM_APIS_SERVER = IServer();
 
 		ROBLOX_WWW_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_STATIC_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -329,6 +331,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_FILES_API_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		SIMULPONG_ROBLOX_TEAM_CITY_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.SIMULPONG);
 		ADMIN_WEB_SITE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.ADMINWEBSITE);
+		COM_APIS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.KESTREL);
 
 		await Roblox.Api.Library.IStartup.Configure(
 			Roblox.Api.Helpers.Config.CONFIG(
@@ -975,6 +978,16 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				Roblox.Api.Constants.URLS['ADMIN_WEB_SITE'],
 			),
 		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				COM_APIS_SERVER,
+				'\\StaticPages\\Com.Apis',
+				'\\Assemblies\\Controllers\\Com.Apis',
+				Roblox.Api.Constants.URLS['COM_APIS'],
+				false,
+				true,
+			),
+		);
 
 		ROBLOX_API_SERVER.use(ROBLOX_404_API);
 		ROBLOX_STATIC_CDN_SERVER.use(ROBLOX_404_STATIC_CDN);
@@ -1054,6 +1067,10 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_FILES_API_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		SIMULPONG_ROBLOX_TEAM_CITY_SERVER.use(SIMULPONG_404);
 		ADMIN_WEB_SITE_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		COM_APIS_SERVER.use(Kestrel_404);
+		ROBLOX_CLIENT_SETTINGS_API_SERVER.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+			console.log(err, res, req, next);
+		});
 
 		await (async () => {
 			try {
@@ -1235,6 +1252,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 					Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'],
 				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ADMIN_WEB_SITE_SERVER, Roblox.Api.Constants.URLS['ADMIN_WEB_SITE']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(COM_APIS_SERVER, Roblox.Api.Constants.URLS['COM_APIS']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,

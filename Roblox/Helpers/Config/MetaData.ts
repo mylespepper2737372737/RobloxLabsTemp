@@ -30,7 +30,14 @@ import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { _dirname } from '../Constants/Directories';
 import config from '../../Config/MetaData';
 
-export default (app: IApplicationBuilder, PagesDir: string, EndpointsDir: string, apiName: string, errorpage?: boolean) => {
+export default (
+	app: IApplicationBuilder,
+	PagesDir: string,
+	EndpointsDir: string,
+	apiName: string,
+	errorpage?: boolean,
+	fileListings?: boolean,
+) => {
 	return {
 		app: app,
 		...((config as unknown) as ConfigOpts),
@@ -43,5 +50,6 @@ export default (app: IApplicationBuilder, PagesDir: string, EndpointsDir: string
 			apiName: apiName,
 		},
 		errorpage: errorpage,
+		fileListings,
 	};
 };

@@ -36,6 +36,7 @@ import MapControllers from '../Global.Helpers/MapControllers';
 import UsePages from '../Global.Helpers/UsePages';
 import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import signalr from 'signalrjs';
+import UseFileList from '../Global.Helpers/UserFileList';
 
 export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	app: IApplicationBuilder;
@@ -72,6 +73,7 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	errorpage?: boolean;
 	signalr?: boolean;
 	hubs?: string[];
+	fileListings?: boolean;
 }
 
 DYNAMIC_LOGGROUP('Tasks');
@@ -86,6 +88,9 @@ export namespace IStartup {
 			opts.app.use(cparser(), jparser(), bparser.urlencoded({ extended: false }));
 			if (opts.UsePages) {
 				await UsePages(opts.app, opts.PagesOpts, opts.PageOpts);
+			}
+			if (opts.fileListings) {
+				await UseFileList(opts.app, opts.PagesOpts);
 			}
 			if (opts.UseRouting) {
 				await UseRouting(opts.app, opts.RoutingOpts);

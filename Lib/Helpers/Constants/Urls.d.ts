@@ -79,5 +79,6 @@ declare const _default: {
     SIMULPONG_ROBLOX_TEAM_CITY: string;
     ROBLOX_AB_TESTING_API: string;
     ADMIN_WEB_SITE: string;
+    COM_APIS: string;
 };
 export default _default;

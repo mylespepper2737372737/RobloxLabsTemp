@@ -1,6 +1,6 @@
 import { Task } from '../../../Http/Task';
-import { IDataStoreApiResponse } from '../../../Platform/Persistence/IDataStoreApiResponse';
-import { IDataStoreRequest } from '../../../Platform/Persistence/IDataStoreRequest';
+import { IDataStoreApiResponse } from '../../../Platform/GamePersistence/IDataStoreApiResponse';
+import { IDataStoreRequest } from '../../../Platform/GamePersistence/IDataStoreRequest';
 export namespace GamePeristenceRequestProcessor {
 	/**
 	 * Fetches all DataStores for the universe specified in IDataStoreRequest.

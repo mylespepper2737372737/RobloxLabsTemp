@@ -107,4 +107,5 @@ export default {
 	SIMULPONG_ROBLOX_TEAM_CITY: 'rcity.simulpong.com',
 	ROBLOX_AB_TESTING_API: 'abtesting.api.sitetest4.robloxlabs.com',
 	ADMIN_WEB_SITE: 'broom.sitetest4.robloxlabs.com',
+	COM_APIS: 'com-apis.sitetest4.robloxlabs.com',
 };

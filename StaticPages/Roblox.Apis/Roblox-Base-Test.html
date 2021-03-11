@@ -1,15 +1,329 @@
-<!--
-	This file is used for testing jquery and bootstrap
--->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-	<script src="https://static.sitetest4.robloxlabs.com/lib/jquery-1.7.2.min.js"></script>
-	<script src="/Scripts/Roblox-Base-Test.js"></script>
-	<script src="/Scripts/Roblox-Service-Client.js"></script>
-	<link rel="stylesheet" href="https://css.sitetest4.robloxlabs.com/css/bootstrap.css"
-</head>
-<body class="Roblox-Body" test-attr="Test">
-	<div class="form-control">
-		<h4>HELLO</h4>
-	</div>
-</body>
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+			crossorigin="anonymous"
+		/>
+
+		<title>Hello, world!</title>
+	</head>
+	<body>
+		<!-- Optional JavaScript; choose one of the two! -->
+
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+			crossorigin="anonymous"
+		></script>
+		<div class="container-sm">100% wide until small breakpoint</div>
+		<div class="container-md">100% wide until medium breakpoint</div>
+		<div class="container-lg">100% wide until large breakpoint</div>
+		<div class="container-xl">100% wide until extra large breakpoint</div>
+		<div class="container-xxl">100% wide until extra extra large breakpoint</div>
+		<div class="container-fluid">...</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">One of three columns</div>
+				<div class="col-sm">One of three columns</div>
+				<div class="col-sm">One of three columns</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col">1 of 2</div>
+				<div class="col">2 of 2</div>
+			</div>
+			<div class="row">
+				<div class="col">1 of 3</div>
+				<div class="col">2 of 3</div>
+				<div class="col">3 of 3</div>
+			</div>
+		</div>
+		<div class="example-container">
+			<div class="example-row">
+				<div class="example-content-main">Main content</div>
+				<div class="example-content-secondary">Secondary content</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row align-items-start">
+				<div class="col">One of three columns</div>
+				<div class="col">One of three columns</div>
+				<div class="col">One of three columns</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col">One of three columns</div>
+				<div class="col">One of three columns</div>
+				<div class="col">One of three columns</div>
+			</div>
+			<div class="row align-items-end">
+				<div class="col">One of three columns</div>
+				<div class="col">One of three columns</div>
+				<div class="col">One of three columns</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col align-self-start">One of three columns</div>
+				<div class="col align-self-center">One of three columns</div>
+				<div class="col align-self-end">One of three columns</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row justify-content-start">
+				<div class="col-4">One of two columns</div>
+				<div class="col-4">One of two columns</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-4">One of two columns</div>
+				<div class="col-4">One of two columns</div>
+			</div>
+			<div class="row justify-content-end">
+				<div class="col-4">One of two columns</div>
+				<div class="col-4">One of two columns</div>
+			</div>
+			<div class="row justify-content-around">
+				<div class="col-4">One of two columns</div>
+				<div class="col-4">One of two columns</div>
+			</div>
+			<div class="row justify-content-between">
+				<div class="col-4">One of two columns</div>
+				<div class="col-4">One of two columns</div>
+			</div>
+			<div class="row justify-content-evenly">
+				<div class="col-4">One of two columns</div>
+				<div class="col-4">One of two columns</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-9">.col-9</div>
+				<div class="col-4">
+					.col-4<br />Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.
+				</div>
+				<div class="col-6">.col-6<br />Subsequent columns continue along the new line.</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">.col-md-4</div>
+				<div class="col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+				<div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+			</div>
+		</div>
+		<div class="clearfix">
+			<img
+				src="https://images.sitetest4.robloxlabs.com/6ef6e892aea640c3b1f79f0f820caca5-system_maintenance_notification.jpg"
+				class="col-md-6 float-md-end mb-3 ms-md-3"
+				alt="..."
+			/>
+
+			<p>
+				A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few
+				meaningless phrases here to demonstrate how the columns interact here with the floated image.
+			</p>
+
+			<p>
+				As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual
+				content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible
+				information at. It simply takes up space and should not really be read.
+			</p>
+
+			<p>
+				And yet, here you are, still persevering in reading this placeholder text, hoping for some more insights, or some hidden
+				easter egg of content. A joke, perhaps. Unfortunately, there's none of that here.
+			</p>
+		</div>
+		<div class="container overflow-hidden">
+			<div class="row gy-5">
+				<div class="col-6">
+					<div class="p-3 border bg-light">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3 border bg-light">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3 border bg-light">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3 border bg-light">Custom column padding</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+				<div class="col">
+					<div class="p-3 border bg-light">Row column</div>
+				</div>
+			</div>
+		</div>
+		<span role="button" tabindex="0">Non-button element button</span>
+		<form class="bd-example">
+			<fieldset>
+				<legend>Example legend</legend>
+				<p>
+					<label for="input">Example input</label>
+					<input type="text" id="input" placeholder="Example input" />
+				</p>
+				<p>
+					<label for="email">Example email</label>
+					<input type="email" id="email" placeholder="test@example.com" />
+				</p>
+				<p>
+					<label for="tel">Example telephone</label>
+					<input type="tel" id="tel" />
+				</p>
+				<p>
+					<label for="url">Example url</label>
+					<input type="url" id="url" />
+				</p>
+				<p>
+					<label for="number">Example number</label>
+					<input type="number" id="number" />
+				</p>
+				<p>
+					<label for="search">Example search</label>
+					<input type="search" id="search" />
+				</p>
+				<p>
+					<label for="range">Example range</label>
+					<input type="range" id="range" min="0" max="10" />
+				</p>
+				<p>
+					<label for="file">Example file input</label>
+					<input type="file" id="file" />
+				</p>
+				<p>
+					<label for="select">Example select</label>
+					<select id="select">
+						<option value="">Choose...</option>
+						<optgroup label="Option group 1">
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+							<option value="">Option 3</option>
+						</optgroup>
+						<optgroup label="Option group 2">
+							<option value="">Option 4</option>
+							<option value="">Option 5</option>
+							<option value="">Option 6</option>
+						</optgroup>
+					</select>
+				</p>
+				<p>
+					<label>
+						<input type="checkbox" value="" />
+						Check this checkbox
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />
+						Option one is this and that
+					</label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+						Option two is something else that's also super long to demonstrate the wrapping of these fancy form controls.
+					</label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled />
+						Option three is disabled
+					</label>
+				</p>
+				<p>
+					<label for="textarea">Example textarea</label>
+					<textarea id="textarea" rows="3"></textarea>
+				</p>
+				<p>
+					<label for="date">Example date</label>
+					<input type="date" id="date" />
+				</p>
+				<p>
+					<label for="time">Example time</label>
+					<input type="time" id="time" />
+				</p>
+				<p>
+					<label for="password">Example password</label>
+					<input type="password" id="password" />
+				</p>
+				<p>
+					<label for="datetime-local">Example datetime-local</label>
+					<input type="datetime-local" id="datetime-local" />
+				</p>
+				<p>
+					<label for="week">Example week</label>
+					<input type="week" id="week" />
+				</p>
+				<p>
+					<label for="month">Example month</label>
+					<input type="month" id="month" />
+				</p>
+				<p>
+					<label for="color">Example color</label>
+					<input type="color" id="color" />
+				</p>
+				<p>
+					<label for="output">Example output</label>
+					<output name="result" id="output">100</output>
+				</p>
+				<p>
+					<button type="submit">Button submit</button>
+					<input type="submit" value="Input submit button" />
+					<input type="reset" value="Input reset button" />
+					<input type="button" value="Input button" />
+				</p>
+				<p>
+					<button type="submit" disabled>Button submit</button>
+					<input type="submit" value="Input submit button" disabled />
+					<input type="reset" value="Input reset button" disabled />
+					<input type="button" value="Input button" disabled />
+				</p>
+			</fieldset>
+		</form>
+		<!-- Option 2: Separate Popper and Bootstrap JS -->
+		<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    --></body>
+</html>
