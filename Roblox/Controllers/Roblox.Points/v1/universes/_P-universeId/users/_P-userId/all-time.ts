@@ -25,23 +25,33 @@
 	***
 */
 
-import a from 'axios';
-
+//import a from 'axios';
+var fs = require('fs')
+// why points? i know it's super useless
+// but i can just guess what it does and implement it that way.
+import { _dirname } from '../../../../../../../Helpers/Constants/Directories';
+import { GetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Get';
 export default {
 	method: 'all',
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
-		a.get('https://points.roblox.com' + _req.url, {
-			headers: { ..._req.headers, host: 'points.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
-	},
+		if (_req.method !== 'GET') {
+			return res.status(502).send() // Make sure you're sending the right method
+		}
+		//return res.status(120).send()
+		
+		let uId = parseInt(_req.params['universeId'])
+		let usId = parseInt(_req.params['userId'])
+		if (isNaN(uId) || isNaN(usId)) {
+			return res.status(400).send("The specified points amount is invalid.")
+		}
+		let e = {}
+		const [success, result] = await GetPoints(uId, usId)
+		if (success) {
+			e["allTimeScore"]=result
+		} else {
+			e["allTimeScore"]=0
+		}
+		return res.status(200).send(JSON.stringify(e))
+		},
 };

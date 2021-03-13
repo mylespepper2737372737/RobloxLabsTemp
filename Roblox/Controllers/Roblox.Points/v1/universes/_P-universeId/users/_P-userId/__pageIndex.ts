@@ -29,29 +29,45 @@
 var fs = require('fs')
 // why points? i know it's super useless
 // but i can just guess what it does and implement it that way.
-import { _dirname } from '../../../../../../../Helpers/Constants/Directories';
-import { GetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Get';
+import { _dirname } from '../../../../../../../../Roblox/Helpers/Constants/Directories';
+import { SetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Set';
 export default {
 	method: 'all',
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
-		if (_req.method !== 'GET') {
+		if (_req.method !== 'POST') {
 			return res.status(502).send() // Make sure you're sending the right method
 		}
 		//return res.status(120).send()
-		
-		let uId = parseInt(_req.params['universeId'])
-		let usId = parseInt(_req.params['userId'])
-		if (isNaN(uId) || isNaN(usId)) {
-			return res.status(400).send("The specified points amount is invalid.")
-		}
-		let e = {}
-		const [success, result] = await GetPoints(uId, usId)
-		if (success) {
-			e["allTimeScore"]=result
-		} else {
-			e["allTimeScore"]=0
-		}
-		return res.status(200).send(JSON.stringify(e))
-		},
+		try {
+    
+            let data = JSON.parse(_req.body)
+            // TODO: security checks.
+            let uId = parseInt(_req.params['universeId'])
+		    let usId = parseInt(_req.params['userId'])
+            if (isNaN(uId) || isNaN(usId) || isNaN(data["amount"])) {
+                return res.status(400).send({
+					errors: [
+						{
+							code: 4,
+							message: 'The specified points amount is invalid.',
+							retryable: false,
+						},
+					],
+				});
+            }
+            let e = {}
+            const success = await SetPoints(uId, usId, parseInt(data["amount"]))
+            if (success) {
+                e["allTimeScore"]=0
+            } else {
+                e["allTimeScore"]=0
+            }
+            return res.status(200).send(JSON.stringify(e))
+            
+            
+        } catch(err) {
+         
+        }
+    },
 };
