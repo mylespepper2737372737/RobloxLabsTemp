@@ -2,7 +2,7 @@ name: Build pull requests
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ Roblox.SiteTest4 ]
 
 jobs:
   build:
