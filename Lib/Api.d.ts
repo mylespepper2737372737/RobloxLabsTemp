@@ -462,6 +462,7 @@ export declare namespace Roblox {
                 ROBLOX_AB_TESTING_API: string;
                 ADMIN_WEB_SITE: string;
                 COM_APIS: string;
+                ROBLOX_POINTS_API: string;
             };
         }
     }
