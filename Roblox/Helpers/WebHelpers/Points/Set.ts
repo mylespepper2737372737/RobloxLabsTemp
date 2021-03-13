@@ -1,5 +1,6 @@
 import fs from 'fs';
-import { _dirname } from '../../../../Roblox/Helpers/Constants/Directories';
+//import { Roblox } from '../../../Api';
+import { _dirname } from '../../Constants/Directories';
 //import Base64 from 'crypto-js/enc-base64';
 //import crpto from 'crypto-js';
 
@@ -14,24 +15,26 @@ import { _dirname } from '../../../../Roblox/Helpers/Constants/Directories';
 export const SetPoints = (
 	universeId: number,
 	userId: number,
-	amount: number ,
-): Promise<boolean> => {
-	return new Promise<boolean>(async (resumefunction) => {
+    amount: number,
+) => {
+	return new Promise<[boolean, any[] | null]>(async (resumefunction) => {
 		let path = _dirname + "\\Manifest\\universes\\" + universeId.toString()
 		if (!fs.existsSync(path)) {
-            return resumefunction(false)
+            return resumefunction([false, null])
         }
         path += "\\points.json"
         if (fs.existsSync(path)) {
             let ptray = JSON.parse(fs.readFileSync(path, {encoding: 'utf-8'}))
-            ptray[userId]=amount
+            //let e = ptray[userId]
+            ptray[userId]=ptray[userId]+amount
             fs.writeFileSync(path, JSON.stringify(ptray))
-            
+            return resumefunction([true, ptray[userId] as any])
         } else {
             let ptray = {}
             ptray[userId]=amount
             fs.writeFileSync(path, JSON.stringify(ptray))
+            return resumefunction([true, amount as any])
         }
-		return resumefunction(true);
+		return resumefunction([false, "0" as any]);
 	});
 };

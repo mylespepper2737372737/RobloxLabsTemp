@@ -56,7 +56,7 @@ export default {
 	method: 'All',
 	func: async (request: Request, response: Response): Promise<Response<unknown> | void> => {
     	if (request.method === 'OPTIONS') return response.status(200).send();
-        if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+        if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'http') {
             return response.status(403).send({
                 errors: [
                     {
@@ -65,7 +65,7 @@ export default {
                     }
                 ],
             })
-        }
+        }   
         let uId = parseInt(request.params['universeId'])
 		let usId = parseInt(request.params['userId'])
         if (isNaN(usId)) {
@@ -88,10 +88,12 @@ export default {
             })
         }
 
+       
 
-        let data = JSON.parse(request.body)
+        let data = request.body.amount
         // TODO: security checks.
-        if (isNaN(data["amount"])) {
+        
+        if (isNaN(data)) {
             return response.status(400).send({
                 errors: [
                     {
@@ -101,8 +103,9 @@ export default {
                 ],
             })
         }
+        console.log(data);
         let e = {}
-		const success = await SetPoints(uId, usId, parseInt(data["amount"]))
+		const success = await SetPoints(uId, usId, parseInt(data))
 		if (success) {
 			e["allTimeScore"]=0
 		} else {
