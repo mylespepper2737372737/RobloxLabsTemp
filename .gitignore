@@ -50,3 +50,4 @@ package-lock.json
 /Assemblies
 DeploymentTooling
 server.log
+Lib/Controllers/Roblox.Points/v1/universes/_P-universeId/users/_P-userId/all-time.d.ts #fix a weird bug
