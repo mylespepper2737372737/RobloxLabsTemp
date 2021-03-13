@@ -29,20 +29,25 @@
 /*
 
 # Request
-GET /v1/universes/:id/users/:id/ HTTP/1.1
+POST /v1/universes/:id/users/:id/ HTTP/1.1
 
-
+{
+    amount: 1234,
+}
 
 
 ###
  */
 
+// Notes:
+// If a query to Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments and Roblox.Data.AbTesting.Experiments.UserExperiments returns with no experiment,
+// this doesn't mean that the experiment doesn't exist, it could be in Roblox.Data.AbTesting.Experiments.SharedExperiments.
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
-import { Roblox } from '../../../../../../../Api';
-import { GetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Get';
-import { FASTFLAG, FFlag } from '../../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { Roblox } from '../../../../../../Api';
+import { SetPoints } from '../../../../../../Helpers/WebHelpers/Points/Set';
+import { FASTFLAG, FFlag } from '../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
@@ -84,11 +89,22 @@ export default {
         }
 
 
-        
+        let data = JSON.parse(request.body)
+        // TODO: security checks.
+        if (isNaN(data["amount"])) {
+            return response.status(400).send({
+                errors: [
+                    {
+                        code: 4 ,
+                        message: 'The specified amount of points is invalid.',
+                    }
+                ],
+            })
+        }
         let e = {}
-		const [success, result] = await GetPoints(uId, usId)
+		const success = await SetPoints(uId, usId, parseInt(data["amount"]))
 		if (success) {
-			e["allTimeScore"]=result
+			e["allTimeScore"]=0
 		} else {
 			e["allTimeScore"]=0
 		}
