@@ -1,0 +1,95 @@
+[
+    {
+        "action": "KeyAdded",
+        "data": [
+            {
+                "name": "a",
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "1",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-03-12T16:26:48.339Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "a",
+                    "scope": "global",
+                    "store": "abc",
+                    "universe": 1,
+                    "userIds": [],
+                    "attributes": [],
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\0\\stores\\abc\\scopes\\global\\keys\\a\\",
+                    "version": 2,
+                    "created": "2021-03-12T16:26:48.339Z",
+                    "lastUpdated": "2021-03-12T16:30:34.821Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "138912839012830976480903168",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-03-12T16:30:34.821Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "a",
+                    "scope": "global",
+                    "store": "abc",
+                    "universe": 1,
+                    "userIds": [],
+                    "attributes": [],
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\0\\stores\\abc\\scopes\\global\\keys\\a\\",
+                    "version": 3,
+                    "created": "2021-03-12T16:26:48.339Z",
+                    "lastUpdated": "2021-03-12T16:32:23.224Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"\\\"\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-03-12T16:32:23.224Z"
+    },
+    {
+        "action": "KeyUpdated",
+        "data": [
+            {
+                "name": {
+                    "keyName": "a",
+                    "scope": "global",
+                    "store": "abc",
+                    "universe": 1,
+                    "userIds": [],
+                    "attributes": [],
+                    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\0\\stores\\abc\\scopes\\global\\keys\\a\\",
+                    "version": 4,
+                    "created": "2021-03-12T16:26:48.339Z",
+                    "lastUpdated": "2021-03-13T00:14:50.539Z"
+                },
+                "created": true,
+                "purged": false,
+                "value": {
+                    "Raw": "\"{}\"",
+                    "type": "string"
+                }
+            }
+        ],
+        "date": "2021-03-13T00:14:50.539Z"
+    }
+]
