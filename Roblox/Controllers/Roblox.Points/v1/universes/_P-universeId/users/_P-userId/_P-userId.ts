@@ -1,8 +1,8 @@
 /*
-	FileName: LoadPlaceInfo.ashx.ts
-	Written By: Nikita Nikolaevich Petko
+	FileName: _P-userId.ts
+	Written By: comrade
 	File Type: Module
-	Description: Load Place info script
+	Description: Set points amount.
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -26,10 +26,9 @@
 */
 
 //import a from 'axios';
-var fs = require('fs')
 // why points? i know it's super useless
 // but i can just guess what it does and implement it that way.
-import { _dirname } from '../../../../../../../../Roblox/Helpers/Constants/Directories';
+import { _dirname } from '../../../../../../../Helpers/Constants/Directories';
 import { SetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Set';
 export default {
 	method: 'all',

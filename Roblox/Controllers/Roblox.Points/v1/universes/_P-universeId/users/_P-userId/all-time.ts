@@ -1,8 +1,8 @@
 /*
-	FileName: LoadPlaceInfo.ashx.ts
-	Written By: Nikita Nikolaevich Petko
+	FileName: all-time.ts
+	Written By: comrade
 	File Type: Module
-	Description: Load Place info script
+	Description: Points API set point amount.
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -25,33 +25,90 @@
 	***
 */
 
-//import a from 'axios';
-var fs = require('fs')
-// why points? i know it's super useless
-// but i can just guess what it does and implement it that way.
-import { _dirname } from '../../../../../../../Helpers/Constants/Directories';
-import { GetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Get';
+// Request example:
+/*
+
+# Request
+POST /v1/universes/:id/users/:id/ HTTP/1.1
+
+{
+    amount: 1234,
+}
+
+
+###
+ */
+
+// Notes:
+// If a query to Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments and Roblox.Data.AbTesting.Experiments.UserExperiments returns with no experiment,
+// this doesn't mean that the experiment doesn't exist, it could be in Roblox.Data.AbTesting.Experiments.SharedExperiments.
+
+import { Request, Response } from 'express-serve-static-core';
+import dotenv from 'dotenv';
+import { Roblox } from '../../../../../../../Api';
+import { SetPoints } from '../../../../../../../Helpers/WebHelpers/Points/Set';
+import { FASTFLAG, FFlag } from '../../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+
+dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+
+FASTFLAG('RequireGlobalHTTPS');
 export default {
-	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		if (_req.method !== 'GET') {
-			return res.status(502).send() // Make sure you're sending the right method
-		}
-		//return res.status(120).send()
-		
-		let uId = parseInt(_req.params['universeId'])
-		let usId = parseInt(_req.params['userId'])
-		if (isNaN(uId) || isNaN(usId)) {
-			return res.status(400).send("The specified points amount is invalid.")
-		}
-		let e = {}
-		const [success, result] = await GetPoints(uId, usId)
+	method: 'All',
+	func: async (request: Request, response: Response): Promise<Response<unknown> | void> => {
+    	if (request.method === 'OPTIONS') return response.status(200).send();
+        if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+            return response.status(403).send({
+                errors: [
+                    {
+                        code: 0,
+                        message: 'HTTPS Required.',
+                    }
+                ],
+            })
+        }
+        let uId = parseInt(request.params['universeId'])
+		let usId = parseInt(request.params['userId'])
+        if (isNaN(usId)) {
+            return response.status(404).send({
+                errors: [
+                    {
+                        code: 1,
+                        message: 'The universe is invalid.',
+                    }
+                ],
+            })
+        } else if (isNaN(uId)) {
+            return response.status(404).send({
+                errors: [
+                    {
+                        code: 2,
+                        message: 'The user is invalid.',
+                    }
+                ],
+            })
+        }
+
+
+        let data = JSON.parse(request.body)
+        // TODO: security checks.
+        if (isNaN(data["amount"])) {
+            return response.status(400).send({
+                errors: [
+                    {
+                        code: 4 ,
+                        message: 'The specified amount of points is invalid.',
+                    }
+                ],
+            })
+        }
+        let e = {}
+		const success = await SetPoints(uId, usId, parseInt(data["amount"]))
 		if (success) {
-			e["allTimeScore"]=result
+			e["allTimeScore"]=0
 		} else {
 			e["allTimeScore"]=0
 		}
-		return res.status(200).send(JSON.stringify(e))
-		},
+		return response.status(200).send(JSON.stringify(e))
+		
+	},
 };
