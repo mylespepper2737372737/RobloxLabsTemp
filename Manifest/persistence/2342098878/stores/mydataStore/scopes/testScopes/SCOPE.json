@@ -1,9 +1,0 @@
-{
-    "scopeName": "testScopes",
-    "store": "mydataStore",
-    "universe": 2342098878,
-    "keys": 10,
-    "root": "C:\\buildAgent\\work\\0800fc577294c34f\\Manifest\\persistence\\2342098878\\stores\\mydataStore\\scopes\\testScopes\\",
-    "created": "2021-02-22T10:44:30.494Z",
-    "lastUpdated": "2021-02-22T10:44:30.795Z"
-}
