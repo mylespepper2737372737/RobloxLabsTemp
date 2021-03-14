@@ -29,7 +29,7 @@ export default {
 	method: 'post',
 	func: async (_req, res) => {
 		console.log(_req.body);
-		res.cookie('TEAM-CITY-AUTH', 'NIGGERS', {
+		res.cookie('TEAM-CITY-AUTH', 'TEST', {
 			maxAge: 77316362131,
 			domain: 'rcity.simulpong.com',
 			secure: false,
