@@ -1,8 +1,8 @@
 /*
-	FileName: LoadPlaceInfo.ashx.ts
+	FileName: _P-userId.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Load Place info script
+	Description: Gets a user's all-time points balance from an universe.
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -25,23 +25,58 @@
 	***
 */
 
-import a from 'axios';
+/*
+
+GET /v1/universe/{universeId}/users/{userId} HTTP/1.1
+Host: points.sitetest4.robloxlabs.com
+
+*/
+
+// Implementation:
+// Method: GET
+// Requires HTTPS: Yes
+// Uses ApiService: Yes
+
+import { Request, Response } from 'express';
+import { FASTFLAG, FFlag } from '../../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { GetAllTimePointBalanceResponse } from '../../../../../../../Models/Roblox.Points.Api/GetAllTimePointBalanceResponse';
+import { ICustomError } from '../../../../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
+import { PointsRequestProcessor } from '../../../../../../../Web/Points/Roblox.Web.Points/PointsRequestProcessor';
+import { Errors } from '../../../../../../../Web/Util/Roblox.Web.Util/Errors';
+
+FASTFLAG('RequireGlobalHTTPS');
 
 export default {
-	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		a.get('https://points.roblox.com' + _req.url, {
-			headers: { ..._req.headers, host: 'points.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
+	method: 'all', //Allow all methods but validate the method in the request itself
+	func: async (request: Request, response: Response<GetAllTimePointBalanceResponse>) => {
+		const errors: ICustomError[] = [];
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
+			errors.push({
+				code: 0,
+				message: 'HTTPS Required',
 			});
+			return Errors.RespondWithCustomErrors(403, errors, response, true);
+		}
+
+		// OPTIONS should already be validated by now
+		if (request.method !== 'GET') {
+			errors.push({
+				code: 0,
+				message: `The requested resource does not support http method '${request.method}'.`,
+			});
+			return Errors.RespondWithCustomErrors(405, errors, response, true);
+		}
+
+		const universeId = parseInt(<string>request.params.universeId);
+		const userId = parseInt(<string>request.params.userId);
+
+		const [IsValidInputs, universe, user] = PointsRequestProcessor.CheckUniverseAndUser(universeId, userId, response);
+		if (!IsValidInputs) return;
+
+		const [Success, , Response, Error] = await PointsRequestProcessor.GetUserAllTimePoints(universe, user);
+		if (!Success) {
+			return Errors.RespondWithAHttpError(response, Error);
+		}
+		response.send({ allTimeScore: Response.allTimeScore });
 	},
 };
