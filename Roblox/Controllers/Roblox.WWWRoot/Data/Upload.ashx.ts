@@ -36,19 +36,53 @@ GET /v1/universes/:id/users/:id/ HTTP/1.1
 
 ###
  */
+/* begin codde from @frameworkless/bodyparser*/
+const { parse: parseFormadata } = require('querystring')
 
+
+const parseContent = rawType => {
+  if (!rawType) return raw => raw
+  else if (rawType.indexOf('json') > -1) return JSON.parse
+  else if (rawType.indexOf('x-www-form-urlencoded') > -1) return raw => ({ ...parseFormadata(raw) })
+  else if (rawType.indexOf('multipart') > -1) return raw => raw
+  else return raw => raw
+}
+
+const getRequestBody = (request) => new Promise((resolve, reject) => {
+  const contentType = request.headers['content-type']
+  //const allowedFileTypes = fileTypes || ALLOWED_ATTACHMENT_MIMES
+  const parser = parseContent(contentType)
+
+  if (parser !== null) {
+    let formData
+
+    request.on('data', data => {
+      if (!formData) formData = Buffer.from(data)
+      else formData = Buffer.concat([ formData, data ])
+    })
+
+    request.on('error', reject)
+
+    request.on('end', () => {
+      const parsedData = formData
+      return resolve(parsedData)
+    })
+  } else {
+    
+  }
+})
+/* end code*/
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { Roblox } from '../../../Api';
 import { FASTFLAG, FFlag, FASTLOG1, FLog } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import crypto from  'crypto-js';
-const {parseBody} = require('bodyparser.js') // WILL NOT WORK OTHER WAY!
 dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 import fs from 'fs';
 FASTFLAG('RequireGlobalHTTPS');
 function subBuffer(buf: Buffer, p1: number, p2: number) {
-    return buf.slice(p1,p2)
+  return buf.slice(p1,p2)
 }
 export default {
 	method: 'All',
@@ -66,7 +100,7 @@ export default {
         }
         var datToUpload;
         if (request.headers['content-type'] === 'application/xml') {
-            const dataa = await parseBody(request)
+            const dataa = await getRequestBody(request)
             const keys = Object.keys(dataa)
             let parsingString = ""
             for (const key in keys) {
@@ -78,24 +112,52 @@ export default {
             let sub = request.headers['content-type'].substr(bnd1)
             
             FASTLOG1(FLog['dmp'],sub, "")
-            let parsingString = "";
-            const dataa = await parseBody(request)
-            const keys = Object.keys(dataa)
-            //for (const key in keys) {
-                //FASTLOG1(FLog['dmp'], dataa[key], dataa[key]);
-            //}
-            for (const key in keys) {
-                parsingString += dataa[key].toString()
+           // let parsingString = "";
+            const dataa = await getRequestBody(request)
+
+            //let parsingString = (dataa as Buffer).toString('ascii')
+           // const keys = Object.keys(dataa)
+           // for (const key in keys) {
+             //  FASTLOG1(FLog['dmp'], dataa[key].toString(), dataa[key].toString());
+           // }
+           // for (const key in keys) {
+           //    parsingString += dataa[key].toString()
+         // }
+            if (fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/tmp/")) {
+                fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory +"/Manifest/tmp/asset", (dataa as Buffer))
             }
+            let e = fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory +"/Manifest/tmp/asset")
+            let parsingString=e.toString('ascii') // this is legit nonsense. 
+
             let poss = parsingString.indexOf("Content-Type")
             let poss1 = parsingString.indexOf("\n", poss)+2
-            //let bnd11 = parsingString.indexOf(sub)+sub.length
-            let bnd22 = parsingString.lastIndexOf("--"+sub)
-            
+            FASTLOG1(FLog['dmp'],poss.toString(),"")
+            FASTLOG1(FLog['dmp'],poss1.toString(),"")
 
-            datToUpload = subBuffer(dataa, poss1, bnd22-1)
-          //  datToUpload = parsingString.substring(poss1)
-            FASTLOG1(FLog['dmp'],datToUpload, "")
+            //let bnd11 = parsingString.indexOf(sub)+sub.length
+            let bnd22 = parsingString.lastIndexOf(sub)
+            FASTLOG1(FLog['dmp'],bnd22.toString(),"")
+            let bnd33 = parsingString.substring(bnd22)
+            FASTLOG1(FLog['dmp'],bnd33.toString(),"")
+            let eeee = (dataa as Buffer).length
+            FASTLOG1(FLog['dmp'],sub.length.toString(),"")
+            FASTLOG1(FLog['dmp'],eeee.toString(),"")
+            // FIIIX THE ENDING THINGY!!!!!!!!!!!!!!!!!!!!!!!!
+
+            //eeee -= 10;
+            //eeee -= sub.length;
+
+
+
+            //datToUpload = subBuffer(dataa as Buffer, poss1+1, eeee) // totally reliable!
+
+            //let fc = (parsingString.toString()).lastIndexOf(sub)
+            datToUpload = subBuffer(dataa as Buffer, poss1+1, bnd22-4)
+            //datToUpload = parsingString.substring(poss1+1, bnd22-4) // i hope this wrks. :(
+            FASTLOG1(FLog['dmp'],poss1.toString(), "")
+
+            FASTLOG1(FLog['dmp'],eeee.toString(), "")
+            
             /*return response.status(400).send({
                 errors: [
                     {
@@ -105,7 +167,7 @@ export default {
                 ],
             })*/
         } else {
-            const dataa = await parseBody(request)
+            const dataa = await getRequestBody(request)
             const keys = Object.keys(dataa)
             for (const key in keys) {
                 FASTLOG1(FLog['dmp'], key, dataa[key]);
