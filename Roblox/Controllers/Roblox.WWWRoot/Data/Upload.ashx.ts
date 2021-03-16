@@ -68,7 +68,7 @@ import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import { Roblox } from '../../../Api';
 import { FASTFLAG, FFlag, FASTLOG1, FLog } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import crypto from  'crypto-js';
+//import crypto from  'crypto-js';
 dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 import fs from 'fs';
 FASTFLAG('RequireGlobalHTTPS');
@@ -171,7 +171,7 @@ export default {
         if (isNaN(uId)) {
             uId = assetJSON.length + 1;
         } 
-        let props = {}
+        let props = new Object();
         
         if ((request.query as any).name == null) {
             props["Name"] = "Asset"
@@ -197,7 +197,7 @@ export default {
         } else {
             props["IsForSale"] = (request.query as any).ispublic
         }
-        AssetsService.uploadAsset(dat, uId, props["AssetType"], props, 1111)// 1111 is temporary ID.
+        AssetsService.uploadAsset(dat, uId, props["AssetType"], JSON.stringify(props), 1111)// 1111 is temporary ID.
         return response.status(200).send()
         
         

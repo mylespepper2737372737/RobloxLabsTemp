@@ -6,7 +6,7 @@ import fs from 'fs';
 
 export namespace AssetsService {
 
-    export function uploadAsset(asset: Buffer, ID: number, typeID: number, properties: object, agent: number) {
+    export function uploadAsset(asset: Buffer, ID: number, typeID: number, props: string, agent: number) {
         // if it got to this point we'll just assume it passed the authentication checks.
         const dat = asset;
         if (!fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets")) {
@@ -52,9 +52,16 @@ export namespace AssetsService {
             assetJSON[uId]["IsForSale"]=forsale;
             assetJSON[uId]["AssetType"]=typeID;
             assetJSON[uId]["CreatorId"]=agent;*/
-            for (const key in Object.keys(properties)) {
-                assetJSON[uId][key] = properties[key]
-            }
+            let properties = JSON.parse(props)
+            FASTLOG1(FLog['dmp'],props,"")
+            Object.entries(properties).forEach(([key, value]) => {
+                assetJSON[uId][key]=value
+             });
+           // for (const key in Object.keys(properties)) {
+           //     assetJSON[uId][key] = properties[key]
+             //   FASTLOG1(FLog['dmp'], key, "")
+                //FASTLOG1(FLog['dmp'], properties[key],"")
+            //}
             assetJSON[uId]["CreatorId"]=agent;
             let mdhash = crypto.MD5(dat.toString()).toString()
             if (!fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + mdhash)) {
@@ -71,9 +78,12 @@ export namespace AssetsService {
                 A = 0
             }
             let E = totalAVs.length + 1;
+            if (isNaN(E)) {
+                E = 1
+            }
             totalAVs[E]=mdhash
             FASTLOG1(FLog['dmp'], "asset uploaded", "")
-            assetJSON[uId]['AssetVersions'][A.toString()] = E.toString()
+            assetJSON[uId]['AssetVersions'].push(E.toString())
             fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/Asset.json", JSON.stringify(assetJSON))
             fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/AVS.json", JSON.stringify(totalAVs))
         }
