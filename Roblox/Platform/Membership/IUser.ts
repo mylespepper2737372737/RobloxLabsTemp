@@ -2,8 +2,8 @@ import { IEmail } from '../Credentials/IEmail';
 import { IPassword } from '../Credentials/IPassword';
 import { UserModelBuildersClubMembershipTypeEnum } from './UserModelBuildersClubMembershipTypeEnum';
 export interface IUser {
-	/*Int64*/ UserId: Number;
-	/*String*/ UserName: String;
+	/*Int64*/ Id: Number;
+	/*String*/ Name: String;
 	/*String*/ DisplayName: String;
 	/*UserModelBuildersClubMembershipTypeEnum*/ MembershipType: UserModelBuildersClubMembershipTypeEnum;
 	/*String*/ SecurityToken: String;
