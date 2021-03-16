@@ -1,3 +1,5 @@
+import { StatusCodes } from '../../Web/Util/Roblox.Web.Util/StatusCodes';
+
 export namespace ServiceClientExceptions {
 	export class HttpException {
 		private Url: String;
@@ -12,12 +14,12 @@ export namespace ServiceClientExceptions {
 			this.ErrorCode = ErrorCode;
 			this.Message = Message;
 		}
-		public fetch(): String {
+		public fetch(): Error {
 			return new Error(`${this.Message}. Roblox.Http.ServiceClientExceptions.HttpException: An error has occurred with your request.
-	Status code: ${this.Status} (None)
+	Status code: ${StatusCodes[this.Status.toString()]} (${this.Status})
 	Url: ${this.Url.split('?').shift()}
 	Response Machine Id: ${this.MachineId}
-	Error code: ${this.ErrorCode} (None)`).stack;
+	Error code: ${this.ErrorCode} (None)`);
 		}
 	}
 }

@@ -8,4 +8,5 @@ export interface IClientRequest {
 	/*String*/ Payload: String;
 	/*IHttpHeaders*/ AdditionalHeaders: IHttpHeaders;
 	/*IHttpQueries*/ QueryString: IHttpQueries;
+	/*String*/ FailedMessage?: String;
 }

@@ -8,6 +8,7 @@ import Https from 'https';
 import { BaseURL } from '../../Data/Client/BaseUrl';
 import { Version } from '../../Data/Client/Version';
 import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { ServiceClientExceptions } from './HttpException';
 
 DYNAMIC_FASTSTRINGVARIABLE('GlobalConfigRA', 'RA-14');
 DYNAMIC_FASTSTRINGVARIABLE('ProxiedIP', '208.223.313.3');
@@ -24,8 +25,8 @@ export namespace ServiceClient {
 		 * We only ever want this to resume, never error, or the client will receive a call stack
 		 * @returns {Task<[Boolean, IClientResponse]>} Returns a task to be awaited.
 		 */
-		public async execute(): Task<[Boolean, IClientResponse]> {
-			return new Promise<[Boolean, IClientResponse]>((resumeFunction) => {
+		public async execute(): Task<[Boolean, IClientResponse, Error]> {
+			return new Promise<[Boolean, IClientResponse, Error]>((resumeFunction) => {
 				const parsedQs = query.stringify(this.request.QueryString);
 				const requestUrl = `${this.request.Url}?${parsedQs}`;
 				let requestMethod: Method = 'GET';
@@ -77,6 +78,7 @@ export namespace ServiceClient {
 								StatusCode: response.status,
 								StatusMessage: response.statusText,
 							},
+							null,
 						]);
 					})
 					.catch((err) => {
@@ -91,6 +93,13 @@ export namespace ServiceClient {
 									StatusCode: err.response.status,
 									StatusMessage: err.response.statusText,
 								},
+								new ServiceClientExceptions.HttpException(
+									this.request.Url,
+									<string>this.request.FailedMessage || 'Error',
+									err.response.status,
+									err.response.headers['roblox-machine-id'] || 'None',
+									'None',
+								).fetch(),
 							]);
 						}
 						return resumeFunction([
@@ -103,6 +112,13 @@ export namespace ServiceClient {
 								StatusCode: 0,
 								StatusMessage: 'ConnectionError',
 							},
+							new ServiceClientExceptions.HttpException(
+								this.request.Url,
+								<string>this.request.FailedMessage || 'Error',
+								0,
+								'None',
+								'None',
+							).fetch(),
 						]);
 					});
 			});
