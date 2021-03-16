@@ -24,22 +24,14 @@
 
 	***
 */
-
 // Request example:
 /*
-
 # Request
 GET /v1/universes/:id/users/:id/ HTTP/1.1
-
-
-
-
 ###
  */
 /* begin codde from @frameworkless/bodyparser*/
 const { parse: parseFormadata } = require('querystring')
-
-
 const parseContent = rawType => {
   if (!rawType) return raw => raw
   else if (rawType.indexOf('json') > -1) return JSON.parse
@@ -47,7 +39,6 @@ const parseContent = rawType => {
   else if (rawType.indexOf('multipart') > -1) return raw => raw
   else return raw => raw
 }
-
 const getRequestBody = (request) => new Promise((resolve, reject) => {
   const contentType = request.headers['content-type']
   //const allowedFileTypes = fileTypes || ALLOWED_ATTACHMENT_MIMES
@@ -84,6 +75,8 @@ FASTFLAG('RequireGlobalHTTPS');
 function subBuffer(buf: Buffer, p1: number, p2: number) {
   return buf.slice(p1,p2)
 }
+import { AssetsService } from '../../../ApiServices/Roblox.Assets.Service/Roblox.Assets.Service/AssetsService';
+
 export default {
 	method: 'All',
 	func: async (request: Request, response: Response): Promise<Response<unknown> | void> => {
@@ -123,17 +116,16 @@ export default {
            // for (const key in keys) {
            //    parsingString += dataa[key].toString()
          // }
-            if (fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/tmp/")) {
+          /*  if (fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/tmp/")) {
                 fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory +"/Manifest/tmp/asset", (dataa as Buffer))
             }
             let e = fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory +"/Manifest/tmp/asset")
-            let parsingString=e.toString('ascii') // this is legit nonsense. 
-
+            */
+            let parsingString=(dataa as Buffer).toString('ascii') // this is legit nonsense. 
             let poss = parsingString.indexOf("Content-Type")
             let poss1 = parsingString.indexOf("\n", poss)+2
             FASTLOG1(FLog['dmp'],poss.toString(),"")
             FASTLOG1(FLog['dmp'],poss1.toString(),"")
-
             //let bnd11 = parsingString.indexOf(sub)+sub.length
             let bnd22 = parsingString.lastIndexOf(sub)
             FASTLOG1(FLog['dmp'],bnd22.toString(),"")
@@ -142,22 +134,12 @@ export default {
             let eeee = (dataa as Buffer).length
             FASTLOG1(FLog['dmp'],sub.length.toString(),"")
             FASTLOG1(FLog['dmp'],eeee.toString(),"")
-            // FIIIX THE ENDING THINGY!!!!!!!!!!!!!!!!!!!!!!!!
-
-            //eeee -= 10;
-            //eeee -= sub.length;
-
-
-
             //datToUpload = subBuffer(dataa as Buffer, poss1+1, eeee) // totally reliable!
-
             //let fc = (parsingString.toString()).lastIndexOf(sub)
             datToUpload = subBuffer(dataa as Buffer, poss1+1, bnd22-4)
             //datToUpload = parsingString.substring(poss1+1, bnd22-4) // i hope this wrks. :(
             FASTLOG1(FLog['dmp'],poss1.toString(), "")
-
             FASTLOG1(FLog['dmp'],eeee.toString(), "")
-            
             /*return response.status(400).send({
                 errors: [
                     {
@@ -189,81 +171,34 @@ export default {
         if (isNaN(uId)) {
             uId = assetJSON.length + 1;
         } 
-        let name = "";
-        let description = "";
-        let typeID = 0;
-        let forsale = true;
+        let props = {}
+        
         if ((request.query as any).name == null) {
-            name = "Asset"
+            props["Name"] = "Asset"
         } else {
-            name = (request.query as any).name
+            props["Name"] = (request.query as any).name
         }
         if ((request.query as any).description == null) {
-            description = "Asset"
+            props["Description"] = "Asset"
         } else {
-            description = (request.query as any).description
+            props["Description"] = (request.query as any).description
         }
         if ((request.query as any).type == null) {
-            typeID = 10
+            props["AssetType"] = 10
         } else {
             if (isNaN(AssetTypeJSONs[(request.query as any).type])) {
                 return response.status(400).send();
             } else {
-                typeID =AssetTypeJSONs[(request.query as any).type]
+                props["AssetType"] =AssetTypeJSONs[(request.query as any).type]
             }
         }
         if ((request.query as any).ispublic == null) {
-            forsale=true
+            props["IsForSale"]=true
         } else {
-            forsale = (request.query as any).ispublic
+            props["IsForSale"] = (request.query as any).ispublic
         }
-        if (assetJSON[uId] != null) {
-            let mdhash = crypto.MD5(dat.toString()).toString()
-            if (!fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + mdhash)) {
-                let str = fs.createWriteStream(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + mdhash + ".rbxl")
-                str.write(dat)
-            }
-            //let assetAVs = assetJSON[uId]['AssetVersions']
-            let totalAVs = JSON.parse(fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/AVS.json",{encoding: 'utf-8'}))
-            let A = totalAVs.length;
-            if (isNaN(A)) {
-                A = 0
-            }
-            totalAVs[A]=mdhash
-            assetJSON[uId]['AssetVersions'][A] = A
-            fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/Asset.json", JSON.stringify(assetJSON))
-            fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory +"/InternalCDN/AVS.json", JSON.stringify(totalAVs))
-            return response.status(200).send()
-        } else {
-            uId = assetJSON.length;
-            assetJSON[uId] = {}
-            assetJSON[uId]["AssetId"]=uId;
-            assetJSON[uId]["Name"]=name;
-            assetJSON[uId]["Description"]=description;
-            assetJSON[uId]["IsForSale"]=forsale;
-            assetJSON[uId]["AssetType"]=typeID;
-            let mdhash = crypto.MD5(dat.toString()).toString()
-            if (!fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + mdhash)) {
-                let str = fs.createWriteStream(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + mdhash + ".rbxl")
-                str.write(dat)
-            }
-            assetJSON[uId]["AssetVersions"]=[]
-
-           // let assetAVs = assetJSON[uId]['AssetVersions']
-            
-            let totalAVs = JSON.parse(fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/AVS.json", {encoding: 'utf-8'}))
-            let A = totalAVs.length + 1;
-            if (isNaN(A)) {
-                A = 0
-            }
-            totalAVs[A]=mdhash
-            FASTLOG1(FLog['dmp'], "asset uploaded", "")
-            assetJSON[uId]['AssetVersions'][A.toString()] = mdhash
-            fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/Asset.json", JSON.stringify(assetJSON))
-            fs.writeFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/AVS.json", JSON.stringify(totalAVs))
-            return response.status(200).send()
-        }
-
+        AssetsService.uploadAsset(dat, uId, props["AssetType"], props, 1111)// 1111 is temporary ID.
+        return response.status(200).send()
         
         
 	},

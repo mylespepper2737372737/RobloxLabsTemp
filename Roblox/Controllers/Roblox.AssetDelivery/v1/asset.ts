@@ -41,9 +41,9 @@ export default {
 		if (!isNaN(parseInt(_req.query.id as any))) {
 			if (mainassets[parseInt((_req.query.id as any))-1] != null) {
 				let aset = mainassets[parseInt(_req.query.id as any)-1]
-				//let massetvers = JSON.parse(fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/AVS.json", {encoding: 'utf-8'}))
+				let massetvers = JSON.parse(fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/InternalCDN/AVS.json", {encoding: 'utf-8'}))
 				let av = aset["AssetVersions"][aset["AssetVersions"].length-1]
-				let hash = av // TODO: Relink assetversionids, later.
+				let hash = massetvers[av] // TODO: Relink assetversionids, later. Relinked. Will wipe DB.
 				if (fs.existsSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + hash)) {
 					const datStream = fs.createReadStream(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + "/Manifest/assets/" + hash)
 					datStream.pipe(res)
