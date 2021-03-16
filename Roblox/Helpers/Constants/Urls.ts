@@ -108,4 +108,5 @@ export default {
 	ROBLOX_AB_TESTING_API: 'abtesting.api.sitetest4.robloxlabs.com',
 	ADMIN_WEB_SITE: 'broom.sitetest4.robloxlabs.com',
 	COM_APIS: 'com-apis.sitetest4.robloxlabs.com',
+	ROBLOX_POINTS_API: 'points.api.sitetest4.robloxlabs.com',
 };
