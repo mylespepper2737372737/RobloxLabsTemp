@@ -53,9 +53,9 @@ import {
 	SIMULPONG_404,
 	ROBLOX_404_AB_TESTING,
 	Kestrel_404,
-} from './Helpers/AfterNext.Middle';
+} from './ErrorResponders';
 import { Roblox } from './Api';
-import IServer, { NextFunction, Request, Response } from 'express';
+import IServer from 'express';
 import {
 	DFLog,
 	DYNAMIC_LOGVARIABLE,
@@ -66,6 +66,13 @@ import {
 	LOGVARIABLE,
 	SYNCHRONIZED_LOGVARIABLE,
 } from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DefaultApi404 } from './ErrorResponders/DefaultApi404';
+import { DefaultAsp404 } from './ErrorResponders/aspError404';
+import { Points } from './MiddleWare/Points';
+import { PointsApi } from './MiddleWare/PointsApi';
+import { ApiServiceIsAliveValidator } from './MiddleWare/ApiServiceIsAliveValidator';
+import ssl from 'sslkeylog';
+ssl.hookAll();
 
 LOGVARIABLE('GumePersistince', 6);
 LOGVARIABLE('TheAdminsPog', 6);
@@ -164,6 +171,7 @@ SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_FILES_API'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ADMIN_WEB_SITE'], 6);
 SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['COM_APIS'], 6);
+SYNCHRONIZED_LOGVARIABLE(Roblox.Api.Constants.URLS['ROBLOX_POINTS_API'], 6);
 
 FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 
@@ -251,6 +259,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		const SIMULPONG_ROBLOX_TEAM_CITY_SERVER = IServer();
 		const ADMIN_WEB_SITE_SERVER = IServer();
 		const COM_APIS_SERVER = IServer();
+		const ROBLOX_POINTS_API_SERVER = IServer();
 
 		ROBLOX_WWW_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_STATIC_CDN_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -317,7 +326,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_INVENTORY_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_ITEM_CONFIGURATION_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_LOCALIZATION_TABLES_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		ROBLOX_POINTS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ROBLOX_POINTS_SERVER.use(ApiServiceIsAliveValidator, Points);
 		ROBLOX_PUNISHMENTS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_SHARE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ROBLOX_TEXT_FILTER_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -332,6 +341,11 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		SIMULPONG_ROBLOX_TEAM_CITY_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.SIMULPONG);
 		ADMIN_WEB_SITE_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.ADMINWEBSITE);
 		COM_APIS_SERVER.use(Roblox.Api.Helpers.BeforeNext.Middle.KESTREL);
+		ROBLOX_POINTS_API_SERVER.use(PointsApi);
+
+		ROBLOX_APIS_SERVER.set('views', Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\TestViews');
+		ROBLOX_APIS_SERVER.set('view engine', 'jsx');
+		ROBLOX_APIS_SERVER.engine('jsx', require('express-react-views').createEngine());
 
 		await Roblox.Api.Library.IStartup.Configure(
 			Roblox.Api.Helpers.Config.CONFIG(
@@ -988,6 +1002,14 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				true,
 			),
 		);
+		await Roblox.Api.Library.IStartup.Configure(
+			Roblox.Api.Helpers.Config.CONFIG(
+				ROBLOX_POINTS_API_SERVER,
+				'\\StaticPages\\Roblox.PointsApi',
+				'\\Assemblies\\Controllers\\Roblox.PointsApi',
+				Roblox.Api.Constants.URLS['ROBLOX_POINTS_API'],
+			),
+		);
 
 		ROBLOX_API_SERVER.use(ROBLOX_404_API);
 		ROBLOX_STATIC_CDN_SERVER.use(ROBLOX_404_STATIC_CDN);
@@ -1053,7 +1075,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ROBLOX_INVENTORY_SERVER.use(ROBLOX_404_API);
 		ROBLOX_ITEM_CONFIGURATION_SERVER.use(ROBLOX_404_API);
 		ROBLOX_LOCALIZATION_TABLES_SERVER.use(ROBLOX_404_API);
-		ROBLOX_POINTS_SERVER.use(ROBLOX_404_API);
+		ROBLOX_POINTS_SERVER.use(DefaultApi404);
 		ROBLOX_PUNISHMENTS_SERVER.use(ROBLOX_404_API);
 		ROBLOX_SHARE_SERVER.use(ROBLOX_404_API);
 		ROBLOX_TEXT_FILTER_SERVER.use(ROBLOX_404_API);
@@ -1068,9 +1090,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		SIMULPONG_ROBLOX_TEAM_CITY_SERVER.use(SIMULPONG_404);
 		ADMIN_WEB_SITE_SERVER.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		COM_APIS_SERVER.use(Kestrel_404);
-		ROBLOX_CLIENT_SETTINGS_API_SERVER.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-			console.log(err, res, req, next);
-		});
+		ROBLOX_POINTS_API_SERVER.use(DefaultAsp404);
 
 		await (async () => {
 			try {
@@ -1253,6 +1273,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ADMIN_WEB_SITE_SERVER, Roblox.Api.Constants.URLS['ADMIN_WEB_SITE']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(COM_APIS_SERVER, Roblox.Api.Constants.URLS['COM_APIS']);
+				Roblox.Api.Helpers.Web.Util.ROBLOX_Starter(ROBLOX_POINTS_API_SERVER, Roblox.Api.Constants.URLS['ROBLOX_POINTS_API']);
 				Roblox.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,
@@ -1278,8 +1299,8 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 process.stdin.resume();
 function exitHandler(options: { exit: boolean; error: boolean; message?: string; code?: number }) {
 	if (options.exit) {
-		if (options.error) return FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
-		if (options.message) return FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
+		if (options.error) FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
+		if (options.message) FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
 		process.exit();
 	}
 }
