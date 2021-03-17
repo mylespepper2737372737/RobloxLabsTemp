@@ -21,14 +21,17 @@
 			"CanCSRFV2AdminKeyBeUsed": false,
 			"IsAuthV2Enabled": false,
 			"IsWWWAuthV1Enabled": true,
-			"WWWAuthV1AllowAllMethods": false,
+			"WWWAuthV1AllowAllMethods": true,
 			"IsClientSettingsAPIEnabled": true,
 			"IsWWWAuthSignupPubliclyListed": true,
 			"DataStoreV2MaxItemsToReturnShould403OnBadNumber": false,
 			"IsLoginCodeButtonDisplayed": true,
 			"IsCodeValidationDisplayed": true,
-			"DoesTheWorldGetToViewTheSite": true,
-			"CanAdminsBypassTheSystem": true
+			"DoesTheWorldGetToViewTheSite": false,
+			"CanAdminsBypassTheSystem": true,
+			"NoMaintenance": false,
+			"Debug": true,
+			"PointsServiceEnabled": true
 		},
 		"SFFlag": {},
 		"FInt": {
@@ -1387,7 +1390,7 @@
 			"PlaceFilter_SoundChannelUseV2Assemblies": "True;359173292;9528010;292439477;1818",
 			"PlaceFilter_UseNewSetFMOD3D": "True;292439477;359173292;270607122;9528010;379011764;1818",
 			"PlaceFilter_DataStoresV2Enabled": "True;0;1818",
-			"PlaceFilyer_DataStoresV2GetDataStoresAdminResponse": "True;0;1818"
+			"PlaceFilter_DataStoresV2GetDataStoresAdminResponse": "True;0;1818"
 		},
 		"DFString": {
 			"RobloxAnalyticsURL": "http://ecsv2.sitetest4.robloxlabs.com/",
