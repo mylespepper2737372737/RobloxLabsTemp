@@ -2,7 +2,7 @@ import { _dirname } from '../../Constants/Directories';
 import filestream from 'fs';
 
 export const GetRootPlaceIdFromUniverseId = (universeId: number): [boolean, number | null] => {
-	const universePath = _dirname + '\\Manifest\\universes\\' + universeId;
+	const universePath = _dirname + '\\DataBase\\universes\\' + universeId;
 	if (!filestream.existsSync(universePath) || !filestream.statSync(universePath).isDirectory()) {
 		return [false, null];
 	}

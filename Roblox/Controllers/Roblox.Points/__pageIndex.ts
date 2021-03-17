@@ -26,7 +26,7 @@
 */
 
 import { Request, Response } from 'express';
-import { Roblox } from '../../Api';
+import { RobloxLegacy } from '../../Api';
 import { PointsClient } from '../../ApiClients/Roblox.Points.Client/Implementation/PointsClient';
 import { ICustomError } from '../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { Errors } from '../../Web/Util/Roblox.Web.Util/Errors';
@@ -47,7 +47,7 @@ export default {
 				return AuthToken.startsWith(' .ROBLOSECURITY') || AuthToken.startsWith('.ROBLOSECURITY');
 			});
 			if (cookie) cookie = cookie.split('=')[1];
-			if (!Roblox.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(cookie, req.ip, req.headers['x-csrf-token'], res, false))
+			if (!RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(cookie, req.ip, req.headers['x-csrf-token'], res, false))
 				return;
 		}
 		const [Success, StatusCode, StatusMessage, Url] = await PointsClient.CheckHealth(req.secure);

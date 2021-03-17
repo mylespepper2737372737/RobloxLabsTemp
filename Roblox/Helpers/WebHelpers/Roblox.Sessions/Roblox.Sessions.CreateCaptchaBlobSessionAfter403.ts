@@ -34,12 +34,12 @@ const FInt = ClientSettings.GetSettings(Group.FInt);
 
 export const CreateCaptchaBlobSessionAfter403 = (response: Response, captchaBLOB: string, ip: string) => {
 	const dataToRefer = { sub: ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) };
-	filestream.writeFileSync(_dirname + `\\Manifest\\sessions\\${captchaBLOB}.json`, JSON.stringify(dataToRefer), {
+	filestream.writeFileSync(_dirname + `\\DataBase\\sessions\\${captchaBLOB}.json`, JSON.stringify(dataToRefer), {
 		encoding: 'ascii',
 	});
 	setTimeout(() => {
 		try {
-			filestream.unlinkSync(_dirname + `\\Manifest\\sessions\\${captchaBLOB}.json`);
+			filestream.unlinkSync(_dirname + `\\DataBase\\sessions\\${captchaBLOB}.json`);
 		} catch {
 			console.warn('The session is already clear');
 		}

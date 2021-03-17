@@ -14,7 +14,7 @@ export const SetCaptchaSessionField = (
 ) => {
 	let session;
 	try {
-		session = JSON.parse(filestream.readFileSync(_dirname + `\\Manifest\\sessions\\${sessionId}.json`, { encoding: 'utf-8' }));
+		session = JSON.parse(filestream.readFileSync(_dirname + `\\DataBase\\sessions\\${sessionId}.json`, { encoding: 'utf-8' }));
 	} catch (e) {
 		return e;
 	}
@@ -42,7 +42,7 @@ export const SetCaptchaSessionField = (
 			}
 		}
 	}
-	return filestream.writeFileSync(_dirname + `\\Manifest\\sessions\\${sessionId}.json`, JSON.stringify(session, undefined, 4), {
+	return filestream.writeFileSync(_dirname + `\\DataBase\\sessions\\${sessionId}.json`, JSON.stringify(session, undefined, 4), {
 		encoding: 'utf-8',
 	});
 };

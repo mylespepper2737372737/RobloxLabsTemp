@@ -50,8 +50,8 @@ export const GetScopesForPersistentStore = (
 	isSorted: boolean = false,
 ): Promise<[boolean, ScopeType[] | null]> => {
 	return new Promise<[boolean, ScopeType[] | null]>(async (resumefunction) => {
-		const dir = _dirname + '\\Manifest\\persistence\\' + universeId + '\\stores\\' + name;
-		const dir1 = _dirname + '\\Manifest\\persistence\\' + universeId;
+		const dir = _dirname + '\\DataBase\\persistence\\' + universeId + '\\stores\\' + name;
+		const dir1 = _dirname + '\\DataBase\\persistence\\' + universeId;
 		if (!filestream.existsSync(dir1)) {
 			if (WriteUniverse(universeId)) return resumefunction([true, null]);
 			return resumefunction([false, null]);

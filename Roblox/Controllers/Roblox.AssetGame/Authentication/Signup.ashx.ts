@@ -40,16 +40,16 @@ Connection: close
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
-dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> | void => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
+		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		// const DFInt = ClientSettings.GetSettings(Group.DFInt);
 		// const Manifest = GetManifests();
 
@@ -70,7 +70,7 @@ export default {
 				message: `The requested resource does not support https method '${request.method}'.`,
 			});
 
-		const sessions = filestream.readdirSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Manifest\\sessions');
+		const sessions = filestream.readdirSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\DataBase\\sessions');
 
 		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
 
@@ -92,9 +92,9 @@ export default {
 				userfacingmessage: 'The provided credentials were invalid.',
 			});
 
-		const Sessions = Roblox.Api.Helpers.Helpers.DB.GetSessions();
+		const Sessions = RobloxLegacy.Api.Helpers.Helpers.DB.GetSessions();
 		if (DFFlag['IsCaptchaV2Enabled']) {
-			const __captchaSession = Roblox.Api.Helpers.Helpers.Sessions.CreateCaptchaSessionBlob(request.ip);
+			const __captchaSession = RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaSessionBlob(request.ip);
 			const cToken = request.body['captchaToken'];
 			if (typeof cToken === 'string') {
 				const cSession = cToken.split('|')[0];
@@ -110,26 +110,34 @@ export default {
 					if (isCaptchaSessionValid) {
 						const cAnswer = cToken.split('|')[1];
 						if (!Sessions.has(cSession))
-							return Roblox.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
+							return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
 								response,
 								__captchaSession,
 								request.ip,
 							);
 						if (Sessions.get(cSession).answer !== cAnswer)
-							return Roblox.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
+							return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
 								response,
 								__captchaSession,
 								request.ip,
 							);
-						Roblox.Api.Helpers.Helpers.Sessions.DeleteCaptchaSession(cSession);
+						RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCaptchaSession(cSession);
 					} else {
-						return Roblox.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+						return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
+							response,
+							__captchaSession,
+							request.ip,
+						);
 					}
 				} else {
-					return Roblox.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+					return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
+						response,
+						__captchaSession,
+						request.ip,
+					);
 				}
 			} else {
-				return Roblox.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+				return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 			}
 		}
 		return response.status(200).send({ success: true, message: 'Not Enabled', userfacingmessage: 'NE_AJ_JSX' });

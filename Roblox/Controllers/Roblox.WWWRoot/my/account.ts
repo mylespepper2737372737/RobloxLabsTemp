@@ -34,7 +34,14 @@ export default {
 	func: (req, res): void => {
 		a.get(`https://www.roblox.com/my/account`, { headers: { ...req.headers, host: 'www.roblox.com' } })
 			.then((re) => {
-				const newbody = re.data.split('roblox.com').join('sitetest4.robloxlabs.com');
+				const newbody = re.data
+					.split('roblox.com')
+					.join('sitetest4.robloxlabs.com')
+					.replace(
+						'<meta id="roblox-display-names" data-enabled="false"></meta>',
+						'<meta id="roblox-display-names" data-enabled="true"></meta>',
+					)
+					.replace('data-is-testing-site="false" />', 'data-is-testing-site="true" />');
 				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
 
 				return res.header(newheaders).send(newbody);

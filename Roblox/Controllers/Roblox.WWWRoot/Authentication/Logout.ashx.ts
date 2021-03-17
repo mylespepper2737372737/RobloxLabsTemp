@@ -36,20 +36,20 @@ Cookie: AuthToken=AUTH_ID
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
-dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
 // These flags are 'Launch-Time flags'
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
 		// Anything up here is dynamic,
 		// these flags are 'Run-Time flags'
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
-		const Manifest = Roblox.Api.Helpers.Helpers.DB.GetManifests();
+		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
+		const Manifest = RobloxLegacy.Api.Helpers.Helpers.DB.GetManifests();
 
 		if (!DFFlag['IsWWWAuthV1Enabled'])
 			return response.status(503).send({
@@ -93,8 +93,8 @@ export default {
 				userfacingmessage: 'The current credentials are invalid, please manually remove them and log in again.',
 			});
 
-		Roblox.Api.Helpers.Helpers.Sessions.DeleteCsrfSession(request.cookies['AuthToken']);
-		Roblox.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
+		RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCsrfSession(request.cookies['AuthToken']);
+		RobloxLegacy.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
 
 		response.shouldKeepAlive = false;
 		return response

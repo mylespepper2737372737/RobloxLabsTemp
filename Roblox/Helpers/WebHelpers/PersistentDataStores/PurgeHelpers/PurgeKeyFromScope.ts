@@ -11,7 +11,7 @@ export const PurgeKeyFromScope = (
 	isSorted: boolean = false,
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const dir = _dirname + '\\Manifest\\persistence\\' + universeId;
+		const dir = _dirname + '\\DataBase\\persistence\\' + universeId;
 		if (!filestream.existsSync(dir)) {
 			WriteUniverse(universeId);
 			return resumefunction(false);

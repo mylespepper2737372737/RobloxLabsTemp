@@ -27,12 +27,12 @@
 
 import crypto from 'crypto';
 import fs from 'fs';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
 export default {
 	method: 'all',
 	func: (_req: { query: { [x: string]: any } }, res: { send: (arg0: string) => void }): void => {
-		const DFString = Roblox.Api.Helpers.Util.ClientSettings.GetDFStrings();
+		const DFString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFStrings();
 		const txt = {
 			ClientPort: 0,
 			MachineAddress: '127.0.0.1',
@@ -83,7 +83,7 @@ export default {
 		sign.write(dick);
 		sign.end();
 
-		const key = fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem');
+		const key = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem');
 		const sig = sign.sign(key, 'base64');
 
 		const out = `--rbxsig%${sig}%${dick}`;

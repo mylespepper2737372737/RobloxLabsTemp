@@ -1,8 +1,8 @@
 /*
-	FileName: ti.ts
+	FileName: images.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: ti 404 middleware
+	Description: images 404 middleware
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -26,9 +26,9 @@
 */
 
 import crypto from 'crypto';
-import { ClientSettings, Group } from '../WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
+import { FASTSTRINGVARIABLE, FString } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
-const FString = ClientSettings.GetSettings(Group.FString);
+FASTSTRINGVARIABLE('CDNAdminAuthCompletedStatusText', 'Verified');
 
 export default (
 	req: { query: { apiKey: string }; method: string; url: string },
@@ -53,7 +53,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://ti.sitetest4.robloxlabs.com' + escape(req.url)
+					'https://images.sitetest4.robloxlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))
@@ -65,7 +65,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://ti.sitetest4.robloxlabs.com' + escape(req.url)
+					'https://images.sitetest4.robloxlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))

@@ -51,9 +51,9 @@ import {
 	FASTLOGS,
 	FASTLOG3,
 } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
-dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -67,7 +67,7 @@ LOGGROUP('WWWAuthV1');
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
-		const Manifest = Roblox.Api.Helpers.Helpers.DB.GetManifests();
+		const Manifest = RobloxLegacy.Api.Helpers.Helpers.DB.GetManifests();
 
 		if (!DFFlag('IsWWWAuthV1Enabled')) {
 			FASTLOG(FLog['WWWAuthV1'], '[FLog::WWWAuthV1] The service is currently disabled.');
@@ -120,11 +120,11 @@ export default {
 			});
 		}
 
-		Roblox.Api.Helpers.Helpers.Sessions.DeleteCsrfSession(request.cookies['AuthToken']);
-		Roblox.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', [], false, false, 0, false, false);
+		RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCsrfSession(request.cookies['AuthToken']);
+		RobloxLegacy.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', [], false, false, 0, false, false);
 		const AuthToken = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
-		Roblox.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', AuthToken, true, false, 0, false, false);
-		Roblox.Api.Helpers.Helpers.Sessions.CreateCsrfSessionFile(AuthToken);
+		RobloxLegacy.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', AuthToken, true, false, 0, false, false);
+		RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCsrfSessionFile(AuthToken);
 
 		response.shouldKeepAlive = false;
 		FASTLOG3(

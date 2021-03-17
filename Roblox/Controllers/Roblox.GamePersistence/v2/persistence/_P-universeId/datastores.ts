@@ -25,7 +25,7 @@
 	***
 */
 import { Request, Response } from 'express-serve-static-core';
-import { Roblox } from '../../../../../Api';
+import { RobloxLegacy } from '../../../../../Api';
 import {
 	DFFlag,
 	DFInt,
@@ -165,7 +165,7 @@ export default {
 				});
 			}
 
-			if (!Roblox.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'Client')) {
+			if (!RobloxLegacy.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'Client')) {
 				FASTLOG1(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
 				return response.status(403).send({
 					errors: [

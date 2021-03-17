@@ -3,8 +3,8 @@ import filestream from 'fs';
 
 export const PurgeUniverse = (universeId: number): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const root = _dirname + '\\Manifest\\persistence\\' + universeId;
-		const dir = _dirname + '\\Manifest\\persistence';
+		const root = _dirname + '\\DataBase\\persistence\\' + universeId;
+		const dir = _dirname + '\\DataBase\\persistence';
 		if (!filestream.existsSync(root)) {
 			return resumefunction(true);
 		}

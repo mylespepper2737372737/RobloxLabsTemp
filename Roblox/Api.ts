@@ -91,7 +91,7 @@ import {
 	ROBLOX_404_STATIC_CDN,
 	DEPRECATED_404_TEMPORARY_IMAGES,
 	ROBLOX_404_WWW,
-} from './Helpers/AfterNext.Middle';
+} from './ErrorResponders';
 import { GlobalMiddleware } from './Helpers/BeforeNext.Middle/SiteTest4.Global.Middleware';
 import ConfigImport from './Helpers/Config/MetaData';
 import { SimulPingMiddleware } from './Helpers/BeforeNext.Middle/SimulPingMiddleWare';
@@ -100,7 +100,7 @@ import { GamePersistenceMiddleware } from './Helpers/BeforeNext.Middle/GamePersi
 import { AdminWebsiteMiddleWare } from './Helpers/BeforeNext.Middle/AdminWebsiteMiddleWare';
 import { Kestrel } from './Helpers/BeforeNext.Middle/Kestrel';
 
-export namespace Roblox {
+export namespace RobloxLegacy {
 	export namespace Api {
 		export namespace Library {
 			export const IStartup = IStartupImport;

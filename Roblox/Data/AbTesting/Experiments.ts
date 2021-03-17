@@ -1,4 +1,4 @@
-import { Roblox } from '../../Api';
+import { RobloxLegacy } from '../../Api';
 import { IEnrollment } from '../../Platform/AbTesting/IEnrollment';
 import { IEnrollmentResponse } from '../../Platform/AbTesting/IEnrollmentResponse';
 import { ExperimentStatusEnum } from '../../Platform/AbTesting/ExperimentStatusEnum';
@@ -12,9 +12,9 @@ export const Setting = {
 
 export namespace Experiments {
 	function InternalInitializeExperimentsFromManifest() {
-		UserExperiments = Roblox.Api.Helpers.Util.ClientSettings.GetUserExperiments();
-		BrowserTrackerExperiments = Roblox.Api.Helpers.Util.ClientSettings.GetBrowserTrackerExperiments();
-		SharedExperiments = Roblox.Api.Helpers.Util.ClientSettings.GetSharedExperiments();
+		UserExperiments = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetUserExperiments();
+		BrowserTrackerExperiments = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetBrowserTrackerExperiments();
+		SharedExperiments = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetSharedExperiments();
 		Setting.done = true;
 		return;
 	}

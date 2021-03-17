@@ -39,13 +39,13 @@ type UniverseType = {
 };
 
 export const GetUniverseFromPlaceId = (placeId: number): [boolean, UniverseType | null] => {
-	const placePath = _dirname + '\\Manifest\\places\\' + placeId;
+	const placePath = _dirname + '\\DataBase\\places\\' + placeId;
 	if (!filestream.statSync(placePath).isDirectory()) {
 		return [false, null];
 	}
 	const place = JSON.parse(filestream.readFileSync(placePath + '\\PLACE.json', 'utf-8'));
 	if (place instanceof Object && place['universeId'] !== undefined) {
-		const universePath = _dirname + '\\Manifest\\universes\\' + place['universeId'];
+		const universePath = _dirname + '\\DataBase\\universes\\' + place['universeId'];
 		if (!filestream.statSync(universePath).isDirectory()) {
 			return [false, null];
 		}

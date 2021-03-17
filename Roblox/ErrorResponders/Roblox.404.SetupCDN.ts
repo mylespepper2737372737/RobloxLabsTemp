@@ -26,9 +26,9 @@
 */
 
 import crypto from 'crypto';
-import { ClientSettings, Group } from '../WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
+import { FASTSTRINGVARIABLE, FString } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
-const FString = ClientSettings.GetSettings(Group.FString);
+FASTSTRINGVARIABLE('CDNAdminAuthCompletedStatusText', 'Verified');
 
 export default (
 	req: { query: { apiKey: string }; method: string; url: string },

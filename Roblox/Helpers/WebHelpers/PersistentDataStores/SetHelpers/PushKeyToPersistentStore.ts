@@ -27,7 +27,7 @@ export const PushKeyToPersistentStore = (
 	attributes = [],
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const path = _dirname + '\\Manifest\\persistence\\' + universeId;
+		const path = _dirname + '\\DataBase\\persistence\\' + universeId;
 		const time = new Date(Date.now()).toISOString();
 		if (scope.length === 0) scope = '_';
 		if (!filestream.existsSync(path)) await WriteUniverse(universeId);

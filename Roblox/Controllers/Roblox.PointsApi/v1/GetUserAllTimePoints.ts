@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 import { PointsService } from '../../../ApiServices/Roblox.Points.Service/Implementation/PointsService';
 import { ApiKeys } from '../../../Data/Keys/Api';
 import { FASTFLAG, FFlag } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
@@ -16,7 +16,7 @@ export default {
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
 			return response
 				.status(404)
-				.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\FilesApi\\Roblox.404.html');
+				.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\FilesApi\\Roblox.404.html');
 
 		if (request.method !== 'POST')
 			return response

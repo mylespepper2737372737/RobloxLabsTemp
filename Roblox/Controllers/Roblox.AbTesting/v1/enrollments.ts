@@ -60,23 +60,20 @@ origin: Roblox.Tests.Origins.SecureAbTestingOrigin
 	}
 ]
 
- */
+*/
 
 // Notes:
 // If a query to Roblox.Data.AbTesting.Experiments.BrowserTrackerExperiments and Roblox.Data.AbTesting.Experiments.UserExperiments returns with no experiment,
 // this doesn't mean that the experiment doesn't exist, it could be in Roblox.Data.AbTesting.Experiments.SharedExperiments.
 
 import { Request, Response } from 'express-serve-static-core';
-import dotenv from 'dotenv';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 import { SubjectTypeEnum } from '../../../Platform/AbTesting/SubjectTypeEnum';
 import { IUser } from '../../../Platform/Membership/IUser';
 import { IBrowserTracker } from '../../../Platform/Membership/IBrowserTracker';
 import { AbTestingRequestProcessor } from '../../../Web/AbTesting/Roblox.Web.AbTesting/AbTestingRequestProcessor';
 import { UserModelBuildersClubMembershipTypeEnum } from '../../../Platform/Membership/UserModelBuildersClubMembershipTypeEnum';
 import { FASTFLAG, FFlag } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -133,7 +130,7 @@ export default {
 		});
 		if (cookie) cookie = cookie.split('=')[1];
 		if (
-			!Roblox.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
+			!RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
 				cookie,
 				request.ip,
 				request.headers['x-csrf-token'],
@@ -164,9 +161,9 @@ export default {
 
 					if (element.SubjectType === SubjectTypeEnum.User || element.SubjectType.toString().toLowerCase() === 'user') {
 						user = <IUser>{};
-						user.UserId = parseInt(element.SubjectTargetId.toString());
+						user.Id = parseInt(element.SubjectTargetId.toString());
 						user.SecurityToken = cookie;
-						user.UserName = '';
+						user.Name = '';
 						user.MembershipType = UserModelBuildersClubMembershipTypeEnum.None;
 						experiments.push({ Name: element.ExperimentName, Type: SubjectTypeEnum.User });
 					} else if (

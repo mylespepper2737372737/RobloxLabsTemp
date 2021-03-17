@@ -31,12 +31,12 @@ import { _dirname } from '../../Constants/Directories';
 export const ClearCachedSessions = () => {
 	return new Promise<void>((resolve, reject) => {
 		try {
-			fs.rmdirSync(_dirname + '\\Manifest\\sessions', { recursive: true });
-			fs.mkdirSync(_dirname + '\\Manifest\\sessions');
-			fs.rmdirSync(_dirname + '\\Manifest\\csrf', { recursive: true });
-			fs.mkdirSync(_dirname + '\\Manifest\\csrf');
-			fs.rmdirSync(_dirname + '\\Manifest\\pages', { recursive: true });
-			fs.mkdirSync(_dirname + '\\Manifest\\pages');
+			fs.rmdirSync(_dirname + '\\DataBase\\sessions', { recursive: true });
+			fs.mkdirSync(_dirname + '\\DataBase\\sessions');
+			fs.rmdirSync(_dirname + '\\DataBase\\csrf', { recursive: true });
+			fs.mkdirSync(_dirname + '\\DataBase\\csrf');
+			fs.rmdirSync(_dirname + '\\DataBase\\pages', { recursive: true });
+			fs.mkdirSync(_dirname + '\\DataBase\\pages');
 			resolve();
 		} catch (err: unknown) {
 			reject(err);

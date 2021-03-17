@@ -25,12 +25,12 @@
 	***
 */
 
-import { Roblox } from '../../../../Api';
+import { RobloxLegacy } from '../../../../Api';
 
 export default {
 	method: 'all',
 	func: (_req: unknown, res: { send: (arg0: { [k: string]: unknown }) => void }): void => {
-		const s = Roblox.Api.Helpers.Util.ClientSettings.GetAllSettings('Client');
+		const s = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings('Client');
 		const settings = new Map<string, Object>(Object.entries(s));
 		const obj: { [k: string]: unknown } = {};
 		settings.forEach((v, k) => {

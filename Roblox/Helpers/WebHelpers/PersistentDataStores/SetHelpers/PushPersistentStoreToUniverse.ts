@@ -21,7 +21,7 @@ export const PushPersistentStoreToUniverse = (
 	isSorted: boolean = false,
 ): Promise<boolean> => {
 	return new Promise<boolean>((resumefunction) => {
-		const path = _dirname + '\\Manifest\\persistence\\' + universeId;
+		const path = _dirname + '\\DataBase\\persistence\\' + universeId;
 		let time = new Date(Date.now()).toISOString();
 		if (scope.length === 0) scope = '_';
 		if (!filestream.existsSync(path)) return resumefunction(false);

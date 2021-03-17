@@ -25,7 +25,7 @@
 	***
 */
 
-import { Roblox } from '../../Api';
+import { RobloxLegacy } from '../../Api';
 
 export default {
 	method: 'all',
@@ -34,23 +34,25 @@ export default {
 			case 400:
 				return res
 					.status(400)
-					.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.400.html');
+					.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.400.html');
 			case 403:
 				return res
 					.status(403)
-					.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.403.html');
+					.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.403.html');
 			case 404:
 				return res
 					.status(404)
-					.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.404.html');
+					.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.404.html');
 			case 500:
 				return res
 					.status(500)
-					.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.500.html');
+					.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.500.html');
 			default:
 				return res
 					.status(500)
-					.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.DefaultError.html');
+					.sendFile(
+						RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.DefaultError.html',
+					);
 		}
 	},
 };

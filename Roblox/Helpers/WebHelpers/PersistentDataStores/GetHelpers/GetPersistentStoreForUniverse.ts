@@ -53,7 +53,7 @@ export const GetPersistentStoreForUniverse = (
 	isSorted: boolean = false,
 ): Promise<[boolean, StoreType | null]> => {
 	return new Promise<[boolean, StoreType | null]>((resumefunction) => {
-		const dir = _dirname + '\\Manifest\\persistence\\' + universeId;
+		const dir = _dirname + '\\DataBase\\persistence\\' + universeId;
 		if (!filestream.existsSync(dir)) {
 			if (!WriteUniverse(universeId)) return resumefunction([false, null]);
 		}

@@ -28,8 +28,8 @@
 
 import filestream from 'fs';
 import crypto from 'crypto';
-import { Roblox } from '../../../../Api';
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+import { RobloxLegacy } from '../../../../Api';
+const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 /**
  * @deprecated
  */
@@ -58,7 +58,7 @@ export default {
 			};
 		},
 	) => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
+		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
 		if (!DFFlag['IsAuthV2Enabled'])
 			return response.status(503).send({
@@ -75,7 +75,7 @@ export default {
 				userfacingmessage: 'Something went wrong.',
 			});
 		const data = JSON.parse(
-			filestream.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
+			filestream.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
 		);
 		if (
 			JSON.stringify(request.body) === '{}' ||
@@ -132,7 +132,7 @@ export default {
 
 		user['sessionId'] = AuthToken;
 		filestream.writeFile(
-			Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json',
+			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json',
 			JSON.stringify(data, undefined, 4),
 			() => {
 				response

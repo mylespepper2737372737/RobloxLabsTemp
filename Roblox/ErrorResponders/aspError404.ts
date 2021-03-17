@@ -26,10 +26,10 @@
 */
 
 import { Request, Response } from 'express';
-import { Roblox } from '../Api';
+import { RobloxLegacy } from '../Api';
 
 export const DefaultAsp404 = (req: Request, res: Response) => {
 	res.status(req.method === 'OPTIONS' ? 200 : 404).sendFile(
-		Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\Roblox.404.html',
+		RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\Roblox.404.html',
 	);
 };

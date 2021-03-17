@@ -74,7 +74,7 @@ export const CreateOrGetXsrfSession = (
 
 	if (ip) ip = ip.split('.').join('-');
 
-	const csrfSessions = filestream.readdirSync(_dirname + '\\Manifest\\csrf');
+	const csrfSessions = filestream.readdirSync(_dirname + '\\DataBase\\csrf');
 
 	let hasFoundSession = false;
 	let isBasedOnIpAndAuthToken = DFFlag['IsCSRFV2BasedOnIpAddressAndAuthenticationId'];

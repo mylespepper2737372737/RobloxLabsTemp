@@ -17,13 +17,13 @@ type PlaceType = {
 };
 
 export const GetRootPlaceFromUniverseId = (universeId: number): [boolean, PlaceType | null] => {
-	const universePath = _dirname + '\\Manifest\\universes\\' + universeId;
+	const universePath = _dirname + '\\DataBase\\universes\\' + universeId;
 	if (!filestream.statSync(universePath).isDirectory()) {
 		return [false, null];
 	}
 	const universe = JSON.parse(filestream.readFileSync(universePath + '\\UNIVERSE.json', 'utf-8'));
 	if (universe instanceof Object && universe['rootPlaceId'] !== undefined) {
-		const placePath = _dirname + '\\Manifest\\places\\' + universe['rootPlaceId'];
+		const placePath = _dirname + '\\DataBase\\places\\' + universe['rootPlaceId'];
 		if (!filestream.statSync(placePath).isDirectory()) {
 			return [false, null];
 		}

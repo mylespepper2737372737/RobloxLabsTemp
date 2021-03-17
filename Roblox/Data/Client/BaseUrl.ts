@@ -1,11 +1,11 @@
-import { Roblox } from '../../Api';
+import { RobloxLegacy } from '../../Api';
 
 export namespace BaseURL {
 	export function GetBaseURL() {
-		return 'http://' + Roblox.Api.Constants.URLS.ROBLOX_WWW;
+		return 'http://' + RobloxLegacy.Api.Constants.URLS.ROBLOX_WWW;
 	}
 	export function GetSecureBaseURL() {
-		return 'https://' + Roblox.Api.Constants.URLS.ROBLOX_WWW;
+		return 'https://' + RobloxLegacy.Api.Constants.URLS.ROBLOX_WWW;
 	}
 	export function ConstructServicePath(subDomain: string, servicePath: string = '/', secure: boolean = true): string {
 		return `${(secure ? GetSecureBaseURL() : GetBaseURL()).replace(/www/, subDomain)}${

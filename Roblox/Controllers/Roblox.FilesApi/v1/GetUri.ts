@@ -40,11 +40,11 @@ content-type: application/json
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
-dotenv.config({ path: Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 
 export default {
 	method: 'All',
@@ -53,7 +53,7 @@ export default {
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
 			return response
 				.status(404)
-				.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\FilesApi\\Roblox.404.html');
+				.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\FilesApi\\Roblox.404.html');
 
 		if (request.method !== 'POST')
 			return response

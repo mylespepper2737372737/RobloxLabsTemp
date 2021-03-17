@@ -25,12 +25,12 @@
 	***
 */
 
-import { Roblox } from '../../../../../Api';
+import { RobloxLegacy } from '../../../../../Api';
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
+		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		return res.send({
 			IsLoginCodeButtonDisplayed: DFFlag['IsLoginCodeButtonDisplayed'],
 			IsCodeValidationDisplayed: DFFlag['IsCodeValidationDisplayed'],

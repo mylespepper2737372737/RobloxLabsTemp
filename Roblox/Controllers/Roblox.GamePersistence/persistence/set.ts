@@ -26,7 +26,7 @@
 */
 
 import { Request, Response } from 'express-serve-static-core';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
 export default {
 	method: 'all',
@@ -47,7 +47,7 @@ export default {
 				});
 		}
 		const placeId = parseInt(!usequery ? <string>req.headers['roblox-place-id'] : <string>req.query['placeId']);
-		const [success, universeId] = Roblox.Api.Helpers.Helpers.Places.GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
+		const [success, universeId] = RobloxLegacy.Api.Helpers.Helpers.Places.GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
 		if (!success)
 			return res.status(403).send({
 				errors: [
@@ -103,7 +103,7 @@ export default {
 				],
 			});
 		if (scope === '') scope = '_';
-		const success2 = await Roblox.Api.Helpers.Helpers.PersistentDataStores.SetHelpers.PushKeyToPersistentStore(
+		const success2 = await RobloxLegacy.Api.Helpers.Helpers.PersistentDataStores.SetHelpers.PushKeyToPersistentStore(
 			universeId,
 			store,
 			scope,

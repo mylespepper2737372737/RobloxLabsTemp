@@ -25,12 +25,12 @@
 	***
 */
 
-import { Roblox } from '../../../../Api';
+import { RobloxLegacy } from '../../../../Api';
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		const DFInt = Roblox.Api.Helpers.Util.ClientSettings.GetDFInts();
+		const DFInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFInts();
 		return res.send({ logRatio: DFInt['MetricsLogRatio'] });
 	},
 };

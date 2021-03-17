@@ -27,7 +27,7 @@
 	***
 */
 
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 import { FASTLOGS, FLog, LOGGROUP } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 LOGGROUP('EphemeralCountersV2');
@@ -37,6 +37,6 @@ export default {
 	func: (_req: any, res): void => {
 		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.query));
 		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.body));
-		res.sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\e.png');
+		res.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\e.png');
 	},
 };

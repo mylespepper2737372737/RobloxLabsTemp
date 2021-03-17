@@ -27,9 +27,9 @@
 */
 
 import filestream from 'fs';
-import { Roblox } from '../../../../Api';
+import { RobloxLegacy } from '../../../../Api';
 
-const FFlag = Roblox.Api.Helpers.Util.ClientSettings.GetFFlags();
+const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 
 export default {
 	method: 'ALL',
@@ -46,7 +46,7 @@ export default {
 			clearCookie: (arg0: string, arg1: { domain: string; path: string }) => { send: (body: any) => void };
 		},
 	) => {
-		const DFFlag = Roblox.Api.Helpers.Util.ClientSettings.GetDFFlags();
+		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
 		if (!DFFlag['IsAuthV2Enabled'])
@@ -65,7 +65,7 @@ export default {
 		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
 			return response.status(403).send({ code: 403, message: 'https Required.' });
 		const data = JSON.parse(
-			filestream.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
+			filestream.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
 		);
 		const AuthToken: string =
 			request.cookies.AuthToken ||
@@ -93,7 +93,7 @@ export default {
 		data['userIds'][userId].loggedOn = false;
 		data['userIds'][userId].sessionId = '';
 		filestream.writeFile(
-			Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json',
+			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json',
 			JSON.stringify(data, undefined, 4),
 			() =>
 				response

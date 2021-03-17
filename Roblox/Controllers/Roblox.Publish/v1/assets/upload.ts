@@ -26,22 +26,28 @@
 */
 
 import a from 'axios';
+import multipart from 'multer';
+
+const upload = multipart();
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		a.post('https://publish.roblox.com' + _req.url, _req.body, {
-			headers: { ..._req.headers, host: 'publish.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
+	func: [
+		upload.any(),
+		async (_req, res) => {
+			if (_req.method === 'OPTIONS') return res.send();
+			a.post('https://publish.roblox.com' + _req.url, _req.body, {
+				headers: { ..._req.headers, host: 'publish.roblox.com' },
 			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
-	},
+				.then((re) => {
+					const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+
+					return res.header(newheaders).send(re.data);
+				})
+				.catch((e) => {
+					const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+					return res.header(newheaders).status(e.response.status).send(e.response.data);
+				});
+		},
+	],
 };

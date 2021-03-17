@@ -1,8 +1,8 @@
 /*
-	FileName: images.ts
+	FileName: ti.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: images 404 middleware
+	Description: ti 404 middleware
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -26,7 +26,7 @@
 */
 
 import crypto from 'crypto';
-import { ClientSettings, Group } from '../WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
+import { ClientSettings, Group } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
 
 const FString = ClientSettings.GetSettings(Group.FString);
 
@@ -53,7 +53,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://images.sitetest4.robloxlabs.com' + escape(req.url)
+					'https://ti.sitetest4.robloxlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))
@@ -65,7 +65,7 @@ export default (
 			.contentType('text/xml')
 			.send(
 				`<Error><Code>AccessDenied</Code><Message>Access to ${
-					'https://images.sitetest4.robloxlabs.com' + escape(req.url)
+					'https://ti.sitetest4.robloxlabs.com' + escape(req.url)
 				} has been denied.</Message><HostId>${crypto
 					.createHash('sha256')
 					.update(crypto.randomBytes(1000))

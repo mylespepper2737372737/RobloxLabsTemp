@@ -26,7 +26,7 @@ export namespace AbTestingRequestProcessor {
 			if (user) {
 				enrollments.push({
 					ExperimentName: experimentName,
-					SubjectTargetId: user.UserId,
+					SubjectTargetId: user.Id,
 					SubjectType: SubjectTypeEnum.User,
 				});
 			}
@@ -66,7 +66,7 @@ export namespace AbTestingRequestProcessor {
 				if (user && experiment.Type === SubjectTypeEnum.User) {
 					enrollments.push({
 						ExperimentName: experiment.Name,
-						SubjectTargetId: user.UserId,
+						SubjectTargetId: user.Id,
 						SubjectType: SubjectTypeEnum.User,
 					});
 				}

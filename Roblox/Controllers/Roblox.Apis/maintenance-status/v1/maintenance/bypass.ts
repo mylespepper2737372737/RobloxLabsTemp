@@ -25,10 +25,19 @@
 	***
 */
 
-import { DFInt, DFString, DYNAMIC_FASTINT, DYNAMIC_FASTSTRING } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import {
+	DFFlag,
+	DFInt,
+	DFString,
+	DYNAMIC_FASTFLAG,
+	DYNAMIC_FASTINT,
+	DYNAMIC_FASTSTRING,
+} from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
 DYNAMIC_FASTSTRING('RobloxLabsSecurityToken');
 DYNAMIC_FASTINT('WWWAuthV1MaxAuthTokenAge');
+DYNAMIC_FASTFLAG('NoMaintenance');
+DYNAMIC_FASTFLAG('CanAdminsBypassTheSystem');
 
 export default {
 	method: 'all',
@@ -36,6 +45,7 @@ export default {
 		if (_req.method === 'OPTIONS') return res.send();
 		/*Check if the IP address is in the IP filter*/
 		// For now we will just always validate the request
+		if (!DFFlag('CanAdminsBypassTheSystem') || DFFlag('NoMaintenance')) return res.status(401).send();
 		return res
 			.status(200)
 			.cookie('RobloxSecurityToken', DFString('RobloxLabsSecurityToken'), {

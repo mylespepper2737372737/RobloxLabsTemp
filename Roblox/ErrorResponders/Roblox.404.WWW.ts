@@ -25,8 +25,10 @@
 	***
 */
 
-import { Roblox } from '../../Api';
+import { RobloxLegacy } from '../Api';
 
 export default (req: { url: string }, res) => {
-	return res.status(404).sendFile(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.404.html');
+	return res
+		.status(404)
+		.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.404.html');
 };

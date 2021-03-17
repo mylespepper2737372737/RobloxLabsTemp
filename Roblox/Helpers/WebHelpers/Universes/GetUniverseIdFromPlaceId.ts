@@ -2,7 +2,7 @@ import { _dirname } from '../../Constants/Directories';
 import filestream from 'fs';
 
 export const GetUniverseIdFromPlaceId = (placeId: number): [boolean, number | null] => {
-	const placePath = _dirname + '\\Manifest\\places\\' + placeId + '\\';
+	const placePath = _dirname + '\\DataBase\\places\\' + placeId + '\\';
 	if (!filestream.existsSync(placePath)) {
 		return [false, null];
 	}

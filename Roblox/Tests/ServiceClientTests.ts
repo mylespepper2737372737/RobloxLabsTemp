@@ -28,15 +28,13 @@ DYNAMIC_LOGVARIABLE('Debug', 7);
 		return FASTLOGS(
 			DFLog('Debug'),
 			'[DFLog::Debug] %s',
-			<string>(
-				new ServiceClientExceptions.HttpException(
-					TestUrl,
-					'Failure on TestClient',
-					<number>Response.StatusCode,
-					'Funny',
-					'Test Failure',
-				).fetch()
-			),
+			new ServiceClientExceptions.HttpException(
+				TestUrl,
+				'Failure on TestClient',
+				<number>Response.StatusCode,
+				'Funny',
+				'Test Failure',
+			).fetch().stack,
 		);
 	}
 })();

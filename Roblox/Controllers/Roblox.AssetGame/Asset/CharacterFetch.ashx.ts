@@ -25,12 +25,12 @@
 	***
 */
 
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		const DFString = Roblox.Api.Helpers.Util.ClientSettings.GetDFStrings();
+		const DFString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFStrings();
 		return res.send(DFString['CharacterAppearranceTestString']);
 	},
 };

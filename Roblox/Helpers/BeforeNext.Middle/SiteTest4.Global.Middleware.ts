@@ -29,7 +29,7 @@ import crypto from 'crypto';
 import headers from '../Constants/Default.OutBound.Headers';
 import { RequestHandler } from 'express-serve-static-core';
 // import whitelist from '../constants/urls';
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { ValidateDoesTheWorldGetToViewTheSite } from '../../Util/ValidateDoesTheWorldGetToViewTheSite';
 import { StripTheTrailingSlash } from '../../Util/StripTheTrailingSlash';
 
@@ -39,10 +39,11 @@ DYNAMIC_LOGGROUP('Tasks');
 export const GlobalMiddleware = ((req, res, next) => {
 	// TODO Remove this from production and never log to the logfile
 	if (
-		req.path.toLowerCase() !== '/login/maintenance/' &&
-		req.hostname !== 'apis.sitetest4.robloxlabs.com' &&
-		req.hostname !== 'ecsv2.sitetest4.robloxlabs.com' &&
-		req.hostname !== 'metrics.sitetest4.robloxlabs.com'
+		(req.path.toLowerCase() !== '/login/maintenance/' &&
+			req.hostname !== 'apis.sitetest4.robloxlabs.com' &&
+			req.hostname !== 'ecsv2.sitetest4.robloxlabs.com' &&
+			req.hostname !== 'metrics.sitetest4.robloxlabs.com') ||
+		DFFlag('NoMaintenance')
 	) {
 		let cookie = req.headers.cookie;
 		if (cookie === undefined) cookie = '';

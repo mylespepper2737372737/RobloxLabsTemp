@@ -25,13 +25,13 @@
 	***
 */
 
-import { Roblox } from '../../../../Api';
+import { RobloxLegacy } from '../../../../Api';
 import fs from 'fs';
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		const template = fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\user.json', {
+		const template = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\user.json', {
 			encoding: 'utf-8',
 		});
 		return res.send(template);

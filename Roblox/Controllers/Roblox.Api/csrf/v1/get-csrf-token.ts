@@ -37,7 +37,7 @@ import {
 	FLog,
 	LOGGROUP,
 } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Roblox } from '../../../../Api';
+import { RobloxLegacy } from '../../../../Api';
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -72,7 +72,7 @@ export default {
 			});
 		}
 
-		const res = Roblox.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
+		const res = RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
 			request.cookies['AuthToken'],
 			request.ip,
 			request.headers['x-csrf-token'],

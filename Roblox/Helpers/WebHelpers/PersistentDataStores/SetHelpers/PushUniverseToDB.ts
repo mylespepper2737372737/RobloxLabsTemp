@@ -11,7 +11,7 @@ import { _dirname } from '../../../Constants/Directories';
  */
 export const WriteUniverse = (universeId: number): Promise<boolean> => {
 	return new Promise<boolean>((resumefunction) => {
-		const path = _dirname + '\\Manifest\\persistence\\' + universeId;
+		const path = _dirname + '\\DataBase\\persistence\\' + universeId;
 		const time = new Date(Date.now()).toISOString();
 		if (filestream.existsSync(path)) return resumefunction(true);
 		filestream.mkdirSync(path);
@@ -28,7 +28,7 @@ export const WriteUniverse = (universeId: number): Promise<boolean> => {
 		filestream.writeFileSync(path + '\\UNIVERSE.json', JSON.stringify(info, undefined, 4), { encoding: 'utf-8' });
 		filestream.mkdirSync(path + '\\stores');
 		filestream.writeFileSync(path + '\\stores\\RECORD.json', '[]', { encoding: 'utf-8' });
-		const read = filestream.readFileSync(_dirname + '\\Manifest\\persistence\\RECORD.json', 'utf-8');
+		const read = filestream.readFileSync(_dirname + '\\DataBase\\persistence\\RECORD.json', 'utf-8');
 		const record = <unknown[]>JSON.parse(read);
 		record.push({
 			universeId: universeId,
@@ -36,7 +36,7 @@ export const WriteUniverse = (universeId: number): Promise<boolean> => {
 			purged: null,
 		});
 		filestream.writeFile(
-			_dirname + '\\Manifest\\persistence\\RECORD.json',
+			_dirname + '\\DataBase\\persistence\\RECORD.json',
 			JSON.stringify(record, undefined, 4),
 			{
 				encoding: 'utf-8',

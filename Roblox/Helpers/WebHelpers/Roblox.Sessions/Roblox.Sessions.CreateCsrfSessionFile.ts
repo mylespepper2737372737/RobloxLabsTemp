@@ -8,17 +8,17 @@ const FInt = ClientSettings.GetSettings(Group.FInt, 'Web');
 export const CreateCsrfSessionFile = (id: string): string => {
 	const sessionFile = `${id}.json`;
 	const t = Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64');
-	filestream.writeFileSync(_dirname + '\\Manifest\\csrf\\' + sessionFile, JSON.stringify({ sub: id, token: t, c: 0 }, undefined, 4), {
+	filestream.writeFileSync(_dirname + '\\DataBase\\csrf\\' + sessionFile, JSON.stringify({ sub: id, token: t, c: 0 }, undefined, 4), {
 		encoding: 'ascii',
 	});
 	let count = 0;
 	const r = setInterval(() => {
 		count++;
-		if (!filestream.existsSync(_dirname + '\\Manifest\\csrf\\' + sessionFile)) return r.unref();
+		if (!filestream.existsSync(_dirname + '\\DataBase\\csrf\\' + sessionFile)) return r.unref();
 		if (count === FInt['CSRFV2MaxRefreshCount']) return r.unref();
 		try {
 			filestream.writeFileSync(
-				_dirname + '\\Manifest\\csrf\\' + sessionFile,
+				_dirname + '\\DataBase\\csrf\\' + sessionFile,
 				JSON.stringify(
 					{ sub: id, token: Crypto.createHash('md5').update(Crypto.randomBytes(1000)).digest('base64'), c: count },
 					undefined,

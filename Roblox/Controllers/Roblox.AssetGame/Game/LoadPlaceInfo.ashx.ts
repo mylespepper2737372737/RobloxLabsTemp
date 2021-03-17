@@ -27,17 +27,20 @@
 
 import crypto from 'crypto';
 import fs from 'fs';
-import { Roblox } from '../../../Api';
+import { RobloxLegacy } from '../../../Api';
 export default {
 	method: 'all',
 	func: (_req: unknown, res: { send: (arg0: string) => void }): void => {
-		const txt = fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PlaceInfo.lua', 'utf-8');
+		const txt = fs.readFileSync(
+			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PlaceInfo.lua',
+			'utf-8',
+		);
 		const sign = crypto.createSign('sha1');
 		const dick = '\r\n' + txt;
 		sign.write(dick);
 		sign.end();
 
-		const key = fs.readFileSync(Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem');
+		const key = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem');
 		const sig = sign.sign(key, 'base64');
 
 		const out = `--rbxsig%${sig}%${dick}`;

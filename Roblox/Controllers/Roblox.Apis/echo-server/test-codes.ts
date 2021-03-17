@@ -1,9 +1,9 @@
 /*
-	FileName: api.ts
+	FileName: LoadPlaceInfo.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: api 404 middleware
-
+	Description: Load Place info script
+			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
@@ -25,14 +25,14 @@
 	***
 */
 
-import { Roblox } from '../../Api';
-import fs from 'fs';
+import statuses from './codes.json';
 
-export default (req, res) => {
-	let template = fs.readFileSync(
-		Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\SimulPong\\SimulPong.404.html',
-		{ encoding: 'utf-8' },
-	);
-	template = template.split('<REQUESTURLGOESHERE>').join(req.url);
-	return res.send(template);
+export default {
+	method: 'all',
+	func: async (_req, res) => {
+		res.statusMessage = statuses[_req.query.code || '400'];
+		res.status(parseInt(_req.query.code) || 400).send({
+			errors: [{ code: parseInt(_req.query.code) || 400, message: statuses[_req.query.code || '400'] || 'Unknown' }],
+		});
+	},
 };
