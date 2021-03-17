@@ -1,7 +1,8 @@
 import { IEmail } from '../Credentials/IEmail';
 import { IPassword } from '../Credentials/IPassword';
+import { IUser } from './IUser';
 import { UserModelBuildersClubMembershipTypeEnum } from './UserModelBuildersClubMembershipTypeEnum';
-export interface IUser {
+export declare class User implements IUser {
     Id: Number;
     Name: String;
     DisplayName: String;
@@ -14,7 +15,7 @@ export interface IUser {
     Email: IEmail;
     HasPasswordSet: Boolean;
     AgeBracket: Number;
-    Roles: Array<String>;
+    Roles: String[];
     RobuxBalance: Number;
     NotificationCount: Number;
     EmailNotificationsEnabled: Boolean;
@@ -25,4 +26,5 @@ export interface IUser {
     IsPremium: Boolean;
     ChangeUsernameEnabled: Boolean;
     IsAdmin: Boolean;
+    static GetByUserId(Id: number): IUser;
 }

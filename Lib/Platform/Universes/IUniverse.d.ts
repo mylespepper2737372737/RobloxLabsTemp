@@ -1,4 +1,4 @@
 export interface IUniverse {
     Name: String;
-    UniverseId: Number;
+    Id: Number;
 }

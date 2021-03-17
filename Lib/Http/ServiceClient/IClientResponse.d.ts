@@ -3,7 +3,7 @@ import { IHttpHeaders } from './IHttpHeaders';
 export interface IClientResponse {
     Url: String;
     Method: HttpRequestMethodEnum;
-    ResponsePayload: String;
+    ResponsePayload: any;
     Headers: IHttpHeaders;
     StatusCode: Number;
     StatusMessage: String;

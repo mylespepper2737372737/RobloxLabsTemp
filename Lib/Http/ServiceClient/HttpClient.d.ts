@@ -5,6 +5,6 @@ export declare namespace ServiceClient {
     class HttpClient {
         private request;
         constructor(request: IClientRequest);
-        execute(): Task<[Boolean, IClientResponse]>;
+        execute(): Task<[Boolean, IClientResponse, Error]>;
     }
 }

@@ -6,6 +6,6 @@ export declare namespace ServiceClientExceptions {
         private ErrorCode;
         private Message;
         constructor(Url: String, Message?: string, StatusCode?: number, MachineId?: string, ErrorCode?: string);
-        fetch(): String;
+        fetch(): Error;
     }
 }

@@ -2,7 +2,7 @@
 /// <reference types="node" />
 import { IStartup as IStartupImport } from './SDK/IStartupSDK';
 import { ClientSettings as ClientSettingsImport } from './Helpers/WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
-export declare namespace Roblox {
+export declare namespace RobloxLegacy {
     namespace Api {
         namespace Library {
             const IStartup: typeof IStartupImport;
