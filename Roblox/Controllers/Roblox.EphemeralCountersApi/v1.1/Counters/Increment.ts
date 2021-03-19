@@ -26,14 +26,15 @@
 */
 
 import { FASTLOGS, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
+import {EphemeralCountersService} from "../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService"
 LOGGROUP('EphemeralCounters');
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+	func: (_req: any, res: Response): void => {
+		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters::Inc] %s', JSON.stringify(_req.query));
+		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters::Inc] %s', JSON.stringify(_req.body));
+		EphemeralCountersService.HandleIncrementCounter(_req.query["counterName"], _req.query["amount"], res)
+		//res.send({ success: true, message: '' });
 	},
 };
