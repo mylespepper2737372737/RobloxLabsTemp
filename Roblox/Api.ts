@@ -39,7 +39,6 @@
 
 import { IStartup as IStartupImport } from './SDK/IStartupSDK';
 import { CheckIfAuthTokenExists as CheckIfAuthTokenExistsImport } from './Helpers/WebHelpers/Auth/CheckIfAuthTokenExists';
-import { CheckIfAuthTokenExistsAndReturnOwner as CheckIfAuthTokenExistsAndReturnOwnerImport } from './Helpers/WebHelpers/Auth/CheckIfAuthTokenExists';
 import { GetImageHashes as GetImageHashesImport } from './Helpers/WebHelpers/Auth/DEPRECATED_GetImageHashes';
 import { GetManifests as GetManifestsImport } from './Helpers/WebHelpers/DataBase/DEPRECATED_GetManifest';
 import { GetRegisteredUsers as GetRegisteredUsersImport } from './Helpers/WebHelpers/DataBase/DEPRECATED_GetRegisteredUsers';
@@ -137,7 +136,6 @@ export namespace RobloxLegacy {
 				export namespace Auth {
 					export const CheckIfAuthTokenExists = CheckIfAuthTokenExistsImport;
 					export const GetImageHashes = GetImageHashesImport;
-					export const CheckIfAuthTokenExistsAndReturnOwner = CheckIfAuthTokenExistsAndReturnOwnerImport;
 				}
 				export namespace DB {
 					export const GetManifests = GetManifestsImport;

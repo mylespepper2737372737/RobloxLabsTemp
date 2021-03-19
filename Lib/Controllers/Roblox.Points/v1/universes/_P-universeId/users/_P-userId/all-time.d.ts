@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express';
 import { GetAllTimePointBalanceResponse } from '../../../../../../../Models/Roblox.Points.Api/GetAllTimePointBalanceResponse';
 declare const _default: {
