@@ -61,7 +61,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 		)
 			return;
 	}
-	if (req.headers['user-agent'] !== null) {
+
 	FASTLOG5(
 		FLog['Protocol77'],
 		`[FLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
@@ -69,9 +69,8 @@ export const GlobalMiddleware = ((req, res, next) => {
 		req.protocol,
 		req.hostname,
 		req.url,
-		req.headers['user-agent'],
+		req.headers['user-agent'].toUpperCase(),
 	);
-	}
 	res.header(headers);
 	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest4.robloxlabs.com'))
 		res.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {

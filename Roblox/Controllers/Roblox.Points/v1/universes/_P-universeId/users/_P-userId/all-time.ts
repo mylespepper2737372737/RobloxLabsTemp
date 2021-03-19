@@ -45,6 +45,7 @@ import { PointsRequestProcessor } from '../../../../../../../Web/Points/Roblox.W
 import { Errors } from '../../../../../../../Web/Util/Roblox.Web.Util/Errors';
 
 FASTFLAG('RequireGlobalHTTPS');
+
 export default {
 	method: 'all', //Allow all methods but validate the method in the request itself
 	func: async (request: Request, response: Response<GetAllTimePointBalanceResponse>) => {
