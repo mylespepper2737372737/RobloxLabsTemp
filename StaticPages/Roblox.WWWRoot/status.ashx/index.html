@@ -9,7 +9,7 @@
 		<script>
 			const el = document.getElementById('body');
 			let statuses = {};
-			const xhr = new XMLhttpsRequest();
+			const xhr = new XMLHttpRequest();
 			xhr.open('OPTIONS', 'https://setup.sitetest4.robloxlabs.com'),
 				(xhr.onreadystatechange = () => {
 					(statuses.setup = 200 === xhr.status), (el.textContent = JSON.stringify(statuses));
@@ -19,7 +19,7 @@
 			} catch {
 				statuses.setup = !1;
 			}
-			const xhr2 = new XMLhttpsRequest();
+			const xhr2 = new XMLHttpRequest();
 			xhr2.open('OPTIONS', 'https://static.sitetest4.robloxlabs.com'),
 				(xhr2.onreadystatechange = () => {
 					(statuses.static = 200 === xhr2.status), (el.textContent = JSON.stringify(statuses));
@@ -29,7 +29,7 @@
 			} catch {
 				statuses.static = !1;
 			}
-			const xhr3 = new XMLhttpsRequest();
+			const xhr3 = new XMLHttpRequest();
 			xhr3.open('OPTIONS', 'https://api.sitetest4.robloxlabs.com'),
 				(xhr3.onreadystatechange = () => {
 					(statuses.api = 200 === xhr3.status), (el.textContent = JSON.stringify(statuses));
@@ -39,7 +39,7 @@
 			} catch {
 				statuses.api = !1;
 			}
-			const xhr4 = new XMLhttpsRequest();
+			const xhr4 = new XMLHttpRequest();
 			xhr4.open('OPTIONS', 'https://js.sitetest4.robloxlabs.com'),
 				(xhr4.onreadystatechange = () => {
 					(statuses.js = 200 === xhr4.status), (el.textContent = JSON.stringify(statuses));
@@ -49,7 +49,7 @@
 			} catch {
 				statuses.js = !1;
 			}
-			const xhr5 = new XMLhttpsRequest();
+			const xhr5 = new XMLHttpRequest();
 			xhr5.open('OPTIONS', 'https://css.sitetest4.robloxlabs.com'),
 				(xhr5.onreadystatechange = () => {
 					(statuses.css = 200 === xhr5.status), (el.textContent = JSON.stringify(statuses));
@@ -59,7 +59,7 @@
 			} catch {
 				statuses.css = !1;
 			}
-			const xhr6 = new XMLhttpsRequest();
+			const xhr6 = new XMLHttpRequest();
 			xhr6.open('OPTIONS', 'https://images.sitetest4.robloxlabs.com'),
 				(xhr6.onreadystatechange = () => {
 					(statuses.images = 200 === xhr6.status), (el.textContent = JSON.stringify(statuses));
@@ -69,7 +69,7 @@
 			} catch {
 				statuses.images = !1;
 			}
-			const xhr7 = new XMLhttpsRequest();
+			const xhr7 = new XMLHttpRequest();
 			xhr7.open('OPTIONS', 'https://ephemeralcounters.api.sitetest4.robloxlabs.com'),
 				(xhr7.onreadystatechange = () => {
 					(statuses['ephemeralcounters.api'] = 200 === xhr4.status), (el.textContent = JSON.stringify(statuses));
@@ -79,7 +79,7 @@
 			} catch {
 				statuses['ephemeralcounters.api'] = !1;
 			}
-			const xhr8 = new XMLhttpsRequest();
+			const xhr8 = new XMLHttpRequest();
 			xhr8.open('OPTIONS', 'https://ecs.api.sitetest4.robloxlabs.com'),
 				(xhr8.onreadystatechange = () => {
 					(statuses['ecs.api'] = 200 === xhr8.status), (el.textContent = JSON.stringify(statuses));

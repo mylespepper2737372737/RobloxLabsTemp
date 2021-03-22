@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		return res.redirect('http://assetgame.sitetest4.robloxlabs.com/thumbs/defaultimage.png');
+		return res.redirect('https://assetgame.roblox.com' + _req.url);
 	},
 };

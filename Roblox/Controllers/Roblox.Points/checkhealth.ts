@@ -58,7 +58,7 @@ export default {
 			{
 				code: <number>StatusCode,
 				message:
-					StatusCode > 0
+					StatusCode === 503
 						? StatusMessage.toString()
 						: `Error checking health for Roblox.Points.Service:\r\n   \tStatus Code: ${StatusMessage} (${
 								StatusCode || 'None'

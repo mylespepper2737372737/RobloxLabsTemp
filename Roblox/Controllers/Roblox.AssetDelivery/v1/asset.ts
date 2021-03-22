@@ -25,16 +25,13 @@
 	***
 */
 
-import { NextFunction } from 'express';
-import { AssetRequestProcessor } from '../../../Web/Assets/Roblox.Web.Assets/AssetRequestProcessor';
+// import a from 'axios';
+import { Response } from 'express';
 
 export default {
 	method: 'all',
-	func: async (_req, res, next: NextFunction) => {
-		const [success, uri] = await AssetRequestProcessor.GetUri('', {}, false, false, 'HASHSHSHHSs');
-		if (!success) {
-			// res.status(500).send({ errors: [{ code: 500, message: uri }] });
-			return next(<string>uri);
-		}
+	func: async (_req: { method: string; url: string; headers: any }, res: Response) => {
+		if (_req.method === 'OPTIONS') return res.send();
+		res.redirect('https://assetdelivery.roblox.com' + _req.url);
 	},
 };

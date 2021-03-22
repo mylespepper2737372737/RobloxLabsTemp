@@ -8,6 +8,7 @@
 		"undefined-rbx-member",
 		"invalid-rbx-classname",
 		"missing-module-return",
-		"unknown-symbol"
+		"unknown-symbol",
+		"undefined-global"
 	]
 }

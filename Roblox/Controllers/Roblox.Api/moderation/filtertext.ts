@@ -27,7 +27,7 @@
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: string) => void }): void => {
-		res.send('true');
+	func: (_req: any, res): void => {
+		res.send({ data: { white: 'test', black: 'test2' } });
 	},
 };

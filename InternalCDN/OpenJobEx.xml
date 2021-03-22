@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://roblox.com/RCCServiceSoap" xmlns:ns1="http://roblox.com/" xmlns:ns3="http://roblox.com/RCCServiceSoap12">
+    <SOAP-ENV:Body>
+      <ns1:OpenJobEx>
+        <ns1:job>
+          <ns1:id>random-uuid</ns1:id>
+       <ns1:expirationInSeconds>9999999</ns1:expirationInSeconds>
+          <ns1:category>1</ns1:category>
+          <ns1:cores>1<ns1:cores>
+        </ns1:job>
+        <ns1:script>
+           <ns1:name>start script</ns1:name>         <ns1:script>loadstring("http://urlhere/game/gameserver.ashx")("shit here", 123)</ns1:script>
+            <ns1:arguments></ns1:arguments>
+        </ns1:script>
+      </ns1:OpenJobEx>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

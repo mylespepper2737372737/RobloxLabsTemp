@@ -69,7 +69,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 		req.protocol,
 		req.hostname,
 		req.url,
-		req.headers['user-agent'].toUpperCase(),
+		(req.headers['user-agent'] || '').toUpperCase(),
 	);
 	res.header(headers);
 	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest4.robloxlabs.com'))

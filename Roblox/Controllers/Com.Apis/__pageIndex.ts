@@ -27,7 +27,7 @@
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
+	func: async (_req: any, res: { send: (arg0: string) => void }) => {
 		res.send('OK');
 	},
 };

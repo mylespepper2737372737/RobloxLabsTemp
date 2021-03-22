@@ -1,8 +1,8 @@
 /*
-	FileName: __pageIndex.ts
+	FileName: checkhealth.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: The index page for /
+	Description: The health page for points, essentially the same as index
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -58,7 +58,7 @@ export default {
 			{
 				code: <number>StatusCode,
 				message:
-					StatusCode > 0
+					StatusCode === 503
 						? StatusMessage.toString()
 						: `Error checking health for Roblox.Points.Service:\r\n   \tStatus Code: ${StatusMessage} (${
 								StatusCode || 'None'

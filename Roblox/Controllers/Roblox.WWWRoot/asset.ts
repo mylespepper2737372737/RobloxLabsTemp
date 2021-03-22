@@ -37,6 +37,6 @@ export default {
 			res.redirect('http://static.sitetest4.robloxlabs.com/rbx/1.rbxlx');
 			return;
 		}
-		res.redirect('https://assetdelivery.roblox.com/v1' + req.url);
+		res.redirect('http://assetdelivery.sitetest4.robloxlabs.com/v1' + req.url);
 	},
 };

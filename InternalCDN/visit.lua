@@ -50,7 +50,7 @@ pcall(function() game:SetVideoInfo("") end)
 
 function registerPlay(key)
 	if true and game:GetService("CookiesService"):GetCookieValue(key) == "" then
-		game:GetService("CookiesService"):SetCookieValue(key, "{ \"userId\" : 12, \"placeId\" : 0, \"os\" : \"" .. settings().Diagnostics.OsPlatform .. "\" }")
+		game:GetService("CookiesService"):SetCookieValue(key, "{ \"userId\" : 1, \"placeId\" : 0, \"os\" : \"" .. settings().Diagnostics.OsPlatform .. "\" }")
 	end
 end
 
@@ -98,14 +98,14 @@ function doVisit()
 
 	message.Text = "Creating Player"
 	if false then
-		player = game:GetService("Players"):CreateLocalPlayer(12)
+		player = game:GetService("Players"):CreateLocalPlayer(1)
 		if not inStudio then
 			player.Name = [====[Balls]====]
 		end
 	else
-		player = game:GetService("Players"):CreateLocalPlayer(12)
+		player = game:GetService("Players"):CreateLocalPlayer(1)
 	end
-	player.CharacterAppearance = "http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx?userId=12&placeId=0"
+	player.CharacterAppearance = "http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx?userId=1&placeId=0"
 	local propExists, canAutoLoadChar = false
 	propExists = pcall(function()  canAutoLoadChar = game.Players.CharacterAutoLoads end)
 

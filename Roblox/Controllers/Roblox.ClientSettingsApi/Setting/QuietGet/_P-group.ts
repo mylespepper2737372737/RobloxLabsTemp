@@ -25,12 +25,15 @@
 	***
 */
 
+import { Request } from 'express';
 import { RobloxLegacy } from '../../../../Api';
 
 export default {
 	method: 'all',
-	func: (_req: unknown, res: { send: (arg0: { [k: string]: unknown }) => void }): void => {
-		const s = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings('Client');
+	func: (_req: Request, res: { send: (arg0: { [k: string]: unknown }) => void }): void => {
+		const s = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(
+			_req.params.group === 'Arbiter' ? _req.params.group : 'Client',
+		);
 		const settings = new Map<string, Object>(Object.entries(s));
 		const obj: { [k: string]: unknown } = {};
 		settings.forEach((v, k) => {

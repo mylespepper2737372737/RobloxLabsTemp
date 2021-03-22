@@ -27,11 +27,11 @@
 			"DataStoreV2MaxItemsToReturnShould403OnBadNumber": false,
 			"IsLoginCodeButtonDisplayed": true,
 			"IsCodeValidationDisplayed": true,
-			"DoesTheWorldGetToViewTheSite": false,
+			"DoesTheWorldGetToViewTheSite": true,
 			"CanAdminsBypassTheSystem": true,
-			"NoMaintenance": false,
+			"NoMaintenance": true,
 			"Debug": true,
-			"PointsServiceEnabled": true
+			"PointsServiceEnabled": false
 		},
 		"SFFlag": {},
 		"FInt": {
@@ -64,6 +64,21 @@
 	},
 	"WebMobile": {
 		"FVariable": {},
+		"FLog": {},
+		"DFLog": {},
+		"SFLog": {},
+		"FFlag": {},
+		"DFFlag": {},
+		"SFFlag": {},
+		"FInt": {},
+		"DFInt": {},
+		"SFInt": {},
+		"FString": {},
+		"DFString": {},
+		"SFString": {}
+	},
+	"Arbiter": {
+		"FVariable": { "ThreadPoolConfig": "Threads1" },
 		"FLog": {},
 		"DFLog": {},
 		"SFLog": {},
@@ -1414,7 +1429,7 @@
 			}
 		}
 	},
-	"FSettings": ["Web", "WebMobile", "Client"],
+	"FSettings": ["Web", "WebMobile", "Client", "Arbiter"],
 	"TODO": [
 		"Change FIntCSRFV2MaxRefreshCount and FIntCSRFV2Timeout to make the sessions last 2 hours only",
 		"Consider moving DFFlagIsAuthV2Enabled to FFlagIsAuthV2Enabled.",

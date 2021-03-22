@@ -1,6 +1,10 @@
-import { NextFunction } from 'express';
+import { Response } from 'express';
 declare const _default: {
     method: string;
-    func: (_req: any, res: any, next: NextFunction) => Promise<void>;
+    func: (_req: {
+        method: string;
+        url: string;
+        headers: any;
+    }, res: Response) => Promise<Response<any, Record<string, any>>>;
 };
 export default _default;

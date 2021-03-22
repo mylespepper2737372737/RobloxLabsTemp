@@ -26,11 +26,21 @@
 */
 
 import a from 'axios';
+import fs from 'fs';
+import { RobloxLegacy } from '../../../Api';
 
 export default {
 	method: 'all',
 	func: async (_req, res) => {
 		if (_req.method === 'OPTIONS') return res.send();
+		if (_req.query.assetId === '1')
+			return res.send(
+				JSON.parse(
+					fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\TheAsset.json', {
+						encoding: 'utf-8',
+					}),
+				),
+			);
 		a.get('https://api.roblox.com' + _req.url, {
 			headers: { ..._req.headers, host: 'api.roblox.com' },
 		})

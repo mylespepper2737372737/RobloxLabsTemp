@@ -1,7 +1,5 @@
 declare const _default: {
     method: string;
-    func: (_req: any, res: {
-        send: (arg0: string) => void;
-    }) => void;
+    func: (_req: any, res: any) => void;
 };
 export default _default;
