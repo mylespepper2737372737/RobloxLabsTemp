@@ -3,8 +3,8 @@
 		"target": "es2020",
 		"module": "commonjs",
 		"jsx": "react",
-		"outDir": "Assemblies",
-		"rootDir": "Roblox",
+		"outDir": "Assemblies/bin",
+		"rootDir": "Assemblies",
 		"noUnusedLocals": true,
 		"moduleResolution": "node",
 		"esModuleInterop": true,
@@ -15,6 +15,6 @@
 		"stripInternal": true,
 		"removeComments": true,
 		"declaration": true,
-		"declarationDir": "Lib"
+		"declarationDir": "Assemblies/bin/PBD"
 	}
 }
