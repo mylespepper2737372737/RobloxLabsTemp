@@ -42,7 +42,7 @@ import ROBLOX_404_AB_TESTING_IMPORT from './Roblox.404.AbTesting';
 import SIMULPONG_404_IMPORT from './SimulPong.404';
 import Kestrel_404_I from './Kestrel';
 
-// Jak - Export all of these an implement in Roblox.IStart.Job.cs, add as internal middlewares
+// Jak - Export all of these an implement in Roblox.Global.asax.cs, add as internal middlewares
 export const ROBLOX_404_WWW = (ROBLOX_404_WWW_IMPORT as unknown) as Roblox_Middle_Ware;
 export const ROBLOX_404_API = (ROBLOX_404_API_IMPORT as unknown) as Roblox_Middle_Ware;
 export const ROBLOX_404_STATIC_CDN = (ROBLOX_404_STATIC_CDN_IMPORT as unknown) as Roblox_Middle_Ware;
