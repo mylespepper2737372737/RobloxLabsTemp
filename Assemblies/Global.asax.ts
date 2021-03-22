@@ -1,5 +1,5 @@
 /*
-	FileName: Roblox.IStart.Job.ts
+	FileName: Roblox.Global.asax.ts
 	Written By: Nikita Nikolaevich Petko,
 				Ivan Ivanov Gregrovnich,
 				Aleksej Pushnik Grasnich,
@@ -10,7 +10,7 @@
 				Jack Daniels Alan,
 				Alanska Ivanski Vosproshchniki
 	File Type: Script
-	Description: Copy of ROBLOX's Roblox.IStart.Job.cs
+	Description: Copy of ROBLOX's Roblox.Global.asax.cs
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -351,7 +351,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_STATIC_CDN_SERVER,
 				'\\StaticPages\\Roblox.StaticCDN',
-				'\\Assemblies\\Controllers\\Roblox.StaticCDN',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.StaticCDN',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_STATIC_CDN'],
 			),
 		);
@@ -359,7 +359,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_JS_SERVER,
 				'\\StaticPages\\Roblox.JS.Distribution',
-				'\\Assemblies\\Controllers\\Roblox.JS',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.JS',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_JS'],
 			),
 		);
@@ -367,7 +367,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CSS_SERVER,
 				'\\StaticPages\\Roblox.CSS',
-				'\\Assemblies\\Controllers\\Roblox.CSS',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.CSS',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CSS'],
 			),
 		);
@@ -375,7 +375,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_IMAGES_SERVER,
 				'\\StaticPages\\Roblox.Images',
-				'\\Assemblies\\Controllers\\Roblox.Images',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Images',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_IMAGES'],
 			),
 		);
@@ -383,7 +383,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_API_SERVER,
 				'\\StaticPages\\Roblox.Api',
-				'\\Assemblies\\Controllers\\Roblox.Api',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Api',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_API'],
 			),
 		);
@@ -391,7 +391,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_SETUP_CDN_SERVER,
 				'\\StaticPages\\Roblox.SetupCDN',
-				'\\Assemblies\\Controllers\\Roblox.SetupCDN',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.SetupCDN',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_SETUP_CDN'],
 			),
 		);
@@ -399,7 +399,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_WWW_SERVER,
 				'\\StaticPages\\Roblox.WWWRoot',
-				'\\Assemblies\\Controllers\\Roblox.WWWRoot',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.WWWRoot',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_WWW'],
 				false,
 			),
@@ -408,7 +408,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_EPHEMERAL_COUNTERS_API_SERVER,
 				'\\StaticPages\\Roblox.EphemeralCountersApi',
-				'\\Assemblies\\Controllers\\Roblox.EphemeralCountersApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.EphemeralCountersApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_API'],
 			),
 		);
@@ -416,7 +416,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_EPHEMERAL_COUNTERS_VERSION_2_SERVER,
 				'\\StaticPages\\Roblox.EphemeralCounters.Version_2',
-				'\\Assemblies\\Controllers\\Roblox.EphemeralCounters.Version_2',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.EphemeralCounters.Version_2',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_EPHEMERAL_COUNTERS_VERSION_2'],
 			),
 		);
@@ -424,7 +424,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				DEPRECATED_ROBLOX_TEMPORARY_IMAGES_SERVER,
 				'\\StaticPages\\Roblox.TemporaryImages',
-				'\\Assemblies\\Controllers\\Roblox.TemporaryImages',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.TemporaryImages',
 				RobloxLegacy.Api.Constants.URLS['DEPRECATED_ROBLOX_TEMPORARY_IMAGES'],
 			),
 		);
@@ -432,7 +432,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_VERSION_COMPATIBILITY_API_SERVER,
 				'\\StaticPages\\Roblox.VersionCompatibilityApi',
-				'\\Assemblies\\Controllers\\Roblox.VersionCompatibilityApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.VersionCompatibilityApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_VERSION_COMPATIBILITY_API'],
 			),
 		);
@@ -440,7 +440,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CLIENT_SETTINGS_API_SERVER,
 				'\\StaticPages\\Roblox.ClientSettingsApi',
-				'\\Assemblies\\Controllers\\Roblox.ClientSettingsApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ClientSettingsApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_API'],
 			),
 		);
@@ -448,7 +448,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ASSET_GAME_SERVER,
 				'\\StaticPages\\Roblox.AssetGame',
-				'\\Assemblies\\Controllers\\Roblox.AssetGame',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AssetGame',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ASSET_GAME'],
 			),
 		);
@@ -456,7 +456,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_GAME_PERSISTENCE_SERVER,
 				'\\StaticPages\\Roblox.GamePersistence',
-				'\\Assemblies\\Controllers\\Roblox.GamePersistence',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.GamePersistence',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_GAME_PERSISTENCE'],
 			),
 		);
@@ -464,7 +464,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_DOSARREST_ORIGIN_CORP_SERVER,
 				'\\StaticPages\\Roblox.DOSArrest',
-				'\\Assemblies\\Controllers\\Roblox.DOSArrest',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.DOSArrest',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP'],
 			),
 		);
@@ -472,7 +472,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_MARKETPLACE_API_SERVER,
 				'\\StaticPages\\Roblox.MarketPlaceApi',
-				'\\Assemblies\\Controllers\\Roblox.MarketPlaceApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.MarketPlaceApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_MARKETPLACE_API'],
 			),
 		);
@@ -480,7 +480,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_METRICS_SERVER,
 				'\\StaticPages\\Roblox.Metrics',
-				'\\Assemblies\\Controllers\\Roblox.Metrics',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Metrics',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_METRICS'],
 			),
 		);
@@ -488,7 +488,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_AUTH_SERVER,
 				'\\StaticPages\\Roblox.Auth',
-				'\\Assemblies\\Controllers\\Roblox.Auth',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Auth',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AUTH'],
 			),
 		);
@@ -496,7 +496,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_APIS_SERVER,
 				'\\StaticPages\\Roblox.Apis',
-				'\\Assemblies\\Controllers\\Roblox.Apis',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Apis',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_APIS'],
 			),
 		);
@@ -504,7 +504,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_LOCALE_SERVER,
 				'\\StaticPages\\Roblox.Locale',
-				'\\Assemblies\\Controllers\\Roblox.Locale',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Locale',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_LOCALE'],
 			),
 		);
@@ -512,7 +512,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_AB_TESTING_SERVER,
 				'\\StaticPages\\Roblox.AbTesting',
-				'\\Assemblies\\Controllers\\Roblox.AbTesting',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AbTesting',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AB_TESTING'],
 			),
 		);
@@ -520,7 +520,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_AB_TESTING_API_SERVER,
 				'\\StaticPages\\Roblox.AbTestingApi',
-				'\\Assemblies\\Controllers\\Roblox.AbTestingApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AbTestingApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AB_TESTING_API'],
 			),
 		);
@@ -528,7 +528,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_USERS_SERVER,
 				'\\StaticPages\\Roblox.Users',
-				'\\Assemblies\\Controllers\\Roblox.Users',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Users',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_USERS'],
 			),
 		);
@@ -536,7 +536,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_TWO_STEP_VERIFICATION_SERVER,
 				'\\StaticPages\\Roblox.TwoStepVerification',
-				'\\Assemblies\\Controllers\\Roblox.TwoStepVerification',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.TwoStepVerification',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_TWO_STEP_VERIFICATION'],
 			),
 		);
@@ -544,7 +544,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				SIMULPONG_LATENCY_MEASUREMENTS_SERVER,
 				'\\StaticPages\\SimulPong.LatencyMeasurements',
-				'\\Assemblies\\Controllers\\SimulPong.LatencyMeasurements',
+				'\\Assemblies\\Bin\\Controllers\\SimulPong.LatencyMeasurements',
 				RobloxLegacy.Api.Constants.URLS['SIMULPONG_LATENCY_MEASUREMENTS'],
 			),
 		);
@@ -552,7 +552,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CHAT_SERVER,
 				'\\StaticPages\\Roblox.Chat',
-				'\\Assemblies\\Controllers\\Roblox.Chat',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Chat',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CHAT'],
 			),
 		);
@@ -560,7 +560,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CONTACTS_SERVER,
 				'\\StaticPages\\Roblox.Contacts',
-				'\\Assemblies\\Controllers\\Roblox.Contacts',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Contacts',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CONTACTS'],
 			),
 		);
@@ -568,7 +568,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_NOTIFICATIONS_SERVER,
 				'\\StaticPages\\Roblox.Notifications',
-				'\\Assemblies\\Controllers\\Roblox.Notifications',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Notifications',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_NOTIFICATIONS'],
 			),
 		);
@@ -576,7 +576,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ACCOUNT_SETTINGS_SERVER,
 				'\\StaticPages\\Roblox.AccountSettings',
-				'\\Assemblies\\Controllers\\Roblox.AccountSettings',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AccountSettings',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ACCOUNT_SETTINGS'],
 			),
 		);
@@ -584,7 +584,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ADS_SERVER,
 				'\\StaticPages\\Roblox.Ads',
-				'\\Assemblies\\Controllers\\Roblox.Ads',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Ads',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ADS'],
 			),
 		);
@@ -592,7 +592,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_TRADES_SERVER,
 				'\\StaticPages\\Roblox.Trades',
-				'\\Assemblies\\Controllers\\Roblox.Trades',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Trades',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_TRADES'],
 			),
 		);
@@ -600,7 +600,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_FRIENDS_SERVER,
 				'\\StaticPages\\Roblox.Friends',
-				'\\Assemblies\\Controllers\\Roblox.Friends',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Friends',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_FRIENDS'],
 			),
 		);
@@ -608,7 +608,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_PRIVATE_MESSAGES_SERVER,
 				'\\StaticPages\\Roblox.PrivateMessages',
-				'\\Assemblies\\Controllers\\Roblox.PrivateMessages',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.PrivateMessages',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_PRIVATE_MESSAGES'],
 			),
 		);
@@ -616,7 +616,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ECONOMY_SERVER,
 				'\\StaticPages\\Roblox.Economy',
-				'\\Assemblies\\Controllers\\Roblox.Economy',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Economy',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ECONOMY'],
 			),
 		);
@@ -624,7 +624,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_GAMES_SERVER,
 				'\\StaticPages\\Roblox.Games',
-				'\\Assemblies\\Controllers\\Roblox.Games',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Games',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_GAMES'],
 			),
 		);
@@ -632,7 +632,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_REAL_TIME_SERVER,
 				'\\StaticPages\\Roblox.RealTime',
-				'\\Assemblies\\Controllers\\Roblox.RealTime',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.RealTime',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_REAL_TIME'],
 			),
 		);
@@ -640,7 +640,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_THUMBNAILS_SERVER,
 				'\\StaticPages\\Roblox.ThumbNails',
-				'\\Assemblies\\Controllers\\Roblox.ThumbNails',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ThumbNails',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_THUMB_NAILS'],
 			),
 		);
@@ -648,7 +648,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_PRESENCE_SERVER,
 				'\\StaticPages\\Roblox.Presence',
-				'\\Assemblies\\Controllers\\Roblox.Presence',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Presence',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_PRESENCE'],
 			),
 		);
@@ -656,7 +656,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_GROUPS_SERVER,
 				'\\StaticPages\\Roblox.Groups',
-				'\\Assemblies\\Controllers\\Roblox.Groups',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Groups',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_GROUPS'],
 			),
 		);
@@ -665,7 +665,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ACCOUNT_INFORMATION_SERVER,
 				'\\StaticPages\\Roblox.AccountInformation',
-				'\\Assemblies\\Controllers\\Roblox.AccountInformation',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AccountInformation',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ACCOUNT_INFORMATION'],
 			),
 		);
@@ -674,7 +674,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_BADGES_SERVER,
 				'\\StaticPages\\Roblox.Badges',
-				'\\Assemblies\\Controllers\\Roblox.Badges',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Badges',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_BADGES'],
 			),
 		);
@@ -683,7 +683,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_DEVELOPER_FORUM_SERVER,
 				'\\StaticPages\\Roblox.DeveloperForum',
-				'\\Assemblies\\Controllers\\Roblox.DeveloperForum',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.DeveloperForum',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_DEVELOPER_FORUM'],
 			),
 		);
@@ -692,7 +692,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_PREMIUM_FEATURES_SERVER,
 				'\\StaticPages\\Roblox.PremiumFeatures',
-				'\\Assemblies\\Controllers\\Roblox.PremiumFeatures',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.PremiumFeatures',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_PREMIUM_FEATURES'],
 			),
 		);
@@ -700,7 +700,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CLIENT_SETTINGS_SERVER,
 				'\\StaticPages\\Roblox.ClientSettings',
-				'\\Assemblies\\Controllers\\Roblox.ClientSettings',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ClientSettings',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS'],
 			),
 		);
@@ -708,7 +708,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CLIENT_SETTINGS_CDN_SERVER,
 				'\\StaticPages\\Roblox.ClientSettingsCDN',
-				'\\Assemblies\\Controllers\\Roblox.ClientSettingsCDN',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ClientSettingsCDN',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CLIENT_SETTINGS_CDN'],
 			),
 		);
@@ -716,7 +716,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_AD_CONFIGURATION_SERVER,
 				'\\StaticPages\\Roblox.AdConfiguration',
-				'\\Assemblies\\Controllers\\Roblox.AdConfiguration',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AdConfiguration',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AD_CONFIGURATION'],
 			),
 		);
@@ -724,7 +724,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CLIENT_TELEMENTRY_SERVER,
 				'\\StaticPages\\Roblox.ClientTelementry',
-				'\\Assemblies\\Controllers\\Roblox.ClientTelementry',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ClientTelementry',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CLIENT_TELEMENTRY'],
 			),
 		);
@@ -732,7 +732,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ASSET_DELIVERY_SERVER,
 				'\\StaticPages\\Roblox.AssetDelivery',
-				'\\Assemblies\\Controllers\\Roblox.AssetDelivery',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AssetDelivery',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ASSET_DELIVERY'],
 			),
 		);
@@ -740,7 +740,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_AVATAR_SERVER,
 				'\\StaticPages\\Roblox.Avatar',
-				'\\Assemblies\\Controllers\\Roblox.Avatar',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Avatar',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AVATAR'],
 			),
 		);
@@ -748,7 +748,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_BILLING_SERVER,
 				'\\StaticPages\\Roblox.Billing',
-				'\\Assemblies\\Controllers\\Roblox.Billing',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Billing',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_BILLING'],
 			),
 		);
@@ -756,7 +756,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CATALOG_SERVER,
 				'\\StaticPages\\Roblox.Catalog',
-				'\\Assemblies\\Controllers\\Roblox.Catalog',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Catalog',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CATALOG'],
 			),
 		);
@@ -764,7 +764,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CDN_PROVIDERS_SERVER,
 				'\\StaticPages\\Roblox.CdnProviders',
-				'\\Assemblies\\Controllers\\Roblox.CdnProviders',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.CdnProviders',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CDN_PROVIDERS'],
 			),
 		);
@@ -772,7 +772,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CHAT_MODERATION_SERVER,
 				'\\StaticPages\\Roblox.ChatModeration',
-				'\\Assemblies\\Controllers\\Roblox.ChatModeration',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ChatModeration',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CHAT_MODERATION'],
 			),
 		);
@@ -780,7 +780,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_CONTENT_STORE_SERVER,
 				'\\StaticPages\\Roblox.ContentStore',
-				'\\Assemblies\\Controllers\\Roblox.ContentStore',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ContentStore',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_CONTENT_STORE'],
 			),
 		);
@@ -788,7 +788,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_DEVELOP_SERVER,
 				'\\StaticPages\\Roblox.Develop',
-				'\\Assemblies\\Controllers\\Roblox.Develop',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Develop',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_DEVELOP'],
 			),
 		);
@@ -796,7 +796,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_DISCUSSIONS_SERVER,
 				'\\StaticPages\\Roblox.Discussions',
-				'\\Assemblies\\Controllers\\Roblox.Discussions',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Discussions',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_DISCUSSIONS'],
 			),
 		);
@@ -804,7 +804,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ECONOMY_CREATOR_STATS_SERVER,
 				'\\StaticPages\\Roblox.EconomyCreatorStats',
-				'\\Assemblies\\Controllers\\Roblox.EconomyCreatorStats',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.EconomyCreatorStats',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ECONOMY_CREATOR_STATS'],
 			),
 		);
@@ -812,7 +812,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ENGAGEMENT_PAYOUTS_SERVER,
 				'\\StaticPages\\Roblox.EngagementPayouts',
-				'\\Assemblies\\Controllers\\Roblox.EngagementPayouts',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.EngagementPayouts',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ENGAGEMENT_PAYOUTS'],
 			),
 		);
@@ -820,7 +820,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_FOLLOWINGS_SERVER,
 				'\\StaticPages\\Roblox.Followings',
-				'\\Assemblies\\Controllers\\Roblox.Followings',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Followings',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_FOLLOWINGS'],
 			),
 		);
@@ -828,7 +828,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_GAME_INTERNATIONALIZATION_SERVER,
 				'\\StaticPages\\Roblox.GameInternationalization',
-				'\\Assemblies\\Controllers\\Roblox.GameInternationalization',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.GameInternationalization',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_GAME_INTERNATIONALIZATION'],
 			),
 		);
@@ -836,7 +836,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_GAME_JOIN_SERVER,
 				'\\StaticPages\\Roblox.GameJoin',
-				'\\Assemblies\\Controllers\\Roblox.GameJoin',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.GameJoin',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_GAME_JOIN'],
 			),
 		);
@@ -844,7 +844,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_GROUPS_MODERATION_SERVER,
 				'\\StaticPages\\Roblox.GroupsModeration',
-				'\\Assemblies\\Controllers\\Roblox.GroupsModeration',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.GroupsModeration',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_GROUPS_MODERATION'],
 			),
 		);
@@ -852,7 +852,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_INVENTORY_SERVER,
 				'\\StaticPages\\Roblox.Inventory',
-				'\\Assemblies\\Controllers\\Roblox.Inventory',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Inventory',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AD_CONFIGURATION'],
 			),
 		);
@@ -860,7 +860,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_ITEM_CONFIGURATION_SERVER,
 				'\\StaticPages\\Roblox.ItemConfiguration',
-				'\\Assemblies\\Controllers\\Roblox.ItemConfiguration',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ItemConfiguration',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_ITEM_CONFIGURATION'],
 			),
 		);
@@ -868,7 +868,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_AD_CONFIGURATION_SERVER,
 				'\\StaticPages\\Roblox.AdConfiguration',
-				'\\Assemblies\\Controllers\\Roblox.AdConfiguration',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.AdConfiguration',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_AD_CONFIGURATION'],
 			),
 		);
@@ -876,7 +876,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_LOCALIZATION_TABLES_SERVER,
 				'\\StaticPages\\Roblox.LocalizationTables',
-				'\\Assemblies\\Controllers\\Roblox.LocalizationTables',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.LocalizationTables',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_LOCALIZATION_TABLES'],
 			),
 		);
@@ -884,7 +884,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_POINTS_SERVER,
 				'\\StaticPages\\Roblox.Points',
-				'\\Assemblies\\Controllers\\Roblox.Points',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Points',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_POINTS'],
 			),
 		);
@@ -892,7 +892,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_PUBLISH_SERVER,
 				'\\StaticPages\\Roblox.Publish',
-				'\\Assemblies\\Controllers\\Roblox.Publish',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Publish',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_PUBLISH'],
 			),
 		);
@@ -900,7 +900,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_PUNISHMENTS_SERVER,
 				'\\StaticPages\\Roblox.Punishments',
-				'\\Assemblies\\Controllers\\Roblox.Punishments',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Punishments',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_PUNISHMENTS'],
 			),
 		);
@@ -908,7 +908,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_SHARE_SERVER,
 				'\\StaticPages\\Roblox.Share',
-				'\\Assemblies\\Controllers\\Roblox.Share',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Share',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_SHARE'],
 			),
 		);
@@ -916,7 +916,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_TEXT_FILTER_SERVER,
 				'\\StaticPages\\Roblox.TextFilter',
-				'\\Assemblies\\Controllers\\Roblox.TextFilter',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.TextFilter',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_TEXT_FILTER'],
 			),
 		);
@@ -924,7 +924,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_THEMES_SERVER,
 				'\\StaticPages\\Roblox.Themes',
-				'\\Assemblies\\Controllers\\Roblox.Themes',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Themes',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_THEMES'],
 			),
 		);
@@ -932,7 +932,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_THUMBNAILS_RESIZER_SERVER,
 				'\\StaticPages\\Roblox.ThumbnailsResizer',
-				'\\Assemblies\\Controllers\\Roblox.ThumbnailsResizer',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.ThumbnailsResizer',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_THUMBNAILS_RESIZER'],
 			),
 		);
@@ -940,7 +940,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_TRANSLATION_ROLES_SERVER,
 				'\\StaticPages\\Roblox.TranslationRoles',
-				'\\Assemblies\\Controllers\\Roblox.TranslationRoles',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.TranslationRoles',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_TRANSLATION_ROLES'],
 			),
 		);
@@ -948,7 +948,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_TRANSLATIONS_SERVER,
 				'\\StaticPages\\Roblox.Translations',
-				'\\Assemblies\\Controllers\\Roblox.Translations',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Translations',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_TRANSLATIONS'],
 			),
 		);
@@ -956,7 +956,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_USER_MODERATION,
 				'\\StaticPages\\Roblox.UserModeration',
-				'\\Assemblies\\Controllers\\Roblox.UserModeration',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.UserModeration',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_USER_MODERATION'],
 			),
 		);
@@ -964,7 +964,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_VOICE_SERVER,
 				'\\StaticPages\\Roblox.Voice',
-				'\\Assemblies\\Controllers\\Roblox.Voice',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.Voice',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_VOICE'],
 			),
 		);
@@ -972,7 +972,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_FILES_API_SERVER,
 				'\\StaticPages\\Roblox.FilesApi',
-				'\\Assemblies\\Controllers\\Roblox.FilesApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.FilesApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_FILES_API'],
 			),
 		);
@@ -980,7 +980,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				SIMULPONG_ROBLOX_TEAM_CITY_SERVER,
 				'\\StaticPages\\SimulPong.TeamCity',
-				'\\Assemblies\\Controllers\\SimulPong.TeamCity',
+				'\\Assemblies\\Bin\\Controllers\\SimulPong.TeamCity',
 				RobloxLegacy.Api.Constants.URLS['SIMULPONG_ROBLOX_TEAM_CITY'],
 			),
 		);
@@ -988,7 +988,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ADMIN_WEB_SITE_SERVER,
 				'\\StaticPages\\AdminWebsite',
-				'\\Assemblies\\Controllers\\AdminWebsite',
+				'\\Assemblies\\Bin\\Controllers\\AdminWebsite',
 				RobloxLegacy.Api.Constants.URLS['ADMIN_WEB_SITE'],
 			),
 		);
@@ -996,7 +996,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				COM_APIS_SERVER,
 				'\\StaticPages\\Com.Apis',
-				'\\Assemblies\\Controllers\\Com.Apis',
+				'\\Assemblies\\Bin\\Controllers\\Com.Apis',
 				RobloxLegacy.Api.Constants.URLS['COM_APIS'],
 				false,
 				true,
@@ -1006,7 +1006,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ROBLOX_POINTS_API_SERVER,
 				'\\StaticPages\\Roblox.PointsApi',
-				'\\Assemblies\\Controllers\\Roblox.PointsApi',
+				'\\Assemblies\\Bin\\Controllers\\Roblox.PointsApi',
 				RobloxLegacy.Api.Constants.URLS['ROBLOX_POINTS_API'],
 			),
 		);
@@ -1337,13 +1337,13 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,
-					'\\Assemblies\\WebSockets\\Roblox.Api',
+					'\\Assemblies\\Bin\\WebSockets\\Roblox.Api',
 					RobloxLegacy.Api.Constants.URLS.ROBLOX_API,
 				);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_REAL_TIME_HTTP,
 					ROBLOX_REAL_TIME_HTTPS,
-					'\\Assemblies\\WebSockets\\Roblox.RealTime',
+					'\\Assemblies\\Bin\\WebSockets\\Roblox.RealTime',
 					RobloxLegacy.Api.Constants.URLS.ROBLOX_REAL_TIME,
 				);
 				FASTLOG1F(
