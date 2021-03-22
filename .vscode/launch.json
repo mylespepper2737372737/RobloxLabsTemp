@@ -3,35 +3,35 @@
 	"configurations": [
 		{
 			"name": "Assets Tests",
-			"program": "${workspaceFolder}/Assemblies/Tests/Assets.js",
+			"program": "${workspaceFolder}/Assemblies/Bin/Tests/Assets.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Persistent Data Store Tests",
-			"program": "${workspaceFolder}/Assemblies/Tests/PersistentDataStoreTests.js",
+			"program": "${workspaceFolder}/Assemblies/Bin/Tests/PersistentDataStoreTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Fast Log Tests",
-			"program": "${workspaceFolder}/Assemblies/Tests/FastLogTests.js",
+			"program": "${workspaceFolder}/Assemblies/Bin/Tests/FastLogTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Fast Variable Tests",
-			"program": "${workspaceFolder}/Assemblies/Tests/FastVariableTests.js",
+			"program": "${workspaceFolder}/Assemblies/Bin/Tests/FastVariableTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Service Client Log Tests",
-			"program": "${workspaceFolder}/Assemblies/Tests/ServiceClientTests.js",
+			"program": "${workspaceFolder}/Assemblies/Bin/Tests/ServiceClientTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
@@ -39,10 +39,10 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Roblox.IStart.Job-for-vsc",
+			"name": "Roblox.Global.asax-for-vsc",
 			"cwd": "${workspaceFolder}",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run-script", "Roblox.IStart.Job-for-vsc"],
+			"runtimeArgs": ["run-script", "Roblox.Global.asax-for-vsc"],
 			"envFile": "${workspaceFolder}/.env"
 		}
 	],
