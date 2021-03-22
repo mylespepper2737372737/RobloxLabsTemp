@@ -1,1 +1,0 @@
-export declare const WriteToManifest: (userId: string, field: string, value: unknown, pushIfArray?: boolean, popIfUndefined?: boolean, index?: number, spliceIfIndex?: boolean, createIfDoesntExist?: boolean) => any;

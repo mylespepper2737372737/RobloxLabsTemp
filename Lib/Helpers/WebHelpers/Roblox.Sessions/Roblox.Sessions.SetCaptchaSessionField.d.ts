@@ -1,1 +1,0 @@
-export declare const SetCaptchaSessionField: (sessionId: string, field: string, value: unknown, concatToString?: boolean, pushIfArray?: boolean, popIfUndefined?: boolean, index?: number, spliceIfIndex?: boolean, createIfDoesntExist?: boolean) => any;
