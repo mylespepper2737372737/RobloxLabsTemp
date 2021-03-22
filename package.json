@@ -2,13 +2,13 @@
 	"name": "mfd",
 	"version": "1.0.0",
 	"description": "mfd",
-	"main": "Assemblies/Roblox.IStart.Job.js",
+	"main": "Assemblies/bin/Global.asax.js",
 	"scripts": {
-		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=diag Assemblies/IStart.Job.js",
+		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=diag Assemblies/bin/Global.asax.js",
 		"lint": "eslint . --fix --ext .ts",
-		"Roblox.IStart.Job-for-vsc": "npm run build && npm run Roblox-IStart-Job",
+		"Roblox.Global.asax-for-vsc": "npm run build && npm run Roblox-IStart-Job",
 		"build": "tsc --skipLibCheck",
-		"start": "node --trace-deprecation Assemblies/IStart.Job.js"
+		"start": "node --trace-deprecation Assemblies/bin/Global.asax.js"
 	},
 	"author": "mfd",
 	"license": "Apache-2.0",
