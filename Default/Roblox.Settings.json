@@ -31,7 +31,7 @@
 			"CanAdminsBypassTheSystem": true,
 			"NoMaintenance": true,
 			"Debug": true,
-			"PointsServiceEnabled": false
+			"PointsServiceEnabled": true
 		},
 		"SFFlag": {},
 		"FInt": {
