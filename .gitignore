@@ -47,7 +47,7 @@ dist
 .npmignore
 package-lock.json
 # We don't want the js'
-/Assemblies
+/Assemblies/bin
 DeploymentTooling
 server.log
 /DataBase
