@@ -31,10 +31,10 @@ export default {
 		return res.send({
 			isAllowedNotificationsEndpointDisabled: true,
 			isAccountSettingsPolicyEnabled: true,
-			isPhoneNumberEnabled: false,
+			isPhoneNumberEnabled: true,
 			MaxUserDescriptionLength: 1000,
-			isUserDescriptionEnabled: false,
-			isUserBlockEndpointsUpdated: false,
+			isUserDescriptionEnabled: true,
+			isUserBlockEndpointsUpdated: true,
 		});
 	},
 };

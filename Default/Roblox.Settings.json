@@ -51,7 +51,7 @@
 			"MetricsLogRatio": 0.05,
 			"MultiGetContactsMaxSize": 200,
 			"CookieLawNoticeTimeout": 20000,
-			"TestCurrency": null
+			"TestCurrency": 34512
 		},
 		"SFInt": {},
 		"FString": {

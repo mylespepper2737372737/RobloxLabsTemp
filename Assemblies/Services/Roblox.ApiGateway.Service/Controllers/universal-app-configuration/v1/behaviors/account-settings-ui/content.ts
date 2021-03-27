@@ -30,6 +30,7 @@ export default {
 	func: (_req, res): void => {
 		return res.send({
 			displayTwoStepVerification: true,
+			displayAccountPIN: true,
 			displayEmailAddress: true,
 			displayWeChat: false,
 			displayQQ: false,

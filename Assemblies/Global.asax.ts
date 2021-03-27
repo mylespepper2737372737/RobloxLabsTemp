@@ -659,7 +659,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				AccountInformationServer,
 				'\\StaticPages\\ApiSites\\Roblox.AccountInformation.Api',
-				'\\Assemblies\\Bin\\ApiSites\\Roblox.AccountInformation.Api',
+				'\\Assemblies\\Bin\\ApiSites\\Roblox.AccountInformation.Api\\Controllers',
 				RobloxLegacy.Api.Constants.URLS['AccountInformationApi'],
 			),
 		);
@@ -668,7 +668,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				BadgesApiServer,
 				'\\StaticPages\\ApiSites\\Roblox.Badges.Api',
-				'\\Assemblies\\Bin\\ApiSites\\Roblox.Badges.Api',
+				'\\Assemblies\\Bin\\ApiSites\\Roblox.Badges.Api\\Controllers',
 				RobloxLegacy.Api.Constants.URLS['BadgesApi'],
 			),
 		);
@@ -774,7 +774,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
 				ContentStoreApiServer,
 				'\\StaticPages\\ApiSites\\Roblox.ContentStore.Api',
-				'\\Assemblies\\Bin\\ApiSites\\Roblox.ContentStore.Api',
+				'\\Assemblies\\Bin\\ApiSites\\Roblox.ContentStore.Api\\Controllers',
 				RobloxLegacy.Api.Constants.URLS['ContentStoreApi'],
 			),
 		);

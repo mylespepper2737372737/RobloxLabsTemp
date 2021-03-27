@@ -2,8 +2,8 @@
 	"ChangeUsernameEnabled": true,
 	"IsAdmin": true,
 	"UserId": 1,
-	"Name": "RakNetProtcol",
-	"DisplayName": "NSG_DISPLAY_NAME",
+	"Name": "nsg",
+	"DisplayName": "US- user_1",
 	"IsEmailOnFile": true,
 	"IsEmailVerified": true,
 	"IsPhoneFeatureEnabled": true,
@@ -17,7 +17,7 @@
 	"IsSetPasswordNotificationEnabled": false,
 	"ChangePasswordRequiresTwoStepVerification": false,
 	"ChangeEmailRequiresTwoStepVerification": false,
-	"UserEmail": "n*****@gmail.com",
+	"UserEmail": "a**@roblox.com",
 	"UserEmailMasked": true,
 	"UserEmailVerified": true,
 	"CanHideInventory": true,
@@ -83,6 +83,6 @@
 	"IsFastTrackAccessible": false,
 	"HasFreeNameChange": false,
 	"IsAgeDownEnabled": true,
-	"IsDisplayNamesEnabled": false,
+	"IsDisplayNamesEnabled": true,
 	"ReceiveNewsletter": false
 }
