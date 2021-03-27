@@ -35,7 +35,6 @@ import UseRouting from '../Global.Helpers/UseRouting';
 import MapControllers from '../Global.Helpers/MapControllers';
 import UsePages from '../Global.Helpers/UsePages';
 import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import signalr from 'signalrjs';
 import UseFileList from '../Global.Helpers/UserFileList';
 
 export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
@@ -71,8 +70,6 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 		setHeaders?: (res: R, path: string, stat: unknown) => unknown;
 	};
 	errorpage?: boolean;
-	signalr?: boolean;
-	hubs?: string[];
 	fileListings?: boolean;
 }
 
@@ -100,13 +97,6 @@ export namespace IStartup {
 			}
 			if (opts.errorpage) {
 				await DeveloperExceptionPage(opts.app);
-			}
-			if (opts.signalr) {
-				const sir = signalr();
-				opts.hubs.forEach((v) => {
-					sir.hub(v, () => 0);
-				});
-				opts.app.use(signalr.createListener());
 			}
 		} catch (e) {
 			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);

@@ -13,8 +13,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"stripInternal": true,
-		"removeComments": true,
-		"declaration": true,
-		"declarationDir": "Assemblies/bin/PBD"
+		"removeComments": true
 	}
 }

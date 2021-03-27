@@ -1,7 +1,13 @@
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { Task } from '../../Http/Task';
+import { PartialDataBase } from '../../PartialDatabase/PartialDataBase';
+import { PartialDatabaseConditionType } from '../../PartialDatabase/PartialDatabaseConditionType';
 import { IEmail } from '../Credentials/IEmail';
 import { IPassword } from '../Credentials/IPassword';
 import { IUser } from './IUser';
 import { UserModelBuildersClubMembershipTypeEnum } from './UserModelBuildersClubMembershipTypeEnum';
+
+DYNAMIC_LOGGROUP('Tasks');
 
 export class User implements IUser {
 	public Id: Number;
@@ -33,12 +39,52 @@ export class User implements IUser {
 	 * @param {number} Id The userId.
 	 * @returns {IUser} Returns an IUser.
 	 */
-	public static GetByUserId(Id: number): IUser {
+	public static async GetById(Id: number): Task<IUser> {
+		// TODO: Do some extra checking here!
+		const db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
+		await db.Connect();
+		const [, , users] = db.GetTable<IUser>('User', 'Id', true);
+		const [success, message, result] = await users.GetFromRowsColumnsConditional(
+			[
+				'Name',
+				'DisplayName',
+				'MembershipType',
+				'Description',
+				'Created',
+				'IsBanned',
+				'AgeBracket',
+				'Roles',
+				'CountryCode',
+				'UserAbove13',
+				'IsAdmin',
+			],
+			{
+				Key: 'Id',
+				Condition: PartialDatabaseConditionType.Equal,
+				Value: Id,
+			},
+		);
+		if (!success) {
+			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching user: %s', message);
+			return null;
+		}
+		const thisUser = result.Rows[0];
+		if (!thisUser) return null;
+
 		const user = new User();
 		user.Id = Id;
-		user.Name = 'Test';
-		user.DisplayName = 'Test';
-		user.MembershipType = UserModelBuildersClubMembershipTypeEnum.None;
+		user.Name = <String>thisUser.Data[0].Value;
+		user.DisplayName = <String>thisUser.Data[1].Value;
+		user.MembershipType = <UserModelBuildersClubMembershipTypeEnum>thisUser.Data[2].Value;
+		user.Description = <String>thisUser.Data[3].Value;
+		user.Created = <String>thisUser.Data[4].Value;
+		user.IsBanned = <Boolean>thisUser.Data[5].Value;
+		user.AgeBracket = <Number>thisUser.Data[6].Value;
+		user.Roles = <String[]>JSON.parse(<string>thisUser.Data[7].Value);
+		user.CountryCode = <String>thisUser.Data[8].Value;
+		user.UserAbove13 = <Boolean>thisUser.Data[9].Value;
+		user.IsAdmin = <Boolean>thisUser.Data[10].Value;
+		await db.Disconnect();
 		return user;
 	}
 }

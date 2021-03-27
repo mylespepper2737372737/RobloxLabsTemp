@@ -1,5 +1,4 @@
-import { IRobloxEntity } from '../../Mssql/Roblox.Mssql/IRobloxEntity';
-
-export interface ITestEntity extends IRobloxEntity {
+export interface ITestEntity {
 	Id: Int64;
+	Test?: string;
 }

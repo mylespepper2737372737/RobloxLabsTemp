@@ -25,10 +25,41 @@
 	***
 */
 
-import { RobloxLegacy } from '../Api';
+import { User } from '../Platform/Membership/User';
 
-export default (req: { url: string }, res) => {
-	return res
-		.status(404)
-		.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\WWWRoot\\Roblox.404.html');
+export default async (_req, res) => {
+	const user = await User.GetById(1);
+	return res.status(404).render('Error/NotFound', {
+		isUserAuthenicated: user !== null,
+		authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+		sessionUser: {
+			LanguageCode: 'en_us',
+			LanguageName: 'English',
+			Device: {
+				DeviceName: 'computer',
+				IsInApp: false,
+				IsDesktop: true,
+				IsPhone: false,
+				IsTablet: false,
+				IsConsole: false,
+				IsAndroidApp: false,
+				IsIosApp: false,
+				IsUWPApp: false,
+				IsXboxApp: false,
+				IsAmazonApp: false,
+				IsWin32App: false,
+				IsStudio: false,
+				IsGameClientBrowser: false,
+				IsIosDevice: false,
+				IsAndroidDevice: false,
+				IsUniversalApp: false,
+			},
+		},
+		MachineId: 'AWA-1447',
+		globalMeta: {
+			Experiments: {
+				DisplayNamesEnabled: true,
+			},
+		},
+	});
 };

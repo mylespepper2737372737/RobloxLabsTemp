@@ -22,7 +22,7 @@ export namespace PointsRequestProcessor {
 		});
 	}
 
-	export function CheckUniverseAndUser(universeId: number, userId: number, response: Response): [boolean, IUniverse, IUser] {
+	export async function CheckUniverseAndUser(universeId: number, userId: number, response: Response): Task<[boolean, IUniverse, IUser]> {
 		// NaN check.
 		const errors: ICustomError[] = [];
 		if (isNaN(universeId)) {
@@ -44,8 +44,8 @@ export namespace PointsRequestProcessor {
 			return [false, null, null];
 		}
 
-		const user: IUser = User.GetByUserId(userId);
-		const universe: IUniverse = Universe.GetById(universeId);
+		const user: IUser = await User.GetById(userId);
+		const universe: IUniverse = await Universe.GetById(universeId);
 		if (universe === null) {
 			errors.push({
 				code: 1,
