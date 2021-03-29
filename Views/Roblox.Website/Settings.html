@@ -3,8 +3,8 @@
 <!--[if gt IE 8]><!-->
 <html>
 	<!--<![endif]-->
-	<head data-machine-id="WEB309">
-		<!-- MachineID: WEB309 -->
+	<head data-machine-id="<%= pageMeta.MachineID %>">
+		<!-- MachineID: <%= pageMeta.MachineID %> -->
 		<title>My Settings - Roblox</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
 		<meta charset="UTF-8" />
@@ -935,7 +935,7 @@
 	</head>
 	<body
 		id="rbx-body"
-		class="rbx-body dark-theme gotham-font"
+		class="rbx-body <%= isUserAuthenicated === true ? authenticatedUser.Theme : 'light' %>-theme gotham-font"
 		data-performance-relative-value="0.005"
 		data-internal-page-name="Settings"
 		data-send-event-percentage="0"
@@ -956,8 +956,12 @@
 
 		<div id="fb-root"></div>
 
-		<div id="wrap" class="wrap no-gutter-ads logged-in" data-gutter-ads-enabled="false">
-			<div id="navigation-container" class="dark-theme gotham-font" data-number-of-autocomplete-suggestions="5">
+		<div id="wrap" class="<%= isUserAuthenicated ? 'in' : 'out' %>" data-gutter-ads-enabled="false">
+			<div
+				id="navigation-container"
+				class="<%= isUserAuthenicated === true ? authenticatedUser.Theme : 'light' %>-theme gotham-font"
+				data-number-of-autocomplete-suggestions="5"
+			>
 				<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
 					<div class="container-fluid">
 						<div class="rbx-navbar-header">
@@ -1031,6 +1035,10 @@
 							<div class="alert-info" role="alert">Please enable Javascript to use all the features on this site.</div>
 						</div></noscript
 					>
+
+					<% if (pageMeta.banner && pageMeta.banner.Enabled) { %>
+					<div class="alert-info" role="alert"><%= pageMeta.banner.Text %></div>
+					<% } %>
 
 					<div id="account-security-prompt-container"></div>
 

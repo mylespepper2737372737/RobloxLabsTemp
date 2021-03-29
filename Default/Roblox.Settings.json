@@ -2,7 +2,8 @@
 	"Web": {
 		"FVariable": {},
 		"FLog": {
-			"Pages": 7
+			"Pages": 7,
+			"EphemeralCounters": 7
 		},
 		"DFLog": {
 			"Tasks": 7
@@ -36,7 +37,12 @@
 			"NoMaintenance": false,
 			"Debug": false,
 			"PointsServiceEnabled": true,
-			"ShouldShowLeftNavOnTestPage": false
+			"ShouldShowLeftNavOnTestPage": false,
+			"IsBannerEnabled": true,
+			"WWWIndexPageControllerEnabled": true,
+			"DefaultModerationCanReactivate": true,
+			"DefaultModerationIsPermanent": false,
+			"IsSignupFormDarkThemeEnabled": true
 		},
 		"SFFlag": {},
 		"FInt": {
@@ -51,7 +57,7 @@
 			"MetricsLogRatio": 0.05,
 			"MultiGetContactsMaxSize": 200,
 			"CookieLawNoticeTimeout": 20000,
-			"TestCurrency": 34512
+			"TestCurrency": 0
 		},
 		"SFInt": {},
 		"FString": {
@@ -65,7 +71,10 @@
 			"CharacterAppearanceUrl": "http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx",
 			"CharacterAppearranceTestString": "http://assetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx?userId=0;http://assetgame.sitetest4.robloxlabs.com/Asset?id=21070012;http://assetgame.sitetest4.robloxlabs.com/Asset?id=6395566584",
 			"WebVersion": "1.313.13.88764",
-			"SiteBanner": "Ze test"
+			"SiteBanner": "Ze test",
+			"DefaultModerationTitle": "Warning",
+			"DefaultModerationReviewedDate": "3/29/2021 3:18:10 AM",
+			"DefaultModerationNote": "This is a test warning, if you are not a moderator, please contact a moderator or appeals@roblox.com to re-active this account, or ask in #moderation-test-front-guild slack channel."
 		},
 		"SFString": {}
 	},

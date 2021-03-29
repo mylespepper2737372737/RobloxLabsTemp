@@ -4132,7 +4132,7 @@ if (
 			}),
 			(i.ajaxSettings.xhr = function () {
 				try {
-					return new n.XMLhttpsRequest();
+					return new n.XMLHttpRequest();
 				} catch (t) {}
 			}),
 			(of = { 0: 200, 1223: 204 }),
@@ -4149,7 +4149,7 @@ if (
 							if ((e.open(t.type, t.url, t.async, t.username, t.password), t.xhrFields))
 								for (o in t.xhrFields) e[o] = t.xhrFields[o];
 							t.mimeType && e.overrideMimeType && e.overrideMimeType(t.mimeType);
-							t.crossDomain || u['X-Requested-With'] || (u['X-Requested-With'] = 'XMLhttpsRequest');
+							t.crossDomain || u['X-Requested-With'] || (u['X-Requested-With'] = 'XMLHttpRequest');
 							for (o in u) e.setRequestHeader(o, u[o]);
 							i = function (n) {
 								return function () {
@@ -14208,7 +14208,7 @@ if (
 		function cb() {
 			this.$get = function () {
 				return function () {
-					return new n.XMLhttpsRequest();
+					return new n.XMLHttpRequest();
 				};
 			};
 		}
@@ -21840,7 +21840,7 @@ window.angular.$$csp().noInlineStyle ||
 						return undefined;
 					}
 					return (
-						(i = new n.XMLhttpsRequest()),
+						(i = new n.XMLHttpRequest()),
 						(i.responseType = 'document'),
 						i.open('GET', 'data:text/html;charset=utf-8,' + t, !1),
 						i.send(null),

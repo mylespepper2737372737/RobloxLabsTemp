@@ -42,12 +42,9 @@
 			data-created="<%= authenticatedUser.Created %>"
 			data-ispremiumuser="<%= authenticatedUser.IsPremium %>"
 		/>
-		<% } %>
-		<meta
-			name="locale-data"
-			data-language-code="<%= isUserAuthenicated === true ? authenticatedUser.LanguageCode : sessionUser.LanguageCode %>"
-			data-language-name="<%= isUserAuthenicated === true ? authenticatedUser.LanguageName : sessionUser.LanguageName %>"
-		/>
+		<% } %> <meta name="locale-data" data-language-code="<%= /*isUserAuthenicated === true ? authenticatedUser.LanguageCode :
+		sessionUser.LanguageCode*/ "fr_fr" %>" data-language-name="<%= /*isUserAuthenicated === true ? authenticatedUser.LanguageName :
+		sessionUser.LanguageName*/ "Français" %>" />
 		<meta
 			name="device-meta"
 			data-device-type="<%= sessionUser.Device.DeviceName %>"
@@ -892,7 +889,7 @@
 
 		<div id="fb-root"></div>
 
-		<div id="wrap" class="wrap no-gutter-ads logged-in" data-gutter-ads-enabled="false">
+		<div id="wrap" class="<%= isUserAuthenicated ? 'in' : 'out' %>" data-gutter-ads-enabled="false">
 			<div
 				id="navigation-container"
 				class="<%= isUserAuthenicated === true ? authenticatedUser.Theme : 'light' %>-theme gotham-font"

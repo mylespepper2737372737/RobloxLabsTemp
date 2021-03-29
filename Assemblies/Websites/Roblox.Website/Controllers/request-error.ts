@@ -68,7 +68,7 @@ export default {
 							IsUniversalApp: false,
 						},
 					},
-					MachineId: 'AWA-1447',
+					MachineId: 'WEB1447',
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
@@ -102,7 +102,7 @@ export default {
 							IsUniversalApp: false,
 						},
 					},
-					MachineId: 'AWA-1447',
+					MachineId: 'WEB1447',
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
@@ -136,7 +136,7 @@ export default {
 							IsUniversalApp: false,
 						},
 					},
-					MachineId: 'AWA-1447',
+					MachineId: 'WEB1447',
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
@@ -171,7 +171,7 @@ export default {
 							IsUniversalApp: false,
 						},
 					},
-					MachineId: 'AWA-1447',
+					MachineId: 'WEB1447',
 					Error: {
 						/* Place a generic stack in here until the request-error-id gets utilized. */
 						Message: err.message,
@@ -212,7 +212,7 @@ export default {
 							IsUniversalApp: false,
 						},
 					},
-					MachineId: 'AWA-1447',
+					MachineId: 'WEB1447',
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,

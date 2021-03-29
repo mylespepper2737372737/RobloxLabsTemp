@@ -43,7 +43,7 @@
 			property="og:description"
 			content="<%= profileUser.Name %> is one of the millions playing, creating and exploring the endless possibilities of Roblox. Join <%= profileUser.Name %> on Roblox and explore together!<%= profileUser.Description %>"
 		/>
-		<meta property="og:image" content="https://tr.rbxcdn.com/<%= profileUser.ImageHash %>/352/352/Avatar/Png" />
+		<meta property="og:image" content="https://tr.rbxcdn.com/<%= /*profileUser.ImageHash*/ "90c4d32c9bfcdf107e61031fc9f3f9a3" %>/352/352/Avatar/Png" />
 		<meta property="fb:app_id" content="190191627665278" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@Roblox" />
@@ -53,7 +53,7 @@
 			content="<%= profileUser.Name %> is one of the millions playing, creating and exploring the endless possibilities of Roblox. Join <%= profileUser.Name %> on Roblox and explore together!<%= profileUser.Description %>"
 		/>
 		<meta name="twitter:creator" />
-		<meta name="twitter:image1" content="https://tr.rbxcdn.com/<%= profileUser.ImageHash %>/352/352/Avatar/Png" />
+		<meta name="twitter:image1" content="https://tr.rbxcdn.com/<%= /*profileUser.ImageHash*/ "90c4d32c9bfcdf107e61031fc9f3f9a3" %>/352/352/Avatar/Png" />
 		<meta name="twitter:app:country" content="US" />
 		<meta name="twitter:app:name:iphone" content="ROBLOX Mobile" />
 		<meta name="twitter:app:id:iphone" content="431946152" />
@@ -366,11 +366,13 @@
 			Roblox.BundleDetector.setTiming(window.performance.timing);
 		</script>
 		<link href="https://images.rbxcdn.com/23421382939a9f4ae8bbe60dbe2a3e7e.ico.gzip" rel="icon" />
+		<% if (isUserAuthenicated) { %> 
 		<link
 			rel="manifest"
 			href="https://notifications.sitetest4.robloxlabs.com/v2/push-notifications/chrome-manifest"
 			crossorigin="use-credentials"
 		/>
+		<% } %> 
 		<link
 			rel="stylesheet"
 			onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
@@ -413,7 +415,7 @@
 			data-bundle-source="Main"
 			href="https://css.rbxcdn.com/08def520152a575438e73a81aa9a310c2415c327df7b624a24aa6e794d24dba3.css"
 		/>
-		<link rel="canonical" href="https://www.sitetest4.robloxlabs.com/users/158190828/profile" />
+		<link rel="canonical" href="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/profile" />
 		<link
 			onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 			rel="stylesheet"
@@ -487,6 +489,7 @@
 			data-bundle-source="Main"
 			href="https://css.rbxcdn.com/2f599b9e9ca20ee3c155684adbf1cdcb7220bab681b55b4505123a0c34e81969.css"
 		/>
+		<% if (isUserAuthenicated) { %> 
 		<link
 			rel="stylesheet"
 			onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
@@ -494,6 +497,7 @@
 			data-bundle-source="Main"
 			href="https://css.rbxcdn.com/d1c36a57982296706964ac2b650ba2f3087c47056ba37ac02822dc0192ce7820.css"
 		/>
+		<% } %> 
 		<link
 			rel="stylesheet"
 			onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
@@ -501,6 +505,7 @@
 			data-bundle-source="Main"
 			href="https://css.rbxcdn.com/c0da40b3a6667e911346e3adfbb541802f9883b9c3933e6110ea1160109ac987.css"
 		/>
+		<% if (isUserAuthenicated) { %> 
 		<script>
 			var Roblox = Roblox || {};
 			Roblox.RealTimeSettings = Roblox.RealTimeSettings || {
@@ -513,6 +518,7 @@
 				IsDebuggerEnabled: 'False',
 			};
 		</script>
+		<% } %> 
 		<script>
 			var Roblox = Roblox || {};
 			Roblox.EnvironmentUrls = Roblox.EnvironmentUrls || {};
@@ -649,6 +655,7 @@
 			data-bundle-source="Main"
 			src="https://js.rbxcdn.com/a168257175fe69cdb0762a3b8ca5d0a5fd625f77c027d5e4cef7f90a1602d704.js"
 		></script>
+		<% if (isUserAuthenicated) { %> 
 		<script
 			onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 			data-monitor="true"
@@ -656,6 +663,7 @@
 			data-bundle-source="Main"
 			src="https://js.rbxcdn.com/89f30f6701e04efb9dad1b1fb75ebd7cfe55257af8c8cefbd609039c4d66d8a8.js"
 		></script>
+		<% } %> 
 		<script
 			onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 			data-monitor="true"
@@ -880,7 +888,7 @@
 			<div id="http-retry-data" data-http-retry-max-timeout="0" data-http-retry-base-timeout="0" data-http-retry-max-times="1"></div>
 			<div id="TosAgreementInfo" data-terms-check-needed="False"></div>
 			<div id="fb-root"></div>
-			<div id="wrap" class="wrap no-gutter-ads logged-in" data-gutter-ads-enabled="false">
+			<div id="wrap" class="wrap no-gutter-ads logged-<%= isUserAuthenicated ? 'in' : 'out' %>" data-gutter-ads-enabled="false">
 				<div
 					id="navigation-container"
 					class="<%= isUserAuthenicated === true ? authenticatedUser.Theme : 'light' %>-theme gotham-font"
@@ -955,6 +963,11 @@
 								<div class="alert-info" role="alert">Please enable Javascript to use all the features on this site.</div>
 							</div>
 						</noscript>
+
+						<% if (pageMeta.banner && pageMeta.banner.Enabled) { %>
+							<div class="alert-info" role="alert"><%= pageMeta.banner.Text %></div>
+						<% } %>
+
 						<div id="account-security-prompt-container"></div>
 						<div class="alert-cookie-notice" data-cookie-notice-timeout="20000">
 							Roblox uses cookies to offer you a better experience. For further information, including information on how to
@@ -995,7 +1008,7 @@
 											var Roblox = Roblox || {};
 											Roblox.ProfileHeaderData = {
 												profileusername: '<%= profileUser.Name %>',
-												previoususernames: '<% profileUser.PreviousUserNames.forEach((uName, idx, tbl) => { %><%= `${uName}${idx !== tbl.length ? "\\r\\n" : ""}` %><% }); %>',
+												previoususernames: '<% profileUser.PreviousUserNames.forEach((uName, idx, tbl) => { %><%= `${uName}${idx !== tbl.length - 1 ? "\\r\\n" : ""}` %><% }); %>',
 											};
 										</script>
 										<div
@@ -1003,29 +1016,29 @@
 											data-friendscount="<%= profileUser.FriendsCount %>"
 											data-followerscount="<%= profileUser.FollowersCount %>"
 											data-followingscount="<%= profileUser.FollowingCount %>"
-											data-arefriends="<%= authenticatedUser === null ? false : profileUser.IsFriendsWith(authenticatedUser.Id) %>"
+											data-arefriends="<%= isUserAuthenicated === false ? false : profileUser.IsFriendsWith(authenticatedUser.Id) %>"
 											data-friendurl="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/friends"
-											data-incomingfriendrequestpending="<%= authenticatedUser === null ? false : profileUser.HasOutgoingFriendRequestForId(authenticatedUser.Id) %>"
-											data-maysendfriendinvitation="<%= authenticatedUser === null ? false : !authenticatedUser.CanAddUser(profileUser.Id) %>"
-											data-friendrequestpending="<%= authenticatedUser === null ? false : authenticatedUser.HasOutgoingFriendRequestForId(profileUser.Id) %>"
-											data-mayfollow="<%= authenticatedUser === null ? false : authenticatedUser.MayFollowUser(profileUser.Id) %>"
-											data-isfollowing="<%= authenticatedUser === null ? false : authenticatedUser.IsFollowing(profileUser.Id) %>"
-											data-canmessage="<%= authenticatedUser === null ? false : authenticatedUser.CanMessageUser(profileUser.Id) %>"
-											data-messagesdisabled="<%= authenticatedUser === null ? false : profileUser.CanRecievePrivateMessages() %>"
+											data-incomingfriendrequestpending="<%= isUserAuthenicated === false ? false : profileUser.HasOutgoingFriendRequestForId(authenticatedUser.Id) %>"
+											data-maysendfriendinvitation="<%= isUserAuthenicated === false ? false : !authenticatedUser.CanAddUser(profileUser.Id) %>"
+											data-friendrequestpending="<%= isUserAuthenicated === false ? false : authenticatedUser.HasOutgoingFriendRequestForId(profileUser.Id) %>"
+											data-mayfollow="<%= isUserAuthenicated === false ? false : authenticatedUser.MayFollowUser(profileUser.Id) %>"
+											data-isfollowing="<%= isUserAuthenicated === false ? false : authenticatedUser.IsFollowing(profileUser.Id) %>"
+											data-canmessage="<%= isUserAuthenicated === false ? true : authenticatedUser.CanMessageUser(profileUser.Id) %>"
+											data-messagesdisabled="<%= isUserAuthenicated === false ? false : profileUser.CanRecievePrivateMessages() %>"
 											data-messageurl="/messages/compose?recipientId=<%= profileUser.Id %>"
-											data-canbefollowed="<%= authenticatedUser === null ? false : !authenticatedUser.IsFollowing(profileUser.Id) %>"
-											data-cantrade="<%= authenticatedUser === null ? false : authenticatedUser.CanTradeWith(profileUser.Id) %>"
-											data-isblockbuttonvisible="<%= authenticatedUser === null ? false : authenticatedUser.IsUserBlocked(profileUser.Id) %>"
-											data-getfollowscript="Roblox.GameLauncher.followPlayerIntoGame(<%= profileUser.Id %>);"
-											data-ismorebtnvisible="true"
-											data-isvieweeblocked="<%= authenticatedUser === null ? false : authenticatedUser.IsUserBlocked(profileUser.Id) %>"
-											data-mayimpersonate="<%= authenticatedUser === null ? false : authenticatedUser.IsAdmin !== 0 %>"
-											data-mayupdatestatus="<%= authenticatedUser === null ? false : authenticatedUser.Id === profileUser.Id %>"
-											data-updatestatusurl="/home/updatestatus"
-											data-statustext="<%= profileUser.Status %>"
+											data-canbefollowed="<%= isUserAuthenicated === false ? false : !authenticatedUser.IsFollowing(profileUser.Id) %>"
+											data-cantrade="<%= isUserAuthenicated === false ? false : authenticatedUser.CanTradeWith(profileUser.Id) %>"
+											data-isblockbuttonvisible="<%= isUserAuthenicated === false ? false : authenticatedUser.IsUserBlocked(profileUser.Id) %>"
+											data-getfollowscript="<% if (isUserAuthenicated) { %>Roblox.GameLauncher.followPlayerIntoGame(<%= profileUser.Id %>);<% } %>"
+											data-ismorebtnvisible="<%= isUserAuthenicated %>"
+											data-isvieweeblocked="<%= isUserAuthenicated === false ? false : authenticatedUser.IsUserBlocked(profileUser.Id) %>"
+											data-mayimpersonate="<%= isUserAuthenicated === false ? false : authenticatedUser.IsAdmin !== 0 %>"
+											data-mayupdatestatus="<%= isUserAuthenicated === false ? false : authenticatedUser.Id === profileUser.Id %>"
+											<% if (authenticatedUser && authenticatedUser.Id === profileUser.Id) { %>data-updatestatusurl="/home/updatestatus"<% } else if (!isUserAuthenicated) { %>data-updatestatusurl=""<% } %>
+											data-statustext="<%= profileUser.Status %>aaaa"
 											data-statusdate="<%= profileUser.StatusUpdated %>"
 											data-editstatusmaxlength="254"
-											data-ischatdisabledbyprivacysetting="<%= authenticatedUser === null ? !profileUser.IsChatPrivacy("AllUsers") || true : !profileUser.IsChatPrivacy("Friends") || !profileUser.IsChatPrivacy("FriendsAndFollowing") || !profileUser.IsChatPrivacy("FriendsFollowingAndFollowers") || !profileUser.IsChatPrivacy("AllAuthenticatedUsers") %>"
+											data-ischatdisabledbyprivacysetting="<%= /*isUserAuthenicated === false ? !profileUser.IsChatPrivacy("AllUsers") : !profileUser.IsChatPrivacy("Friends") || !profileUser.IsChatPrivacy("FriendsAndFollowing") || !profileUser.IsChatPrivacy("FriendsFollowingAndFollowers") || !profileUser.IsChatPrivacy("AllAuthenticatedUsers")*/ %>false"
 											profile-header-data
 											set-message-btn-display="setMessageBtnDisplay(layout)"
 											profile-header-layout="profileHeaderLayout"
@@ -1067,7 +1080,7 @@
 															></div>
 															<a
 																class="text-name"
-																href="https://www.sitetest4.robloxlabs.com/users/158190828/friends#!/friends"
+																href="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/friends"
 																ng-cloak
 															>
 																<span
@@ -1085,7 +1098,7 @@
 															></div>
 															<a
 																class="text-name"
-																href="https://www.sitetest4.robloxlabs.com/users/158190828/friends#!/followers"
+																href="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/followers"
 																ng-cloak
 															>
 																<span
@@ -1103,7 +1116,7 @@
 															></div>
 															<a
 																class="text-name"
-																href="https://www.sitetest4.robloxlabs.com/users/158190828/friends#!/following"
+																href="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/following"
 																ng-cloak
 															>
 																<span
@@ -1114,6 +1127,151 @@
 															</a>
 														</li>
 													</ul>
+													<% if (isUserAuthenicated && authenticatedUser.Id === profileUser.Id) { %>
+													<% } else { %> 
+														<ul class="details-actions desktop-action">
+															<li class="btn-friends" ng-if="!profileHeaderLayout.areFriends" ng-cloak>
+																<button
+																	ng-if="profileHeaderLayout.incomingFriendRequestPending"
+																	ng-cloak
+																	class="btn-control-md"
+																	data-target-user-id="<%= profileUser.Id %>"
+																	data-friends-url="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/friends"
+																	ng-click="acceptFriendRequest()"
+																	ng-bind="'Action.Accept' | translate"
+																></button>
+																<button
+																	ng-if="!profileHeaderLayout.incomingFriendRequestPending&&profileHeaderLayout.maySendFriendInvitation"
+																	ng-cloak
+																	class="btn-control-md"
+																	ng-click="sendFriendRequest()"
+																	ng-bind="'Action.AddFriend' | translate"
+																></button>
+																<button
+																	ng-if="!profileHeaderLayout.incomingFriendRequestPending&&!profileHeaderLayout.maySendFriendInvitation&& profileHeaderLayout.friendRequestPending"
+																	ng-cloak
+																	class="btn-control-md disabled"
+																	ng-bind="'Action.Pending' | translate"
+																></button>
+																<button
+																	ng-if="!profileHeaderLayout.incomingFriendRequestPending&& !profileHeaderLayout.maySendFriendInvitation&&!profileHeaderLayout.friendRequestPending"
+																	ng-cloak
+																	class="btn-control-md disabled"
+																	ng-bind="'Action.AddFriend' | translate"
+																></button>
+															</li>
+														
+															<li class="btn-friends" ng-if="profileHeaderLayout.areFriends" ng-cloak>
+																<button
+																	class="btn-alert-md"
+																	id="unfriend-btn"
+																	data-target-user-id="1"
+																	ng-click="removeFriend()"
+																	ng-bind="'Action.Unfriend' | translate"
+																></button>
+															</li>
+														
+															<li class="btn-messages" id="profile-message-btn">
+																<button
+																	class="btn-control-md"
+																	ng-disabled="!profileHeaderLayout.enableMessageBtn"
+																	ng-show="profileHeaderLayout.showMessageBtn"
+																	ng-click="sendMessage()"
+																	ng-cloak
+																	ng-bind="'Action.Message' | translate"
+																></button>
+															</li>
+														
+															<li class="btn-messages" id="profile-chat-btn" ng-show="profileHeaderLayout.showChatBtn">
+																<button class="btn-control-md" ng-click="chat()" ng-cloak ng-bind="'Action.Chat' | translate"></button>
+															</li>
+														
+															<li class="btn-join-game" ng-if="profileHeaderLayout.canBeFollowed">
+																<button class="profile-join-game btn-primary-md" ng-cloak ng-bind="'Action.JoinGame' | translate"></button>
+															</li>
+														</ul>
+														
+														<ul class="details-actions mobile-action" ng-class="{'three-item-list': profileHeaderLayout.canBeFollowed}">
+															<li class="btn-friends" ng-if="!profileHeaderLayout.areFriends" ng-cloak>
+																<a
+																	ng-if="profileHeaderLayout.incomingFriendRequestPending"
+																	ng-cloak
+																	data-target-user-id="<%= profileUser.Id %>"
+																	data-friends-url="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/friends"
+																	class="action-add-friend"
+																	ng-click="acceptFriendRequest()"
+																>
+																	<div class="icon-accept-friend"></div>
+																	<div class="text-label small" ng-bind="'Action.Accept' | translate"></div>
+																</a>
+																<a
+																	ng-if="!profileHeaderLayout.incomingFriendRequestPending && profileHeaderLayout.maySendFriendInvitation"
+																	class="action-add-friend"
+																	ng-cloak
+																	ng-click="sendFriendRequest()"
+																>
+																	<div class="icon-add-friend"></div>
+																	<div class="text-label small" ng-bind="'Action.AddFriend' | translate"></div>
+																</a>
+																<a
+																	ng-if="!profileHeaderLayout.incomingFriendRequestPending && !profileHeaderLayout.maySendFriendInvitation && profileHeaderLayout.friendRequestPending"
+																	ng-cloak
+																	class="action-friend-pending"
+																>
+																	<div class="icon-friend-pending"></div>
+																	<div class="text-label small" ng-bind="'Action.Pending' | translate"></div>
+																</a>
+																<a
+																	ng-if="!profileHeaderLayout.incomingFriendRequestPending && !profileHeaderLayout.maySendFriendInvitation && !profileHeaderLayout.friendRequestPending"
+																	ng-cloak
+																	class="action-friend-pending"
+																>
+																	<div class="icon-friend-pending"></div>
+																	<div class="text-label small" ng-bind="'Action.AddFriend' | translate"></div>
+																</a>
+															</li>
+														
+															<li class="btn-friends" ng-if="profileHeaderLayout.areFriends" ng-cloak>
+																<a
+																	data-target-user-id="<%= profileUser.Id %>"
+																	ng-mouseenter="hover = true"
+																	ng-mouseleave="hover =false"
+																	ng-class="{'btn-unfollow': hover}"
+																	ng-click="removeFriend()"
+																	class="action-remove-friend"
+																>
+																	<div class="icon-remove-friend"></div>
+																	<div class="text-label small" ng-bind="'Action.Unfriend' | translate"></div>
+																</a>
+															</li>
+														
+															<li class="btn-messages center-icon" id="profile-message-icon" ng-if="profileHeaderLayout.showMessageBtn" ng-cloak>
+																<div ng-if="!profileHeaderLayout.enableMessageBtn" class="action-message-disabled" ng-cloak>
+																	<div class="icon-send-message-disabled"></div>
+																	<div class="text-label small" ng-bind="'Action.Message' | translate"></div>
+																</div>
+																<a ng-if="profileHeaderLayout.enableMessageBtn" ng-click="sendMessage()" class="action-message" ng-cloak>
+																	<div class="icon-send-message"></div>
+																	<div class="text-label small" ng-bind="'Action.Message' | translate"></div>
+																</a>
+															</li>
+														
+															<li class="btn-messages center-icon" id="profile-chat-icon" ng-if="profileHeaderLayout.showChatBtn" ng-cloak>
+																<div class="action-message-disabled" ng-click="chat()" ng-cloak>
+																	<div class="icon-start-chat"></div>
+																	<div class="text-label small" ng-bind="'Action.Chat' | translate"></div>
+																</div>
+															</li>
+														
+															<li class="btn-join-game last-icon" ng-if="profileHeaderLayout.canBeFollowed">
+																<a class="profile-join-game action-join-game" ng-cloak>
+																	<div class="icon-join-game"></div>
+																	<div class="text-label small" ng-bind="'Action.JoinGame' | translate"></div>
+																</a>
+															</li>
+														</ul>
+														
+													<% } %> 
 												</div>
 											</div>
 											<div class="mobile-user-status" user-status></div>
@@ -1197,7 +1355,7 @@
 														<a
 															tabindex="0"
 															role="button"
-															href="https://www.sitetest4.robloxlabs.com/users/158190828/inventory/"
+															href="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/inventory/"
 															ng-bind="'Action.Inventory' | translate"
 														></a>
 													</li>
@@ -1205,7 +1363,7 @@
 														<a
 															tabindex="0"
 															role="button"
-															href="https://www.sitetest4.robloxlabs.com/users/158190828/favorites#!/places"
+															href="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/favorites#!/places"
 															ng-bind="'Action.Favorites' | translate"
 														></a>
 													</li>
@@ -1221,7 +1379,7 @@
 															e.stopPropagation();
 															play_placeId = 0;
 															try {
-																Roblox.GameLauncher.followPlayerIntoGame(158190828);
+																Roblox.GameLauncher.followPlayerIntoGame(parseInt("<%= profileUser.Id %>"));
 																var referrerId = Roblox.UrlParser
 																	? Roblox.UrlParser.getParameterValueByName('rbxp')
 																	: null;
@@ -1269,8 +1427,30 @@
 									<div class="tab-content rbx-tab-content">
 										<div class="tab-pane active" id="about">
 											<div class="section profile-about" ng-controller="profileUtilitiesController">
+												<% if (isUserAuthenicated && authenticatedUser.Id === profileUser.Id) { %> 
 												<div class="social-links"></div>
 												<profile-description></profile-description>
+												<% } else { %> 
+													<div class="container-header">
+														<h3>About</h3>
+													</div>
+													<div class="section-content remove-panel">
+														<% if (profileUser.Description && profileUser.Description.length > 0 && profileUser.Description.replace(/\s/g, '').length) { %> 
+														<div class="profile-about-content toggle-target">
+															<pre id="profile-about-text" class="content-overflow-toggle content-height text profile-about-text">
+																<span class="profile-about-content-text linkify" ng-non-bindable><%= profileUser.Description %></span>
+															</pre>
+															<span
+																class="hidden toggle-content text-link cursor-pointer"
+																data-container-id="profile-about-text"
+																data-show-label="Read More"
+																data-hide-label="Show Less"
+																>Read More</span
+															>
+														</div>
+														<% } %> 
+													</div>
+												<% } %> 
 												<div class="section-content remove-panel">
 													<div id="aliases-container">
 														<div class="border-top" ng-hide="isAliasesLoaded">
@@ -1279,6 +1459,7 @@
 														<div aliases-container></div>
 													</div>
 													<div class="border-top profile-about-footer">
+														<% if (profileUser.PreviousUserNames && profileUser.PreviousUserNames.length > 0) { %> 
 														<span class="profile-name-history">
 															<button class="btn-pastnames btn-control-xs" ng-click="showPastUsernames()">
 																<span class="icon-pastname"></span>
@@ -1286,12 +1467,13 @@
 															<span
 																class="tooltip-pastnames"
 																data-toggle="tooltip"
-																title="<% profileUser.PreviousUserNames.forEach((uName, idx, tbl) => { %><%= `${uName}${idx < tbl.length ? "," : ""}` %><% }); %>"
+																title="<% profileUser.PreviousUserNames.forEach((uName, idx, tbl) => { %><%= `${uName}${idx !== tbl.length - 1 ? ", " : ""}` %><% }); %>"
 															>
 																<span class="icon-pastname"></span>
 															</span>
 															<span class="text-pastname" ng-bind="'Label.PastUsernames' | translate"></span>
 														</span>
+														<% } %> 
 														<a
 															href="https://www.sitetest4.robloxlabs.com/abusereport/UserProfile?id=<%= profileUser.Id %>&redirectUrl=https%3A%2F%2Fwww.sitetest4.robloxlabs.com%2Fusers%2F<%= profileUser.Id %>%2Fprofile"
 															class="abuse-report-link abuse-report-modal"
@@ -1310,7 +1492,7 @@
 												<div class="container-header">
 													<h3 ng-bind="'Heading.CurrentlyWearing' | translate"></h3>
 												</div>
-												<div class="col-sm-6 section-content profile-avatar-left" ng-non-bindable>
+												<div class="<%= profileUser.avatarAccoutrementItems && profileUser.AvatarAccoutrementItems.length > 0 ? "col-sm-6 " : "" %>section-content profile-avatar-left" ng-non-bindable>
 													<div
 														id="UserAvatar"
 														class="thumbnail-holder"
@@ -1322,15 +1504,16 @@
 														<span class="thumbnail-span"></span>
 														<span
 															class="thumbnail-span-original hidden"
-															data-3d-url="/avatar-thumbnail-3d/json?userId=158190828"
-															data-orig-retry-url="/avatar-thumbnail/json?userId=158190828&width=352&height=352&format=png"
+															data-3d-url="/avatar-thumbnail-3d/json?userId=<%= profileUser.Id %>"
+															data-orig-retry-url="/avatar-thumbnail/json?userId=<%= profileUser.Id %>&width=352&height=352&format=png"
 															><img
 																alt="<%= profileUser.Name %>"
-																src="https://tr.rbxcdn.com/<%= profileUser.ImageHash %>/352/352/Avatar/Png"
+																src="https://tr.rbxcdn.com/<%= /*profileUser.ImageHash*/ "90c4d32c9bfcdf107e61031fc9f3f9a3" %>/352/352/Avatar/Png"
 														/></span>
 														<span class="enable-three-dee btn-control btn-control-lg">3D</span>
 													</div>
 												</div>
+												<% if (profileUser.avatarAccoutrementItems && profileUser.AvatarAccoutrementItems.length > 0) { %> 
 												<div class="col-sm-6 section-content profile-avatar-right">
 													<div class="profile-avatar-mask">
 														<div
@@ -1385,10 +1568,12 @@
 														</div>
 													</div>
 												</div>
+												<% } %> 
 											</div>
 											<div id="people-list-container" class="section no-self-bootstrap">
 												<div people-list-container></div>
 											</div>
+											<% if (profileUser.HasCollections) { %> 
 											<div class="section layer profile-collections" ng-controller="profileCollectionsController">
 												<div class="container-header">
 													<h3 ng-bind="'Heading.Collections' | translate"></h3>
@@ -1402,7 +1587,9 @@
 												</div>
 												<div class="section-content remove-panel" ng-include="'profile-collections-section'"></div>
 											</div>
+											<% } %> 
 											<div groups-showcase display-user-id="<%= profileUser.Id %>"></div>
+											<% if (profileUser.FavouriteGames && profileUser.FavouriteGames.length > 0) { %> 
 											<div class="container-list favorite-games-container">
 												<div class="container-header">
 													<h3 ng-bind="'Heading.FavoriteGames' | translate"></h3>
@@ -1445,11 +1632,14 @@
 													<% }); %> 
 												</ul>
 											</div>
+											<% } %> 
 											<div class="section" id="roblox-badges-container"></div>
 											<div class="section" id="player-badges-container"></div>
 											<div class="section profile-statistics" id="profile-statistics-container"></div>
 										</div>
+										
 										<div class="tab-pane" id="creations" profile-empty-tab>
+											<% if (profileUser.Games && profileUser.Games.length > 0) { %>
 											<div
 												class="profile-game"
 												ng-controller="profileGridController"
@@ -1620,6 +1810,7 @@
 													</ul>
 												</div>
 											</div>
+											<% } %>
 											<div class="section" ng-controller="profileUtilitiesController" ng-init="getPlayerAssets('10')">
 												<div ng-if="assets.length > 0" ng-include="'profile-player-assets'"></div>
 											</div>
@@ -1673,7 +1864,9 @@
 				</div>
 				<footer class="container-footer" id="footer-container" data-is-giftcards-footer-enabled="True"></footer>
 			</div>
+			<% if (isUserAuthenicated) { %> 
 			<div id="chat-container" class="chat chat-container" chat-base></div>
+			<% } %> 
 			<script>
 				function urchinTracker() {}
 			</script>
@@ -2058,6 +2251,7 @@
 				data-bundle-source="Main"
 				src="https://js.rbxcdn.com/c0535341624250bd7bf1a92405b33cc4177f493e69113a4f0cc151d629b4e7db.js"
 			></script>
+			<% if (isUserAuthenicated) { %> 
 			<script
 				onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 				data-monitor="true"
@@ -2065,7 +2259,8 @@
 				data-bundle-source="Main"
 				src="https://js.rbxcdn.com/8c50632c6b51d45c814a976484564e622f462db77adfcf3c1e3c21f9a9f1722f.js"
 			></script>
-			<div id="presence-registration-bootstrap-data" data-is-enabled="True" data-interval="15000"></div>
+			<% } %> 
+			<div id="presence-registration-bootstrap-data" data-is-enabled="<%= isUserAuthenicated ? "True" : "False" %>" data-interval="15000"></div>
 			<script
 				onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 				data-monitor="true"
@@ -2421,6 +2616,7 @@
 				data-bundle-source="Unknown"
 				src="https://js.rbxcdn.com/f7bc7a4de3c8aa28326ed2c129b1cc9bc68a3950f0fe706cd4a05a8f2def0043.js"
 			></script>
+			<% if (isUserAuthenicated) { %> 
 			<script
 				onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 				data-monitor="true"
@@ -2442,6 +2638,7 @@
 				data-bundle-source="Unknown"
 				src="https://js.rbxcdn.com/6e1e7e4be7934b6347a90ae31e66e579f6e8bbee371e330e9eabcbf5e31b584d.js"
 			></script>
+			<% } %> 
 			<script
 				onerror="Roblox.BundleDetector&&Roblox.BundleDetector.reportBundleError(this)"
 				data-monitor="true"

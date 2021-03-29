@@ -227,7 +227,7 @@ GET https://api.sitetest3.robloxlabs.com/docs
 ###
 
 POST https://virtualcurrencygateway.api.sitetest3.robloxlabs.com/v1/GetRobuxBalance?apiKey=********&userId=1
-
+cookie: .ROBLOSECURITY=SELECT FROM
 
 ###
 
@@ -444,7 +444,7 @@ roblox-security-token: ljWby+/HVsZXJLfRkoljWby+/HVsZXJLfRko9mPQ9mPQ==
 
 ###
 
-POST https://files.api.sitetest1.robloxlabs.com/v1/GetUri?apiKey=223101C8-BCFA-4735-AB79-D9A07ABA9263&agentId=13333466037&assetId=2147921798
+POST https://files.api.sitetest1.robloxlabs.com/v1/GetUri?apiKey=223101C8-BCFA-4735-AB79-D9A07ABA9263&agentId=13333466037&assetId=1
 Connection: keep-alive
 Content-Length: 0
 sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"
@@ -513,7 +513,7 @@ Requester: Server
 
 ###
 
-OPTIONS https://api.sitetest1.robloxlabs.com/docs/json/v1
+OPTIONS https://test.sitetest1.robloxlabs.com/
 sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"
 Accept: application/json
 DNT: 1
@@ -576,7 +576,7 @@ roblox-security-token: ljWby+/HVsZXJLfRkoljWby+/HVsZXJLfRko9mPQ9mPQ==
 
 ###
 
-GET https://contentstore.roblox.com/v1/content?hash=d072f7227c447edeb1cf53ab12b40fe9
+GET https://contentstore.roblox.com/v1/content?hash=<script>
 
 ###
 
@@ -629,7 +629,7 @@ Content-Length: 30
 
 ###
 
-POST https://virtualcurrencygateway.api.sitetest2.robloxlabs.com/v1/GetRobuxBalance?apiKey=********&userId=1
+POST https://virtualcurrencygateway.api.sitetest2.robloxlabs.com/v1/GetRobuxBalance?apiKey=<script>&userId=1
 
 
 ###
@@ -827,3 +827,36 @@ Roblox-Game-Id: *
 RCC-Committer-User-Id: *
 RCC-Autosave: *
 RCC-Save-User-Id: *
+
+###
+
+POST https://ephemeralcounters.api.sitetest2.robloxlabs.com/v1.0/MultiIncrement?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F
+Content-Type: application/x-www-form-urlencoded
+
+&counterNamesCsv=a,a,x
+
+
+###
+
+
+POST /v1.1/Counters/Increment/?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F HTTP/1.1
+Host: ephemeralcounters.api.sitetest4.robloxlabs.com
+Accept: */*
+Accept-Encoding: gzip, deflate
+Cache-Control: no-cache
+Connection: keep-alive
+User-Agent: Roblox/WinInet
+Roblox-Game-Id: 74b224c8-e580-4b3e-8228-c99113a9aff2
+Roblox-Place-Id: 5889263700
+Requester: Client
+PlayerCount: 1
+Content-Type: application/json
+X-CSRF-TOKEN: xdT47NHGigfh
+Content-Length: 57
+
+{"counterName":"test","amount":60}
+
+
+###
+
+POST https://www.sitetest3.robloxlabs.com/not-approved/reactivate

@@ -29,7 +29,7 @@ export default {
 	method: 'all',
 	func: async (_req, res) => {
 		res.send({
-			count: 325467,
+			count: 0,
 		});
 	},
 };

@@ -889,7 +889,7 @@
 
 		<div id="fb-root"></div>
 
-		<div id="wrap" class="wrap no-gutter-ads logged-in" data-gutter-ads-enabled="false">
+		<div id="wrap" class="<%= isUserAuthenicated ? 'in' : 'out' %>" data-gutter-ads-enabled="false">
 			<div
 				id="navigation-container"
 				class="<%= isUserAuthenicated === true ? authenticatedUser.Theme : 'light' %>-theme gotham-font"
@@ -966,8 +966,11 @@
 					<noscript
 						><div>
 							<div class="alert-info" role="alert">Please enable Javascript to use all the features on this site.</div>
-						</div></noscript
-					>
+						</div>
+					</noscript>
+					<% if (pageMeta.banner && pageMeta.banner.Enabled) { %>
+					<div class="alert-info" role="alert"><%= pageMeta.banner.Text %></div>
+					<% } %>
 
 					<div id="account-security-prompt-container"></div>
 

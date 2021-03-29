@@ -180,18 +180,18 @@
 		<Item class="Camera" referent="RBXD0510703E9E7452F9319B0262FAE67D3">
 			<Properties>
 				<CoordinateFrame name="CFrame">
-					<X>-43.1835327</X>
-					<Y>8.36326408</Y>
-					<Z>-45.1211967</Z>
-					<R00>-0.208098605</R00>
-					<R01>0.158035412</R01>
-					<R02>-0.965256453</R02>
-					<R10>0</R10>
-					<R11>0.98686105</R11>
-					<R12>0.161572576</R12>
-					<R20>0.978107929</R20>
-					<R21>0.0336230285</R21>
-					<R22>-0.205364376</R22>
+					<X>-43.2513695</X>
+					<Y>8.08193588</Y>
+					<Z>-44.7806053</Z>
+					<R00>-0.0350759029</R00>
+					<R01>0.0208953265</R01>
+					<R02>-0.99916625</R02>
+					<R10>5.82076609e-11</R10>
+					<R11>0.999781549</R11>
+					<R12>0.0209081918</R12>
+					<R20>0.999384701</R20>
+					<R21>0.000733373628</R21>
+					<R22>-0.0350682363</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
@@ -1578,11 +1578,6 @@ end]]></ProtectedString>
 		<Properties>
 			<bool name="HttpEnabled">false</bool>
 			<string name="Name">HttpService</string>
-		</Properties>
-	</Item>
-	<Item class="GamepadService" referent="RBXD97A35C9C271482FACD1DE1F7C9B5015">
-		<Properties>
-			<string name="Name">GamepadService</string>
 		</Properties>
 	</Item>
 </roblox>

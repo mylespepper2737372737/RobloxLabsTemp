@@ -32,7 +32,7 @@ export default {
 					IsUniversalApp: false,
 				},
 			},
-			MachineId: 'AWA-1447',
+			MachineId: 'WEB1447',
 			globalMeta: {
 				Experiments: {
 					DisplayNamesEnabled: true,

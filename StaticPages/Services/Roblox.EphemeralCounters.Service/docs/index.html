@@ -1,43 +1,54 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Ephemeral Counters Api</title>
+		<title>EphemeralCounters Service</title>
+		<link rel="icon" type="image/x-ico" href="/favicon.ico" />
 
-		<link href="https://css.sitetest4.robloxlabs.com/typography.css" media="screen" rel="stylesheet" type="text/css" />
-		<link href="https://css.sitetest4.robloxlabs.com/reset.css" media="screen" rel="stylesheet" type="text/css" />
-		<link href="https://css.sitetest4.robloxlabs.com/screen.css" media="screen" rel="stylesheet" type="text/css" />
-		<link href="https://css.sitetest4.robloxlabs.com/print.css" media="print" rel="stylesheet" type="text/css" />
+		<link href="/docs/css/typography-css.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/docs/css/reset-css.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/docs/css/screen-css.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/docs/css/reset-css.css" media="print" rel="stylesheet" type="text/css" />
+		<link href="/docs/css/print-css.css" media="print" rel="stylesheet" type="text/css" />
 
-		<link href="https://css.sitetest4.robloxlabs.com/Mfd-Web-Documentation-Resources-Docs.css" rel="stylesheet" type="text/css" />
+		<link href="/docs/ext/Roblox-Web-Documentation-Resources-Docs-css.css" rel="stylesheet" type="text/css" />
 
-		<script src="https://static.sitetest4.robloxlabs.com/lib/object-assign-pollyfill.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/jquery.3-5-1.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/jquery-slideto.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/jquery-wiggle.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/jquery-ba-bbq.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/handlebars.4-0-5.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/lodash.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/backbone.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/swagger-ui.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/highlight.9-1-0.pack.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/highlight.9-1-0.pack_extended.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/jsoneditor.min.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/marked.js" type="text/javascript"></script>
-		<script src="https://static.sitetest4.robloxlabs.com/lib/swagger-oauth.js" type="text/javascript"></script>
+		<script src="/docs/lib/object-assign-pollyfill-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/jquery-1-8-0-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/jquery-slideto-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/jquery-wiggle-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/jquery-ba-bbq-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/handlebars-4-0-5-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/lodash-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/backbone-min-js.js" type="text/javascript"></script>
+		<script src="/docs/swagger-ui-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/highlight-9-1-0-pack-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/highlight-9-1-0-pack_extended-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/jsoneditor-min-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/marked-js.js" type="text/javascript"></script>
+		<script src="/docs/lib/swagger-oauth-js.js" type="text/javascript"></script>
 
-		<script src="https://static.sitetest4.robloxlabs.com/docs/Mfd-Web-Documentation-Resources-Docs.js" type="text/javascript"></script>
-		<script
-			src="https://static.sitetest4.robloxlabs.com/Mfd-Web-WebAPI-Documentation-Javascript-XsrfToken.js"
-			type="text/javascript"
-		></script>
+		<script src="/docs/ext/Roblox-Web-Documentation-Resources-Docs-js.js" type="text/javascript"></script>
+		<script src="/docs/ext/Roblox-Web-WebAPI-Documentation-Javascript-XsrfToken-js.js" type="text/javascript"></script>
 	</head>
-	<body class="swagger-section">
+	<body class="swagger-section show-warning">
+		<div id="doc-warning">
+			<div class="warning-close">&#215;</div>
+			<div class="warning-description">
+				Keep your account safe! Do not send any information from here to anyone or paste any text here.
+			</div>
+			<div class="warning-safety-link">
+				<a target="_blank" href="https://www.roblox.com/info/account-safety"
+					>Click here to learn more about keeping your account safe.</a
+				>
+			</div>
+		</div>
 		<div class="info" id="doc_info">
 			<div class="info_title" id="Title">Loading documentation...</div>
-			<div class="info_description" id="Description">All endpoints that mess with counter and sequence statistics.</div>
-			<select aria-label="version-selector" id="version-selector" class="">
-				<option value="v1-0">Ephemeral Counters Api v1.0</option>
+			<div class="info_description" id="Description">Endpoints for the {Roblox.EphemeralCounters.Service}.</div>
+			<select id="version-selector" class="">
+				<option value="v1-1" selected>EphemeralCounters Service v1.1</option>
+				<option value="v1-0">EphemeralCounters Service v1.0</option>
 			</select>
 		</div>
 		<div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>

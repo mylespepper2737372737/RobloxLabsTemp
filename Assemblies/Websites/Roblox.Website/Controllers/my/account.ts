@@ -25,11 +25,20 @@
 	***
 */
 
+import {
+	DFFlag,
+	DFString,
+	DYNAMIC_FASTFLAGVARIABLE,
+	DYNAMIC_FASTSTRING,
+} from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { User } from '../../../../Platform/Membership/User';
 
 // import { Roblox } from '../../../../Roblox.Api';
 // import fs from 'fs';
 // import a from 'axios';
+
+DYNAMIC_FASTFLAGVARIABLE('IsBannerEnabled', false);
+DYNAMIC_FASTSTRING('SiteBanner');
 
 export default {
 	method: 'all',
@@ -66,30 +75,12 @@ export default {
 					DisplayNamesEnabled: true,
 				},
 			},
+			pageMeta: {
+				banner: {
+					Enabled: DFFlag('IsBannerEnabled'),
+					Text: DFString('SiteBanner'),
+				},
+			},
 		});
-		// a.get(`https://www.roblox.com/my/account`, { headers: { ...req.headers, host: 'www.roblox.com' } })
-		// 	.then((re) => {
-		// 		const newbody = re.data
-		// 			.split('roblox.com')
-		// 			.join('sitetest4.robloxlabs.com')
-		// 			.replace(
-		// 				'<meta id="roblox-display-names" data-enabled="false"></meta>',
-		// 				'<meta id="roblox-display-names" data-enabled="true"></meta>',
-		// 			)
-		// 			.replace('data-is-testing-site="false" />', 'data-is-testing-site="true" />');
-		// 		const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-		// 		return res.header(newheaders).send(newbody);
-		// 	})
-		// 	.catch((e) => {
-		// 		const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-		// 		return res.header(newheaders).status(e.response.status).send(e.response.data);
-		// 	});
-		// let template = fs.readFileSync(
-		// 	Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\Roblox.UserProfile.html',
-		// 	{ encoding: 'utf-8' },
-		// );
-		// template = template.split('<USERIDHERE>').join(userId.toString());
-		// return res.send(template);
 	},
 };

@@ -888,7 +888,7 @@
 
 		<div id="fb-root"></div>
 
-		<div id="wrap" class="wrap no-gutter-ads logged-in" data-gutter-ads-enabled="false">
+		<div id="wrap" class="<%= isUserAuthenicated ? 'in' : 'out' %>" data-gutter-ads-enabled="false">
 			<div id="navigation-container" class="<%= theme %> gotham-font" data-number-of-autocomplete-suggestions="5">
 				<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
 					<div class="container-fluid">

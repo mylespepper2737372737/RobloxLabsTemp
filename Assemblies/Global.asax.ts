@@ -56,7 +56,9 @@ import {
 import { RobloxLegacy } from './Api';
 import IServer, { NextFunction, Request, Response } from 'express';
 import {
+	DFFlag,
 	DFLog,
+	DFString,
 	DYNAMIC_LOGVARIABLE,
 	FASTFLAGVARIABLE,
 	FASTLOG1F,
@@ -72,6 +74,7 @@ import { PointsApi } from './MiddleWare/PointsApi';
 import { ApiServiceIsAliveValidator } from './MiddleWare/ApiServiceIsAliveValidator';
 import ssl from 'sslkeylog';
 import { User } from './Platform/Membership/User';
+import { GetValueFromFormDataString } from './Util/GetValueFromFormDataString';
 ssl.hookAll();
 
 LOGVARIABLE('GumePersistince', 6);
@@ -1086,10 +1089,13 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		PointsServiceServer.use(DefaultAsp404);
 
 		RobloxWebsiteServer.use(async (error: Error, request: Request, response: Response, next: NextFunction) => {
-			const user = await User.GetById(1);
+			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, error.message, error.stack);
+			let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+			const authenticatedUser = await User.GetByCookie(cookie);
+			if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
 			return response.status(500).render('Error/InternalServerError', {
-				isUserAuthenicated: user !== null,
-				authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+				isUserAuthenicated: authenticatedUser !== null,
+				authenticatedUser: { ...authenticatedUser, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
 				sessionUser: {
 					LanguageCode: 'en_us',
 					LanguageName: 'English',
@@ -1113,7 +1119,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						IsUniversalApp: false,
 					},
 				},
-				MachineId: 'AWA-1447',
+				MachineId: 'WEB1447',
 				Error: {
 					/* Place a generic stack in here until the request-error-id gets utilized. */
 					Message: error.message,
@@ -1126,7 +1132,17 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						DisplayNamesEnabled: true,
 					},
 				},
+				pageMeta: {
+					banner: {
+						Enabled: DFFlag('IsBannerEnabled'),
+						Text: DFString('SiteBanner'),
+					},
+				},
 			});
+		});
+
+		EphemeralCountersServiceServer.use(async (_error: Error, _request: Request, response: Response) => {
+			response.status(500).send({ Message: 'An error has occurred.' });
 		});
 
 		await (async () => {
@@ -1342,7 +1358,9 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 process.stdin.resume();
 function exitHandler(options: { exit: boolean; error: boolean; message?: string; code?: number }) {
 	if (options.exit) {
-		if (options.error) FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
+		if (options.error) {
+			return FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
+		}
 		if (options.message) FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
 		process.exit();
 	}

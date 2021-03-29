@@ -137,7 +137,7 @@
 
 					getCdnProviderName: function (bundleUrl, callBack) {
 						if (Roblox.BundleVerifierConstants.cdnLoggingEnabled) {
-							var xhr = new XMLhttpsRequest();
+							var xhr = new XMLHttpRequest();
 							xhr.open('GET', bundleUrl, true);
 
 							xhr.onreadystatechange = function () {
@@ -183,7 +183,7 @@
 							return;
 						}
 
-						var xhr = new XMLhttpsRequest();
+						var xhr = new XMLHttpRequest();
 						var metricsApiUrl =
 							(Roblox.EnvironmentUrls && Roblox.EnvironmentUrls.metricsApi) || 'https://metrics.sitetest4.robloxlabs.com';
 
@@ -206,7 +206,7 @@
 						var deviceType = Roblox.BundleVerifierConstants.deviceType;
 						sequenceName += '_' + deviceType;
 
-						var xhr = new XMLhttpsRequest();
+						var xhr = new XMLHttpRequest();
 						xhr.open('POST', '/game/report-stats?name=' + sequenceName + '&value=' + value, true);
 						xhr.withCredentials = true;
 						xhr.send();
@@ -216,7 +216,7 @@
 						var deviceType = Roblox.BundleVerifierConstants.deviceType;
 						ephemeralCounterName += '_' + deviceType;
 						//log to ephemeral counters - taken from eventTracker.js
-						var xhr = new XMLhttpsRequest();
+						var xhr = new XMLHttpRequest();
 						xhr.open('POST', '/game/report-event?name=' + ephemeralCounterName, true);
 						xhr.withCredentials = true;
 						xhr.send();
@@ -229,7 +229,7 @@
 						var deviceType = Roblox.BundleVerifierConstants.deviceType;
 						ctx += '_' + deviceType;
 						//try and grab performance data.
-						//Note that this is the performance of the xmlhttpsrequest rather than the original resource load.
+						//Note that this is the performance of the XMLHttpRequest rather than the original resource load.
 						var duration = 0;
 						if (window.performance) {
 							var perfTiming = window.performance.getEntriesByName(failedBundle);
@@ -258,7 +258,7 @@
 
 					getCdnInfo: function (failedBundle, ctx, fileType) {
 						if (Roblox.BundleVerifierConstants.cdnLoggingEnabled) {
-							var xhr = new XMLhttpsRequest();
+							var xhr = new XMLHttpRequest();
 							var counter = this.counterNames;
 							xhr.open('GET', failedBundle, true);
 							var cdnProvider;
@@ -879,7 +879,7 @@
 
 		<div id="fb-root"></div>
 
-		<div id="wrap" class="wrap no-gutter-ads logged-in" data-gutter-ads-enabled="false">
+		<div id="wrap" class="<%= isUserAuthenicated ? 'in' : 'out' %>" data-gutter-ads-enabled="false">
 			<div
 				id="navigation-container"
 				class="<%= isUserAuthenicated === true ? authenticatedUser.Theme : 'light' %>-theme gotham-font"
@@ -956,8 +956,13 @@
 					<noscript
 						><div>
 							<div class="alert-info" role="alert">Please enable Javascript to use all the features on this site.</div>
-						</div></noscript
-					>
+						</div>
+					</noscript>
+					<% if (pageMeta.banner && pageMeta.banner.Enabled) { %>
+					<div class="alert-info" role="alert"><%= pageMeta.banner.Text %></div>
+					<% } %>
+
+					<div id="account-security-prompt-container"></div>
 
 					<div class="alert-cookie-notice" data-cookie-notice-timeout="20000">
 						Roblox uses cookies to offer you a better experience. For further information, including information on how to

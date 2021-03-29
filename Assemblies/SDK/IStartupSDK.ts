@@ -82,7 +82,7 @@ export namespace IStartup {
 			opts.app.enable('trust proxy');
 			opts.app.disable('x-powered-by');
 			opts.app.disable('strict routing');
-			opts.app.use(cparser(), jparser(), bparser.urlencoded({ extended: false }));
+			opts.app.use(cparser(), jparser({ strict: false }), bparser.urlencoded({ extended: false }));
 			if (opts.UsePages) {
 				await UsePages(opts.app, opts.PagesOpts, opts.PageOpts);
 			}

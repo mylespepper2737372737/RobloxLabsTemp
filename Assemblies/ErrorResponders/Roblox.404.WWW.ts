@@ -25,13 +25,21 @@
 	***
 */
 
+import { Request, Response } from 'express';
+import { DFFlag, DFString, DYNAMIC_FASTFLAG, DYNAMIC_FASTSTRING } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { User } from '../Platform/Membership/User';
+import { GetValueFromFormDataString } from '../Util/GetValueFromFormDataString';
 
-export default async (_req, res) => {
-	const user = await User.GetById(1);
-	return res.status(404).render('Error/NotFound', {
-		isUserAuthenicated: user !== null,
-		authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+DYNAMIC_FASTFLAG('IsBannerEnabled');
+DYNAMIC_FASTSTRING('SiteBanner');
+
+export default async (request: Request, response: Response) => {
+	let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+	const authenticatedUser = await User.GetByCookie(cookie);
+	if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
+	return response.status(404).render('Error/NotFound', {
+		isUserAuthenicated: authenticatedUser !== null,
+		authenticatedUser: { ...authenticatedUser, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
 		sessionUser: {
 			LanguageCode: 'en_us',
 			LanguageName: 'English',
@@ -55,10 +63,16 @@ export default async (_req, res) => {
 				IsUniversalApp: false,
 			},
 		},
-		MachineId: 'AWA-1447',
+		MachineId: 'WEB1447',
 		globalMeta: {
 			Experiments: {
 				DisplayNamesEnabled: true,
+			},
+		},
+		pageMeta: {
+			banner: {
+				Enabled: DFFlag('IsBannerEnabled'),
+				Text: DFString('SiteBanner'),
 			},
 		},
 	});

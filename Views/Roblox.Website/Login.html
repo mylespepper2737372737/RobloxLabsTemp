@@ -1,0 +1,145 @@
+<ul class="details-actions desktop-action">
+	<li class="btn-friends" ng-if="!profileHeaderLayout.areFriends" ng-cloak>
+		<button
+			ng-if="profileHeaderLayout.incomingFriendRequestPending"
+			ng-cloak
+			class="btn-control-md"
+			data-target-user-id="<%= profileUser.Id %>"
+			data-friends-url="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/friends"
+			ng-click="acceptFriendRequest()"
+			ng-bind="'Action.Accept' | translate"
+		></button>
+		<button
+			ng-if="!profileHeaderLayout.incomingFriendRequestPending&&profileHeaderLayout.maySendFriendInvitation"
+			ng-cloak
+			class="btn-control-md"
+			ng-click="sendFriendRequest()"
+			ng-bind="'Action.AddFriend' | translate"
+		></button>
+		<button
+			ng-if="!profileHeaderLayout.incomingFriendRequestPending&&!profileHeaderLayout.maySendFriendInvitation&& profileHeaderLayout.friendRequestPending"
+			ng-cloak
+			class="btn-control-md disabled"
+			ng-bind="'Action.Pending' | translate"
+		></button>
+		<button
+			ng-if="!profileHeaderLayout.incomingFriendRequestPending&& !profileHeaderLayout.maySendFriendInvitation&&!profileHeaderLayout.friendRequestPending"
+			ng-cloak
+			class="btn-control-md disabled"
+			ng-bind="'Action.AddFriend' | translate"
+		></button>
+	</li>
+
+	<li class="btn-friends" ng-if="profileHeaderLayout.areFriends" ng-cloak>
+		<button
+			class="btn-alert-md"
+			id="unfriend-btn"
+			data-target-user-id="1"
+			ng-click="removeFriend()"
+			ng-bind="'Action.Unfriend' | translate"
+		></button>
+	</li>
+
+	<li class="btn-messages" id="profile-message-btn">
+		<button
+			class="btn-control-md"
+			ng-disabled="!profileHeaderLayout.enableMessageBtn"
+			ng-show="profileHeaderLayout.showMessageBtn"
+			ng-click="sendMessage()"
+			ng-cloak
+			ng-bind="'Action.Message' | translate"
+		></button>
+	</li>
+
+	<li class="btn-messages" id="profile-chat-btn" ng-show="profileHeaderLayout.showChatBtn">
+		<button class="btn-control-md" ng-click="chat()" ng-cloak ng-bind="'Action.Chat' | translate"></button>
+	</li>
+
+	<li class="btn-join-game" ng-if="profileHeaderLayout.canBeFollowed">
+		<button class="profile-join-game btn-primary-md" ng-cloak ng-bind="'Action.JoinGame' | translate"></button>
+	</li>
+</ul>
+
+<ul class="details-actions mobile-action" ng-class="{'three-item-list': profileHeaderLayout.canBeFollowed}">
+	<li class="btn-friends" ng-if="!profileHeaderLayout.areFriends" ng-cloak>
+		<a
+			ng-if="profileHeaderLayout.incomingFriendRequestPending"
+			ng-cloak
+			data-target-user-id="1"
+			data-friends-url="https://www.sitetest4.robloxlabs.com/users/<%= profileUser.Id %>/friends#!/friends"
+			class="action-add-friend"
+			ng-click="acceptFriendRequest()"
+		>
+			<div class="icon-accept-friend"></div>
+			<div class="text-label small" ng-bind="'Action.Accept' | translate"></div>
+		</a>
+		<a
+			ng-if="!profileHeaderLayout.incomingFriendRequestPending && profileHeaderLayout.maySendFriendInvitation"
+			class="action-add-friend"
+			ng-cloak
+			ng-click="sendFriendRequest()"
+		>
+			<div class="icon-add-friend"></div>
+			<div class="text-label small" ng-bind="'Action.AddFriend' | translate"></div>
+		</a>
+		<a
+			ng-if="!profileHeaderLayout.incomingFriendRequestPending
+&& !profileHeaderLayout.maySendFriendInvitation
+&& profileHeaderLayout.friendRequestPending"
+			ng-cloak
+			class="action-friend-pending"
+		>
+			<div class="icon-friend-pending"></div>
+			<div class="text-label small" ng-bind="'Action.Pending' | translate"></div>
+		</a>
+		<a
+			ng-if="!profileHeaderLayout.incomingFriendRequestPending
+&& !profileHeaderLayout.maySendFriendInvitation
+&& !profileHeaderLayout.friendRequestPending"
+			ng-cloak
+			class="action-friend-pending"
+		>
+			<div class="icon-friend-pending"></div>
+			<div class="text-label small" ng-bind="'Action.AddFriend' | translate"></div>
+		</a>
+	</li>
+
+	<li class="btn-friends" ng-if="profileHeaderLayout.areFriends" ng-cloak>
+		<a
+			data-target-user-id="1"
+			ng-mouseenter="hover = true"
+			ng-mouseleave="hover =false"
+			ng-class="{'btn-unfollow': hover}"
+			ng-click="removeFriend()"
+			class="action-remove-friend"
+		>
+			<div class="icon-remove-friend"></div>
+			<div class="text-label small" ng-bind="'Action.Unfriend' | translate"></div>
+		</a>
+	</li>
+
+	<li class="btn-messages center-icon" id="profile-message-icon" ng-if="profileHeaderLayout.showMessageBtn" ng-cloak>
+		<div ng-if="!profileHeaderLayout.enableMessageBtn" class="action-message-disabled" ng-cloak>
+			<div class="icon-send-message-disabled"></div>
+			<div class="text-label small" ng-bind="'Action.Message' | translate"></div>
+		</div>
+		<a ng-if="profileHeaderLayout.enableMessageBtn" ng-click="sendMessage()" class="action-message" ng-cloak>
+			<div class="icon-send-message"></div>
+			<div class="text-label small" ng-bind="'Action.Message' | translate"></div>
+		</a>
+	</li>
+
+	<li class="btn-messages center-icon" id="profile-chat-icon" ng-if="profileHeaderLayout.showChatBtn" ng-cloak>
+		<div class="action-message-disabled" ng-click="chat()" ng-cloak>
+			<div class="icon-start-chat"></div>
+			<div class="text-label small" ng-bind="'Action.Chat' | translate"></div>
+		</div>
+	</li>
+
+	<li class="btn-join-game last-icon" ng-if="profileHeaderLayout.canBeFollowed">
+		<a class="profile-join-game action-join-game" ng-cloak>
+			<div class="icon-join-game"></div>
+			<div class="text-label small" ng-bind="'Action.JoinGame' | translate"></div>
+		</a>
+	</li>
+</ul>

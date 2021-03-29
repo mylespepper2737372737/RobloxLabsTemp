@@ -47,7 +47,7 @@ export default {
 			isRespectingMessageTypeEnabled: true,
 			validMessageTypesWhiteList: ['PlainText', 'Link'],
 			shouldRespectConversationHasUnreadMessageToMarkAsRead: true,
-			isVoiceChatForClientSideEnabled: false,
+			isVoiceChatForClientSideEnabled: true,
 			isAliasChatForClientSideEnabled: true,
 			isPlayTogetherForGameCardsEnabled: true,
 			isRoactChatEnabled: true,

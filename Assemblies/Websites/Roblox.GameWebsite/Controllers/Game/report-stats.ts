@@ -25,15 +25,9 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-LOGGROUP('Stats');
-
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		FASTLOGS(FLog['Stats'], '[FLog::Stats] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['Stats'], '[FLog::Stats] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+		return res.redirect('http://www.sitetest4.robloxlabs.com' + _req.url);
 	},
 };

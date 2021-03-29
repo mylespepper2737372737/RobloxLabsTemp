@@ -4,6 +4,7 @@ import { PartialDataBase } from '../../PartialDatabase/PartialDataBase';
 import { PartialDatabaseConditionType } from '../../PartialDatabase/PartialDatabaseConditionType';
 import { IEmail } from '../Credentials/IEmail';
 import { IPassword } from '../Credentials/IPassword';
+import { ISession } from './ISession';
 import { IUser } from './IUser';
 import { UserModelBuildersClubMembershipTypeEnum } from './UserModelBuildersClubMembershipTypeEnum';
 
@@ -34,6 +35,28 @@ export class User implements IUser {
 	public ChangeUsernameEnabled: Boolean;
 	public IsAdmin: Boolean;
 
+	public static async GetByCookie(Cookie: string): Task<IUser> {
+		const db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
+		const [didConnect, err] = await db.Connect();
+		if (!didConnect) {
+			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching user: %s', err);
+			return null;
+		}
+		const [, , sessions] = db.GetTable<ISession>('session', 'Id', true);
+		const [success, message, result] = await sessions.GetFromRowsByKeyConditional('UserId', {
+			Key: 'SessionToken',
+			Condition: PartialDatabaseConditionType.Equal,
+			Value: Cookie,
+		});
+		if (!success) {
+			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching user: %s', message);
+			return null;
+		}
+		const thisSession = result.Rows[0];
+		if (!thisSession) return null;
+		return await this.GetById(<number>thisSession.Data[0].Value);
+	}
+
 	/**
 	 * Partial implementation, full implementation when DataBase is fully setup.
 	 * @param {number} Id The userId.
@@ -42,7 +65,11 @@ export class User implements IUser {
 	public static async GetById(Id: number): Task<IUser> {
 		// TODO: Do some extra checking here!
 		const db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
-		await db.Connect();
+		const [didConnect, err] = await db.Connect();
+		if (!didConnect) {
+			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching user: %s', err);
+			return null;
+		}
 		const [, , users] = db.GetTable<IUser>('User', 'Id', true);
 		const [success, message, result] = await users.GetFromRowsColumnsConditional(
 			[
@@ -78,12 +105,12 @@ export class User implements IUser {
 		user.MembershipType = <UserModelBuildersClubMembershipTypeEnum>thisUser.Data[2].Value;
 		user.Description = <String>thisUser.Data[3].Value;
 		user.Created = <String>thisUser.Data[4].Value;
-		user.IsBanned = <Boolean>thisUser.Data[5].Value;
+		user.IsBanned = <Boolean>(thisUser.Data[5].Value === 1);
 		user.AgeBracket = <Number>thisUser.Data[6].Value;
 		user.Roles = <String[]>JSON.parse(<string>thisUser.Data[7].Value);
 		user.CountryCode = <String>thisUser.Data[8].Value;
-		user.UserAbove13 = <Boolean>thisUser.Data[9].Value;
-		user.IsAdmin = <Boolean>thisUser.Data[10].Value;
+		user.UserAbove13 = <Boolean>(thisUser.Data[9].Value === 1);
+		user.IsAdmin = <Boolean>(thisUser.Data[10].Value === 1);
 		await db.Disconnect();
 		return user;
 	}

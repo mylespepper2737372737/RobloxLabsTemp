@@ -4491,7 +4491,7 @@
 							if ((f.open(a.type, a.url, a.async, a.username, a.password), a.xhrFields))
 								for (e in a.xhrFields) f[e] = a.xhrFields[e];
 							a.mimeType && f.overrideMimeType && f.overrideMimeType(a.mimeType),
-								a.crossDomain || c['X-Requested-With'] || (c['X-Requested-With'] = 'XMLhttpsRequest');
+								a.crossDomain || c['X-Requested-With'] || (c['X-Requested-With'] = 'XMLHttpRequest');
 							for (e in c) void 0 !== c[e] && f.setRequestHeader(e, c[e] + '');
 							f.send((a.hasContent && a.data) || null),
 								(b = function (c, e) {
@@ -4520,7 +4520,7 @@
 			});
 	function Zc() {
 		try {
-			return new a.XMLhttpsRequest();
+			return new a.XMLHttpRequest();
 		} catch (b) {}
 	}
 	function $c() {
