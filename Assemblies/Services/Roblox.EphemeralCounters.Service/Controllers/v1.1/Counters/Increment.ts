@@ -1,6 +1,6 @@
 /*
-	FileName: Increment.ts
-	Written By: Nikita Nikolaevich Petko
+	FileName: BatchIncrement.ts
+	Written By: idk
 	File Type: Module
 	Description: Increment a single counter
 
