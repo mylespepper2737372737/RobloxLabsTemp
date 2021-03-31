@@ -29,13 +29,14 @@ import { FASTLOGS, FLog, LOGGROUP } from '../../../../../Helpers/WebHelpers/Robl
 import { EphemeralCountersService } from '../../../././../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService'
 import { Request, Response } from 'express'
 
+
 LOGGROUP('EphemeralCounters');
 
 export default {
 	method: 'all',
-	func: (request: Request, response: Response): void => {
+	func: async (request: Request, response: Response) =>  {
 		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(request.query));
 		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(request.body));
-		EphemeralCountersService.HandleIncrementCounter(request.query["counterName"].toString(), parseInt(request.query["amount"].toString()), response) //yeah idk why it's being weird. It was throwing an error.
+		await EphemeralCountersService.HandleIncrementCounter(request.query["counterName"].toString(), parseInt(request.query["amount"].toString()), response) //yeah idk why it's being weird. It was throwing an error.
 	},
 };

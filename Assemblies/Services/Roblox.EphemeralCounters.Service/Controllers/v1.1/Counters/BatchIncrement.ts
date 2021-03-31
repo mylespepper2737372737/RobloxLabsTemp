@@ -27,16 +27,15 @@ export default {
 	method: 'all',
 	func: (request: Request, response: Response): void => {
         const bdy = request.body;
-        FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', bdy);
+        //FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] B %s', bdy);
         console.log(bdy);
-        const jsn = JSON.parse(bdy)
-        const keys = Object.keys(jsn)
+        const keys = Object.keys(bdy)
         //return res.status(404);
-        for (const key in keys)  {
+        for (const key of keys)  {
             const a = key;
-            const b = jsn[key];
-            FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', a);
-            FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', b);
+            const b = bdy[key];
+            FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] K %s', a);
+            FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] V %s', b);
             EphemeralCountersService.HandleIncrementCounterNoResp(a,b)
 
         }
