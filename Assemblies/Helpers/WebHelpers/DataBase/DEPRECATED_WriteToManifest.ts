@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 
 export const WriteToManifest = (
 	userId: string,
@@ -13,7 +13,7 @@ export const WriteToManifest = (
 ) => {
 	let user;
 	try {
-		user = JSON.parse(filestream.readFileSync(_dirname + `\\DataBase\\users\\${userId}.json`, { encoding: 'utf-8' }));
+		user = JSON.parse(filestream.readFileSync(__baseDirName + `\\DataBase\\users\\${userId}.json`, { encoding: 'utf-8' }));
 	} catch (e) {
 		return e;
 	}
@@ -39,7 +39,7 @@ export const WriteToManifest = (
 			}
 		}
 	}
-	return filestream.writeFileSync(_dirname + `\\DataBase\\users\\${userId}.json`, JSON.stringify(user, undefined, 4), {
+	return filestream.writeFileSync(__baseDirName + `\\DataBase\\users\\${userId}.json`, JSON.stringify(user, undefined, 4), {
 		encoding: 'utf-8',
 	});
 };

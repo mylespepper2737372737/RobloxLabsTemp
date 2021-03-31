@@ -38,7 +38,7 @@
 import { Response } from 'express-serve-static-core';
 import { ClientSettings, Group } from '../Roblox.Util/Roblox.Util.ClientSettings';
 import filestream from 'fs';
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import { CreateCsrfSessionFile } from './Roblox.Sessions.CreateCsrfSessionFile';
 import { GetCsrfSession } from './Roblox.Sessions.GetCsrfSession';
 import { CheckIfAuthTokenExists } from '../Auth/CheckIfAuthTokenExists';
@@ -74,7 +74,7 @@ export const CreateOrGetXsrfSession = (
 
 	if (ip) ip = ip.split('.').join('-');
 
-	const csrfSessions = filestream.readdirSync(_dirname + '\\DataBase\\csrf');
+	const csrfSessions = filestream.readdirSync(__baseDirName + '\\DataBase\\csrf');
 
 	let hasFoundSession = false;
 	let isBasedOnIpAndAuthToken = DFFlag['IsCSRFV2BasedOnIpAddressAndAuthenticationId'];

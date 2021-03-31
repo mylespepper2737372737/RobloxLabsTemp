@@ -26,6 +26,7 @@
 */
 
 import { Request, Response } from 'express';
+import { DFFlag, DFString } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { User } from '../../../Platform/Membership/User';
 
 export default {
@@ -182,6 +183,12 @@ export default {
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
+						},
+					},
+					pageMeta: {
+						banner: {
+							Enabled: DFFlag('IsBannerEnabled'),
+							Text: DFString('SiteBanner'),
 						},
 					},
 				});

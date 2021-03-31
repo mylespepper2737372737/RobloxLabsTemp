@@ -27,7 +27,7 @@
 
 import ws from 'ws';
 import filestream from 'fs';
-import { _dirname } from '../Helpers/Constants/Directories';
+import { __baseDirName } from '../Helpers/Constants/Directories';
 import { IncomingMessage, Server as httpserver } from 'http';
 import { FASTLOG2, FASTLOG3, SFLog, SYNCHRONIZED_LOGGROUP } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Server as httpsServer } from 'https';
@@ -131,7 +131,7 @@ export = (
 			func: (request: ws, Response: IncomingMessage) => unknown;
 		}[] = [];
 		try {
-			Sockets = filestream.readdirSync((opts !== undefined ? opts.path : _dirname + '\\sockets') || _dirname + '\\sockets');
+			Sockets = filestream.readdirSync((opts !== undefined ? opts.path : __baseDirName + '\\sockets') || __baseDirName + '\\sockets');
 		} catch (err) {
 			return FASTLOG2(SFLog[opts.apiName], '[SFLog::%s] %s', opts.apiName, err.message);
 		}
@@ -143,7 +143,8 @@ export = (
 				};
 
 				try {
-					map = require(((opts !== undefined ? opts.path + '\\' : _dirname + '\\sockets\\') || _dirname + '\\sockets\\') + v);
+					map = require(((opts !== undefined ? opts.path + '\\' : __baseDirName + '\\sockets\\') ||
+						__baseDirName + '\\sockets\\') + v);
 				} catch (err) {
 					return console.error(err);
 				}

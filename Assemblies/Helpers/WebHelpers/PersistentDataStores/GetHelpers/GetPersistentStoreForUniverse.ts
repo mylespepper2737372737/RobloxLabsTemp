@@ -1,4 +1,4 @@
-import { _dirname } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../Constants/Directories';
 import { WriteUniverse } from '../SetHelpers/PushUniverseToDB';
 import { PushPersistentStoreToUniverse } from '../SetHelpers/PushPersistentStoreToUniverse';
 import filestream from 'fs';
@@ -53,7 +53,7 @@ export const GetPersistentStoreForUniverse = (
 	isSorted: boolean = false,
 ): Promise<[boolean, StoreType | null]> => {
 	return new Promise<[boolean, StoreType | null]>((resumefunction) => {
-		const dir = _dirname + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
 		if (!filestream.existsSync(dir)) {
 			if (!WriteUniverse(universeId)) return resumefunction([false, null]);
 		}

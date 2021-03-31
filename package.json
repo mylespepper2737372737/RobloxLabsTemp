@@ -6,7 +6,7 @@
 	"scripts": {
 		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=Diagnostiscs Assemblies/bin/Global.asax.js",
 		"lint": "eslint . --fix --ext .ts",
-		"Roblox.Global.asax-for-vsc": "npm run build && npm run Roblox-IStart-Job",
+		"Roblox.Global.asax-for-vsc": "node path.js && npm run build && npm run Roblox-IStart-Job",
 		"build": "tsc --skipLibCheck",
 		"start": "node --trace-deprecation Assemblies/bin/Global.asax.js"
 	},

@@ -12,7 +12,7 @@
  */
 
 import filestream from 'fs';
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 
 export enum Group {
 	'FVariable',
@@ -44,7 +44,7 @@ export namespace ClientSettings {
 		settingsType: SettingsType,
 		settingsGroup: string = 'Web',
 	): Record<string, unknown> | string[] | Error => {
-		const settings = JSON.parse(filestream.readFileSync(_dirname + '\\Default\\Roblox.Settings.json', 'ascii'));
+		const settings = JSON.parse(filestream.readFileSync(__baseDirName + '\\Default\\Roblox.Settings.json', 'ascii'));
 		if (settingsType || settingsType === 0 || settingsType === Group.FFlag) {
 			switch (settingsType as Group) {
 				case Group.FVariable:

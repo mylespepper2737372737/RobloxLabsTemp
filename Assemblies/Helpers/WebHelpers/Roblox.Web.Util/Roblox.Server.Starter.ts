@@ -32,10 +32,10 @@ import { Server as httpsServer } from 'https';
 import dotenv from 'dotenv';
 import filestream from 'fs';
 import { FASTLOG2, SFLog, SYNCHRONIZED_LOGGROUP } from '../Roblox.Util/Roblox.Util.FastLog';
-import { _dirname, _sslname } from '../../Constants/Directories';
+import { __baseDirName, __sslDirName } from '../../Constants/Directories';
 import Urls from '../../Constants/Urls';
 
-dotenv.config({ path: _dirname + '\\.env' });
+dotenv.config({ path: __baseDirName + '\\.env' });
 
 SYNCHRONIZED_LOGGROUP(Urls['RobloxWebsite']);
 SYNCHRONIZED_LOGGROUP(Urls['ApiProxy']);
@@ -121,8 +121,8 @@ export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpser
 		const httpsServer = https2
 			.createServer(
 				{
-					cert: filestream.readFileSync(_sslname + '\\ST4.crt', 'utf-8'),
-					key: filestream.readFileSync(_sslname + '\\ST4.key', 'utf-8'),
+					cert: filestream.readFileSync(__sslDirName + '\\ST4.crt', 'utf-8'),
+					key: filestream.readFileSync(__sslDirName + '\\ST4.key', 'utf-8'),
 					passphrase: process.env['ST4_pw'],
 				},
 				app,

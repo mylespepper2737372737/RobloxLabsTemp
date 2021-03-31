@@ -1,4 +1,4 @@
-import { _dirname } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../Constants/Directories';
 import { WriteUniverse } from '../SetHelpers/PushUniverseToDB';
 import { PushPersistentStoreToUniverse } from '../SetHelpers/PushPersistentStoreToUniverse';
 import { GetPersistentStoreForUniverse } from './GetPersistentStoreForUniverse';
@@ -50,8 +50,8 @@ export const GetScopesForPersistentStore = (
 	isSorted: boolean = false,
 ): Promise<[boolean, ScopeType[] | null]> => {
 	return new Promise<[boolean, ScopeType[] | null]>(async (resumefunction) => {
-		const dir = _dirname + '\\DataBase\\persistence\\' + universeId + '\\stores\\' + name;
-		const dir1 = _dirname + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId + '\\stores\\' + name;
+		const dir1 = __baseDirName + '\\DataBase\\persistence\\' + universeId;
 		if (!filestream.existsSync(dir1)) {
 			if (WriteUniverse(universeId)) return resumefunction([true, null]);
 			return resumefunction([false, null]);

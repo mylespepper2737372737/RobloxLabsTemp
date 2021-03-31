@@ -1,4 +1,4 @@
-import { _dirname } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../Constants/Directories';
 import { WriteUniverse } from '../SetHelpers/PushUniverseToDB';
 import { GetScopeForPersistentStore } from '../GetHelpers/GetScopeForPersistentStore';
 import filestream from 'fs';
@@ -11,7 +11,7 @@ export const PurgeKeyFromScope = (
 	isSorted: boolean = false,
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const dir = _dirname + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
 		if (!filestream.existsSync(dir)) {
 			WriteUniverse(universeId);
 			return resumefunction(false);

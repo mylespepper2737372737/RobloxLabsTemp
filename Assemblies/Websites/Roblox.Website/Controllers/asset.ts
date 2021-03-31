@@ -26,9 +26,9 @@
 */
 
 import dotenv from 'dotenv';
-import { _dirname } from '../../../Helpers/Constants/Directories';
+import { __baseDirName } from '../../../Helpers/Constants/Directories';
 
-dotenv.config({ path: _dirname + '\\.env' });
+dotenv.config({ path: __baseDirName + '\\.env' });
 
 export default {
 	method: 'all',

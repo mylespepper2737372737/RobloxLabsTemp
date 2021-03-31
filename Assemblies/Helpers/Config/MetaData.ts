@@ -27,7 +27,7 @@
 
 import { ConfigOpts } from '../../SDK/IStartupSDK';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { _dirname } from '../Constants/Directories';
+import { __baseDirName } from '../Constants/Directories';
 import config from '../../Config/MetaData';
 
 export default (
@@ -42,10 +42,10 @@ export default (
 		app: app,
 		...((config as unknown) as ConfigOpts),
 		PagesOpts: {
-			path: _dirname + PagesDir,
+			path: __baseDirName + PagesDir,
 		},
 		EndpointOpts: {
-			path: _dirname + EndpointsDir,
+			path: __baseDirName + EndpointsDir,
 			logSetups: true,
 			apiName: apiName,
 		},

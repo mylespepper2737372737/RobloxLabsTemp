@@ -1,4 +1,4 @@
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import { CheckIfPlaceExists } from './CheckIfPlaceExists';
 import { GetPlaceFromId } from './GetPlaceFromId';
 
