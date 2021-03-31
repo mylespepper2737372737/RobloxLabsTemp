@@ -3,4 +3,6 @@ export namespace ApiKeys {
 	export const GamePersistenceApi = '223101C8-6699-4F88-B1BF-E5381531ED27';
 	export const TestApi = '8DAE2E89-BCFA-4735-AB79-D9A07ABA9263';
 	export const PointsApi = 'E3C6F569-496C-47F4-A76E-4F699DF453C4';
+	export const EphemeralCountersApi = '76E5A40C-3AE1-4028-9F10-7C62520BD94F';
+	export const ClientSettingsApi = 'D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79';
 }
