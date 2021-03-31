@@ -1,14 +1,4 @@
 {
-	"discord.enabled": true,
 	"todo-tree.tree.showBadges": true,
-	"todo-tree.tree.showCountsInTree": true,
-	"Lua.diagnostics.disable": [
-		"lowercase-global",
-		"err-esc",
-		"undefined-rbx-member",
-		"invalid-rbx-classname",
-		"missing-module-return",
-		"unknown-symbol",
-		"undefined-global"
-	]
+	"todo-tree.tree.showCountsInTree": true
 }
