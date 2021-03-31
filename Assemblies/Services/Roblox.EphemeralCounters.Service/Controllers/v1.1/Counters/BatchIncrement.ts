@@ -1,6 +1,6 @@
 /*
 	FileName: BatchIncrement.ts
-	Written By: idk
+	Written By: GithubPagesStuff
 	File Type: Module
 	Description: Increment a single counter.
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
@@ -20,13 +20,14 @@
 */
 
 import { FASTLOGS, FLog, LOGGROUP } from '../../../././../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import {EphemeralCountersService} from '../../../././../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService'
+import { EphemeralCountersService } from '../../../././../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService'
+import {Request, Response} from 'express'
 LOGGROUP('EphemeralCounters');
 
 export default {
 	method: 'all',
-	func: (_req: any, res): void => {
-        const bdy = _req.body;
+	func: (request: Request, response: Response): void => {
+        const bdy = request.body;
         FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', bdy);
         console.log(bdy);
         const jsn = JSON.parse(bdy)
@@ -37,9 +38,9 @@ export default {
             const b = jsn[key];
             FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', a);
             FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', b);
-            EphemeralCountersService.HandleIncrementCounter(a,b, res)
+            EphemeralCountersService.HandleIncrementCounterNoResp(a,b)
 
         }
-
+		return response.status(200);
 	},
 };
