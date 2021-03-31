@@ -37,7 +37,7 @@ export class PartialEntity<TEntity> {
 	 * @param {number} limit An optional limit that is 100 by default
 	 * @returns {Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async GetAllRowsByKey<TKey extends keyof TEntity>(
+	public async SelectKey<TKey extends keyof TEntity>(
 		key: TKey,
 		limit: number = 100,
 	): Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
@@ -66,7 +66,7 @@ export class PartialEntity<TEntity> {
 	 * @param {number} limit An optional limit that is 100 by default
 	 * @returns {Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async GetAllRows<TKey extends keyof TEntity>(
+	public async SelectAll<TKey extends keyof TEntity>(
 		limit: number = 100,
 	): Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
 		return new Promise<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>((resumeFunction) => {
@@ -98,7 +98,7 @@ export class PartialEntity<TEntity> {
 	 * @param {number} limit An optional limit that is 100 by default
 	 * @returns {Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async GetAllRowsByKeys<TKey extends keyof TEntity>(
+	public async SelectKeys<TKey extends keyof TEntity>(
 		keys: TKey[],
 		limit: number = 100,
 	): Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
@@ -139,7 +139,7 @@ export class PartialEntity<TEntity> {
 	 * @param {IPartialDataBaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
 	 * @returns {Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async GetFromRowsByKeyConditional<TKey extends keyof TEntity>(
+	public async SelectKeyWhere<TKey extends keyof TEntity>(
 		key: TKey,
 		condtion: IPartialDataBaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
@@ -189,7 +189,7 @@ export class PartialEntity<TEntity> {
 	 * @param {IPartialDataBaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
 	 * @returns {Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async GetFromRowsAllColumnsConditional<TKey extends keyof TEntity>(
+	public async SelectAllWhere<TKey extends keyof TEntity>(
 		condtion: IPartialDataBaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
 		return new Promise<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>((resumeFunction) => {
@@ -242,7 +242,7 @@ export class PartialEntity<TEntity> {
 	 * @param {IPartialDataBaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
 	 * @returns {Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async GetFromRowsColumnsConditional<TKey extends keyof TEntity>(
+	public async SelectKeysWhere<TKey extends keyof TEntity>(
 		keys: TKey[],
 		condtion: IPartialDataBaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string, IPartialDabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
@@ -406,7 +406,7 @@ export class PartialEntity<TEntity> {
 	 * @param {TEntity[TKey]} value The value of TKey
 	 * @returns {Task<[boolean, string]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async InsertPrimaryKeyIntoTable<TKey extends keyof TEntity>(key: TKey, value: TEntity[TKey]): Task<[boolean, string]> {
+	public async InsertValue<TKey extends keyof TEntity>(key: TKey, value: TEntity[TKey]): Task<[boolean, string]> {
 		return new Promise<[boolean, string]>((resumeFunction) => {
 			let query = `INSERT INTO \`${this.dbName_}\`.\`${this.tableName_}\` (${key}) VALUES ('${value}');`;
 			if (key !== this.primaryKey_ && !this.isAutoIncrementPK_)
@@ -429,7 +429,7 @@ export class PartialEntity<TEntity> {
 	 * @param {IPartialDataBaseSetValuesModel<TEntity, TKey, TEntity[TKey]>[]} values A list of values based on the {Roblox.IPartialDataBaseSetValuesModel<TEntity, TKey extends keyof TEntity, TValue extends TEntity[TKey]>}
 	 * @returns {Task<[boolean, string]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
-	public async InsertValuesIntoTable<TKey extends keyof TEntity>(
+	public async InsertValues<TKey extends keyof TEntity>(
 		values: IPartialDataBaseSetValuesModel<TEntity, TKey, TEntity[TKey]>[],
 	): Task<[boolean, string]> {
 		return new Promise<[boolean, string]>((resumeFunction) => {
