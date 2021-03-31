@@ -1,45 +1,20 @@
-# Persistence
+# Setup
 
--   Last Updated 04:33:22PST-02-01-2021
+There is a few things you will need to do before you can use this.
 
-PersistenceDB works in order of this:
+1. Setup your hosts file. On windows it is located in `C:\Windows\System32\drivers\etc` with the file name of `hosts`. You will need to paste the contents of the <b>[hosts.txt](./hosts.txt)</b> file on this repository, giving administrator access to save the file, as this is a system file. This will make your system think that these hosts are binded to the given IPs, read the first issue at the bottom of this read me to troubleshoot any possible issues that you may have when performing this or after performing it.
+2. The SSLKEYLOG libray, by default this library is installed as a development dependency and referenced in [GLobal.asax.ts](./Assemblies/GLobal.asax.ts), if you do not have a SSLKEYLOGFILE setup, and you wish to be able to debug SSL requests via Wireshark etc. You will need to setup one, this involves you creating a file somewhere, it can be named anything, then you will need to modify your System's PATH variables to add one, you can do this by looking up '`Edit the system enviornment variables.`', after that you will need to click the button at the bottom that says '`Enviornment variables...`', there is a choice of where you want to add this variable to, if you want it to be available to all users on the current machine, then add it to the '`System variables`' section, else add it to the '`User variables for YOUR_NAME`'. Click '`New...`', as the '`Variable name`', set it as '`SSLKEYLOGFILE`', for the '`Variable value`', set it as an EXACT path to the file you made for your keylog file, it is preferrable if this path stays outside of the users directory if it's a System variable. You can also click on '`Browse file...`' and find the path for your file. If you wish to set the SSLKEYLOGFILE for WireShark. Launch WireShark, select '`Edit -> Preferences`', go to '`Advanced`' and lookup '`tls.keylog_file`', you will need to set this as the exact path for the SSLKEYLOGFILE Variable you set. When finished, click OK, and then filter by HTTP traffic on the WiFi or Ethernet interface, and if you see the '`Transpor Layer Security (TLS)`' layer along with the '`Hypertext Transfer Protocol (HTTP)`' layer on the same packet, you will know that it worked.
+3. SQL Setup, for this project, it uses MySQL, you will be able to use regular MySQL, and PHPMyAdmin etc. For the Tables, you can look in the [SQL](./SQL) folder to see the CREATE commands for each table, procedure and function. Look at this folder often, as new tables, procedures and functions will be added regularly as the project progresses.
+4. And finally, the cerificate for the HTTPS server. ALl you need to do here is install the certificate inside of [SSL](./SSL) (Named ST4.crt). When installing this, you will have the option for installing it for the current user only, or the current machine, if you only want to be available for the current user, then install it to the current user, else install it the machine. The next option you will need to select is '`Place all certificates in the following store`', in the '`Certificate store:`' section, paste the following in: '`Trusted Root Certification Authorities`', this store is where all certificates are installed from trusted providers, such as if you go to google.com, and you have never receieved the certificate for it, it will automatically get installed to the 'Trusted Root Certification Authorities' store. The reason you have to install the certificate manually, is because it is a self-signed certificate without a CA. (Note: Everytime this certificate updates, you will need to re-do this).
 
-$MANIFEST_DIR$/peristence/ contains:
-RECORD.json - A record of universes added and purged.
+# Potential Issues.
 
-$PERSISTENCE_ROOT$/$UNIVERSE_ID$/ contains
-UNIVERSE.json - Universe info, contains things such as StoreCount, total request count, and user count.
-RECORD.json - Records actions on the current universe, such as which placeIds did requests come from.
-/stores/ - All Stores for that univers
+There will be potential issues that you encounter while using this. The most common ones will include the SSLKEYLOGFILE and your hosts file. Some issues you may encounter with your hosts file may include is '`EADDRNOTAVAIL`', this is when the address is already being used, to fix this, for every update to this repository, you will need to replace the contents of your HostsFile with the contents of the <b>[hosts.txt](./hosts.txt)</b> file in this repository. Another issue can be '`EACCES: permission denied`', this mostly occurs on port `80` when hosting the HTTP servers, it is most likely a conflict issue with another service and that port/ip, you can always go to your hosts file, and change the IP that was failing.
 
-$UNIVERSE_ROOT$/stores/ will contain:
-RECORD.json - A record of stores added and purged.
+---
 
-$STORE_ROOT$/$DATA_STORE_NAME$/ will contain:
-DATASTORE.json - DataStore information
-RECORD.json - Every update that the store has received.
-/scopes/ - All scopes data
+Any additional issues, open an issue if you do not have a solution for it, or open a pull request if you do have a solution for it.
 
-$DATASTORE_ROOT$/scopes/ will contain:
-RECORD.json - A record of scopes added and purged.
-
-$SCOPES_ROOT$/$SCOPE_NAME$/ will contain:
-SCOPE.json - Scope information
-RECORD.json - All updates to that specific scope
-/keys/ - New feature, not implemented yet.
-
-$SCOPE_ROOT$/keys/ will contain:
-RECORD.json - A record of scope keys added and purged.
-
-$KEYS_ROOT$/$KEY_NAME$/ will contain:
-KEY.json - Key information
-RECORD.json - All updates to that specific key
-KEYVERSIONS.json - New feature, consider merging this into KEY.json
-/userids/ - New feature, not implemented yet.
-
-$KEY_ROOT$/userids/ will contain:
-RECORD.json - A record of userIds added added and purged
-
-$KEY_ROOT$/userIds/$USER_ID$/ will contain:
-USER.json - Information on the user based on userId.
-RECORD.json - All Key updates for this specific userId
+Have fun! <br>
+\- **nsg**<br>
+\- **MFDLABS Team**
