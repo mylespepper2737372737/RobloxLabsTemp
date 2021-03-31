@@ -25,12 +25,12 @@
 	***
 */
 
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { RobloxLegacy } from '../../../../../Api';
 
 export default {
 	method: 'all',
-	func: (_req: Request, res: { send: (arg0: { [k: string]: unknown }) => void }): void => {
+	func: (_req: Request, res: Response): void => {
 		const s = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(
 			_req.params.group === 'Arbiter' ? _req.params.group : 'Client',
 		);
@@ -57,6 +57,16 @@ export default {
 				flog.forEach((v1, k1) => {
 					obj['FLog' + k1] = v1.toString();
 				});
+			} else if (k === 'DFLog') {
+				const dflog = new Map<string, boolean>(Object.entries(s[k]));
+				dflog.forEach((v1, k1) => {
+					obj['DFLog' + k1] = v1.toString();
+				});
+			} else if (k === 'SFLog') {
+				const sflog = new Map<string, boolean>(Object.entries(s[k]));
+				sflog.forEach((v1, k1) => {
+					obj['SFLog' + k1] = v1.toString();
+				});
 			} else if (k === 'FInt') {
 				const fint = new Map<string, boolean>(Object.entries(s[k]));
 				fint.forEach((v1, k1) => {
@@ -67,6 +77,11 @@ export default {
 				dfint.forEach((v1, k1) => {
 					obj['DFInt' + k1] = v1.toString();
 				});
+			} else if (k === 'SFInt') {
+				const sfint = new Map<string, boolean>(Object.entries(s[k]));
+				sfint.forEach((v1, k1) => {
+					obj['SFInt' + k1] = v1.toString();
+				});
 			} else if (k === 'FString') {
 				const fstring = new Map<string, boolean>(Object.entries(s[k]));
 				fstring.forEach((v1, k1) => {
@@ -76,6 +91,11 @@ export default {
 				const dfstring = new Map<string, boolean>(Object.entries(s[k]));
 				dfstring.forEach((v1, k1) => {
 					obj['DFString' + k1] = v1;
+				});
+			} else if (k === 'SFString') {
+				const sfstring = new Map<string, boolean>(Object.entries(s[k]));
+				sfstring.forEach((v1, k1) => {
+					obj['SFString' + k1] = v1;
 				});
 			} else if (k === 'FVariable') {
 				const fvariable = new Map<string, boolean>(Object.entries(s[k]));
