@@ -43,7 +43,7 @@ export class User implements IUser {
 			return null;
 		}
 		const [, , sessions] = db.GetTable<ISession>('session', 'Id', true);
-		const [success, message, result] = await sessions.GetFromRowsByKeyConditional('UserId', {
+		const [success, message, result] = await sessions.SelectKeyWhere('UserId', {
 			Key: 'SessionToken',
 			Condition: PartialDatabaseConditionType.Equal,
 			Value: Cookie,
@@ -71,7 +71,7 @@ export class User implements IUser {
 			return null;
 		}
 		const [, , users] = db.GetTable<IUser>('User', 'Id', true);
-		const [success, message, result] = await users.GetFromRowsColumnsConditional(
+		const [success, message, result] = await users.SelectKeysWhere(
 			[
 				'Name',
 				'DisplayName',
