@@ -32,7 +32,7 @@
 			"DataStoreV2MaxItemsToReturnShould403OnBadNumber": false,
 			"IsLoginCodeButtonDisplayed": true,
 			"IsCodeValidationDisplayed": true,
-			"DoesTheWorldGetToViewTheSite": false,
+			"DoesTheWorldGetToViewTheSite": true,
 			"CanAdminsBypassTheSystem": true,
 			"NoMaintenance": false,
 			"Debug": false,
