@@ -35,7 +35,7 @@ import {
 	SFLog,
 	SYNCHRONIZED_LOGGROUP,
 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { _dirname } from '../Helpers/Constants/Directories';
+import { __baseDirName } from '../Helpers/Constants/Directories';
 import { walk } from '../Helpers/WebHelpers/Roblox.Util/Roblox.FileWalker';
 import filestream from 'fs';
 import Urls from '../Helpers/Constants/Urls';
@@ -129,7 +129,7 @@ DYNAMIC_LOGGROUP('Tasks');
 
 const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise<void> => {
 	return new Promise(async (resumeFunc) => {
-		const directory = (opts !== undefined ? opts.path : _dirname + '\\Controllers') || _dirname + '\\Controllers';
+		const directory = (opts !== undefined ? opts.path : __baseDirName + '\\Controllers') || __baseDirName + '\\Controllers';
 		if (!filestream.existsSync(directory)) {
 			FASTLOG2(
 				DFLog('Tasks'),

@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../Constants/Directories';
 
 /**
  * Push a store,
@@ -21,7 +21,7 @@ export const PushPersistentStoreToUniverse = (
 	isSorted: boolean = false,
 ): Promise<boolean> => {
 	return new Promise<boolean>((resumefunction) => {
-		const path = _dirname + '\\DataBase\\persistence\\' + universeId;
+		const path = __baseDirName + '\\DataBase\\persistence\\' + universeId;
 		let time = new Date(Date.now()).toISOString();
 		if (scope.length === 0) scope = '_';
 		if (!filestream.existsSync(path)) return resumefunction(false);

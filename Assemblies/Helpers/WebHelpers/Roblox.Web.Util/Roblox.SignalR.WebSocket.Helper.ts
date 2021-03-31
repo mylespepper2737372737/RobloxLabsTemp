@@ -26,13 +26,13 @@
 */
 
 import mapwss from '../../../Global.Helpers/MapWebsockets';
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import { Server as httpserver } from 'http';
 import { Server as httpsServer } from 'https';
 
 export const ROBLOX_SignalR_Config_Helper = async (httpserver: httpserver, httpsServer: httpsServer, dir: string, apiName: string) => {
 	await mapwss(httpserver, httpsServer, {
-		path: _dirname + dir,
+		path: __baseDirName + dir,
 		shouldHandleUpgrade: true,
 		apiName: apiName,
 		logSetups: true,

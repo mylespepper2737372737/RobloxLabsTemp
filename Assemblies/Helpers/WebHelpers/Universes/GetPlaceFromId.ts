@@ -1,4 +1,4 @@
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import filestream from 'fs';
 
 type PlaceType = {
@@ -18,7 +18,7 @@ type PlaceType = {
 
 export const GetPlaceFromId = (placeId: number): [boolean, PlaceType | null] => {
 	if (placeId === -1) placeId = 0;
-	const placePath = _dirname + '\\DataBase\\places\\' + placeId;
+	const placePath = __baseDirName + '\\DataBase\\places\\' + placeId;
 	if (!filestream.existsSync(placePath)) return [false, null];
 	if (!filestream.statSync(placePath).isDirectory()) return [false, null];
 	const place = JSON.parse(filestream.readFileSync(placePath + '\\PLACE.json', 'utf-8'));

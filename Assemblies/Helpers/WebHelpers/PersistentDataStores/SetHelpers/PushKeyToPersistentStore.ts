@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { _dirname } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../Constants/Directories';
 import { WriteUniverse } from './PushUniverseToDB';
 import { PushPersistentStoreToUniverse } from './PushPersistentStoreToUniverse';
 import Base64 from 'crypto-js/enc-base64';
@@ -27,7 +27,7 @@ export const PushKeyToPersistentStore = (
 	attributes = [],
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const path = _dirname + '\\DataBase\\persistence\\' + universeId;
+		const path = __baseDirName + '\\DataBase\\persistence\\' + universeId;
 		const time = new Date(Date.now()).toISOString();
 		if (scope.length === 0) scope = '_';
 		if (!filestream.existsSync(path)) await WriteUniverse(universeId);

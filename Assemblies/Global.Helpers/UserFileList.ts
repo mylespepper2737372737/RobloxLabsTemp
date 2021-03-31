@@ -27,7 +27,7 @@
 
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import Pages from 'serve-index';
-import { _dirname } from '../Helpers/Constants/Directories';
+import { __baseDirName } from '../Helpers/Constants/Directories';
 import fs from 'fs';
 import { FASTLOGS, FLog, LOGGROUP } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
@@ -39,7 +39,7 @@ LOGGROUP('Pages');
 
 const UseFileList = (app: IApplicationBuilder, opts: PageDirOpts): Promise<void> => {
 	return new Promise((r) => {
-		const path = (opts !== undefined ? opts.path : _dirname + '\\StaticPages') || _dirname + '\\StaticPages';
+		const path = (opts !== undefined ? opts.path : __baseDirName + '\\StaticPages') || __baseDirName + '\\StaticPages';
 		if (!fs.existsSync(path)) {
 			FASTLOGS(
 				FLog['Pages'],

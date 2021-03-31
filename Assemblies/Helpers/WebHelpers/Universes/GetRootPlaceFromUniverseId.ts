@@ -1,4 +1,4 @@
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import filestream from 'fs';
 
 type PlaceType = {
@@ -17,13 +17,13 @@ type PlaceType = {
 };
 
 export const GetRootPlaceFromUniverseId = (universeId: number): [boolean, PlaceType | null] => {
-	const universePath = _dirname + '\\DataBase\\universes\\' + universeId;
+	const universePath = __baseDirName + '\\DataBase\\universes\\' + universeId;
 	if (!filestream.statSync(universePath).isDirectory()) {
 		return [false, null];
 	}
 	const universe = JSON.parse(filestream.readFileSync(universePath + '\\UNIVERSE.json', 'utf-8'));
 	if (universe instanceof Object && universe['rootPlaceId'] !== undefined) {
-		const placePath = _dirname + '\\DataBase\\places\\' + universe['rootPlaceId'];
+		const placePath = __baseDirName + '\\DataBase\\places\\' + universe['rootPlaceId'];
 		if (!filestream.statSync(placePath).isDirectory()) {
 			return [false, null];
 		}

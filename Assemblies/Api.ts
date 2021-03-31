@@ -78,7 +78,7 @@ import { ClientSettings as ClientSettingsImport } from './Helpers/WebHelpers/Rob
 import { ROBLOX_Starter as StarterImport } from './Helpers/WebHelpers/Roblox.Web.Util/Roblox.Server.Starter';
 import { ROBLOX_SignalR_Config_Helper as SignalR } from './Helpers/WebHelpers/Roblox.Web.Util/Roblox.SignalR.WebSocket.Helper';
 import HeadersImport from './Helpers/Constants/Default.OutBound.Headers';
-import { _dirname, _sslname } from './Helpers/Constants/Directories';
+import { __baseDirName, __sslDirName } from './Helpers/Constants/Directories';
 import RobloxUrls from './Helpers/Constants/Urls';
 import { ShuffleArray as ShuffleArrayImport } from './Helpers/WebHelpers/Roblox.Util/Roblox.ShuffleArray';
 import {
@@ -203,8 +203,8 @@ export namespace RobloxLegacy {
 		export namespace Constants {
 			export const OutboundHeaders = HeadersImport;
 			export namespace RobloxDirectories {
-				export const __iBaseDirectory = _dirname;
-				export const __iSSLDirectory = _sslname;
+				export const __iBaseDirectory = __baseDirName;
+				export const __iSSLDirectory = __sslDirName;
 			}
 			export const URLS = RobloxUrls;
 		}

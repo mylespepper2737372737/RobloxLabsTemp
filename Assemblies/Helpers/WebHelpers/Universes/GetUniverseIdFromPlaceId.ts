@@ -1,8 +1,8 @@
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import filestream from 'fs';
 
 export const GetUniverseIdFromPlaceId = (placeId: number): [boolean, number | null] => {
-	const placePath = _dirname + '\\DataBase\\places\\' + placeId + '\\';
+	const placePath = __baseDirName + '\\DataBase\\places\\' + placeId + '\\';
 	if (!filestream.existsSync(placePath)) {
 		return [false, null];
 	}

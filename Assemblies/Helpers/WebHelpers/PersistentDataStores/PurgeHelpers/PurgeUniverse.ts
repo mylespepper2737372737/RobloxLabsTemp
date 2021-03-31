@@ -1,10 +1,10 @@
-import { _dirname } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../Constants/Directories';
 import filestream from 'fs';
 
 export const PurgeUniverse = (universeId: number): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const root = _dirname + '\\DataBase\\persistence\\' + universeId;
-		const dir = _dirname + '\\DataBase\\persistence';
+		const root = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '\\DataBase\\persistence';
 		if (!filestream.existsSync(root)) {
 			return resumefunction(true);
 		}

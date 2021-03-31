@@ -27,19 +27,19 @@
 
 import filestream from 'fs';
 import { Response } from 'express-serve-static-core';
-import { _dirname } from '../../Constants/Directories';
+import { __baseDirName } from '../../Constants/Directories';
 import { ClientSettings, Group } from '../Roblox.Util/Roblox.Util.ClientSettings';
 
 const FInt = ClientSettings.GetSettings(Group.FInt);
 
 export const CreateCaptchaBlobSessionAfter403 = (response: Response, captchaBLOB: string, ip: string) => {
 	const dataToRefer = { sub: ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) };
-	filestream.writeFileSync(_dirname + `\\DataBase\\sessions\\${captchaBLOB}.json`, JSON.stringify(dataToRefer), {
+	filestream.writeFileSync(__baseDirName + `\\DataBase\\sessions\\${captchaBLOB}.json`, JSON.stringify(dataToRefer), {
 		encoding: 'ascii',
 	});
 	setTimeout(() => {
 		try {
-			filestream.unlinkSync(_dirname + `\\DataBase\\sessions\\${captchaBLOB}.json`);
+			filestream.unlinkSync(__baseDirName + `\\DataBase\\sessions\\${captchaBLOB}.json`);
 		} catch {
 			console.warn('The session is already clear');
 		}
