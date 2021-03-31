@@ -27,7 +27,7 @@ export class SessionUser implements ISessionUser {
 			return null;
 		}
 		const [, , sessionUsers] = db.GetTable<ISessionUser>('SessionUser', 'Id', true);
-		const [success, message, result] = await sessionUsers.GetFromRowsAllColumnsConditional({
+		const [success, message, result] = await sessionUsers.SelectAllWhere({
 			Key: 'IpAddress',
 			Condition: PartialDatabaseConditionType.Equal,
 			Value: IpAddress,
@@ -39,7 +39,7 @@ export class SessionUser implements ISessionUser {
 		const thisSession = result.Rows[0];
 		const session = new SessionUser();
 		if (!thisSession) {
-			sessionUsers.InsertValuesIntoTable([
+			sessionUsers.InsertValues([
 				{
 					Key: 'IpAddress',
 					Value: IpAddress,
