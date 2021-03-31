@@ -1,5 +1,5 @@
 /*
-	FileName: BatchIncrement.ts
+	FileName: Increment.ts
 	Written By: idk
 	File Type: Module
 	Description: Increment a single counter
