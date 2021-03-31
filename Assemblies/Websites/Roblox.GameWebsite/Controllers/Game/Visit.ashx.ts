@@ -24,25 +24,13 @@
 
 	***
 */
-import crypto from 'crypto';
-import { RobloxLegacy } from '../../../../Api';
-import fs from 'fs';
+
+import { Request, Response } from 'express';
+import { SignFile } from '../../../../Util/SignData';
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
-		// TODO Refactor this to use files.api, as it uses it on C# - Nikita
-		const str = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\visit.lua', 'utf-8');
-		const sign = crypto.createSign('sha1');
-		const dick = '\r\n' + str;
-		sign.write(dick);
-		sign.end();
-
-		const key = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem');
-		const sig = sign.sign(key, 'base64');
-
-		const out = `--rbxsig%${sig}%${dick}`;
-
-		res.send(out);
+	func: async (_request: Request, response: Response) => {
+		SignFile('\\InternalCDN\\visit.lua', response, true);
 	},
 };
