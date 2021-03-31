@@ -36,6 +36,6 @@ export default {
 	func: (request: Request, response: Response): void => {
 		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(request.query));
 		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(request.body));
-		EphemeralCountersService.HandleIncrementCounter(request.query["counterName"].toString(), parseInt(request.query["amount"].toString()), response)
+		EphemeralCountersService.HandleIncrementCounter(request.query["counterName"].toString(), parseInt(request.query["amount"].toString()), response) //yeah idk why it's being weird. It was throwing an error.
 	},
 };
