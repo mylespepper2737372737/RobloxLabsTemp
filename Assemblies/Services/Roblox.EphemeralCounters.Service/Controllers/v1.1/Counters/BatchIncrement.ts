@@ -31,7 +31,7 @@ export default {
         console.log(bdy);
         const jsn = JSON.parse(bdy)
         const keys = Object.keys(jsn)
-        return res.status(404);
+        //return res.status(404);
         for (const key in keys)  {
             const a = key;
             const b = jsn[key];
