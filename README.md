@@ -1,3 +1,8 @@
+# NOTICE
+
+There has been a major update with how the `__baseDirName` is selected, run the npm script `Build-And-Run` to automatically select the Directory and build the project,<br>
+and then run it, if you wish not to build an run, then just run the file [./path.js](./path.js)
+
 # Setup
 
 There is a few things you will need to do before you can use this.
@@ -9,11 +14,19 @@ There is a few things you will need to do before you can use this.
 
 # Potential Issues.
 
-There will be potential issues that you encounter while using this. The most common ones will include the SSLKEYLOGFILE and your hosts file. Some issues you may encounter with your hosts file may include is '`EADDRNOTAVAIL`', this is when the address is already being used, to fix this, for every update to this repository, you will need to replace the contents of your HostsFile with the contents of the <b>[hosts.txt](./hosts.txt)</b> file in this repository. Another issue can be '`EACCES: permission denied`', this mostly occurs on port `80` when hosting the HTTP servers, it is most likely a conflict issue with another service and that port/ip, you can always go to your hosts file, and change the IP that was failing.
+There will be potential issues that you encounter while using this.<br>
+The most common ones will include the SSLKEYLOGFILE and your hosts file.<br>
+Some issues you may encounter with your hosts file may include is '`EADDRNOTAVAIL`',<br>
+this is when the address is already being used, to fix this, for every update to this repository,<br>
+you will need to replace the contents of your HostsFile with the contents of the <b>[hosts.txt](./hosts.txt)</b> file in this repository.<br>
+Another issue can be '`EACCES: permission denied`', this mostly occurs on port `80` when hosting the HTTP servers,<br>
+it is most likely a conflict issue with another service and that port/ip, you can always go to your hosts file,<br>
+and change the IP that was failing.
 
 ---
 
-Any additional issues, open an issue if you do not have a solution for it, or open a pull request if you do have a solution for it.
+Any additional issues, open an issue if you do not have a solution for it,<br>
+or open a pull request if you do have a solution for it.
 
 Have fun! <br>
 \- **nsg**<br>
