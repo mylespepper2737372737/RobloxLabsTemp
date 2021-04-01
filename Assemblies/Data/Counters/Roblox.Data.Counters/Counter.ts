@@ -1,19 +1,22 @@
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Task } from '../../Http/Task';
-import { PartialDataBase } from '../../PartialDatabase/PartialDataBase';
-import { PartialDatabaseConditionType } from '../../PartialDatabase/PartialDatabaseConditionType';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { Task } from '../../../Http/Task';
+import { PartialDataBase } from '../../../PartialDatabase/PartialDataBase';
+import { PartialDatabaseConditionType } from '../../../PartialDatabase/PartialDatabaseConditionType';
 import { ICounter } from './ICounter';
 
 DYNAMIC_LOGGROUP('Tasks');
-
+function sanitize(strInput: string): string {
+	return strInput.replace(/[^a-z0-9+]+/gi, '')
+}
 export class Counter implements ICounter {
 	public Id: Number;
-	public CounterName: string;
-	public CounterCount: Number;
+	public Name: string;
+	public Count: Number;
 	
 
-	public static async IncrementCounter(Name: string, Amount: number): Task<number> {
-		const db = new PartialDataBase('RobloxCounters', 'root', 'Io9/9DEF'); //change back to 'Io9/9DEF'
+	public static async IncrementCounter(Name_: string, Amount: number): Task<number> {
+		let Name = sanitize(Name_)
+		const db = new PartialDataBase('RobloxAnalytics', 'root', 'Io9/9DEF'); //change back to 'Io9/9DEF'
 		const [didConnect, err] = await db.Connect();
 		if (!didConnect) {
 			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when connecting to DB: %s', err);
@@ -22,19 +25,19 @@ export class Counter implements ICounter {
 			return null;
 		}
 		const [, , sessions] = db.GetTable<ICounter>('counter', 'Id', true);
-		const [, message, result] = await sessions.SelectKeysWhere(['Id', 'CounterCount'], {
-			Key: 'CounterName',
+		const [, message, result] = await sessions.SelectKeysWhere(['Id', 'Count'], {
+			Key: 'Name',
 			Condition: PartialDatabaseConditionType.Equal,
 			Value: Name,
 		});
 		if (result.Rows[0] == null) {
 			FASTLOGS(DFLog['Tasks'], "[DFLog::Tasks] Counter doesn't exist: %s", message);
 			const count = new Counter();
-			count.CounterName = Name;
-			count.CounterCount = Amount;
+			count.Name = Name;
+			count.Count = Amount;
 			const [s, m] = await sessions.InsertValues([
-				{ Key: "CounterName", Value: Name },
-				{ Key: "CounterCount", Value: Amount }
+				{ Key: "Name", Value: Name },
+				{ Key: "Count", Value: Amount }
 			])
 			if (!s) {
 				FASTLOGS(DFLog['Tasks'], "[DFLog::Tasks] Error Creating Counter %s", m);
@@ -47,8 +50,8 @@ export class Counter implements ICounter {
 			const countOld = result.Rows[0];
 			let n = <number>countOld.Data[1].Value;
 			n+=Amount
-			const [s, m] = await sessions.UpdateKey("CounterCount", n, {
-				Key: 'CounterName',
+			const [s, m] = await sessions.UpdateKey("Count", n, {
+				Key: 'Name',
 				Condition: PartialDatabaseConditionType.Equal,
 				Value: Name,
 			})
@@ -58,9 +61,9 @@ export class Counter implements ICounter {
 
 			}
 			const count = new Counter();
-			count.CounterName = Name;
+			count.Name = Name;
 
-			count.CounterCount = n;
+			count.Count = n;
 			await db.Disconnect()
 			return 200;
 

@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 
-import { Counter } from '../../../Platform/Misc/Counter'
+import { Counter } from '../../../Data/Counters/Roblox.Data.Counters/Counter'
 
 DYNAMIC_FASTFLAGVARIABLE('EphemeralCountersServiceEnabled', true);
 
@@ -10,7 +10,11 @@ export namespace EphemeralCountersService {
 		if (!AskIfWeAreAvailable(response)) return;
 		// Just make this do nothing for the time being; aka. echo back the user and universe, with an alltimescore of 0
        		let result =  await Counter.IncrementCounter(counter, amount)
-		
+		if (result == 500) {
+			return response.status(500).send({
+				"Message": "An error has occurred."
+			})
+		}
 		return response.status(result).send();
 	}
     export async function HandleIncrementCounterNoResp(counter: string, amount: number) {
