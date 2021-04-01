@@ -32,7 +32,7 @@ import { Server as httpsServer } from 'https';
 import dotenv from 'dotenv';
 import filestream from 'fs';
 import { FASTLOG2, SFLog, SYNCHRONIZED_LOGGROUP } from '../Roblox.Util/Roblox.Util.FastLog';
-import { __baseDirName, __sslDirName } from '../../Constants/Directories';
+import { __baseDirName, __sslDirName } from '../../../Util/Directories';
 import Urls from '../../Constants/Urls';
 
 dotenv.config({ path: __baseDirName + '\\.env' });

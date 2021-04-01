@@ -27,7 +27,7 @@
 
 import { ConfigOpts } from '../../SDK/IStartupSDK';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { __baseDirName } from '../Constants/Directories';
+import { __baseDirName } from '../../Util/Directories';
 import config from '../../Config/MetaData';
 
 export default (

@@ -12,7 +12,7 @@
  */
 
 import filestream from 'fs';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 
 export enum Group {
 	'FVariable',

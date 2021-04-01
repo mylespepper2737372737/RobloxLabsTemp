@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 
 export const GetRegisteredUsers = () => {
 	const registeredUsers = filestream.readFileSync(__baseDirName + '\\DataBase\\users.json', 'ascii');

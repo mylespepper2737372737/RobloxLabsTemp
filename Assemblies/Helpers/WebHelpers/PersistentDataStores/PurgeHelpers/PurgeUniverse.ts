@@ -1,4 +1,4 @@
-import { __baseDirName } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../../Util/Directories';
 import filestream from 'fs';
 
 export const PurgeUniverse = (universeId: number): Promise<boolean> => {

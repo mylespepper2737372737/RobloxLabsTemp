@@ -1,4 +1,4 @@
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 import filestream from 'fs';
 
 export const GetUniverseIdFromPlaceId = (placeId: number): [boolean, number | null] => {

@@ -1,5 +1,5 @@
 import filestream from 'fs';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 
 type csrfSessionType = { sub: string; token: string; c: number };
 

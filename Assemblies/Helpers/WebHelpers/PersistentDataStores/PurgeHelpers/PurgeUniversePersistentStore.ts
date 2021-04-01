@@ -1,4 +1,4 @@
-import { __baseDirName } from '../../../Constants/Directories';
+import { __baseDirName } from '../../../../Util/Directories';
 import { WriteUniverse } from '../SetHelpers/PushUniverseToDB';
 import { GetPersistentStoreForUniverse } from '../GetHelpers/GetPersistentStoreForUniverse';
 import filestream from 'fs';

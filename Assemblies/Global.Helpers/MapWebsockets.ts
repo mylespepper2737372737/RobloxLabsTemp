@@ -27,7 +27,7 @@
 
 import ws from 'ws';
 import filestream from 'fs';
-import { __baseDirName } from '../Helpers/Constants/Directories';
+import { __baseDirName } from '../Util/Directories';
 import { IncomingMessage, Server as httpserver } from 'http';
 import { FASTLOG2, FASTLOG3, SFLog, SYNCHRONIZED_LOGGROUP } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Server as httpsServer } from 'https';

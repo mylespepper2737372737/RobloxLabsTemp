@@ -26,7 +26,7 @@
 */
 
 import mapwss from '../../../Global.Helpers/MapWebsockets';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 import { Server as httpserver } from 'http';
 import { Server as httpsServer } from 'https';
 

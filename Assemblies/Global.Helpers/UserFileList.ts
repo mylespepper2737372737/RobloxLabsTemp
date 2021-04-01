@@ -27,7 +27,7 @@
 
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import Pages from 'serve-index';
-import { __baseDirName } from '../Helpers/Constants/Directories';
+import { __baseDirName } from '../Util/Directories';
 import fs from 'fs';
 import { FASTLOGS, FLog, LOGGROUP } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 

@@ -26,7 +26,7 @@
 */
 
 import fs from 'fs';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 
 export const ClearCachedSessions = () => {
 	return new Promise<void>((resolve, reject) => {

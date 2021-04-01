@@ -38,7 +38,7 @@
 import { Response } from 'express-serve-static-core';
 import { ClientSettings, Group } from '../Roblox.Util/Roblox.Util.ClientSettings';
 import filestream from 'fs';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 import { CreateCsrfSessionFile } from './Roblox.Sessions.CreateCsrfSessionFile';
 import { GetCsrfSession } from './Roblox.Sessions.GetCsrfSession';
 import { CheckIfAuthTokenExists } from '../Auth/CheckIfAuthTokenExists';

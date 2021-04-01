@@ -26,7 +26,7 @@
 */
 
 import dotenv from 'dotenv';
-import { __baseDirName } from '../../../Helpers/Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 
 dotenv.config({ path: __baseDirName + '\\.env' });
 

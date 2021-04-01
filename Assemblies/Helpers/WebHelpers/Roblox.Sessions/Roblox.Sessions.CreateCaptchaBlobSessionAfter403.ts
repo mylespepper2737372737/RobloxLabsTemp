@@ -27,7 +27,7 @@
 
 import filestream from 'fs';
 import { Response } from 'express-serve-static-core';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 import { ClientSettings, Group } from '../Roblox.Util/Roblox.Util.ClientSettings';
 
 const FInt = ClientSettings.GetSettings(Group.FInt);

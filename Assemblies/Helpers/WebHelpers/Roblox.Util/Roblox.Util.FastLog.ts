@@ -6,7 +6,7 @@
 
 import { ClientSettings } from './Roblox.Util.ClientSettings';
 import fs from 'fs';
-import { __baseDirName } from '../../Constants/Directories';
+import { __baseDirName } from '../../../Util/Directories';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: __baseDirName + '\\.env' });

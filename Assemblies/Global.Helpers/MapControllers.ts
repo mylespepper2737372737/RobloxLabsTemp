@@ -35,7 +35,7 @@ import {
 	SFLog,
 	SYNCHRONIZED_LOGGROUP,
 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { __baseDirName } from '../Helpers/Constants/Directories';
+import { __baseDirName } from '../Util/Directories';
 import { walk } from '../Helpers/WebHelpers/Roblox.Util/Roblox.FileWalker';
 import filestream from 'fs';
 import Urls from '../Helpers/Constants/Urls';
