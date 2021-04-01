@@ -4,8 +4,8 @@
 	"description": "ROBLOXLABS",
 	"main": "Assemblies/bin/Global.asax.js",
 	"scripts": {
-		"Roblox-IStart-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=Diagnostiscs Assemblies/bin/Global.asax.js",
-		"Roblox.Global.asax-for-vsc": "node path.js && npm run build && npm run Roblox-IStart-Job",
+		"Start-Main-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=Diagnostiscs Assemblies/bin/Global.asax.js",
+		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
 		"build": "tsc --skipLibCheck",
 		"start": "node --trace-deprecation Assemblies/bin/Global.asax.js"
 	},

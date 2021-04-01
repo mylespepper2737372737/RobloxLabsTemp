@@ -60,10 +60,10 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Roblox.Global.asax-for-vsc",
+			"name": "Build-And-Run",
 			"cwd": "${workspaceFolder}",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run-script", "Roblox.Global.asax-for-vsc"],
+			"runtimeArgs": ["run-script", "Build-And-Run"],
 			"envFile": "${workspaceFolder}/.env"
 		}
 	],
