@@ -3,11 +3,10 @@ import { Task } from '../../../Http/Task';
 import { PartialDataBase } from '../../../PartialDatabase/PartialDataBase';
 import { PartialDatabaseConditionType } from '../../../PartialDatabase/PartialDatabaseConditionType';
 import { ICounter } from './ICounter';
+import { SanitizeData } from '../../../Util/SanitizeData'
 
 DYNAMIC_LOGGROUP('Tasks');
-function sanitize(strInput: string): string {
-	return strInput.replace(/[^a-z0-9+]+/gi, '')
-}
+
 export class Counter implements ICounter {
 	public Id: Number;
 	public Name: string;
@@ -15,7 +14,7 @@ export class Counter implements ICounter {
 	
 
 	public static async IncrementCounter(Name_: string, Amount: number): Task<number> {
-		let Name = sanitize(Name_)
+		let Name = SanitizeData(Name_)
 		const db = new PartialDataBase('RobloxAnalytics', 'root', 'Io9/9DEF'); //change back to 'Io9/9DEF'
 		const [didConnect, err] = await db.Connect();
 		if (!didConnect) {

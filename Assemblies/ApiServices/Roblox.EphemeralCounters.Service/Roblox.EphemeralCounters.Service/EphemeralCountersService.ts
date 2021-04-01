@@ -8,7 +8,6 @@ DYNAMIC_FASTFLAGVARIABLE('EphemeralCountersServiceEnabled', true);
 export namespace EphemeralCountersService {
 	export async function HandleIncrementCounter(counter: string, amount: number, response: Response) {
 		if (!AskIfWeAreAvailable(response)) return;
-		// Just make this do nothing for the time being; aka. echo back the user and universe, with an alltimescore of 0
        		let result =  await Counter.IncrementCounter(counter, amount)
 		if (result == 500) {
 			return response.status(500).send({
@@ -18,7 +17,6 @@ export namespace EphemeralCountersService {
 		return response.status(result).send();
 	}
     export async function HandleIncrementCounterNoResp(counter: string, amount: number) {
-		// Just make this do nothing for the time being; aka. echo back the user and universe, with an alltimescore of 0
 		let result = await Counter.IncrementCounter(counter, amount)
 		return result;
 	}
