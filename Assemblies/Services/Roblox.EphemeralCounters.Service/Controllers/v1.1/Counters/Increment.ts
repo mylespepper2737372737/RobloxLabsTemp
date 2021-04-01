@@ -25,18 +25,17 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService'
-import { Request, Response } from 'express'
-
-
-LOGGROUP('EphemeralCounters');
+import { EphemeralCountersService } from '../../../././../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
+import { Request, Response } from 'express';
+import { IncrementRequest } from '../../../Models/IncrementRequest';
 
 export default {
 	method: 'all',
-	func: async (request: Request, response: Response) =>  {
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(request.query));
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(request.body));
-		await EphemeralCountersService.HandleIncrementCounter(request.query["counterName"].toString(), parseInt(request.query["amount"].toString()), response) //yeah idk why it's being weird. It was throwing an error.
+	func: async (request: Request<null, any, any, IncrementRequest>, response: Response) => {
+		await EphemeralCountersService.HandleIncrementCounter(
+			request.query.counterName,
+			parseInt(<string>(<unknown>request.query.amount)),
+			response,
+		);
 	},
 };
