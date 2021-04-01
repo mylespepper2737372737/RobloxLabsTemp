@@ -1,31 +1,28 @@
 import { Response } from 'express';
-import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-import { Counter } from '../../../Data/Counters/Roblox.Data.Counters/Counter'
-
-DYNAMIC_FASTFLAGVARIABLE('EphemeralCountersServiceEnabled', true);
+import { Counter } from '../../../Data/Counters/Roblox.Data.Counters/Counter';
+import { ICounter } from '../../../Services/Roblox.EphemeralCounters.Service/Models/ICounter';
 
 export namespace EphemeralCountersService {
 	export async function HandleIncrementCounter(counter: string, amount: number, response: Response) {
-		if (!AskIfWeAreAvailable(response)) return;
-       		let result =  await Counter.IncrementCounter(counter, amount)
-		if (result == 500) {
+		if (!(await IncrementCounter(counter, amount))) {
+			// TODO Implement a ServiceError here.
 			return response.status(500).send({
-				"Message": "An error has occurred."
-			})
+				Message: 'An error has occurred.',
+			});
 		}
-		return response.status(result).send();
-	}
-    export async function HandleIncrementCounterNoResp(counter: string, amount: number) {
-		let result = await Counter.IncrementCounter(counter, amount)
-		return result;
+
+		return response.status(200).send();
 	}
 
-	export function AskIfWeAreAvailable(response: Response): boolean {
-		if (!DFFlag('EphemeralCountersServiceEnabled')) {
-			response.status(503).send();
-			return false;
-		}
-		return true;
+	export async function HandleBatchIncrementCounters(counters: ICounter[], response: Response) {
+		counters.forEach(async (counter) => {
+			await IncrementCounter(counter.Name, counter.Amount);
+		});
+		response.status(200).send();
 	}
-} 
+
+	export async function IncrementCounter(counter: string, amount: number) {
+		const [didIncrement] = await Counter.CreateOrIncrementCounter(counter, amount);
+		return didIncrement;
+	}
+}
