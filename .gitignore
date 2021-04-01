@@ -50,5 +50,3 @@ package-lock.json
 DeploymentTooling
 server.log
 /DataBase
-# git ignore this because it's not needed and auto-generated.
-/Assemblies/Util/Directories.ts
