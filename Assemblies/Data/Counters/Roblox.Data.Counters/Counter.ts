@@ -10,7 +10,7 @@ DYNAMIC_LOGGROUP('Tasks');
 export class Counter implements ICounter {
 	public Id: Number;
 	public Name: string;
-	public Count: Number;
+	public Count: number;
 	
 
 	public static async IncrementCounter(Name_: string, Amount: number): Task<number> {
