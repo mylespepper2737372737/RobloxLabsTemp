@@ -1,10 +1,10 @@
 /*
-	FileName: Increment.ts
-	Written By: Nikita Nikolaevich Petko
+	FileName: BatchIncrement.ts
+	Written By: GithubPagesStuff, modified by nsg.
 	File Type: Module
-	Description: Increment a single counter
+	Description: Increment multiple counters.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	NOTICE DO NOT PUT CSRF PROTECTION ON THIS!
 
 	***
 
@@ -13,9 +13,7 @@
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-
 	https://www.apache.org/licenses/LICENSE-2.0
-
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,15 +23,18 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-LOGGROUP('EphemeralCounters');
+import { Request, Response } from 'express';
+import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
+import { ICounter } from '../../../Models/ICounter';
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+	func: async (request: Request, response: Response) => {
+		const keys = new Map<string, number>(Object.entries(request.body));
+		const counters: ICounter[] = [];
+		keys.forEach(async (value, key) => {
+			counters.push({ Name: key, Amount: value });
+		});
+		return await EphemeralCountersService.HandleBatchIncrementCounters(counters, response);
 	},
 };

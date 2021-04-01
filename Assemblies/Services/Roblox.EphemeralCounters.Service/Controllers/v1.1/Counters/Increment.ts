@@ -1,6 +1,6 @@
 /*
 	FileName: Increment.ts
-	Written By: Nikita Nikolaevich Petko
+	Written By: GithubPagesStuff
 	File Type: Module
 	Description: Increment a single counter
 
@@ -25,15 +25,17 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-LOGGROUP('EphemeralCounters');
+import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
+import { Request, Response } from 'express';
+import { IncrementRequest } from '../../../Models/IncrementRequest';
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+	func: async (request: Request<null, any, any, IncrementRequest>, response: Response) => {
+		await EphemeralCountersService.HandleIncrementCounter(
+			request.query.counterName,
+			parseInt(<string>(<unknown>request.query.amount)),
+			response,
+		);
 	},
 };
