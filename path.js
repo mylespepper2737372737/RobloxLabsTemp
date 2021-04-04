@@ -14,7 +14,7 @@ const fs = require('fs');
 				fileName,
 				`// THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT EDIT\r\n// !DISABLE-AUTO-SELECT-DIR\r\nexport const __baseDirName = '${__dirname
 					.split('\\')
-					.join('\\\\')}';\r\nexport const __sslDirName = __baseDirName + '\\SSL';\r\n`,
+					.join('\\\\')}';\r\nexport const __sslDirName = __baseDirName + '\\\\SSL';\r\n`,
 			);
 			return;
 		}
