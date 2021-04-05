@@ -34,6 +34,14 @@ DYNAMIC_FASTFLAG('IsBannerEnabled');
 DYNAMIC_FASTSTRING('SiteBanner');
 
 export default async (request: Request, response: Response) => {
+	if (
+		request.headers['user-agent'] &&
+		request.headers['user-agent'].includes('robloxlabsStudio') &&
+		request.hostname === 'www.sitetest4.robloxlabs.com' &&
+		request.path.toLowerCase() === '/'
+	) {
+		return response.status(404).send();
+	}
 	let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
 	const authenticatedUser = await User.GetByCookie(cookie);
 	if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
