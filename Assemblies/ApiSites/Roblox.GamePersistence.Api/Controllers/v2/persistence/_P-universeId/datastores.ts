@@ -35,7 +35,6 @@ import {
 	DYNAMIC_LOGVARIABLE,
 	FASTLOG,
 	FASTLOG1,
-	FASTLOGS,
 } from '../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { Pages } from '../../../../../../Data/Pages/RobloxPages';
 import { GetRootPlaceIdFromUniverseId } from '../../../../../../Helpers/WebHelpers/Universes/GetRootPlaceIdFromUniverseId';
@@ -43,8 +42,14 @@ import { GetPersistentStoresForUniverse } from '../../../../../../Helpers/WebHel
 import { IDataStoreRespose } from '../../../../../../Platform/GamePersistence/IDataStoreRespose';
 import Base64 from 'crypto-js/enc-base64';
 import Crpto from 'crypto-js';
+import { MethodValidator } from '../../../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { GetValueFromCookieString } from '../../../../../../Util/GetValueFromCookieString';
+import { User } from '../../../../../../Platform/Membership/User';
+import { CheckDoesNumberStringIncludeAlphaChars } from '../../../../../../Util/CheckDoesNumberStringIncludeAlphaChars';
+import { ICustomError } from '../../../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
+import { Errors } from '../../../../../../Web/Util/Roblox.Web.Util/Errors';
 
-// IList<IDataStoreRespose> Roblox.Web.GamePersistence.GamePersistenceRequestProcessor.GetDataStoresForTheUniverse(IDataStoreRequest request, Boolean requireSecureUri)
+// IDataStoreRespose[] Roblox.Web.GamePersistence.GamePersistenceRequestProcessor.GetDataStoresForTheUniverse(IDataStoreRequest request)
 // Request example:
 /*
  
@@ -89,7 +94,7 @@ After 20 minutes, or server retart, the page will be purged and a new page will 
 
 */
 
-DYNAMIC_LOGVARIABLE('DataStoresV2', 7);
+DYNAMIC_LOGVARIABLE('DataStoresV2', 7); // FIXME Development thing here, change to 0 for prod
 
 DYNAMIC_FASTFLAGVARIABLE('DataStoresV2EnabledForTheWorld', false);
 
@@ -99,49 +104,38 @@ DYNAMIC_FASTINTVARIABLE('DataStoreApiRefreshRolloutPercentage', 0);
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response) => {
+		const errors: ICustomError[] = [];
+
 		/*Start check for request method*/
-		if (request.method !== 'GET') {
-			FASTLOGS(
-				DFLog('DataStoreV2'),
-				'[DFLog::DataStoresV2] We got a bad request method, it was %s when GET was expected!',
-				request.method,
-			);
-			return response.status(405).send({
-				errors: [
-					{
-						code: 0,
-						message: `The requested resource does not support http method '${request.method}'.`,
-					},
-				],
-			});
-		}
+		if (!MethodValidator.CheckMethod(request.method, 'GET', response)) return;
 		/*End check for request method*/
 
 		/*Start check for request security token*/
-		let cookie = request.headers.cookie;
-		if (cookie === undefined) cookie = '';
-		cookie = (cookie as string).split(';').find((AuthToken) => {
-			return AuthToken.startsWith(' .ROBLOSECURITY') || AuthToken.startsWith('.ROBLOSECURITY');
-		});
-		if (cookie) cookie = cookie.split('=')[1];
+		const cookie = GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie || '');
 		/*End check for request security token*/
 
 		/*Start check for request security token validity*/
-		// This should be done on gamepersistence.api
+		const user = await User.GetByCookie(cookie);
+		if (!user) {
+			errors.push({
+				code: 0,
+				message: 'You do not have permission to manage this place. User is null.',
+			});
+			return Errors.RespondWithCustomErrors(403, errors, response, true);
+		}
 		/*End check for request security token validity*/
 
 		/*Start check for Universe Id*/
 		const universeId = parseInt(request.params['universeId']);
-		if (isNaN(universeId) || (request.params['universeId'] || 'test').match(/[a-zA-Z]+/g)) {
+		if (!CheckDoesNumberStringIncludeAlphaChars(universeId)) {
 			FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null universe, god damn');
-			return response.status(400).send({
-				errors: [
-					{
-						code: 0,
-						message: 'The request is invalid.',
-					},
-				],
+
+			errors.push({
+				code: 0,
+				message: 'The request is invalid.',
 			});
+
+			return Errors.RespondWithCustomErrors(400, errors, response, true);
 		}
 		/*End check for Universe Id*/
 
