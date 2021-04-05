@@ -75,6 +75,7 @@ import { ApiServiceIsAliveValidator } from './MiddleWare/ApiServiceIsAliveValida
 import ssl from 'sslkeylog';
 import { User } from './Platform/Membership/User';
 import { GetValueFromFormDataString } from './Util/GetValueFromFormDataString';
+import { UsersApi } from './MiddleWare/UsersApi';
 ssl.hookAll();
 
 LOGVARIABLE('GumePersistince', 6);
@@ -262,6 +263,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		const AdminWebsiteServer = IServer();
 		const ComApisCDNServer = IServer();
 		const PointsServiceServer = IServer();
+		const UsersServiceService = IServer();
 
 		RobloxWebsiteServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		StaticCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -343,6 +345,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		AdminWebsiteServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.ADMINWEBSITE);
 		ComApisCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.KESTREL);
 		PointsServiceServer.use(PointsApi);
+		UsersServiceService.use(UsersApi);
 
 		ApiGatewayServer.engine('html', require('ejs').renderFile);
 		ApiGatewayServer.set('views', RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\TestViews');
@@ -996,6 +999,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				'\\Assemblies\\Bin\\CDN\\Roblox.COMApisCDN\\Controllers',
 				RobloxLegacy.Api.Constants.URLS['ComApisCDN'],
 				false,
+				false,
 				true,
 			),
 		);
@@ -1005,6 +1009,14 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				'\\StaticPages\\Services\\Roblox.Points.Service',
 				'\\Assemblies\\Bin\\Services\\Roblox.Points.Service\\Controllers',
 				RobloxLegacy.Api.Constants.URLS['PointsService'],
+			),
+		);
+		await RobloxLegacy.Api.Library.IStartup.Configure(
+			RobloxLegacy.Api.Helpers.Config.CONFIG(
+				UsersServiceService,
+				'\\StaticPages\\Services\\Roblox.Users.Service',
+				'\\Assemblies\\Bin\\Services\\Roblox.Users.Service\\Controllers',
+				RobloxLegacy.Api.Constants.URLS['UsersService'],
 			),
 		);
 
@@ -1087,6 +1099,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		AdminWebsiteServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
 		ComApisCDNServer.use(Kestrel_404);
 		PointsServiceServer.use(DefaultAsp404);
+		UsersServiceService.use(DefaultAsp404);
 
 		RobloxWebsiteServer.use(async (error: Error, request: Request, response: Response, next: NextFunction) => {
 			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, error.message, error.stack);
@@ -1329,6 +1342,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(AdminWebsiteServer, RobloxLegacy.Api.Constants.URLS['AdminWebsite']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(ComApisCDNServer, RobloxLegacy.Api.Constants.URLS['ComApisCDN']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(PointsServiceServer, RobloxLegacy.Api.Constants.URLS['PointsService']);
+				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(UsersServiceService, RobloxLegacy.Api.Constants.URLS['UsersService']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,
