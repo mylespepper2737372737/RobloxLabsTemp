@@ -1,10 +1,8 @@
 /*
-	FileName: LoadPlaceInfo.ashx.ts
+	FileName: validate.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Load Place info script
-			
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	Description: Checks if a username is valid.
 
 	***
 
@@ -25,23 +23,46 @@
 	***
 */
 
-import a from 'axios';
+import { Request, Response } from 'express';
+import { HttpRequestMethodEnum } from '../../../../../Http/ServiceClient/HttpRequestMethodEnum';
+import { AuthRequestProcessor } from '../../../../../Web/Auth/Roblox.Web.Auth/AuthRequestProcessor';
+import { GetUserFromCookie } from '../../../../../Web/Auth/Roblox.Web.Auth/GetUserFromCookie';
+import { Errors } from '../../../../../Web/Util/Roblox.Web.Util/Errors';
+import { MethodValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { ProtocolValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/ProtocolValidator';
+import { IUsernameValidationRequest } from '../../../Models/IUsernameValidationRequest';
+import { IUsernameValidationResponse } from '../../../Models/IUsernameValidationResponse';
 
 export default {
-	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		a.get('https://auth.roblox.com' + _req.url, {
-			headers: { ..._req.headers, host: 'auth.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
+	method: 'ALL',
+	func: async (
+		request: Request<null, IUsernameValidationResponse, IUsernameValidationRequest, IUsernameValidationRequest, null>,
+		response: Response<IUsernameValidationResponse, null>,
+	) => {
+		if (!ProtocolValidator.CheckIsHTTPS(request.protocol, response)) return;
+		const [isValid, method] = MethodValidator.CheckMethods(request.method, ['GET', 'POST'], response);
+		if (!isValid) return;
+		const isPost = method === HttpRequestMethodEnum.POST;
+		const authenticatedUser = await GetUserFromCookie(request);
+		const [isRequestValid, dataRequest] = AuthRequestProcessor.UsernameValidation.CheckRequest(
+			isPost,
+			authenticatedUser,
+			request,
+			response,
+		);
+		if (!isRequestValid) return;
+		const [WasRequestSuccessful, Response, Exception] = await AuthRequestProcessor.UsernameValidation.ValidateUsername(
+			authenticatedUser,
+			dataRequest,
+			request.secure,
+		);
+		if (!WasRequestSuccessful) {
+			return Errors.RespondWithAHttpError(response, Exception);
+		}
 
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
+		return response.status(200).send({
+			code: Response.Status,
+			message: Response.InternalMessage,
+		});
 	},
 };
