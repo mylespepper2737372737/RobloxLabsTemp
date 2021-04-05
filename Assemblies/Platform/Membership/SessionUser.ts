@@ -13,20 +13,39 @@ export class SessionUser implements ISessionUser {
 	public LanguageCode: System.String;
 	public LanguageName: System.String;
 
+	private static isConnected: boolean;
+	private static connectionAttemptRunning: boolean;
+	private static db: PartialDataBase;
+
+	private static async connectIfNotConnected(): Task<void> {
+		return new Promise<void>(async (resumeFunction) => {
+			if (!this.connectionAttemptRunning) {
+				this.db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
+				this.connectionAttemptRunning = true;
+				const [didConnect, errMessage] = await this.db.Connect();
+				if (!didConnect) {
+					FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when connecting to DB: %s', errMessage);
+					return false;
+				}
+				this.isConnected = didConnect;
+				this.connectionAttemptRunning = false;
+				resumeFunction();
+			} else {
+				do {} while (this.connectionAttemptRunning);
+				resumeFunction();
+			}
+		});
+	}
+
 	/**
 	 * Simple implementation to fetch or, create and fetch session user from the DB, expect this to cache instead.
 	 * @param {System.String} IpAddress The IP address to query by.
 	 * @returns {ISessionUser} Returns null if an error occured, or an {ISessionUser} if not.
 	 */
 	public static async GetOrCreateByIpAddress(IpAddress: string): Task<ISessionUser> {
-		/* TODO: Do this connection shit in the contructor */
-		const db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
-		const [didConnect, err] = await db.Connect();
-		if (!didConnect) {
-			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching session user: %s', err);
-			return null;
-		}
-		const [, , sessionUsers] = db.GetTable<ISessionUser>('SessionUser', 'Id', true);
+		if (!this.isConnected) await this.connectIfNotConnected();
+
+		const [, , sessionUsers] = this.db.GetTable<ISessionUser>('SessionUser', 'Id', true);
 		const [success, message, result] = await sessionUsers.SelectAllWhere({
 			Key: 'IpAddress',
 			Condition: PartialDatabaseConditionType.Equal,

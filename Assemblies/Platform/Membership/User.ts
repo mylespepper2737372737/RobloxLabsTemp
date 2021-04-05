@@ -11,38 +11,58 @@ import { UserModelBuildersClubMembershipTypeEnum } from './UserModelBuildersClub
 DYNAMIC_LOGGROUP('Tasks');
 
 export class User implements IUser {
-	public Id: Number;
-	public Name: String;
-	public DisplayName: String;
+	public Id: number;
+	public Name: string;
+	public DisplayName: string;
 	public MembershipType: UserModelBuildersClubMembershipTypeEnum;
-	public SecurityToken: String;
-	public Description: String;
+	public SecurityToken: string;
+	public Description: string;
 	public Password: IPassword;
-	public Created: String;
-	public IsBanned: Boolean;
+	public Created: string;
+	public IsBanned: boolean;
 	public Email: IEmail;
-	public HasPasswordSet: Boolean;
-	public AgeBracket: Number;
-	public Roles: String[];
-	public RobuxBalance: Number;
-	public NotificationCount: Number;
-	public EmailNotificationsEnabled: Boolean;
-	public CountryCode: String;
-	public UserAbove13: Boolean;
-	public ThumbnailUrl: String;
-	public IsAnyBuildersClubMember: Boolean;
-	public IsPremium: Boolean;
-	public ChangeUsernameEnabled: Boolean;
-	public IsAdmin: Boolean;
+	public HasPasswordSet: boolean;
+	public AgeBracket: number;
+	public Roles: string[];
+	public RobuxBalance: number;
+	public NotificationCount: number;
+	public EmailNotificationsEnabled: boolean;
+	public CountryCode: string;
+	public UserAbove13: boolean;
+	public ThumbnailUrl: string;
+	public IsAnyBuildersClubMember: boolean;
+	public IsPremium: boolean;
+	public ChangeUsernameEnabled: boolean;
+	public IsAdmin: boolean;
+
+	private static isConnected: boolean;
+	private static connectionAttemptRunning: boolean;
+	private static db: PartialDataBase;
+
+	private static async connectIfNotConnected(): Task<void> {
+		return new Promise<void>(async (resumeFunction) => {
+			if (!this.connectionAttemptRunning) {
+				this.db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
+				this.connectionAttemptRunning = true;
+				const [didConnect, errMessage] = await this.db.Connect();
+				if (!didConnect) {
+					FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when connecting to DB: %s', errMessage);
+					return false;
+				}
+				this.isConnected = didConnect;
+				this.connectionAttemptRunning = false;
+				resumeFunction();
+			} else {
+				do {} while (this.connectionAttemptRunning);
+				resumeFunction();
+			}
+		});
+	}
 
 	public static async GetByCookie(Cookie: string): Task<IUser> {
-		const db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
-		const [didConnect, err] = await db.Connect();
-		if (!didConnect) {
-			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching user: %s', err);
-			return null;
-		}
-		const [, , sessions] = db.GetTable<ISession>('session', 'Id', true);
+		if (!this.isConnected) await this.connectIfNotConnected();
+
+		const [, , sessions] = this.db.GetTable<ISession>('session', 'Id', true);
 		const [success, message, result] = await sessions.SelectKeyWhere('UserId', {
 			Key: 'SessionToken',
 			Condition: PartialDatabaseConditionType.Equal,
@@ -63,14 +83,8 @@ export class User implements IUser {
 	 * @returns {IUser} Returns an IUser.
 	 */
 	public static async GetById(Id: number): Task<IUser> {
-		// TODO: Do some extra checking here!
-		const db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
-		const [didConnect, err] = await db.Connect();
-		if (!didConnect) {
-			FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when fetching user: %s', err);
-			return null;
-		}
-		const [, , users] = db.GetTable<IUser>('User', 'Id', true);
+		if (!this.isConnected) await this.connectIfNotConnected();
+		const [, , users] = this.db.GetTable<IUser>('User', 'Id', true);
 		const [success, message, result] = await users.SelectKeysWhere(
 			[
 				'Name',
@@ -100,18 +114,17 @@ export class User implements IUser {
 
 		const user = new User();
 		user.Id = Id;
-		user.Name = <String>thisUser.Data[0].Value;
-		user.DisplayName = <String>thisUser.Data[1].Value;
+		user.Name = <string>thisUser.Data[0].Value;
+		user.DisplayName = <string>thisUser.Data[1].Value;
 		user.MembershipType = <UserModelBuildersClubMembershipTypeEnum>thisUser.Data[2].Value;
-		user.Description = <String>thisUser.Data[3].Value;
-		user.Created = <String>thisUser.Data[4].Value;
-		user.IsBanned = <Boolean>(thisUser.Data[5].Value === 1);
-		user.AgeBracket = <Number>thisUser.Data[6].Value;
-		user.Roles = <String[]>JSON.parse(<string>thisUser.Data[7].Value);
-		user.CountryCode = <String>thisUser.Data[8].Value;
-		user.UserAbove13 = <Boolean>(thisUser.Data[9].Value === 1);
-		user.IsAdmin = <Boolean>(thisUser.Data[10].Value === 1);
-		await db.Disconnect();
+		user.Description = <string>thisUser.Data[3].Value;
+		user.Created = <string>thisUser.Data[4].Value;
+		user.IsBanned = <boolean>(thisUser.Data[5].Value === 1);
+		user.AgeBracket = <number>thisUser.Data[6].Value;
+		user.Roles = <string[]>JSON.parse(<string>thisUser.Data[7].Value);
+		user.CountryCode = <string>thisUser.Data[8].Value;
+		user.UserAbove13 = <boolean>(thisUser.Data[9].Value === 1);
+		user.IsAdmin = <boolean>(thisUser.Data[10].Value === 1);
 		return user;
 	}
 }
