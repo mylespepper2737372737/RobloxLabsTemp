@@ -22,7 +22,7 @@ export namespace EphemeralCountersService {
 	}
 
 	export async function IncrementCounter(counter: string, amount: number) {
-		const [didIncrement] = await Counter.CreateOrIncrementCounter(counter, amount);
+		const didIncrement = await Counter.CreateOrIncrementCounter(counter, amount);
 		return didIncrement;
 	}
 }
