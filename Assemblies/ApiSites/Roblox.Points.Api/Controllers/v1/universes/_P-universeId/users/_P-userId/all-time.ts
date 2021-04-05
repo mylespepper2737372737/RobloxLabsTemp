@@ -39,10 +39,10 @@ Host: points.sitetest4.robloxlabs.com
 
 import { Request, Response } from 'express';
 import { FASTFLAG, FFlag } from '../../../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { GetAllTimePointBalanceResponse } from '../../../../../../../../Models/Roblox.Points.Api/GetAllTimePointBalanceResponse';
 import { ICustomError } from '../../../../../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { PointsRequestProcessor } from '../../../../../../../../Web/Points/Roblox.Web.Points/PointsRequestProcessor';
 import { Errors } from '../../../../../../../../Web/Util/Roblox.Web.Util/Errors';
+import { GetAllTimePointBalanceResponse } from '../../../../../../Models/GetAllTimePointBalanceResponse';
 
 FASTFLAG('RequireGlobalHTTPS');
 
