@@ -36,6 +36,7 @@ import MapControllers from '../Global.Helpers/MapControllers';
 import UsePages from '../Global.Helpers/UsePages';
 import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import UseFileList from '../Global.Helpers/UserFileList';
+import MapControllersV2 from '../Global.Helpers/MapControllersV2';
 
 export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	app: IApplicationBuilder;
@@ -71,6 +72,7 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	};
 	errorpage?: boolean;
 	fileListings?: boolean;
+	useBetaControllerMapping?: boolean;
 }
 
 DYNAMIC_LOGGROUP('Tasks');
@@ -93,7 +95,11 @@ export namespace IStartup {
 				await UseRouting(opts.app, opts.RoutingOpts);
 			}
 			if (opts.UseEndpoints) {
-				await MapControllers(opts.app, opts.EndpointOpts);
+				if (opts.useBetaControllerMapping) {
+					await MapControllersV2(opts.app, opts.EndpointOpts);
+				} else {
+					await MapControllers(opts.app, opts.EndpointOpts);
+				}
 			}
 			if (opts.errorpage) {
 				await DeveloperExceptionPage(opts.app);
