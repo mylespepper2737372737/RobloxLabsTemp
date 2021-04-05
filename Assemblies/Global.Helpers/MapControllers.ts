@@ -36,7 +36,7 @@ import {
 	SYNCHRONIZED_LOGGROUP,
 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { __baseDirName } from '../Util/Directories';
-import { walk } from '../Helpers/WebHelpers/Roblox.Util/Roblox.FileWalker';
+import { FileWalker } from '../Util/FileWalker';
 import filestream from 'fs';
 import Urls from '../Helpers/Constants/Urls';
 
@@ -133,13 +133,13 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 		if (!filestream.existsSync(directory)) {
 			FASTLOG2(
 				DFLog('Tasks'),
-				`[DFLog::Tasls] The directory %s for the api %s was not found, make sure you configured your directory correctly.`,
+				`[DFLog::Tasks] The directory %s for the api %s was not found, make sure you configured your directory correctly.`,
 				directory,
 				opts.apiName,
 			);
 			return resumeFunc();
 		}
-		const r = walk(directory);
+		const r = FileWalker(directory);
 		let count = 0;
 		r.forEach((v) => {
 			let name = v.replace(directory, '');
