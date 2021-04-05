@@ -81,3 +81,4 @@
 127.116.198.3    broom.sitetest4.robloxlabs.com
 127.116.199.3    com-apis.sitetest4.robloxlabs.com
 127.116.200.3	 points.api.sitetest4.robloxlabs.com
+127.116.201.3    users.api.sitetest4.robloxlabs.com
