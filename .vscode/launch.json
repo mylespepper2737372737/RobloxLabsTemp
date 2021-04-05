@@ -2,6 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Util Tests",
+			"program": "${workspaceFolder}/Assemblies/Bin/Tests/UtilTests.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
 			"name": "Decorator Tests",
 			"program": "${workspaceFolder}/Assemblies/Bin/Tests/DecoratorTests.1.js",
 			"request": "launch",
