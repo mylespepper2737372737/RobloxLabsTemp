@@ -867,7 +867,7 @@ POST https://api.roblox.com/v2/login
 
 ###
 
-post Https://auth.roblox.com/v1/usernames/validate?birthday=2018-02-03T00:00:00.000Z&context=Signup&username=wddw HTTP/1.1
+GET Https://auth.roblox.com/v1/usernames/validate?birthday=2018-02-03T00:00:00.000Z&context=Signup&username=cnsg_test HTTP/1.1
 sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"
 accept: application/json, text/plain, */*
 dnt: 1
@@ -881,6 +881,10 @@ referer: https://www.sitetest4.robloxlabs.com/
 accept-language: ru,en;q=0.9,en-US;q=0.8
 roblox-proxied-ip: 193.120.1.11
 Content-Type: application/json
-x-csrf-token: WdGLVfSibStq
+x-csrf-token: zpAdP7rKW8Dm
 
-adgadsax
+{"username":"asax"}
+
+###
+
+POST https://api.roblox.com/Persistence/GetSortedValues?placeId=&type=&scope=&key=&pageSize=&ascending=
