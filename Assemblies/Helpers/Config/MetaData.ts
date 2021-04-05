@@ -37,6 +37,7 @@ export default (
 	apiName: string,
 	errorpage?: boolean,
 	fileListings?: boolean,
+	useNewControllers?: boolean,
 ) => {
 	return {
 		app: app,
@@ -51,5 +52,6 @@ export default (
 		},
 		errorpage: errorpage,
 		fileListings,
+		useBetaControllerMapping: useNewControllers,
 	};
 };
