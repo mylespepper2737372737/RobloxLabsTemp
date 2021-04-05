@@ -1,1 +1,0 @@
-Notice for all Request models: Make sure all members are optional, request bodies can be volatile
