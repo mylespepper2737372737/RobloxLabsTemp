@@ -1,4 +1,4 @@
-import { UsernameValidationStatus } from './UsernameValidationStatus';
+import { UsernameValidationStatus } from '../Enumerations/UsernameValidationStatus';
 
 /**
  * A result representing the information about if username is valid or not.

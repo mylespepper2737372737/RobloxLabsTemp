@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { IServiceUsernameValidationRequest } from '../../../ApiClients/Roblox.Users.Client/Models/IServiceUsernameValidationRequest';
 import { IServiceUsernameValidationResponse } from '../../../ApiClients/Roblox.Users.Client/Models/IServiceUsernameValidationResponse';
-import { UsernameValidationStatus } from '../../../ApiSites/Roblox.Auth.Api/Models/UsernameValidationStatus';
+import { UsernameValidationStatus } from '../../../ApiSites/Roblox.Auth.Api/Enumerations/UsernameValidationStatus';
 
 export namespace UsersService {
 	export namespace Validators {

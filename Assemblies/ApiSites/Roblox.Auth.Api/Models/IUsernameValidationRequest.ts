@@ -1,4 +1,4 @@
-import { UsernameValidationContext } from './UsernameValidationContext';
+import { UsernameValidationContext } from '../Enumerations/UsernameValidationContext';
 
 export interface IUsernameValidationRequest {
 	/**
