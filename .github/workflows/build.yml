@@ -3,6 +3,8 @@ name: Build pull requests
 on:
     pull_request:
         branches: [Roblox.SiteTest4]
+    push:
+        branches: [Roblox.SiteTest4]
 
 jobs:
     build:
