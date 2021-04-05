@@ -109,4 +109,5 @@ export default {
 	AdminWebsite: 'broom.sitetest4.robloxlabs.com',
 	ComApisCDN: 'com-apis.sitetest4.robloxlabs.com',
 	PointsService: 'points.api.sitetest4.robloxlabs.com',
+	UsersService: 'users.api.sitetest4.robloxlabs.com',
 };
