@@ -32,7 +32,7 @@ export default {
 		if (!authenticatedUser.IsBanned) {
 			return response.redirect('https://www.sitetest4.robloxlabs.com/');
 		}
-		const user = await User.GetById(1);
+		const user = await User.Get(1);
 		response.render('NotApproved', {
 			isUserAuthenicated: user !== null,
 			authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
