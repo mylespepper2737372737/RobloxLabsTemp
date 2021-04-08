@@ -49,3 +49,5 @@ package-lock.json
 /Assemblies/bin
 DeploymentTooling
 server.log
+/Default/FormattedSettings.json
+/Default/OutputSettings.json
