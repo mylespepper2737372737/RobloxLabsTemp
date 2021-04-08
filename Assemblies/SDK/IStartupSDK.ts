@@ -73,6 +73,8 @@ export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
 	errorpage?: boolean;
 	fileListings?: boolean;
 	useBetaControllerMapping?: boolean;
+	doNotUseUrlEncoded?: boolean;
+	doNotUseJSON?: boolean;
 }
 
 DYNAMIC_LOGGROUP('Tasks');
@@ -84,7 +86,9 @@ export namespace IStartup {
 			opts.app.enable('trust proxy');
 			opts.app.disable('x-powered-by');
 			opts.app.disable('strict routing');
-			opts.app.use(cparser(), jparser({ strict: false }), bparser.urlencoded({ extended: false }));
+			opts.app.use(cparser());
+			if (!opts.doNotUseJSON) opts.app.use(jparser({ strict: false }));
+			if (!opts.doNotUseUrlEncoded) opts.app.use(bparser.urlencoded({ extended: false }));
 			if (opts.UsePages) {
 				await UsePages(opts.app, opts.PagesOpts, opts.PageOpts);
 			}
