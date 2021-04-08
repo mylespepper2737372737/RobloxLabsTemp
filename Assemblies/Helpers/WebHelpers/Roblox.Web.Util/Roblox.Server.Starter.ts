@@ -51,7 +51,6 @@ SYNCHRONIZED_LOGGROUP(Urls['ClientSettingsService']);
 SYNCHRONIZED_LOGGROUP(Urls['GameWebsite']);
 SYNCHRONIZED_LOGGROUP(Urls['EphemeralCountersV2']);
 SYNCHRONIZED_LOGGROUP(Urls['GamePersistenceApi']);
-SYNCHRONIZED_LOGGROUP(Urls['ROBLOX_DOSARREST_ORIGIN_CORP']);
 SYNCHRONIZED_LOGGROUP(Urls['MarketplaceService']);
 SYNCHRONIZED_LOGGROUP(Urls['MetricsApi']);
 SYNCHRONIZED_LOGGROUP(Urls['AuthApi']);
@@ -121,8 +120,9 @@ export const ROBLOX_Starter = (app: IApplicationBuilder, name: string): [httpser
 		const httpsServer = https2
 			.createServer(
 				{
-					cert: filestream.readFileSync(__sslDirName + '\\ST4.crt', 'utf-8'),
+					cert: filestream.readFileSync(__sslDirName + '\\SERVER.crt', 'utf-8'),
 					key: filestream.readFileSync(__sslDirName + '\\ST4.key', 'utf-8'),
+					ca: [filestream.readFileSync(__sslDirName + '\\rootCA.crt', 'utf-8')],
 					passphrase: process.env['ST4_pw'],
 				},
 				app,
