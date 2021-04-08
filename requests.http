@@ -827,10 +827,11 @@ Roblox-Game-Id: *
 RCC-Committer-User-Id: *
 RCC-Autosave: *
 RCC-Save-User-Id: *
+Roblox-Id: 1
 
 ###
 
-POST https://ephemeralcounters.api.sitetest2.robloxlabs.com/v1.0/MultiIncrement?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F
+POST https://ephemeralcounters.api.sitetest4.robloxlabs.com/v1.0/MultiIncrement?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F
 Content-Type: application/x-www-form-urlencoded
 
 &counterNamesCsv=a,a,x
@@ -839,8 +840,9 @@ Content-Type: application/x-www-form-urlencoded
 ###
 
 
-POST /v1.1/Counters/Increment/?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F HTTP/1.1
+POST /v1.1/Counters/increment/?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F&counterName=x&amount=12 HTTP/1.1
 Host: ephemeralcounters.api.sitetest4.robloxlabs.com
+Protocol: https
 Accept: */*
 Accept-Encoding: gzip, deflate
 Cache-Control: no-cache
@@ -849,12 +851,13 @@ User-Agent: Roblox/WinInet
 Roblox-Game-Id: 74b224c8-e580-4b3e-8228-c99113a9aff2
 Roblox-Place-Id: 5889263700
 Requester: Client
+Origin: https:/www.roblox.com
+Referer: https:/www.roblox.com
 PlayerCount: 1
 Content-Type: application/json
 X-CSRF-TOKEN: xdT47NHGigfh
 Content-Length: 57
 
-{"counterName":"test","amount":60}
 
 
 ###
@@ -867,7 +870,7 @@ POST https://api.roblox.com/v2/login
 
 ###
 
-GET Https://auth.roblox.com/v1/usernames/validate?birthday=2018-02-03T00:00:00.000Z&context=Signup&username=cnsg_test HTTP/1.1
+GET Https://auth.roblox.com/v1/usernames/validate?birthday=2018-02-03T00:00:00.000Z&context=Signup&username=James HTTP/1.1
 sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"
 accept: application/json, text/plain, */*
 dnt: 1
@@ -887,4 +890,39 @@ x-csrf-token: zpAdP7rKW8Dm
 
 ###
 
-POST https://api.roblox.com/Persistence/GetSortedValues?placeId=&type=&scope=&key=&pageSize=&ascending=
+POST https://api.roblox.com/Persistence/GetSortedValues?placeId=&type=sorted&scope=&key=&pageSize=&ascending=
+
+###
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 06 Apr 2021 17:39:51 GMT
+Content-Length: 0
+Connection: keep-alive
+Cache-Control: no-cache
+Expires: -1
+P3p: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"
+Pragma: no-cache
+Roblox-Machine-Id: AWA-WEB970
+
+###
+
+POST https://ephemeralcounters.api.sitetest1.robloxlabs.com/v1.1/Counters/increment?counterName=a
+
+{asac}asd
+
+###
+
+POST /v1/Usernames/ValidateUsername?ApiKey=E9DADB63-5BF6-42FF-A964-79D5E97E706 HTTP/1.1
+Accept: application/json, text/plain, */*
+Content-Type: application/json
+User-Agent: Roblox/ApiServiceClient 4.8.4210.0 (https://www.sitetest3.robloxlabs.com+2.8)
+Roblox-Machine-Id: AWA-WEB141
+Roblox-Grid-Proxied-IP: 208.223.318.3
+X-Roblox-ChannelType: Roblox.Http.ServiceClient.Channel.Main
+X-Roblox-Is-ApiRequest: True
+Content-Length: 104
+Host: users.api.sitetest4.robloxlabs.com
+Connection: close
+
+{"IUser":null,"Request":{"username":"___","birthday":"2021-04-05T08:51:44.707Z","context":"Login"}}
