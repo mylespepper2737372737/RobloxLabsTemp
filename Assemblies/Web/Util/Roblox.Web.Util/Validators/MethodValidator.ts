@@ -10,10 +10,11 @@ export namespace MethodValidator {
 	 * @param {string} originalMethod The original request method, to be converted to lowercase etc.
 	 * @param {string} methodToValidate The method to validate.
 	 * @param {Response} response A response to pass in to be injected into the {Roblox.Web.Util.Errors}.
+	 * @param {boolean} isService If true, will use the ServiceError instead of the CustomError.
 	 * @returns {[boolean, HttpRequestMethodEnum]} Returns true if the request method verb matches any of the given methods below.
 	 */
-	export function CheckMethod(originalMethod: string, methodToValidate: string, response: Response): [boolean, HttpRequestMethodEnum] {
-		return CheckMethods(originalMethod, [methodToValidate], response);
+	export function CheckMethod(originalMethod: string, methodToValidate: string, response: Response, isService = false): boolean {
+		return CheckMethods(originalMethod, [methodToValidate], response, isService)[0];
 	}
 
 	/**
@@ -22,12 +23,14 @@ export namespace MethodValidator {
 	 * @param {string} originalMethod The original request method, to be converted to lowercase etc.
 	 * @param {string[]} methodsToValidate The methods to validate.
 	 * @param {Response} response A response to pass in to be injected into the {Roblox.Web.Util.Errors}.
+	 * @param {boolean} isService If true, will use the ServiceError instead of the CustomError.
 	 * @returns {[boolean, HttpRequestMethodEnum]} Returns true if the request method verb matches any of the given methods below.
 	 */
 	export function CheckMethods(
 		originalMethod: string,
 		methodsToValidate: string[],
 		response: Response,
+		isService: boolean = false,
 	): [boolean, HttpRequestMethodEnum] {
 		const errors: ICustomError[] = [];
 		originalMethod = originalMethod.toLowerCase();
@@ -63,7 +66,12 @@ export namespace MethodValidator {
 			return true;
 		});
 		if (!methodIsValid) {
-			errors.push({ code: 0, message: `The requested resource does not support http method '${originalMethod.toUpperCase()}'.` });
+			const errorMessage = `The requested resource does not support http method '${originalMethod.toUpperCase()}'.`;
+			if (isService) {
+				Errors.RespondWithAServiceError(405, errorMessage, response, true);
+				return [false, null];
+			}
+			errors.push({ code: 0, message: errorMessage });
 			Errors.RespondWithCustomErrors(405, errors, response, true);
 			return [false, null];
 		}
