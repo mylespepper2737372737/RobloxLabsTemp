@@ -64,6 +64,8 @@ export const GlobalMiddleware = ((req, res, next) => {
 				encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
 				cookie || <string>req.headers['roblox-security-token'],
 				res,
+				DFFlag('NoMaintenance'),
+				DFFlag('NoMaintenance'),
 			)
 		)
 			return;
@@ -125,7 +127,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 	// TODO: Validate AuthToken before we redirect, it may be hacked
 	if (
 		req.headers['user-agent'] &&
-		req.headers['user-agent'].includes('robloxlabsStudio') &&
+		req.headers['user-agent'].includes('RobloxStudio') &&
 		req.hostname === 'www.sitetest4.robloxlabs.com' &&
 		req.path.toLowerCase() === '/'
 	) {
