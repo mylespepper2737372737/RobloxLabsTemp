@@ -38,6 +38,8 @@ export default (
 	errorpage?: boolean,
 	fileListings?: boolean,
 	useNewControllers?: boolean,
+	doNotParseJSON?: boolean,
+	doNotParseFORM?: boolean,
 ) => {
 	return {
 		app: app,
@@ -53,5 +55,7 @@ export default (
 		errorpage: errorpage,
 		fileListings,
 		useBetaControllerMapping: useNewControllers,
+		doNotUseUrlEncoded: doNotParseFORM,
+		doNotUseJSON: doNotParseJSON,
 	};
 };
