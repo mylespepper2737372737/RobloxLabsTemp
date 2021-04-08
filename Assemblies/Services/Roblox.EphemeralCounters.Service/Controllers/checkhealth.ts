@@ -1,8 +1,8 @@
 /*
-	FileName: __pageIndex.ts
+	FileName: checkhealth.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Index page for ecs.api
+	Description: Health page for ecs.api, essentially the same as __pageIndex
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
