@@ -2,11 +2,18 @@ import { Response } from 'express';
 import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { ICustomErrorList } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomErrorList';
+import { IServiceError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/IServiceError';
 import { StatusCodes } from './StatusCodes';
 
 DYNAMIC_FASTFLAGVARIABLE('Debug', false);
 
 export namespace Errors {
+	export function RespondWithAServiceError(statusCode: number, message: string, response: Response, shouldEndResponse: boolean = true) {
+		const ServiceError: IServiceError = { Message: message };
+		response.status(statusCode).send(ServiceError);
+		if (shouldEndResponse) response.end();
+	}
+
 	export function RespondWithCustomErrors(
 		statusCode: number,
 		customErrors: ICustomError[],
