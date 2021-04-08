@@ -1,4 +1,4 @@
-CREATE TABLE `test` (
+CREATE TABLE `robloxmembership`.`test` (
   `Id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `AccountId_UNIQUE` (`Id`)

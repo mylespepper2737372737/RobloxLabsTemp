@@ -17,18 +17,18 @@ INSERT INTO
     `AccountId`
 ) VALUES 
 (
-	'USER_ID',
-    'USER_NAME',
-    'DISPLAY_NAME',
-    'MEMBERSHIP_TYPE',
-    'DESCRIPTION',
-    'CREATED_DATE',
-    'UPDATED_DATE',
-    'IS_BANNED',
-    'AGE_BRACKET',
-    'ROLES',
-    'LOCALE_ID',
-    'USER_ABOVE_13',
-    'IS_ADMIN',
-    'ACCOUNT_ID'
+	'1',
+    'nsg',
+    'US- user_1',
+    'Premium',
+    'This is a test',
+    '2021-1-1',
+    '2021-1-1',
+    '0',
+    '0',
+    '["SoothSayer", "BetaTester"]',
+    'en_us',
+    '1',
+    '1',
+    '1'
 );

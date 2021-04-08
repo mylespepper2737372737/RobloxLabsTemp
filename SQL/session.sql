@@ -1,4 +1,4 @@
-CREATE TABLE `session` (
+CREATE TABLE `robloxmembership`.`session` (
   `Id` bigint NOT NULL AUTO_INCREMENT,
   `UserId` bigint NOT NULL,
   `SessionToken` text NOT NULL,

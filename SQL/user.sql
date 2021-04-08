@@ -1,4 +1,4 @@
-CREATE TABLE `user` (
+CREATE TABLE `robloxmembership`.`user` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Name` text NOT NULL,
   `DisplayName` text NOT NULL,
