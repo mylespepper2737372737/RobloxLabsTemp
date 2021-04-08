@@ -3,7 +3,7 @@ import { User } from '../../../../Platform/Membership/User';
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		const user = await User.GetById(parseInt(_req.query.id) || 1);
+		const user = await User.Get(parseInt(_req.query.id) || 1);
 		res.render('test', {
 			uname: user.Name,
 			uid: user.Id,

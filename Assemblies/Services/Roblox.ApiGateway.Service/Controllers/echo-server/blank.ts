@@ -13,7 +13,7 @@ DYNAMIC_FASTFLAGVARIABLE('ShouldShowLeftNavOnTestPage', false);
 export default {
 	method: 'all',
 	func: async (_request: Request, response: Response) => {
-		const user = await User.GetById(1);
+		const user = await User.Get(1);
 
 		response.render('BlankBody', {
 			isUserAuthenicated: user !== null,
