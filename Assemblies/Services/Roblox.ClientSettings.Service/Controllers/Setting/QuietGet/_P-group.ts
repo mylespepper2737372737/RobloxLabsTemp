@@ -27,118 +27,136 @@
 
 import { Request, Response } from 'express';
 import { RobloxLegacy } from '../../../../../Api';
+import { ApiKeys } from '../../../../../Data/Keys/Api';
+import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Util/FetchKeyFromObjectCaseInsensitive';
+import { ValidateApiKeys } from '../../../../../Util/ValidateApiKey';
 
 export default {
 	method: 'all',
-	func: (_req: Request, res: Response): void => {
-		const s = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(
-			_req.params.group === 'Arbiter' ? _req.params.group : 'Client',
-		);
-		const settings = new Map<string, Object>(Object.entries(s));
-		const obj: { [k: string]: unknown } = {};
-		settings.forEach((v, k) => {
-			if (k === 'FFlag') {
-				const fflag = new Map<string, boolean>(Object.entries(s[k]));
-				fflag.forEach((v1, k1) => {
-					obj['FFlag' + k1] = v1 === true ? 'True' : 'False';
+	func: (request: Request, response: Response) => {
+		const allGroupSettings = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(request.params.group || 'Blank');
+		if (
+			!ValidateApiKeys(
+				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
+				[ApiKeys.ClientSettingsApi, ApiKeys.ClientSettingsApiV2],
+				response,
+				'The service is unavailable.',
+			)
+		)
+			return;
+		if (!allGroupSettings) return response.status(503).send('The service is unavailable.');
+		const parsedGroupMappedSettings = new Map<string, Object>(Object.entries(allGroupSettings));
+		const outputGroupSettings: { [k: string]: unknown } = {};
+		parsedGroupMappedSettings.forEach((_value, key) => {
+			if (key === 'FFlag') {
+				const fflag = new Map<string, boolean>(Object.entries(allGroupSettings[key]));
+				fflag.forEach((flagValue, flagName) => {
+					outputGroupSettings['FFlag' + flagName] = flagValue === true ? 'True' : 'False';
 				});
-			} else if (k === 'DFFlag') {
-				const dfflag = new Map<string, boolean>(Object.entries(s[k]));
-				dfflag.forEach((v1, k1) => {
-					obj['DFFlag' + k1] = v1 === true ? 'True' : 'False';
+			} else if (key === 'DFFlag') {
+				const dfflag = new Map<string, boolean>(Object.entries(allGroupSettings[key]));
+				dfflag.forEach((flagValue, flagName) => {
+					outputGroupSettings['DFFlag' + flagName] = flagValue === true ? 'True' : 'False';
 				});
-			} else if (k === 'SFFlag') {
-				const sfflag = new Map<string, boolean>(Object.entries(s[k]));
-				sfflag.forEach((v1, k1) => {
-					obj['SFFlag' + k1] = v1 === true ? 'True' : 'False';
+			} else if (key === 'SFFlag') {
+				const sfflag = new Map<string, boolean>(Object.entries(allGroupSettings[key]));
+				sfflag.forEach((flagValue, flagName) => {
+					outputGroupSettings['SFFlag' + flagName] = flagValue === true ? 'True' : 'False';
 				});
-			} else if (k === 'FLog') {
-				const flog = new Map<string, boolean>(Object.entries(s[k]));
-				flog.forEach((v1, k1) => {
-					obj['FLog' + k1] = v1.toString();
+			} else if (key === 'FLog') {
+				const flog = new Map<string, number>(Object.entries(allGroupSettings[key]));
+				flog.forEach((flagValue, flagName) => {
+					outputGroupSettings['FLog' + flagName] = flagValue.toString();
 				});
-			} else if (k === 'DFLog') {
-				const dflog = new Map<string, boolean>(Object.entries(s[k]));
-				dflog.forEach((v1, k1) => {
-					obj['DFLog' + k1] = v1.toString();
+			} else if (key === 'DFLog') {
+				const dflog = new Map<string, number>(Object.entries(allGroupSettings[key]));
+				dflog.forEach((flagValue, flagName) => {
+					outputGroupSettings['DFLog' + flagName] = flagValue.toString();
 				});
-			} else if (k === 'SFLog') {
-				const sflog = new Map<string, boolean>(Object.entries(s[k]));
-				sflog.forEach((v1, k1) => {
-					obj['SFLog' + k1] = v1.toString();
+			} else if (key === 'SFLog') {
+				const sflog = new Map<string, number>(Object.entries(allGroupSettings[key]));
+				sflog.forEach((flagValue, flagName) => {
+					outputGroupSettings['SFLog' + flagName] = flagValue.toString();
 				});
-			} else if (k === 'FInt') {
-				const fint = new Map<string, boolean>(Object.entries(s[k]));
-				fint.forEach((v1, k1) => {
-					obj['FInt' + k1] = v1.toString();
+			} else if (key === 'FInt') {
+				const fint = new Map<string, number>(Object.entries(allGroupSettings[key]));
+				fint.forEach((flagValue, flagName) => {
+					outputGroupSettings['FInt' + flagName] = flagValue.toString();
 				});
-			} else if (k === 'DFInt') {
-				const dfint = new Map<string, boolean>(Object.entries(s[k]));
-				dfint.forEach((v1, k1) => {
-					obj['DFInt' + k1] = v1.toString();
+			} else if (key === 'DFInt') {
+				const dfint = new Map<string, number>(Object.entries(allGroupSettings[key]));
+				dfint.forEach((flagValue, flagName) => {
+					outputGroupSettings['DFInt' + flagName] = flagValue.toString();
 				});
-			} else if (k === 'SFInt') {
-				const sfint = new Map<string, boolean>(Object.entries(s[k]));
-				sfint.forEach((v1, k1) => {
-					obj['SFInt' + k1] = v1.toString();
+			} else if (key === 'SFInt') {
+				const sfint = new Map<string, number>(Object.entries(allGroupSettings[key]));
+				sfint.forEach((flagValue, flagName) => {
+					outputGroupSettings['SFInt' + flagName] = flagValue.toString();
 				});
-			} else if (k === 'FString') {
-				const fstring = new Map<string, boolean>(Object.entries(s[k]));
-				fstring.forEach((v1, k1) => {
-					obj['FString' + k1] = v1;
+			} else if (key === 'FString') {
+				const fstring = new Map<string, string>(Object.entries(allGroupSettings[key]));
+				fstring.forEach((flagValue, flagName) => {
+					outputGroupSettings['FString' + flagName] = flagValue;
 				});
-			} else if (k === 'DFString') {
-				const dfstring = new Map<string, boolean>(Object.entries(s[k]));
-				dfstring.forEach((v1, k1) => {
-					obj['DFString' + k1] = v1;
+			} else if (key === 'DFString') {
+				const dfstring = new Map<string, string>(Object.entries(allGroupSettings[key]));
+				dfstring.forEach((flagValue, flagName) => {
+					outputGroupSettings['DFString' + flagName] = flagValue;
 				});
-			} else if (k === 'SFString') {
-				const sfstring = new Map<string, boolean>(Object.entries(s[k]));
-				sfstring.forEach((v1, k1) => {
-					obj['SFString' + k1] = v1;
+			} else if (key === 'SFString') {
+				const sfstring = new Map<string, string>(Object.entries(allGroupSettings[key]));
+				sfstring.forEach((flagValue, flagName) => {
+					outputGroupSettings['SFString' + flagName] = flagValue;
 				});
-			} else if (k === 'FVariable') {
-				const fvariable = new Map<string, boolean>(Object.entries(s[k]));
-				fvariable.forEach((v1, k1) => {
-					obj[k1] = v1;
+			} else if (key === 'FVariable') {
+				const fvariable = new Map<string, unknown>(Object.entries(allGroupSettings[key]));
+				fvariable.forEach((flagValue, flagName) => {
+					let value: unknown = flagValue;
+					if (typeof flagValue === 'boolean') value = flagValue ? 'True' : 'False';
+					if (typeof flagValue === 'number') value = (<number>flagValue).toString();
+					outputGroupSettings[flagName] = value;
 				});
-			} else if (k === 'FPFilter') {
-				const fpfilter = new Map<string, { Value: unknown; PlaceIds: number[] }>(Object.entries(s[k]));
-				fpfilter.forEach((v1, k1) => {
-					const kk = 'FStringPlaceFilter_' + k1;
-					if (typeof v1.Value === 'boolean') {
-						let v = v1.Value ? 'True;' : 'False;';
-						let it = 0;
-						v1.PlaceIds.forEach((vvx) => {
-							it++;
-							v += vvx.toString() + (it !== v1.PlaceIds.length ? ';' : '');
+			} else if (key === 'FPFilter') {
+				const fpfilter = new Map<string, { Value: unknown; Ids: number[]; Prefix: string }>(Object.entries(allGroupSettings[key]));
+				fpfilter.forEach((flagValue, flagName) => {
+					const placeFilterFlagName = flagValue.Prefix + flagName + '_PlaceFilter';
+
+					if (typeof flagValue.Value === 'boolean') {
+						let placeFilterFlagValue = flagValue.Value ? 'True;' : 'False;';
+						let iterator = 0;
+						flagValue.Ids.forEach((placeId) => {
+							iterator++;
+							placeFilterFlagValue += placeId.toString() + (iterator !== flagValue.Ids.length ? ';' : '');
 						});
-						obj[kk] = v;
-					} else if (typeof v1.Value === 'number') {
-						let v = v1.Value.toString() + ';';
-						let it = 0;
-						v1.PlaceIds.forEach((vvx) => {
-							it++;
-							v += vvx.toString() + (it !== v1.PlaceIds.length ? ';' : '');
+						outputGroupSettings[placeFilterFlagName] = placeFilterFlagValue;
+					} else if (typeof flagValue.Value === 'number') {
+						let placeFilterFlagValue = flagValue.Value.toString() + ';';
+						let iterator = 0;
+						flagValue.Ids.forEach((placeId) => {
+							iterator++;
+							placeFilterFlagValue += placeId.toString() + (iterator !== flagValue.Ids.length ? ';' : '');
 						});
-						obj[kk] = v;
+						outputGroupSettings[placeFilterFlagName] = placeFilterFlagValue;
 					} else {
-						let v = v1.Value + ';';
-						let it = 0;
-						v1.PlaceIds.forEach((vvx) => {
-							it++;
-							v += vvx.toString() + (it !== v1.PlaceIds.length ? ';' : '');
+						let placeFilterFlagValue = flagValue.Value + ';';
+						let iterator = 0;
+						flagValue.Ids.forEach((placeId) => {
+							iterator++;
+							placeFilterFlagValue += placeId.toString() + (iterator !== flagValue.Ids.length ? ';' : '');
 						});
-						obj[kk] = v;
+						outputGroupSettings[placeFilterFlagName] = placeFilterFlagValue;
 					}
 				});
 			} else {
-				const v2 = new Map<string, boolean>(Object.entries(s[k]));
-				v2.forEach((v1, k1) => {
-					obj[k1] = v1;
+				const flagValues = new Map<string, unknown>(Object.entries(allGroupSettings[key]));
+				flagValues.forEach((flagValue, flagName) => {
+					let value: unknown = flagValue;
+					if (typeof flagValue === 'boolean') value = flagValue ? 'True' : 'False';
+					if (typeof flagValue === 'number') value = (<number>flagValue).toString();
+					outputGroupSettings[flagName] = value;
 				});
 			}
 		});
-		res.send(obj);
+		response.send(outputGroupSettings);
 	},
 };
