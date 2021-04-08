@@ -9,6 +9,7 @@ import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.Erro
 import { IUser } from '../../../Platform/Membership/IUser';
 import { Errors } from '../../Util/Roblox.Web.Util/Errors';
 import { ContentTypeValidator } from '../../Util/Roblox.Web.Util/Validators/ContentTypeValidator';
+import { CheckIsDateStringAnISODate } from '../../../Util/CheckIsDateStringAnISODate';
 
 export namespace AuthRequestProcessor {
 	export namespace UsernameValidation {
@@ -37,7 +38,7 @@ export namespace AuthRequestProcessor {
 				Errors.RespondWithCustomErrors(400, errors, response, true);
 				return [false, null];
 			}
-			if (!data.birthday || data.birthday.length === 0) {
+			if (!CheckIsDateStringAnISODate(data.birthday)) {
 				// Check if the user is authenticated via the passed in IUser
 				if (!authenticatedUser) {
 					errors.push({
@@ -88,9 +89,9 @@ export namespace AuthRequestProcessor {
 					return [false, null];
 			if (!isUsingPost)
 				data = {
-					username: (<any>data)['request.username'],
-					birthday: (<any>data)['request.birthday'],
-					context: (<any>data)['request.context'],
+					username: data.username || (<any>data)['request.username'],
+					birthday: data.birthday || (<any>data)['request.birthday'],
+					context: data.context || (<any>data)['request.context'],
 				};
 			const [IsSuccessful, ParsedBody] = checkRequest(data, errors, authenticatedUser, response);
 			if (!IsSuccessful) return [false, null];
