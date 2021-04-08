@@ -27,7 +27,7 @@
 
 // Define all Urls to use here, even if they aren't being used ¯\_(ツ)_/¯
 export default {
-	ROBLOX_APEX: 'sitetest4.robloxlabs.com',
+	RobloxApexDomain: 'sitetest4.robloxlabs.com',
 	RobloxWebsite: 'www.sitetest4.robloxlabs.com',
 	ApiProxy: 'api.sitetest4.robloxlabs.com',
 	StaticCDN: 'static.sitetest4.robloxlabs.com',
@@ -42,7 +42,6 @@ export default {
 	ClientSettingsService: 'clientsettings.api.sitetest4.robloxlabs.com',
 	GameWebsite: 'assetgame.sitetest4.robloxlabs.com',
 	GamePersistenceApi: 'gamepersistence.sitetest4.robloxlabs.com',
-	ROBLOX_DOSARREST_ORIGIN_CORP: 'dosarrest.origin.corp.sitetest4.robloxlabs.com',
 	MarketplaceService: 'marketplace.api.sitetest4.robloxlabs.com',
 	MetricsApi: 'metrics.sitetest4.robloxlabs.com',
 	ApiGatewayService: 'apis.sitetest4.robloxlabs.com',
@@ -110,4 +109,5 @@ export default {
 	ComApisCDN: 'com-apis.sitetest4.robloxlabs.com',
 	PointsService: 'points.api.sitetest4.robloxlabs.com',
 	UsersService: 'users.api.sitetest4.robloxlabs.com',
+	DataWebsite: 'data.sitetest4.robloxlabs.com',
 };
