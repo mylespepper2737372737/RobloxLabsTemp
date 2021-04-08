@@ -28,10 +28,17 @@
 import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
 import { Request, Response } from 'express';
 import { IncrementRequest } from '../../../Models/IncrementRequest';
+import { MethodValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 
 export default {
 	method: 'all',
 	func: async (request: Request<null, any, any, IncrementRequest>, response: Response) => {
+		if (!request.query.counterName)
+			return response.status(404).send({
+				Message: `No HTTP resource was found that matches the request URI '${request.protocol}://${request.hostname}${request.url}'.`,
+			});
+		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
+
 		await EphemeralCountersService.HandleIncrementCounter(
 			request.query.counterName,
 			parseInt(<string>(<unknown>request.query.amount)),
