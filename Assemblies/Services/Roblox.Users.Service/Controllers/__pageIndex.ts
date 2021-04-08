@@ -2,7 +2,7 @@
 	FileName: __pageIndex.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Index page for points.api
+	Description: Index page for users.api
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 

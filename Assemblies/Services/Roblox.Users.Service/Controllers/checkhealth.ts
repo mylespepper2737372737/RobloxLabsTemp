@@ -2,7 +2,7 @@
 	FileName: checkhealth.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Health page for points.api, essentially the same as __pageIndex
+	Description: Health page for users.api, essentially the same as __pageIndex
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
