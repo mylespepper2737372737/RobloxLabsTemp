@@ -44,7 +44,7 @@ export namespace PointsRequestProcessor {
 			return [false, null, null];
 		}
 
-		const user: IUser = await User.GetById(userId);
+		const user: IUser = await User.Get(userId);
 		const universe: IUniverse = await Universe.GetById(universeId);
 		if (universe === null) {
 			errors.push({
