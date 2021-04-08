@@ -39,7 +39,8 @@ export default {
 		let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
 		const authenticatedUser = await User.GetByCookie(cookie);
 		if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
-		const user = await User.GetById(1);
+		const user = await User.Get(parseInt(request.params.userId));
+		if (!user || user.IsBanned) return response.redirect('/request-error?code=404');
 		response.render('Profile', {
 			isUserAuthenicated: authenticatedUser !== null,
 			authenticatedUser:
