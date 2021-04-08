@@ -86,7 +86,7 @@ export namespace ClientSettings {
 				case Group.All:
 					return settings[settingsGroup];
 				default:
-					return new Error(`Settings Group '${settingsType}' doesn't exist.`);
+					return null;
 			}
 		}
 	};
@@ -157,7 +157,7 @@ export namespace ClientSettings {
 		const keyFilter = FPFilter[key] as Record<string, unknown>;
 		if (keyFilter === undefined) return false;
 		let isInFilter = false;
-		(<number[]>keyFilter['PlaceIds']).forEach((id) => {
+		(<number[]>keyFilter['Ids']).forEach((id) => {
 			if (id === placeId) isInFilter = true;
 		});
 		return isInFilter;
