@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { UsersService } from '../../../../../ApiServices/Roblox.Users.Service/Roblox.Users.Service/UsersService';
 import { ApiKeys } from '../../../../../Data/Keys/Api';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Util/FetchKeyFromObjectCaseInsensitive';
+import { ValidateApiKey } from '../../../../../Util/ValidateApiKey';
 
 export default {
 	method: 'all',
@@ -22,17 +23,7 @@ export default {
 					"The request contains an entity body but no Content-Type header. The inferred media type 'application/octet-stream' is not supported for this resource.",
 			});
 
-		const apiKey = <string>FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey');
-		if (!apiKey.match(/(.{8})(.{4})(.{4})(.{4})(.{12})/)) {
-			// Pull this capture to a helper.
-			response.statusMessage = 'ApiKey required in Guid format.';
-			return response.status(503).send();
-		}
-
-		if (apiKey !== ApiKeys.UsersApi) {
-			response.statusMessage = 'The client is not authorized to perform this operation.';
-			return response.status(503).send();
-		}
+		if (!ValidateApiKey(FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'), ApiKeys.UsersApi, response)) return;
 
 		return UsersService.Validators.ValidateUsername(request.body, response);
 	},
