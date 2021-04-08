@@ -3,7 +3,8 @@
 		"FVariable": {},
 		"FLog": {
 			"Pages": 7,
-			"EphemeralCounters": 7
+			"EphemeralCounters": 7,
+			"dmp": 7
 		},
 		"DFLog": {
 			"Tasks": 7
@@ -76,7 +77,8 @@
 			"DefaultModerationReviewedDate": "3/29/2021 3:18:10 AM",
 			"DefaultModerationNote": "This is a test warning, if you are not a moderator, please contact a moderator or appeals@roblox.com to re-active this account, or ask in #moderation-test-front-guild slack channel."
 		},
-		"SFString": {}
+		"SFString": {},
+		"FPFilter": {}
 	},
 	"WebMobile": {
 		"FVariable": {},
@@ -108,7 +110,108 @@
 		"DFString": {},
 		"SFString": {}
 	},
-	"Client": {
+	"ClientSharedSettings": {
+		"FVariable": { "StatsGatheringScriptUrl": "" },
+		"FLog": {},
+		"DFLog": {},
+		"SFLog": {},
+		"FFlag": {},
+		"DFFlag": { "LogAutoCamelCaseFixes": true },
+		"SFFlag": {},
+		"FInt": {},
+		"DFInt": {},
+		"SFInt": {},
+		"FString": {},
+		"DFString": {},
+		"SFString": {}
+	},
+	"Blank": {
+		"FVariable": {},
+		"FLog": {},
+		"DFLog": {},
+		"SFLog": {},
+		"FFlag": {},
+		"DFFlag": {},
+		"SFFlag": {},
+		"FInt": {},
+		"DFInt": {},
+		"SFInt": {},
+		"FString": {},
+		"DFString": {},
+		"SFString": {}
+	},
+	"WindowsBootstrapperSettings": {
+		"FVariable": {
+			"NeedInstallBgTask": false,
+			"NeedRunBgTask": false,
+			"IsPreDeployOn": false,
+			"PreVersion": "",
+			"ForceSilentMode": false,
+			"CountersLoad": 100,
+			"EnabledWebRedirect": true,
+			"LaunchWithLegacyFlagEnabled": 100,
+			"PerModeLoggingEnabled": true,
+			"BetaPlayerLoad": 100,
+			"CountersFireImmediately": true,
+			"GoogleAnalyticsAccountPropertyID": "UA-187946414-1",
+			"ExeVersion": "0.0.0.1",
+			"ValidateInstalledExeVersion": false,
+			"UseNewCdn": false,
+			"UseFastStartup": true,
+			"CheckIsStudioOutofDate": true,
+			"ShowInstallSuccessPrompt": true,
+			"InfluxUrl": "http://ec2-52-8-11-103.us-west-1.compute.amazonaws.com:8086",
+			"InfluxDatabase": "roblox_bootstrapper",
+			"HardcodeCdnHost": false,
+			"UseNewInfluxBootstrapper": true,
+			"UseCdn": true,
+			"UseNewDeprecatedOSXCheck": true,
+			"DeprecatedOSXMinorVersion": 6,
+			"DeprecatedOSXLinkURL": "http://blog.roblox.com/2016/09/roblox-discontinuing-support-for-mac-os-x-10-6/",
+			"UseRelaunchEmptyArgs": true,
+			"DeprecatePropertyTree": true
+		},
+		"FLog": {},
+		"DFLog": {},
+		"SFLog": {},
+		"FFlag": {
+			"DontPatchBootstrapperInfluxFlags": true,
+			"JoinTimeCounters": true,
+			"DisableUninstallUpdateTask": true,
+			"DontInstallProxyPlugins": true,
+			"UninstallProxyPluginsOnInstall": true,
+			"UseNewVersionFetchFixed2": false,
+			"DontInstallProxyPluginsMac": true,
+			"UninstallProxyPluginsOnInstallMac": true,
+			"UseCountryCodesForAnalyticsLocation": true,
+			"ChromefixStrictMatch": true,
+			"ChromefixOnlyIfFound": true,
+			"ChromefixOpenFileUnicode": true,
+			"ChromefixSkipLocalState": true,
+			"ChromefixOpenDefaultPreferences": true,
+			"IncludeTranslationsFolder": true,
+			"IncludeTranslationsFolderStudio": true,
+			"BetterErrorReporting": true,
+			"UseNewVersionFetch4": true,
+			"ThrowLastErrorAlwaysThrow": true,
+			"RelaunchAfterInstallPassUrlString": true,
+			"MacUseNewVersionFetch4": true
+		},
+		"DFFlag": {
+			"InfluxEscapeSlashes": true,
+			"BootstrapperHttpToolsDetectJsonParseError": true,
+			"NewInfluxDb": true,
+			"MacBootstrapperDetectJsonParseError": true
+		},
+		"SFFlag": {},
+		"FInt": { "InfluxReportExceptionPermyriad": 10000 },
+		"DFInt": {},
+		"SFInt": {},
+		"FString": {},
+		"DFString": { "HttpInfluxDatabase": "roblox_bootstrapper" },
+		"SFString": {}
+	},
+	"ClientAppSettings": {
 		"FVariable": {
 			"GoogleAnalyticsAccountPropertyID": "UA-187946414-1",
 			"GoogleAnalyticsAccountPropertyIDPlayer": "UA-187946414-2",
@@ -160,6 +263,8 @@
 			"Network": 0,
 			"TaskSchedulerFindJob": 0
 		},
+		"DFLog": {},
+		"SFLog": {},
 		"FFlag": {
 			"DebugLocalRccServerConnection": false,
 			"ProcessAllPacketsPerStep": true,
@@ -1399,29 +1504,10 @@
 			"ReportDeviceInfoRate": 100,
 			"DataStoreMaxPageSize": 110
 		},
+		"SFInt": {},
 		"FString": {
-			"PlaceFilter_StateBasedAnimationReplication": "True;175953385;174810327;181219650",
-			"PlaceFilter_InterpolationTimingFix": "True;208770506",
-			"PlaceFilter_SetNetworkOwnerAPIEnabled": "True;13822889;257857728",
-			"PlaceFilter_SetNetworkOwnerAPIEnabledV2": "True;13822889;257857728",
 			"StudioTutorialsUrl": "http://wiki.sitetest4.robloxlabs.com/index.php?title=Studio_Tutorials_Test&studiomode=true",
-			"StudioTutorialsTOCUrl": "http://wiki.sitetest4.robloxlabs.com/index.php?title=Studio_Tutorials_Landing&studiomode=true",
-			"PlaceFilter_ReservedServersEnabled": "True;107715348",
-			"PlaceFilter_UseNewPersistenceSubdomain": "True;359173292",
-			"PlaceFilter_UseNewDataStoreLogging": "True;359173292",
-			"PlaceFilter_InsertServiceLoadModelErrorDoNotCreateEmpty": "True;359173292",
-			"PlaceFilter_InsertServiceLoadModelErrorNoLuaExceptionReturnNull": "True;359173292",
-			"PlaceFilter_MaterialPropertiesNewIsDefault": "False;276583453;29812337;264431831;189707;204990346;30869879;166456825;287335491;180714690;248409235;255280267;289685010;183384830;314906000;323111227",
-			"PlaceFilter_InterpolationDelayFactorTenths": "10;189707",
-			"PlaceFilter_CleanUpInterpolationTimestamps": "False;424096945",
-			"PlaceFilter_DisableMovementHistory": "True;189707",
-			"PlaceFilter_PhysicsPacketSendWorldStepTimestamp": "False;424096945",
-			"PlaceFilter_UseHermiteSplineInterpolation": "False;424096945",
-			"PlaceFilter_NoAnimationTrackState": "True;177200271",
-			"PlaceFilter_SoundChannelUseV2Assemblies": "True;359173292;9528010;292439477;1818",
-			"PlaceFilter_UseNewSetFMOD3D": "True;292439477;359173292;270607122;9528010;379011764;1818",
-			"PlaceFilter_DataStoresV2Enabled": "True;0;1818",
-			"PlaceFilter_DataStoresV2GetDataStoresAdminResponse": "True;0;1818"
+			"StudioTutorialsTOCUrl": "http://wiki.sitetest4.robloxlabs.com/index.php?title=Studio_Tutorials_Landing&studiomode=true"
 		},
 		"DFString": {
 			"RobloxAnalyticsURL": "http://ecsv2.sitetest4.robloxlabs.com/",
@@ -1434,14 +1520,132 @@
 			"HttpInfluxWriterPassword": "faster1Play",
 			"DataStoreThrottleMsg": "DataStore request was added to queue. If request queue fills, further requests will be dropped. Try sending fewer requests."
 		},
+		"SFString": {},
 		"FPFilter": {
+			"StateBasedAnimationReplication": {
+				"Value": true,
+				"Ids": [175953385, 174810327, 181219650],
+				"Prefix": "FString"
+			},
+			"InterpolationTimingFix": {
+				"Value": true,
+				"Ids": [208770506],
+				"Prefix": "FString"
+			},
+			"SetNetworkOwnerAPIEnabled": {
+				"Value": true,
+				"Ids": [13822889, 257857728],
+				"Prefix": "FString"
+			},
+			"SetNetworkOwnerAPIEnabledV2": {
+				"Value": true,
+				"Ids": [13822889, 257857728],
+				"Prefix": "FString"
+			},
+			"ReservedServersEnabled": {
+				"Value": true,
+				"Ids": [107715348],
+				"Prefix": "FString"
+			},
+			"UseNewPersistenceSubdomain": {
+				"Value": true,
+				"Ids": [359173292],
+				"Prefix": "FString"
+			},
+			"UseNewDataStoreLogging": {
+				"Value": true,
+				"Ids": [359173292],
+				"Prefix": "FString"
+			},
+			"InsertServiceLoadModelErrorDoNotCreateEmpty": {
+				"Value": true,
+				"Ids": [359173292],
+				"Prefix": "FString"
+			},
+			"InsertServiceLoadModelErrorNoLuaExceptionReturnNull": {
+				"Value": true,
+				"Ids": [359173292],
+				"Prefix": "FString"
+			},
+			"MaterialPropertiesNewIsDefault": {
+				"Value": false,
+				"Ids": [
+					276583453,
+					29812337,
+					264431831,
+					189707,
+					204990346,
+					30869879,
+					166456825,
+					287335491,
+					180714690,
+					248409235,
+					255280267,
+					289685010,
+					183384830,
+					314906000,
+					323111227
+				],
+				"Prefix": "FString"
+			},
+			"InterpolationDelayFactorTenths": {
+				"Value": 10,
+				"Ids": [189707],
+				"Prefix": "FString"
+			},
+			"CleanUpInterpolationTimestamps": {
+				"Value": false,
+				"Ids": [424096945],
+				"Prefix": "FString"
+			},
+			"DisableMovementHistory": {
+				"Value": true,
+				"Ids": [189707],
+				"Prefix": "FString"
+			},
+			"PhysicsPacketSendWorldStepTimestamp": {
+				"Value": false,
+				"Ids": [424096945],
+				"Prefix": "FString"
+			},
+			"UseHermiteSplineInterpolation": {
+				"Value": false,
+				"Ids": [424096945],
+				"Prefix": "FString"
+			},
+			"NoAnimationTrackState": {
+				"Value": true,
+				"Ids": [177200271],
+				"Prefix": "FString"
+			},
+			"SoundChannelUseV2Assemblies": {
+				"Value": true,
+				"Ids": [359173292, 9528010, 292439477, 1818],
+				"Prefix": "FString"
+			},
+			"UseNewSetFMOD3D": {
+				"Value": true,
+				"Ids": [292439477, 359173292, 270607122, 9528010, 379011764, 1818],
+				"Prefix": "FString"
+			},
+			"DataStoresV2Enabled": {
+				"Value": true,
+				"Ids": [0, 1818],
+				"Prefix": "FString"
+			},
+			"DataStoresV2GetDataStoresAdminResponse": {
+				"Value": true,
+				"Ids": [0, 1818],
+				"Prefix": "FString"
+			},
 			"TEST": {
 				"Value": true,
-				"PlaceIds": [175953385, 174810327, 181219650]
+				"Ids": [175953385, 174810327, 181219650],
+				"Prefix": "FString"
 			}
 		}
 	},
-	"FSettings": ["Web", "WebMobile", "Client", "Arbiter"],
+	"FSettings": ["Web", "WebMobile", "ClientAppSettings", "Arbiter", "ClientSharedSettings", "WindowsBootstrapperSettings", "Blank"],
 	"TODO": [
 		"Change FIntCSRFV2MaxRefreshCount and FIntCSRFV2Timeout to make the sessions last 2 hours only",
 		"Consider moving DFFlagIsAuthV2Enabled to FFlagIsAuthV2Enabled.",
