@@ -42,7 +42,6 @@
 import {
 	ROBLOX_404_API,
 	ROBLOX_404_CSS,
-	ROBLOX_404_EPHEMERAL_COUNTERS,
 	ROBLOX_404_IMAGES,
 	ROBLOX_404_JS,
 	ROBLOX_404_SETUP_CDN,
@@ -76,6 +75,9 @@ import ssl from 'sslkeylog';
 import { User } from './Platform/Membership/User';
 import { GetValueFromFormDataString } from './Util/GetValueFromFormDataString';
 import { UsersApi } from './MiddleWare/UsersApi';
+import { EphemeralCountersApi } from './MiddleWare/EphemeralCountersApi';
+import { DataWebsite } from './MiddleWare/DataWebsite';
+import { NotFoundRedirect } from './ErrorResponders/NotFoundRedirect';
 ssl.hookAll();
 
 LOGVARIABLE('GumePersistince', 6);
@@ -109,7 +111,6 @@ SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['ClientSettingsService'
 SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['GameWebsite'], 6);
 SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['EphemeralCountersV2'], 6);
 SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['GamePersistenceApi'], 6);
-SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['ROBLOX_DOSARREST_ORIGIN_CORP'], 6);
 SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['MarketplaceService'], 6);
 SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['MetricsApi'], 6);
 SYNCHRONIZED_LOGVARIABLE(RobloxLegacy.Api.Constants.URLS['AuthApi'], 6);
@@ -264,6 +265,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		const ComApisCDNServer = IServer();
 		const PointsServiceServer = IServer();
 		const UsersServiceService = IServer();
+		const DataWebsiteServer = IServer();
 
 		RobloxWebsiteServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		StaticCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -272,8 +274,8 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ImagesCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		SetupCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ApiProxyServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		EphemeralCountersServiceServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		EphemeralCountersV2Server.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		EphemeralCountersServiceServer.use(EphemeralCountersApi);
+		EphemeralCountersV2Server.use(EphemeralCountersApi);
 		TemporaryImagesCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		VersionCompatibilityServiceServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ClientSettingsServiceServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -346,6 +348,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ComApisCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.KESTREL);
 		PointsServiceServer.use(PointsApi);
 		UsersServiceService.use(UsersApi);
+		DataWebsiteServer.use(DataWebsite);
 
 		ApiGatewayServer.engine('html', require('ejs').renderFile);
 		ApiGatewayServer.set('views', RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\TestViews');
@@ -354,6 +357,24 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		RobloxWebsiteServer.engine('html', require('ejs').renderFile);
 		RobloxWebsiteServer.set('views', RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\Roblox.Website');
 		RobloxWebsiteServer.set('view engine', 'html');
+
+		EphemeralCountersServiceServer.engine('html', require('ejs').renderFile);
+		EphemeralCountersServiceServer.set(
+			'views',
+			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\Roblox.EphemeralCounters.Service',
+		);
+		EphemeralCountersServiceServer.set('view engine', 'html');
+
+		EphemeralCountersV2Server.engine('html', require('ejs').renderFile);
+		EphemeralCountersV2Server.set(
+			'views',
+			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\Roblox.EphemeralCounters.Service',
+		);
+		EphemeralCountersV2Server.set('view engine', 'html');
+
+		UsersServiceService.engine('html', require('ejs').renderFile);
+		UsersServiceService.set('views', RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\Roblox.Users.Service');
+		UsersServiceService.set('view engine', 'html');
 
 		await RobloxLegacy.Api.Library.IStartup.Configure(
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
@@ -1019,6 +1040,14 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				RobloxLegacy.Api.Constants.URLS['UsersService'],
 			),
 		);
+		await RobloxLegacy.Api.Library.IStartup.Configure(
+			RobloxLegacy.Api.Helpers.Config.CONFIG(
+				DataWebsiteServer,
+				'\\StaticPages\\Websites\\Roblox.Data.Website',
+				'\\Assemblies\\Bin\\Websites\\Roblox.Data.Website\\Controllers',
+				RobloxLegacy.Api.Constants.URLS['DataWebsite'],
+			),
+		);
 
 		ApiProxyServer.use(ROBLOX_404_API);
 		StaticCDNServer.use(ROBLOX_404_STATIC_CDN);
@@ -1027,20 +1056,20 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		ImagesCDNServer.use(ROBLOX_404_IMAGES);
 		SetupCDNServer.use(ROBLOX_404_SETUP_CDN);
 		RobloxWebsiteServer.use(ROBLOX_404_WWW);
-		EphemeralCountersServiceServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		EphemeralCountersV2Server.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		EphemeralCountersServiceServer.use(DefaultAsp404);
+		EphemeralCountersV2Server.use(DefaultAsp404);
 		TemporaryImagesCDNServer.use(DEPRECATED_404_TEMPORARY_IMAGES);
-		VersionCompatibilityServiceServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		ClientSettingsServiceServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		RobloxGameWebsiteServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		GamePersistenceApiServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		MarketplaceServiceServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		MetricsApiServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		VersionCompatibilityServiceServer.use(DefaultAsp404);
+		ClientSettingsServiceServer.use(DefaultAsp404);
+		RobloxGameWebsiteServer.use(NotFoundRedirect);
+		GamePersistenceApiServer.use(DefaultAsp404);
+		MarketplaceServiceServer.use(DefaultAsp404);
+		MetricsApiServer.use(DefaultAsp404);
 		AuthApiServer.use(ROBLOX_404_API);
 		ApiGatewayServer.use(Kestrel_404);
 		LocaleApiServer.use(ROBLOX_404_API);
 		AbTestingApiServer.use(ROBLOX_404_AB_TESTING);
-		AbTestingServiceServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		AbTestingServiceServer.use(DefaultAsp404);
 		UsersApiServer.use(ROBLOX_404_API);
 		LatencyMeasurementsInternalServiceServer.use(SIMULPONG_404);
 		ChatApiServer.use(ROBLOX_404_API);
@@ -1061,8 +1090,8 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		BadgesApiServer.use(ROBLOX_404_API);
 		DeveloperForumWebsiteServer.use(ROBLOX_404_API);
 		PremiumFeaturesApiServer.use(ROBLOX_404_API);
-		ClientSettingsApiServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
-		ClientSettingsCDNApiServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		ClientSettingsApiServer.use(DefaultAsp404);
+		ClientSettingsCDNApiServer.use(DefaultAsp404);
 		AdConfigurationApiServer.use(ROBLOX_404_API);
 		ClientTelementryServiceServer.use(ROBLOX_404_API);
 		AssetsApi.use(ROBLOX_404_API);
@@ -1094,12 +1123,25 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		UserModerationServiceServer.use(ROBLOX_404_API);
 		PublishApiServer.use(ROBLOX_404_API);
 		VoiceApiServer.use(ROBLOX_404_API);
-		FilesServiceServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		FilesServiceServer.use(DefaultAsp404);
 		MetricsInternalWebsiteServer.use(SIMULPONG_404);
-		AdminWebsiteServer.use(ROBLOX_404_EPHEMERAL_COUNTERS);
+		AdminWebsiteServer.use(DefaultAsp404);
 		ComApisCDNServer.use(Kestrel_404);
 		PointsServiceServer.use(DefaultAsp404);
 		UsersServiceService.use(DefaultAsp404);
+		DataWebsiteServer.use(NotFoundRedirect);
+
+		EphemeralCountersServiceServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+			response.status(500).render('Error/ASPXDetailed500', {
+				pageMeta: {
+					Exception: {
+						Type: error.toString().split(':').shift(),
+						What: error.message,
+						StackTrace: error.stack.replace(error.toString() + '\n', ''),
+					},
+				},
+			});
+		});
 
 		RobloxWebsiteServer.use(async (error: Error, request: Request, response: Response, next: NextFunction) => {
 			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, error.message, error.stack);
@@ -1343,6 +1385,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(ComApisCDNServer, RobloxLegacy.Api.Constants.URLS['ComApisCDN']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(PointsServiceServer, RobloxLegacy.Api.Constants.URLS['PointsService']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(UsersServiceService, RobloxLegacy.Api.Constants.URLS['UsersService']);
+				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(DataWebsiteServer, RobloxLegacy.Api.Constants.URLS['DataWebsite']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,
 					ROBLOX_API_HTTPS,
