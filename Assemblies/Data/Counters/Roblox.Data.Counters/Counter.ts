@@ -18,8 +18,8 @@ export class Counter implements ICounter {
 	private static async connectIfNotConnected(): Task<void> {
 		return new Promise<void>(async (resumeFunction) => {
 			if (!this.connectionAttemptRunning) {
-				this.dataBase = new PartialDataBase('RobloxAnalytics', 'root', 'Io9/9DEF');
 				this.connectionAttemptRunning = true;
+				this.dataBase = new PartialDataBase('RobloxAnalytics', 'root', 'Io9/9DEF');
 				const [didConnect, errMessage] = await this.dataBase.Connect();
 				if (!didConnect) {
 					FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when connecting to DB: %s', errMessage);
@@ -27,14 +27,16 @@ export class Counter implements ICounter {
 				}
 				this.isConnected = didConnect;
 				this.connectionAttemptRunning = false;
-			} else {
-				do {} while (this.connectionAttemptRunning);
 				resumeFunction();
+			} else {
+				setTimeout(async () => await this.connectIfNotConnected(), 50);
+				return;
 			}
 		});
 	}
 
 	public static async CreateOrIncrementCounter(Name: string, Amount: number): Task<boolean> {
+		if (!Amount) Amount = 1;
 		Name = SanitizeData(Name);
 		if (!this.isConnected) await this.connectIfNotConnected();
 
@@ -50,10 +52,16 @@ export class Counter implements ICounter {
 
 		if (!thisCounter) {
 			// The counter did not exist, so we are going to create one and write the single data.
-			await counters.InsertValues([
+			const [didInsert, errMessage] = await counters.InsertValues([
 				{ Key: 'Name', Value: Name },
 				{ Key: 'Count', Value: Amount },
 			]);
+
+			if (!didInsert) {
+				FASTLOGS(DFLog['Tasks'], '[DFLog::Tasks] Error Updating Counter %s', errMessage);
+				throw errMessage;
+			}
+
 			return true;
 		}
 		let originalAmout = parseInt(<string>thisCounter.Data[0].Value);
@@ -68,7 +76,7 @@ export class Counter implements ICounter {
 
 		if (!didUpdate) {
 			FASTLOGS(DFLog['Tasks'], '[DFLog::Tasks] Error Updating Counter %s', errMsg);
-			return false;
+			throw errMsg;
 		}
 		return true;
 	}
