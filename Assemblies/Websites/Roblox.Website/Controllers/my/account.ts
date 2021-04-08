@@ -43,7 +43,7 @@ DYNAMIC_FASTSTRING('SiteBanner');
 export default {
 	method: 'all',
 	func: async (req, res) => {
-		const user = await User.GetById(1);
+		const user = await User.Get(1);
 		res.render('Settings', {
 			isUserAuthenicated: user !== null,
 			authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
