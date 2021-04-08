@@ -28,11 +28,12 @@
 import { Request, Response } from 'express';
 import { DFFlag, DFString } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { User } from '../../../Platform/Membership/User';
+import { GetValueFromFormDataString } from '../../../Util/GetValueFromFormDataString';
 
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response): Promise<void> => {
-		const user = await User.GetById(1);
+		const user = await User.Get(1);
 		switch (parseInt(<string>request.query.code)) {
 			case 400:
 				return response.status(400).render('Error/BadRequest', {
@@ -111,9 +112,13 @@ export default {
 					},
 				});
 			case 404:
+				let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+				const authenticatedUser = await User.GetByCookie(cookie);
+				if (!authenticatedUser && cookie !== undefined)
+					response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
 				return response.status(404).render('Error/NotFound', {
-					isUserAuthenicated: user !== null,
-					authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+					isUserAuthenicated: authenticatedUser !== null,
+					authenticatedUser: { ...authenticatedUser, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
 					sessionUser: {
 						LanguageCode: 'en_us',
 						LanguageName: 'English',
@@ -141,6 +146,12 @@ export default {
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
+						},
+					},
+					pageMeta: {
+						banner: {
+							Enabled: DFFlag('IsBannerEnabled'),
+							Text: DFString('SiteBanner'),
 						},
 					},
 				});
