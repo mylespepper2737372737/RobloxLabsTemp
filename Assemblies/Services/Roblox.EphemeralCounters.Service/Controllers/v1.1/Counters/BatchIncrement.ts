@@ -25,15 +25,32 @@
 
 import { Request, Response } from 'express';
 import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
+import { Errors } from '../../../../../Web/Util/Roblox.Web.Util/Errors';
+import { ContentTypeValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
+import { MethodValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { ICounter } from '../../../Models/ICounter';
 
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response) => {
+		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
+		if (
+			!ContentTypeValidator.CheckContentTypes(
+				request.headers['content-type'],
+				['application/json', 'text/json', 'application/x-www-form-urlencoded'],
+				response,
+				request.body !== undefined,
+				true,
+			)
+		)
+			return;
+		if (!request.body) {
+			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+		}
 		const keys = new Map<string, number>(Object.entries(request.body));
 		const counters: ICounter[] = [];
 		keys.forEach(async (value, key) => {
-			counters.push({ Name: key, Amount: value });
+			if (!isNaN(parseFloat(<string>(<unknown>value)))) counters.push({ Name: key, Amount: value });
 		});
 		return await EphemeralCountersService.HandleBatchIncrementCounters(counters, response);
 	},
