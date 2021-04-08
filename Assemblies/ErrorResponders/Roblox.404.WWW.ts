@@ -28,19 +28,19 @@
 import { Request, Response } from 'express';
 import { DFFlag, DFString, DYNAMIC_FASTFLAG, DYNAMIC_FASTSTRING } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
 import { User } from '../Platform/Membership/User';
+import { CheckDoesStringIncludeASPExtension } from '../Util/CheckDoesStringIncludeASPExtension';
+import { GenerateUUIDV4 } from '../Util/GenerateUUIDV4';
 import { GetValueFromFormDataString } from '../Util/GetValueFromFormDataString';
 
 DYNAMIC_FASTFLAG('IsBannerEnabled');
 DYNAMIC_FASTSTRING('SiteBanner');
 
 export default async (request: Request, response: Response) => {
-	if (
-		request.headers['user-agent'] &&
-		request.headers['user-agent'].includes('robloxlabsStudio') &&
-		request.hostname === 'www.sitetest4.robloxlabs.com' &&
-		request.path.toLowerCase() === '/'
-	) {
-		return response.status(404).send();
+	if (request.headers['user-agent'] && request.headers['user-agent'].includes('RobloxStudio')) {
+		return response.status(200).send('not found');
+	}
+	if (CheckDoesStringIncludeASPExtension(request.path)) {
+		return response.redirect(`/request-error?id=${GenerateUUIDV4()}&mode=&code=404`);
 	}
 	let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
 	const authenticatedUser = await User.GetByCookie(cookie);
