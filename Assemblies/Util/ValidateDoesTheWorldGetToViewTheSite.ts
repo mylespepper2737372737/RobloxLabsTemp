@@ -1,11 +1,6 @@
 import { Response } from 'express';
-import { BaseURL } from '../Data/Client/BaseUrl';
-import {
-	DFFlag,
-	DFString,
-	DYNAMIC_FASTFLAGVARIABLE,
-	DYNAMIC_FASTSTRINGVARIABLE,
-} from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { BaseURL } from '../Common/Client/Roblox.Common.Client/BaseUrl';
+import { DFFlag, DFString, DYNAMIC_FASTFLAGVARIABLE, DYNAMIC_FASTSTRINGVARIABLE } from '../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 DYNAMIC_FASTFLAGVARIABLE('DoesTheWorldGetToViewTheSite', false);
 DYNAMIC_FASTFLAGVARIABLE('CanAdminsBypassTheSystem', false);

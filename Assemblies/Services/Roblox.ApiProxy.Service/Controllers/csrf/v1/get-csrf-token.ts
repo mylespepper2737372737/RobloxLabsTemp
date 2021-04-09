@@ -36,8 +36,8 @@ import {
 	FFlag,
 	FLog,
 	LOGGROUP,
-} from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { RobloxLegacy } from '../../../../../Api';
+} from '../../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { RobloxLegacy } from '../../../../../RobloxLegacyWrapper';
 
 FASTFLAG('RequireGlobalHTTPS');
 

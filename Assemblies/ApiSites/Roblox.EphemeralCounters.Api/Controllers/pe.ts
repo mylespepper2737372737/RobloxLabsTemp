@@ -27,15 +27,16 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { Request, Response } from 'express';
+import { FASTLOGS, FLog, LOGGROUP } from '../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('EphemeralCountersV2');
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+	func: (request: Request, response: Response): void => {
+		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.query));
+		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.body));
+		response.send({ success: true, message: '' });
 	},
 };

@@ -1,8 +1,8 @@
-import { PartialDataBase } from '../../PartialDatabase/PartialDataBase';
-import { PartialDatabaseConditionType } from '../../PartialDatabase/PartialDatabaseConditionType';
+import { PartialDatabase } from '../../Mssql/Roblox.Mssql.PartialDatabase/Implementation/PartialDatabase';
+import { PartialDatabaseConditionType } from '../../Mssql/Roblox.Mssql.PartialDatabase/Enumeration/PartialDatabaseConditionType';
 import { ITestEntity } from './TestEntity';
 (async () => {
-	const db = new PartialDataBase('robloxmarketing', 'root', '');
+	const db = new PartialDatabase('robloxmarketing', 'root', '');
 	const [didConnect, message] = await db.Connect();
 	if (!didConnect) throw message;
 	const [, , tbl0] = db.GetTable<ITestEntity>('ITestEntity', 'Id', true);

@@ -25,7 +25,7 @@
 	***
 */
 
-import { ApiKeys } from '../../../../Data/Keys/Api';
+import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../Util/FetchKeyFromObjectCaseInsensitive';
 
 export default {

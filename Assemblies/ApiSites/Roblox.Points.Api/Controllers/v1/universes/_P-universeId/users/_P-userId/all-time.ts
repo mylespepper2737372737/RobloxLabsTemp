@@ -38,7 +38,7 @@ Host: points.sitetest4.robloxlabs.com
 // Uses ApiService: Yes
 
 import { Request, Response } from 'express';
-import { FASTFLAG, FFlag } from '../../../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTFLAG, FFlag } from '../../../../../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { ICustomError } from '../../../../../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { PointsRequestProcessor } from '../../../../../../../../Web/Points/Roblox.Web.Points/PointsRequestProcessor';
 import { Errors } from '../../../../../../../../Web/Util/Roblox.Web.Util/Errors';

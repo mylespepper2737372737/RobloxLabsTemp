@@ -28,5 +28,5 @@ import { Request, Response } from 'express-serve-static-core';
 
 export default {
 	method: 'all',
-	func: async (req: Request, res: Response) => {},
+	func: async (request: Request, response: Response) => {},
 };

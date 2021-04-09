@@ -20,12 +20,12 @@
 
 //{"C":"d-9042436C-B,0|z9cD,1|z8Ru,5|z9cE,1","M":[{"H":"UserNotificationHub","M":"notification","A":["FriendshipNotifications","{\"Type\":\"FriendshipRequested\",\"EventArgs\":{\"UserId1\":2377893199,\"UserId2\":158190828},\"SequenceNumber\":49}",0]}]}
 
-import evt from '../../Helpers/WebHelpers/Events/Notifications';
+import evt from '../../Web/EventManager/Roblox.Web.EventManager/Notifications';
 import a from 'axios';
 import evts from 'events';
 import { IncomingMessage } from 'http';
 import ws from 'ws';
-import { FASTLOG, FASTLOGS, FLog, LOGGROUP } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG, FASTLOGS, FLog, LOGGROUP } from '../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('WebSockets');
 

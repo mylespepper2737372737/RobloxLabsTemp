@@ -26,12 +26,12 @@
 */
 
 // import a from 'axios';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 
 export default {
 	method: 'all',
-	func: async (_req: { method: string; url: string; headers: any }, res: Response) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		res.redirect('https://assetdelivery.roblox.com' + _req.url);
+	func: async (request: Request, response: Response) => {
+		if (request.method === 'OPTIONS') return response.send();
+		response.redirect('https://assetdelivery.roblox.com' + request.url);
 	},
 };

@@ -25,7 +25,7 @@
 	***
 */
 
-import { FASTLOG1, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTLOG1, FLog, LOGGROUP } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('Grid');
 

@@ -30,7 +30,7 @@
 import crypto from 'crypto';
 import { Request, Response } from 'express-serve-static-core';
 import filestream from 'fs';
-import { RobloxLegacy } from '../../../../../Api';
+import { RobloxLegacy } from '../../../../../RobloxLegacyWrapper';
 
 const FString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFStrings();
 const FInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFInts();

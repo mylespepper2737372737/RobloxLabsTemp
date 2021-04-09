@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { IController } from '../../../../Global.Helpers/IController';
-import { Route } from '../../../../Global.Helpers/Route';
-import { RoutePrefix } from '../../../../Global.Helpers/RoutePrefix';
+import { IController } from '../../../../Web/Util/Roblox.Web.Util/Setup/Models/IController';
+import { Route } from '../../../../Web/Util/Roblox.Web.Util/Setup/Attributes/Route';
+import { RoutePrefix } from '../../../../Web/Util/Roblox.Web.Util/Setup/Attributes/RoutePrefix';
 
 export namespace Roblox.ComApis.Api.Controllers {
 	@IController()

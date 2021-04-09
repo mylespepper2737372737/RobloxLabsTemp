@@ -25,12 +25,7 @@
 	***
 */
 
-import {
-	DFFlag,
-	DFString,
-	DYNAMIC_FASTFLAGVARIABLE,
-	DYNAMIC_FASTSTRING,
-} from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DFString, DYNAMIC_FASTFLAGVARIABLE, DYNAMIC_FASTSTRING } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../../Platform/Membership/User';
 
 // import { Roblox } from '../../../../Roblox.Api';

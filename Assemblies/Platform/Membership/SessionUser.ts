@@ -1,7 +1,7 @@
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Task } from '../../Http/Task';
-import { PartialDataBase } from '../../PartialDatabase/PartialDataBase';
-import { PartialDatabaseConditionType } from '../../PartialDatabase/PartialDatabaseConditionType';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { Task } from '../../Http/Types/Roblox.Http.Types/Task';
+import { PartialDatabase } from '../../Mssql/Roblox.Mssql.PartialDatabase/Implementation/PartialDatabase';
+import { PartialDatabaseConditionType } from '../../Mssql/Roblox.Mssql.PartialDatabase/Enumeration/PartialDatabaseConditionType';
 import { ISessionUser } from './ISessionUser';
 
 DYNAMIC_LOGGROUP('Tasks');
@@ -15,12 +15,12 @@ export class SessionUser implements ISessionUser {
 
 	private static isConnected: boolean;
 	private static connectionAttemptRunning: boolean;
-	private static db: PartialDataBase;
+	private static db: PartialDatabase;
 
 	private static async connectIfNotConnected(): Task<void> {
 		return new Promise<void>(async (resumeFunction) => {
 			if (!this.connectionAttemptRunning) {
-				this.db = new PartialDataBase('RobloxMembership', 'root', 'Io9/9DEF');
+				this.db = new PartialDatabase('RobloxMembership', 'root', 'Io9/9DEF');
 				this.connectionAttemptRunning = true;
 				const [didConnect, errMessage] = await this.db.Connect();
 				if (!didConnect) {

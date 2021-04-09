@@ -26,7 +26,7 @@
 */
 
 import { Request, Response } from 'express';
-import { DFFlag, DFString, DYNAMIC_FASTFLAG, DYNAMIC_FASTSTRING } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DFString, DYNAMIC_FASTFLAG, DYNAMIC_FASTSTRING } from '../../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../../../Platform/Membership/User';
 import { GetValueFromFormDataString } from '../../../../../Util/GetValueFromFormDataString';
 

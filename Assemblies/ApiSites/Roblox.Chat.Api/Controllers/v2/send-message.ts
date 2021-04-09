@@ -26,7 +26,7 @@
 */
 
 import a from 'axios';
-import evt from '../../../../Helpers/WebHelpers/Events/Notifications';
+import evt from '../../../../Web/EventManager/Roblox.Web.EventManager/Notifications';
 
 export default {
 	method: 'all',

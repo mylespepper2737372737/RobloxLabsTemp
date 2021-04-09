@@ -1,4 +1,4 @@
-import { Task } from '../../../Http/Task';
+import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
 import { IDataStoreApiResponse } from '../../../Platform/GamePersistence/IDataStoreApiResponse';
 import { IDataStoreRequest } from '../../../Platform/GamePersistence/IDataStoreRequest';
 export namespace GamePeristenceRequestProcessor {

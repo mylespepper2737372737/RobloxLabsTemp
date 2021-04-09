@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UsersService } from '../../../../../ApiServices/Roblox.Users.Service/Roblox.Users.Service/UsersService';
-import { ApiKeys } from '../../../../../Data/Keys/Api';
+import { ApiKeys } from '../../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Util/FetchKeyFromObjectCaseInsensitive';
 import { ValidateApiKey } from '../../../../../Util/ValidateApiKey';
 

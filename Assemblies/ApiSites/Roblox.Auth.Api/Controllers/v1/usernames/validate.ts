@@ -24,7 +24,7 @@
 */
 
 import { Request, Response } from 'express';
-import { HttpRequestMethodEnum } from '../../../../../Http/ServiceClient/HttpRequestMethodEnum';
+import { HttpRequestMethodEnum } from '../../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 import { AuthRequestProcessor } from '../../../../../Web/Auth/Roblox.Web.Auth/AuthRequestProcessor';
 import { GetUserFromCookie } from '../../../../../Web/Auth/Roblox.Web.Auth/GetUserFromCookie';
 import { Errors } from '../../../../../Web/Util/Roblox.Web.Util/Errors';

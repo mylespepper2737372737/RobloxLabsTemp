@@ -4,7 +4,7 @@ import { IServiceUsernameValidationResponse } from '../../../ApiClients/Roblox.U
 import { IUsernameValidationRequest } from '../../../ApiSites/Roblox.Auth.Api/Models/IUsernameValidationRequest';
 import { IUsernameValidationResponse } from '../../../ApiSites/Roblox.Auth.Api/Models/IUsernameValidationResponse';
 import { UsernameValidationContext } from '../../../ApiSites/Roblox.Auth.Api/Enumerations/UsernameValidationContext';
-import { Task } from '../../../Http/Task';
+import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { IUser } from '../../../Platform/Membership/IUser';
 import { Errors } from '../../Util/Roblox.Web.Util/Errors';

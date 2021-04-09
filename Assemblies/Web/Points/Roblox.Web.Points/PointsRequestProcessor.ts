@@ -1,6 +1,6 @@
 import { Response } from 'express';
 import { PointsClient } from '../../../ApiClients/Roblox.Points.Client/Implementation/PointsClient';
-import { Task } from '../../../Http/Task';
+import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { IUser } from '../../../Platform/Membership/IUser';
 import { User } from '../../../Platform/Membership/User';

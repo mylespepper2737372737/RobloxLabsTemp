@@ -19,7 +19,7 @@ import {
 	SFLog,
 	SYNCHRONIZED_LOGGROUP,
 	SYNCHRONIZED_LOGVARIABLE,
-} from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+} from '../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 // Declare the defaults
 LOGVARIABLE('Test', 7);

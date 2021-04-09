@@ -26,7 +26,7 @@
 */
 
 import { Request, Response } from 'express';
-import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { SignData } from '../../../../Util/SignData';
 
 DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearanceUrl', 'http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx');

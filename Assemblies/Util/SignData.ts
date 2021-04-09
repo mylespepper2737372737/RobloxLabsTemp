@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import filestream from 'fs';
 import crypto from 'crypto';
-import { RobloxLegacy } from '../Api';
+import { RobloxLegacy } from '../RobloxLegacyWrapper';
 
 export function SignFile(fileName: string, response: Response, useBaseDirectory: boolean = true) {
 	try {

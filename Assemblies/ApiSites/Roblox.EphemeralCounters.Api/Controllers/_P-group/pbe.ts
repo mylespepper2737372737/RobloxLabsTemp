@@ -27,8 +27,8 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../Api';
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
+import { FASTLOGS, FLog, LOGGROUP } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('EphemeralCountersV2');
 

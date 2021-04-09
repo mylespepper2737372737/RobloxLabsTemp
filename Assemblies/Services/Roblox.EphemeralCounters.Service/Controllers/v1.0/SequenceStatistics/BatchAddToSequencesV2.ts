@@ -30,11 +30,12 @@ import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.Ephe
 import { Errors } from '../../../../../Web/Util/Roblox.Web.Util/Errors';
 import { ContentTypeValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
 import { MethodValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { ISequence } from '../../../ISequence';
 import { ISequencesItem } from '../../../ISequencesItem';
 
 export default {
 	method: 'all',
-	func: async (request: Request, response: Response): Promise<void> => {
+	func: async (request: Request<null, null, ISequence[], null>, response: Response): Promise<void> => {
 		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
 		if (
 			!ContentTypeValidator.CheckContentTypes(
@@ -56,7 +57,7 @@ export default {
 		const sequences: ISequencesItem[] = [];
 		request.body.forEach((sequence) => {
 			if (sequence && sequence.Key) {
-				let name = sequence.Key;
+				let name = <any>sequence.Key;
 				name = name.split('_');
 				const sequenceContext = name[0] || 'NoContext';
 				const sequenceName = name[1] || 'NoName';

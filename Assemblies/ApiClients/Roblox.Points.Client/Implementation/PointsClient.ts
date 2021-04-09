@@ -1,8 +1,8 @@
-import { BaseURL } from '../../../Data/Client/BaseUrl';
-import { ApiKeys } from '../../../Data/Keys/Api';
-import { ServiceClient } from '../../../Http/ServiceClient/HttpClient';
-import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/HttpRequestMethodEnum';
-import { Task } from '../../../Http/Task';
+import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { ApiKeys } from '../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
+import { ServiceClient } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
+import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
 import { IUser } from '../../../Platform/Membership/IUser';
 import { IUniverse } from '../../../Platform/Universes/IUniverse';
 

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { RobloxLegacy } from '../../../../Api';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 import { PointsService } from '../../../../ApiServices/Roblox.Points.Service/Implementation/PointsService';
-import { ApiKeys } from '../../../../Data/Keys/Api';
-import { FASTFLAG, FFlag } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
+import { FASTFLAG, FFlag } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { IUser } from '../../../../Platform/Membership/IUser';
 import { IUniverse } from '../../../../Platform/Universes/IUniverse';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../Util/FetchKeyFromObjectCaseInsensitive';

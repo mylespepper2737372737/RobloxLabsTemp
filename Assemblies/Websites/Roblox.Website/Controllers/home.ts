@@ -26,7 +26,7 @@
 */
 
 import { Request, Response } from 'express';
-import { DFFlag, DFString } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DFString } from '../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../Platform/Membership/User';
 
 // import { Roblox } from '../../../../Roblox.Api';

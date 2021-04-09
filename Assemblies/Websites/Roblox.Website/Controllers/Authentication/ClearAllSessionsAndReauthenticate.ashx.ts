@@ -34,7 +34,7 @@ Cookie: AuthToken=AUTH_ID
 
 */
 
-import { userType } from '../../../../Helpers/WebHelpers/DataBase/DEPRECATED_GetManifest';
+import { userType } from '../../../../Caching/Database/Roblox.Caching.Database/DEPRECATED_GetManifest';
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import Crypto from 'crypto';
@@ -50,8 +50,8 @@ import {
 	FASTLOG,
 	FASTLOGS,
 	FASTLOG3,
-} from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { RobloxLegacy } from '../../../../Api';
+} from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 
 dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 

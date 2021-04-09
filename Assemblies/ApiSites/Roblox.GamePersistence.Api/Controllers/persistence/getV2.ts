@@ -26,18 +26,18 @@
 */
 
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../Api';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 
 export default {
 	method: 'all',
-	func: async (req: Request, res: Response) => {
+	func: async (request: Request, response: Response) => {
 		let usequery = false;
-		if (req.headers['roblox-place-id'] === undefined) {
+		if (request.headers['roblox-place-id'] === undefined) {
 			usequery = true;
 		}
 		if (!usequery) {
-			if (parseInt(<string>req.headers['roblox-place-id']) === NaN)
-				return res.status(403).send({
+			if (parseInt(<string>request.headers['roblox-place-id']) === NaN)
+				return response.status(403).send({
 					errors: [
 						{
 							code: 0,
@@ -46,10 +46,10 @@ export default {
 					],
 				});
 		}
-		const placeId = parseInt(!usequery ? <string>req.headers['roblox-place-id'] : <string>req.query['placeId']);
+		const placeId = parseInt(!usequery ? <string>request.headers['roblox-place-id'] : <string>request.query['placeId']);
 		const [success, universeId] = RobloxLegacy.Api.Helpers.Helpers.Places.GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
 		if (!success)
-			return res.status(403).send({
+			return response.status(403).send({
 				errors: [
 					{
 						code: 0,
@@ -58,7 +58,7 @@ export default {
 				],
 			});
 		if (universeId === null)
-			return res.status(403).send({
+			return response.status(403).send({
 				errors: [
 					{
 						code: 0,
@@ -67,30 +67,30 @@ export default {
 				],
 			});
 
-		let k = req.body['qkeys[0].target'];
-		let scope = req.body['qkeys[0].scope'];
-		const store = req.body['qkeys[0].key'];
-		if (!req.body['qkeys[0].scope']) {
-			if (req.query['scope']) {
-				scope = <string>req.query['scope'];
+		let k = request.body['qkeys[0].target'];
+		let scope = request.body['qkeys[0].scope'];
+		const store = request.body['qkeys[0].key'];
+		if (!request.body['qkeys[0].scope']) {
+			if (request.query['scope']) {
+				scope = <string>request.query['scope'];
 			}
 		}
 		if (scope === '') scope = '_';
-		if (!req.body['qkeys[0].key'] && req.body['qkeys[0].target']) {
-			k = req.body['qkeys[0].target'];
+		if (!request.body['qkeys[0].key'] && request.body['qkeys[0].target']) {
+			k = request.body['qkeys[0].target'];
 		}
-		if (req.body['qkeys[0].key'] && !req.body['qkeys[0].target']) {
-			k = req.body['qkeys[0].target'];
+		if (request.body['qkeys[0].key'] && !request.body['qkeys[0].target']) {
+			k = request.body['qkeys[0].target'];
 		}
 		const [success2, key] = await RobloxLegacy.Api.Helpers.Helpers.PersistentDataStores.GetHelpers.GetKeyOrEntryForScope(
 			universeId,
 			store,
 			scope,
 			k,
-			req.query['type'] === 'standard' ? false : true,
+			request.query['type'] === 'standard' ? false : true,
 		);
 		if (!success2)
-			return res.status(500).send({
+			return response.status(500).send({
 				errors: [
 					{
 						code: 0,
@@ -99,12 +99,12 @@ export default {
 				],
 			});
 		if (key === null) {
-			return res.status(200).send({
+			return response.status(200).send({
 				data: [],
 			});
 		} else {
 			if (key.scope === '_') key.scope = '';
-			return res.status(200).send({
+			return response.status(200).send({
 				data: [
 					{
 						Key: {

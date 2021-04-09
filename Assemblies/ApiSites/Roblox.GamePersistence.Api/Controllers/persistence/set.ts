@@ -26,18 +26,18 @@
 */
 
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../Api';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 
 export default {
 	method: 'all',
-	func: async (req: Request, res: Response) => {
+	func: async (request: Request, response: Response) => {
 		let usequery = false;
-		if (req.headers['roblox-place-id'] === undefined) {
+		if (request.headers['roblox-place-id'] === undefined) {
 			usequery = true;
 		}
 		if (!usequery) {
-			if (parseInt(<string>req.headers['roblox-place-id']) === NaN)
-				return res.status(403).send({
+			if (parseInt(<string>request.headers['roblox-place-id']) === NaN)
+				return response.status(403).send({
 					errors: [
 						{
 							code: 0,
@@ -46,10 +46,10 @@ export default {
 					],
 				});
 		}
-		const placeId = parseInt(!usequery ? <string>req.headers['roblox-place-id'] : <string>req.query['placeId']);
+		const placeId = parseInt(!usequery ? <string>request.headers['roblox-place-id'] : <string>request.query['placeId']);
 		const [success, universeId] = RobloxLegacy.Api.Helpers.Helpers.Places.GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
 		if (!success)
-			return res.status(403).send({
+			return response.status(403).send({
 				errors: [
 					{
 						code: 0,
@@ -59,7 +59,7 @@ export default {
 			});
 
 		if (universeId === null)
-			return res.status(403).send({
+			return response.status(403).send({
 				errors: [
 					{
 						code: 0,
@@ -68,13 +68,13 @@ export default {
 				],
 			});
 
-		const k = <string>req.query['target'];
-		let scope = <string>req.query['scope'];
-		const store = <string>req.query['key'];
-		const value = req.body['value'];
-		if (<string>req.query['type'] !== 'standard')
-			if (<string>req.query['type'] !== 'sorted')
-				return res.status(400).send({
+		const k = <string>request.query['target'];
+		let scope = <string>request.query['scope'];
+		const store = <string>request.query['key'];
+		const value = request.body['value'];
+		if (<string>request.query['type'] !== 'standard')
+			if (<string>request.query['type'] !== 'sorted')
+				return response.status(400).send({
 					errors: [
 						{
 							code: 0,
@@ -82,8 +82,8 @@ export default {
 						},
 					],
 				});
-		if (req.query['valueLength'] === undefined)
-			return res.status(500).send({
+		if (request.query['valueLength'] === undefined)
+			return response.status(500).send({
 				errors: [
 					{
 						code: 6,
@@ -92,8 +92,8 @@ export default {
 					},
 				],
 			});
-		if (parseInt(<string>req.query['valueLength']) !== value.length && (<string>req.query['valueLength']).length !== 0)
-			return res.status(500).send({
+		if (parseInt(<string>request.query['valueLength']) !== value.length && (<string>request.query['valueLength']).length !== 0)
+			return response.status(500).send({
 				errors: [
 					{
 						code: 6,
@@ -109,15 +109,15 @@ export default {
 			scope,
 			k,
 			value,
-			req.query['type'] === 'standard' ? false : true,
+			request.query['type'] === 'standard' ? false : true,
 		);
-		if (!success2 && req.query['type'] === 'sorted')
-			return res.status(200).send({
+		if (!success2 && request.query['type'] === 'sorted')
+			return response.status(200).send({
 				error: 'Invalid value format for datastore type Sorted.\r\nParameter name: value',
 			});
 
 		if (!success2)
-			return res.status(500).send({
+			return response.status(500).send({
 				errors: [
 					{
 						code: 0,
@@ -126,7 +126,7 @@ export default {
 				],
 			});
 
-		return res.status(200).send({
+		return response.status(200).send({
 			data: value,
 		});
 	},

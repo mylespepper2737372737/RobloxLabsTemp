@@ -25,9 +25,11 @@
 	***
 */
 
+import { Request, Response } from 'express';
+
 export default {
 	method: 'all',
-	func: async (_req: any, res: { send: (arg0: string) => void }) => {
-		res.send('OK');
+	func: async (_request: Request, response: Response) => {
+		response.send('OK');
 	},
 };

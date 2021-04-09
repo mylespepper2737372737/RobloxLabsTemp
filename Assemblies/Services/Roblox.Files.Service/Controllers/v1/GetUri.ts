@@ -40,7 +40,7 @@ content-type: application/json
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
-import { RobloxLegacy } from '../../../../Api';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 
 dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
 

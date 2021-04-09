@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { IUser } from '../../../Platform/Membership/IUser';
 import { IUniverse } from '../../../Platform/Universes/IUniverse';
 

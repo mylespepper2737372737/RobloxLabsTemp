@@ -1,8 +1,8 @@
-import { Task } from '../../../../Http/Task';
-import { ApiKeys } from '../../../../Data/Keys/Api';
-import { BaseURL } from '../../../../Data/Client/BaseUrl';
-import { ServiceClient } from '../../../../Http/ServiceClient/HttpClient';
-import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/HttpRequestMethodEnum';
+import { Task } from '../../../../Http/Types/Roblox.Http.Types/Task';
+import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
+import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { ServiceClient } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
+import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 export namespace GamePersistenceClient {
 	/**
 	 * Try enroll the current IEntrollments.

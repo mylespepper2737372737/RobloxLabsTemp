@@ -1,9 +1,9 @@
-import { BaseURL } from '../Data/Client/BaseUrl';
-import { ApiKeys } from '../Data/Keys/Api';
-import { DFLog, DYNAMIC_LOGVARIABLE, FASTLOGS } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { ServiceClient } from '../Http/ServiceClient/HttpClient';
-import { ServiceClientExceptions } from '../Http/ServiceClient/HttpException';
-import { HttpRequestMethodEnum } from '../Http/ServiceClient/HttpRequestMethodEnum';
+import { BaseURL } from '../Common/Client/Roblox.Common.Client/BaseUrl';
+import { ApiKeys } from '../Common/Client/Roblox.Common.Client/Api/ApiKeys';
+import { DFLog, DYNAMIC_LOGVARIABLE, FASTLOGS } from '../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { ServiceClient } from '../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
+import { ServiceClientExceptions } from '../Http/ServiceClient/Roblox.Http.ServiceClient/Exceptions/HttpException';
+import { HttpRequestMethodEnum } from '../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 import ssl from 'sslkeylog';
 ssl.hookAll();
 

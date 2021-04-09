@@ -27,7 +27,7 @@
 	***
 */
 
-import { ClientSettings } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.ClientSettings';
+import { ClientSettings } from '../../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 import {
 	DFFlag,
 	DYNAMIC_FASTFLAGVARIABLE,
@@ -39,7 +39,7 @@ import {
 	FLog,
 	FSettings,
 	LOGGROUP,
-} from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+} from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 FASTFLAG('RequireGlobalHTTPS');
 

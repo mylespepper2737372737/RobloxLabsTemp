@@ -27,7 +27,7 @@
 */
 
 import filestream from 'fs';
-import { RobloxLegacy } from '../../../../../Api';
+import { RobloxLegacy } from '../../../../../RobloxLegacyWrapper';
 
 const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 

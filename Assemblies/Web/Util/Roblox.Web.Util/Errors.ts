@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from './Logging/FastLog';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { ICustomErrorList } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomErrorList';
 import { IServiceError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/IServiceError';

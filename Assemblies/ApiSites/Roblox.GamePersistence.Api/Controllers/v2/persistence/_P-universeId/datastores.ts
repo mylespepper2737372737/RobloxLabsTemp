@@ -25,7 +25,7 @@
 	***
 */
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../../../Api';
+import { RobloxLegacy } from '../../../../../../RobloxLegacyWrapper';
 import {
 	DFFlag,
 	DFInt,
@@ -35,10 +35,10 @@ import {
 	DYNAMIC_LOGVARIABLE,
 	FASTLOG,
 	FASTLOG1,
-} from '../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Pages } from '../../../../../../Data/Pages/RobloxPages';
-import { GetRootPlaceIdFromUniverseId } from '../../../../../../Helpers/WebHelpers/Universes/GetRootPlaceIdFromUniverseId';
-import { GetPersistentStoresForUniverse } from '../../../../../../Helpers/WebHelpers/PersistentDataStores/GetHelpers/GetPersistentStoresForUniverse';
+} from '../../../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { Pages } from '../../../../../../Caching/Pagination/Roblox.Caching.Pagination/PaginationCache';
+import { GetRootPlaceIdFromUniverseId } from '../../../../../../Caching/Universes/Roblox.Caching.Universes/GetRootPlaceIdFromUniverseId';
+import { GetPersistentStoresForUniverse } from '../../../../../../Platform/GamePersistence/Caching/Implementation/GetPersistentStoresForUniverse';
 import { IDataStoreRespose } from '../../../../../../Platform/GamePersistence/IDataStoreRespose';
 import Base64 from 'crypto-js/enc-base64';
 import Crpto from 'crypto-js';

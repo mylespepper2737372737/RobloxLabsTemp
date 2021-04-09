@@ -67,13 +67,13 @@ origin: Roblox.Tests.Origins.SecureAbTestingOrigin
 // this doesn't mean that the experiment doesn't exist, it could be in Roblox.Data.AbTesting.Experiments.SharedExperiments.
 
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../Api';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 import { SubjectTypeEnum } from '../../../../Platform/AbTesting/SubjectTypeEnum';
 import { IUser } from '../../../../Platform/Membership/IUser';
 import { IBrowserTracker } from '../../../../Platform/Membership/IBrowserTracker';
 import { AbTestingRequestProcessor } from '../../../../Web/AbTesting/Roblox.Web.AbTesting/AbTestingRequestProcessor';
 import { UserModelBuildersClubMembershipTypeEnum } from '../../../../Platform/Membership/UserModelBuildersClubMembershipTypeEnum';
-import { FASTFLAG, FFlag } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { FASTFLAG, FFlag } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 FASTFLAG('RequireGlobalHTTPS');
 

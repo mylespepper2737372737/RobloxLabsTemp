@@ -26,12 +26,13 @@
 */
 
 import crypto from 'crypto';
+import { Request, Response } from 'express';
 import fs from 'fs';
-import { RobloxLegacy } from '../../../../Api';
+import { RobloxLegacy } from '../../../../RobloxLegacyWrapper';
 
 export default {
 	method: 'all',
-	func: (_req: { query: { [x: string]: any } }, res: { send: (arg0: string) => void }): void => {
+	func: (request: Request<null, null, null, {}>, response: Response): void => {
 		const DFString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFStrings();
 		const txt = {
 			ClientPort: 0,
@@ -39,9 +40,9 @@ export default {
 			ServerPort: 53640,
 			PingUrl: '',
 			PingInterval: 120,
-			UserName: _req.query['username'] || 'Default',
+			UserName: request.query['username'] || 'Default',
 			SeleniumTestMode: false,
-			UserId: parseInt(_req.query['userId']) || 1,
+			UserId: parseInt(request.query['userId']) || 1,
 			RobloxLocale: 'en_us',
 			GameLocale: 'en_us',
 			SuperSafeChat: false,
@@ -49,7 +50,7 @@ export default {
 			ClientTicket: '',
 			NewClientTicket: '',
 			GameId: '00000000-0000-0000-0000-000000000000',
-			PlaceId: parseInt(_req.query['placeId']) || 1,
+			PlaceId: parseInt(request.query['placeId']) || 1,
 			MeasurementUrl: '',
 			WaitingForCharacterGuid: '00000000-0000-0000-0000-000000000000',
 			BaseUrl: 'https://broom.sitetest4.robloxlabs.com/',
@@ -64,7 +65,7 @@ export default {
 			CookieStoreFirstTimePlayKey: 'rbx_evt_ftp',
 			CookieStoreFiveMinutePlayKey: 'rbx_evt_fmp',
 			CookieStoreEnabled: true,
-			IsRobloxPlace: _req.query['IsRobloxPlace'] ? true : false,
+			IsRobloxPlace: request.query['IsRobloxPlace'] ? true : false,
 			GenerateTeleportJoin: false,
 			IsUnknownOrUnder13: false,
 			GameChatType: 'NoOne',
@@ -88,6 +89,6 @@ export default {
 
 		const out = `--rbxsig%${sig}%${dick}`;
 
-		res.send(out);
+		response.send(out);
 	},
 };

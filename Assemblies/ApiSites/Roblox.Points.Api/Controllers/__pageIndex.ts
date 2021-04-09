@@ -26,7 +26,7 @@
 */
 
 import { Request, Response } from 'express';
-import { RobloxLegacy } from '../../../Api';
+import { RobloxLegacy } from '../../../RobloxLegacyWrapper';
 import { PointsClient } from '../../../ApiClients/Roblox.Points.Client/Implementation/PointsClient';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { Errors } from '../../../Web/Util/Roblox.Web.Util/Errors';
@@ -39,20 +39,28 @@ import { Errors } from '../../../Web/Util/Roblox.Web.Util/Errors';
 // For this particular api, ping https://points.api.sitetest4.robloxlabs.com/checkhealth and check if the response is 200 or not
 export default {
 	method: 'all',
-	func: async (req: Request, res: Response) => {
-		if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
-			let cookie = req.headers.cookie;
+	func: async (request: Request, response: Response) => {
+		if (request.method === 'POST' || request.method === 'PUT' || request.method === 'DELETE') {
+			let cookie = request.headers.cookie;
 			if (cookie === undefined) cookie = '';
 			cookie = (cookie as string).split(';').find((AuthToken) => {
 				return AuthToken.startsWith(' .ROBLOSECURITY') || AuthToken.startsWith('.ROBLOSECURITY');
 			});
 			if (cookie) cookie = cookie.split('=')[1];
-			if (!RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(cookie, req.ip, req.headers['x-csrf-token'], res, false))
+			if (
+				!RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
+					cookie,
+					request.ip,
+					request.headers['x-csrf-token'],
+					response,
+					false,
+				)
+			)
 				return;
 		}
-		const [Success, StatusCode, StatusMessage, Url] = await PointsClient.CheckHealth(req.secure);
+		const [Success, StatusCode, StatusMessage, Url] = await PointsClient.CheckHealth(request.secure);
 		if (Success && StatusCode === 200) {
-			return res.send({ message: 'OK' });
+			return response.send({ message: 'OK' });
 		}
 		const customErrors: ICustomError[] = [
 			{
@@ -65,6 +73,6 @@ export default {
 						  })\r\n   \tUrl: ${Url}\r\n   \tResponse Machine Id: None`,
 			},
 		];
-		return Errors.RespondWithCustomErrors(<number>StatusCode || 503, customErrors, res, true);
+		return Errors.RespondWithCustomErrors(<number>StatusCode || 503, customErrors, response, true);
 	},
 };

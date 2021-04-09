@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { DFFlag, DYNAMIC_FASTFLAG } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFFlag, DYNAMIC_FASTFLAG } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { SessionUser } from '../../../../Platform/Membership/SessionUser';
 import { User } from '../../../../Platform/Membership/User';
 

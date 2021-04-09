@@ -5,7 +5,7 @@ import {
 	DYNAMIC_FASTFLAGVARIABLE,
 	DYNAMIC_FASTSTRING,
 	DYNAMIC_FASTSTRINGVARIABLE,
-} from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+} from '../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../Platform/Membership/User';
 
 // import { Roblox } from '../../../../Roblox.Api';

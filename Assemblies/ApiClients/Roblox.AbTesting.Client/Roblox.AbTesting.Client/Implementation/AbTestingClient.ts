@@ -1,9 +1,9 @@
-import { Task } from '../../../../Http/Task';
+import { Task } from '../../../../Http/Types/Roblox.Http.Types/Task';
 import { IEnrollment } from '../../../../Platform/AbTesting/IEnrollment';
 import Http from 'axios';
-import { ApiKeys } from '../../../../Data/Keys/Api';
-import { BaseURL } from '../../../../Data/Client/BaseUrl';
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
+import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import https from 'https';
 
 DYNAMIC_LOGGROUP('Tasks');

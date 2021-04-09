@@ -25,7 +25,7 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../Api';
+import { RobloxLegacy } from '../../../../../RobloxLegacyWrapper';
 import fs from 'fs';
 
 export default {

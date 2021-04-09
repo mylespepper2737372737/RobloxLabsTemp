@@ -1,7 +1,7 @@
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { Task } from '../../../Http/Task';
-import { PartialDataBase } from '../../../PartialDatabase/PartialDataBase';
-import { PartialDatabaseConditionType } from '../../../PartialDatabase/PartialDatabaseConditionType';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
+import { PartialDatabase } from '../../../Mssql/Roblox.Mssql.PartialDatabase/Implementation/PartialDatabase';
+import { PartialDatabaseConditionType } from '../../../Mssql/Roblox.Mssql.PartialDatabase/Enumeration/PartialDatabaseConditionType';
 import { SanitizeData } from '../../../Util/SanitizeData';
 import { ICounter } from './ICounter';
 
@@ -13,13 +13,13 @@ export class Counter implements ICounter {
 
 	private static isConnected: boolean;
 	private static connectionAttemptRunning: boolean;
-	private static dataBase: PartialDataBase;
+	private static dataBase: PartialDatabase;
 
 	private static async connectIfNotConnected(): Task<void> {
 		return new Promise<void>(async (resumeFunction) => {
 			if (!this.connectionAttemptRunning) {
 				this.connectionAttemptRunning = true;
-				this.dataBase = new PartialDataBase('RobloxAnalytics', 'root', 'Io9/9DEF');
+				this.dataBase = new PartialDatabase('RobloxAnalytics', 'root', 'Io9/9DEF');
 				const [didConnect, errMessage] = await this.dataBase.Connect();
 				if (!didConnect) {
 					FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] Error when connecting to DB: %s', errMessage);

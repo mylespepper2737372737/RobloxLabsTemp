@@ -2,9 +2,9 @@
 // Roblox.PeristentDataStoreTests.cs - 2011
 // 5c74a525-e97a-4d61-8b5d-7163ca85b629
 
-import { WriteUniverse } from '../Helpers/WebHelpers/PersistentDataStores/SetHelpers/PushUniverseToDB';
-import { PushPersistentStoreToUniverse } from '../Helpers/WebHelpers/PersistentDataStores/SetHelpers/PushPersistentStoreToUniverse';
-import { PushKeyToPersistentStore } from '../Helpers/WebHelpers/PersistentDataStores/SetHelpers/PushKeyToPersistentStore';
+import { WriteUniverse } from '../Platform/GamePersistence/Caching/Implementation/PushUniverseToDB';
+import { PushPersistentStoreToUniverse } from '../Platform/GamePersistence/Caching/Implementation/PushPersistentStoreToUniverse';
+import { PushKeyToPersistentStore } from '../Platform/GamePersistence/Caching/Implementation/PushKeyToPersistentStore';
 // import { GetPersistentStoresForUniverse } from '../Helpers/WebHelpers/PersistentDataStores/GetHelpers/GetPersistentStoresForUniverse';
 // import { GetScopesForPersistentStore } from '../Helpers/WebHelpers/PersistentDataStores/GetHelpers/GetScopesForPersistentStore';
 // import { GetKeysOrEntriesForScope } from '../Helpers/WebHelpers/PersistentDataStores/GetHelpers/GetKeysOrEntriesForScope';

@@ -1,5 +1,5 @@
 import { AbTestingClient } from '../../../ApiClients/Roblox.AbTesting.Client/Roblox.AbTesting.Client/Implementation/AbTestingClient';
-import { Task } from '../../../Http/Task';
+import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
 import { IEnrollment } from '../../../Platform/AbTesting/IEnrollment';
 import { IExperiment } from '../../../Platform/AbTesting/IExperiment';
 import { SubjectTypeEnum } from '../../../Platform/AbTesting/SubjectTypeEnum';

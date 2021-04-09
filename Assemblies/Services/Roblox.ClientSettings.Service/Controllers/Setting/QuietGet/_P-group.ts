@@ -26,8 +26,8 @@
 */
 
 import { Request, Response } from 'express';
-import { RobloxLegacy } from '../../../../../Api';
-import { ApiKeys } from '../../../../../Data/Keys/Api';
+import { RobloxLegacy } from '../../../../../RobloxLegacyWrapper';
+import { ApiKeys } from '../../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { CheckIfValueIsIncludedInArray } from '../../../../../Util/CheckIfValueIsIncludedInArray';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Util/FetchKeyFromObjectCaseInsensitive';
 import { SanitizeData } from '../../../../../Util/SanitizeData';

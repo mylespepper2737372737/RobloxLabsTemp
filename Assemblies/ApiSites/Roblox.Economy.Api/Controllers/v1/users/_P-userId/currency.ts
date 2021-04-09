@@ -25,7 +25,7 @@
 	***
 */
 
-import { DFInt, DYNAMIC_FASTINTVARIABLE } from '../../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+import { DFInt, DYNAMIC_FASTINTVARIABLE } from '../../../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 DYNAMIC_FASTINTVARIABLE('TestCurrency', 0);
 

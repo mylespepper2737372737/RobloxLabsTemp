@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { DFLog, FASTLOG3 } from '../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-import { HttpRequestMethodEnum } from '../Http/ServiceClient/HttpRequestMethodEnum';
+import { DFLog, FASTLOG3 } from '../Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { HttpRequestMethodEnum } from '../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 import { StripTheTrailingSlash } from './StripTheTrailingSlash';
 
 export function ControllerMethodParser(app: IApplicationBuilder, controller: any, apiName: string) {

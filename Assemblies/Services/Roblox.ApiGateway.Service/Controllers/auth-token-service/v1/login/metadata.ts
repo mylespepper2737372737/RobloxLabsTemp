@@ -25,7 +25,7 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../../Api';
+import { RobloxLegacy } from '../../../../../../RobloxLegacyWrapper';
 
 export default {
 	method: 'all',

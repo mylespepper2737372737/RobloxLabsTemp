@@ -1,4 +1,4 @@
-import { Experiments } from '../../../../Data/AbTesting/Experiments';
+import { Experiments } from '../../../../Common/ABTesting/Roblox.Common.ABTesting/Experiments';
 import { IEnrollment } from '../../../../Platform/AbTesting/IEnrollment';
 import { ExperimentStatusEnum } from '../../../../Platform/AbTesting/ExperimentStatusEnum';
 import { SubjectTypeEnum } from '../../../../Platform/AbTesting/SubjectTypeEnum';

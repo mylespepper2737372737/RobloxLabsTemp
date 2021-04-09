@@ -4,7 +4,7 @@ import {
 	DFString,
 	DYNAMIC_FASTFLAGVARIABLE,
 	DYNAMIC_FASTSTRINGVARIABLE,
-} from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
+} from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../../Platform/Membership/User';
 
 DYNAMIC_FASTSTRINGVARIABLE('SiteBanner', 'Test');
