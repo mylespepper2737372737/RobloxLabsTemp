@@ -27,15 +27,44 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-LOGGROUP('EphemeralCounters');
+import { Request, Response } from 'express';
+import { EphemeralCountersService } from '../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
+import { Errors } from '../../../../Web/Util/Roblox.Web.Util/Errors';
+import { ContentTypeValidator } from '../../../../Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
+import { MethodValidator } from '../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { ICounter } from '../../Models/ICounter';
+import { MultiIncrementRequest } from '../../Models/MultiIncrementRequest';
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+	func: async (request: Request<null, null, MultiIncrementRequest, null>, response: Response): Promise<void> => {
+		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
+		if (
+			!ContentTypeValidator.CheckContentTypes(
+				request.headers['content-type'],
+				['application/json', 'text/json', 'application/x-www-form-urlencoded'],
+				response,
+				request.body !== undefined,
+				true,
+			)
+		)
+			return;
+		if (!request.body) {
+			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+		}
+		if (!request.body.counterNamesCsv) {
+			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+		}
+		const counters: ICounter[] = [];
+
+		const counterNamesCsv = request.body.counterNamesCsv.split(',');
+
+		counterNamesCsv.forEach((counterName) => {
+			counters.push({
+				Name: counterName,
+				Amount: 1,
+			});
+		});
+		return await EphemeralCountersService.HandleBatchIncrementCounters(counters, response);
 	},
 };
