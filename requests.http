@@ -834,7 +834,7 @@ Roblox-Id: 1
 POST https://ephemeralcounters.api.sitetest4.robloxlabs.com/v1.0/MultiIncrement?apiKey=76E5A40C-3AE1-4028-9F10-7C62520BD94F
 Content-Type: application/x-www-form-urlencoded
 
-&counterNamesCsv=a,a,x
+&counterNamesCsv=a,a,x,r,k,v,a,m,o,t
 
 
 ###
