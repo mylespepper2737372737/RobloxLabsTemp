@@ -27,15 +27,51 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../../Helpers/WebHelpers/Roblox.Util/Roblox.Util.FastLog';
-
-LOGGROUP('EphemeralCounters');
+import { Request, Response } from 'express';
+import { EphemeralCountersService } from '../../../../../ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
+import { Errors } from '../../../../../Web/Util/Roblox.Web.Util/Errors';
+import { ContentTypeValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
+import { MethodValidator } from '../../../../../Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { ISequencesItem } from '../../../ISequencesItem';
 
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCounters'], '[FLog::EphemeralCounters] %s', JSON.stringify(_req.body));
-		res.send({ success: true, message: '' });
+	func: async (request: Request, response: Response): Promise<void> => {
+		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
+		if (
+			!ContentTypeValidator.CheckContentTypes(
+				request.headers['content-type'],
+				['application/json', 'text/json', 'application/x-www-form-urlencoded'],
+				response,
+				request.body !== undefined,
+				true,
+			)
+		)
+			return;
+		if (!request.body) {
+			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+		}
+		if (!Array.isArray(request.body)) {
+			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+		}
+
+		const sequences: ISequencesItem[] = [];
+		request.body.forEach((sequence) => {
+			if (sequence && sequence.Key) {
+				let name = sequence.Key;
+				name = name.split('_');
+				const sequenceContext = name[0] || 'NoContext';
+				const sequenceName = name[1] || 'NoName';
+				const SequenceAction = name[2] || 'NoAction';
+
+				sequences.push({
+					Name: sequenceName,
+					Context: sequenceContext,
+					Action: SequenceAction,
+					Value: sequence.Value || 1,
+				});
+			}
+		});
+		return await EphemeralCountersService.HandleBatchSequences(sequences, response);
 	},
 };
