@@ -44,47 +44,48 @@ export namespace ClientSettings {
 		settingsType: SettingsType,
 		settingsGroup: string = 'Web',
 	): Record<string, unknown> | string[] | Error => {
-		const settings = JSON.parse(filestream.readFileSync(__baseDirName + '\\Default\\Roblox.Settings.json', 'ascii'));
+		let settings = JSON.parse(filestream.readFileSync(__baseDirName + '\\Default\\Roblox.Settings.json', 'ascii'));
+		const fGroup = settings['FGroup'];
 		if (settingsType || settingsType === 0 || settingsType === Group.FFlag) {
 			switch (settingsType as Group) {
 				case Group.FVariable:
-					return settings[settingsGroup]['FVariable'];
+					return fGroup[settingsGroup]['FVariable'];
 				case Group.FLog:
-					return settings[settingsGroup]['FLog'];
+					return fGroup[settingsGroup]['FLog'];
 				case Group.SFLog:
-					return settings[settingsGroup]['SFLog'];
+					return fGroup[settingsGroup]['SFLog'];
 				case Group.DFLog:
-					return settings[settingsGroup]['DFLog'];
+					return fGroup[settingsGroup]['DFLog'];
 				case Group.FFlag:
-					return settings[settingsGroup]['FFlag'];
+					return fGroup[settingsGroup]['FFlag'];
 				case Group.DFFlag:
-					return settings[settingsGroup]['DFFlag'];
+					return fGroup[settingsGroup]['DFFlag'];
 				case Group.SFFlag:
-					return settings[settingsGroup]['SFFlag'];
+					return fGroup[settingsGroup]['SFFlag'];
 				case Group.FInt:
-					return settings[settingsGroup]['FInt'];
+					return fGroup[settingsGroup]['FInt'];
 				case Group.DFInt:
-					return settings[settingsGroup]['DFInt'];
+					return fGroup[settingsGroup]['DFInt'];
 				case Group.SFInt:
-					return settings[settingsGroup]['SFInt'];
+					return fGroup[settingsGroup]['SFInt'];
 				case Group.FString:
-					return settings[settingsGroup]['FString'];
+					return fGroup[settingsGroup]['FString'];
 				case Group.DFString:
-					return settings[settingsGroup]['DFString'];
+					return fGroup[settingsGroup]['DFString'];
 				case Group.SFString:
-					return settings[settingsGroup]['SFString'];
+					return fGroup[settingsGroup]['SFString'];
 				case Group.FPFilter:
-					return settings[settingsGroup]['FPFilter'];
+					return fGroup[settingsGroup]['FPFilter'];
 				case Group.FSettings:
 					return settings['FSettings'];
 				case Group.UExperiment:
-					return settings[settingsGroup]['UExperiment'];
+					return fGroup[settingsGroup]['UExperiment'];
 				case Group.BTExperiment:
-					return settings[settingsGroup]['BTExperiment'];
+					return fGroup[settingsGroup]['BTExperiment'];
 				case Group.SExperiment:
-					return settings[settingsGroup]['SExperiment'];
+					return fGroup[settingsGroup]['SExperiment'];
 				case Group.All:
-					return settings[settingsGroup];
+					return fGroup[settingsGroup];
 				default:
 					return null;
 			}
@@ -129,8 +130,8 @@ export namespace ClientSettings {
 	export const GetFPFilters = (ctx: string = 'Web') => {
 		return GetSettings(Group.FPFilter, ctx);
 	};
-	export const GetFSettings = (ctx: string = 'Web') => {
-		return GetSettings(Group.FSettings, ctx);
+	export const GetFSettings = (): string[] => {
+		return <string[]>GetSettings(Group.FSettings);
 	};
 	export const GetUserExperiments = (ctx: string = 'Web') => {
 		return GetSettings(Group.UExperiment, ctx);
