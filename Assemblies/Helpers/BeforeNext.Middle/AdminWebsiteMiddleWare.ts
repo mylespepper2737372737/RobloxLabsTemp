@@ -31,7 +31,6 @@ import { FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.
 LOGGROUP('TheAdminsPog');
 
 export const AdminWebsiteMiddleWare = ((req, res, next) => {
-	// TODO Remove this from production and never log to the logfile
 	FASTLOG5(
 		FLog['TheAdminsPog'],
 		`[FLog::TheAdminsPog] %s REQUEST ON %s://%s%s FROM %s`,

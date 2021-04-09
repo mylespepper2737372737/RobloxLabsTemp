@@ -15,7 +15,6 @@ DYNAMIC_FASTSTRINGVARIABLE('ProxiedIP', '208.223.313.3');
 
 export namespace ServiceClient {
 	// TODO Have 2 variants of this, one with no callback and one with a callback?
-	// TODO Clean up the monster of Copy and pasted code below.
 	export class HttpClient {
 		private request: IClientRequest;
 		public constructor(request: IClientRequest) {

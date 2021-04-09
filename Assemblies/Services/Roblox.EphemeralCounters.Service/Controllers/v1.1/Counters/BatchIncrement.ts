@@ -4,8 +4,6 @@
 	File Type: Module
 	Description: Increment multiple counters.
 
-	NOTICE DO NOT PUT CSRF PROTECTION ON THIS!
-
 	***
 
 	Copyright 2006-2021 ROBLOX

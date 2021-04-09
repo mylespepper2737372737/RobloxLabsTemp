@@ -31,7 +31,6 @@ import { FASTLOG5, FLog, LOGVARIABLE } from '../WebHelpers/Roblox.Util/Roblox.Ut
 LOGVARIABLE('Kestrul', 6);
 
 export const Kestrel = ((req, res, next) => {
-	// TODO Remove this from production and never log to the logfile
 	FASTLOG5(
 		FLog['Kestrul'],
 		`[FLog::Kestrul] %s REQUEST ON %s://%s%s FROM %s`,

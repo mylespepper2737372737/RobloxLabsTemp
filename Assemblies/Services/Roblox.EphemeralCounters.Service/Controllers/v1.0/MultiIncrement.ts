@@ -6,8 +6,6 @@
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
-	NOTICE DO NOT PUT CSRF PROTECTION ON THIS!
-
 	***
 
 	Copyright 2006-2021 ROBLOX

@@ -30,7 +30,6 @@ import { CheckDoesStringIncludeASPExtension } from '../Util/CheckDoesStringInclu
 
 export const DefaultAsp404 = (req: Request, res: Response) => {
 	if (req.method === 'OPTIONS') return res.status(200).send();
-	// TODO: Render this instead.
 	if (CheckDoesStringIncludeASPExtension(req.path)) {
 		res.status(404).render('Error/ASPX404', {
 			pageMeta: {

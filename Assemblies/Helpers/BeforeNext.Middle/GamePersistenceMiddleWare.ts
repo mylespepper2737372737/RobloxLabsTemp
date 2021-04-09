@@ -32,7 +32,6 @@ import { FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.
 LOGGROUP('GumePersistince');
 
 export const GamePersistenceMiddleware = ((req, res, next) => {
-	// TODO Remove this from production and never log to the logfile
 	let cookie = req.headers.cookie;
 	if (cookie === undefined) cookie = '';
 	cookie = (cookie as string).split(';').find((secToken) => {

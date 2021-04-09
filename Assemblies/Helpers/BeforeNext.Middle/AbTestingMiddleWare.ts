@@ -31,7 +31,6 @@ import { FASTLOG5, FLog, LOGGROUP } from '../WebHelpers/Roblox.Util/Roblox.Util.
 LOGGROUP('AandBTusting');
 
 export const AbTestingMiddleWare = ((req, res, next) => {
-	// TODO Remove this from production and never log to the logfile
 	FASTLOG5(
 		FLog['AandBTusting'],
 		`[FLog::AandBTusting] %s REQUEST ON %s://%s%s FROM %s`,
