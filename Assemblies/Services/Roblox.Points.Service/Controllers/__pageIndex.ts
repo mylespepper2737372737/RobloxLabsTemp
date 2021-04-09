@@ -30,8 +30,8 @@ import { PointsService } from '../../../ApiServices/Roblox.Points.Service/Implem
 
 export default {
 	method: 'all',
-	func: async (_req: Request, res: Response) => {
-		if (!PointsService.AskIfWeAreAvailable(res)) return;
-		res.status(200).send('"RPS OK"');
+	func: async (_request: Request, response: Response) => {
+		if (!PointsService.AskIfWeAreAvailable(response)) return;
+		response.status(200).send('"RPS OK"');
 	},
 };
