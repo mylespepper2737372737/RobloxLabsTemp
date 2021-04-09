@@ -28,13 +28,18 @@
 import { Request, Response } from 'express';
 import { RobloxLegacy } from '../../../../../Api';
 import { ApiKeys } from '../../../../../Data/Keys/Api';
+import { CheckIfValueIsIncludedInArray } from '../../../../../Util/CheckIfValueIsIncludedInArray';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Util/FetchKeyFromObjectCaseInsensitive';
+import { SanitizeData } from '../../../../../Util/SanitizeData';
 import { ValidateApiKeys } from '../../../../../Util/ValidateApiKey';
 
 export default {
 	method: 'all',
 	func: (request: Request, response: Response) => {
-		const allGroupSettings = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(request.params.group || 'Blank');
+		const group = SanitizeData(request.params.group);
+		if (!CheckIfValueIsIncludedInArray(group, RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFSettings()))
+			return response.status(503).send('The service is unavailable.');
+		const allGroupSettings = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(group || 'Blank');
 		if (
 			!ValidateApiKeys(
 				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
