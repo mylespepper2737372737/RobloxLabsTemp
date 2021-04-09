@@ -103,6 +103,6 @@ export default {
 			`[FLog::ClientSettingsAPIV1] Successfully got settings for %s`,
 			request.query['settingsGroup'],
 		);
-		return response.status(200).send(JSON.stringify(ClientSettings.GetAllSettings(request.query['settingsGroup'])));
+		return response.status(200).send(ClientSettings.GetAllSettings(request.query['settingsGroup']));
 	},
 };
