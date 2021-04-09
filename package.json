@@ -7,7 +7,8 @@
 		"Start-Main-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=Diagnostiscs Assemblies/bin/Global.asax.js",
 		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
 		"build": "tsc --skipLibCheck",
-		"start": "node --trace-deprecation Assemblies/bin/Global.asax.js"
+		"start": "node --trace-deprecation Assemblies/bin/Global.asax.js",
+		"Run-Without-NPM": "node path.js && npm run build"
 	},
 	"author": "MFDLABS",
 	"license": "Apache-2.0",
