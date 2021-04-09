@@ -28,6 +28,9 @@
 export default {
 	method: 'all',
 	func: async (_req, res) => {
+		if (_req.query.assetId === '1') {
+			return res.redirect('http://t4.rbxcdn.com/1b363623ff82fb69c03cb99d0825bd1e');
+		}
 		return res.redirect('https://assetgame.roblox.com' + _req.url);
 	},
 };
