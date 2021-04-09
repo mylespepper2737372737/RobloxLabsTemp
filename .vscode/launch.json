@@ -72,6 +72,19 @@
 			"runtimeExecutable": "npm",
 			"runtimeArgs": ["run-script", "Build-And-Run"],
 			"envFile": "${workspaceFolder}/.env"
+		},
+		{
+			"name": "Run-Without-NPM",
+			"program": "${workspaceFolder}/Assemblies/bin/Global.asax.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node",
+			"runtimeArgs": ["--no-deprecation", "--no-warnings", "--report-filename=server.log", "--diagnostic-dir=Diagnostiscs"],
+			"envFile": "${workspaceFolder}/.env",
+			"preLaunchTask": "pre"
+			/*
+				This script is for vsc-insiders when it kills npm scripts via debug configs
+			*/
 		}
 	],
 	"compounds": []
