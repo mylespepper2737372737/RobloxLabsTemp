@@ -46,7 +46,7 @@ dist
 .npmignore
 package-lock.json
 # We don't want the js'
-/Assemblies/bin
+/Source/bin
 DeploymentTooling
 server.log
 /Default/FormattedSettings.json

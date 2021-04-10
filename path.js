@@ -1,5 +1,5 @@
 /**
- * This file will automatically set the path in the Assemblies\Util\Directories.ts, to disable this, add this to the top of the file Assemblies\Util\Directories.ts
+ * This file will automatically set the path in the Source\Assemblies\Common\Constants\Roblox.Common.Constants\Directories.ts, to disable this, add this to the top of the file Assemblies\Constants\Directories.ts
  * '// !DISABLE-AUTO-SELECT-DIR'
  * It should instert this automatically the first time.
  */
@@ -8,7 +8,7 @@ const fs = require('fs');
 
 (function () {
 	try {
-		const fileName = `${__dirname}\\Assemblies\\Util\\Directories.ts`;
+		const fileName = `${__dirname}\\Source\\Assemblies\\Common\\Constants\\Roblox.Common.Constants\\Directories.ts`;
 		if (!fs.existsSync(fileName)) {
 			fs.writeFileSync(
 				fileName,
@@ -21,7 +21,7 @@ const fs = require('fs');
 		let contents = fs.readFileSync(fileName, { encoding: 'utf-8' });
 		if (contents.includes('// !DISABLE-AUTO-SELECT-DIR')) {
 			console.log(
-				`The file ./Assemblies/Util/Directories.ts was forced to not select the current directory. Most likely because it's already been generated.`,
+				`The file ./Source/Assemblies/Common/Constants/Roblox.Common.Constants/Directories.ts was forced to not select the current directory. Most likely because it's already been generated.`,
 			);
 			return;
 		}
