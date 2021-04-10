@@ -3,63 +3,63 @@
 	"configurations": [
 		{
 			"name": "Util Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/UtilTests.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/UtilTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Decorator Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/DecoratorTests.1.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/DecoratorTests.1.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "User Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/UserTests.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/UserTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Entity Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/Entities/TestFramework.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/Entities/TestFramework.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Assets Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/Assets.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/Assets.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Persistent Data Store Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/PersistentDataStoreTests.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/PersistentDataStoreTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Fast Log Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/FastLogTests.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/FastLogTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Fast Variable Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/FastVariableTests.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/FastVariableTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
 		},
 		{
 			"name": "Service Client Log Tests",
-			"program": "${workspaceFolder}/Assemblies/Bin/Tests/ServiceClientTests.js",
+			"program": "${workspaceFolder}/Source/Bin/Tests/ServiceClientTests.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node"
@@ -75,7 +75,7 @@
 		},
 		{
 			"name": "Run-Without-NPM",
-			"program": "${workspaceFolder}/Assemblies/bin/Global.asax.js",
+			"program": "${workspaceFolder}/Source/bin/Global.asax.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node",
