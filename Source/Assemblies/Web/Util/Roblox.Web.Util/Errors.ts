@@ -4,6 +4,9 @@ import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.Erro
 import { ICustomErrorList } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomErrorList';
 import { IServiceError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/IServiceError';
 import { StatusCodes } from './StatusCodes';
+import stack from 'stack-trace';
+import filestream from 'fs';
+import errorText from 'source-code-error';
 
 DYNAMIC_FASTFLAGVARIABLE('Debug', false);
 
@@ -85,5 +88,41 @@ export namespace Errors {
 		const customErrors: ICustomError[] = [{ code: 500, message: `${exception.stack}`.replace('Error:', '') }];
 		RespondWithCustomErrors(500, customErrors, response, true);
 		return;
+	}
+
+	export function GetErrorLine(error: Error) {
+		const StackTrace = stack.parse(error);
+		let id = 0;
+		if ((<any>error).type) {
+			id = 1;
+		}
+		const fileName = StackTrace[id].getFileName();
+
+		const code = filestream.readFileSync(fileName, 'utf8');
+		let text: string = errorText({
+			filename: StackTrace[id].getFileName(),
+			code: code,
+			line: StackTrace[id].getLineNumber(),
+			column: StackTrace[id].getColumnNumber(),
+		});
+
+		text = text.replace(
+			`ERROR: file "${StackTrace[id].getFileName()}", line ${StackTrace[id].getLineNumber()}, column ${StackTrace[
+				id
+			].getColumnNumber()}:`,
+			'',
+		);
+
+		const split = text.split('\n');
+
+		const linesBefore = `\n${split[0]}\n${split[1]}\n${split[2]}\n`;
+		const errorLine = `${split[3]}\n`;
+		const linesAfter = `${split[5]}\n${split[6]}`;
+
+		return {
+			CodeBefore: linesBefore,
+			CodeError: errorLine,
+			CodeAfter: linesAfter,
+		};
 	}
 }

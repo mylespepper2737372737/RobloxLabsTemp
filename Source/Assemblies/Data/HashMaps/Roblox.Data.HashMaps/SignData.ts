@@ -30,3 +30,13 @@ export function SignData(data: string, response: Response) {
 	response.contentType('text/plain');
 	response.send(out);
 }
+
+export function GetSignedData(data: string) {
+	const signature = crypto.createSign('sha1');
+	signature.write(data);
+	signature.end();
+
+	const key = filestream.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem'); // Change the directory if needed.
+	const sig = signature.sign(key, 'base64');
+	return sig;
+}

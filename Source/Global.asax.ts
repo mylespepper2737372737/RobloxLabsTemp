@@ -82,6 +82,14 @@ import { InternalModerationWebsitesMiddleware } from './Assemblies/Web/Handling/
 import { Kestrel } from './Assemblies/Web/Handling/Roblox.Web.Handling/Kestrel';
 import { SimulPingMiddleware } from './Assemblies/Web/Handling/Roblox.Web.Handling/SimulPingMiddleWare';
 import { Blank } from './Assemblies/Web/Errors/Roblox.Web.Errors/Blank';
+import { VCS } from './Assemblies/Web/Handling/Roblox.Web.Handling/VCS';
+import { DefaultServiceError } from './Assemblies/Web/Errors/Roblox.Web.Errors/ServiceError';
+import { RCSS } from './Assemblies/Web/Handling/Roblox.Web.Handling/RCSS';
+import { ApiProxy404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/ApiProxy404';
+import { ApiProxyHandler } from './Assemblies/Web/Handling/Roblox.Web.Handling/ApiProxyHandler';
+import { CookieHandler } from './Assemblies/Web/Handling/Roblox.Web.Handling/CookieHandler';
+import stack from 'stack-trace';
+import { Errors } from './Assemblies/Web/Util/Roblox.Web.Util/Errors';
 ssl.hookAll();
 
 LOGVARIABLE('GumePersistince', 6);
@@ -268,7 +276,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		const AdminWebsiteServer = IServer();
 		const ComApisCDNServer = IServer();
 		const PointsServiceServer = IServer();
-		const UsersServiceService = IServer();
+		const UsersServiceServer = IServer();
 		const DataWebsiteServer = IServer();
 		const CSWebsiteServer = IServer();
 
@@ -278,12 +286,12 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		CSSCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		ImagesCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		SetupCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		ApiProxyServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		ApiProxyServer.use(CookieHandler, ApiServiceIsAliveValidator, ApiProxyHandler);
 		EphemeralCountersServiceServer.use(EphemeralCountersApi);
 		EphemeralCountersV2Server.use(EphemeralCountersApi);
 		TemporaryImagesCDNServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		VersionCompatibilityServiceServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
-		ClientSettingsServiceServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
+		VersionCompatibilityServiceServer.use(VCS);
+		ClientSettingsServiceServer.use(RCSS);
 		RobloxGameWebsiteServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
 		GamePersistenceApiServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GAMEPERSISTENCE);
 		MarketplaceServiceServer.use(RobloxLegacy.Api.Helpers.BeforeNext.Middle.GLOBAL);
@@ -353,7 +361,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		CSWebsiteServer.use(InternalModerationWebsitesMiddleware);
 		ComApisCDNServer.use(Kestrel);
 		PointsServiceServer.use(PointsApi);
-		UsersServiceService.use(UsersApi);
+		UsersServiceServer.use(UsersApi);
 		DataWebsiteServer.use(DataWebsite);
 
 		ApiGatewayServer.engine('html', require('ejs').renderFile);
@@ -396,12 +404,28 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		]);
 		EphemeralCountersV2Server.set('view engine', 'html');
 
-		UsersServiceService.engine('html', require('ejs').renderFile);
-		UsersServiceService.set('views', [
+		UsersServiceServer.engine('html', require('ejs').renderFile);
+		UsersServiceServer.set('views', [
 			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\ASPX',
 			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\Roblox.Users.Service',
 		]);
-		UsersServiceService.set('view engine', 'html');
+		UsersServiceServer.set('view engine', 'html');
+
+		ClientSettingsServiceServer.engine('html', require('ejs').renderFile);
+		ClientSettingsServiceServer.set('views', [RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\ASPX']);
+		ClientSettingsServiceServer.set('view engine', 'html');
+
+		VersionCompatibilityServiceServer.engine('html', require('ejs').renderFile);
+		VersionCompatibilityServiceServer.set('views', [RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\ASPX']);
+		VersionCompatibilityServiceServer.set('view engine', 'html');
+
+		AbTestingServiceServer.engine('html', require('ejs').renderFile);
+		AbTestingServiceServer.set('views', [RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\ASPX']);
+		AbTestingServiceServer.set('view engine', 'html');
+
+		ComApisCDNServer.engine('html', require('ejs').renderFile);
+		ComApisCDNServer.set('views', [RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\Views\\ASPX']);
+		ComApisCDNServer.set('view engine', 'html');
 
 		await RobloxLegacy.Api.Library.IStartup.Configure(
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
@@ -1069,7 +1093,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		);
 		await RobloxLegacy.Api.Library.IStartup.Configure(
 			RobloxLegacy.Api.Helpers.Config.CONFIG(
-				UsersServiceService,
+				UsersServiceServer,
 				'\\StaticPages\\Services\\Roblox.Users.Service',
 				'\\Source\\Bin\\Services\\Roblox.Users.Service\\Controllers',
 				RobloxLegacy.Api.Constants.URLS['UsersService'],
@@ -1084,7 +1108,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 			),
 		);
 
-		ApiProxyServer.use(ROBLOX_404_API);
+		ApiProxyServer.use(ApiProxy404);
 		StaticCDNServer.use(ROBLOX_404_STATIC_CDN);
 		JavaScriptCDNServer.use(ROBLOX_404_JS);
 		CSSCDNServer.use(ROBLOX_404_CSS);
@@ -1094,7 +1118,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		EphemeralCountersServiceServer.use(DefaultAsp404);
 		EphemeralCountersV2Server.use(DefaultAsp404);
 		TemporaryImagesCDNServer.use(DEPRECATED_404_TEMPORARY_IMAGES);
-		VersionCompatibilityServiceServer.use(DefaultAsp404);
+		VersionCompatibilityServiceServer.use(DefaultServiceError);
 		ClientSettingsServiceServer.use(DefaultAsp404);
 		RobloxGameWebsiteServer.use(NotFoundRedirect);
 		GamePersistenceApiServer.use(DefaultAsp404);
@@ -1164,28 +1188,89 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		CSWebsiteServer.use(DefaultAsp404);
 		ComApisCDNServer.use(Kestrel_404);
 		PointsServiceServer.use(DefaultAsp404);
-		UsersServiceService.use(DefaultAsp404);
+		UsersServiceServer.use(DefaultAsp404);
 		DataWebsiteServer.use(NotFoundRedirect);
 
 		EphemeralCountersServiceServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+			const StackTrace = stack.parse(error);
 			response.status(500).render('ASPXDetailed500', {
 				pageMeta: {
 					Exception: {
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
+						Code: Errors.GetErrorLine(error),
+						ShowCode: true,
+						SourceFile: StackTrace[0].getFileName(),
+						SourceLine: StackTrace[0].getLineNumber(),
 					},
 				},
 			});
 		});
 
-		UsersServiceService.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+		UsersServiceServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+			const StackTrace = stack.parse(error);
 			response.status(500).render('ASPXDetailed500', {
 				pageMeta: {
 					Exception: {
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
+						Code: Errors.GetErrorLine(error),
+						ShowCode: true,
+						SourceFile: StackTrace[0].getFileName(),
+						SourceLine: StackTrace[0].getLineNumber(),
+					},
+				},
+			});
+		});
+
+		AbTestingServiceServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+			const StackTrace = stack.parse(error);
+			response.status(500).render('ASPXDetailed500', {
+				pageMeta: {
+					Exception: {
+						Type: error.toString().split(':').shift(),
+						What: error.message,
+						StackTrace: error.stack.replace(error.toString() + '\n', ''),
+						Code: Errors.GetErrorLine(error),
+						ShowCode: true,
+						SourceFile: StackTrace[0].getFileName(),
+						SourceLine: StackTrace[0].getLineNumber(),
+					},
+				},
+			});
+		});
+
+		ComApisCDNServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+			const StackTrace = stack.parse(error);
+			response.status(500).render('ASPXDetailed500', {
+				pageMeta: {
+					Exception: {
+						Type: error.toString().split(':').shift(),
+						What: error.message,
+						StackTrace: error.stack.replace(error.toString() + '\n', ''),
+						Code: Errors.GetErrorLine(error),
+						ShowCode: true,
+						SourceFile: StackTrace[0].getFileName(),
+						SourceLine: StackTrace[0].getLineNumber(),
+					},
+				},
+			});
+		});
+
+		AdminWebsiteServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+			const StackTrace = stack.parse(error);
+			response.status(500).render('ASPXDetailed500', {
+				pageMeta: {
+					Exception: {
+						Type: error.toString().split(':').shift(),
+						What: error.message,
+						StackTrace: error.stack.replace(error.toString() + '\n', ''),
+						Code: Errors.GetErrorLine(error),
+						ShowCode: true,
+						SourceFile: StackTrace[0].getFileName(),
+						SourceLine: StackTrace[0].getLineNumber(),
 					},
 				},
 			});
@@ -1242,10 +1327,6 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 					},
 				},
 			});
-		});
-
-		EphemeralCountersServiceServer.use(async (_error: Error, _request: Request, response: Response) => {
-			response.status(500).send({ Message: 'An error has occurred.' });
 		});
 
 		await (async () => {
@@ -1433,7 +1514,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(CSWebsiteServer, RobloxLegacy.Api.Constants.URLS['CSWebsite']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(ComApisCDNServer, RobloxLegacy.Api.Constants.URLS['ComApisCDN']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(PointsServiceServer, RobloxLegacy.Api.Constants.URLS['PointsService']);
-				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(UsersServiceService, RobloxLegacy.Api.Constants.URLS['UsersService']);
+				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(UsersServiceServer, RobloxLegacy.Api.Constants.URLS['UsersService']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_Starter(DataWebsiteServer, RobloxLegacy.Api.Constants.URLS['DataWebsite']);
 				RobloxLegacy.Api.Helpers.Web.Util.ROBLOX_SignalR_Config_Helper(
 					ROBLOX_API_HTTP,

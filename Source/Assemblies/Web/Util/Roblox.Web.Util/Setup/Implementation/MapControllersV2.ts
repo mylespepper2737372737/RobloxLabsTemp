@@ -60,8 +60,8 @@ const MapControllersV2 = (app?: IApplicationBuilder, opts?: EndpointOpts): Promi
 					if (controller) {
 						ControllerMethodParser(app, controller, opts.apiName);
 					}
-				} catch {
-					throw new Error('Error while parsing the given controller.');
+				} catch (e) {
+					throw new Error('Error while parsing the given controller: ' + e.message + e.stack);
 				}
 			}
 		});

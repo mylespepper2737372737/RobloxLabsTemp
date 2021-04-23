@@ -32,7 +32,7 @@ export namespace Walkers {
 				data = ClassWalker(newClass);
 			} else {
 				hasFound = true;
-				data = new newClass();
+				data = newClass;
 			}
 		});
 		return data;

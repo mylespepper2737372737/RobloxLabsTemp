@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ClientSettingsService } from '../../../../Assemblies/ApiServices/Roblox.ClientSettings.Service/Roblox.ClientSettings.Service/ClientSettingsService';
 import { ApiKeys } from '../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
 import { ApiKeyValidator } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
@@ -19,5 +20,8 @@ export default {
 			)
 		)
 			return;
+
+		const pageIndex = parseInt(<System.String>request.query.PageIndex) || 0;
+		return ClientSettingsService.Setting.HandleGetPage({ PageIndex: pageIndex }, response);
 	},
 };

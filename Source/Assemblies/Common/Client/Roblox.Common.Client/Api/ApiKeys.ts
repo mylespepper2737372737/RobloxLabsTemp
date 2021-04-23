@@ -7,4 +7,5 @@ export namespace ApiKeys {
 	export const ClientSettingsApi = 'D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79';
 	export const ClientSettingsApiV2 = '76E5A40C-3AE1-4028-9F10-7C62520BD94F';
 	export const UsersApi = 'E9DADB63-5BF6-42FF-A964-79D5E97E7068';
+	export const VersionCompatibilityApi = '2B4BA7FC-5843-44CF-B107-BA22D3319DCD';
 }

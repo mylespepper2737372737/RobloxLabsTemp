@@ -1,15 +1,26 @@
-import { Request, Response } from 'express';
-import { IController } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Setup/Models/IController';
-import { Route } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Setup/Attributes/Route';
-import { RoutePrefix } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Setup/Attributes/RoutePrefix';
+import { NextFunction, Request, Response } from 'express';
+import { HttpRequestMethodEnum } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 
-export namespace Roblox.ComApis.Api.Controllers {
-	@IController()
-	@RoutePrefix()
-	export class TestController {
-		@Route()
-		public Index(request: Request, response: Response) {
-			response.status(200).send('OK');
-		}
-	}
+export namespace Roblox.ComApis.Api.Controllers.V1 {
+	export const TestController = {
+		Name: 'TestController',
+		IsController: true,
+		Index: {
+			Name: 'Index',
+			Route: '/test',
+			Function: (request: Request, response: Response) => {
+				response.status(200).send('OK');
+			},
+			Method: HttpRequestMethodEnum.GET,
+		},
+		TestV2: {
+			Name: 'TestV2',
+			Route: '/v2/test',
+			Function: (request: Request, response: Response, next: NextFunction) => {
+				return next(new Error('Test'));
+				response.status(200).send('OK');
+			},
+			Method: HttpRequestMethodEnum.GET,
+		},
+	};
 }

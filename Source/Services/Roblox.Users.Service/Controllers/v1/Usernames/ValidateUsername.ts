@@ -1,25 +1,19 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { GuardedApiClientBase } from '../../../../../Assemblies/ApiClientBase/GuardedApiClientBase';
 import { UsersService } from '../../../../../Assemblies/ApiServices/Roblox.Users.Service/Roblox.Users.Service/UsersService';
 import { ApiKeys } from '../../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
 import { Errors } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
 import { ApiKeyValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
+import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 
 export default {
 	method: 'all',
-	func: async (request: Request, response: Response) => {
-		if (request.method === 'OPTIONS') return response.status(200).send();
+	func: async (request: Request, response: Response, next: NextFunction) => {
+		const clientBase = new GuardedApiClientBase(null, null, next);
+		console.log(clientBase);
 
-		if (request.method !== 'POST') {
-			response.header({ Allow: 'POST' });
-			return Errors.RespondWithAServiceError(
-				405,
-				`The requested resource does not support http method '${request.method}'.`,
-				response,
-				true,
-			);
-		}
-
+		if (!MethodValidator.CheckMethods(request.method, ['POST', 'OPTIONS'], response, true)) return;
 		if (request.body && (!request.headers['content-type'] || request.headers['content-type'].length === 0))
 			return Errors.RespondWithAServiceError(
 				415,

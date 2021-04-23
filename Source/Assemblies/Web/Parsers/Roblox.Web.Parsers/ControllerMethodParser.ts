@@ -5,14 +5,20 @@ import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/Roblox.Http.S
 import { StripTheTrailingSlash } from './StripTheTrailingSlash';
 
 export function ControllerMethodParser(app: IApplicationBuilder, controller: any, apiName: string) {
-	if (!controller.ControllerMethods || !Array.isArray(controller.ControllerMethods)) return false;
-	if (controller.ControllerMethods.length === 0) return true; // Return true here because.
+	if (!controller) return false;
 	const controllerName: string = (controller.Name || '').toString();
 	let routePrefix: string = (controller.Route || '').toString();
 	if (!routePrefix) routePrefix = controllerName.toLocaleLowerCase().replace('controller', '');
 	if (!routePrefix.startsWith('/')) routePrefix = '/' + routePrefix;
 	if (!routePrefix.endsWith('/')) routePrefix = routePrefix + '/';
-	controller.ControllerMethods.forEach((controllerMethod) => {
+	const prefixParams = routePrefix.match(/\[(.*?)\]/);
+	if (prefixParams)
+		for (const param of prefixParams) {
+			routePrefix = routePrefix.replace(`[${param}]`, `:${param}`);
+		}
+	const ControllerMethods = new Map(Object.entries(controller));
+	ControllerMethods.forEach((controllerMethod: any) => {
+		if (typeof controllerMethod !== 'object') return;
 		let name: string = (controllerMethod.Name || '').toString();
 		let route: string = (controllerMethod.Route || '').toString();
 		if (!route) {
@@ -24,27 +30,30 @@ export function ControllerMethodParser(app: IApplicationBuilder, controller: any
 				route = routePrefix + name.toLocaleLowerCase();
 			}
 		}
-		const params = route.matchAll(/\[(.*?)\]/);
-		for (const param in params) {
-			route = route.replace(`[${param}]`, `:${param}`);
-		}
+		const params = route.match(/\[(.*?)\]/);
+		if (params)
+			for (const param of params) {
+				route = route.replace(`[${param}]`, `:${param}`);
+			}
 
+		if (routePrefix !== controllerName.toLocaleLowerCase().replace('controller', ''))
+			route = StripTheTrailingSlash(routePrefix) + route;
 		FASTLOG3(
 			DFLog('Tasks'),
 			`[DFLog::Tasks] Parsing the Controller method 'https://%s%s' for the Controller '%s'.`,
 			apiName,
 			route,
-			controller,
+			controller.Name,
 		);
 
 		/* Method */
-		const method: HttpRequestMethodEnum = controllerMethod.Method || null;
+		const method: HttpRequestMethodEnum = controllerMethod.Method;
 		const func =
 			controllerMethod.Function ||
 			((_request: Request, _response: Response) => {
 				throw new Error('This endpoint is not implemented yet.');
 			});
-		if (!method) {
+		if (method === undefined) {
 			const methods: string[] = controllerMethod.Methods || null;
 			const badRequestMethodHandler = controllerMethod.BadRequestMethodHandler || null;
 			if (!methods) {

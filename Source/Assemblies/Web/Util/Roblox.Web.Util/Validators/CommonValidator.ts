@@ -1,6 +1,8 @@
 import { Response } from 'express';
 import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { __baseDirName } from '../../../../Common/Constants/Roblox.Common.Constants/Directories';
 import { DYNAMIC_FASTFLAGVARIABLE, DYNAMIC_FASTSTRINGVARIABLE, DFFlag, DFString } from '../Logging/FastLog';
+import filestream from 'fs';
 
 DYNAMIC_FASTFLAGVARIABLE('DoesTheWorldGetToViewTheSite', false);
 DYNAMIC_FASTFLAGVARIABLE('CanAdminsBypassTheSystem', false);
@@ -33,5 +35,16 @@ export namespace CommonValidator {
 			return false;
 		}
 		return true;
+	}
+
+	export function IsFileStaticFile(baseUrl: string, file: string) {
+		return new Promise((resumeFunction) => {
+			const url = `${__baseDirName}${!baseUrl.startsWith('\\') ? '\\' : ''}${baseUrl}${
+				baseUrl.endsWith('\\') && file.startsWith('/') ? file.replace('/', '') : file
+			}`;
+			filestream.stat(url, function (_error, fileStats) {
+				resumeFunction(fileStats && fileStats.isFile());
+			});
+		});
 	}
 }

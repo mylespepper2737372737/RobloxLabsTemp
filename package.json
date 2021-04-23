@@ -4,7 +4,7 @@
 	"description": "ROBLOXLABS",
 	"main": "Source/bin/Global.asax.js",
 	"scripts": {
-		"Start-Main-Job": "node --no-deprecation --no-warnings --report-filename=server.log --diagnostic-dir=Diagnostiscs Source/bin/Global.asax.js",
+		"Start-Main-Job": "node --no-deprecation --report-filename=server.log --diagnostic-dir=Diagnostiscs Source/bin/Global.asax.js",
 		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
 		"build": "tsc --skipLibCheck",
 		"start": "node --trace-deprecation Source/bin/Global.asax.js",
@@ -21,6 +21,7 @@
 		"@types/mysql": "^2.15.18",
 		"@types/serve-index": "^1.7.30",
 		"@types/spdy": "^3.4.4",
+		"@types/stack-trace": "^0.0.29",
 		"@types/ws": "^7.4.0",
 		"prettier": "^2.2.1",
 		"typescript": "^4.2.3"
@@ -38,8 +39,10 @@
 		"openssl": "^1.1.0",
 		"querystring": "^0.2.1",
 		"serve-index": "^1.9.1",
+		"source-code-error": "^1.0.2",
 		"spdy": "^4.0.2",
 		"sslkeylog": "^0.2.2",
+		"stack-trace": "^0.0.10",
 		"ws": "^7.4.2",
 		"xml-js": "^1.6.11"
 	}

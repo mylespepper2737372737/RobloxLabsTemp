@@ -2,6 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "DB Info tests",
+			"program": "${workspaceFolder}/Source/Bin/Tests/dbInfoTest.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
 			"name": "Util Tests",
 			"program": "${workspaceFolder}/Source/Bin/Tests/UtilTests.js",
 			"request": "launch",
@@ -79,7 +86,7 @@
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node",
-			"runtimeArgs": ["--no-deprecation", "--no-warnings", "--report-filename=server.log", "--diagnostic-dir=Diagnostiscs"],
+			"runtimeArgs": ["--no-deprecation", "--report-filename=server.log", "--diagnostic-dir=Diagnostiscs"],
 			"envFile": "${workspaceFolder}/.env",
 			"preLaunchTask": "pre"
 			/*

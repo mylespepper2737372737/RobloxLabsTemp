@@ -98,9 +98,9 @@
 				<tr>
 					<td>
 						<code>
-							The source code that generated this unhandled exception can only be shown when compiled in debug mode. To enable
-							this, please follow one of the below steps, then request the URL:<br /><br />1. Add a "Debug=true" directive at
-							the top of the file that generated the error. Example:<br /><br />
+							<% if (!pageMeta.Exception.ShowCode) { %> The source code that generated this unhandled exception can only be
+							shown when compiled in debug mode. To enable this, please follow one of the below steps, then request the
+							URL:<br /><br />1. Add a "Debug=true" directive at the top of the file that generated the error. Example:<br /><br />
 							&lt;%@ Page Language="TS" Debug="true" %&gt;<br /><br />or:<br /><br />2) Add the following section to the
 							configuration file of your application:<br /><br />&lt;configuration&gt;<br />
 							&lt;system.web&gt;<br />
@@ -109,13 +109,18 @@
 							Note that this second technique will cause all files within a given application to be compiled in debug mode.
 							The first technique will cause only that particular file to be compiled in debug mode.<br /><br />Important:
 							Running applications in debug mode does incur a memory/performance overhead. You should make sure that an
-							application has debugging disabled before deploying into production scenario.</code
-						>
+							application has debugging disabled before deploying into production scenario. <% } else { %>
+							<pre><%= pageMeta.Exception.Code.CodeBefore %><font color=red><%= pageMeta.Exception.Code.CodeError %></font><%= pageMeta.Exception.Code.CodeAfter %></pre>
+							<% } %>
+						</code>
 					</td>
 				</tr>
 			</table>
 
 			<br />
+
+			<b> Source File: </b>
+			<%= pageMeta.Exception.SourceFile %><b> &nbsp;&nbsp; Line: </b> <%= pageMeta.Exception.SourceLine %> <br /><br />
 
 			<b>Stack Trace:</b> <br /><br />
 

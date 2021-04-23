@@ -25,9 +25,30 @@
 	***
 */
 
+import { Request, Response } from 'express';
+import { ApiKeys } from '../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
+import { FetchKeyFromObjectCaseInsensitive } from '../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
+import { ClientVersion } from '../../../Assemblies/Data/Versioning/Roblox.Data.Versioning/ClientVersion';
+import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { ApiKeyValidator } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
+import { MethodValidator } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { ApiKeyRequest } from '../Models/ApiKeyRequest';
+
+DYNAMIC_FASTFLAGVARIABLE('ReturnEmptyMD5HashArrayForTesting', false);
+
 export default {
 	method: 'all',
-	func: (_req: unknown, res: { send: (arg0: unknown) => void }): void => {
-		res.send([]);
+	func: async (request: Request<null, string[], null, ApiKeyRequest, null>, response: Response<string[]>) => {
+		if (!MethodValidator.CheckMethod(request.method, 'GET', response, true)) return;
+		if (
+			!ApiKeyValidator.ValidateApiKey(
+				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
+				ApiKeys.VersionCompatibilityApi,
+				response,
+			)
+		)
+			return;
+		if (DFFlag('ReturnEmptyMD5HashArrayForTesting')) return response.send([]);
+		return response.send(await ClientVersion.GetAllLatestMD5HashesForUniqueClients());
 	},
 };

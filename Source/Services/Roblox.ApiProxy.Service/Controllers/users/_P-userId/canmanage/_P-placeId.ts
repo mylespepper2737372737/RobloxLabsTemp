@@ -27,7 +27,8 @@
 
 export default {
 	method: 'all',
-	func: (_req: unknown, res: { send: (arg0: string) => void }): void => {
-		res.send('true');
+	func: (_req: unknown, res): void => {
+		console.log('a');
+		res.send({ Success: true, CanManage: true });
 	},
 };

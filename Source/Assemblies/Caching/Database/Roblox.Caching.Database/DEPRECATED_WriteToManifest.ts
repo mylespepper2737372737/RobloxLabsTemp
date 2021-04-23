@@ -11,7 +11,7 @@ export const WriteToManifest = (
 	spliceIfIndex?: boolean,
 	createIfDoesntExist?: boolean,
 ) => {
-	let user;
+	let user: { [x: string]: any };
 	try {
 		user = JSON.parse(filestream.readFileSync(__baseDirName + `\\DataBase\\users\\${userId}.json`, { encoding: 'utf-8' }));
 	} catch (e) {

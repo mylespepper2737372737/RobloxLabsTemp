@@ -1,4 +1,4 @@
-/// <reference path="../../../System/System.d.ts" />
+/// <reference path="../../../../System/System.d.ts" />
 
 declare namespace Roblox.Platform.ErrorModels {
 	interface ICustomError {

@@ -13,7 +13,7 @@ export namespace MethodValidator {
 	 * @param {boolean} isService If true, will use the ServiceError instead of the CustomError.
 	 * @returns {[boolean, HttpRequestMethodEnum]} Returns true if the request method verb matches any of the given methods below.
 	 */
-	export function CheckMethod(originalMethod: string, methodToValidate: string, response: Response, isService = false): boolean {
+	export function CheckMethod(originalMethod: string, methodToValidate: string, response: Response, isService: boolean = false): boolean {
 		return CheckMethods(originalMethod, [methodToValidate], response, isService)[0];
 	}
 
@@ -37,6 +37,7 @@ export namespace MethodValidator {
 		if (originalMethod === 'options') return [true, HttpRequestMethodEnum.OPTIONS];
 		let methodIsValid = false;
 		let requestMethod = HttpRequestMethodEnum.GET;
+		const allowedMethods = methodsToValidate.join(', ');
 		methodsToValidate.every((method) => {
 			method = method.toLowerCase();
 			if (method === originalMethod) {
@@ -68,6 +69,7 @@ export namespace MethodValidator {
 		if (!methodIsValid) {
 			const errorMessage = `The requested resource does not support http method '${originalMethod.toUpperCase()}'.`;
 			if (isService) {
+				response.header({ Allow: allowedMethods });
 				Errors.RespondWithAServiceError(405, errorMessage, response, true);
 				return [false, null];
 			}

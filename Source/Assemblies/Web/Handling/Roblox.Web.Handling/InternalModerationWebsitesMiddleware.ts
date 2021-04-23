@@ -24,9 +24,9 @@
 
 	***
 */
-
 import { NextFunction, Request, Response } from 'express';
 import { RequestHandler } from 'express-serve-static-core';
+import { Account } from '../../../Server Class Library/Roblox Class Library/Business Logic Layer/Account';
 import { FASTLOG5, FLog, LOGGROUP } from '../../Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('TheInternalSystem');
@@ -36,24 +36,30 @@ export const InternalModerationWebsitesMiddleware = ((
 	response: Response<any, any>,
 	nextHandler: NextFunction,
 ) => {
-	FASTLOG5(
-		FLog['TheInternalSystem'],
-		`[FLog::TheInternalSystem] %s REQUEST ON %s://%s%s FROM %s`,
-		request.method.toUpperCase(),
-		request.protocol,
-		request.hostname,
-		request.url,
-		request.headers['user-agent'].toUpperCase(),
-	);
-	response.header({
-		expires: -1,
-		p3p: ' CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"',
-		pragma: ' no-cache',
-		'roblox-machine-id': 'AWA-WEB8123',
-		'x-frame-options': 'SAMEORIGIN',
-		'x-powered-by': 'ASP.NET',
-		'cache-control': 'no-cache',
-	});
+	try {
+		const userAccount = new Account();
+		if (!userAccount) return;
+		FASTLOG5(
+			FLog['TheInternalSystem'],
+			`[FLog::TheInternalSystem] %s REQUEST ON %s://%s%s FROM %s`,
+			request.method.toUpperCase(),
+			request.protocol,
+			request.hostname,
+			request.url,
+			request.headers['user-agent'].toUpperCase(),
+		);
+		response.header({
+			expires: -1,
+			p3p: ' CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"',
+			pragma: ' no-cache',
+			'roblox-machine-id': 'AWA-WEB8123',
+			'x-frame-options': 'SAMEORIGIN',
+			'x-powered-by': 'ASP.NET',
+			'cache-control': 'no-cache',
+		});
 
-	nextHandler();
+		nextHandler();
+	} catch (e) {
+		nextHandler(e);
+	}
 }) as RequestHandler<any, any, any, any, any>;

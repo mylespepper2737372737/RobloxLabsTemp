@@ -1,27 +1,27 @@
 import { RequestHandler } from 'express-serve-static-core';
+import { FileBaseUrls } from '../../../Common/Constants/Roblox.Common.Constants/FileBaseUrls';
+import { GetValueFromCookieString } from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromCookieString';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
+import { GetUserFromCookie } from '../../Auth/Roblox.Web.Auth/GetUserFromCookie';
 import { Errors } from '../../Util/Roblox.Web.Util/Errors';
 import { CommonValidator } from '../../Util/Roblox.Web.Util/Validators/CommonValidator';
 
-export const ApiServiceIsAliveValidator = ((req, res, next) => {
-	if (req.method === 'OPTIONS') return next();
-	let cookie = req.headers.cookie;
-	if (cookie === undefined) cookie = '';
-	cookie = (cookie as string).split(';').find((secToken) => {
-		return secToken.startsWith(' RobloxSecurityToken') || secToken.startsWith('RobloxSecurityToken');
-	});
-	if (cookie) cookie = cookie.split('=')[1];
+export const ApiServiceIsAliveValidator = (async (request, response, next) => {
+	if (await GetUserFromCookie(request)) return next();
+	if (await CommonValidator.IsFileStaticFile(FileBaseUrls[request.hostname], request.path)) return next();
+	if (request.method === 'OPTIONS') return next();
+	const cookie = GetValueFromCookieString('RobloxSecurityToken', request.headers.cookie);
 	if (
 		!CommonValidator.ValidateDoesTheWorldGetToViewTheSite(
-			req.method,
-			encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
-			cookie || <string>req.headers['roblox-security-token'],
-			res,
+			request.method,
+			encodeURIComponent(`${request.protocol}://${request.hostname}${request.url}`),
+			cookie || <string>request.headers['roblox-security-token'],
+			response,
 			true,
 		)
 	) {
 		const customErrors: ICustomError[] = [{ code: 0, message: 'Service Undergoing Maintenance' }];
-		Errors.RespondWithCustomErrors(503, customErrors, res, true);
+		Errors.RespondWithCustomErrors(503, customErrors, response, true);
 		return;
 	}
 	next();

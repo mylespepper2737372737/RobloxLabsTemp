@@ -27,16 +27,18 @@
 
 import { Request, Response } from 'express';
 import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
-import { SignData } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { GetSignedData, SignData } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { DateTimeConverter } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Converters/DateTimeConverter';
 
 DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearanceUrl', 'http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx');
 
 export default {
 	method: 'all',
 	func: (request: Request, response: Response): void => {
+		const date = DateTimeConverter.DateToLocaleDate(new Date(Date.now()));
 		const txt = {
 			ClientPort: 0,
-			MachineAddress: '127.0.0.1',
+			MachineAddress: request.query['IpAddress'] || '127.0.0.1',
 			ServerPort: parseInt(<string>request.query['port']) || 53640,
 			PingUrl: '',
 			PingInterval: 120,
@@ -47,8 +49,11 @@ export default {
 			GameLocale: 'en_us',
 			SuperSafeChat: false,
 			CharacterAppearance: DFString('CharacterAppearanceUrl'),
-			ClientTicket: '',
-			NewClientTicket: '',
+			ClientTicket: `${date};${GetSignedData(
+				`${parseInt(<string>request.query['userId']) || 1}\n${request.query['username'] || 'Default'}\n${DFString(
+					'CharacterAppearanceUrl',
+				)}\n00000000-0000-0000-0000-000000000000\n${date}`,
+			)};${GetSignedData(`${parseInt(<string>request.query['userId']) || 1}\n00000000-0000-0000-0000-000000000000\n${date}`)}`,
 			GameId: '00000000-0000-0000-0000-000000000000',
 			PlaceId: parseInt(<string>request.query['placeId']) || 1,
 			MeasurementUrl: '',

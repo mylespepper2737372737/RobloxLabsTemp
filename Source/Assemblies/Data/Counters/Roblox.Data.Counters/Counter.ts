@@ -7,7 +7,7 @@ import { ICounter } from './ICounter';
 
 DYNAMIC_LOGGROUP('Tasks');
 export class Counter implements ICounter {
-	public Id: number;
+	public ID: number;
 	public Name: string;
 	public Count: number;
 

@@ -1,5 +1,5 @@
 /*
-	FileName: LoadPlaceInfo.ashx.ts
+	FileName: __pageIndex.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: Load Place info script
@@ -25,23 +25,12 @@
 	***
 */
 
-import a from 'axios';
+import { Request, Response } from 'express';
+import { Errors } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
-		if (_req.method === 'OPTIONS') return res.send();
-		a.get('https://api.roblox.com' + _req.url, {
-			headers: { ..._req.headers, host: 'api.roblox.com' },
-		})
-			.then((re) => {
-				const newheaders = JSON.parse(JSON.stringify(re.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-
-				return res.header(newheaders).send(re.data);
-			})
-			.catch((e) => {
-				const newheaders = JSON.parse(JSON.stringify(e.response.headers).split('roblox.com').join('sitetest4.robloxlabs.com'));
-				return res.header(newheaders).status(e.response.status).send(e.response.data);
-			});
+	func: async (_request: Request, response: Response) => {
+		Errors.RespondWithAHttpStatusError(403, response);
 	},
 };

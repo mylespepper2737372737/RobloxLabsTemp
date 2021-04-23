@@ -97,6 +97,7 @@ After 20 minutes, or server retart, the page will be purged and a new page will 
 DYNAMIC_LOGVARIABLE('DataStoresV2', 7); // FIXME Development thing here, change to 0 for prod
 
 DYNAMIC_FASTFLAGVARIABLE('DataStoresV2EnabledForTheWorld', false);
+DYNAMIC_FASTFLAGVARIABLE('AllowNoUserForDataStore', false);
 
 DYNAMIC_FASTINTVARIABLE('DataStoreV2RolloutPercentage', 0);
 DYNAMIC_FASTINTVARIABLE('DataStoreApiRefreshRolloutPercentage', 0);
@@ -116,7 +117,7 @@ export default {
 
 		/*Start check for request security token validity*/
 		const user = await User.GetByCookie(cookie);
-		if (!user) {
+		if (!user && !DFFlag('AllowNoUserForDataStore')) {
 			errors.push({
 				code: 0,
 				message: 'You do not have permission to manage this place. User is null.',
@@ -127,7 +128,7 @@ export default {
 
 		/*Start check for Universe Id*/
 		const universeId = parseInt(request.params['universeId']);
-		if (!InputValidator.CheckDoesNumberStringIncludeAlphaChars(universeId)) {
+		if (InputValidator.CheckDoesNumberStringIncludeAlphaChars(universeId)) {
 			FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null universe, god damn');
 
 			errors.push({
@@ -145,21 +146,27 @@ export default {
 		/*Start check for Rollout flag and percentage*/
 		if (!DFFlag('DataStoresV2EnabledForTheWorld') && DFInt('DataStoreV2RolloutPercentage') < 100) {
 			// It's not released yet. Check if the universe is valid.
-			const [success, PlaceId] = GetRootPlaceIdFromUniverseId(universeId);
+			let [success, PlaceId] = GetRootPlaceIdFromUniverseId(universeId);
 			if (!success || PlaceId === null) {
-				FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null place, that means the universe did not exist');
-				return response.status(403).send({
-					errors: [
-						{
-							code: 26,
-							message: 'The universe is not allowed to access the endpoint.',
-							retryable: DFInt('DataStoreApiRefreshRolloutPercentage') >= 100,
-						},
-					],
-				});
+				if (DFFlag('AllowNullPlaceForDataStoreTesting')) {
+					PlaceId = 1;
+				} else {
+					FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null place, that means the universe did not exist');
+					return response.status(403).send({
+						errors: [
+							{
+								code: 26,
+								message: 'The universe is not allowed to access the endpoint.',
+								retryable: DFInt('DataStoreApiRefreshRolloutPercentage') >= 100,
+							},
+						],
+					});
+				}
 			}
 
-			if (!RobloxLegacy.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'Client')) {
+			if (
+				!RobloxLegacy.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'ClientAppSettings')
+			) {
 				FASTLOG1(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
 				return response.status(403).send({
 					errors: [
@@ -182,10 +189,10 @@ export default {
 		/*End Query Parsing*/
 
 		/*Start Cursor*/
-		let Cursor = Pages.GetPageCursorByKey(`${universeId}_${PageCursor.split('+').join('+').split('=').join('_')}`);
+		let Cursor = Pages.GetPageCursorByKey(`${universeId}_${PageCursor.split('+').join('+').split('=').join('_').split('/').join('-')}`);
 		if (Cursor.length === 0) {
 			Cursor = Base64.stringify(Crypto.MD5(universeId.toString()));
-			Pages.SetPageByKey(`${universeId}_${Cursor.split('+').join('+').split('=').join('_')}`, Cursor);
+			Pages.SetPageByKey(`${universeId}_${Cursor.split('+').join('+').split('=').join('_').split('/').join('-')}`, Cursor);
 		}
 		/*End Cursor*/
 
@@ -198,9 +205,10 @@ export default {
 
 		// TODO Make this happen on gamepersistence.api.sitetest4.robloxlabs.com
 		/*Start Stores*/
-		const [Succes, Stores] = await GetPersistentStoresForUniverse(universeId);
+		let [Success, Stores] = await GetPersistentStoresForUniverse(universeId);
+		if (!Stores) Stores = [];
 		Stores.sort();
-		if (Succes && Stores) {
+		if (Success && Stores) {
 			Stores.forEach((store, storeNumber) => {
 				if (!isNaN(<number>PageLength) && PageLength > 0 && storeNumber >= <number>PageLength) {
 					CanPush = false;
@@ -236,6 +244,6 @@ export default {
 			});
 		}
 		/*End Stores*/
-		response.send({ datastores: DataStores.sort(), lastReturnedKey: lastReturnedKey });
+		response.send({ datastores: DataStores.sort(), lastReturnedKey: lastReturnedKey, data: DataStores.sort() });
 	},
 };

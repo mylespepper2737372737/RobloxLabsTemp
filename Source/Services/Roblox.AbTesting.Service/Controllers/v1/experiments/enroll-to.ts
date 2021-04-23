@@ -51,20 +51,21 @@ content-type: application/json
 
  */
 
+import { NextFunction } from 'express';
 import { Request, Response } from 'express-serve-static-core';
 import { AbTestingService } from '../../../../../Assemblies/ApiServices/Roblox.AbTesting.Service/Roblox.AbTesting.Service/Implementation/AbTestingService';
 
 export default {
 	method: 'All',
-	func: (request: Request, response: Response): Response<unknown> | void => {
+	func: (request: Request, response: Response, next: NextFunction): Response<unknown> | void => {
 		if (JSON.stringify(request.body) === '{}')
-			return response.status(400).send({
-				message: new Error(
+			return next(
+				ReferenceError(
 					`AbTesting with ApiKey ${
 						request.query.ApiKey || '00000000-0000-0000-0000-00000000000'
 					} failed because the request was invalid`,
-				).stack,
-			});
+				),
+			);
 
 		if (request.body && (!request.headers['content-type'] || request.headers['content-type'].length === 0))
 			return response.status(415).send({

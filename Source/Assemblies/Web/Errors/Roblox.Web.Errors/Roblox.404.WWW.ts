@@ -44,7 +44,7 @@ export default async (request: Request, response: Response) => {
 	}
 	let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
 	const authenticatedUser = await User.GetByCookie(cookie);
-	if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
+	if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: '.sitetest4.robloxlabs.com' });
 	return response.status(404).render('Error/NotFound', {
 		isUserAuthenicated: authenticatedUser !== null,
 		authenticatedUser: { ...authenticatedUser, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
