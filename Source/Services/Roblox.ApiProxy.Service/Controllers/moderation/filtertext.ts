@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: (_req: any, res): void => {
-		res.send({ data: { white: 'test', black: 'test2' } });
+		res.send({ data: { white: _req.body.text, black: _req.body.text } });
 	},
 };

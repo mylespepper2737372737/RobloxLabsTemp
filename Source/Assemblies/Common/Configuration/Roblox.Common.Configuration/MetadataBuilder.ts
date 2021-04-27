@@ -30,7 +30,7 @@ import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { __baseDirName } from '../../Constants/Roblox.Common.Constants/Directories';
 import config from './WebsiteMetadata';
 
-export default (
+export const MetadataBuilder = (
 	app: IApplicationBuilder,
 	PagesDir: string,
 	EndpointsDir: string,

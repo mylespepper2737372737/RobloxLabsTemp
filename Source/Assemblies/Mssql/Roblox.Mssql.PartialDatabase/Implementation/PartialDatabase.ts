@@ -1,4 +1,4 @@
-import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../System/Threading/Task';
 import { Connection, createConnection } from 'mysql';
 import { PartialEntity } from './PartialEntity';
 

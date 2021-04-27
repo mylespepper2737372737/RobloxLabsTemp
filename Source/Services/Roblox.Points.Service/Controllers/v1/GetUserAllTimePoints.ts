@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import { PointsService } from '../../../../Assemblies/ApiServices/Roblox.Points.Service/Implementation/PointsService';
 import { ApiKeys } from '../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FASTFLAG, FFlag } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { IUser } from '../../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/IUser';
 import { IUniverse } from '../../../../Assemblies/Platform/Universes/Roblox.Platform.Universes/IUniverse';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+import { DefaultAsp404 } from '../../../../Assemblies/Web/Errors/Roblox.Web.Errors/aspError404';
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -13,10 +14,7 @@ export default {
 	method: 'all',
 	func: async (request: Request, response: Response) => {
 		if (request.method === 'OPTIONS') return response.status(200).send();
-		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
-			return response
-				.status(404)
-				.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\FilesApi\\Roblox.404.html');
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') return DefaultAsp404(request, response);
 
 		if (request.method !== 'POST')
 			return response

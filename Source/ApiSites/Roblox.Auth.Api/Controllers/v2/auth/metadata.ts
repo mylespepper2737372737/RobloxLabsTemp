@@ -25,12 +25,15 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { Request, Response } from 'express';
+import { DFInt, DYNAMIC_FASTINTVARIABLE } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { MetadataResponse } from '../../../Models/MetadataResponse';
+
+DYNAMIC_FASTINTVARIABLE('CookieLawNoticeTimeout', 50000);
 
 export default {
 	method: 'all',
-	func: (_req, res): void => {
-		const DFInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFInts();
-		return res.send({ cookieLawNoticeTimeout: DFInt['CookieLawNoticeTimeout'] });
+	func: (_request: Request, response: Response<MetadataResponse>): Response<MetadataResponse> => {
+		return response.send({ cookieLawNoticeTimeout: DFInt('CookieLawNoticeTimeout') });
 	},
 };

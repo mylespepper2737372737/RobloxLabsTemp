@@ -1,4 +1,4 @@
-import { Task } from '../../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../../System/Threading/Task';
 import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
 import { ServiceClient } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';

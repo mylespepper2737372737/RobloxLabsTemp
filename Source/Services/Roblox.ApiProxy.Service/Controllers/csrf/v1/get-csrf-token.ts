@@ -37,7 +37,7 @@ import {
 	FLog,
 	LOGGROUP,
 } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { CreateOrGetXsrfSession } from '../../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateOrGetXsrfSession';
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -72,13 +72,7 @@ export default {
 			});
 		}
 
-		const res = RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
-			request.cookies['AuthToken'],
-			request.ip,
-			request.headers['x-csrf-token'],
-			response,
-			true,
-		);
+		const res = CreateOrGetXsrfSession(request.cookies['AuthToken'], request.ip, request.headers['x-csrf-token'], response, true);
 		console.log(res);
 		if (!res) {
 			FASTLOG2(

@@ -27,16 +27,17 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { Request, Response } from 'express';
+import { RespondWithA1PXImage } from '../../../../Assemblies/Web/Handling/Roblox.Web.Handling/RespondWithA1PXImage';
 import { FASTLOGS, FLog, LOGGROUP } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('EphemeralCountersV2');
 
 export default {
 	method: 'all',
-	func: (_req: any, res): void => {
-		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.body));
-		res.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\e.png');
+	func: (request: Request<null, string, any>, response: Response<string>): void => {
+		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.query));
+		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.body));
+		RespondWithA1PXImage(response);
 	},
 };

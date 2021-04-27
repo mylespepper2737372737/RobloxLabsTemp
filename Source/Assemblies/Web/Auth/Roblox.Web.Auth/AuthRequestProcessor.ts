@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { UsersClient } from '../../../ApiClients/Roblox.Users.Client/Implementation/UsersClient';
 import { IServiceUsernameValidationResponse } from '../../../ApiClients/Roblox.Users.Client/Models/IServiceUsernameValidationResponse';
-import { IUsernameValidationRequest } from '../../../../ApiSites/Roblox.Auth.Api/Models/IUsernameValidationRequest';
-import { IUsernameValidationResponse } from '../../../../ApiSites/Roblox.Auth.Api/Models/IUsernameValidationResponse';
+import { IUsernameValidationRequest } from '../../../../ApiSites/Roblox.Auth.Api/Models/UsernameValidationRequest';
+import { IUsernameValidationResponse } from '../../../../ApiSites/Roblox.Auth.Api/Models/UsernameValidationResponse';
 import { UsernameValidationContext } from '../../../../ApiSites/Roblox.Auth.Api/Enumerations/UsernameValidationContext';
-import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../System/Threading/Task';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { IUser } from '../../../Platform/Membership/Roblox.Platform.Membership/IUser';
 import { Errors } from '../../Util/Roblox.Web.Util/Errors';

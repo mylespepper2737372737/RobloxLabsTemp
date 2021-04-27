@@ -1,4 +1,15 @@
 {
 	"todo-tree.tree.showBadges": true,
-	"todo-tree.tree.showCountsInTree": true
+	"todo-tree.tree.showCountsInTree": true,
+	"Lua.diagnostics.disable": [
+		"undefined-rbx-member",
+		"invalid-rbx-classname",
+		"missing-module-return",
+		"unknown-symbol"
+	],
+	"Lua.diagnostics.ignore": ["OnClose"],
+	"Lua.diagnostics.globals": [
+		"loadfile",
+		"stats"
+	]
 }

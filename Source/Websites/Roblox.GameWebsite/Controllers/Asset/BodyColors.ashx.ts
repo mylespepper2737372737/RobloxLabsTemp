@@ -26,15 +26,12 @@
 */
 
 import fs from 'fs';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		const str = fs.readFileSync(
-			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\BodyColors.xml',
-			'utf-8',
-		);
+		const str = fs.readFileSync(__baseDirName + '\\InternalCDN\\BodyColors.xml', 'utf-8');
 		return res.send(str);
 	},
 };

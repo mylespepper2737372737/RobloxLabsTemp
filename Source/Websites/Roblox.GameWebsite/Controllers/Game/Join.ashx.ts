@@ -27,7 +27,7 @@
 
 import { Request, Response } from 'express';
 import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
-import { GetSignedData, SignData } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { GetSignedData, SendSignedResponse } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
 import { DateTimeConverter } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Converters/DateTimeConverter';
 
 DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearanceUrl', 'http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx');
@@ -83,6 +83,6 @@ export default {
 			characterAppearanceId: 0,
 			CountryCode: 'US',
 		};
-		SignData(JSON.stringify(txt), response);
+		SendSignedResponse(JSON.stringify(txt), response);
 	},
 };

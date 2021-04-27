@@ -40,20 +40,19 @@ content-type: application/json
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+import { FASTFLAG, FFlag } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: __baseDirName + '\\.env' });
 
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> | void => {
 		if (request.method === 'OPTIONS') return response.status(200).send();
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
-			return response
-				.status(404)
-				.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\ErrorViews\\FilesApi\\Roblox.404.html');
+			return response.status(404).sendFile(__baseDirName + '\\ErrorViews\\FilesApi\\Roblox.404.html');
 
 		if (request.method !== 'POST')
 			return response

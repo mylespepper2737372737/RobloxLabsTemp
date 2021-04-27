@@ -67,13 +67,13 @@ origin: Roblox.Tests.Origins.SecureAbTestingOrigin
 // this doesn't mean that the experiment doesn't exist, it could be in Roblox.Data.AbTesting.Experiments.SharedExperiments.
 
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import { SubjectTypeEnum } from '../../../../Assemblies/Platform/AbTesting/Roblox.Platform.AbTesting/SubjectTypeEnum';
 import { IUser } from '../../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/IUser';
 import { IBrowserTracker } from '../../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/IBrowserTracker';
 import { AbTestingRequestProcessor } from '../../../../Assemblies/Web/AbTesting/Roblox.Web.AbTesting/AbTestingRequestProcessor';
 import { UserModelBuildersClubMembershipTypeEnum } from '../../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/UserModelBuildersClubMembershipTypeEnum';
 import { FASTFLAG, FFlag } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { CreateOrGetXsrfSession } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateOrGetXsrfSession';
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -129,16 +129,7 @@ export default {
 			return AuthToken.startsWith(' .ROBLOSECURITY') || AuthToken.startsWith('.ROBLOSECURITY');
 		});
 		if (cookie) cookie = cookie.split('=')[1];
-		if (
-			!RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
-				cookie,
-				request.ip,
-				request.headers['x-csrf-token'],
-				response,
-				false,
-			)
-		)
-			return;
+		if (!CreateOrGetXsrfSession(cookie, request.ip, request.headers['x-csrf-token'], response, false)) return;
 
 		if (Array.isArray(request.body) && request.body.length === 0)
 			return response.status(400).send({

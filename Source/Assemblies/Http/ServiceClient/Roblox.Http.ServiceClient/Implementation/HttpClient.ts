@@ -1,4 +1,4 @@
-import { Task } from '../../../Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../../System/Threading/Task';
 import { IClientRequest } from '../Models/IClientRequest';
 import { IClientResponse } from '../Models/IClientResponse';
 import query from 'querystring';

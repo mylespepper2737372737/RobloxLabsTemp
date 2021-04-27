@@ -26,20 +26,23 @@
 */
 
 import { Request, Response } from 'express';
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import { ApiKeys } from '../../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
 import { SanitizeData } from '../../../../../Assemblies/Web/Parsers/Roblox.Web.Parsers/SanitizeData';
 import { ApiKeyValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
 import { InputValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/InputValidator';
+import { DFLog, FASTLOGS } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { ClientSettings } from '../../../../../Assemblies/Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 
 export default {
 	method: 'all',
 	func: (request: Request, response: Response) => {
 		const group = SanitizeData(request.params.group);
-		if (!InputValidator.CheckIfValueIsIncludedInArray(group, RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFSettings()))
+		const FSettings = ClientSettings.GetFSettings();
+		FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] ClientSettings QuietGet Settings got group %s.', group);
+		if (!InputValidator.CheckIfValueIsIncludedInArray(group, FSettings))
 			return response.status(503).send('The service is unavailable.');
-		const allGroupSettings = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetAllSettings(group || 'Blank');
+		const allGroupSettings = ClientSettings.GetAllSettings(group || 'Blank');
 		if (
 			!ApiKeyValidator.ValidateApiKeys(
 				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),

@@ -1,5 +1,5 @@
 /*
-	FileName: e.png.ts
+	FileName: pbe.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
 	Description: Analytics, for ecsv2
@@ -27,16 +27,16 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { Request, Response } from 'express';
 import { FASTLOGS, FLog, LOGGROUP } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('EphemeralCountersV2');
 
 export default {
 	method: 'all',
-	func: (_req: any, res): void => {
-		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.query));
-		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(_req.body));
-		res.sendFile(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\e.png');
+	func: (request: Request<null, string, any>, response: Response<string>): void => {
+		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.query));
+		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.body));
+		response.send();
 	},
 };

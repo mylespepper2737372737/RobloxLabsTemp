@@ -36,22 +36,28 @@ Cookie: AuthToken=AUTH_ID
 
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { GetManifests } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_GetManifest';
+import { WriteToManifest } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_WriteToManifest';
+import { DeleteCsrfSession } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/DeleteCsrfSession';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+import { DFFlag, DYNAMIC_FASTFLAG, FASTFLAG, FFlag } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: __baseDirName + '\\.env' });
+
+FASTFLAG('RequireGlobalHTTPS');
+DYNAMIC_FASTFLAG('WWWAuthV1AllowAllMethods');
+DYNAMIC_FASTFLAG('IsWWWAuthV1Enabled');
 
 // These flags are 'Launch-Time flags'
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> => {
 		// Anything up here is dynamic,
 		// these flags are 'Run-Time flags'
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
-		const Manifest = RobloxLegacy.Api.Helpers.Helpers.DB.GetManifests();
+		const Manifest = GetManifests();
 
-		if (!DFFlag['IsWWWAuthV1Enabled'])
+		if (!DFFlag('IsWWWAuthV1Enabled'))
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
@@ -59,13 +65,13 @@ export default {
 			});
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 
-		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
+		if (request.method !== 'POST' && !DFFlag('WWWAuthV1AllowAllMethods'))
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support https method '${request.method}'.`,
+				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
 		let validUser = undefined;
@@ -93,8 +99,8 @@ export default {
 				userfacingmessage: 'The current credentials are invalid, please manually remove them and log in again.',
 			});
 
-		RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCsrfSession(request.cookies['AuthToken']);
-		RobloxLegacy.Api.Helpers.Helpers.DB.WriteToManifest(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
+		DeleteCsrfSession(request.cookies['AuthToken']);
+		WriteToManifest(validUser.userId, 'sessionIds', undefined, false, false, validIdx, true, false);
 
 		response.shouldKeepAlive = false;
 		return response

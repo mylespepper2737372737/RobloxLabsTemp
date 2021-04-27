@@ -40,20 +40,30 @@ Connection: close
 import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { GetSessions } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_GetSessions';
+import { CreateCaptchaBlobSessionAfter403 } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateCaptchaBlobSessionAfter403';
+import { DeleteCaptchaSession } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/DeleteCaptchaSession';
+import { CreateCaptchaSessionBlob } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateCaptchaSessionBlob';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+import {
+	DFFlag,
+	DYNAMIC_FASTFLAG,
+	DYNAMIC_FASTFLAGVARIABLE,
+	FASTFLAG,
+	FFlag,
+} from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: __baseDirName + '\\.env' });
 
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
+DYNAMIC_FASTFLAG('WWWAuthV1AllowAllMethods');
+DYNAMIC_FASTFLAG('IsWWWAuthV1Enabled');
+DYNAMIC_FASTFLAGVARIABLE('IsWWWAuthSignupPubliclyListed', false);
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> | void => {
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
-		// const DFInt = ClientSettings.GetSettings(Group.DFInt);
-		// const Manifest = GetManifests();
-
-		if (!DFFlag['IsWWWAuthV1Enabled'] || !DFFlag['IsWWWAuthSignupPubliclyListed'])
+		if (!DFFlag('IsWWWAuthV1Enabled') || !DFFlag('IsWWWAuthSignupPubliclyListed'))
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
@@ -61,16 +71,16 @@ export default {
 			});
 
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 
-		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
+		if (request.method !== 'POST' && !DFFlag('WWWAuthV1AllowAllMethods'))
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support https method '${request.method}'.`,
+				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		const sessions = filestream.readdirSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\DataBase\\sessions');
+		const sessions = filestream.readdirSync(__baseDirName + '\\DataBase\\sessions');
 
 		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
 
@@ -92,9 +102,9 @@ export default {
 				userfacingmessage: 'The provided credentials were invalid.',
 			});
 
-		const Sessions = RobloxLegacy.Api.Helpers.Helpers.DB.GetSessions();
+		const Sessions = GetSessions();
 		if (DFFlag['IsCaptchaV2Enabled']) {
-			const __captchaSession = RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaSessionBlob(request.ip);
+			const __captchaSession = CreateCaptchaSessionBlob(request.ip);
 			const cToken = request.body['captchaToken'];
 			if (typeof cToken === 'string') {
 				const cSession = cToken.split('|')[0];
@@ -109,35 +119,18 @@ export default {
 					}
 					if (isCaptchaSessionValid) {
 						const cAnswer = cToken.split('|')[1];
-						if (!Sessions.has(cSession))
-							return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-								response,
-								__captchaSession,
-								request.ip,
-							);
+						if (!Sessions.has(cSession)) return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 						if (Sessions.get(cSession).answer !== cAnswer)
-							return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-								response,
-								__captchaSession,
-								request.ip,
-							);
-						RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCaptchaSession(cSession);
+							return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+						DeleteCaptchaSession(cSession);
 					} else {
-						return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-							response,
-							__captchaSession,
-							request.ip,
-						);
+						return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 					}
 				} else {
-					return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-						response,
-						__captchaSession,
-						request.ip,
-					);
+					return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 				}
 			} else {
-				return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+				return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 			}
 		}
 		return response.status(200).send({ success: true, message: 'Not Enabled', userfacingmessage: 'NE_AJ_JSX' });

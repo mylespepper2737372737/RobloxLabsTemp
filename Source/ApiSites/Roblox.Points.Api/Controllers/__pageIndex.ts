@@ -26,10 +26,10 @@
 */
 
 import { Request, Response } from 'express';
-import { RobloxLegacy } from '../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import { PointsClient } from '../../../Assemblies/ApiClients/Roblox.Points.Client/Implementation/PointsClient';
 import { ICustomError } from '../../../Assemblies/Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { Errors } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { CreateOrGetXsrfSession } from '../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateOrGetXsrfSession';
 
 /**
  * This needs to be a controller, because it's checking the status
@@ -47,16 +47,7 @@ export default {
 				return AuthToken.startsWith(' .ROBLOSECURITY') || AuthToken.startsWith('.ROBLOSECURITY');
 			});
 			if (cookie) cookie = cookie.split('=')[1];
-			if (
-				!RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateOrGetXsrfSession(
-					cookie,
-					request.ip,
-					request.headers['x-csrf-token'],
-					response,
-					false,
-				)
-			)
-				return;
+			if (!CreateOrGetXsrfSession(cookie, request.ip, request.headers['x-csrf-token'], response, false)) return;
 		}
 		const [Success, StatusCode, StatusMessage, Url] = await PointsClient.CheckHealth(request.secure);
 		if (Success && StatusCode === 200) {

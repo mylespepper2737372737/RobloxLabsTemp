@@ -27,7 +27,7 @@
 
 import a from 'axios';
 import fs from 'fs';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
 export default {
 	method: 'all',
@@ -36,7 +36,7 @@ export default {
 		if (_req.query.assetId === '1')
 			return res.send(
 				JSON.parse(
-					fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\TheAsset.json', {
+					fs.readFileSync(__baseDirName + '\\InternalCDN\\TheAsset.json', {
 						encoding: 'utf-8',
 					}),
 				),

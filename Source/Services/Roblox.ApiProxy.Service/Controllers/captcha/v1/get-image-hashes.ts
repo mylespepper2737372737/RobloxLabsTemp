@@ -30,30 +30,45 @@
 import crypto from 'crypto';
 import { Request, Response } from 'express-serve-static-core';
 import filestream from 'fs';
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { GetSessions } from '../../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_GetSessions';
+import { DeleteCaptchaSession } from '../../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/DeleteCaptchaSession';
+import { SetCaptchaSessionField } from '../../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/SetCaptchaSessionField';
+import { __baseDirName } from '../../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+import { ShuffleArray } from '../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/ShuffleArray';
+import { GetImageHashes } from '../../../../../Assemblies/Web/Auth/Roblox.Web.Auth/DEPRECATED_GetImageHashes';
+import {
+	DFFlag,
+	DYNAMIC_FASTFLAGVARIABLE,
+	FASTFLAG,
+	FASTINTVARIABLE,
+	FASTSTRINGVARIABLE,
+	FFlag,
+	FInt,
+	FString,
+} from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-const FString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFStrings();
-const FInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFInts();
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
+DYNAMIC_FASTFLAGVARIABLE('IsCaptchaV2Enabled', false);
+FASTFLAG('RequireGlobalHTTPS');
+FASTSTRINGVARIABLE('CaptchaV2CaptchaProvider', 'PROVIDER_MFD_LABS_300');
+FASTINTVARIABLE('CaptchaV2TimeoutAdditionAfter200GetImageHashes', 900000);
 
 export default {
 	method: 'ALL',
 	func: (request: Request, response: Response) => {
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (!DFFlag['IsCaptchaV2Enabled'])
+		if (!DFFlag('IsCaptchaV2Enabled'))
 			return response.status(503).send({
 				success: false,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
 
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support https method '${request.method}.'`,
+				message: `The requested resource does not support http method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
 		if (JSON.stringify(request.body) === '{}')
@@ -81,29 +96,27 @@ export default {
 					'api-transfer': 'Expose-Captcha-V2-Provider#503',
 				})
 				.send({ success: false, message: 'The current CAPTCHA_PROVIDER is not valid' });
-		const Sessions = RobloxLegacy.Api.Helpers.Helpers.DB.GetSessions();
+		const Sessions = GetSessions();
 		if (!Sessions.get(request.body['captchaHash']))
 			return response.status(404).send({
 				success: false,
 				message: 'The captchaToken supplied is not valid.',
 				userfacingmessage: 'Bad Token Request',
 			});
-		const imageCache = RobloxLegacy.Api.Helpers.Helpers.Auth.GetImageHashes();
+		const imageCache = GetImageHashes();
 		const images = [];
 		const newHash = request.body['captchaHash'] + '0x0ff';
 		filestream.writeFileSync(
-			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + `\\DataBase\\sessions\\${newHash}.json`,
+			__baseDirName + `\\DataBase\\sessions\\${newHash}.json`,
 			JSON.stringify(Sessions.get(request.body['captchaHash'])),
 			{
 				encoding: 'utf-8',
 			},
 		);
-		RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCaptchaSession(request.body['captchaHash']);
+		DeleteCaptchaSession(request.body['captchaHash']);
 		setTimeout(() => {
 			try {
-				filestream.unlinkSync(
-					RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + `\\DataBase\\sessions\\${newHash}.json`,
-				);
+				filestream.unlinkSync(__baseDirName + `\\DataBase\\sessions\\${newHash}.json`);
 			} catch {
 				console.warn('The session is not persistent anymore.');
 			}
@@ -111,24 +124,13 @@ export default {
 		imageCache.forEach((v) => {
 			const hash = crypto.createHash('sha512').update(crypto.randomBytes(1000)).digest('hex');
 			images.push({ imageHash: hash, imageUri: v.uri });
-			if (v.correct)
-				RobloxLegacy.Api.Helpers.Helpers.Sessions.SetCaptchaSessiontField(
-					newHash,
-					'answer',
-					hash,
-					true,
-					false,
-					false,
-					0,
-					false,
-					true,
-				);
+			if (v.correct) SetCaptchaSessionField(newHash, 'answer', hash, true, false, false, 0, false, true);
 		});
 		response
 			.status(200)
 			.contentType('application/json')
 			.send({
-				data: RobloxLegacy.Api.Helpers.Util.ShuffleArray(images),
+				data: ShuffleArray(images),
 				captchaHash: newHash,
 				expires: FInt['CaptchaV2TimeoutAdditionAfter200GetImageHashes'],
 			});

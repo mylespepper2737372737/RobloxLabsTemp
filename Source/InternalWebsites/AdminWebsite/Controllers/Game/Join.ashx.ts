@@ -25,35 +25,40 @@
 	***
 */
 
-import crypto from 'crypto';
 import { Request, Response } from 'express';
-import fs from 'fs';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { GetSignedData, SendSignedResponse } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { DateTimeConverter } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Converters/DateTimeConverter';
+
+DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearanceUrl', 'http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx');
 
 export default {
 	method: 'all',
-	func: (request: Request<null, null, null, {}>, response: Response): void => {
-		const DFString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFStrings();
+	func: (request: Request, response: Response): void => {
+		const date = DateTimeConverter.DateToLocaleDate(new Date(Date.now()));
 		const txt = {
 			ClientPort: 0,
-			MachineAddress: '127.0.0.1',
-			ServerPort: 53640,
+			MachineAddress: request.query['IpAddress'] || '127.0.0.1',
+			ServerPort: parseInt(<string>request.query['port']) || 53640,
 			PingUrl: '',
 			PingInterval: 120,
 			UserName: request.query['username'] || 'Default',
 			SeleniumTestMode: false,
-			UserId: parseInt(request.query['userId']) || 1,
+			UserId: parseInt(<string>request.query['userId']) || 1,
 			RobloxLocale: 'en_us',
 			GameLocale: 'en_us',
 			SuperSafeChat: false,
-			CharacterAppearance: DFString['CharacterAppearanceUrl'],
-			ClientTicket: '',
-			NewClientTicket: '',
+			CharacterAppearance: DFString('CharacterAppearanceUrl'),
+			ClientTicket: `${date};${GetSignedData(
+				`${parseInt(<string>request.query['userId']) || 1}\n${request.query['username'] || 'Default'}\n${DFString(
+					'CharacterAppearanceUrl',
+				)}\n00000000-0000-0000-0000-000000000000\n${date}`,
+			)};${GetSignedData(`${parseInt(<string>request.query['userId']) || 1}\n00000000-0000-0000-0000-000000000000\n${date}`)}`,
 			GameId: '00000000-0000-0000-0000-000000000000',
-			PlaceId: parseInt(request.query['placeId']) || 1,
+			PlaceId: parseInt(<string>request.query['placeId']) || 1,
 			MeasurementUrl: '',
 			WaitingForCharacterGuid: '00000000-0000-0000-0000-000000000000',
-			BaseUrl: 'https://broom.sitetest4.robloxlabs.com/',
+			BaseUrl: 'http://www.sitetest4.robloxlabs.com/',
 			ChatStyle: 'Classic',
 			VendorId: 0,
 			ScreenShotInfo: '',
@@ -69,8 +74,7 @@ export default {
 			GenerateTeleportJoin: false,
 			IsUnknownOrUnder13: false,
 			GameChatType: 'NoOne',
-			SessionId:
-				'{"SessionId":"00000000-0000-0000-0000-000000000000","GameId":"00000000-0000-0000-0000-000000000000","PlaceId":0,"ClientIpAddress":"172.68.37.14","PlatformTypeId":5,"SessionStarted":"2013-12-4T4:20:00.0000000Z","BrowserTrackerId":0,"PartyId":null,"Age":null,"Latitude":null,"Longitude":null,"CountryId":1,"PolicyCountryId":null,"LanguageId":null,"BlockedPlayerIds":null,"JoinType":"Unknown","PlaySessionFlags":0}',
+			SessionId: '',
 			AnalyticsSessionId: '00000000-0000-0000-0000-000000000000',
 			DataCenterId: 0,
 			UniverseId: 0,
@@ -79,16 +83,6 @@ export default {
 			characterAppearanceId: 0,
 			CountryCode: 'US',
 		};
-		const sign = crypto.createSign('sha1');
-		const dick = '\r\n' + JSON.stringify(txt);
-		sign.write(dick);
-		sign.end();
-
-		const key = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\PrivateKey.pem');
-		const sig = sign.sign(key, 'base64');
-
-		const out = `--rbxsig%${sig}%${dick}`;
-
-		response.send(out);
+		SendSignedResponse(JSON.stringify(txt), response);
 	},
 };

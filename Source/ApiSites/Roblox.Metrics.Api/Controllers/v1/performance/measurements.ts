@@ -25,14 +25,38 @@
 	***
 */
 
-import { FASTLOGS, FLog, LOGGROUP } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
-
-LOGGROUP('Metrics');
+import { NextFunction, Request, Response } from 'express';
+import { Task } from '../../../../../System/Threading/Task';
+import { MetricsRequestProcessor } from '../../../../../Assemblies/Web/Metrics/Roblox.Web.Metrics/MetricsRequestProcessor';
+import { ContentTypeValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
+import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { ApiEmptyResponseModel } from '../../../../../Assemblies/Web/WebAPI/ApiEmptyResponseModel';
+import { MeasurementRequest } from '../../../MeasurementRequest';
 
 export default {
 	method: 'all',
-	func: (_req, res): void => {
-		FASTLOGS(FLog['Metrics'], '[FLog::Metrics] %s', JSON.stringify(_req.body));
-		res.send();
+	func: async (
+		request: Request<null, ApiEmptyResponseModel, MeasurementRequest[]>,
+		response: Response<ApiEmptyResponseModel>,
+		errorFunction: NextFunction,
+	): Task<Response<ApiEmptyResponseModel> | void> => {
+		if (!MethodValidator.CheckMethod(request.method, 'POST', response, false)) return;
+		if (
+			!ContentTypeValidator.CheckContentTypes(
+				request.headers['content-type'],
+				['application/json', 'application/x-www-form-urlencoded'],
+				response,
+				false,
+			)
+		)
+			return;
+
+		const requestProcessor = new MetricsRequestProcessor();
+
+		try {
+			await requestProcessor.BatchSendMeasurements(request.body, response);
+		} catch (e) {
+			return errorFunction(e);
+		}
 	},
 };

@@ -26,11 +26,11 @@
 */
 
 import { Request, Response } from 'express';
-import { SignFile } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { SignFileAndRespond } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
 
 export default {
 	method: 'all',
 	func: (_request: Request, response: Response): void => {
-		SignFile('\\InternalCDN\\PlaceInfo.lua', response, true);
+		SignFileAndRespond('\\InternalCDN\\PlaceInfo.lua', response, true);
 	},
 };

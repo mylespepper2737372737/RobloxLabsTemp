@@ -25,12 +25,18 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { Request, Response } from 'express';
+import { DFInt, DYNAMIC_FASTINTVARIABLE } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { ThumbnailLoadMetadataResponse } from '../../../ThumbnailLoadMetadataResponse';
+
+DYNAMIC_FASTINTVARIABLE('MetricsLogRatio', 0.05);
 
 export default {
 	method: 'all',
-	func: (_req, res): void => {
-		const DFInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFInts();
-		return res.send({ logRatio: DFInt['MetricsLogRatio'] });
+	func: (
+		_request: Request<null, ThumbnailLoadMetadataResponse>,
+		response: Response<ThumbnailLoadMetadataResponse>,
+	): Response<ThumbnailLoadMetadataResponse> => {
+		return response.send({ logRatio: DFInt('MetricsLogRatio') });
 	},
 };

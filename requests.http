@@ -757,11 +757,11 @@ SOAPAction: http://roblox.com/OpenJobEx
 				<ns1:id>00000000-0000-0000-0000-000000000000</ns1:id>
 				<ns1:expirationInSeconds>20000</ns1:expirationInSeconds>
 				<ns1:category>1</ns1:category>
-				<ns1:cores>1</ns1:cores>
+				<ns1:cores>104</ns1:cores>
 			</ns1:job>
 			<ns1:script>
 				<ns1:name>start script</ns1:name>
-				<ns1:script>loadfile("http://assetgame.sitetest4.robloxlabs.com/game/gameserver.ashx")(70399968, 7715, '00000000-0000-0000-0000-000000000000', 1, nil, false, 0, nil, nil, "sitetest4.robloxlabs.com", 1, 1, nil, "", nil, nil, nil, 1, nil, nil, nil, "assetgame", "http://")</ns1:script>
+				<ns1:script>loadfile("http://assetgame.sitetest4.robloxlabs.com/game/gameserver.ashx")(70399968, 53640, '00000000-0000-0000-0000-000000000000', 1, "hello", true, 0, "127.0.0.2", nil, "sitetest4.robloxlabs.com", 1, 1, nil, "hello", nil, nil, nil, 1, 0, 1, "hello", "assetgame", "http://")</ns1:script>
 				<ns1:arguments></ns1:arguments>
 			</ns1:script>
 		</ns1:OpenJobEx>
@@ -772,7 +772,7 @@ SOAPAction: http://roblox.com/OpenJobEx
 
 POST http://localhost:64989 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
-SOAPAction: http://roblox.com/CloseAllJobs
+SOAPAction: http://roblox.com/ExecuteEx
 
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope
@@ -784,14 +784,15 @@ SOAPAction: http://roblox.com/CloseAllJobs
 	xmlns:ns1="http://roblox.com/"
 	xmlns:ns3="http://roblox.com/RCCServiceSoap12">
 	<SOAP-ENV:Body>
-		<ns1:CloseAllJobs>
-			<ns1:job>
-				<ns1:id>Nigga4</ns1:id>
-				<ns1:expirationInSeconds>9999999</ns1:expirationInSeconds>
-				<ns1:category>1</ns1:category>
-				<ns1:cores>1</ns1:cores>
-			</ns1:job>
-		</ns1:CloseAllJobs>
+		<ns1:ExecuteEx>
+			<ns1:jobID>00000000-0000-0000-0000-000000000000</ns1:jobID>
+			<ns1:script>
+			<ns1:name>SOAP</ns1:name>
+			<ns1:script>game.Players:GetPlayers()[1]:Kick("NIGGERS")</ns1:script>
+			<ns1:arguments>
+			</ns1:arguments>
+		</ns1:script>
+		</ns1:ExecuteEx>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
@@ -799,7 +800,7 @@ SOAPAction: http://roblox.com/CloseAllJobs
 
 POST http://localhost:64989 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
-SOAPAction: http://roblox.com/GetPlayerCount
+SOAPAction: http://roblox.com/GetAllJobsEx
 
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope
@@ -811,10 +812,10 @@ SOAPAction: http://roblox.com/GetPlayerCount
 	xmlns:ns1="http://roblox.com/"
 	xmlns:ns3="http://roblox.com/RCCServiceSoap12">
 	<SOAP-ENV:Body>
-	<ns1:GetPlayerCount>
+	<ns1:GetAllJobsEx>
 		<ns1:jobID>00000000-0000-0000-0000-000000000000</ns1:jobID>
 		<ns1:type>-1</ns1:type>
-		</ns1:DiagEx>
+		</ns1:GetAllJobsEx>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
@@ -961,7 +962,7 @@ POST https://ephemeralcounters.api.sitetest4.robloxlabs.com/v1.1/Counters/increm
 
 ###
 
-POST /v1/Usernames/ValidateUsername?ApiKey=E9DADB63-5BF6-42FF-A964-79D5E97E7068 HTTP/1.1
+POST /v1/Usernames/validate?ApiKey=E9DADB63-5BF6-42FF-A964-79D5E97E7068 HTTP/1.1
 Accept: application/json, text/plain, */*
 Content-Type: application/json
 User-Agent: Roblox/ApiServiceClient 4.8.4210.0 (https://www.sitetest3.robloxlabs.com+2.8)
@@ -973,12 +974,12 @@ Content-Length: 104
 Host: users.api.sitetest4.robloxlabs.com
 Connection: close
 
-{"IUser":"","Request":""}
+{"IUser":"","Request":{}}
 
 ###
 
-GET web251.ra.roblox.com/UnsecureContent/images/favicon.ico HTTP/1.1
-Host: sweep.sitetest1.robloxlabs.com
+GET web251.ra.roblox.com/Scripts/a.css HTTP/1.1
+Host: metricsvisualization.sitetest1.robloxlabs.com
 Connection: keep-alive
 Cache-Control: max-age=0
 sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"
@@ -1161,7 +1162,7 @@ ${}
 
 ###
 
-POST https://apis.roblox.com/moderation-screenshot/v1/upload-screenshot/a HTTP/1.1
+POST https://apis.roblox.com/moderation-screenshot/v1/upload-screenshot/1 HTTP/1.1
 authority: gamepersistence.roblox.qq.com
 cache-control: max-age=0
 sec-ch-ua: "Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"
@@ -1207,7 +1208,7 @@ Content-Length: 1
 
 ###
 
-GET http://versioncompatibility.api.roblox.com/GetAllowedSecurityKeys?apiKey=2b4ba7fc-5843-44cf-b107-ba22d3319dcc
+POST http://versioncompatibility.api.roblox.com/DeleteVersion?apiKey=2b4ba7fc-5843-44cf-b107-ba22d3319dcc
 Content-Type: application/json
 cookie: gig_bootstrap_3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p=_gigya_ver4; RBXcb=11; RBXMarketing=FirstHomePageVisit=1; GuestData=UserID=-471074329; RBXEventTrackerV2=CreateDate=3/13/2021 9:51:30 PM&rbxid=156632429&browserid=85565731694; RBXSource=rbx_acquisition_time=3/14/2021 5:19:53 PM&rbx_acquisition_referrer=&rbx_medium=cpa&rbx_source=appsflyer&rbx_campaign=onelink&rbx_adgroup=&rbx_keyword=&rbx_matchtype=&rbx_send_info=1; .RBXIDCHECK=25c547e6-7b44-4795-ae09-5f33c22f74d1; .ROBLOSECURITY=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_D615C053103AF4A96F41ADFD752A780E4C8A429DB6B5722D2D6094F9382D41B1E9C6540FFA1E27A4FAED0204DE993743968578AED41175436CF468E838CD459C305C50466312B34AA410C92E9A9D3C401FB9BFB4F2814BF18D9958291037E84446892098B977BE93C41B712C37BBDCEF68A17C424134F510473250E4181BDCE42238F371161FD6C4D355F1E8297A8DE9060391A5FA4E37A299E90E0945905F16BC6E614AE1C2C99BF01E8AE635F9016BC890FB153F2B7FFE539F108F535AFC9317740F6F93A222649F3A1A69047BB1D6F2F322C369A2EA8DA653D0DA0B64AAB1BFF77B4B8EB579AB301363D8A335EA7A3B461005DACC8A70737B70A40A6B4D28CE6B94728518BD93D8A86FCA55A5CC44519962A2F1B700D5F800B2B308E3A1C3398758276A9BBC34CC6174F0CE282C1DCEF71123; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyNzVmNGJmNy00ODg2LTRmYWQtYjI4ZS00MmQyOGE3YjBkY2MiLCJzdWIiOjY4MjE3MDR9.kND-XyxaRrT117jOBuvNTMKkGJFY4aJd1ulzCuJm14s; RBXSessionTracker=sessionid=b86939ef-92b7-4564-83d7-e4c73345ade2; __RequestVerificationToken=sBykfunqPC4ugEfjq8F1xlAfkjuk6UnOODiUw-WGwxQ4neFj3--VnemG32LKThOSbyr8xOnv3zlgGIA_TH6oOEebyZ41
 
@@ -1323,13 +1324,12 @@ x-real-ip: 128.116.123.3
 ###
 
 
-GET apis.sitetest1.robloxlabs.com/ HTTP/1.1
+POST auth.sitetest1.robloxlabs.com/comments/delete?commentId=1866521918 HTTP/1.1
 Connection: keep-alive
 sec-ch-ua: "Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"
 sec-ch-ua-mobile: ?0
 DNT: 1
 Upgrade-Insecure-Requests: 1
-User-Agent: niggers
 Accept: image/apng
 Sec-Fetch-Site: none
 Sec-Fetch-Mode: navigate
@@ -1337,7 +1337,6 @@ Sec-Fetch-User: ?1
 Sec-Fetch-Dest: document
 Accept-Language: en,en-US;q=0.9
 Origin: a
-Cookie: RBXEventTrackerV2=CreateDate=1/21/2021 10:32:43 PM&rbxid=&browserid=3713080288; GuestData=UserID=-1946014290; RBXcb=11; gig_bootstrap_3_o9pIaHhVOdKXUl_EicMuJA7sx6rJ3-PiqWjhMTtOcHKvyroFTM6R8jHNNJNg_t3Q=_gigya_ver4; _evidon_consent_cookie={"consent_date":"2021-03-10T02:57:19.530Z","categories":{"16":true},"vendors":{"16":{"81":true,"480":true,"608":true}},"cookies":{"16":true},"consent_type":1}; .ROBLOSECURITY=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_77A0762CA130C9143622EECC4D5681D1DAD61B09177BD83952E3FEF60F6951301B599F317D9F60411BA00CE0217EEE231910A975A67D8D7D0C95128B8EDF3EBF937C8F93D2F3C956C4ED4833CFD94434B2979535915A60CABEE663D5B82AD9550AC62E733ED0CAF4599BA41D2616B1E1EB8D1C33B321D3A4C4A378145CDE87386060F40879D70BFE0F090536A38F8F37EA1A6106B55CC62B76BA8D652280D1EBDE79E414E9D079692C59C6A40F7E5AC68F6736F2870EB170DA705ED9933453D09546377EB35F0F7E8CA3F634CE2FA6EC9C1379CA5EA3785418D51014C7FC9DA8ECD0DCB6711C1973023D9B4C5C115E41EA4C9B2564AC9C37D8A9A832D0855E0FD67717FEDFAF67AE169CDC61B1652FC8BBB29ACFEB2E751D4A2C6077DCB9FE1EFC1B8141; RBXSource=rbx_acquisition_time=4/17/2021 6:50:23 PM&rbx_acquisition_referrer=&rbx_medium=Direct&rbx_source=&rbx_campaign=&rbx_adgroup=&rbx_keyword=&rbx_matchtype=&rbx_send_info=1; _ga=GA1.1.73790619.1619113049; _ga_0E3DVKZFR1=GS1.1.1619125155.3.1.1619126004.0; rbx-ip=
 roblox-proxied-ip: 128.116.123.3
 roblox-proxied-locale: en-us
 roblox-security-token: ljWby+/HVsZXJLfRkoljWby+/HVsZXJLfRko9mPQ9mPQ==
@@ -1347,6 +1346,16 @@ roblox-api-key: 2A04B993-BC10-40AB-B34D-E9FB80CCB34D
 requester: Server
 true-client-ip: 128.116.123.3
 x-real-ip: 128.116.123.3
-referrer: https://roblox.com
 
 {<script>alert(1)</script>}
+
+###
+
+
+GET points.sitetest4.robloxlabs.com/v1/universes/1/users/1/all-time?_=1619278547824 HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+Accept: application/json
+Accept-Language: en-US,en;q=0.5
+Origin: http://points.sitetest4.robloxlabs.com
+Connection: keep-alive
+Referer: http://points.sitetest4.robloxlabs.com/

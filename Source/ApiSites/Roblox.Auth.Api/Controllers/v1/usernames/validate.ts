@@ -30,8 +30,8 @@ import { GetUserFromCookie } from '../../../../../Assemblies/Web/Auth/Roblox.Web
 import { Errors } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { ProtocolValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ProtocolValidator';
-import { IUsernameValidationRequest } from '../../../Models/IUsernameValidationRequest';
-import { IUsernameValidationResponse } from '../../../Models/IUsernameValidationResponse';
+import { IUsernameValidationRequest } from '../../../Models/UsernameValidationRequest';
+import { IUsernameValidationResponse } from '../../../Models/UsernameValidationResponse';
 
 export default {
 	method: 'ALL',

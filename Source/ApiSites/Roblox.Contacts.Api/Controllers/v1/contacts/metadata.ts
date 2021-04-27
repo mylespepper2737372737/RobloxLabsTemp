@@ -25,12 +25,15 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { Request, Response } from 'express';
+import { DFInt, DYNAMIC_FASTINTVARIABLE } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { ContactsMetadataResponseModel } from '../../../Models/Response/ContactsMetadataResponseModel';
+
+DYNAMIC_FASTINTVARIABLE('MultiGetContactsMaxSize', 200);
 
 export default {
 	method: 'all',
-	func: (_req, res): void => {
-		const DFInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFInts();
-		return res.send({ multiGetContactsMaxSize: DFInt['MultiGetContactsMaxSize'] });
+	func: (_request: Request, response: Response<ContactsMetadataResponseModel>): Response<ContactsMetadataResponseModel> => {
+		return response.send({ multiGetContactsMaxSize: DFInt('MultiGetContactsMaxSize') });
 	},
 };

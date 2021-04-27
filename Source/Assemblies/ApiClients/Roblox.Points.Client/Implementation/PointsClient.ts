@@ -2,7 +2,7 @@ import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
 import { ApiKeys } from '../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { ServiceClient } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
 import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
-import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../System/Threading/Task';
 import { IUser } from '../../../Platform/Membership/Roblox.Platform.Membership/IUser';
 import { IUniverse } from '../../../Platform/Universes/Roblox.Platform.Universes/IUniverse';
 

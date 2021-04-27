@@ -1,5 +1,5 @@
 import { DFLog, FASTLOGS } from '../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
-import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../System/Threading/Task';
 import { PartialDatabase } from '../../../Mssql/Roblox.Mssql.PartialDatabase/Implementation/PartialDatabase';
 import { PartialDatabaseConditionType } from '../../../Mssql/Roblox.Mssql.PartialDatabase/Enumeration/PartialDatabaseConditionType';
 import { ISequence } from './ISequence';

@@ -1,23 +1,23 @@
--- Start Game Script Arguments
+-- Start game Script Arguments
 local placeId,
     port,
-    gameId,
+    gameId, -- TODO: Use
     sleeptime,
     access,
-    deprecated,
+    deprecated, -- TODO: Use
     timeout,
-    machineAddress,
-    gsmInterval,
+    machineAddress, -- TODO: Use
+    gsmInterval, -- TODO: Use
     baseUrl,
-    maxPlayers,
-    maxGameInstances,
+    maxPlayers, -- TODO: Use
+    maxGameInstances, -- TODO: Use
     injectScriptAssetID,
-    apiKey,
+    apiKey, -- TODO: Use
     libraryRegistrationScriptAssetID,
-    deprecated_pingTimesReportInterval,
+    deprecated_pingTimesReportInterval, -- TODO: Use
     gameCode,
     universeId,
-    preferredPlayerCapacity,
+    preferredPlayerCapacity, -- TODO: Use
     matchmakingContextId,
     placeVisitAccessKey,
     assetGameSubdomain,
@@ -128,7 +128,7 @@ if url ~= nil then
     )
     pcall(
         function()
-            game:GetService("Players"):SetChatFilterUrl(assetGameUrl .. "/Game/ChatFilter.ashx")
+            game:GetService("Players"):SetChatFilterUrl(assetGameUrl .. "/game/ChatFilter.ashx")
         end
     )
 
@@ -147,29 +147,29 @@ if url ~= nil then
     if access ~= nil then
         if not newBadgeUrlEnabled then
             game:GetService("BadgeService"):SetAwardBadgeUrl(
-                assetGameUrl .. "/Game/Badge/AwardBadge.ashx?UserID=%d&BadgeID=%d&PlaceID=%d"
+                assetGameUrl .. "/game/Badge/AwardBadge.ashx?UserID=%d&BadgeID=%d&PlaceID=%d"
             )
         end
 
-        game:GetService("BadgeService"):SetHasBadgeUrl(assetGameUrl .. "/Game/Badge/HasBadge.ashx?UserID=%d&BadgeID=%d")
+        game:GetService("BadgeService"):SetHasBadgeUrl(assetGameUrl .. "/game/Badge/HasBadge.ashx?UserID=%d&BadgeID=%d")
         game:GetService("BadgeService"):SetIsBadgeDisabledUrl(
-            assetGameUrl .. "/Game/Badge/IsBadgeDisabled.ashx?BadgeID=%d&PlaceID=%d"
+            assetGameUrl .. "/game/Badge/IsBadgeDisabled.ashx?BadgeID=%d&PlaceID=%d"
         )
 
         game:GetService("FriendService"):SetMakeFriendUrl(
-            assetGameUrl .. "/Game/CreateFriend?firstUserId=%d&secondUserId=%d"
+            assetGameUrl .. "/game/CreateFriend?firstUserId=%d&secondUserId=%d"
         )
         game:GetService("FriendService"):SetBreakFriendUrl(
-            assetGameUrl .. "/Game/BreakFriend?firstUserId=%d&secondUserId=%d"
+            assetGameUrl .. "/game/BreakFriend?firstUserId=%d&secondUserId=%d"
         )
-        game:GetService("FriendService"):SetGetFriendsUrl(assetGameUrl .. "/Game/AreFriends?userId=%d")
+        game:GetService("FriendService"):SetGetFriendsUrl(assetGameUrl .. "/game/AreFriends?userId=%d")
     end
     game:GetService("BadgeService"):SetIsBadgeLegalUrl("")
-    game:GetService("InsertService"):SetBaseSetsUrl(assetGameUrl .. "/Game/Tools/InsertAsset.ashx?nsets=10&type=base")
+    game:GetService("InsertService"):SetBaseSetsUrl(assetGameUrl .. "/game/Tools/InsertAsset.ashx?nsets=10&type=base")
     game:GetService("InsertService"):SetUserSetsUrl(
-        assetGameUrl .. "/Game/Tools/InsertAsset.ashx?nsets=20&type=user&userid=%d"
+        assetGameUrl .. "/game/Tools/InsertAsset.ashx?nsets=20&type=user&userid=%d"
     )
-    game:GetService("InsertService"):SetCollectionUrl(assetGameUrl .. "/Game/Tools/InsertAsset.ashx?sid=%d")
+    game:GetService("InsertService"):SetCollectionUrl(assetGameUrl .. "/game/Tools/InsertAsset.ashx?sid=%d")
     game:GetService("InsertService"):SetAssetUrl(assetGameUrl .. "/Asset/?id=%d")
     game:GetService("InsertService"):SetAssetVersionUrl(assetGameUrl .. "/Asset/?assetversionid=%d")
 
@@ -177,14 +177,14 @@ if url ~= nil then
         pcall(
             function()
                 loadfile(
-                    assetGameUrl .. "/Game/LoadPlaceInfo.ashx?PlaceId=" .. placeId .. "&gameCode=" .. tostring(gameCode)
+                    assetGameUrl .. "/game/LoadPlaceInfo.ashx?PlaceId=" .. placeId .. "&gameCode=" .. tostring(gameCode)
                 )()
             end
         )
     else
         pcall(
             function()
-                loadfile(assetGameUrl .. "/Game/LoadPlaceInfo.ashx?PlaceId=" .. placeId)()
+                loadfile(assetGameUrl .. "/game/LoadPlaceInfo.ashx?PlaceId=" .. placeId)()
             end
         )
     end
@@ -192,7 +192,7 @@ if url ~= nil then
     pcall(
         function()
             if access then
-                loadfile(assetGameUrl .. "/Game/PlaceSpecificScript.ashx?PlaceId=" .. placeId)()
+                loadfile(assetGameUrl .. "/game/PlaceSpecificScript.ashx?PlaceId=" .. placeId)()
             end
         end
     )
@@ -200,16 +200,16 @@ end
 
 pcall(
     function()
-        game:GetService("NetworkServer"):SetIsPlayerAuthenticationRequired(true)
+        game:GetService("NetworkServer"):SetIsPlayerAuthenticationRequired(false)
     end
 )
 settings().Diagnostics.LuaRamLimit = 0
 
-game:GetService("Players").PlayerAdded:connect(
+game:GetService("Players").PlayerAdded:Connect(
     function(player)
-        print("Player " .. player.userId .. " added")
+        print("Player " .. player.UserId .. " added")
 
-        if assetGameUrl and access and placeId and player and player.userId then
+        if assetGameUrl and access and placeId and player and player.UserId then
             local didTeleportIn = "False"
             if player.TeleportedIn then
                 didTeleportIn = "True"
@@ -217,13 +217,13 @@ game:GetService("Players").PlayerAdded:connect(
 
             game:HttpGet(
                 assetGameUrl ..
-                    "/Game/ClientPresence.ashx?action=connect&PlaceID=" .. placeId .. "&UserID=" .. player.userId
+                    "/game/ClientPresence.ashx?action=connect&PlaceID=" .. placeId .. "&UserID=" .. player.userId
             )
             if not isCloudEdit then
                 game:HttpPost(
                     assetGameUrl ..
-                        "/Game/PlaceVisit.ashx?UserID=" ..
-                            player.userId ..
+                        "/game/PlaceVisit.ashx?UserID=" ..
+                            player.UserId ..
                                 "&AssociatedPlaceID=" ..
                                     placeId ..
                                         "&placeVisitAccessKey=" ..
@@ -247,7 +247,7 @@ game:GetService("Players").PlayerRemoving:connect(
         if assetGameUrl and access and placeId and player and player.userId then
             game:HttpGet(
                 assetGameUrl ..
-                    "/Game/ClientPresence.ashx?action=disconnect&PlaceID=" ..
+                    "/game/ClientPresence.ashx?action=disconnect&PlaceID=" ..
                         placeId .. "&UserID=" .. player.userId .. "&IsTeleport=" .. isTeleportingOut
             )
         end
@@ -295,16 +295,16 @@ if not isCloudEdit then
     if injectScriptAssetID and (injectScriptAssetID < 0) then
         pcall(
             function()
-                Game:LoadGame(injectScriptAssetID * -1)
+                game:LoadGame(injectScriptAssetID * -1)
             end
         )
     else
         pcall(
             function()
-                Game:GetService("ScriptContext"):AddStarterScript(injectScriptAssetID)
+                game:GetService("ScriptContext"):AddStarterScript(injectScriptAssetID)
             end
         )
     end
 
-    Game:GetService("RunService"):Run()
+    game:GetService("RunService"):Run()
 end

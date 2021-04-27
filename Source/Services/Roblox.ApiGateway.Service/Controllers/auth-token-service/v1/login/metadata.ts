@@ -25,12 +25,11 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { DFFlag } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		return res.send({
 			IsLoginCodeButtonDisplayed: DFFlag['IsLoginCodeButtonDisplayed'],
 			IsCodeValidationDisplayed: DFFlag['IsCodeValidationDisplayed'],

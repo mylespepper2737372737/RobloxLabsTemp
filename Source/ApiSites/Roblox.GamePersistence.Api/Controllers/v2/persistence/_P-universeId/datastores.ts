@@ -25,7 +25,6 @@
 	***
 */
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import {
 	DFFlag,
 	DFInt,
@@ -48,6 +47,7 @@ import { User } from '../../../../../../Assemblies/Platform/Membership/Roblox.Pl
 import { ICustomError } from '../../../../../../Assemblies/Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { Errors } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
 import { InputValidator } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/InputValidator';
+import { ClientSettings } from '../../../../../../Assemblies/Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 
 // IDataStoreRespose[] Roblox.Web.GamePersistence.GamePersistenceRequestProcessor.GetDataStoresForTheUniverse(IDataStoreRequest request)
 // Request example:
@@ -164,9 +164,7 @@ export default {
 				}
 			}
 
-			if (
-				!RobloxLegacy.Api.Helpers.Util.ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'ClientAppSettings')
-			) {
+			if (!ClientSettings.GetPlaceIdInPlaceFilter('DataStoresV2Enabled', PlaceId, 'ClientAppSettings')) {
 				FASTLOG1(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] The place %d was not in the filter, bruh', PlaceId);
 				return response.status(403).send({
 					errors: [

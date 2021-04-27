@@ -27,9 +27,11 @@
 */
 
 import filestream from 'fs';
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { __baseDirName } from '../../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+import { DFFlag, DYNAMIC_FASTFLAG, FASTFLAG, FFlag } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
+DYNAMIC_FASTFLAG('IsAuthV2Enabled');
 
 export default {
 	method: 'ALL',
@@ -46,10 +48,8 @@ export default {
 			clearCookie: (arg0: string, arg1: { domain: string; path: string }) => { send: (body: any) => void };
 		},
 	) => {
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
-
 		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
-		if (!DFFlag['IsAuthV2Enabled'])
+		if (!DFFlag('IsAuthV2Enabled'))
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
@@ -59,14 +59,12 @@ export default {
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				code: 405,
-				message: `The requested resource does not support https method '${request.method}.'`,
+				message: `The requested resource does not support http method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
-			return response.status(403).send({ code: 403, message: 'https Required.' });
-		const data = JSON.parse(
-			filestream.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
-		);
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
+		const data = JSON.parse(filestream.readFileSync(__baseDirName + '/lib/env.json', { encoding: 'utf-8' }));
 		const AuthToken: string =
 			request.cookies.AuthToken ||
 			(request.query.cookie as string)
@@ -92,13 +90,10 @@ export default {
 
 		data['userIds'][userId].loggedOn = false;
 		data['userIds'][userId].sessionId = '';
-		filestream.writeFile(
-			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json',
-			JSON.stringify(data, undefined, 4),
-			() =>
-				response
-					.clearCookie('AuthToken', { domain: 'sitetest4.robloxlabs.com', path: '/' })
-					.send({ success: true, message: 'Success' }),
+		filestream.writeFile(__baseDirName + '/lib/env.json', JSON.stringify(data, undefined, 4), () =>
+			response
+				.clearCookie('AuthToken', { domain: 'sitetest4.robloxlabs.com', path: '/' })
+				.send({ success: true, message: 'Success' }),
 		);
 	},
 };

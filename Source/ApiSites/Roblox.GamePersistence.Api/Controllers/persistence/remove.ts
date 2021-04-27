@@ -26,7 +26,9 @@
 */
 
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { GetUniverseIdFromPlaceId } from '../../../../Assemblies/Caching/Universes/Roblox.Caching.Universes/GetUniverseIdFromPlaceId';
+import { GetKeyOrEntryForScope } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/GetKeyOrEntryForScope';
+import { PurgeKeyFromScope } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/PurgeKeyFromScope';
 
 export default {
 	method: 'all',
@@ -47,7 +49,7 @@ export default {
 				});
 		}
 		const placeId = parseInt(!usequery ? <string>request.headers['roblox-place-id'] : <string>request.query['placeId']);
-		const [success, universeId] = RobloxLegacy.Api.Helpers.Helpers.Places.GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
+		const [success, universeId] = GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
 		if (!success)
 			return response.status(403).send({
 				errors: [
@@ -82,13 +84,7 @@ export default {
 					],
 				});
 
-		const [, key] = await RobloxLegacy.Api.Helpers.Helpers.PersistentDataStores.GetHelpers.GetKeyOrEntryForScope(
-			universeId,
-			store,
-			scope,
-			k,
-			request.query['type'] === 'standard' ? false : true,
-		);
+		const [, key] = await GetKeyOrEntryForScope(universeId, store, scope, k, request.query['type'] === 'standard' ? false : true);
 		if (key === null) {
 			return response.status(200).send({
 				data: null,
@@ -97,13 +93,7 @@ export default {
 		const value = key.value.raw;
 
 		if (scope === '') scope = '_';
-		const success2 = await RobloxLegacy.Api.Helpers.Helpers.PersistentDataStores.PurgeHelpers.PurgeKeyFromScope(
-			universeId,
-			store,
-			scope,
-			k,
-			request.query['type'] === 'standard' ? false : true,
-		);
+		const success2 = await PurgeKeyFromScope(universeId, store, scope, k, request.query['type'] === 'standard' ? false : true);
 		if (!success2)
 			return response.status(200).send({
 				error: 'Unknown error',

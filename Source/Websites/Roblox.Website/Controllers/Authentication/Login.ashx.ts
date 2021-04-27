@@ -41,37 +41,53 @@ import { Request, Response } from 'express-serve-static-core';
 import dotenv from 'dotenv';
 import filestream from 'fs';
 import Crypto from 'crypto';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { GetManifests } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_GetManifest';
+import { GetRegisteredUsers } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_GetRegisteredUsers';
+import { GetSessions } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_GetSessions';
+import { WriteToManifest } from '../../../../Assemblies/Caching/Database/Roblox.Caching.Database/DEPRECATED_WriteToManifest';
+import { CreateCaptchaBlobSessionAfter403 } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateCaptchaBlobSessionAfter403';
+import { DeleteCaptchaSession } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/DeleteCaptchaSession';
+import { CreateCsrfSessionFile } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateCsrfSessionFile';
+import { CreateCaptchaSessionBlob } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateCaptchaSessionBlob';
+import {
+	DFFlag,
+	DFInt,
+	DYNAMIC_FASTFLAG,
+	DYNAMIC_FASTINT,
+	FASTFLAG,
+	FFlag,
+} from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
-dotenv.config({ path: RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\.env' });
+dotenv.config({ path: __baseDirName + '\\.env' });
 
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
+FASTFLAG('RequireGlobalHTTPS');
+DYNAMIC_FASTFLAG('IsWWWAuthV1Enabled');
+DYNAMIC_FASTINT('WWWAuthV1MaxAuthTokenAge');
 
 export default {
 	method: 'All',
 	func: (request: Request, response: Response): Response<unknown> | void => {
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
-		const DFInt = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFInts();
-		const Manifest = RobloxLegacy.Api.Helpers.Helpers.DB.GetManifests();
-		if (!DFFlag['IsWWWAuthV1Enabled'])
+		const Manifest = GetManifests();
+		if (!DFFlag('IsWWWAuthV1Enabled'))
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
 		if (request.method === 'OPTIONS') return response.status(200).send({ success: true, message: '' });
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
-			return response.status(403).send({ success: false, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ success: false, message: 'HTTPS Required.' });
 
-		if (request.method !== 'POST' && !DFFlag['WWWAuthV1AllowAllMethods'])
+		if (request.method !== 'POST' && !DFFlag('WWWAuthV1AllowAllMethods'))
 			return response.status(405).send({
 				success: false,
-				message: `The requested resource does not support https method '${request.method}'.`,
+				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		const registeredUsers = RobloxLegacy.Api.Helpers.Helpers.DB.GetRegisteredUsers();
+		const registeredUsers = GetRegisteredUsers();
 
-		const sessions = filestream.readdirSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\DataBase\\sessions');
+		const sessions = filestream.readdirSync(__baseDirName + '\\DataBase\\sessions');
 		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
 		if (request.body && request.headers['content-type'] !== 'application/x-www-form-urlencoded')
 			return response.status(400).send({
@@ -85,9 +101,9 @@ export default {
 				userfacingmessage: 'The provided credentials were invalid.',
 			});
 
-		const Sessions = RobloxLegacy.Api.Helpers.Helpers.DB.GetSessions();
+		const Sessions = GetSessions();
 		if (DFFlag['IsCaptchaV2Enabled']) {
-			const __captchaSession = RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaSessionBlob(request.ip);
+			const __captchaSession = CreateCaptchaSessionBlob(request.ip);
 			const cToken = request.body['captchaToken'];
 			if (typeof cToken === 'string') {
 				const cSession = cToken.split('|')[0];
@@ -102,35 +118,18 @@ export default {
 					}
 					if (isCaptchaSessionValid) {
 						const cAnswer = cToken.split('|')[1];
-						if (!Sessions.has(cSession))
-							return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-								response,
-								__captchaSession,
-								request.ip,
-							);
+						if (!Sessions.has(cSession)) return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 						if (Sessions.get(cSession).answer !== cAnswer)
-							return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-								response,
-								__captchaSession,
-								request.ip,
-							);
-						RobloxLegacy.Api.Helpers.Helpers.Sessions.DeleteCaptchaSession(cSession);
+							return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+						DeleteCaptchaSession(cSession);
 					} else {
-						return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-							response,
-							__captchaSession,
-							request.ip,
-						);
+						return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 					}
 				} else {
-					return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(
-						response,
-						__captchaSession,
-						request.ip,
-					);
+					return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 				}
 			} else {
-				return RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
+				return CreateCaptchaBlobSessionAfter403(response, __captchaSession, request.ip);
 			}
 		}
 
@@ -157,14 +156,14 @@ export default {
 				userfacingmessage: 'Incorrect Password or Username.',
 			});
 		const AuthToken = Crypto.createHash('sha512').update(Crypto.randomBytes(1000)).digest('hex');
-		RobloxLegacy.Api.Helpers.Helpers.DB.WriteToManifest(userId, 'sessionIds', AuthToken, true, false, 0, false, false);
-		RobloxLegacy.Api.Helpers.Helpers.Sessions.CreateCsrfSessionFile(AuthToken);
+		WriteToManifest(userId, 'sessionIds', AuthToken, true, false, 0, false, false);
+		CreateCsrfSessionFile(AuthToken);
 
 		response.shouldKeepAlive = false;
 		return response
 			.status(200)
 			.cookie('AuthToken', AuthToken, {
-				maxAge: DFInt['WWWAuthV1MaxAuthTokenAge'],
+				maxAge: DFInt('WWWAuthV1MaxAuthTokenAge'),
 				domain: 'sitetest4.robloxlabs.com',
 				secure: false,
 				sameSite: 'lax',

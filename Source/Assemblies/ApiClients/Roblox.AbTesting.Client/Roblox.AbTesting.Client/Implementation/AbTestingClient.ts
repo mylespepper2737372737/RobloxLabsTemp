@@ -1,4 +1,4 @@
-import { Task } from '../../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../../System/Threading/Task';
 import { IEnrollment } from '../../../../Platform/AbTesting/Roblox.Platform.AbTesting/IEnrollment';
 import Http from 'axios';
 import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';

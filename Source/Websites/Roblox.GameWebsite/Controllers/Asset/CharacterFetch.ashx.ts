@@ -25,12 +25,16 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { Request, Response } from 'express';
+import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+
+DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearranceTestString', '');
+
+// TODO: Move the qs to a model.
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
-		const DFString = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFStrings();
-		return res.send(DFString['CharacterAppearranceTestString']);
+	func: async (_request: Request<null, string, null, { placeId: int; userId: int }>, response: Response<string>) => {
+		return response.send(DFString('CharacterAppearranceTestString'));
 	},
 };

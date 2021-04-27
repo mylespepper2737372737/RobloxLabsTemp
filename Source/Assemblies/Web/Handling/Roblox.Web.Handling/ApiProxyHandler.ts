@@ -1,7 +1,17 @@
 import { RequestHandler } from 'express-serve-static-core';
 import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { FASTLOG5, FLog } from '../../Util/Roblox.Web.Util/Logging/FastLog';
 
 export const ApiProxyHandler = ((request, response, next) => {
+	FASTLOG5(
+		FLog['Protocol77'],
+		`[FLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
+		request.method.toUpperCase(),
+		request.protocol,
+		request.hostname,
+		request.url,
+		(request.headers['user-agent'] || '').toUpperCase(),
+	);
 	response.header({
 		'roblox-machine-id': 'AWA-1313',
 		p3p: 'CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"',

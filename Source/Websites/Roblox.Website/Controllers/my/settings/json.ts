@@ -25,13 +25,13 @@
 	***
 */
 
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import fs from 'fs';
+import { __baseDirName } from '../../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		const template = fs.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\user.json', {
+		const template = fs.readFileSync(__baseDirName + '\\InternalCDN\\user.json', {
 			encoding: 'utf-8',
 		});
 		return res.send(template);

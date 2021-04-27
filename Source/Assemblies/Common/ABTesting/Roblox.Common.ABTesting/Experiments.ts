@@ -1,7 +1,7 @@
-import { RobloxLegacy } from '../../Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
 import { IEnrollment } from '../../../Platform/AbTesting/Roblox.Platform.AbTesting/IEnrollment';
 import { IEnrollmentResponse } from '../../../Platform/AbTesting/Roblox.Platform.AbTesting/IEnrollmentResponse';
 import { ExperimentStatusEnum } from '../../../Platform/AbTesting/Roblox.Platform.AbTesting/ExperimentStatusEnum';
+import { ClientSettings } from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 
 export let UserExperiments = {};
 export let BrowserTrackerExperiments = {};
@@ -12,9 +12,9 @@ export const Setting = {
 
 export namespace Experiments {
 	function InternalInitializeExperimentsFromManifest() {
-		UserExperiments = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetUserExperiments();
-		BrowserTrackerExperiments = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetBrowserTrackerExperiments();
-		SharedExperiments = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetSharedExperiments();
+		UserExperiments = ClientSettings.GetUserExperiments();
+		BrowserTrackerExperiments = ClientSettings.GetBrowserTrackerExperiments();
+		SharedExperiments = ClientSettings.GetSharedExperiments();
 		Setting.done = true;
 		return;
 	}

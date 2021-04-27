@@ -1,5 +1,5 @@
 import { Connection } from 'mysql';
-import { Task } from '../../../Http/Types/Roblox.Http.Types/Task';
+import { Task } from '../../../../System/Threading/Task';
 import { IPartialDatabaseRowResponseModel } from '../Models/IPartialDatabaseRowResponseModel';
 import { IPartialDatabaseCondition } from '../Models/IPartialDatabaseCondtion';
 import { IPartialDatabaseRowsByKeyModel } from '../Models/IPartialDatabaseRowsByKeyModel';

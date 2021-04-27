@@ -28,8 +28,12 @@
 
 import filestream from 'fs';
 import crypto from 'crypto';
-import { RobloxLegacy } from '../../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
-const FFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetFFlags();
+import { DFFlag, DYNAMIC_FASTFLAGVARIABLE, FASTFLAG, FFlag } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { __baseDirName } from '../../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+
+FASTFLAG('RequireGlobalHTTPS');
+DYNAMIC_FASTFLAGVARIABLE('IsAuthV2Enabled', false);
+
 /**
  * @deprecated
  */
@@ -58,25 +62,22 @@ export default {
 			};
 		},
 	) => {
-		const DFFlag = RobloxLegacy.Api.Helpers.Util.ClientSettings.GetDFFlags();
 		if (request.method === 'OPTIONS') return response.status(200).send({ code: 200, message: '' });
-		if (!DFFlag['IsAuthV2Enabled'])
+		if (!DFFlag('IsAuthV2Enabled'))
 			return response.status(503).send({
 				code: 503,
 				message: 'The server cannot handle the request (because it is overloaded or down for maintenance)',
 				userfacingmessage: 'Service disabled for an unknown amount of time.',
 			});
-		if (FFlag['RequireGlobalhttps'] && request.protocol !== 'https')
-			return response.status(403).send({ code: 403, message: 'https Required.' });
+		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
+			return response.status(403).send({ code: 403, message: 'HTTPS Required.' });
 		if (request.method !== 'POST')
 			return response.status(405).send({
 				code: 405,
-				message: `The requested resource does not support https method '${request.method}.'`,
+				message: `The requested resource does not support http method '${request.method}.'`,
 				userfacingmessage: 'Something went wrong.',
 			});
-		const data = JSON.parse(
-			filestream.readFileSync(RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json', { encoding: 'utf-8' }),
-		);
+		const data = JSON.parse(filestream.readFileSync(__baseDirName + '/lib/env.json', { encoding: 'utf-8' }));
 		if (
 			JSON.stringify(request.body) === '{}' ||
 			JSON.stringify(request.body) === '' ||
@@ -131,22 +132,18 @@ export default {
 		}
 
 		user['sessionId'] = AuthToken;
-		filestream.writeFile(
-			RobloxLegacy.Api.Constants.RobloxDirectories.__iBaseDirectory + '/lib/env.json',
-			JSON.stringify(data, undefined, 4),
-			() => {
-				response
-					.status(200)
-					.cookie('AuthToken', AuthToken, {
-						domain: 'sitetest4.robloxlabs.com',
-						expires: new Date('2050'),
-						httpsOnly: false,
-					})
-					.send({
-						success: true,
-						message: 'Success',
-					});
-			},
-		);
+		filestream.writeFile(__baseDirName + '/lib/env.json', JSON.stringify(data, undefined, 4), () => {
+			response
+				.status(200)
+				.cookie('AuthToken', AuthToken, {
+					domain: 'sitetest4.robloxlabs.com',
+					expires: new Date('2050'),
+					httpsOnly: false,
+				})
+				.send({
+					success: true,
+					message: 'Success',
+				});
+		});
 	},
 };

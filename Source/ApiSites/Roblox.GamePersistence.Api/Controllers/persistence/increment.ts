@@ -25,7 +25,9 @@
 	***
 */
 import { Request, Response } from 'express-serve-static-core';
-import { RobloxLegacy } from '../../../../Assemblies/Common/Legacy/Roblox.Common.Legacy/RobloxLegacyWrapper';
+import { GetUniverseIdFromPlaceId } from '../../../../Assemblies/Caching/Universes/Roblox.Caching.Universes/GetUniverseIdFromPlaceId';
+import { GetKeyOrEntryForScope } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/GetKeyOrEntryForScope';
+import { PushKeyToPersistentStore } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/PushKeyToPersistentStore';
 
 export default {
 	method: 'all',
@@ -46,7 +48,7 @@ export default {
 				});
 		}
 		const placeId = parseInt(!usequery ? <string>request.headers['roblox-place-id'] : <string>request.query['placeId']);
-		const [success, universeId] = RobloxLegacy.Api.Helpers.Helpers.Places.GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
+		const [success, universeId] = GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
 		if (!success)
 			return response.status(403).send({
 				errors: [
@@ -92,13 +94,7 @@ export default {
 				],
 			});
 
-		const [, key] = await RobloxLegacy.Api.Helpers.Helpers.PersistentDataStores.GetHelpers.GetKeyOrEntryForScope(
-			universeId,
-			store,
-			scope,
-			k,
-			request.query['type'] === 'standard' ? false : true,
-		);
+		const [, key] = await GetKeyOrEntryForScope(universeId, store, scope, k, request.query['type'] === 'standard' ? false : true);
 		let value = 0;
 		if (key === null) {
 			value = parseInt(delta);
@@ -121,7 +117,7 @@ export default {
 		}
 
 		if (scope === '') scope = '_';
-		const success2 = await RobloxLegacy.Api.Helpers.Helpers.PersistentDataStores.SetHelpers.PushKeyToPersistentStore(
+		const success2 = await PushKeyToPersistentStore(
 			universeId,
 			store,
 			scope,

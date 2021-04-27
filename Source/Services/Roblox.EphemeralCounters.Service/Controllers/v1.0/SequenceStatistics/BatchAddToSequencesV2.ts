@@ -30,12 +30,12 @@ import { EphemeralCountersService } from '../../../../../Assemblies/ApiServices/
 import { Errors } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
 import { ContentTypeValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
-import { ISequence } from '../../../ISequence';
+import { Sequence } from '../../../Sequence';
 import { ISequencesItem } from '../../../ISequencesItem';
 
 export default {
 	method: 'all',
-	func: async (request: Request<null, null, ISequence[], null>, response: Response): Promise<void> => {
+	func: async (request: Request<null, null, Sequence[], null>, response: Response): Promise<void> => {
 		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
 		if (
 			!ContentTypeValidator.CheckContentTypes(
