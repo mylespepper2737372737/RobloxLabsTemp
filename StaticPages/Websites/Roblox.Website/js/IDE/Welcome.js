@@ -45,7 +45,7 @@ $(function () {
 						Roblox.IDEWelcome.Resources.openProject,
 						'/images/Icons/img-alert.png',
 						Roblox.IDEWelcome.Resources.openProjectText +
-							" <a target='_blank' href='https://wiki.sitetest4.robloxlabs.com/index.php/Studio'>" +
+							" <a target='_blank' href='http://wiki.roblox.com/index.php/Studio'>" +
 							Roblox.IDEWelcome.Resources.robloxStudio +
 							'</a>.',
 				  );
@@ -89,7 +89,7 @@ $(function () {
 							Roblox.IDEWelcome.Resources.toEdit +
 								t.find('p').text() +
 								Roblox.IDEWelcome.Resources.openPage +
-								"<a target='_blank' href='https://wiki.sitetest4.robloxlabs.com/index.php/Studio'>" +
+								"<a target='_blank' href='http://wiki.roblox.com/index.php/Studio'>" +
 								Roblox.IDEWelcome.Resources.robloxStudio +
 								'</a>.',
 					  ),
@@ -119,7 +119,7 @@ $(function () {
 							Roblox.IDEWelcome.Resources.toBuild +
 								n.find('p').text() +
 								Roblox.IDEWelcome.Resources.openPage +
-								"<a target='_blank' href='https://wiki.sitetest4.robloxlabs.com/index.php/Studio'>" +
+								"<a target='_blank' href='http://wiki.roblox.com/index.php/Studio'>" +
 								Roblox.IDEWelcome.Resources.robloxStudio +
 								'</a>.',
 					  ),

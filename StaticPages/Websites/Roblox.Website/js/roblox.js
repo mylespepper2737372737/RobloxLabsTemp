@@ -1,211 +1,208 @@
-(function (window, undefined) {
+﻿(function (window, undefined) {
+	var document = window.document,
+		firstScript = document.getElementsByTagName('script')[0],
+		isString = function (o) {
+			return typeof o == 'string';
+		},
+		isArray = function (o) {
+			return Object.prototype.toString.call(o) == '[object Array]';
+		},
+		isFunction = function (o) {
+			return Object.prototype.toString.call(o) == '[object Function]';
+		},
+		resourceMap = {},
+		config = {
+			baseUrl: '',
+			modulePath: '/js/modules',
+			paths: {},
+			externalResources: [],
+		};
 
-    var document = window.document,
-        firstScript = document.getElementsByTagName('script')[0],
-        isString = function (o) {
-            return typeof o == 'string';
-        },
-        isArray = function (o) {
-            return Object.prototype.toString.call(o) == '[object Array]';
-        },
-        isFunction = function (o) {
-            return Object.prototype.toString.call(o) == '[object Function]';
-        },
-        resourceMap = {},
-        config = {
-            baseUrl: '',
-            modulePath: '/js/modules',
-            paths: {},
-            externalResources: []
-        };
+	function deepGet(object, property) {
+		var parts = property.split('.');
+		for (property = parts.shift(); parts.length > 0; object = object[property], property = parts.shift()) {
+			if (object[property] === undefined) return undefined;
+		}
+		return object[property];
+	}
 
+	function deepSet(object, property, value) {
+		var parts = property.split('.');
+		for (property = parts.shift(); parts.length > 0; object = object[property], property = parts.shift()) {
+			if (object[property] === undefined) object[property] = {};
+		}
+		object[property] = value;
+	}
 
-    function deepGet(object, property) {
-        var parts = property.split('.');
-        for (property = parts.shift(); parts.length > 0; object = object[property], property = parts.shift()) {
-            if (object[property] === undefined)
-                return undefined;
-        }
-        return object[property];
-    }
+	function loadCss(href, onload) {
+		var link = document.createElement('link');
+		link.href = href;
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		firstScript.parentNode.insertBefore(link, firstScript);
+		onload();
+	}
 
-    function deepSet(object, property, value) {
-        var parts = property.split('.');
-        for (property = parts.shift(); parts.length > 0; object = object[property], property = parts.shift()) {
-            if (object[property] === undefined)
-                object[property] = {};
-        }
-        object[property] = value;
-    }
+	function loadJs(src, onload) {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = src;
+		script.onload = script.onreadystatechange = function () {
+			if (!script.readyState || script.readyState == 'loaded' || script.readyState == 'complete') {
+				onload();
 
-    function loadCss(href, onload) {
-        var link = document.createElement('link');
-        link.href = href;
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        firstScript.parentNode.insertBefore(link, firstScript);
-        onload();
-    }
+				// Handle memory leak in IE
+				script.onload = script.onreadystatechange = null;
+			}
+		};
+		firstScript.parentNode.insertBefore(script, firstScript);
+	}
 
-    function loadJs(src, onload) {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = src;
-        script.onload = script.onreadystatechange = function () {
-            if (!script.readyState || script.readyState == 'loaded' || script.readyState == 'complete') {
-                onload();
+	function getExtension(url) {
+		return url.split('.').pop().split('?').shift();
+	}
 
-                // Handle memory leak in IE
-                script.onload = script.onreadystatechange = null;
-            }
-        };
-        firstScript.parentNode.insertBefore(script, firstScript);
-    }
+	function getResourceName(url) {
+		// Check if it's already a name
+		if (url.indexOf('.js') < 0) return url;
 
-    function getExtension(url) {
-        return url.split('.').pop().split('?').shift();
-    }
+		// Pull out the name if it's a module
+		if (url.indexOf(config.modulePath) >= 0)
+			return url
+				.split(config.modulePath + '/')
+				.pop()
+				.split('.')
+				.shift()
+				.replace('/', '.');
 
-    function getResourceName(url) {
-        // Check if it's already a name
-        if (url.indexOf('.js') < 0)
-            return url;
+		// Check paths config
+		for (var name in config.paths) {
+			if (config.paths[name] == url) return name;
+		}
 
-        // Pull out the name if it's a module
-        if (url.indexOf(config.modulePath) >= 0)
-            return url.split(config.modulePath + '/').pop().split('.').shift().replace('/', '.');
+		// Resource isn't a module, use url for name
+		return url;
+	}
 
-        // Check paths config
-        for (var name in config.paths) {
-            if (config.paths[name] == url)
-                return name;
-        }
+	function getResourceUrl(name) {
+		// Check if it's already a url
+		if (name.indexOf('.js') >= 0 || name.indexOf('.css') >= 0) return name;
 
-        // Resource isn't a module, use url for name
-        return url;
-    }
+		return config.paths[name] || config.baseUrl + config.modulePath + '/' + name.replace('.', '/') + '.js';
+	}
 
-    function getResourceUrl(name) {
-        // Check if it's already a url
-        if (name.indexOf('.js') >= 0 || name.indexOf('.css') >= 0)
-            return name;
+	function getModules(resources) {
+		var module,
+			modules = [];
+		for (var i = 0; i < resources.length; i++) {
+			module = deepGet(Roblox, getResourceName(resources[i]));
+			if (module !== undefined) modules.push(module);
+		}
+		return modules;
+	}
 
-        return config.paths[name] || config.baseUrl + config.modulePath + '/' + name.replace('.', '/') + '.js';
-    }
+	function resolveResource(name) {
+		var resource = resourceMap[name];
+		if (!resource.loaded || !resource.depsLoaded) return;
 
-    function getModules(resources) {
-        var module, modules = [];
-        for (var i = 0; i < resources.length; i++) {
-            module = deepGet(Roblox, getResourceName(resources[i]));
-            if (module !== undefined)
-                modules.push(module);
-        }
-        return modules;
-    }
+		// Notify listeners
+		while (resource.listeners.length > 0) {
+			resource.listeners.shift()();
+		}
+	}
 
-    function resolveResource(name) {
-        var resource = resourceMap[name];
-        if (!resource.loaded || !resource.depsLoaded)
-            return;
+	function loadResource(nameOrUrl, onload) {
+		if (!isString(nameOrUrl) || config.externalResources.toString().indexOf(nameOrUrl) >= 0) return onload();
 
-        // Notify listeners
-        while (resource.listeners.length > 0) {
-            (resource.listeners.shift())();
-        }
-    }
+		var name = getResourceName(nameOrUrl);
+		if (resourceMap[name] === undefined) {
+			resourceMap[name] = {
+				loaded: false,
+				depsLoaded: true,
+				listeners: [],
+			};
+			resourceMap[name].listeners.push(onload);
 
-    function loadResource(nameOrUrl, onload) {
-        if (!isString(nameOrUrl) || config.externalResources.toString().indexOf(nameOrUrl) >= 0)
-            return onload();
+			var url = getResourceUrl(name),
+				load = getExtension(url) == 'css' ? loadCss : loadJs;
+			load(url, function () {
+				resourceMap[name].loaded = true;
+				resolveResource(name);
+			});
+		} else {
+			// Wait for resource to load
+			resourceMap[name].listeners.push(onload);
+			resolveResource(name);
+		}
+	}
 
-        var name = getResourceName(nameOrUrl);
-        if (resourceMap[name] === undefined) {
-            resourceMap[name] = {
-                loaded: false,
-                depsLoaded: true,
-                listeners: []
-            };
-            resourceMap[name].listeners.push(onload);
+	function loadResourceChain(urls, onload) {
+		var first = urls.shift(),
+			chainload =
+				urls.length == 0
+					? onload
+					: function () {
+							loadResourceChain(urls, onload);
+					  };
 
-            var url = getResourceUrl(name),
-                load = getExtension(url) == 'css' ? loadCss : loadJs;
-            load(url, function () {
-                resourceMap[name].loaded = true;
-                resolveResource(name);
-            });
-        }
-        else {
-            // Wait for resource to load
-            resourceMap[name].listeners.push(onload);
-            resolveResource(name);
-        }
-    }
+		loadResource(first, chainload);
+	}
 
-    function loadResourceChain(urls, onload) {
-        var first = urls.shift(),
-            chainload = (urls.length == 0) ? onload : function () { loadResourceChain(urls, onload) };
+	/**
+	 *
+	 *  Ensures all dependencies are loaded before executing the callback
+	 *
+	 *  @param {String|Array} - One or more dependencies to wait for
+	 *  @param {Function} - The callback to execute when all dependencies are ready
+	 *
+	 **/
+	function require(dependencies, onready) {
+		if (!isArray(dependencies)) dependencies = [dependencies];
 
-        loadResource(first, chainload);
-    }
+		var onload = function () {
+			onready.apply(null, getModules(dependencies));
+		};
 
-    /**
-    *
-    *  Ensures all dependencies are loaded before executing the callback
-    *
-    *  @param {String|Array} - One or more dependencies to wait for
-    *  @param {Function} - The callback to execute when all dependencies are ready
-    *
-    **/
-    function require(dependencies, onready) {
-        if (!isArray(dependencies))
-            dependencies = [dependencies];
+		// Load resources from copy array
+		loadResourceChain(dependencies.slice(0), onload);
+	}
 
-        var onload = function () {
-            onready.apply(null, getModules(dependencies));
-        };
+	/**
+	 *
+	 *  Defines a module onto the global Roblox object
+	 *
+	 *  @param {String} - The name of the module (MUST correlate to path in modules folder, i.e. modules/Pagelets/BestFriends.js would be named Pagelets.BestFriends)
+	 *  @param {String|Array} - An optional list of dependencies
+	 *  @param {Function} - Factory function to create the module
+	 *
+	 **/
+	function define(name, dependencies, factory) {
+		// Check for no dependency alternate syntax
+		if (isFunction(dependencies)) {
+			factory = dependencies;
+			dependencies = [];
+		} else if (!isArray(dependencies)) {
+			dependencies = [dependencies];
+		}
 
-        // Load resources from copy array
-        loadResourceChain(dependencies.slice(0), onload);
-    }
+		resourceMap[name] = resourceMap[name] || { loaded: true, listeners: [] };
+		resourceMap[name].depsLoaded = false;
+		resourceMap[name].listeners.unshift(function () {
+			// Add module to Roblox object
+			deepSet(Roblox, name, factory.apply(null, getModules(dependencies)));
+		});
 
-    /**
-    *
-    *  Defines a module onto the global Roblox object
-    *
-    *  @param {String} - The name of the module (MUST correlate to path in modules folder, i.e. modules/Pagelets/BestFriends.js would be named Pagelets.BestFriends)
-    *  @param {String|Array} - An optional list of dependencies
-    *  @param {Function} - Factory function to create the module
-    *
-    **/
-    function define(name, dependencies, factory) {
-        // Check for no dependency alternate syntax
-        if (isFunction(dependencies)) {
-            factory = dependencies;
-            dependencies = [];
-        }
-        else if (!isArray(dependencies)) {
-            dependencies = [dependencies];
-        }
+		require(dependencies, function () {
+			resourceMap[name].depsLoaded = true;
+			resolveResource(name);
+		});
+	}
 
-        resourceMap[name] = resourceMap[name] || { loaded: true, listeners: [] };
-        resourceMap[name].depsLoaded = false;
-        resourceMap[name].listeners.unshift(function () {
-            // Add module to Roblox object
-            deepSet(Roblox, name, factory.apply(null, getModules(dependencies)));
-        });
+	if (typeof Roblox === 'undefined') {
+		Roblox = {};
 
-        require(dependencies, function () {
-            resourceMap[name].depsLoaded = true;
-            resolveResource(name);
-        });
-    }
-
-    if (typeof Roblox === 'undefined') {
-        Roblox = {};
-
-        Roblox.config = config;
-        Roblox.require = require;
-        Roblox.define = define;
-    }
-
+		Roblox.config = config;
+		Roblox.require = require;
+		Roblox.define = define;
+	}
 })(window);

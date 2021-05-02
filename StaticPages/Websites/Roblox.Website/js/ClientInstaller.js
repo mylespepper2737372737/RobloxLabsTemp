@@ -1,12 +1,12 @@
-if (typeof Roblox === 'undefined') {
+﻿if (typeof Roblox === 'undefined') {
 	Roblox = {};
 }
-if (typeof Roblox.Client === 'undefined') {
-	Roblox.Client = {};
+if (typeof Roblonium === 'undefined') {
+	Roblonium = {};
 }
 
 Roblox.Client = {};
-Roblox.Client = {};
+Roblonium.Client = {};
 
 Roblox.Client._legacyLaunch = false;
 
@@ -106,11 +106,11 @@ Roblox.Client.GetInstallHost = function (o) {
 		} else {
 			// GROSS DISGUSTING HACK:  Firefox plugin for some reason is tacking on an extra character to the end of the install host.
 			var val = o.Get_InstallHost();
-			if (val.match(/sitetest4.robloxlabs.com$/)) return val;
+			if (val.match(/sitetest1.roblonium.com$/)) return val;
 			else return val.substring(0, val.length - 1);
 		}
 	} else {
-		return 'sitetest4.robloxlabs.com'; // remove when not testing
+		return 'sitetest1.roblonium.com'; // remove when not testing
 	}
 };
 
@@ -225,24 +225,29 @@ Roblox.Client.CreateLauncher = function (addLock) {
 		return null;
 	}
 
-	// Define the sitetest4.robloxlabs URI launcher object functions
+	// Define the ROBLONIUM URI launcher object functions
 
 	// variables
-	Roblox.Client.silentModeEnabled = null;
+	Roblonium.Client.silentModeEnabled = null;
 	pluginObj.IsGameStarted = null;
 	pluginObj.AuthenticationTicket = null;
 
 	// functions
 	pluginObj.Update = function () {
-		//document.getElementById("downloadInstallerIFrame").src = "sitetest4.robloxlabs-player:";
+		//document.getElementById("downloadInstallerIFrame").src = "roblonium-player:";
 	};
 	pluginObj.SetSilentModeEnabled = function (_silentModeEnabled) {
-		Roblox.Client.silentModeEnabled = _silentModeEnabled;
+		Roblonium.Client.silentModeEnabled = _silentModeEnabled;
 	};
 	pluginObj.StartGame = function (authenticationUrl, visitUrl) {
 		// TODO: have jquery fetch the authentication ticket using the authenticationUrl and put it into the URI
 		document.getElementById('downloadInstallerIFrame').src =
-			'sitetest4.robloxlabs-player:1+launchmode:play+gameinfo:' + pluginObj.AuthenticationTicket + '+placelauncherurl:' + visitUrl;
+			'roblonium-player:1+launchmode:play+authurl:' +
+			authenticationUrl +
+			'+gameinfo:' +
+			pluginObj.AuthenticationTicket +
+			'+placelauncherurl:' +
+			visitUrl;
 		pluginObj.IsGameStarted = true;
 	};
 

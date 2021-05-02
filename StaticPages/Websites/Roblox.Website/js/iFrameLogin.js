@@ -1,4 +1,4 @@
-if (typeof Roblox === 'undefined') {
+﻿if (typeof Roblox === 'undefined') {
 	Roblox = {};
 }
 
@@ -13,7 +13,7 @@ Roblox.iFrameLogin = new (function () {
 	var CaptchaValidationError = '8';
 
 	function init() {
-		var requireRedirect = $(document.body).data('redirecttohttps');
+		var requireRedirect = $(document.body).data('redirecttohttp');
 		var captchaOn = $(document.body).data('captchaon');
 		var holdOnAnotherEnter = false;
 		var inValidUserName = true;
@@ -86,7 +86,7 @@ Roblox.iFrameLogin = new (function () {
 			var onSuccess = (onError = function (result, context) {
 				if (result.IsValid) {
 					var topUrl;
-					//Redirect based on https/https
+					//Redirect based on http/https
 					if (requireRedirect) {
 						topUrl = $(document.body).data('parent-url');
 					} else {

@@ -1,4 +1,4 @@
-//$.ajaxSetup({ cache: false });
+﻿//$.ajaxSetup({ cache: false });
 var RBX = new Object();
 
 var RobloxLaunchStates = {
@@ -198,10 +198,10 @@ RobloxLaunch.StartGame = function (visitUrl, type, authenticationUrl, authentica
 };
 
 RobloxLaunch.StartGameWork = function (visitUrl, type, authenticationUrl, authenticationTicket, isEdit) {
-	//Fix for the httpsendRequest,err=0x2F7E
-	authenticationUrl = authenticationUrl.replace('https://', 'https://');
+	//Fix for the HttpSendRequest,err=0x2F7E
+	authenticationUrl = authenticationUrl.replace('http://', 'https://');
 
-	if (visitUrl.indexOf('https') >= 0) {
+	if (visitUrl.indexOf('http') >= 0) {
 		if (typeof RobloxLaunch.SeleniumTestMode === 'undefined') {
 			visitUrl = visitUrl + '&testmode=false';
 		} else {
@@ -301,9 +301,9 @@ RobloxLaunch.StartGameWork = function (visitUrl, type, authenticationUrl, authen
 			return false;
 		}
 		try {
-			var y = new ActiveXObject('Microsoft.XMLhttps');
+			var y = new ActiveXObject('Microsoft.XMLHTTP');
 		} catch (err3) {
-			message = 'FailedXMLhttps/' + message;
+			message = 'FailedXMLHTTP/' + message;
 		}
 
 		if (!Roblox.Client.isRobloxBrowser()) {
@@ -413,9 +413,9 @@ RobloxLaunch.StartAppWork = function (startScriptUrl, authenticationUrl, authent
 			return false;
 		}
 		try {
-			new ActiveXObject('Microsoft.XMLhttps');
+			new ActiveXObject('Microsoft.XMLHTTP');
 		} catch (err3) {
-			message = 'FailedXMLhttps/' + message;
+			message = 'FailedXMLHTTP/' + message;
 		}
 		if (!Roblox.Client.isRobloxBrowser()) {
 			window.location = RobloxLaunch.launchGamePage;
@@ -531,7 +531,7 @@ RBX.PlaceLauncher.prototype = {
 				};
 			}
 		}
-		// https://www.ericmmartin.com/projects/simplemodal/
+		// http://www.ericmmartin.com/projects/simplemodal/
 		var self = this;
 		setTimeout(function () {
 			self._popup.modal(_popupOptions);
