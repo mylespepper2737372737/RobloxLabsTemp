@@ -1,4 +1,4 @@
-import { SqlCompareOptions, SqlString } from '../SQLTypes/SQLString';
+import { SqlCompareOptions, SqlString } from '../SqlTypes/SQLString';
 
 export class SqlCollation {
 	// First 20 bits of info field represent the lcid, bits 21-25 are compare options
