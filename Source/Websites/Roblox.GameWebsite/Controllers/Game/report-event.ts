@@ -24,10 +24,15 @@
 
 	***
 */
+import { FASTLOGS, FLog, LOGGROUP } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+
+LOGGROUP('Stats');
 
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		return res.redirect('http://www.sitetest4.robloxlabs.com' + _req.url);
+		FASTLOGS(FLog['Stats'], '[FLog::Stats] %s', JSON.stringify(_req.query));
+		FASTLOGS(FLog['Stats'], '[FLog::Stats] %s', JSON.stringify(_req.body));
+		res.send({ success: true, message: '' });
 	},
 };

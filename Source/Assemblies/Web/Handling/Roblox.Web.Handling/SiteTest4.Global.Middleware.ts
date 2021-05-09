@@ -36,6 +36,7 @@ import {
 } from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
 import { CommonValidator } from '../../Util/Roblox.Web.Util/Validators/CommonValidator';
 import { DateTimeConverter } from '../../Util/Roblox.Web.Util/Converters/DateTimeConverter';
+import { OriginMaster } from '../../Util/Roblox.Web.Util/OriginMaster';
 
 LOGGROUP('Protocol77');
 DYNAMIC_LOGGROUP('Tasks');
@@ -95,13 +96,7 @@ export const GlobalMiddleware = ((req, res, next) => {
 	);
 	res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
 	try {
-		res.setHeader('Access-Control-Allow-Origin', req.headers['origin'] || 'https://www.sitetest4.robloxlabs.com');
-		res.setHeader('Access-Control-Allow-Credentials', 'true');
-		// Object.values(whitelist).forEach((v) => {
-		// 	if (req.headers['origin'].replace(req.protocol + '://', '') === v) {
-		// 		return;
-		// 	}
-		// });
+		OriginMaster.Do(req.headers['origin'], req.protocol, res);
 	} catch (e) {
 		FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 	}

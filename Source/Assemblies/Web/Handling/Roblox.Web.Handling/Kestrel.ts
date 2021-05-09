@@ -27,6 +27,7 @@
 
 import { RequestHandler } from 'express-serve-static-core';
 import { FASTLOG5, FLog, LOGVARIABLE } from '../../Util/Roblox.Web.Util/Logging/FastLog';
+import { OriginMaster } from '../../Util/Roblox.Web.Util/OriginMaster';
 
 LOGVARIABLE('Kestrul', 6);
 
@@ -47,8 +48,7 @@ export const Kestrel = ((req, res, next) => {
 			'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN, Pragma, Cache-Control, expires',
 		);
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-		res.setHeader('Access-Control-Allow-Origin', req.headers['origin'] || 'https://www.sitetest4.robloxlabs.com');
-		res.setHeader('Access-Control-Allow-Credentials', 'true');
+		OriginMaster.Do(req.headers['origin'], req.protocol, res);
 	}
 
 	next();
