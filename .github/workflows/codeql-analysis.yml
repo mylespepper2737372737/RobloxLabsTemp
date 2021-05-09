@@ -1,31 +1,25 @@
-name: 'CodeQL'
-
+name: CodeQL
 on:
     push:
         branches: [Roblox.SiteTest4]
-    pull_request:
+    pull_requests:
         branches: [Roblox.SiteTest4]
     schedule:
-        - cron: '38 2 * * 0'
-
+        cron: 38 2 * * 0
 jobs:
     analyze:
         name: Analyze
         runs-on: windows-latest
-
         strategy:
             fail-fast: false
-            matrix:
-                language: ['javascript']
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
             - name: Initialize CodeQL
               uses: github/codeql-action/init@v1
               with:
-                  languages: typescript
-				          config-file: ./.github/codeql/codeql-config.yml
-
+                  languages: [typescript]
+                  config-file: './.github/codeql/codeql-config.yml'
             - name: Autobuild
               uses: github/codeql-action/autobuild@v1
             - name: Perform CodeQL Analysis
