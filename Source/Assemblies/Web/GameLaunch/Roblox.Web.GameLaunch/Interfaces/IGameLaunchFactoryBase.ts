@@ -1,7 +1,8 @@
+import { ResponseStatus } from '../Enumeration/ResponseStatus';
 import { IGameLaunchRequestBase } from './IGameLaunchRequestBase';
 
-export interface IGameLaunchFactoryBase<TFactoryResponse> {
-	Validate(request: IGameLaunchRequestBase): void;
+export type ReportDebatableErrorDelegate = (status: ResponseStatus, message: string) => void;
 
-	Request(): TFactoryResponse;
+export interface IGameLaunchFactoryBase {
+	Invoke(request: IGameLaunchRequestBase, reportDebatableErrorDelegate: ReportDebatableErrorDelegate): bool;
 }

@@ -1,6 +1,12 @@
 import { Response } from 'express';
 import { IError } from '../../../../Websites/Roblox.GameWebsite/Models/Game/Error';
+import { GameJoinRequest } from '../../../../Websites/Roblox.GameWebsite/Models/Game/GameJoinRequest';
 import { UserAgentHelper } from '../../../UserAgents/Roblox.UserAgents/UserAgentHelper';
+import { RequestType } from './Enumeration/RequestType';
+import { ResponseStatus } from './Enumeration/ResponseStatus';
+import { GameLaunchFactory } from './GameLaunchFactory';
+import { IGameLaunchFactoryBase } from './Interfaces/IGameLaunchFactoryBase';
+import { IGameLaunchResponseBase } from './Interfaces/IGameLaunchResponseBase';
 
 /*
 PlaceLauncher Status Key
@@ -49,14 +55,59 @@ export class GameLaunchRequestProcessor {
 		}
 
 		if (!UserAgentHelper.CheckIsUserAgentRoblox(userAgent)) {
-			this._response.status(403).send(<IError>{
-				Error: 'Request is not authorized from specified origin',
-				userAgent: userAgent === undefined ? null : userAgent,
-				referrer: referrer === undefined ? null : referrer,
-			});
+			GameLaunchRequestProcessor.ReportISXError(
+				this._response,
+				'Request is not authorized from specified origin',
+				userAgent,
+				referrer,
+				true,
+				true,
+			);
 			return false;
 		}
 
+		return true;
+	}
+
+	private reportDebatableError(status: ResponseStatus, message: string): void {
+		this._response.status(200).send(<IGameLaunchResponseBase>{
+			jobId: null,
+			status: status,
+			joinScriptUrl: null,
+			authenticationUrl: null,
+			authenticationTicket: null,
+			message: message,
+		});
+	}
+
+	public static ReportISXError(
+		response: Response,
+		message: string,
+		userAgent?: string,
+		referrer?: string,
+		nullableParams: bool = false,
+		caseableErrors: bool = false,
+	) {
+		response.status(caseableErrors ? 403 : 200).send(<IError>{
+			Error: message,
+			userAgent: userAgent && nullableParams === undefined ? null : userAgent,
+			referrer: referrer && nullableParams === undefined ? null : referrer,
+		});
+	}
+
+	public RunRoundTrain(query: GameJoinRequest): boolean {
+		const requestType: RequestType = RequestType[query ? query.requestType : ''];
+
+		if (!requestType) {
+			GameLaunchRequestProcessor.ReportISXError(this._response, 'Invalid request type');
+			return false;
+		}
+
+		if (!GameLaunchFactory.IsInitialized) GameLaunchFactory.Init(this._response);
+
+		const factory: IGameLaunchFactoryBase = GameLaunchFactory.Get(requestType);
+
+		if (!factory.Invoke(null, this.reportDebatableError)) return false;
 		return true;
 	}
 }
