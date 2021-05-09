@@ -2,8 +2,8 @@ import { Profanity } from '../../../../DataV2/Filtering/Roblox.DataV2.Filtering/
 import { Whitespace } from '../../../../DataV2/Filtering/Roblox.DataV2.Filtering/Whitespace';
 import { SomeFactory } from '../Factories/SomeFactory';
 
-export namespace InputValidator {
-	export function CheckDoesNumberStringIncludeAlphaChars(input: string | number) {
+export class InputValidator {
+	public CheckDoesNumberStringIncludeAlphaChars(input: string | number) {
 		if (typeof input === 'number') {
 			if (isNaN(input)) return true;
 			return false;
@@ -12,16 +12,16 @@ export namespace InputValidator {
 		return input.match(/[a-zA-Z]+/g) === null;
 	}
 
-	export function CheckDoesStringIncludeASPExtension(str: string) {
+	public CheckDoesStringIncludeASPExtension(str: string) {
 		str = str.toLowerCase();
 		return str.endsWith('.aspx') || str.endsWith('.ashx') || str.endsWith('.asmx');
 	}
 
-	export function CheckDoesStringIncludeInvalidChars(str: string) {
+	public CheckDoesStringIncludeInvalidChars(str: string) {
 		return str.match(/^[A-Za-z0-9_-]*$/g) === null;
 	}
 
-	export function CheckDoesStringIncludeProfanity(str: string) {
+	public CheckDoesStringIncludeProfanity(str: string) {
 		let isInvalid = false;
 		Profanity.every((p) => {
 			if (str.match(p) !== null) {
@@ -33,15 +33,15 @@ export namespace InputValidator {
 		return isInvalid;
 	}
 
-	export function CheckDoesStringIncludeWhitespace(str: string) {
+	public CheckDoesStringIncludeWhitespace(str: string) {
 		return SomeFactory((char) => str.indexOf(char) > -1, Whitespace);
 	}
 
-	export function CheckIfValueIsIncludedInArray<TValue>(value: TValue, array: TValue[]) {
+	public CheckIfValueIsIncludedInArray<TValue>(value: TValue, array: TValue[]) {
 		return array.indexOf(value) > -1;
 	}
 
-	export function CheckIsDateStringAnISODate(str: string) {
+	public CheckIsDateStringAnISODate(str: string) {
 		if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(str)) return false;
 		var d = new Date(str);
 		return d.toISOString() === str;

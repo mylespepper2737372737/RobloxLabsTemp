@@ -3,29 +3,30 @@ import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from './Logging/FastLog';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { ICustomErrorList } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomErrorList';
 import { IServiceError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/IServiceError';
-import { StatusCodes } from './StatusCodes';
+import { StatusCodes } from './Common/StatusCodes';
 import stack from 'stack-trace';
 import filestream from 'fs';
 import errorText from 'source-code-error';
 
 DYNAMIC_FASTFLAGVARIABLE('Debug', false);
 
-export namespace Errors {
-	export function RespondWithAServiceError(statusCode: number, message: string, response: Response, shouldEndResponse: boolean = true) {
-		const ServiceError: IServiceError = { Message: message };
-		response.status(statusCode).send(ServiceError);
-		if (shouldEndResponse) response.end();
+export class ErrorsClient<TResponse extends Response> {
+	private readonly _response: TResponse;
+
+	public constructor(response: TResponse) {
+		this._response = response;
 	}
 
-	export function RespondWithCustomErrors(
-		statusCode: number,
-		customErrors: ICustomError[],
-		response: Response,
-		shouldEndResponse: boolean = true,
-	) {
+	public RespondWithAServiceError(statusCode: number, message: string, shouldEndResponse: boolean = true) {
+		const ServiceError: IServiceError = { Message: message };
+		this._response.status(statusCode).send(ServiceError);
+		if (shouldEndResponse) this._response.end();
+	}
+
+	public RespondWithCustomErrors(statusCode: number, customErrors: ICustomError[], shouldEndResponse: boolean = true) {
 		const CustomErrorList: ICustomErrorList = { errors: customErrors };
-		response.status(statusCode).send(CustomErrorList);
-		if (shouldEndResponse) response.end();
+		this._response.status(statusCode).send(CustomErrorList);
+		if (shouldEndResponse) this._response.end();
 	}
 
 	///////////////////////////
@@ -38,9 +39,9 @@ export namespace Errors {
 	 * @param {Error} exception The exception to be used.
 	 * @returns {void} Returns nothing.
 	 */
-	export function RespondWithAHttpError(response: Response, exception: Error): void {
-		if (DFFlag('Debug')) return RespondWithADetailedError(response, exception);
-		return RespondWithInternalServerError(response);
+	public RespondWithAHttpError(exception: Error): void {
+		if (DFFlag('Debug')) return this.RespondWithADetailedError(this._response, exception);
+		return this.RespondWithInternalServerError();
 	}
 
 	/**
@@ -48,9 +49,9 @@ export namespace Errors {
 	 * @param {Response} response The response to be hooked.
 	 * @returns {void} Returns nothing.
 	 */
-	export function RespondWithInternalServerError(response: Response): void {
+	public RespondWithInternalServerError(): void {
 		const customErrors: ICustomError[] = [{ code: 500, message: 'InternalServerError' }];
-		RespondWithCustomErrors(500, customErrors, response, true);
+		this.RespondWithCustomErrors(500, customErrors, true);
 		return;
 	}
 
@@ -60,9 +61,9 @@ export namespace Errors {
 	 * @param {Response} response The response to be hooked.
 	 * @returns {void} Returns nothing.
 	 */
-	export function RespondWithAHttpStatusError(status: number, response: Response): void {
+	public RespondWithAHttpStatusError(status: number): void {
 		const customErrors: ICustomError[] = [{ code: status || 0, message: StatusCodes[status.toString()] || 'Unknown' }];
-		RespondWithCustomErrors(status, customErrors, response, true);
+		this.RespondWithCustomErrors(status, customErrors, true);
 		return;
 	}
 
@@ -72,9 +73,9 @@ export namespace Errors {
 	 * @param {Response} response The response to hook.
 	 * @returns {void} Returns nothing.
 	 */
-	export function RespondWithADefaultHttpError(status: number, response: Response): void {
+	public RespondWithADefaultHttpError(status: number): void {
 		const customErrors: ICustomError[] = [{ code: 0, message: 'Something went wrong with the request, see response status code.' }];
-		RespondWithCustomErrors(status, customErrors, response, true);
+		this.RespondWithCustomErrors(status, customErrors, true);
 		return;
 	}
 
@@ -84,13 +85,13 @@ export namespace Errors {
 	 * @param {Error} exception The exception to parse.
 	 * @returns {void} Returns nothing.
 	 */
-	export function RespondWithADetailedError(response: Response, exception: Error): void {
+	public RespondWithADetailedError(response: Response, exception: Error): void {
 		const customErrors: ICustomError[] = [{ code: 500, message: `${exception.stack}`.replace('Error:', '') }];
-		RespondWithCustomErrors(500, customErrors, response, true);
+		this.RespondWithCustomErrors(500, customErrors, true);
 		return;
 	}
 
-	export function GetErrorLine(error: Error) {
+	public static GetErrorLine(error: Error) {
 		const StackTrace = stack.parse(error);
 		let id = 0;
 		if ((<any>error).type) {

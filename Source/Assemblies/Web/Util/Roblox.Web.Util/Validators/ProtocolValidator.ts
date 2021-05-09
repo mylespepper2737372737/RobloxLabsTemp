@@ -1,23 +1,24 @@
 import { Response } from 'express';
 import { ICustomError } from '../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
-import { Errors } from '../Errors';
+import { ErrorsClient } from '../ErrorsClient';
+import { ISingleValidatorBase } from './Interfaces/ISingleValidatorBase';
 
-export namespace ProtocolValidator {
-	/**
-	 * Checks if the request is HTTPS.
-	 * @param {string} protocol The original request protocol.
-	 * @param {Response} response A response to pass in to be injected into the {Roblox.Web.Util.Errors}.
-	 * @returns {boolean} Returns true if the protocol is HTTPS, or false if the protocol is anything other than HTTPS.
-	 */
-	export function CheckIsHTTPS(protocol: string, response: Response): boolean {
+export class ProtocolValidator<TResponse extends Response> implements ISingleValidatorBase<string, bool> {
+	private readonly _errorsClient: ErrorsClient<TResponse>;
+
+	public constructor(response: TResponse) {
+		this._errorsClient = new ErrorsClient(response);
+	}
+
+	public Validate(originalValue: string, itShouldBe: string): boolean {
 		const errors: ICustomError[] = [];
-		protocol = protocol.toLowerCase();
-		if (protocol !== 'https') {
+		originalValue = originalValue.toLowerCase();
+		if (originalValue !== itShouldBe) {
 			errors.push({
 				code: 0,
-				message: 'HTTPS Required',
+				message: `${itShouldBe.toUpperCase()} Required`,
 			});
-			Errors.RespondWithCustomErrors(403, errors, response, true);
+			this._errorsClient.RespondWithCustomErrors(403, errors, true);
 			return false;
 		}
 		return true;

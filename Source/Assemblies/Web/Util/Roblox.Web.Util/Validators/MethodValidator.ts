@@ -1,9 +1,16 @@
 import { Response } from 'express';
 import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 import { ICustomError } from '../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
-import { Errors } from '../Errors';
+import { ErrorsClient } from '../ErrorsClient';
+import { IServiceValidatorBase } from './Interfaces/IServiceValidatorBase';
 
-export namespace MethodValidator {
+export class MethodValidator<TResponse extends Response> implements IServiceValidatorBase<string, HttpRequestMethodEnum> {
+	private readonly _response: TResponse;
+
+	public constructor(response: TResponse) {
+		this._response = response;
+	}
+
 	/**
 	 * Checks if the request method matches the given {methodToValidate} for the MethodValidator.
 	 *
@@ -13,8 +20,8 @@ export namespace MethodValidator {
 	 * @param {boolean} isService If true, will use the ServiceError instead of the CustomError.
 	 * @returns {[boolean, HttpRequestMethodEnum]} Returns true if the request method verb matches any of the given methods below.
 	 */
-	export function CheckMethod(originalMethod: string, methodToValidate: string, response: Response, isService: boolean = false): boolean {
-		return CheckMethods(originalMethod, [methodToValidate], response, isService)[0];
+	public Validate(originalMethod: string, methodToValidate: string, isService: boolean = false): HttpRequestMethodEnum {
+		return this.MultiValidate(originalMethod, [methodToValidate], isService);
 	}
 
 	/**
@@ -26,15 +33,11 @@ export namespace MethodValidator {
 	 * @param {boolean} isService If true, will use the ServiceError instead of the CustomError.
 	 * @returns {[boolean, HttpRequestMethodEnum]} Returns true if the request method verb matches any of the given methods below.
 	 */
-	export function CheckMethods(
-		originalMethod: string,
-		methodsToValidate: string[],
-		response: Response,
-		isService: boolean = false,
-	): [boolean, HttpRequestMethodEnum] {
+	public MultiValidate(originalMethod: string, methodsToValidate: string[], isService: boolean = false): HttpRequestMethodEnum {
 		const errors: ICustomError[] = [];
+		const errorsClient = new ErrorsClient(this._response);
 		originalMethod = originalMethod.toLowerCase();
-		if (originalMethod === 'options') return [true, HttpRequestMethodEnum.OPTIONS];
+		if (originalMethod === 'options') return HttpRequestMethodEnum.OPTIONS;
 		let methodIsValid = false;
 		let requestMethod = HttpRequestMethodEnum.GET;
 		const allowedMethods = methodsToValidate.join(', ');
@@ -59,7 +62,7 @@ export namespace MethodValidator {
 						requestMethod = HttpRequestMethodEnum.PATCH;
 						break;
 					default:
-						requestMethod = <HttpRequestMethodEnum>(<unknown>'Unknown');
+						requestMethod = HttpRequestMethodEnum.UNKNOWN;
 						break;
 				}
 				return false;
@@ -69,14 +72,14 @@ export namespace MethodValidator {
 		if (!methodIsValid) {
 			const errorMessage = `The requested resource does not support http method '${originalMethod.toUpperCase()}'.`;
 			if (isService) {
-				response.header({ Allow: allowedMethods });
-				Errors.RespondWithAServiceError(405, errorMessage, response, true);
-				return [false, null];
+				this._response.header({ Allow: allowedMethods });
+				errorsClient.RespondWithAServiceError(405, errorMessage, true);
+				return HttpRequestMethodEnum.UNKNOWN;
 			}
 			errors.push({ code: 0, message: errorMessage });
-			Errors.RespondWithCustomErrors(405, errors, response, true);
-			return [false, null];
+			errorsClient.RespondWithCustomErrors(405, errors, true);
+			return HttpRequestMethodEnum.UNKNOWN;
 		}
-		return [true, requestMethod];
+		return requestMethod;
 	}
 }

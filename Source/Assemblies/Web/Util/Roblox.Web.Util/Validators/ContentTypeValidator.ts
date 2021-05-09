@@ -1,33 +1,31 @@
 import { Response } from 'express';
 import { ICustomError } from '../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
-import { Errors } from '../Errors';
+import { ErrorsClient } from '../ErrorsClient';
+import { IServiceValidatorBase } from './Interfaces/IServiceValidatorBase';
 
-export namespace ContentTypeValidator {
-	export function CheckContentType(
-		originalContentType: string,
-		contentTypeToValidate: string,
-		response: Response,
-		hasBody: boolean = false,
-		isService: boolean = false,
-	) {
-		return CheckContentTypes(originalContentType, [contentTypeToValidate], response, hasBody, isService);
+export class ContentTypeValidator<TResponse extends Response> implements IServiceValidatorBase<string, bool> {
+	private readonly _response: TResponse;
+	private readonly _hasBody: bool;
+
+	public constructor(response: TResponse, hasBody: bool = false) {
+		this._response = response;
+		this._hasBody = hasBody;
 	}
-	export function CheckContentTypes(
-		originalContentType: string,
-		contentTypesToValidate: string[],
-		response: Response,
-		hasBody: boolean = false,
-		isService: boolean = false,
-	): boolean {
+
+	public Validate(originalContentType: string, contentTypeToValidate: string, isService: boolean = false) {
+		return this.MultiValidate(originalContentType, [contentTypeToValidate], isService);
+	}
+	public MultiValidate(originalContentType: string, contentTypesToValidate: string[], isService: boolean = false): boolean {
 		const errors: ICustomError[] = [];
+		const errorsClient = new ErrorsClient(this._response);
 		if (!originalContentType) {
 			const errorMessage =
 				"The request contains an entity body but no Content-Type header. The inferred media type 'application/octet-stream' is not supported for this resource.";
 			if (isService) {
-				if (hasBody) {
-					Errors.RespondWithAServiceError(415, errorMessage, response, true);
+				if (this._hasBody) {
+					errorsClient.RespondWithAServiceError(415, errorMessage, true);
 				} else {
-					Errors.RespondWithAServiceError(500, 'An error has occurred.', response, true);
+					errorsClient.RespondWithAServiceError(500, 'An error has occurred.', true);
 				}
 				return false;
 			}
@@ -35,7 +33,7 @@ export namespace ContentTypeValidator {
 				code: 0,
 				message: errorMessage,
 			});
-			Errors.RespondWithCustomErrors(415, errors, response, true);
+			errorsClient.RespondWithCustomErrors(415, errors, true);
 			return false;
 		}
 		originalContentType = originalContentType.toLowerCase();
@@ -51,7 +49,7 @@ export namespace ContentTypeValidator {
 		if (!contentTypeIsValid) {
 			const errorMessage = `The request entity's media type '${originalContentType}' is not supported for this resource.`;
 			if (isService) {
-				Errors.RespondWithAServiceError(415, errorMessage, response, true);
+				errorsClient.RespondWithAServiceError(415, errorMessage, true);
 				return false;
 			}
 
@@ -59,7 +57,7 @@ export namespace ContentTypeValidator {
 				code: 0,
 				message: errorMessage,
 			});
-			Errors.RespondWithCustomErrors(415, errors, response, true);
+			errorsClient.RespondWithCustomErrors(415, errors, true);
 			return false;
 		}
 		return true;

@@ -9,12 +9,17 @@ DYNAMIC_FASTFLAGVARIABLE('CanAdminsBypassTheSystem', false);
 DYNAMIC_FASTFLAGVARIABLE('NoMaintenance', false);
 DYNAMIC_FASTSTRINGVARIABLE('RobloxLabsSecurityToken', 'ljWby+/HVsZXJLfRkoljWby+/HVsZXJLfRko9mPQ9mPQ==');
 
-export namespace CommonValidator {
-	export function ValidateDoesTheWorldGetToViewTheSite(
+export class CommonValidator<TResponse extends Response> {
+	private readonly _response: TResponse;
+
+	public constructor(response: TResponse) {
+		this._response = response;
+	}
+
+	public ValidateDoesTheWorldGetToViewTheSite(
 		method: string,
 		returnUrl: string,
 		secToken: string,
-		response: Response,
 		doNotRedirect = false,
 		allowNoMaintenance = false,
 	) {
@@ -28,16 +33,16 @@ export namespace CommonValidator {
 
 		if (!DFFlag('DoesTheWorldGetToViewTheSite')) {
 			if (DFFlag('NoMaintenance') && allowNoMaintenance) {
-				response.status(503).send('The service is unavailable.');
+				this._response.status(503).send('The service is unavailable.');
 				return false;
 			}
-			if (!doNotRedirect) response.redirect(BaseURL.GetSecureBaseURL() + '/login/maintenance/?ReturnUrl=' + returnUrl);
+			if (!doNotRedirect) this._response.redirect(BaseURL.GetSecureBaseURL() + '/login/maintenance/?ReturnUrl=' + returnUrl);
 			return false;
 		}
 		return true;
 	}
 
-	export function IsFileStaticFile(baseUrl: string, file: string) {
+	public IsFileStaticFile(baseUrl: string, file: string) {
 		return new Promise((resumeFunction) => {
 			const url = `${__baseDirName}${!baseUrl.startsWith('\\') ? '\\' : ''}${baseUrl}${
 				baseUrl.endsWith('\\') && file.startsWith('/') ? file.replace('/', '') : file
