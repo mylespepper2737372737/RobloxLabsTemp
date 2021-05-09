@@ -40,7 +40,7 @@ export default {
 		response: Response<ApiEmptyResponseModel>,
 		errorFunction: NextFunction,
 	): Task<Response<ApiEmptyResponseModel> | void> => {
-		if (!MethodValidator.CheckMethod(request.method, 'POST', response, false)) return;
+		if (!MethodValidator.CheckMethods(request.method, ['POST', 'OPTIONS'], response, false)[1]) return;
 		if (
 			!ContentTypeValidator.CheckContentTypes(
 				request.headers['content-type'],
@@ -54,7 +54,8 @@ export default {
 		const requestProcessor = new MetricsRequestProcessor();
 
 		try {
-			await requestProcessor.BatchSendMeasurements(request.body, response);
+			await requestProcessor.BatchSendMeasurements(request.body);
+			return response.status(200).send({});
 		} catch (e) {
 			return errorFunction(e);
 		}

@@ -40,7 +40,7 @@ export default {
 		response: Response<ApiEmptyResponseModel>,
 		errorFunction: NextFunction,
 	): Task<Response<ApiEmptyResponseModel> | void> => {
-		if (!MethodValidator.CheckMethod(request.method, 'POST', response, false)) return;
+		if (!MethodValidator.CheckMethods(request.method, ['POST', 'OPTIONS'], response, false)[1]) return;
 		if (
 			!ContentTypeValidator.CheckContentTypes(
 				request.headers['content-type'],
