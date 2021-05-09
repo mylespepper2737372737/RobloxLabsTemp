@@ -25,9 +25,11 @@
 	***
 */
 
+import { Request, Response } from 'express';
+
 export default {
 	method: 'all',
-	func: (_req: any, res: { send: (arg0: { success: boolean; message: string }) => void }): void => {
-		res.send({ success: true, message: '' });
+	func: (_request: Request<null, any>, response: Response<any>): Response<any> => {
+		return response.status(200).send({ success: true });
 	},
 };
