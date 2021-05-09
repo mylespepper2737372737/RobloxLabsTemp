@@ -3,16 +3,13 @@ name: 'CodeQL'
 on:
     push:
         branches: [Roblox.SiteTest4]
-		paths:
-    		- Source
     pull_request:
         branches: [Roblox.SiteTest4]
-		paths:
-    		- Source
+	paths:
+    	- Source
     schedule:
         - cron: '38 2 * * 0'
-		paths:
-    		- Source
+		
 
 jobs:
     analyze:
