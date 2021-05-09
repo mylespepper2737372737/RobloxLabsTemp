@@ -29,11 +29,10 @@ export class MetricsRequestProcessor {
 		return response ? response.send({}) : null;
 	}
 
-	public async BatchSendMeasurements(request: MeasurementRequest[], response?: Response<ApiEmptyResponseModel>): Task<void> {
+	public async BatchSendMeasurements(request: MeasurementRequest[]): Task<void> {
 		return new Promise((resumeFunction, errorFunction) => {
-			request.every(async (measurement, index) => {
+			request.forEach(async (measurement, index) => {
 				if (index === request.length + 1) {
-					response && response.send({});
 					resumeFunction();
 					return false;
 				}
@@ -41,9 +40,9 @@ export class MetricsRequestProcessor {
 					await this.SendMeasurement(measurement, null);
 				} catch (e) {
 					errorFunction(e);
-					return false;
+					return;
 				}
-				return true;
+				return;
 			});
 		});
 	}

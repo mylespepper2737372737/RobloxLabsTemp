@@ -25,6 +25,6 @@
 	***
 */
 
-export default (req, res) => {
-	res.status(404).send();
+export const Kestrel404 = (_request, response) => {
+	response.status(404).send();
 };

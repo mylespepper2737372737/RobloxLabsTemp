@@ -52,3 +52,7 @@ server.log
 /Default/FormattedSettings.json
 /Default/OutputSettings.json
 /StaticPages/CDN/Roblox.SetupCDN
+/Source/Websites/Roblox.GameWebsite/Models/Game
+/Source/Assemblies/Grid/Roblox.Grid.Rcc
+/Source/Assemblies/UserAgents/Roblox.UserAgents
+/Source/Assemblies/Web/GameLaunch

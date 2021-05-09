@@ -41,10 +41,10 @@ LOGGROUP('Protocol77');
 DYNAMIC_LOGGROUP('Tasks');
 
 export const GlobalMiddleware = ((req, res, next) => {
-	const tracker = GetValuesFromFormDataString(['RobloxEventTrackerV2', 'RobloxEventTracker'], req.headers.cookie);
+	const tracker = GetValuesFromFormDataString(['RBXEventTrackerV2', 'RBXEventTracker'], req.headers.cookie);
 	if (!tracker)
 		res.cookie(
-			'RobloxEventTrackerV2',
+			'RBXEventTrackerV2',
 			`CreateDate=${DateTimeConverter.DateToLocaleDate(new Date(Date.now()))}&rbxid=&browserid=${1}`, // Keep the browserid as 1 for now.
 			{
 				maxAge: 946100000000,
