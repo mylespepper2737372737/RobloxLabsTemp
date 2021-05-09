@@ -90,6 +90,8 @@ import { __baseDirName } from './Assemblies/Common/Constants/Roblox.Common.Const
 import { CDN } from './Assemblies/Web/Errors/Roblox.Web.Errors/CDN';
 import { WWW } from './Assemblies/Web/Errors/Roblox.Web.Errors/WWW';
 import Urls from './Assemblies/Common/Constants/Roblox.Common.Constants/Urls';
+import { Kestrel404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Kestrel';
+import { Exception } from './System/Exception';
 ssl.hookAll();
 
 LOGVARIABLE('GumePersistince', 6);
@@ -1116,7 +1118,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		MarketplaceServiceServer.use(DefaultAsp404);
 		MetricsApiServer.use(DefaultAsp404);
 		AuthApiServer.use(DefaultApi404);
-		ApiGatewayServer.use(Kestrel);
+		ApiGatewayServer.use(Kestrel404);
 		LocaleApiServer.use(DefaultApi404);
 		AbTestingApiServer.use(DefaultApi404);
 		AbTestingServiceServer.use(DefaultAsp404);
@@ -1177,7 +1179,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 		MetricsInternalWebsiteServer.use(DefaultAspx404);
 		AdminWebsiteServer.use(DefaultAsp404);
 		CSWebsiteServer.use(DefaultAsp404);
-		ComApisCDNServer.use(Kestrel);
+		ComApisCDNServer.use(Kestrel404);
 		PointsServiceServer.use(DefaultAsp404);
 		UsersServiceServer.use(DefaultAsp404);
 		DataWebsiteServer.use(NotFoundRedirect);
@@ -1269,6 +1271,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 
 		RobloxWebsiteServer.use(async (error: Error, request: Request, response: Response, next: NextFunction) => {
 			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, error.message, error.stack);
+
 			let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
 			const authenticatedUser = await User.GetByCookie(cookie);
 			if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
@@ -1409,19 +1412,19 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '\\Source\\Bin\\WebSockets\\Roblox.RealTime', Urls.RealTimeApi);
 				FASTLOG1F(DFLog('Tasks'), '[DFLog::Tasks] There are %d Services running...', Object.keys(Urls).length);
 			} catch (e) {
-				return FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, e.message, e.stack);
+				return reportDebatableError(e);
 			}
 		})();
 	} catch (e) {
-		return FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, e.message, e.stack);
+		return reportDebatableError(e);
 	}
 })();
 
 process.stdin.resume();
-function exitHandler(options: { exit: boolean; error: boolean; message?: string; code?: number }) {
+function exitHandler(options: { exit: boolean; error: boolean; message?: string; code?: number; ex?: Exception }) {
 	if (options.exit) {
 		if (options.error) {
-			return FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
+			return reportDebatableError(options.ex);
 		}
 		if (options.message) FASTLOGS(DFLog('Tasks'), `[DFLog::Tasks] %s`, options.message);
 		process.exit();
@@ -1432,5 +1435,9 @@ process.on('SIGUSR1', exitHandler.bind(null, { exit: true, message: 'SIGUSR1 on 
 process.on('beforeExit', exitHandler.bind(null, { exit: true, message: 'Exit Services' }));
 process.on('SIGUSR2', exitHandler.bind(null, { exit: true, message: 'SIGUSR2 on server' }));
 process.on('uncaughtException', (e) => {
-	exitHandler({ exit: true, error: true, message: `Name: ${e.name}, Reason: ${e.message}, Stack Trace: ${e.stack}` });
+	exitHandler({ exit: true, error: true, message: `Name: ${e.name}, Reason: ${e.message}, Stack Trace: ${e.stack}`, ex: e });
 });
+
+function reportDebatableError(e: Exception) {
+	return FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, e.message, e.stack);
+}
