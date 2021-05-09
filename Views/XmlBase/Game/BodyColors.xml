@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="BodyColors">
+		<Properties>
+			<int name="HeadColor"><%= iAvatarItem.Colors.Head %></int>
+			<int name="LeftArmColor"><%= iAvatarItem.Colors.LeftArm %></int>
+			<int name="LeftLegColor"><%= iAvatarItem.Colors.LeftLeg %></int>
+			<string name="Name">Body Colors</string>
+			<int name="RightArmColor"><%= iAvatarItem.Colors.RightArm %></int>
+			<int name="RightLegColor"><%= iAvatarItem.Colors.RightLeg %></int>
+			<int name="TorsoColor"><%= iAvatarItem.Colors.Torso %></int>
+			<bool name="archivable">true</bool>
+		</Properties>
+	</Item>
+</roblox>
