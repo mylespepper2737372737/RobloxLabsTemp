@@ -2,12 +2,12 @@
 <html xmlns="https://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="https://www.facebook.com/2008/fbml" class="adminStyle">
 	<head>
 		<meta https-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
-		<title>ROBLOX | Administration</title>
+		<title>Billing Search | Administration</title>
 		<link rel="stylesheet" href="/roblox.css" />
 		<link rel="stylesheet" href="/roblox1.css" />
 		<link rel="stylesheet" href="/Testing/Style.css" />
 
-		<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+		<link rel="icon" type="image/vnd.microsoft.icon" href="/Admi/favicon.ico" />
 		<meta https-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta https-equiv="Content-Language" content="en-us" />
 		<meta name="author" content="roblox" />
@@ -185,8 +185,8 @@
 					<div style="padding-left: 11px">
 						<div style="padding-right: 11px; padding-top: 11px">
 							<div class="logo_spacer" style="width: auto; height: 50px; padding-right: 4px">
-								<a href="/" style="display: block; margin-left: auto; margin-right: auto; width: 106px; height: 28px">
-									<img width="106px" height="28px" src="/Images/roblox_logo.png" />
+								<a href="/" style="display: block; width: 106px; height: 28px">
+									<img width="170px" height="45px" src="/Images/roblox_logo_new.png" />
 								</a>
 							</div>
 							<div>
@@ -289,7 +289,366 @@
 		</form>
 		<script type="text/javascript">
 			var treeview = $('#ctl00_cphRoblox_AdminNavigationTree');
-			var options = {};
+			var options = {
+				core: {
+					data: [
+						{
+							text: 'Admin Dashboard',
+							a_attr: { href: '/Admi/Default.aspx' },
+							children: [
+								{
+									text: 'Configuration',
+									a_attr: { href: '/Admi/Config/Default.aspx' },
+									children: [
+										{
+											text: 'AB Tests',
+											a_attr: { href: '/Admi/Config/ABTests.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Test Sites',
+											a_attr: { href: '/Admi/Config/TestSites.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'Shoutbox',
+									a_attr: { href: '/Admi/Shoutbox/Default.aspx' },
+									children: [],
+									state: { selected: false },
+									icon: 'jstree-bullet-grey',
+								},
+								{
+									text: 'Site-wide alert',
+									a_attr: { href: '/Default.aspx' },
+									children: [],
+									state: { selected: false },
+									icon: 'jstree-bullet-grey',
+								},
+								{
+									text: 'Notifications',
+									a_attr: { href: '/Admi/Notifications.aspx' },
+									children: [],
+									state: { selected: false },
+									icon: 'jstree-bullet-grey',
+								},
+								{
+									text: 'Chat',
+									a_attr: { href: '/Admi/Chat.aspx' },
+									children: [],
+									state: { selected: false },
+									icon: 'jstree-bullet-grey',
+								},
+								{
+									text: 'Scripts',
+									a_attr: { href: '/Default.aspx' },
+									children: [
+										{
+											text: 'Review Scripts',
+											a_attr: { href: '/Admi/UserScripts/Scripts.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Reputation<br/>System',
+											a_attr: { href: '/Admi/UserScripts/ReputationSystem.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'People',
+									a_attr: { href: '/Default.aspx' },
+									children: [
+										{
+											text: 'Find',
+											a_attr: { href: '/Admi/Users/Find.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'User Admin',
+											a_attr: { href: '/Admi/Users/UserAdmin.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Machine Config',
+											a_attr: { href: '/Admi/Diagnostics/MachineConfiguration.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Builders Club',
+											a_attr: { href: '/Admi/AccountUpgrades/BuildersClub.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Referal Program',
+											a_attr: { href: '/Admi/AccountUpgrades/Referrals.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Find Payments',
+											a_attr: { href: '/Admi/AccountUpgrades/Payments.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Find Parent',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Blacklist Email',
+											a_attr: { href: '/Admi/Users/BlacklistEmail.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Manage Forum Moderation',
+											a_attr: { href: '/Admi/Users/ManageForumModeration.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'Groups',
+									a_attr: { href: '/Default.aspx' },
+									children: [
+										{
+											text: 'Find Group',
+											a_attr: { href: '/Admi/Groups/FindGroup.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Group Admin',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Group Building',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'Contests',
+									a_attr: { href: '/Default.aspx' },
+									children: [
+										{
+											text: 'Edits Contests',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Create New',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'Moderation',
+									a_attr: { href: '/Default.aspx' },
+									children: [
+										{
+											text: 'Image Queue',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Abuse Queue',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Abuse Grid',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'User Queue',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'IP Addresses',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Asset Scrub',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Order History',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Content Filter',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Trade/Evaluation',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Regular Expressions',
+											a_attr: { href: '/Admi/ContentFilter/RegularExpressionView.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Moderator<br/>Review',
+											a_attr: { href: '/Admi/Moderation/ModeratorReview.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Moderator Performance',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'Games',
+									a_attr: { href: '/Default.aspx' },
+									children: [
+										{
+											text: 'FPS',
+											a_attr: { href: '/Admi/Users/FPSSummary.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Build Games',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Broadcast',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Places',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'Search',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+										{
+											text: 'BadgeAssetAward',
+											a_attr: { href: '/Default.aspx' },
+											children: [],
+											state: { selected: false },
+											icon: 'jstree-bullet-grey',
+										},
+									],
+									state: { selected: false },
+									icon: 'jstree-bullet-black',
+								},
+								{
+									text: 'Grid',
+									a_attr: { href: '/Default.aspx' },
+									children: [],
+									state: { selected: false },
+									icon: 'jstree-bullet-grey',
+								},
+							],
+							state: { selected: false },
+							icon: 'jstree-bullet-black',
+						},
+					],
+					themes: {
+						icons: true,
+					},
+				},
+			};
 			treeview.jstree(options).on('loaded.jstree', function () {
 				treeview.jstree('open_all');
 			});

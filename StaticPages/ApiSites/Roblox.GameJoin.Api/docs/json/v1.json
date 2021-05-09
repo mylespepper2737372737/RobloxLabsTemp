@@ -4,7 +4,7 @@
 		"version": "v1",
 		"title": "GameJoin Api v1"
 	},
-	"host": "gamejoin.sitetest3.robloxlabs.com",
+	"host": "gamejoin.sitetest4.robloxlabs.com",
 	"schemes": ["https"],
 	"paths": {
 		"/v1/join-game": {

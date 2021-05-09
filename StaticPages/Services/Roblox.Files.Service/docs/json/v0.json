@@ -70,8 +70,7 @@
 			"type": "object",
 			"properties": {
 				"UseAdditionalOptions": {
-					"type": "boolean",
-					"format": "date-time"
+					"type": "boolean"
 				},
 				"AssetId": {
 					"type": "integer",
