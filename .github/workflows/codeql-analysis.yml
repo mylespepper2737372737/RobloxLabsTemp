@@ -5,11 +5,8 @@ on:
         branches: [Roblox.SiteTest4]
     pull_request:
         branches: [Roblox.SiteTest4]
-	paths:
-    	- Source
     schedule:
         - cron: '38 2 * * 0'
-		
 
 jobs:
     analyze:
@@ -26,7 +23,9 @@ jobs:
             - name: Initialize CodeQL
               uses: github/codeql-action/init@v1
               with:
-                  languages: ${{ matrix.language }}
+                  languages: typescript
+				          config-file: ./.github/codeql/codeql-config.yml
+
             - name: Autobuild
               uses: github/codeql-action/autobuild@v1
             - name: Perform CodeQL Analysis
