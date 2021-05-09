@@ -31,7 +31,7 @@
 
 # Request
 POST /v1/experiments/enroll-to HTTP/1.1
-Host: abtesting.api.jack.black.sitetest1.robloxlabs.com
+Host: abtesting.api.jackblack.sitetest3.robloxlabs.com
 content-type: application/json
 
 {
