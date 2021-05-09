@@ -1,5 +1,8 @@
 name: 'CodeQL'
 
+paths:
+    - Source
+
 on:
     push:
         branches: [Roblox.SiteTest4]
