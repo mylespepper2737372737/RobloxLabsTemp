@@ -12,7 +12,10 @@ export default {
 		const group = SanitizeData(request.params.group);
 		const FSettings = ClientSettings.GetFSettings();
 		FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] ClientSettings QuietGet Settings got group %s.', group);
-		if (!InputValidator.CheckIfValueIsIncludedInArray(group, FSettings))
+
+		const inputValidatorClient = new InputValidator();
+
+		if (!inputValidatorClient.CheckIfValueIsIncludedInArray(group, FSettings))
 			return response.status(503).send('The service is unavailable.');
 
 		const allGroupSettings = ClientSettings.GetAllSettings(group || 'Blank');

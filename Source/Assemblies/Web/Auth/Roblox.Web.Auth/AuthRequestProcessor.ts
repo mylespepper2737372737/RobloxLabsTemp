@@ -7,7 +7,7 @@ import { UsernameValidationContext } from '../../../../ApiSites/Roblox.Auth.Api/
 import { Task } from '../../../../System/Threading/Task';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { IUser } from '../../../Platform/Membership/Roblox.Platform.Membership/IUser';
-import { Errors } from '../../Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../Util/Roblox.Web.Util/ErrorsClient';
 import { ContentTypeValidator } from '../../Util/Roblox.Web.Util/Validators/ContentTypeValidator';
 import { InputValidator } from '../../Util/Roblox.Web.Util/Validators/InputValidator';
 
@@ -26,19 +26,21 @@ export namespace AuthRequestProcessor {
 			data: IUsernameValidationRequest,
 			errors: ICustomError[],
 			authenticatedUser: IUser,
-			response: Response,
+			client: ErrorsClient<Response>,
 		): [boolean, IUsernameValidationRequest] {
 			const newRequest: IUsernameValidationRequest = data;
+			const inputValidatorClient = new InputValidator();
+
 			if (!data.username || data.username.length === 0) {
 				errors.push({
 					code: 1,
 					message: 'A valid username is required.',
 					userFacingMessage: 'Something went wrong',
 				});
-				Errors.RespondWithCustomErrors(400, errors, response, true);
+				client.RespondWithCustomErrors(400, errors, true);
 				return [false, null];
 			}
-			if (!InputValidator.CheckIsDateStringAnISODate(data.birthday)) {
+			if (!inputValidatorClient.CheckIsDateStringAnISODate(data.birthday)) {
 				// Check if the user is authenticated via the passed in IUser
 				if (!authenticatedUser) {
 					errors.push({
@@ -46,7 +48,7 @@ export namespace AuthRequestProcessor {
 						message: 'A valid birthday or authenticated user is required.',
 						userFacingMessage: 'Something went wrong',
 					});
-					Errors.RespondWithCustomErrors(400, errors, response, true);
+					client.RespondWithCustomErrors(400, errors, true);
 					return [false, null];
 				}
 				newRequest.birthday = authenticatedUser.Created; // Use Created until BirthDay is implemented to the entity.
@@ -71,20 +73,23 @@ export namespace AuthRequestProcessor {
 		): [boolean, IUsernameValidationRequest] {
 			const errors: ICustomError[] = [];
 			const contentType = request.headers['content-type'];
+			const errorsClient = new ErrorsClient(response);
+			const contentTypeValidatorClient = new ContentTypeValidator(response);
+
 			let data = isUsingPost ? request.body : request.query;
 
 			if (!data) {
 				errors.push({ code: 1, message: 'A valid username is required.', userFacingMessage: 'Something went wrong' });
-				Errors.RespondWithCustomErrors(400, errors, response, true);
+				errorsClient.RespondWithCustomErrors(400, errors, true);
 				return [false, null];
 			}
 			if (isUsingPost)
 				if (
-					!ContentTypeValidator.CheckContentTypes(
-						contentType,
-						['application/json', 'text/json', 'application/x-www-form-urlencoded'],
-						response,
-					)
+					!contentTypeValidatorClient.MultiValidate(contentType, [
+						'application/json',
+						'text/json',
+						'application/x-www-form-urlencoded',
+					])
 				)
 					return [false, null];
 			if (!isUsingPost)
@@ -93,7 +98,7 @@ export namespace AuthRequestProcessor {
 					birthday: data.birthday || (<any>data)['request.birthday'],
 					context: data.context || (<any>data)['request.context'],
 				};
-			const [IsSuccessful, ParsedBody] = checkRequest(data, errors, authenticatedUser, response);
+			const [IsSuccessful, ParsedBody] = checkRequest(data, errors, authenticatedUser, errorsClient);
 			if (!IsSuccessful) return [false, null];
 			return [true, ParsedBody];
 		}

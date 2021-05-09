@@ -32,6 +32,8 @@ import { CommonValidator } from '../../Util/Roblox.Web.Util/Validators/CommonVal
 LOGGROUP('GumePersistince');
 
 export const GamePersistenceMiddleware = ((req, res, next) => {
+	const commonValidatorClient = new CommonValidator(res);
+
 	let cookie = req.headers.cookie;
 	if (cookie === undefined) cookie = '';
 	cookie = (cookie as string).split(';').find((secToken) => {
@@ -39,11 +41,10 @@ export const GamePersistenceMiddleware = ((req, res, next) => {
 	});
 	if (cookie) cookie = cookie.split('=')[1];
 	if (
-		!CommonValidator.ValidateDoesTheWorldGetToViewTheSite(
+		!commonValidatorClient.ValidateDoesTheWorldGetToViewTheSite(
 			req.method,
 			encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
 			cookie || <string>req.headers['roblox-security-token'],
-			res,
 			true,
 		)
 	)

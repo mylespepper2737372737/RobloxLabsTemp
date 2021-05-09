@@ -6,4 +6,5 @@ export enum HttpRequestMethodEnum {
 	DELETE,
 	OPTIONS,
 	PATCH,
+	UNKNOWN,
 }

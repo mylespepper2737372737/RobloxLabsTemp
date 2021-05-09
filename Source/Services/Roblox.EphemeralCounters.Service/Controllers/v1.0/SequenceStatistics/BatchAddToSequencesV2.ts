@@ -27,31 +27,34 @@
 
 import { Request, Response } from 'express';
 import { EphemeralCountersService } from '../../../../../Assemblies/ApiServices/Roblox.EphemeralCounters.Service/Roblox.EphemeralCounters.Service/EphemeralCountersService';
-import { Errors } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { ContentTypeValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ContentTypeValidator';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { Sequence } from '../../../Sequence';
 import { ISequencesItem } from '../../../ISequencesItem';
+import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 
 export default {
 	method: 'all',
 	func: async (request: Request<null, null, Sequence[], null>, response: Response): Promise<void> => {
-		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
+		const errorsClient = new ErrorsClient(response);
+		const contentTypeValidatorClient = new ContentTypeValidator(response, request.body !== undefined);
+		const methodValidatorClient = new MethodValidator(response);
+
+		if (methodValidatorClient.Validate(request.method, 'POST', true) === HttpRequestMethodEnum.UNKNOWN) return;
 		if (
-			!ContentTypeValidator.CheckContentTypes(
+			!contentTypeValidatorClient.MultiValidate(
 				request.headers['content-type'],
 				['application/json', 'text/json', 'application/x-www-form-urlencoded'],
-				response,
-				request.body !== undefined,
 				true,
 			)
 		)
 			return;
 		if (!request.body) {
-			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+			return errorsClient.RespondWithAServiceError(500, 'An error has occured.', true);
 		}
 		if (!Array.isArray(request.body)) {
-			return Errors.RespondWithAServiceError(500, 'An error has occured.', response, true);
+			return errorsClient.RespondWithAServiceError(500, 'An error has occured.', true);
 		}
 
 		const sequences: ISequencesItem[] = [];

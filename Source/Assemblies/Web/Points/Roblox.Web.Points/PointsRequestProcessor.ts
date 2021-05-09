@@ -6,7 +6,7 @@ import { IUser } from '../../../Platform/Membership/Roblox.Platform.Membership/I
 import { User } from '../../../Platform/Membership/Roblox.Platform.Membership/User';
 import { IUniverse } from '../../../Platform/Universes/Roblox.Platform.Universes/IUniverse';
 import { Universe } from '../../../Platform/Universes/Roblox.Platform.Universes/Universe';
-import { Errors } from '../../Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../Util/Roblox.Web.Util/ErrorsClient';
 
 export namespace PointsRequestProcessor {
 	/**
@@ -25,13 +25,14 @@ export namespace PointsRequestProcessor {
 	export async function CheckUniverseAndUser(universeId: number, userId: number, response: Response): Task<[boolean, IUniverse, IUser]> {
 		// NaN check.
 		const errors: ICustomError[] = [];
+		const errorsClient = new ErrorsClient(response);
 		if (isNaN(universeId)) {
 			errors.push({
 				code: 1,
 				message: 'The universe is invalid.',
 				userFacingMessage: 'Something went wrong',
 			});
-			Errors.RespondWithCustomErrors(404, errors, response, true);
+			errorsClient.RespondWithCustomErrors(404, errors, true);
 			return [false, null, null];
 		}
 		if (isNaN(userId)) {
@@ -40,7 +41,7 @@ export namespace PointsRequestProcessor {
 				message: 'The user is invalid.',
 				userFacingMessage: 'Something went wrong',
 			});
-			Errors.RespondWithCustomErrors(404, errors, response, true);
+			errorsClient.RespondWithCustomErrors(404, errors, true);
 			return [false, null, null];
 		}
 
@@ -52,7 +53,7 @@ export namespace PointsRequestProcessor {
 				message: 'The universe is invalid.',
 				userFacingMessage: 'Something went wrong',
 			});
-			Errors.RespondWithCustomErrors(404, errors, response, true);
+			errorsClient.RespondWithCustomErrors(404, errors, true);
 			return [false, null, null];
 		}
 
@@ -62,7 +63,7 @@ export namespace PointsRequestProcessor {
 				message: 'The user is invalid.',
 				userFacingMessage: 'Something went wrong',
 			});
-			Errors.RespondWithCustomErrors(404, errors, response, true);
+			errorsClient.RespondWithCustomErrors(404, errors, true);
 			return [false, null, null];
 		}
 		return [true, universe, user];

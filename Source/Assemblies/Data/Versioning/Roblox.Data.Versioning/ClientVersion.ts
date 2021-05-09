@@ -91,6 +91,8 @@ export class ClientVersion implements IClientVersion {
 	}
 
 	public static async GetAllLatestMD5HashesForUniqueClients() {
+		const inputValidatorClient = new InputValidator();
+
 		if (!this.isConnected) await this.connectIfNotConnected();
 		const [, , ClientVersions] = this.dataBase.GetTable<IClientVersion>('ClientVersion', 'ID', true);
 		const [success, errorMessage, result] = await ClientVersions.SelectKeys(['ClientName', 'LatestMD5Hash']);
@@ -104,7 +106,7 @@ export class ClientVersion implements IClientVersion {
 		result.Rows.forEach((version, idx) => {
 			const clientName = <string>version.Data[0].Value;
 			const latestClientMD5Hash = <string>version.Data[1].Value;
-			if (InputValidator.CheckIfValueIsIncludedInArray(clientName, usedUpClients)) return;
+			if (inputValidatorClient.CheckIfValueIsIncludedInArray(clientName, usedUpClients)) return;
 			usedUpClients.push(clientName);
 			md5Hashes.push(latestClientMD5Hash);
 		});

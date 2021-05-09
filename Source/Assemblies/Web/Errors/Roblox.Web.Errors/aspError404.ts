@@ -29,8 +29,10 @@ import { Request, Response } from 'express';
 import { InputValidator } from '../../Util/Roblox.Web.Util/Validators/InputValidator';
 
 export const DefaultAsp404 = (req: Request, res: Response) => {
+	const inputValidatorClient = new InputValidator();
+
 	if (req.method === 'OPTIONS') return res.status(200).send();
-	if (InputValidator.CheckDoesStringIncludeASPExtension(req.path)) {
+	if (inputValidatorClient.CheckDoesStringIncludeASPExtension(req.path)) {
 		res.status(404).render('ASPX404', {
 			pageMeta: {
 				Path: req.path,

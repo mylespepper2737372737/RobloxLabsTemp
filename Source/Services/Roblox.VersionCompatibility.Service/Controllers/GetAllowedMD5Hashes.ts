@@ -29,6 +29,7 @@ import { Request, Response } from 'express';
 import { ApiKeys } from '../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { FetchKeyFromObjectCaseInsensitive } from '../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
 import { ClientVersion } from '../../../Assemblies/Data/Versioning/Roblox.Data.Versioning/ClientVersion';
+import { HttpRequestMethodEnum } from '../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { ApiKeyValidator } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
 import { MethodValidator } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
@@ -39,12 +40,15 @@ DYNAMIC_FASTFLAGVARIABLE('ReturnEmptyMD5HashArrayForTesting', false);
 export default {
 	method: 'all',
 	func: async (request: Request<null, string[], null, ApiKeyRequest, null>, response: Response<string[]>) => {
-		if (!MethodValidator.CheckMethod(request.method, 'GET', response, true)) return;
+		const apiKeyValidatorClient = new ApiKeyValidator(response, 'The service is unavailable.');
+		const methodValidatorClient = new MethodValidator(response);
+
+		if (methodValidatorClient.Validate(request.method, 'GET', true) === HttpRequestMethodEnum.UNKNOWN) return;
 		if (
-			!ApiKeyValidator.ValidateApiKey(
+			!apiKeyValidatorClient.Validate(
 				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
 				ApiKeys.VersionCompatibilityApi,
-				response,
+				true,
 			)
 		)
 			return;

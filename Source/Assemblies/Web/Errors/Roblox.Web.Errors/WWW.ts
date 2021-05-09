@@ -36,10 +36,12 @@ DYNAMIC_FASTFLAG('IsBannerEnabled');
 DYNAMIC_FASTSTRING('SiteBanner');
 
 export const WWW = async (request: Request, response: Response) => {
+	const inputValidatorClient = new InputValidator();
+
 	if (request.headers['user-agent'] && request.headers['user-agent'].includes('RobloxStudio')) {
 		return response.status(200).send('not found');
 	}
-	if (InputValidator.CheckDoesStringIncludeASPExtension(request.path)) {
+	if (inputValidatorClient.CheckDoesStringIncludeASPExtension(request.path)) {
 		return response.redirect(`/request-error?id=${GenerateUUIDV4()}&mode=&code=404`);
 	}
 	let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);

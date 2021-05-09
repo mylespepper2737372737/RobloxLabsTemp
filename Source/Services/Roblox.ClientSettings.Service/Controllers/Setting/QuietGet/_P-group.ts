@@ -37,18 +37,22 @@ import { ClientSettings } from '../../../../../Assemblies/Platform/ClientSetting
 export default {
 	method: 'all',
 	func: (request: Request, response: Response) => {
+		const inputValidatorClient = new InputValidator();
+
 		const group = SanitizeData(request.params.group);
 		const FSettings = ClientSettings.GetFSettings();
 		FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] ClientSettings QuietGet Settings got group %s.', group);
-		if (!InputValidator.CheckIfValueIsIncludedInArray(group, FSettings))
+		if (!inputValidatorClient.CheckIfValueIsIncludedInArray(group, FSettings))
 			return response.status(503).send('The service is unavailable.');
 		const allGroupSettings = ClientSettings.GetAllSettings(group || 'Blank');
+
+		const apiKeyValidatorClient = new ApiKeyValidator(response, 'The service is unavailable.');
+
 		if (
-			!ApiKeyValidator.ValidateApiKeys(
+			!apiKeyValidatorClient.MultiValidate(
 				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
 				[ApiKeys.ClientSettingsApi, ApiKeys.ClientSettingsApiV2],
-				response,
-				'The service is unavailable.',
+				true,
 			)
 		)
 			return;

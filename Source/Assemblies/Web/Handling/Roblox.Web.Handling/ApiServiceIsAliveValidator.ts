@@ -3,25 +3,26 @@ import { FileBaseUrls } from '../../../Common/Constants/Roblox.Common.Constants/
 import { GetValueFromCookieString } from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromCookieString';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { GetUserFromCookie } from '../../Auth/Roblox.Web.Auth/GetUserFromCookie';
-import { Errors } from '../../Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../Util/Roblox.Web.Util/ErrorsClient';
 import { CommonValidator } from '../../Util/Roblox.Web.Util/Validators/CommonValidator';
 
 export const ApiServiceIsAliveValidator = (async (request, response, next) => {
+	const errorsClient = new ErrorsClient(response);
+	const commonValidatorClient = new CommonValidator(response);
 	if (await GetUserFromCookie(request)) return next();
-	if (await CommonValidator.IsFileStaticFile(FileBaseUrls[request.hostname], request.path)) return next();
+	if (await commonValidatorClient.IsFileStaticFile(FileBaseUrls[request.hostname], request.path)) return next();
 	if (request.method === 'OPTIONS') return next();
 	const cookie = GetValueFromCookieString('RobloxSecurityToken', request.headers.cookie);
 	if (
-		!CommonValidator.ValidateDoesTheWorldGetToViewTheSite(
+		!commonValidatorClient.ValidateDoesTheWorldGetToViewTheSite(
 			request.method,
 			encodeURIComponent(`${request.protocol}://${request.hostname}${request.url}`),
 			cookie || <string>request.headers['roblox-security-token'],
-			response,
 			true,
 		)
 	) {
 		const customErrors: ICustomError[] = [{ code: 0, message: 'Service Undergoing Maintenance' }];
-		Errors.RespondWithCustomErrors(503, customErrors, response, true);
+		errorsClient.RespondWithCustomErrors(503, customErrors, true);
 		return;
 	}
 	next();

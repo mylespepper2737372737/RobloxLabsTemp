@@ -26,11 +26,12 @@
 */
 
 import { Request, Response } from 'express';
-import { Errors } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 
 export default {
 	method: 'all',
 	func: async (_request: Request, response: Response) => {
-		Errors.RespondWithAHttpStatusError(403, response);
+		const errorsClient = new ErrorsClient(response);
+		errorsClient.RespondWithAHttpStatusError(403);
 	},
 };

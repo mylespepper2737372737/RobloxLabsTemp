@@ -42,6 +42,8 @@ LOGGROUP('Protocol77');
 DYNAMIC_LOGGROUP('Tasks');
 
 export const GlobalMiddleware = ((req, res, next) => {
+	const commonValidatorClient = new CommonValidator(res);
+
 	const tracker = GetValuesFromFormDataString(['RBXEventTrackerV2', 'RBXEventTracker'], req.headers.cookie);
 	if (!tracker)
 		res.cookie(
@@ -63,11 +65,10 @@ export const GlobalMiddleware = ((req, res, next) => {
 	) {
 		const cookie = GetValueFromFormDataString('RobloxSecurityToken', req.headers.cookie);
 		if (
-			!CommonValidator.ValidateDoesTheWorldGetToViewTheSite(
+			!commonValidatorClient.ValidateDoesTheWorldGetToViewTheSite(
 				req.method,
 				encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
 				cookie || <string>req.headers['roblox-security-token'],
-				res,
 				DFFlag('NoMaintenance'),
 				DFFlag('NoMaintenance'),
 			)

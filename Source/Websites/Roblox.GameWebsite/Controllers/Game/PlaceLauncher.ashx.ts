@@ -27,20 +27,15 @@
 
 import { Request, Response } from 'express';
 import { GameLaunchRequestProcessor } from '../../../../Assemblies/Web/GameLaunch/Roblox.Web.GameLaunch/RequestProcessor';
+import { GameJoinRequest } from '../../Models/Game/GameJoinRequest';
 
 export default {
 	method: 'all',
-	func: (request: Request, response: Response): void => {
-		const RequestProcessor = new GameLaunchRequestProcessor(response);
+	func: (request: Request<null, null, null, GameJoinRequest>, response: Response): void => {
+		const requestProcessor = new GameLaunchRequestProcessor(response);
 
-		if (!RequestProcessor.CheckUseragent(request.headers['user-agent'], request.headers['referer'])) return;
-		const txt = {
-			jobId: '00000000-0000-0000-0000-000000000000',
-			status: 2,
-			joinScriptUrl: 'http://assetgame.sitetest4.robloxlabs.com/Game/Join.ashx?placeId=1818',
-			authenticationUrl: 'http://api.sitetest4.robloxlabs.com/Login/Negotiate.ashx',
-			authenticationTicket: 'Guest:-3074',
-		};
-		response.send(txt);
+		if (!requestProcessor.CheckUseragent(request.headers['user-agent'], request.headers['referer'])) return;
+
+		requestProcessor.RunRoundTrain(request.query);
 	},
 };

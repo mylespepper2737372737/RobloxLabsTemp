@@ -1,4 +1,4 @@
-import { StatusCodes } from '../../../../Web/Util/Roblox.Web.Util/StatusCodes';
+import { StatusCodes } from '../../../../Web/Util/Roblox.Web.Util/Common/StatusCodes';
 
 export namespace ServiceClientExceptions {
 	export class HttpException {

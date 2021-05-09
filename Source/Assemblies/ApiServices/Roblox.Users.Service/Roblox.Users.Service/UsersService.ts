@@ -7,8 +7,12 @@ import { InputValidator } from '../../../Web/Util/Roblox.Web.Util/Validators/Inp
 
 export namespace UsersService {
 	export namespace Validators {
-		function validateDoesUsernameContainProfanity(partialResponse: IServiceUsernameValidationResponse, response: Response) {
-			if (InputValidator.CheckDoesStringIncludeProfanity(partialResponse.Username)) {
+		function validateDoesUsernameContainProfanity(
+			partialResponse: IServiceUsernameValidationResponse,
+			response: Response,
+			inputValidatorClient: InputValidator,
+		) {
+			if (inputValidatorClient.CheckDoesStringIncludeProfanity(partialResponse.Username)) {
 				response.send({
 					...partialResponse,
 					Status: UsernameValidationStatus.ModerationError,
@@ -18,8 +22,12 @@ export namespace UsersService {
 			}
 		}
 
-		function validateDoesUsernameContainInvalidChars(partialResponse: IServiceUsernameValidationResponse, response: Response) {
-			if (InputValidator.CheckDoesStringIncludeInvalidChars(partialResponse.Username)) {
+		function validateDoesUsernameContainInvalidChars(
+			partialResponse: IServiceUsernameValidationResponse,
+			response: Response,
+			inputValidatorClient: InputValidator,
+		) {
+			if (inputValidatorClient.CheckDoesStringIncludeInvalidChars(partialResponse.Username)) {
 				response.send({
 					...partialResponse,
 					Status: UsernameValidationStatus.InvalidCharactersError,
@@ -30,8 +38,12 @@ export namespace UsersService {
 			return false;
 		}
 
-		function validateDoesUsernameContainWhiteSpace(partialResponse: IServiceUsernameValidationResponse, response: Response) {
-			if (InputValidator.CheckDoesStringIncludeWhitespace(partialResponse.Username)) {
+		function validateDoesUsernameContainWhiteSpace(
+			partialResponse: IServiceUsernameValidationResponse,
+			response: Response,
+			inputValidatorClient: InputValidator,
+		) {
+			if (inputValidatorClient.CheckDoesStringIncludeWhitespace(partialResponse.Username)) {
 				response.send({
 					...partialResponse,
 					Status: UsernameValidationStatus.ContainsSpacesError,
@@ -103,12 +115,14 @@ export namespace UsersService {
 				Birthdate: request.Request.birthday,
 			};
 
-			if (validateDoesUsernameContainInvalidChars(partialResponse, response)) return;
+			const inputValidatorClient = new InputValidator();
+
+			if (validateDoesUsernameContainInvalidChars(partialResponse, response, inputValidatorClient)) return;
 			if (validateIsNameLongOrTooLong(partialResponse, response)) return;
 			if (validateDoesUsernameStartOrEndwithUnderscore(partialResponse, response)) return;
 			if (validateDoesUsernameHaveMoreThanOneUnderscore(partialResponse, response)) return;
-			if (validateDoesUsernameContainWhiteSpace(partialResponse, response)) return;
-			if (validateDoesUsernameContainProfanity(partialResponse, response)) return;
+			if (validateDoesUsernameContainWhiteSpace(partialResponse, response, inputValidatorClient)) return;
+			if (validateDoesUsernameContainProfanity(partialResponse, response, inputValidatorClient)) return;
 			if (await validateDoesUsernameExist(partialResponse, response)) return;
 
 			return response.send({

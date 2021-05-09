@@ -77,7 +77,7 @@ import { ApiProxy404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/ApiProxy4
 import { ApiProxyHandler } from './Assemblies/Web/Handling/Roblox.Web.Handling/ApiProxyHandler';
 import { CookieHandler } from './Assemblies/Web/Handling/Roblox.Web.Handling/CookieHandler';
 import stack from 'stack-trace';
-import { Errors } from './Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from './Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { GlobalMiddleware } from './Assemblies/Web/Handling/Roblox.Web.Handling/SiteTest4.Global.Middleware';
 import { GamePersistenceMiddleware } from './Assemblies/Web/Handling/Roblox.Web.Handling/GamePersistenceMiddleWare';
 import { AbTestingMiddleWare } from './Assemblies/Web/Handling/Roblox.Web.Handling/AbTestingMiddleWare';
@@ -1192,7 +1192,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
-						Code: Errors.GetErrorLine(error),
+						Code: ErrorsClient.GetErrorLine(error),
 						ShowCode: true,
 						SourceFile: StackTrace[0].getFileName(),
 						SourceLine: StackTrace[0].getLineNumber(),
@@ -1209,7 +1209,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
-						Code: Errors.GetErrorLine(error),
+						Code: ErrorsClient.GetErrorLine(error),
 						ShowCode: true,
 						SourceFile: StackTrace[0].getFileName(),
 						SourceLine: StackTrace[0].getLineNumber(),
@@ -1226,7 +1226,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
-						Code: Errors.GetErrorLine(error),
+						Code: ErrorsClient.GetErrorLine(error),
 						ShowCode: true,
 						SourceFile: StackTrace[0].getFileName(),
 						SourceLine: StackTrace[0].getLineNumber(),
@@ -1243,7 +1243,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
-						Code: Errors.GetErrorLine(error),
+						Code: ErrorsClient.GetErrorLine(error),
 						ShowCode: true,
 						SourceFile: StackTrace[0].getFileName(),
 						SourceLine: StackTrace[0].getLineNumber(),
@@ -1260,7 +1260,7 @@ FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 						Type: error.toString().split(':').shift(),
 						What: error.message,
 						StackTrace: error.stack.replace(error.toString() + '\n', ''),
-						Code: Errors.GetErrorLine(error),
+						Code: ErrorsClient.GetErrorLine(error),
 						ShowCode: true,
 						SourceFile: StackTrace[0].getFileName(),
 						SourceLine: StackTrace[0].getLineNumber(),

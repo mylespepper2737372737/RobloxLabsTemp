@@ -32,6 +32,7 @@ import { ContentTypeValidator } from '../../../../../Assemblies/Web/Util/Roblox.
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { ApiEmptyResponseModel } from '../../../../../Assemblies/Web/WebAPI/ApiEmptyResponseModel';
 import { MeasurementRequest } from '../../../MeasurementRequest';
+import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 
 export default {
 	method: 'all',
@@ -40,12 +41,14 @@ export default {
 		response: Response<ApiEmptyResponseModel>,
 		errorFunction: NextFunction,
 	): Task<Response<ApiEmptyResponseModel> | void> => {
-		if (!MethodValidator.CheckMethods(request.method, ['POST', 'OPTIONS'], response, false)[1]) return;
+		const contentTypeValidatorClient = new ContentTypeValidator(response);
+		const methodValidatorClient = new MethodValidator(response);
+
+		if (methodValidatorClient.MultiValidate(request.method, ['POST', 'OPTIONS'], false) === HttpRequestMethodEnum.UNKNOWN) return;
 		if (
-			!ContentTypeValidator.CheckContentTypes(
+			!contentTypeValidatorClient.MultiValidate(
 				request.headers['content-type'],
 				['application/json', 'application/x-www-form-urlencoded'],
-				response,
 				false,
 			)
 		)

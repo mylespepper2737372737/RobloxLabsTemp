@@ -41,7 +41,7 @@ import { Request, Response } from 'express';
 import { FASTFLAG, FFlag } from '../../../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { ICustomError } from '../../../../../../../../Assemblies/Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { PointsRequestProcessor } from '../../../../../../../../Assemblies/Web/Points/Roblox.Web.Points/PointsRequestProcessor';
-import { Errors } from '../../../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../../../../../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { GetAllTimePointBalanceResponse } from '../../../../../../Models/GetAllTimePointBalanceResponse';
 
 FASTFLAG('RequireGlobalHTTPS');
@@ -50,12 +50,14 @@ export default {
 	method: 'all', //Allow all methods but validate the method in the request itself
 	func: async (request: Request, response: Response<GetAllTimePointBalanceResponse>) => {
 		const errors: ICustomError[] = [];
+		const errorsClient = new ErrorsClient(response);
+
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https') {
 			errors.push({
 				code: 0,
 				message: 'HTTPS Required',
 			});
-			return Errors.RespondWithCustomErrors(403, errors, response, true);
+			return errorsClient.RespondWithCustomErrors(403, errors, true);
 		}
 
 		// OPTIONS should already be validated by now
@@ -64,7 +66,7 @@ export default {
 				code: 0,
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
-			return Errors.RespondWithCustomErrors(405, errors, response, true);
+			return errorsClient.RespondWithCustomErrors(405, errors, true);
 		}
 
 		const universeId = parseInt(<string>request.params.universeId);
@@ -75,7 +77,7 @@ export default {
 
 		const [Success, , Response, Error] = await PointsRequestProcessor.GetUserAllTimePoints(universe, user);
 		if (!Success) {
-			return Errors.RespondWithAHttpError(response, Error);
+			return errorsClient.RespondWithAHttpError(Error);
 		}
 		response.send({ allTimeScore: Response.allTimeScore });
 	},

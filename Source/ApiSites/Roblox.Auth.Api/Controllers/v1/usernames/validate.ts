@@ -27,7 +27,7 @@ import { Request, Response } from 'express';
 import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 import { AuthRequestProcessor } from '../../../../../Assemblies/Web/Auth/Roblox.Web.Auth/AuthRequestProcessor';
 import { GetUserFromCookie } from '../../../../../Assemblies/Web/Auth/Roblox.Web.Auth/GetUserFromCookie';
-import { Errors } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { ProtocolValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ProtocolValidator';
 import { IUsernameValidationRequest } from '../../../Models/UsernameValidationRequest';
@@ -39,9 +39,13 @@ export default {
 		request: Request<null, IUsernameValidationResponse, IUsernameValidationRequest, IUsernameValidationRequest, null>,
 		response: Response<IUsernameValidationResponse, null>,
 	) => {
-		if (!ProtocolValidator.CheckIsHTTPS(request.protocol, response)) return;
-		const [isValid, method] = MethodValidator.CheckMethods(request.method, ['GET', 'POST'], response);
-		if (!isValid) return;
+		const errorsClient = new ErrorsClient(response);
+		const methodValidatorClient = new MethodValidator(response);
+		const protocolValidatorClient = new ProtocolValidator(response);
+
+		if (!protocolValidatorClient.Validate(request.protocol, 'HTTPS')) return;
+		const method = methodValidatorClient.MultiValidate(request.method, ['GET', 'POST']);
+		if (method === HttpRequestMethodEnum.UNKNOWN) return;
 		const isPost = method === HttpRequestMethodEnum.POST;
 		const authenticatedUser = await GetUserFromCookie(request);
 		const [isRequestValid, dataRequest] = AuthRequestProcessor.UsernameValidation.CheckRequest(
@@ -57,7 +61,7 @@ export default {
 			request.secure,
 		);
 		if (!WasRequestSuccessful) {
-			return Errors.RespondWithAHttpError(response, Exception);
+			return errorsClient.RespondWithAHttpError(Exception);
 		}
 
 		return response.status(200).send({

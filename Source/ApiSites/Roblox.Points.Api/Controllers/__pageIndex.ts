@@ -28,7 +28,7 @@
 import { Request, Response } from 'express';
 import { PointsClient } from '../../../Assemblies/ApiClients/Roblox.Points.Client/Implementation/PointsClient';
 import { ICustomError } from '../../../Assemblies/Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
-import { Errors } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { CreateOrGetXsrfSession } from '../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateOrGetXsrfSession';
 
 /**
@@ -40,6 +40,7 @@ import { CreateOrGetXsrfSession } from '../../../Assemblies/Caching/Sessions/Rob
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response) => {
+		const errorsClient = new ErrorsClient(response);
 		if (request.method === 'POST' || request.method === 'PUT' || request.method === 'DELETE') {
 			let cookie = request.headers.cookie;
 			if (cookie === undefined) cookie = '';
@@ -64,6 +65,6 @@ export default {
 						  })\r\n   \tUrl: ${Url}\r\n   \tResponse Machine Id: None`,
 			},
 		];
-		return Errors.RespondWithCustomErrors(<number>StatusCode || 503, customErrors, response, true);
+		return errorsClient.RespondWithCustomErrors(<number>StatusCode || 503, customErrors, true);
 	},
 };

@@ -45,9 +45,10 @@ import { MethodValidator } from '../../../../../../Assemblies/Web/Util/Roblox.We
 import { GetValueFromCookieString } from '../../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromCookieString';
 import { User } from '../../../../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/User';
 import { ICustomError } from '../../../../../../Assemblies/Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
-import { Errors } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Errors';
+import { ErrorsClient } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { InputValidator } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/InputValidator';
 import { ClientSettings } from '../../../../../../Assemblies/Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
+import { HttpRequestMethodEnum } from '../../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 
 // IDataStoreRespose[] Roblox.Web.GamePersistence.GamePersistenceRequestProcessor.GetDataStoresForTheUniverse(IDataStoreRequest request)
 // Request example:
@@ -106,9 +107,12 @@ export default {
 	method: 'all',
 	func: async (request: Request, response: Response) => {
 		const errors: ICustomError[] = [];
+		const errorsClient = new ErrorsClient(response);
+		const inputValidatorClient = new InputValidator();
+		const methodValidatorClient = new MethodValidator(response);
 
 		/*Start check for request method*/
-		if (!MethodValidator.CheckMethod(request.method, 'GET', response)) return;
+		if (methodValidatorClient.Validate(request.method, 'GET') === HttpRequestMethodEnum.UNKNOWN) return;
 		/*End check for request method*/
 
 		/*Start check for request security token*/
@@ -122,13 +126,13 @@ export default {
 				code: 0,
 				message: 'You do not have permission to manage this place. User is null.',
 			});
-			return Errors.RespondWithCustomErrors(403, errors, response, true);
+			return errorsClient.RespondWithCustomErrors(403, errors, true);
 		}
 		/*End check for request security token validity*/
 
 		/*Start check for Universe Id*/
 		const universeId = parseInt(request.params['universeId']);
-		if (InputValidator.CheckDoesNumberStringIncludeAlphaChars(universeId)) {
+		if (inputValidatorClient.CheckDoesNumberStringIncludeAlphaChars(universeId)) {
 			FASTLOG(DFLog('DataStoresV2'), '[DFLog::DataStoresV2] We got an Null universe, god damn');
 
 			errors.push({
@@ -136,7 +140,7 @@ export default {
 				message: 'The request is invalid.',
 			});
 
-			return Errors.RespondWithCustomErrors(400, errors, response, true);
+			return errorsClient.RespondWithCustomErrors(400, errors, true);
 		}
 		/*End check for Universe Id*/
 

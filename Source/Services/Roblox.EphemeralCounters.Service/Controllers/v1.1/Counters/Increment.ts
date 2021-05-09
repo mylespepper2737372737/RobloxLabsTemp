@@ -29,15 +29,18 @@ import { EphemeralCountersService } from '../../../../../Assemblies/ApiServices/
 import { Request, Response } from 'express';
 import { IncrementRequest } from '../../../Models/IncrementRequest';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
 
 export default {
 	method: 'all',
 	func: async (request: Request<null, any, any, IncrementRequest>, response: Response) => {
+		const methodValidatorClient = new MethodValidator(response);
+
 		if (!request.query.counterName)
 			return response.status(404).send({
 				Message: `No HTTP resource was found that matches the request URI '${request.protocol}://${request.hostname}${request.url}'.`,
 			});
-		if (!MethodValidator.CheckMethod(request.method, 'POST', response, true)) return;
+		if (methodValidatorClient.Validate(request.method, 'POST', true) === HttpRequestMethodEnum.UNKNOWN) return;
 
 		await EphemeralCountersService.HandleIncrementCounter(
 			request.query.counterName,
