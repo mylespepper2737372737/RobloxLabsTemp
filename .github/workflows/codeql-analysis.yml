@@ -2,7 +2,7 @@ name: CodeQL
 on:
     push:
         branches: [Roblox.SiteTest4]
-    pull_requests:
+    pull_request:
         branches: [Roblox.SiteTest4]
     schedule:
         - cron: 38 2 * * 0
