@@ -2,6 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Crypt Tests",
+			"program": "${workspaceFolder}/Source/Bin/Tests/CryptTest.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node"
+		},
+		{
 			"name": "DB Info tests",
 			"program": "${workspaceFolder}/Source/Bin/Tests/dbInfoTest.js",
 			"request": "launch",
@@ -92,6 +99,13 @@
 			/*
 				This script is for vsc-insiders when it kills npm scripts via debug configs
 			*/
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch Program",
+			"runtimeArgs": ["-r", "ts-node/register"],
+			"args": ["${workspaceFolder}/Source/Global.asax.ts"]
 		}
 	],
 	"compounds": []
