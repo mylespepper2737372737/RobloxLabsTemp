@@ -1,3 +1,10 @@
+<h2 align="center">A Node.js version for the ROBLOX website on SiteTest4 (Febuary 18th 2019).</h2>
+<br>
+<p align="center">
+    <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-analysis.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-analysis.yml/badge.svg?branch=Roblox.SiteTest4" alt="CodeQL"/></a>
+    <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build"/></a>
+</p>
+
 # NOTICE
 
 There has been a major update with how the `__baseDirName` is selected, run the npm script `Build-And-Run` to automatically select the Directory and build the project,<br>
