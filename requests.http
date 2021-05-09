@@ -432,7 +432,7 @@ POST https://files.api.sitetest1.robloxlabs.com/v1/GetUri?apiKey=223101C8-6699-4
 
 ###
 
-GET clientsettings.api.sitetest3.robloxlabs.com/v1 HTTP/1.1
+GET clientsettings.api.sitetest3.robloxlabs.com/Setting/GetPage HTTP/1.1
 Content-Type: application/json
 roblox-proxied-ip: 128.116.123.3
 roblox-proxied-locale: en-us
@@ -738,7 +738,7 @@ roblox-machine-id: AWA-WEB671
 
 ###
 
-POST http://localhost:64989 HTTP/1.1
+POST http://localhost:530 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
 SOAPAction: http://roblox.com/OpenJobEx
 
@@ -754,25 +754,65 @@ SOAPAction: http://roblox.com/OpenJobEx
 	<SOAP-ENV:Body>
 		<ns1:OpenJobEx>
 			<ns1:job>
-				<ns1:id>00000000-0000-0000-0000-000000000000</ns1:id>
-				<ns1:expirationInSeconds>20000</ns1:expirationInSeconds>
+				<ns1:id>Thumnnailer</ns1:id>
+				<ns1:expirationInSeconds>10</ns1:expirationInSeconds>
 				<ns1:category>1</ns1:category>
 				<ns1:cores>104</ns1:cores>
 			</ns1:job>
 			<ns1:script>
-				<ns1:name>start script</ns1:name>
-				<ns1:script>loadfile("http://assetgame.sitetest4.robloxlabs.com/game/gameserver.ashx")(70399968, 53640, '00000000-0000-0000-0000-000000000000', 1, "hello", true, 0, "127.0.0.2", nil, "sitetest4.robloxlabs.com", 1, 1, nil, "hello", nil, nil, nil, 1, 0, 1, "hello", "assetgame", "http://")</ns1:script>
-				<ns1:arguments></ns1:arguments>
-			</ns1:script>
+			<ns1:name>SOAP</ns1:name>
+			<ns1:script>game:ClearContent(true);local comment = 'Avatar thumbnail'
+asseturl, url, fileExtension, x, y = ...
+game:GetService('ScriptContext').ScriptsDisabled=true
+pcall(function() game:GetService('ContentProvider'):SetBaseUrl(url) end)
+player = game:GetService('Players'):CreateLocalPlayer(0)
+player.CharacterAppearance = asseturl
+player:LoadCharacter(false)
+
+if (player.Character ~= nil) then
+    local c = player.Character:GetChildren()
+    for i=1,#c do
+        if (c[i].className == 'Tool') then
+            player.Character.Torso['Right Shoulder'].CurrentAngle = 1.57
+            break
+        end
+    end
+end
+
+game:GetService('ThumbnailGenerator').GraphicsMode = 4
+return game:GetService('ThumbnailGenerator'):Click(fileExtension, x, y, true, true)</ns1:script>
+			<ns1:arguments>
+			<ns1:LuaValue>
+              		<ns1:type>LUA_TSTRING</ns1:type>
+              		<ns1:value>http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx</ns1:value>
+        		</ns1:LuaValue>
+			 	<ns1:LuaValue>
+              		<ns1:type>LUA_TSTRING</ns1:type>
+              		<ns1:value>http://www.sitetest4.robloxlabs.com/</ns1:value>
+        		</ns1:LuaValue>
+				<ns1:LuaValue>
+              		<ns1:type>LUA_TSTRING</ns1:type>
+              		<ns1:value>PNG</ns1:value>
+        		</ns1:LuaValue>
+				<ns1:LuaValue>
+              		<ns1:type>LUA_TNUMBER</ns1:type>
+              		<ns1:value>500</ns1:value>
+        		</ns1:LuaValue>
+				<ns1:LuaValue>
+              		<ns1:type>LUA_TNUMBER</ns1:type>
+              		<ns1:value>500</ns1:value>
+        		</ns1:LuaValue>
+			</ns1:arguments>
+		</ns1:script>
 		</ns1:OpenJobEx>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
 ###
 
-POST http://localhost:64989 HTTP/1.1
+POST http://localhost:530 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
-SOAPAction: http://roblox.com/ExecuteEx
+SOAPAction: http://roblox.com/CloseAllJobs
 
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope
@@ -784,21 +824,16 @@ SOAPAction: http://roblox.com/ExecuteEx
 	xmlns:ns1="http://roblox.com/"
 	xmlns:ns3="http://roblox.com/RCCServiceSoap12">
 	<SOAP-ENV:Body>
-		<ns1:ExecuteEx>
-			<ns1:jobID>00000000-0000-0000-0000-000000000000</ns1:jobID>
-			<ns1:script>
-			<ns1:name>SOAP</ns1:name>
-			<ns1:script>game.Players:GetPlayers()[1]:Kick("NIGGERS")</ns1:script>
-			<ns1:arguments>
-			</ns1:arguments>
-		</ns1:script>
-		</ns1:ExecuteEx>
+		<ns1:CloseAllJobs>
+			<ns1:jobID>Test</ns1:jobID>
+			
+		</ns1:CloseAllJobs>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
 ###
 
-POST http://localhost:64989 HTTP/1.1
+POST http://localhost:530 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
 SOAPAction: http://roblox.com/GetAllJobsEx
 
@@ -1037,7 +1072,7 @@ Content-Type: application/json
 
 ####
 
-OPTIONS https://gamepersistence.sitetest2.robloxlabs.com/docs/json/v1
+OPTIONS https://gamepersistence.sitetest1.robloxlabs.com/docs/json/v1
 cache-control: max-age=0
 sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"
 sec-ch-ua-mobile: ?0
@@ -1359,3 +1394,132 @@ Accept-Language: en-US,en;q=0.5
 Origin: http://points.sitetest4.robloxlabs.com
 Connection: keep-alive
 Referer: http://points.sitetest4.robloxlabs.com/
+
+###
+
+GET https://api.improvmx.com/v3/domains
+Authorization: Basic api:sk_53ad1709342742299e0bae05275aed32
+
+###
+
+POST /Thumbs/Asset.asmx HTTP/1.1
+Host: 208.185.116.66
+Content-Type: text/xml; charset=utf-8
+Content-Length: length
+SOAPAction: http://roblox.com/RequestThumbnail_v2
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <RequestThumbnail_v2 xmlns="http://roblox.com/">
+      <assetId>1818</assetId>
+      <width>100</width>
+      <height>100</height>
+      <imageFormat>Png</imageFormat>
+    </RequestThumbnail_v2>
+  </soap:Body>
+
+###
+
+POST api.mfdlabs.cf/Services/Test.asmx HTTP/1.1
+Content-Type: text/xml; charset=utf-8
+Content-Length: length
+SOAPAction: "http://mfdlabs.cf/HelloWorld"
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <HelloWorld xmlns="http://mfdlabs.cf/" />
+  </soap:Body>
+</soap:Envelope>
+
+###
+
+POST itemconfiguration.roblox.com/v1/avatar-assets/Audio/upload HTTP/1.1
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"
+Accept: application/json
+DNT: 1
+sec-ch-ua-mobile: ?0
+Cookie: .ROBLOSECURITY=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_27065BBC04E593294BB7AC61E0A24F4CC6344A55CBDD63B1EEC463852768DF54DCAB31EA05AC274C8E6A6D774BDD325B0528D6B861B62F3E8A5B069C9BCD0ED363D54A4DA848CA8F2E88D6546530D42F844A2951907498A7781ADBF0D672ADB301D243C94A8D11410F8599A4A51907A690B0CF8D65109FEA77A7C6B6EB648DFEF01639D2BBAC40C3650C677F747F6101A20198A434E467A80B56FD48CE22AD3B782CBDC2E15D2447AB44DB2AFF7B167F2E88E8DA160A57CBB937D48C9E5D2121E241FE4AABC38B907AC5CAA02CD20151F05B7FECBC074A7FFAB99FC0FC8166993C17A2BE94A3E34118A4FFE5C6A23B8CB7F5BA7F8BEBD680E22515C510026E24FFE528E502A6382B8BDE2C8E515CA3F8F06B36C5EC9C0410D76354E6E4C31961834E6B05F847374A7C4BDA4EE98FC46266C45BCA
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4493.0 Safari/537.36
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryCtBxPCFWZQMnFfBz
+Origin: https://itemconfiguration.sitetest4.robloxlabs.com
+Sec-Fetch-Site: same-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://itemconfiguration.sitetest4.robloxlabs.com/
+Accept-Language: en,en-US;q=0.9
+roblox-proxied-ip: 128.116.123.3
+roblox-proxied-locale: en-us
+roblox-machine-id: AWA-WEB671
+access_token: cnGgYV/BzUMyhjw3iIiKi0TD6Q0=
+roblox-api-key: 2A04B993-BC10-40AB-B34D-E9FB80CCB34D
+requester: Server
+true-client-ip: 128.116.123.3
+x-real-ip: 128.116.123.3
+Content-Length: 201
+x-csrf-token: /FOJF2XMFMP1
+
+$------WebKitFormBoundaryCtBxPCFWZQMnFfBzrnContent-Disposition: form-data; name="requestModel.files"; filename="untitled.mp3"rnContent-Type: audio/mpegrnrnrn------WebKitFormBoundaryCtBxPCFWZQMnFfBz--rn
+
+###
+
+OPTIONS https://usermoderation.sitetest3.robloxlabs.com/docs/json/v1
+
+###
+POST https://usermoderation.sitetest3.robloxlabs.com/v1/not-approved/reactivate
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"
+sec-ch-ua-mobile: ?0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4493.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en
+Cookie: rbx-ip2=; GuestData=UserID=-1632975598; RBXImageCache=timg=63383735666364312D663037302D346361372D616130342D6431633339356335633665302537382E31372E3232332E31333625352F312F3230323120313A32313A303720504D06E87C617E47ACD4E8907A7FF8E644CA1A64CD1B; .ROBLOSECURITY=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_4DA498CB344FF0150E215859D6BC576A01075B0B999F7AE0A6FC5EFDD670C1B1DCC8C9AB4EAA4E687F2EA7B38E867CC436E19A54C69FE4F78B65A3CDE9CD62B51275263AF96153F47BC93369385CA56910026BED21427055752E5BD76FF68714256259A67F04427FFA46C40A346A5B4693BAFC424A20C7CC4A655B8424EACCE3F498807A668B8889A17240463B90D22B7FCD896B7E182888310B558FE56CF7D4AAA9D92C4C5E0FB137B5DF0CAEACE5F88AB68768B48E3772D3BB26B0B452FF858A10B8078434B81A17AFC4B3F2A383E0BA3679DFF8706822B80F96FE4A7DFBD3E12035E22C74D22276951FED8C4FBFEDE2643046193BC922B8EF9C755185B52C0ACC4625A380E40AC8252229075E1064BB478F408767B06B5A8F3B45ED71904294B5FFAF; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NDcwNzM3OC04OTBhLTQxZjktOWRmMy0zYWQwOTUyZDE1ZDAiLCJzdWIiOjk4ODAxNjQ1NH0.gj9mDmp4F-kgFnWy7KfRrk40LeTMctYBus3cigQDBhI; RBXEventTrackerV2=CreateDate=5/1/2021 8:21:15 AM&rbxid=2359562581&browserid=94992137091; RBXSessionTracker=sessionid=7ecba511-52cc-497a-a99a-ad1a02e20487
+roblox-proxied-ip: 128.116.123.3
+roblox-proxied-locale: en-us
+roblox-machine-id: AWA-WEB671
+access_token: cnGgYV/BzUMyhjw3iIiKi0TD6Q0=
+roblox-api-key: 2A04B993-BC10-40AB-B34D-E9FB80CCB34D
+requester: Server
+true-client-ip: 128.116.123.3
+x-real-ip: 128.116.123.3
+Content-Type: application/json
+x-csrf-token: UX4pnKGPRQxb
+
+{"punishedUserId": 2360547710}
+
+
+###
+
+TRACE http://192.168.0.50/docs
+Host: gamepersistence.mfdlabs.cf
+
+###
+
+POST https://avatarcatalogsearch.api.sitetest3.robloxlabs.com/v1/Search
+
+###
+
+POST https://api.roblox.com/signup/v1
+
+###
+
+POST https://ephemeralcounters.mfdlabs.cf/v1.1/counters/increment/?countername=a
+
+###
+
+POST https://assetgame.roblox.com/Game/PlaceLauncher.ashx?request=RequestGame&placeId=1818&isPartyLeader=false&gender=-1&isTeleport=true&browserTrackerId=0
+User-Agent: xlxi but he is gay?
+Referer: https://negor.cum
