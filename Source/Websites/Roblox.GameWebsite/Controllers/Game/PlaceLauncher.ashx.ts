@@ -25,9 +25,15 @@
 	***
 */
 
+import { Request, Response } from 'express';
+import { GameLaunchRequestProcessor } from '../../../../Assemblies/Web/GameLaunch/Roblox.Web.GameLaunch/RequestProcessor';
+
 export default {
 	method: 'all',
-	func: (_req: unknown, res: { send: (arg0: unknown) => void }): void => {
+	func: (request: Request, response: Response): void => {
+		const RequestProcessor = new GameLaunchRequestProcessor(response);
+
+		if (!RequestProcessor.CheckUseragent(request.headers['user-agent'], request.headers['referer'])) return;
 		const txt = {
 			jobId: '00000000-0000-0000-0000-000000000000',
 			status: 2,
@@ -35,6 +41,6 @@ export default {
 			authenticationUrl: 'http://api.sitetest4.robloxlabs.com/Login/Negotiate.ashx',
 			authenticationTicket: 'Guest:-3074',
 		};
-		res.send(txt);
+		response.send(txt);
 	},
 };
