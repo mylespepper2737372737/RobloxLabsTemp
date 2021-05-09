@@ -5,7 +5,7 @@ on:
     pull_requests:
         branches: [Roblox.SiteTest4]
     schedule:
-        cron: 38 2 * * 0
+        - cron: 38 2 * * 0
 jobs:
     analyze:
         name: Analyze
