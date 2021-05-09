@@ -136,16 +136,16 @@ export class PartialEntity<TEntity> {
 	/**
 	 * Gets the specified key from a row with a condition.
 	 * @param {TKey} key The key to fetch.
-	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
+	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condition The condition to follow.
 	 * @returns {Task<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
 	public async SelectKeyWhere<TKey extends keyof TEntity>(
 		key: TKey,
-		condtion: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
+		condition: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
 		return new Promise<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>((resumeFunction) => {
 			let conditionType = '=';
-			switch (condtion.Condition) {
+			switch (condition.Condition) {
 				case PartialDatabaseConditionType.Equal:
 					conditionType = '=';
 					break;
@@ -165,7 +165,7 @@ export class PartialEntity<TEntity> {
 					conditionType = '<>';
 					break;
 			}
-			const query = `SELECT ${key} FROM \`${this.dbName_}\`.\`${this.tableName_}\` WHERE ${condtion.Key} ${conditionType} '${condtion.Value}';`;
+			const query = `SELECT ${key} FROM \`${this.dbName_}\`.\`${this.tableName_}\` WHERE ${condition.Key} ${conditionType} '${condition.Value}';`;
 
 			this.connection_.query(query, (err, results) => {
 				if (err) return resumeFunction([false, err.message, null]);
@@ -186,15 +186,15 @@ export class PartialEntity<TEntity> {
 
 	/**
 	 * Gets all the columns from a row where the condition matches.
-	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
+	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condition The condition to follow.
 	 * @returns {Task<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
 	public async SelectAllWhere<TKey extends keyof TEntity>(
-		condtion: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
+		condition: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
 		return new Promise<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>((resumeFunction) => {
 			let conditionType = '=';
-			switch (condtion.Condition) {
+			switch (condition.Condition) {
 				case PartialDatabaseConditionType.Equal:
 					conditionType = '=';
 					break;
@@ -214,7 +214,7 @@ export class PartialEntity<TEntity> {
 					conditionType = '<>';
 					break;
 			}
-			const query = `SELECT * FROM \`${this.dbName_}\`.\`${this.tableName_}\` WHERE ${condtion.Key} ${conditionType} '${condtion.Value}';`;
+			const query = `SELECT * FROM \`${this.dbName_}\`.\`${this.tableName_}\` WHERE ${condition.Key} ${conditionType} '${condition.Value}';`;
 
 			this.connection_.query(query, (err, results) => {
 				if (err) return resumeFunction([false, err.message, null]);
@@ -239,16 +239,16 @@ export class PartialEntity<TEntity> {
 	/**
 	 * Gets the columns specifed in TKey[] from the row that matches the condition.
 	 * @param {TKey[]} keys The keys to fetch.
-	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
+	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condition The condition to follow.
 	 * @returns {Task<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
 	public async SelectKeysWhere<TKey extends keyof TEntity>(
 		keys: TKey[],
-		condtion: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
+		condition: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]> {
 		return new Promise<[boolean, string, IPartialDatabaseRowResponseModel<TEntity, TKey, TEntity[TKey]>]>((resumeFunction) => {
 			let conditionType = '=';
-			switch (condtion.Condition) {
+			switch (condition.Condition) {
 				case PartialDatabaseConditionType.Equal:
 					conditionType = '=';
 					break;
@@ -272,7 +272,7 @@ export class PartialEntity<TEntity> {
 			keys.forEach((key, idx, arr) => {
 				query += `${key}${idx !== arr.length - 1 ? ', ' : ''}`;
 			});
-			query += ` FROM \`${this.dbName_}\`.\`${this.tableName_}\` WHERE ${condtion.Key} ${conditionType} '${condtion.Value}';`;
+			query += ` FROM \`${this.dbName_}\`.\`${this.tableName_}\` WHERE ${condition.Key} ${conditionType} '${condition.Value}';`;
 
 			this.connection_.query(query, (err, results) => {
 				if (err) return resumeFunction([false, err.message, null]);
@@ -308,17 +308,17 @@ export class PartialEntity<TEntity> {
 	 * Updates the given key with the given value where the condition matches.
 	 * @param {TKey} key The key to update.
 	 * @param {TValue} value The value to update the key by.
-	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
+	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condition The condition to follow.
 	 * @returns {Task<[boolean, string]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
 	public async UpdateKey<TKey extends keyof TEntity, TValue extends TEntity[TKey]>(
 		key: TKey,
 		value: TValue,
-		condtion: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
+		condition: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string]> {
 		return new Promise<[boolean, string]>((resumeFunction) => {
 			let conditionType = '=';
-			switch (condtion.Condition) {
+			switch (condition.Condition) {
 				case PartialDatabaseConditionType.Equal:
 					conditionType = '=';
 					break;
@@ -338,7 +338,7 @@ export class PartialEntity<TEntity> {
 					conditionType = '<>';
 					break;
 			}
-			const query = `UPDATE \`${this.dbName_}\`.\`${this.tableName_}\` SET ${key} = '${value}' WHERE ${condtion.Key} ${conditionType} '${condtion.Value}';`;
+			const query = `UPDATE \`${this.dbName_}\`.\`${this.tableName_}\` SET ${key} = '${value}' WHERE ${condition.Key} ${conditionType} '${condition.Value}';`;
 
 			this.connection_.query(query, (err) => {
 				if (err) return resumeFunction([false, err.message]);
@@ -350,16 +350,16 @@ export class PartialEntity<TEntity> {
 	/**
 	 * Updates the specified {Roblox.IPartialDataBaseSetValuesModel[]} keys where the {Roblox.IPartialDataBaseCondition} matches.
 	 * @param {IPartialDatabaseSetValuesModel<TEntity, TKey, TEntity[TKey]>[]} keys The keys to update, in K and V fashion.
-	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condtion The condition to follow.
+	 * @param {IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>} condition The condition to follow.
 	 * @returns {Task<[boolean, string]>} Returns a Task that informs you whether or not the query succeeded.
 	 */
 	public async UpdateKeys<TKey extends keyof TEntity>(
 		keys: IPartialDatabaseSetValuesModel<TEntity, TKey, TEntity[TKey]>[],
-		condtion: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
+		condition: IPartialDatabaseCondition<TEntity, TKey, TEntity[TKey]>,
 	): Task<[boolean, string]> {
 		return new Promise<[boolean, string]>((resumeFunction) => {
 			let conditionType = '=';
-			switch (condtion.Condition) {
+			switch (condition.Condition) {
 				case PartialDatabaseConditionType.Equal:
 					conditionType = '=';
 					break;
@@ -383,7 +383,7 @@ export class PartialEntity<TEntity> {
 			keys.forEach((key, idx, arr) => {
 				query += `${key.Key} = '${key.Value}'${idx !== arr.length - 1 ? ', ' : ''}`;
 			});
-			query += ` WHERE ${condtion.Key} ${conditionType} '${condtion.Value}';`;
+			query += ` WHERE ${condition.Key} ${conditionType} '${condition.Value}';`;
 			this.connection_.query(query, (err) => {
 				if (err) return resumeFunction([false, err.message]);
 				return resumeFunction([true, '']);
