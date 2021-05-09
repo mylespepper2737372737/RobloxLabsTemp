@@ -1,0 +1,75 @@
+<script type="text/javascript">
+	var Roblox = Roblox || {};
+	Roblox.EnvironmentUrls = Roblox.EnvironmentUrls || {};
+	Roblox.EnvironmentUrls = {
+		abtestingApiSite: 'https://<%= urlMetadata.Hosts.AbTestingHost %>',
+		accountInformationApi: 'https://<%= urlMetadata.Hosts.AccountInformationHost %>',
+		accountSettingsApi: 'https://<%= urlMetadata.Hosts.AccountSettingsHost %>',
+		adConfigurationApi: 'https://<%= urlMetadata.Hosts.AdConfigurationHost %>',
+		adsApi: 'https://<%= urlMetadata.Hosts.AdsHost %>',
+		apiGatewayUrl: 'https://<%= urlMetadata.Hosts.ApiGatewayHost %>',
+		apiGatewayCdnUrl: 'https://<%= urlMetadata.Hosts.ApiGatewayCDNHost  %>',
+		apiProxyUrl: 'https://<%= urlMetadata.Hosts.ApiProxyHost %>',
+		assetDeliveryApi: 'https://<%= urlMetadata.Hosts.AssetsHost %>',
+		authApi: 'https://<%= urlMetadata.Hosts.AuthenticationHost %>',
+		avatarApi: 'https://<%= urlMetadata.Hosts.AvatarHost %>',
+		badgesApi: 'https://<%= urlMetadata.Hosts.BadgesHost %>',
+		billingApi: 'https://<%= urlMetadata.Hosts.BillingHost %>',
+		captchaApi: 'https://<%= urlMetadata.Hosts.DEPRECATED_CaptchaHost %>',
+		catalogApi: 'https://<%= urlMetadata.Hosts.CatalogHost %>',
+		chatApi: 'https://<%= urlMetadata.Hosts.ChatHost %>',
+		contactsApi: 'https://<%= urlMetadata.Hosts.ContactsHost %>',
+		contentStoreApi: 'https://<%= urlMetadata.Hosts.ContentStoreHost %>',
+		developApi: 'https://<%= urlMetadata.Hosts.DevelopHost %>',
+		domain: '<%= urlMetadata.Hosts.Apex %>',
+		economyApi: 'https://<%= urlMetadata.Hosts.EconomyHost %>',
+		economycreatorstatsApi: 'https://<%= urlMetadata.Hosts.EconomyCreatorStatsHost %>',
+		engagementPayoutsApi: 'https://<%= urlMetadata.Hosts.EngagementPayoutsHost %>',
+		followingsApi: 'https://<%= urlMetadata.Hosts.FollowingsHost %>',
+		friendsApi: 'https://<%= urlMetadata.Hosts.FriendsHost %>',
+		gamesApi: 'https://<%= urlMetadata.Hosts.GamesHost %>',
+		gameInternationalizationApi: 'https://<%= urlMetadata.Hosts.G18NHost %>',
+		groupsApi: 'https://<%= urlMetadata.Hosts.GroupsHost %>',
+		inventoryApi: 'https://<%= urlMetadata.Hosts.InventoryHost %>',
+		itemConfigurationApi: 'https://<%= urlMetadata.Hosts.ItemConfigurationHost %>',
+		localeApi: 'https://<%= urlMetadata.Hosts.LocaleHost %>',
+		localizationTablesApi: 'https://<%= urlMetadata.Hosts.LocalizationTablesHost %>',
+		metricsApi: 'https://<%= urlMetadata.Hosts.MetricsHost %>',
+		midasApi: 'https://<%= urlMetadata.Hosts.MidasHost %>',
+		notificationApi: 'https://<%= urlMetadata.Hosts.NotificationsHost %>',
+		premiumFeaturesApi: 'https://<%= urlMetadata.Hosts.PremiumFeaturesHost %>',
+		presenceApi: 'https://<%= urlMetadata.Hosts.PresenceHost %>',
+		publishApi: 'https://<%= urlMetadata.Hosts.PublishHost %>',
+		screenTimeApi: 'https://<%= urlMetadata.Hosts.DEPRECATED_ApiGatewayRCSHost %>/screen-time-api',
+		thumbnailsApi: 'https://<%= urlMetadata.Hosts.ThumbsHost %>',
+		tradesApi: 'https://<%= urlMetadata.Hosts.TradesHost %>',
+		translationRolesApi: 'https://<%= urlMetadata.Hosts.TranslationRolesHost %>',
+		universalAppConfigurationApi: 'https://<%= urlMetadata.Hosts.ApiGatewayHost %>/universal-app-configuration',
+		usersApi: 'https://<%= urlMetadata.Hosts.UsersHost %>',
+		voiceApi: 'https://<%= urlMetadata.Hosts.VoiceHost %>',
+		websiteUrl: 'https://<%= urlMetadata.Hosts.BaseHost %>',
+		privateMessagesApi: 'https://<%= urlMetadata.Hosts.PrivateMessagesHost %>',
+		shareApi: 'https://<%= urlMetadata.Hosts.ShareHost %>',
+		chatModerationApi: 'https://<%= urlMetadata.Hosts.ChatModerationHost %>',
+		userModerationApi: 'https://<%= urlMetadata.Hosts.UserModerationHost %>',
+		groupsModerationApi: 'https://<%= urlMetadata.Hosts.GroupsModerationHost %>',
+		twoStepVerificationApi: 'https://<%= urlMetadata.Hosts.TSVHost %>',
+	};
+
+	// please keep the list in alphabetical order
+	var additionalUrls = {
+		amazonStoreLink: 'https://www.amazon.com/Roblox-Corporation/dp/B00NUF4YOA',
+		amazonWebStoreLink:
+			'https%3a%2f%2fwww.amazon.com%2froblox%3f%26_encoding%3dUTF8%26tag%3dr05d13-20%26linkCode%3dur2%26linkId%3d5562fc29c05b45562a86358c198356eb%26camp%3d1789%26creative%3d9325',
+		appProtocolUrl: 'robloxmobile://',
+		appStoreLink: 'https://itunes.apple.com/us/app/roblox-mobile/id431946152',
+		googlePlayStoreLink: 'https://play.google.com/store/apps/details?id=com.roblox.client&amp;hl=en',
+		iosAppStoreLink: 'https://itunes.apple.com/us/app/roblox-mobile/id431946152',
+		windowsStoreLink: 'https://www.microsoft.com/en-us/store/games/roblox/9nblgggzm6wm',
+		xboxStoreLink: 'https://www.microsoft.com/en-us/p/roblox/bq1tn1t79v9k',
+	};
+
+	for (var urlName in additionalUrls) {
+		Roblox.EnvironmentUrls[urlName] = additionalUrls[urlName];
+	}
+</script>

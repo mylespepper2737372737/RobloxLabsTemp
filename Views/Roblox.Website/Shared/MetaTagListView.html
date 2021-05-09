@@ -1,0 +1,41 @@
+<% if (isUserAuthenicated) { %>
+<meta
+	name="user-data"
+	data-userid="<%= authenticatedUser.Id %>"
+	data-name="<%= authenticatedUser.Name %>"
+	data-displayname="<%= authenticatedUser.DisplayName %>"
+	data-isunder13="<%= authenticatedUser.IsUnder13 %>"
+	data-created="<%= authenticatedUser.Created %>"
+	data-ispremiumuser="<%= authenticatedUser.IsPremium %>"
+/>
+<% } %>
+<meta
+	name="locale-data"
+	data-language-code="<%= isUserAuthenicated === true ? authenticatedUser.LanguageCode : sessionUser.LanguageCode %>"
+	data-language-name="<%= isUserAuthenicated === true ? authenticatedUser.LanguageName : sessionUser.LanguageName %>"
+/>
+<meta
+	name="device-meta"
+	data-device-type="<%= sessionUser.Device.DeviceName %>"
+	data-is-in-app="<%= sessionUser.Device.IsInApp %>"
+	data-is-desktop="<%= sessionUser.Device.IsDesktop %>"
+	data-is-phone="<%= sessionUser.Device.IsPhone %>"
+	data-is-tablet="<%= sessionUser.Device.IsTablet %>"
+	data-is-console="<%= sessionUser.Device.IsConsole %>"
+	data-is-android-app="<%= sessionUser.Device.IsAndroidApp %>"
+	data-is-ios-app="<%= sessionUser.Device.IsIosApp %>"
+	data-is-uwp-app="<%= sessionUser.Device.IsUWPApp %>"
+	data-is-xbox-app="<%= sessionUser.Device.IsXboxApp %>"
+	data-is-amazon-app="<%= sessionUser.Device.IsAmazonApp %>"
+	data-is-win32-app="<%= sessionUser.Device.IsWin32App %>"
+	data-is-studio="<%= sessionUser.Device.IsStudio %>"
+	data-is-game-client-browser="<%= sessionUser.Device.IsGameClientBrowser %>"
+	data-is-ios-device="<%= sessionUser.Device.IsIosDevice %>"
+	data-is-android-device="<%= sessionUser.Device.IsAndroidDevice %>"
+	data-is-universal-app="<%= sessionUser.Device.IsUniversalApp %>"
+	data-app-type="unknown"
+/>
+<meta name="environment-meta" data-is-testing-site="true" />
+
+<meta id="roblox-display-names" data-enabled="<%= globalMeta.Experiments.DisplayNamesEnabled %>" />
+<meta name="page-meta" data-internal-page-name="<%= pageMeta.InternalPageName %>" />
