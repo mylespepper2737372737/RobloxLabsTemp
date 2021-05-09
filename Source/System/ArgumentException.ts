@@ -7,6 +7,6 @@ export class ArgumentException extends SystemException implements ISerializable 
 	public constructor(message: string);
 
 	public constructor(message?: string) {
-		super(message);
+		super(message, null);
 	}
 }

@@ -6,6 +6,6 @@ export class InvalidCastException extends SystemException {
 	public constructor(message: string);
 
 	public constructor(message?: string) {
-		super(message);
+		super(message, null);
 	}
 }

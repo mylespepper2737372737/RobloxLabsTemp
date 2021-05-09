@@ -6,6 +6,6 @@ export class NotImplementedException extends SystemException {
 	public constructor(message: string);
 
 	public constructor(message?: string) {
-		super(message);
+		super(message, null);
 	}
 }
