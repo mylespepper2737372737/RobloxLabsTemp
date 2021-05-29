@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const clientSettings = new Map(Object.entries());
+const clientSettings = new Map(Object.entries({}));
 const clientSettingsFormatted = {
 	FVariable: {},
 	FLog: {},
@@ -91,7 +91,7 @@ clientSettings.forEach((value, key) => {
 		} else if (str.startsWith('FString') || str.startsWith('DFString') || str.startsWith('SFString')) {
 			const isDynamicOrSync = str.startsWith('S') || str.startsWith('D');
 			const prefix = isDynamicOrSync ? str.substr(0, 8) : str.substr(0, 7);
-			value = value.toString();
+			value = typeof value === 'string' ? value.toString() : null;
 			clientSettingsFormatted[prefix][isDynamicOrSync ? str.substr(8) : str.substr(7)] = value;
 		} else {
 			if (typeof value === 'string') {

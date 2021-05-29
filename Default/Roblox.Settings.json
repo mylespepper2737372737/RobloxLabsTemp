@@ -3,14 +3,19 @@
 		"Web": {
 			"FVariable": {},
 			"FLog": {
-				"Pages": 7,
-				"EphemeralCounters": 7,
-				"dmp": 7,
-				"EphemeralCountersV2": 7
+				"Pages": 0,
+				"EphemeralCounters": 0,
+				"dmp": 0,
+				"EphemeralCountersV2": 0,
+				"Kestrul": 0
 			},
 			"DFLog": {
 				"Tasks": 7,
-				"DataStoresV2": 7
+				"DataStoresV2": 0,
+				"CacheStore": 0,
+				"RoundRobinRunThrough": 0,
+				"Protocol77": 7,
+				"RoundRobinCacheBalancer": 0
 			},
 			"SFLog": {},
 			"FFlag": {
@@ -22,7 +27,7 @@
 				"IsCaptchaV2Enabled": true,
 				"IsCaptchaV2Hardcoded": false,
 				"CanCaptchaV2AdminKeyBeUsed": false,
-				"IsCSRFV2Enabled": true,
+				"IsCSRFV2Enabled": false,
 				"IsCSRFV2Hardcoded": false,
 				"IsCSRFV2BasedOnAuthenticationId": false,
 				"IsCSRFV2BasedOnIPAddress": false,
@@ -64,7 +69,10 @@
 				"MetricsLogRatio": 0.05,
 				"MultiGetContactsMaxSize": 200,
 				"CookieLawNoticeTimeout": 20000,
-				"TestCurrency": 0
+				"TestCurrency": 0,
+				"UsedMemoryMin": 5.369e7,
+				"UsedMemoryMax": 1.611e10,
+				"CPUTicksConsumedMax": 50000
 			},
 			"SFInt": {},
 			"FString": {
@@ -78,10 +86,12 @@
 				"CharacterAppearanceUrl": "http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx",
 				"CharacterAppearranceTestString": "http://assetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx?userId=0;http://assetgame.sitetest4.robloxlabs.com/Asset?id=21070012;http://assetgame.sitetest4.robloxlabs.com/Asset?id=6395566584",
 				"WebVersion": "1.313.13.88764",
-				"SiteBanner": "Ze test",
+				"SiteBanner": "8-Bit",
 				"DefaultModerationTitle": "Account Deleted",
 				"DefaultModerationReviewedDate": "3/29/1923 3:18:10 AM",
-				"DefaultModerationNote": "NIGGA HOW?"
+				"DefaultModerationNote": "NIGGA HOW?",
+				"OktaClientID": "0oaqj21g63hsZ3wYB5d6",
+				"RobloxLabsSecurityToken": "ljWby+/HVsZXJLfRkoljWby+/HVsZXJLfRko9mPQ9mPQ=="
 			},
 			"SFString": {},
 			"FPFilter": {}
@@ -1657,7 +1667,7 @@
 				}
 			}
 		},
-		"RCCServicelol": {
+		"RCCService56uLaxybQu79lrOfd6VD07P557NjVxmBgLPykKHsBa21s178bLA1nxd4Yd0HAUJDX7cq8SaU00IFcUKTVvbxX6Zap9YFPbVkYnF3i7K5zOkmhdMlvaqveOUDl2ekntcjSU0yMAPuhgF8cfkMi2jCzlu8Ulp6rgiIkB421A": {
 			"FVariable": {
 				"GoogleAnalyticsAccountPropertyID": "G-47TC169RJN",
 				"GoogleAnalyticsAccountPropertyIDPlayer": "G-CSJXGEJRH3",
@@ -1682,7 +1692,8 @@
 				"HttpUseCurlPercentageWinClient": 100,
 				"HttpUseCurlPercentageMacClient": 100,
 				"HttpUseCurlPercentageWinStudio": 100,
-				"HttpUseCurlPercentageMacStudio": 100
+				"HttpUseCurlPercentageMacStudio": 100,
+				"HttpUseCurlPercentageRCC": 100
 			},
 			"FLog": {
 				"Asserts": 0,
@@ -1706,7 +1717,7 @@
 				"VR": 6,
 				"Network": 7
 			},
-			"DFLog": {},
+			"DFLog": { "R15Character": 7 },
 			"SFLog": {},
 			"FFlag": {
 				"US30484p3": true,
@@ -9180,7 +9191,7 @@
 		"Arbiter",
 		"ClientSharedSettings",
 		"WindowsBootstrapperSettings",
-		"RCCServicelol",
+		"RCCService56uLaxybQu79lrOfd6VD07P557NjVxmBgLPykKHsBa21s178bLA1nxd4Yd0HAUJDX7cq8SaU00IFcUKTVvbxX6Zap9YFPbVkYnF3i7K5zOkmhdMlvaqveOUDl2ekntcjSU0yMAPuhgF8cfkMi2jCzlu8Ulp6rgiIkB421A",
 		"PCStudioApp",
 		"RccThumbnailers"
 	],
@@ -9195,6 +9206,8 @@
 		"Deprecate DFFlagIsCaptchaV1Enabled?",
 		"Ensure that DFFlagCanCSRFV2AdminKeyBeUsed is disabled at all times until the server is reliant on IP Address validation.",
 		"Add DFFlagIsFrontendExemptFromCaptchaV2",
-		"Update the FastLog library"
+		"Update the FastLog library",
+		"Change FLog::Protocol77 to DFLog::Protocol77",
+		"Make this fucking shorter..."
 	]
 }
