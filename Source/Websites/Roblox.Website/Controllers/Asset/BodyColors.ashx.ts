@@ -2,7 +2,7 @@
 	FileName: BodyColors.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: https://www.sitetest4.robloxlabs.com/Asset/BodyColors.ashx, Make AssetGame redirect to this instead of www redirecting to assetgame
+	Description: https://asssetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx, Gets a xml body colors object based on userId
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -25,9 +25,13 @@
 	***
 */
 
+import fs from 'fs';
+import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
+
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		return res.redirect('http://assetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx');
+		const str = fs.readFileSync(__baseDirName + '/InternalCDN/BodyColors.xml', 'utf-8');
+		return res.send(str);
 	},
 };

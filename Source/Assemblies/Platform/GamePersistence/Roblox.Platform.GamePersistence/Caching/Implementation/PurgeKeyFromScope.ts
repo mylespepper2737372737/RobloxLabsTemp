@@ -11,7 +11,7 @@ export const PurgeKeyFromScope = (
 	isSorted: boolean = false,
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '/DataBase/persistence/' + universeId;
 		if (!filestream.existsSync(dir)) {
 			WriteUniverse(universeId);
 			return resumefunction(false);
@@ -49,7 +49,7 @@ export const PurgeKeyFromScope = (
 		});
 		filestream.writeFileSync(scoperoot + 'RECORD.json', JSON.stringify(record, undefined, 4));
 		const record2 = <unknown[]>(
-			JSON.parse(filestream.readFileSync(scoperoot + (isSorted ? 'entries\\' : 'keys\\') + 'RECORD.json', { encoding: 'utf-8' }))
+			JSON.parse(filestream.readFileSync(scoperoot + (isSorted ? 'entries/' : 'keys/') + 'RECORD.json', { encoding: 'utf-8' }))
 		);
 		record2.push({
 			keyName: keyName,
@@ -57,7 +57,7 @@ export const PurgeKeyFromScope = (
 			updated: new Date(Date.now()).toISOString(),
 			purged: new Date(Date.now()).toISOString(),
 		});
-		filestream.writeFileSync(scoperoot + (isSorted ? 'entries\\' : 'keys\\') + 'RECORD.json', JSON.stringify(record2, undefined, 4));
+		filestream.writeFileSync(scoperoot + (isSorted ? 'entries/' : 'keys/') + 'RECORD.json', JSON.stringify(record2, undefined, 4));
 		const record3 = <Record<string, unknown>>JSON.parse(filestream.readFileSync(scoperoot + 'SCOPE.json', { encoding: 'utf-8' }));
 		(<number>record3['keys'])--;
 		filestream.writeFileSync(scoperoot + 'SCOPE.json', JSON.stringify(record3, undefined, 4));

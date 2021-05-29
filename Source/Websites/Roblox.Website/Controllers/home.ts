@@ -92,7 +92,7 @@ export default {
 		// 		return res.header(newheaders).status(e.response.status).send(e.response.data);
 		// 	});
 		// let template = fs.readFileSync(
-		// 	Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '\\InternalCDN\\Roblox.UserProfile.html',
+		// 	Roblox.Api.Constants.RobloxDirectories.__iBaseDirectory + '/InternalCDN/Roblox.UserProfile.html',
 		// 	{ encoding: 'utf-8' },
 		// );
 		// template = template.split('<USERIDHERE>').join(userId.toString());

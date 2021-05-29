@@ -28,17 +28,23 @@
 import { Request, Response } from 'express';
 
 export default {
-	method: 'post',
+	method: 'all',
 	func: async (request: Request, response: Response) => {
-		console.log(request.body);
-		response
-			.cookie('TEAM-CITY-AUTH', 'TEST', {
-				maxAge: 77316362131,
-				domain: 'rcity.simulpong.com',
-				secure: false,
-				sameSite: 'lax',
-				httpOnly: true,
-			})
-			.redirect(request.body.ReturnUrl);
+		switch (request.method) {
+			case 'POST':
+				response
+					.cookie('TEAM-CITY-AUTH', 'TEST', {
+						maxAge: 77316362131,
+						domain: 'rcity.simulpong.com',
+						secure: false,
+						sameSite: 'lax',
+						httpOnly: true,
+					})
+					.redirect(request.body.ReturnUrl);
+				break;
+			case 'GET':
+				response.render('Login', { isOktaLoginEnabled: true });
+				break;
+		}
 	},
 };

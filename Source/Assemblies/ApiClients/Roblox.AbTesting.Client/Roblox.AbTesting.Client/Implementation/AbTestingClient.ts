@@ -8,7 +8,7 @@ import https from 'https';
 
 DYNAMIC_LOGGROUP('Tasks');
 
-export namespace AbTestingClient {
+export class AbTestingClient {
 	/**
 	 * Try enroll the current IEntrollments.
 	 * @param {Array<IEnrollment>} enrollments The enrollments to send to abtesting.api
@@ -16,7 +16,7 @@ export namespace AbTestingClient {
 	 * @param {Boolean} requireSecureUri Should the ApiClient request with a HTTPS Uri
 	 * @returns {Task<[Boolean, String]>} Returns a Task to be awaited for response.
 	 */
-	export async function TryEnrollToExperiments(
+	public static async TryEnrollToExperiments(
 		enrollments: Array<IEnrollment>,
 		UserAuthToken: String,
 		requireSecureUri: Boolean,

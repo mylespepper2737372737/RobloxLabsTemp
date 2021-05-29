@@ -4,8 +4,8 @@ import { ExperimentStatusEnum } from '../../../../Platform/AbTesting/Roblox.Plat
 import { SubjectTypeEnum } from '../../../../Platform/AbTesting/Roblox.Platform.AbTesting/SubjectTypeEnum';
 import { Response } from 'express';
 
-export namespace AbTestingService {
-	export function HandleEnrollTo(enrollments: Array<IEnrollment>, response: Response) {
+export class AbTestingService {
+	public static HandleEnrollTo(enrollments: Array<IEnrollment>, response: Response) {
 		const experimentStatuses = [];
 		// Begin validations for enrollments
 		enrollments.forEach((enrollment) => {

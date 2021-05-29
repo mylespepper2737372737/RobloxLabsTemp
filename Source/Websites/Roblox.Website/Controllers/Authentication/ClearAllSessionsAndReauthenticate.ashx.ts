@@ -56,7 +56,7 @@ import { DeleteCsrfSession } from '../../../../Assemblies/Caching/Sessions/Roblo
 import { CreateCsrfSessionFile } from '../../../../Assemblies/Caching/Sessions/Roblox.Caching.Sessions/CreateCsrfSessionFile';
 import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 

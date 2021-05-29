@@ -21,7 +21,7 @@ DYNAMIC_LOGVARIABLE('Debug', 7);
 		Payload: JSON.stringify(postData),
 		Method: HttpRequestMethodEnum.POST,
 	});
-	const [Success, Response] = await Client.execute();
+	const [Success, Response] = await Client.ExecuteAsync();
 	if (Success) {
 		FASTLOGS(DFLog('Debug'), '[DFLog::Debug] %s', JSON.stringify(Response));
 	} else if (!Success) {

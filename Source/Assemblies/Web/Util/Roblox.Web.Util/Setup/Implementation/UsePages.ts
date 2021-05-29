@@ -53,7 +53,7 @@ LOGGROUP('Pages');
 
 const UsePages = (app: IApplicationBuilder, opts: PageDirOpts, PagesOpts: PageOpts): Promise<void> => {
 	return new Promise((r) => {
-		const path = (opts !== undefined ? opts.path : __baseDirName + '\\StaticPages') || __baseDirName + '\\StaticPages';
+		const path = (opts !== undefined ? opts.path : __baseDirName + '/StaticPages') || __baseDirName + '/StaticPages';
 		if (!fs.existsSync(path)) {
 			FASTLOGS(
 				FLog['Pages'],

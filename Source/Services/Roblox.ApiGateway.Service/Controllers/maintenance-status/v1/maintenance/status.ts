@@ -28,6 +28,6 @@
 export default {
 	method: 'all',
 	func: async (_req, res) => {
-		res.send({ countDownTime: '1970-01-01T00:00:00', canAccessSite: false });
+		res.send({ countDownTime: '2021-05-25T05:00:00.000Z', canAccessSite: false });
 	},
 };

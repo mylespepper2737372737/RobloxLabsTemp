@@ -5,7 +5,7 @@
 		"title": "Publish Api v1"
 	},
 	"host": "publish.sitetest4.robloxlabs.com",
-	"schemes": ["https"],
+	"schemes": ["http"],
 	"paths": {
 		"/v1/assets/{assetId}/thumbnail": {
 			"post": {

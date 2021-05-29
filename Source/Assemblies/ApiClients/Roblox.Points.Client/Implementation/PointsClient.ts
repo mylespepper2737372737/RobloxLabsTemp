@@ -6,15 +6,15 @@ import { Task } from '../../../../System/Threading/Task';
 import { IUser } from '../../../Platform/Membership/Roblox.Platform.Membership/IUser';
 import { IUniverse } from '../../../Platform/Universes/Roblox.Platform.Universes/IUniverse';
 
-export namespace PointsClient {
+export class PointsClient {
 	/**
 	 * This method checks the status of the api service.
 	 * @param isRequestSecure Request via a secure Url.
 	 * @returns {Task<[Boolean, Number, String]>} Returns a task that describes the status.
 	 */
-	export async function CheckHealth(isRequestSecure: boolean = true): Task<[Boolean, Number, String, String]> {
+	public static async CheckHealth(isRequestSecure: boolean = true): Task<[Boolean, Number, String, String]> {
 		return new Promise<[Boolean, Number, String, String]>(async (resumeFunction) => {
-			const CheckHealthUrl = BaseURL.ConstructServicePath('points.api', 'checkhealth', isRequestSecure);
+			const CheckHealthUrl = BaseURL.ConstructServicePathFromSubDomainSimple('points.api', 'checkhealth', isRequestSecure);
 			const Client = new ServiceClient.HttpClient({
 				Url: CheckHealthUrl,
 				QueryString: {
@@ -24,7 +24,7 @@ export namespace PointsClient {
 				Payload: '',
 				Method: HttpRequestMethodEnum.GET,
 			});
-			const [Success, Response] = await Client.execute();
+			const [Success, Response] = await Client.ExecuteAsync();
 			return resumeFunction([Success, Response.StatusCode, Response.StatusMessage, CheckHealthUrl]);
 		});
 	}
@@ -36,13 +36,13 @@ export namespace PointsClient {
 	 * @param {boolean} isRequestSecure Is the request secure
 	 * @returns {Task<[Boolean, Number, String]>} Returns a Task the checks if the response was successful or not.
 	 */
-	export async function GetUserAllTimePoints(
+	public static async GetUserAllTimePoints(
 		user: IUser,
 		universe: IUniverse,
 		isRequestSecure: boolean = true,
 	): Task<[Boolean, Number, any, Error]> {
 		return new Promise<[Boolean, Number, any, Error]>(async (resumeFunction) => {
-			const Url = BaseURL.ConstructServicePath('points.api', 'v1/GetUserAllTimePoints', isRequestSecure);
+			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('points.api', 'v1/GetUserAllTimePoints', isRequestSecure);
 			const Payload = {
 				universe,
 				user,
@@ -57,7 +57,7 @@ export namespace PointsClient {
 				Method: HttpRequestMethodEnum.POST,
 				FailedMessage: `Error getting the alltime points for the user ${user.Id} in the universe ${universe.Id}`,
 			});
-			const [Success, Response, Error] = await Client.execute();
+			const [Success, Response, Error] = await Client.ExecuteAsync();
 			return resumeFunction([Success, Response.StatusCode, Response.ResponsePayload, Error]);
 		});
 	}

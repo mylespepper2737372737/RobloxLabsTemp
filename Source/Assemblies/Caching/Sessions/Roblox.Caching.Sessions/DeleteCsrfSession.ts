@@ -3,6 +3,6 @@ import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants
 
 export const DeleteCsrfSession = (AuthToken: string) => {
 	try {
-		filestream.unlinkSync(__baseDirName + `\\DataBase\\csrf\\${AuthToken}.json`);
+		filestream.unlinkSync(__baseDirName + `/DataBase/csrf/${AuthToken}.json`);
 	} catch (e) {}
 };

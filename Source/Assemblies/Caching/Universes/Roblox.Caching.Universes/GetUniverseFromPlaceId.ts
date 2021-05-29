@@ -39,17 +39,17 @@ type UniverseType = {
 };
 
 export const GetUniverseFromPlaceId = (placeId: number): [boolean, UniverseType | null] => {
-	const placePath = __baseDirName + '\\DataBase\\places\\' + placeId;
+	const placePath = __baseDirName + '/DataBase/places/' + placeId;
 	if (!filestream.statSync(placePath).isDirectory()) {
 		return [false, null];
 	}
-	const place = JSON.parse(filestream.readFileSync(placePath + '\\PLACE.json', 'utf-8'));
+	const place = JSON.parse(filestream.readFileSync(placePath + '/PLACE.json', 'utf-8'));
 	if (place instanceof Object && place['universeId'] !== undefined) {
-		const universePath = __baseDirName + '\\DataBase\\universes\\' + place['universeId'];
+		const universePath = __baseDirName + '/DataBase/universes/' + place['universeId'];
 		if (!filestream.statSync(universePath).isDirectory()) {
 			return [false, null];
 		}
-		const universe = JSON.parse(filestream.readFileSync(universePath + '\\UNIVERSE.json', 'utf-8'));
+		const universe = JSON.parse(filestream.readFileSync(universePath + '/UNIVERSE.json', 'utf-8'));
 		return [true, universe];
 	}
 	return [false, null];

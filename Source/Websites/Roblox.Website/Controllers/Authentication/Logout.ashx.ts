@@ -42,7 +42,7 @@ import { DeleteCsrfSession } from '../../../../Assemblies/Caching/Sessions/Roblo
 import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 import { DFFlag, DYNAMIC_FASTFLAG, FASTFLAG, FFlag } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 DYNAMIC_FASTFLAG('WWWAuthV1AllowAllMethods');

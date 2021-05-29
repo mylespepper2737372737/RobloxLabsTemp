@@ -36,15 +36,15 @@ export enum Group {
 	'All',
 }
 
-//ClientSettings namespace, beacause you know, it's 100% just client settings, not like WebSettings are here also.
-export namespace ClientSettings {
+//ClientSettings class, beacause you know, it's 100% just client settings, not like WebSettings are here also.
+export class ClientSettings {
 	// This is helper for grabbing BigSettings, just type cast it if you din't want to say `ClientSettings.GetDFFlag("WebNoOpt")` etc.
 	// it's also used by GetDFFlag, so yeah
-	export const GetSettings = <SettingsType extends Group>(
+	public static GetSettings<SettingsType extends Group>(
 		settingsType: SettingsType,
 		settingsGroup: string = 'Web',
-	): Record<string, unknown> | string[] | Error => {
-		let settings = JSON.parse(filestream.readFileSync(__baseDirName + '\\Default\\Roblox.Settings.json', 'ascii'));
+	): Record<string, unknown> | string[] | Error {
+		let settings = JSON.parse(filestream.readFileSync(__baseDirName + '/Default/Roblox.Settings.json', 'ascii'));
 		const fGroup = settings['FGroup'];
 		if (settingsType || settingsType === 0 || settingsType === Group.FFlag) {
 			switch (settingsType as Group) {
@@ -90,67 +90,67 @@ export namespace ClientSettings {
 					return null;
 			}
 		}
-	};
-	export const GetFVariables = (ctx: string = 'Web') => {
-		return GetSettings(Group.FVariable, ctx);
-	};
-	export const GetFLogs = (ctx: string = 'Web') => {
-		return GetSettings(Group.FLog, ctx);
-	};
-	export const GetDFLogs = (ctx: string = 'Web') => {
-		return GetSettings(Group.DFLog, ctx);
-	};
-	export const GetFFlags = (ctx: string = 'Web') => {
-		return GetSettings(Group.FFlag, ctx);
-	};
-	export const GetDFFlags = (ctx: string = 'Web') => {
-		return GetSettings(Group.DFFlag, ctx);
-	};
-	export const GetSFFlags = (ctx: string = 'Web') => {
-		return GetSettings(Group.SFFlag, ctx);
-	};
-	export const GetFInts = (ctx: string = 'Web') => {
-		return GetSettings(Group.FInt, ctx);
-	};
-	export const GetDFInts = (ctx: string = 'Web') => {
-		return GetSettings(Group.DFInt, ctx);
-	};
-	export const GetSFInts = (ctx: string = 'Web') => {
-		return GetSettings(Group.SFInt, ctx);
-	};
-	export const GetFStrings = (ctx: string = 'Web') => {
-		return GetSettings(Group.FString, ctx);
-	};
-	export const GetDFStrings = (ctx: string = 'Web') => {
-		return GetSettings(Group.DFString, ctx);
-	};
-	export const GetSFStrings = (ctx: string = 'Web') => {
-		return GetSettings(Group.SFString, ctx);
-	};
-	export const GetFPFilters = (ctx: string = 'Web') => {
-		return GetSettings(Group.FPFilter, ctx);
-	};
-	export const GetFSettings = (): string[] => {
-		return <string[]>GetSettings(Group.FSettings);
-	};
-	export const GetUserExperiments = (ctx: string = 'Web') => {
-		return GetSettings(Group.UExperiment, ctx);
-	};
-	export const GetBrowserTrackerExperiments = (ctx: string = 'Web') => {
-		return GetSettings(Group.BTExperiment, ctx);
-	};
-	export const GetSharedExperiments = (ctx: string = 'Web') => {
-		return GetSettings(Group.SExperiment, ctx);
-	};
-	export const GetSFLogs = (ctx: string = 'Web') => {
-		return GetSettings(Group.SFLog, ctx);
-	};
+	}
+	public static GetFVariables(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.FVariable, ctx);
+	}
+	public static GetFLogs(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.FLog, ctx);
+	}
+	public static GetDFLogs(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.DFLog, ctx);
+	}
+	public static GetFFlags(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.FFlag, ctx);
+	}
+	public static GetDFFlags(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.DFFlag, ctx);
+	}
+	public static GetSFFlags(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.SFFlag, ctx);
+	}
+	public static GetFInts(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.FInt, ctx);
+	}
+	public static GetDFInts(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.DFInt, ctx);
+	}
+	public static GetSFInts(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.SFInt, ctx);
+	}
+	public static GetFStrings(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.FString, ctx);
+	}
+	public static GetDFStrings(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.DFString, ctx);
+	}
+	public static GetSFStrings(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.SFString, ctx);
+	}
+	public static GetFPFilters(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.FPFilter, ctx);
+	}
+	public static GetFSettings(): string[] {
+		return <string[]>ClientSettings.GetSettings(Group.FSettings);
+	}
+	public static GetUserExperiments(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.UExperiment, ctx);
+	}
+	public static GetBrowserTrackerExperiments(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.BTExperiment, ctx);
+	}
+	public static GetSharedExperiments(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.SExperiment, ctx);
+	}
+	public static GetSFLogs(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.SFLog, ctx);
+	}
 
-	export const GetAllSettings = (ctx: string = 'Web') => {
-		return GetSettings(Group.All, ctx);
-	};
+	public static GetAllSettings(ctx: string = 'Web') {
+		return ClientSettings.GetSettings(Group.All, ctx);
+	}
 
-	export const GetPlaceIdInPlaceFilter = (key: string, placeId: number, ctx: string = 'Web') => {
+	public static GetPlaceIdInPlaceFilter(key: string, placeId: number, ctx: string = 'Web') {
 		const FPFilter = ClientSettings.GetFPFilters(ctx);
 		// This should never go through unless files.api.sitetest4.robloxlabs.com/ClientSettingsFormatted dies.
 		if (FPFilter === undefined) return false;
@@ -162,5 +162,5 @@ export namespace ClientSettings {
 			if (id === placeId) isInFilter = true;
 		});
 		return isInFilter;
-	};
+	}
 }

@@ -53,7 +53,7 @@ import {
 	FFlag,
 } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 DYNAMIC_FASTFLAG('WWWAuthV1AllowAllMethods');
@@ -80,7 +80,7 @@ export default {
 				message: `The requested resource does not support http method '${request.method}'.`,
 			});
 
-		const sessions = filestream.readdirSync(__baseDirName + '\\DataBase\\sessions');
+		const sessions = filestream.readdirSync(__baseDirName + '/DataBase/sessions');
 
 		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
 

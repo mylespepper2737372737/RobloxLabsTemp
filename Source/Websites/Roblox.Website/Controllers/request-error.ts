@@ -33,19 +33,17 @@ import { GetValueFromFormDataString } from '../../../Assemblies/Common/KeyValueM
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response): Promise<void> => {
-		const user = await User.Get(1);
+		const user = await User.Get(-1);
 		switch (parseInt(<string>request.query.code)) {
 			case 400:
 				return response.status(400).render('Error/BadRequest', {
 					isUserAuthenicated: user !== null,
 					authenticatedUser:
 						{
-							...user,
+							...(user ? user : {}),
 							LanguageCode: 'en_us',
 							LanguageName: 'English',
 							Theme: 'dark',
-							Created: new Date(<string>user.Created).toUTCString(),
-							IsUnder13: !user.UserAbove13,
 						} || null,
 					sessionUser: {
 						LanguageCode: 'en_us',
@@ -76,11 +74,17 @@ export default {
 							DisplayNamesEnabled: true,
 						},
 					},
+					pageMeta: {
+						banner: {
+							Enabled: DFFlag('IsBannerEnabled'),
+							Text: DFString('SiteBanner'),
+						},
+					},
 				});
 			case 403:
 				return response.status(403).render('Error/Forbidden', {
 					isUserAuthenicated: user !== null,
-					authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+					authenticatedUser: { ...(user ? user : {}), LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
 					sessionUser: {
 						LanguageCode: 'en_us',
 						LanguageName: 'English',
@@ -108,6 +112,12 @@ export default {
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
+						},
+						pageMeta: {
+							banner: {
+								Enabled: DFFlag('IsBannerEnabled'),
+								Text: DFString('SiteBanner'),
+							},
 						},
 					},
 				});
@@ -159,7 +169,7 @@ export default {
 				const err = new Error('Default error.');
 				return response.status(500).render('Error/InternalServerError', {
 					isUserAuthenicated: user !== null,
-					authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+					authenticatedUser: { ...(user ? user : {}), LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
 					sessionUser: {
 						LanguageCode: 'en_us',
 						LanguageName: 'English',
@@ -204,9 +214,9 @@ export default {
 					},
 				});
 			default:
-				return response.status(500).render('Error/Default', {
+				return response.status(500).render('Error/BadRequest', {
 					isUserAuthenicated: user !== null,
-					authenticatedUser: { ...user, LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
+					authenticatedUser: { ...(user ? user : {}), LanguageCode: 'en_us', LanguageName: 'English', Theme: 'dark' } || null,
 					sessionUser: {
 						LanguageCode: 'en_us',
 						LanguageName: 'English',
@@ -234,6 +244,12 @@ export default {
 					globalMeta: {
 						Experiments: {
 							DisplayNamesEnabled: true,
+						},
+					},
+					pageMeta: {
+						banner: {
+							Enabled: DFFlag('IsBannerEnabled'),
+							Text: DFString('SiteBanner'),
 						},
 					},
 				});

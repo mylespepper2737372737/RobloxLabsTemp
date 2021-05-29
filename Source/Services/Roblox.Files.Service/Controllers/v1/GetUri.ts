@@ -43,7 +43,7 @@ import dotenv from 'dotenv';
 import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 import { FASTFLAG, FFlag } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 
@@ -52,7 +52,7 @@ export default {
 	func: (request: Request, response: Response): Response<unknown> | void => {
 		if (request.method === 'OPTIONS') return response.status(200).send();
 		if (FFlag['RequireGlobalHTTPS'] && request.protocol !== 'https')
-			return response.status(404).sendFile(__baseDirName + '\\ErrorViews\\FilesApi\\Roblox.404.html');
+			return response.status(404).sendFile(__baseDirName + '/ErrorViews/FilesApi/Roblox.404.html');
 
 		if (request.method !== 'POST')
 			return response

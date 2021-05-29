@@ -4,7 +4,7 @@
 		"version": "v1",
 		"title": "AbTesting Api v1"
 	},
-	"host": "abtesting.sitetest3.robloxlabs.com",
+	"host": "abtesting.sitetest4.robloxlabs.com",
 	"schemes": ["https"],
 	"paths": {
 		"/v1/enrollments": {

@@ -107,7 +107,7 @@ export default {
 		const images = [];
 		const newHash = request.body['captchaHash'] + '0x0ff';
 		filestream.writeFileSync(
-			__baseDirName + `\\DataBase\\sessions\\${newHash}.json`,
+			__baseDirName + `/DataBase/sessions/${newHash}.json`,
 			JSON.stringify(Sessions.get(request.body['captchaHash'])),
 			{
 				encoding: 'utf-8',
@@ -116,7 +116,7 @@ export default {
 		DeleteCaptchaSession(request.body['captchaHash']);
 		setTimeout(() => {
 			try {
-				filestream.unlinkSync(__baseDirName + `\\DataBase\\sessions\\${newHash}.json`);
+				filestream.unlinkSync(__baseDirName + `/DataBase/sessions/${newHash}.json`);
 			} catch {
 				console.warn('The session is not persistent anymore.');
 			}

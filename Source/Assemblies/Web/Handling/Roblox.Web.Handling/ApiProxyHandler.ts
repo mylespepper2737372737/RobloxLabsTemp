@@ -1,11 +1,13 @@
 import { RequestHandler } from 'express-serve-static-core';
 import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
-import { FASTLOG5, FLog } from '../../Util/Roblox.Web.Util/Logging/FastLog';
+import { FASTLOG5, DFLog, DYNAMIC_LOGGROUP } from '../../Util/Roblox.Web.Util/Logging/FastLog';
+
+DYNAMIC_LOGGROUP('Protocol77');
 
 export const ApiProxyHandler = ((request, response, next) => {
 	FASTLOG5(
-		FLog['Protocol77'],
-		`[FLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
+		DFLog('Protocol77'),
+		`[DFLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
 		request.method.toUpperCase(),
 		request.protocol,
 		request.hostname,
@@ -32,7 +34,7 @@ export const ApiProxyHandler = ((request, response, next) => {
 			.send({
 				Success: true,
 			});
-	if (request.headers['origin'] && request.headers['origin'] === BaseURL.ConstructServicePath('www', '/', true)) {
+	if (request.headers['origin'] && request.headers['origin'] === BaseURL.ConstructServicePathFromSubDomainSimple('www', '/', true)) {
 		response.setHeader('Access-Control-Allow-Origin', 'https://www.sitetest4.robloxlabs.com');
 		response.setHeader('Access-Control-Allow-Credentials', 'true');
 	}

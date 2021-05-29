@@ -61,6 +61,9 @@ export class MethodValidator<TResponse extends Response> implements IServiceVali
 					case 'patch':
 						requestMethod = HttpRequestMethodEnum.PATCH;
 						break;
+					case 'get':
+						requestMethod = HttpRequestMethodEnum.GET;
+						break;
 					default:
 						requestMethod = HttpRequestMethodEnum.UNKNOWN;
 						break;

@@ -9,7 +9,7 @@ import fs from 'fs';
 import { __baseDirName } from '../../../../Common/Constants/Roblox.Common.Constants/Directories';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 export const cache = {
 	DFLog: new Map<string, number>(),
@@ -317,7 +317,7 @@ function printMessage(
 	console.log(out);
 	// We only FLog to file on FastLogss greater than 7
 	if (level >= 7)
-		fs.appendFileSync(__baseDirName + `\\server.log`, `${out}\n`, {
+		fs.appendFileSync(__baseDirName + `/server.log`, `${out}\n`, {
 			encoding: 'utf-8',
 		});
 }

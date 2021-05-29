@@ -53,15 +53,15 @@ export const GetPersistentStoreForUniverse = (
 	isSorted: boolean = false,
 ): Promise<[boolean, StoreType | null]> => {
 	return new Promise<[boolean, StoreType | null]>((resumefunction) => {
-		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '/DataBase/persistence/' + universeId;
 		if (!filestream.existsSync(dir)) {
 			if (!WriteUniverse(universeId)) return resumefunction([false, null]);
 		}
-		const persistentstorepath = dir + '\\stores\\' + (isSorted ? 'sorted_' + storeName : storeName);
+		const persistentstorepath = dir + '/stores/' + (isSorted ? 'sorted_' + storeName : storeName);
 		if (!filestream.existsSync(persistentstorepath)) {
 			PushPersistentStoreToUniverse(universeId, storeName, scopeName, isSorted); // init a GetGlobalDataStore store here or use the scope that was given
 		}
-		const store = <Record<string, unknown>>JSON.parse(filestream.readFileSync(persistentstorepath + '\\STORE.json', 'utf-8'));
+		const store = <Record<string, unknown>>JSON.parse(filestream.readFileSync(persistentstorepath + '/STORE.json', 'utf-8'));
 		const returnData = <StoreType>{
 			storeName: store['storeName'],
 			type: store['type'],
@@ -73,21 +73,21 @@ export const GetPersistentStoreForUniverse = (
 			scopes: [],
 		};
 		const scopes: ScopeType[] = [];
-		filestream.readdirSync(persistentstorepath + '\\scopes\\').forEach((v) => {
-			if (filestream.statSync(persistentstorepath + '\\scopes\\' + v).isDirectory()) {
-				const name = persistentstorepath + '\\scopes\\' + v;
-				const scope = <Record<string, unknown>>JSON.parse(filestream.readFileSync(name + '\\SCOPE.json', 'utf-8'));
+		filestream.readdirSync(persistentstorepath + '/scopes/').forEach((v) => {
+			if (filestream.statSync(persistentstorepath + '/scopes/' + v).isDirectory()) {
+				const name = persistentstorepath + '/scopes/' + v;
+				const scope = <Record<string, unknown>>JSON.parse(filestream.readFileSync(name + '/SCOPE.json', 'utf-8'));
 				const keys: KeyType[] = [];
-				const keysPath = name + (isSorted ? '\\entries\\' : '\\keys\\');
+				const keysPath = name + (isSorted ? '/entries/' : '/keys/');
 				filestream.readdirSync(keysPath).forEach((k) => {
 					if (filestream.statSync(keysPath + k).isDirectory()) {
 						const keyname = keysPath + k;
 						const key = <Record<string, unknown>>(
-							JSON.parse(filestream.readFileSync(keyname + (isSorted ? '\\ENTRY.json' : '\\KEY.json'), 'utf-8'))
+							JSON.parse(filestream.readFileSync(keyname + (isSorted ? '/ENTRY.json' : '/KEY.json'), 'utf-8'))
 						);
-						const value = <Record<string, unknown>>JSON.parse(filestream.readFileSync(keyname + '\\VALUE.json', 'utf-8'));
+						const value = <Record<string, unknown>>JSON.parse(filestream.readFileSync(keyname + '/VALUE.json', 'utf-8'));
 						const versions = <{ version: number; date: string }[]>(
-							JSON.parse(filestream.readFileSync(keyname + (isSorted ? '\\ENTRY' : '\\KEY') + 'VERSIONS.json', 'utf-8'))
+							JSON.parse(filestream.readFileSync(keyname + (isSorted ? '/ENTRY' : '/KEY') + 'VERSIONS.json', 'utf-8'))
 						);
 						const KeyToPush = <KeyType>{
 							keyName: key['keyName'],

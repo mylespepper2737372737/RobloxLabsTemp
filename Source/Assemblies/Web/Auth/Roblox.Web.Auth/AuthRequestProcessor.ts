@@ -111,7 +111,7 @@ export namespace AuthRequestProcessor {
 			isSecure: boolean = true,
 		): Task<[boolean, IServiceUsernameValidationResponse, Error]> {
 			return new Promise<[boolean, IServiceUsernameValidationResponse, Error]>(async (resumeFunction) => {
-				const [WasRequestSuccessful, , Response, Error] = await UsersClient.Validators.ValidateUsername({
+				const [WasRequestSuccessful, , Response, Error] = await UsersClient.ValidateUsername({
 					IUser: authenticatedUser,
 					Request: request,
 					IsSecure: isSecure,

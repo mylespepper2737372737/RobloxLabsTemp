@@ -3,7 +3,7 @@ import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiK
 import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
 import { ServiceClient } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
 import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
-export namespace GamePersistenceClient {
+export class GamePersistenceClient {
 	/**
 	 * Try enroll the current IEntrollments.
 	 * @param {Number} universeId The universeId to fetch from.
@@ -11,7 +11,7 @@ export namespace GamePersistenceClient {
 	 * @param {Boolean} requireSecureUri Should the ApiClient request with a HTTPS Uri
 	 * @returns {Task<[Boolean, String, Number]>} Returns a Task to be awaited for response.
 	 */
-	export async function TryFetchTheDataStoresForThisUniverse(
+	public static async TryFetchTheDataStoresForThisUniverse(
 		universeId: Number,
 		UserAuthToken: String,
 		requireSecureUri: Boolean,
@@ -32,7 +32,7 @@ export namespace GamePersistenceClient {
 				Payload: JSON.stringify(postData),
 				Method: HttpRequestMethodEnum.POST,
 			});
-			const [Success, Response] = await Client.execute();
+			const [Success, Response] = await Client.ExecuteAsync();
 			return resumeFunction([Success, Response.ResponsePayload, Response.StatusCode]);
 		});
 	}

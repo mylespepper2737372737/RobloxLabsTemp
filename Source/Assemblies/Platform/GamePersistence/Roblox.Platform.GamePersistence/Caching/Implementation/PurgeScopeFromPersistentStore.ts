@@ -10,7 +10,7 @@ export const PurgeScopeFromPersistentStore = (
 	isSorted: boolean = false,
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '/DataBase/persistence/' + universeId;
 		if (!filestream.existsSync(dir)) {
 			WriteUniverse(universeId);
 			return resumefunction(false);
@@ -33,7 +33,7 @@ export const PurgeScopeFromPersistentStore = (
 			return resumefunction(false);
 		}
 		filestream.rmdirSync(root, { recursive: true });
-		const record = <unknown[]>JSON.parse(filestream.readFileSync(storeroot + '\\RECORD.json', { encoding: 'utf-8' }));
+		const record = <unknown[]>JSON.parse(filestream.readFileSync(storeroot + '/RECORD.json', { encoding: 'utf-8' }));
 		record.push({
 			action: 'ScopeRemoved',
 			data: [
@@ -45,17 +45,17 @@ export const PurgeScopeFromPersistentStore = (
 			],
 			date: new Date(Date.now()).toISOString(),
 		});
-		filestream.writeFileSync(storeroot + '\\RECORD.json', JSON.stringify(record, undefined, 4));
-		const record2 = <unknown[]>JSON.parse(filestream.readFileSync(storeroot + '\\scopes\\RECORD.json', { encoding: 'utf-8' }));
+		filestream.writeFileSync(storeroot + '/RECORD.json', JSON.stringify(record, undefined, 4));
+		const record2 = <unknown[]>JSON.parse(filestream.readFileSync(storeroot + '/scopes/RECORD.json', { encoding: 'utf-8' }));
 		record2.push({
 			scopeName: scopeName,
 			created: created,
 			purged: new Date(Date.now()).toISOString(),
 		});
-		filestream.writeFileSync(storeroot + '\\scopes\\RECORD.json', JSON.stringify(record2, undefined, 4));
-		const record3 = <Record<string, unknown>>JSON.parse(filestream.readFileSync(storeroot + '\\STORE.json', { encoding: 'utf-8' }));
+		filestream.writeFileSync(storeroot + '/scopes/RECORD.json', JSON.stringify(record2, undefined, 4));
+		const record3 = <Record<string, unknown>>JSON.parse(filestream.readFileSync(storeroot + '/STORE.json', { encoding: 'utf-8' }));
 		(<number>record3['scopes'])--;
-		filestream.writeFileSync(storeroot + '\\STORE.json', JSON.stringify(record3, undefined, 4));
+		filestream.writeFileSync(storeroot + '/STORE.json', JSON.stringify(record3, undefined, 4));
 		return resumefunction(true);
 	});
 };

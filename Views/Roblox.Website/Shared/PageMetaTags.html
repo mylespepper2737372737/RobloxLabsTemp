@@ -1,9 +1,2 @@
-<meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="author" content="Roblox Corporation" />
-<meta name="description" content="<%= description %>" />
-<meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />
-<meta name="apple-itunes-app" content="app-id=431946152" />
-
-<%- include("Shared/MetaTagListView", {isUserAuthenicated, authenticatedUser, sessionUser, globalMeta, pageMeta}) %>
+<%- include("MetaTagListView.html", {MetaTagListViewModel}) %> <%- include("UserMetaTagList.html"), {IUser, IUserAuthenticated,
+ISessionUser} %> <%- include("EnvironmentMetaTagList.html", {Default, PageMetadata}) %>

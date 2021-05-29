@@ -13,7 +13,7 @@ export const WriteToManifest = (
 ) => {
 	let user: { [x: string]: any };
 	try {
-		user = JSON.parse(filestream.readFileSync(__baseDirName + `\\DataBase\\users\\${userId}.json`, { encoding: 'utf-8' }));
+		user = JSON.parse(filestream.readFileSync(__baseDirName + `/DataBase/users/${userId}.json`, { encoding: 'utf-8' }));
 	} catch (e) {
 		return e;
 	}
@@ -39,7 +39,7 @@ export const WriteToManifest = (
 			}
 		}
 	}
-	return filestream.writeFileSync(__baseDirName + `\\DataBase\\users\\${userId}.json`, JSON.stringify(user, undefined, 4), {
+	return filestream.writeFileSync(__baseDirName + `/DataBase/users/${userId}.json`, JSON.stringify(user, undefined, 4), {
 		encoding: 'utf-8',
 	});
 };

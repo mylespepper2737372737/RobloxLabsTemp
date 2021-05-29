@@ -28,7 +28,7 @@
 import dotenv from 'dotenv';
 import { __baseDirName } from '../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 export default {
 	method: 'all',

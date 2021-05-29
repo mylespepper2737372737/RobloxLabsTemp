@@ -59,7 +59,7 @@ import {
 } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 
-dotenv.config({ path: __baseDirName + '\\.env' });
+dotenv.config({ path: __baseDirName + '/.env' });
 
 FASTFLAG('RequireGlobalHTTPS');
 DYNAMIC_FASTFLAG('IsWWWAuthV1Enabled');
@@ -87,7 +87,7 @@ export default {
 
 		const registeredUsers = GetRegisteredUsers();
 
-		const sessions = filestream.readdirSync(__baseDirName + '\\DataBase\\sessions');
+		const sessions = filestream.readdirSync(__baseDirName + '/DataBase/sessions');
 		if (JSON.stringify(request.body) === '{}') return response.status(400).send({ success: false, message: 'No body was provided.' });
 		if (request.body && request.headers['content-type'] !== 'application/x-www-form-urlencoded')
 			return response.status(400).send({

@@ -33,22 +33,22 @@
 		<script type="text/javascript" src="/js/StringTruncator.js"></script>
 		<script type="text/javascript">
 			Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js', '/js/json2.min.js'];
-			Roblox.config.paths['jQuery'] = 'https://js.rbxcdn.com/29cf397a226a92ca602cb139e9aae7d7.js';
-			Roblox.config.paths['Pagelets.BestFriends'] = 'https://js.rbxcdn.com/c8acaba4214074ed4ad6f8b4a9647038.js';
-			Roblox.config.paths['Pages.Catalog'] = 'https://js.rbxcdn.com/c8f61a230e6ad34193b40758f1499a3d.js';
-			Roblox.config.paths['Pages.Messages'] = 'https://js.rbxcdn.com/34e0d4ef92076cd06d46b61bd94bc8a2.js';
-			Roblox.config.paths['Resources.Messages'] = 'https://js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';
-			//Roblox.config.paths['Widgets.AvatarImage'] = 'https://js.rbxcdn.com/a404577733d1b68e3056a8cd3f31614c.js';
+			Roblox.config.paths['jQuery'] = 'http://js.rbxcdn.com/29cf397a226a92ca602cb139e9aae7d7.js';
+			Roblox.config.paths['Pagelets.BestFriends'] = 'http://js.rbxcdn.com/c8acaba4214074ed4ad6f8b4a9647038.js';
+			Roblox.config.paths['Pages.Catalog'] = 'http://js.rbxcdn.com/c8f61a230e6ad34193b40758f1499a3d.js';
+			Roblox.config.paths['Pages.Messages'] = 'http://js.rbxcdn.com/34e0d4ef92076cd06d46b61bd94bc8a2.js';
+			Roblox.config.paths['Resources.Messages'] = 'http://js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';
+			//Roblox.config.paths['Widgets.AvatarImage'] = 'http://js.rbxcdn.com/a404577733d1b68e3056a8cd3f31614c.js';
 			Roblox.config.paths['Widgets.AvatarImage'] = '/js/Modules/Widgets/AvatarImage.js';
-			Roblox.config.paths['Widgets.DropdownMenu'] = 'https://js.rbxcdn.com/d83d02dd89808934b125fa21c362bcb9.js';
-			//Roblox.config.paths['Widgets.GroupImage'] = 'https://js.rbxcdn.com/3e692c7b60e1e28ce639184f793fdda9.js';
+			Roblox.config.paths['Widgets.DropdownMenu'] = 'http://js.rbxcdn.com/d83d02dd89808934b125fa21c362bcb9.js';
+			//Roblox.config.paths['Widgets.GroupImage'] = 'http://js.rbxcdn.com/3e692c7b60e1e28ce639184f793fdda9.js';
 			Roblox.config.paths['Widgets.GroupImage'] = '/js/Modules/Widgets/GroupImage.js';
-			Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'https://js.rbxcdn.com/e8b579b8e31f8e7722a5d10900191fe7.js';
-			//Roblox.config.paths['Widgets.ItemImage'] = 'https://js.rbxcdn.com/6d374381f268432a466e8b8583414b49.js';
+			Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'http://js.rbxcdn.com/e8b579b8e31f8e7722a5d10900191fe7.js';
+			//Roblox.config.paths['Widgets.ItemImage'] = 'http://js.rbxcdn.com/6d374381f268432a466e8b8583414b49.js';
 			Roblox.config.paths['Widgets.ItemImage'] = '/js/Modules/Widgets/ItemImage.js';
-			Roblox.config.paths['Widgets.PlaceImage'] = 'https://js.rbxcdn.com/08e1942c5b0ef78773b03f02bffec494.js';
-			Roblox.config.paths['Widgets.Suggestions'] = 'https://js.rbxcdn.com/a63d457706dfbc230cf66a9674a1ca8b.js';
-			Roblox.config.paths['Widgets.SurveyModal'] = 'https://js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';
+			Roblox.config.paths['Widgets.PlaceImage'] = 'http://js.rbxcdn.com/08e1942c5b0ef78773b03f02bffec494.js';
+			Roblox.config.paths['Widgets.Suggestions'] = 'http://js.rbxcdn.com/a63d457706dfbc230cf66a9674a1ca8b.js';
+			Roblox.config.paths['Widgets.SurveyModal'] = 'http://js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';
 		</script>
 		<script type="text/javascript">
 			function editTemplateInStudio(play_placeId) {
@@ -62,9 +62,9 @@
 				};
 				Roblox.Client.WaitForRoblox(function () {
 					RobloxLaunch.StartGame(
-						'https://www.sitetest4.robloxlabs.com//Game/edit.ashx?PlaceID=' + play_placeId + '&upload=',
+						'http://www.sitetest4.robloxlabs.com//Game/edit.ashx?PlaceID=' + play_placeId + '&upload=',
 						'edit.ashx',
-						'https://www.sitetest4.robloxlabs.com//Login/Negotiate.ashx',
+						'http://www.sitetest4.robloxlabs.com//Login/Negotiate.ashx',
 						'FETCH',
 						true,
 					);
@@ -84,7 +84,7 @@
 					<div id="iFrameLogin" class="studioiFrameLogin" style="display: none">
 						<iframe
 							class="login-frame"
-							src="/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=https%3A%2F%2Fwww.sitetest4.robloxlabs.com%2Fide%2Fwelcome"
+							src="/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=http%3A%2F%2Fwww.sitetest4.robloxlabs.com%2Fide%2Fwelcome"
 							scrolling="no"
 							frameborder="0"
 						></iframe>

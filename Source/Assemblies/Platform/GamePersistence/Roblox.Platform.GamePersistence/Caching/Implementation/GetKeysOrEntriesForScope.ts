@@ -41,8 +41,8 @@ export const GetKeysOrEntriesForScope = (
 	isSorted: boolean = false,
 ): Promise<[boolean, KeyType[] | null]> => {
 	return new Promise<[boolean, KeyType[] | null]>(async (resumefunction) => {
-		const dir1 = __baseDirName + '\\DataBase\\persistence\\' + universeId;
-		const dir2 = __baseDirName + '\\DataBase\\persistence\\' + universeId + '\\stores\\' + name + '\\scopes\\' + scope;
+		const dir1 = __baseDirName + '/DataBase/persistence/' + universeId;
+		const dir2 = __baseDirName + '/DataBase/persistence/' + universeId + '/stores/' + name + '/scopes/' + scope;
 		if (!filestream.existsSync(dir1)) {
 			if (WriteUniverse(universeId)) return resumefunction([true, null]);
 			return resumefunction([false, null]);

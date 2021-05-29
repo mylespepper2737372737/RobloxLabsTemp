@@ -33,7 +33,7 @@ export const GetKeyOrEntryForScope = (
 	isSorted: boolean = false,
 ): Promise<[boolean, KeyType | null]> => {
 	return new Promise<[boolean, KeyType | null]>(async (resumefunction) => {
-		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '/DataBase/persistence/' + universeId;
 		if (!filestream.existsSync(dir)) {
 			WriteUniverse(universeId);
 			return resumefunction([false, null]);

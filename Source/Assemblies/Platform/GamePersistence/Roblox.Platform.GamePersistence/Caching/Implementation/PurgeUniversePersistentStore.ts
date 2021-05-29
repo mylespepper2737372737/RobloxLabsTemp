@@ -5,7 +5,7 @@ import { __baseDirName } from '../../../../../Common/Constants/Roblox.Common.Con
 
 export const PurgeUniversePersistentStore = (universeId: number, storeName: string, isSorted: boolean = false): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '/DataBase/persistence/' + universeId;
 		if (!filestream.existsSync(dir)) {
 			WriteUniverse(universeId);
 			return resumefunction(false);
@@ -19,7 +19,7 @@ export const PurgeUniversePersistentStore = (universeId: number, storeName: stri
 			return resumefunction(false);
 		}
 		filestream.rmdirSync(root, { recursive: true });
-		const record = <unknown[]>JSON.parse(filestream.readFileSync(dir + '\\RECORD.json', { encoding: 'utf-8' }));
+		const record = <unknown[]>JSON.parse(filestream.readFileSync(dir + '/RECORD.json', { encoding: 'utf-8' }));
 		record.push({
 			action: 'StoreRemoved',
 			data: [
@@ -31,17 +31,17 @@ export const PurgeUniversePersistentStore = (universeId: number, storeName: stri
 			],
 			date: new Date(Date.now()).toISOString(),
 		});
-		filestream.writeFileSync(dir + '\\RECORD.json', JSON.stringify(record, undefined, 4));
-		const record2 = <unknown[]>JSON.parse(filestream.readFileSync(dir + '\\stores\\RECORD.json', { encoding: 'utf-8' }));
+		filestream.writeFileSync(dir + '/RECORD.json', JSON.stringify(record, undefined, 4));
+		const record2 = <unknown[]>JSON.parse(filestream.readFileSync(dir + '/stores/RECORD.json', { encoding: 'utf-8' }));
 		record2.push({
 			storeName: storeName,
 			created: created,
 			purged: new Date(Date.now()).toISOString(),
 		});
-		filestream.writeFileSync(dir + '\\stores\\RECORD.json', JSON.stringify(record2, undefined, 4));
-		const record3 = <Record<string, unknown>>JSON.parse(filestream.readFileSync(dir + '\\UNIVERSE.json', { encoding: 'utf-8' }));
+		filestream.writeFileSync(dir + '/stores/RECORD.json', JSON.stringify(record2, undefined, 4));
+		const record3 = <Record<string, unknown>>JSON.parse(filestream.readFileSync(dir + '/UNIVERSE.json', { encoding: 'utf-8' }));
 		(<number>record3['stores'])--;
-		filestream.writeFileSync(dir + '\\UNIVERSE.json', JSON.stringify(record3, undefined, 4));
+		filestream.writeFileSync(dir + '/UNIVERSE.json', JSON.stringify(record3, undefined, 4));
 		return resumefunction(true);
 	});
 };

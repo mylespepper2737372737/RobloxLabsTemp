@@ -5,7 +5,7 @@ import { UserAgentHelper } from '../../../UserAgents/Roblox.UserAgents/UserAgent
 import { RequestType } from './Enumeration/RequestType';
 import { ResponseStatus } from './Enumeration/ResponseStatus';
 import { GameLaunchFactory } from './GameLaunchFactory';
-import { IGameLaunchFactoryBase } from './Interfaces/IGameLaunchFactoryBase';
+import { IGameLaunchBase } from './Interfaces/IGameLaunchBase';
 import { IGameLaunchResponseBase } from './Interfaces/IGameLaunchResponseBase';
 
 /*
@@ -105,7 +105,7 @@ export class GameLaunchRequestProcessor {
 
 		if (!GameLaunchFactory.IsInitialized) GameLaunchFactory.Init(this._response);
 
-		const factory: IGameLaunchFactoryBase = GameLaunchFactory.Get(requestType);
+		const factory: IGameLaunchBase = GameLaunchFactory.Get(requestType);
 
 		if (!factory.Invoke(null, this.reportDebatableError)) return false;
 		return true;

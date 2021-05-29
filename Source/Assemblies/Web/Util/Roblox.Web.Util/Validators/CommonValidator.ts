@@ -36,7 +36,7 @@ export class CommonValidator<TResponse extends Response> {
 				this._response.status(503).send('The service is unavailable.');
 				return false;
 			}
-			if (!doNotRedirect) this._response.redirect(BaseURL.GetSecureBaseURL() + '/login/maintenance/?ReturnUrl=' + returnUrl);
+			if (!doNotRedirect) this._response.redirect(BaseURL.GetSecureBaseURL() + '/login/maintenance?ReturnUrl=' + returnUrl);
 			return false;
 		}
 		return true;
@@ -44,8 +44,8 @@ export class CommonValidator<TResponse extends Response> {
 
 	public IsFileStaticFile(baseUrl: string, file: string) {
 		return new Promise((resumeFunction) => {
-			const url = `${__baseDirName}${!baseUrl.startsWith('\\') ? '\\' : ''}${baseUrl}${
-				baseUrl.endsWith('\\') && file.startsWith('/') ? file.replace('/', '') : file
+			const url = `${__baseDirName}${!baseUrl.startsWith('/') ? '/' : ''}${baseUrl}${
+				baseUrl.endsWith('/') && file.startsWith('/') ? file.replace('/', '') : file
 			}`;
 			filestream.stat(url, function (_error, fileStats) {
 				resumeFunction(fileStats && fileStats.isFile());

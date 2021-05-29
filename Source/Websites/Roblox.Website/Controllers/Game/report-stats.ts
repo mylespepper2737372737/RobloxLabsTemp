@@ -1,9 +1,9 @@
 /*
-	FileName: LoadPlaceInfo.ashx.ts
+	FileName: report-stats.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Load Place info script
-			
+	Description: https://assetgame.sitetest4.robloxlabs.com/game/report-stats, An endpoint used to report api statistics
+
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
 	***
@@ -24,7 +24,6 @@
 
 	***
 */
-
 import { FASTLOGS, FLog, LOGGROUP } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('Stats');

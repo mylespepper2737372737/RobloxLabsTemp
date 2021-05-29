@@ -11,24 +11,24 @@ import { __baseDirName } from '../../../../../Common/Constants/Roblox.Common.Con
  */
 export const WriteUniverse = (universeId: number): Promise<boolean> => {
 	return new Promise<boolean>((resumefunction) => {
-		const path = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const path = __baseDirName + '/DataBase/persistence/' + universeId;
 		const time = new Date(Date.now()).toISOString();
 		if (filestream.existsSync(path)) return resumefunction(true);
 		filestream.mkdirSync(path);
-		filestream.writeFileSync(path + '\\RECORD.json', '[]', { encoding: 'utf-8' });
+		filestream.writeFileSync(path + '/RECORD.json', '[]', { encoding: 'utf-8' });
 		// init with no places for now, as we don't have a place manager
 		const info = {
 			universeId: universeId,
 			places: [],
 			stores: 0,
-			root: path + '\\',
+			root: path + '/',
 			created: time,
 			lastUpdated: time,
 		};
-		filestream.writeFileSync(path + '\\UNIVERSE.json', JSON.stringify(info, undefined, 4), { encoding: 'utf-8' });
-		filestream.mkdirSync(path + '\\stores');
-		filestream.writeFileSync(path + '\\stores\\RECORD.json', '[]', { encoding: 'utf-8' });
-		const read = filestream.readFileSync(__baseDirName + '\\DataBase\\persistence\\RECORD.json', 'utf-8');
+		filestream.writeFileSync(path + '/UNIVERSE.json', JSON.stringify(info, undefined, 4), { encoding: 'utf-8' });
+		filestream.mkdirSync(path + '/stores');
+		filestream.writeFileSync(path + '/stores/RECORD.json', '[]', { encoding: 'utf-8' });
+		const read = filestream.readFileSync(__baseDirName + '/DataBase/persistence/RECORD.json', 'utf-8');
 		const record = <unknown[]>JSON.parse(read);
 		record.push({
 			universeId: universeId,
@@ -36,7 +36,7 @@ export const WriteUniverse = (universeId: number): Promise<boolean> => {
 			purged: null,
 		});
 		filestream.writeFile(
-			__baseDirName + '\\DataBase\\persistence\\RECORD.json',
+			__baseDirName + '/DataBase/persistence/RECORD.json',
 			JSON.stringify(record, undefined, 4),
 			{
 				encoding: 'utf-8',

@@ -31,12 +31,12 @@ import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants
 export const ClearCachedSessions = () => {
 	return new Promise<void>((resolve, reject) => {
 		try {
-			fs.rmdirSync(__baseDirName + '\\DataBase\\sessions', { recursive: true });
-			fs.mkdirSync(__baseDirName + '\\DataBase\\sessions');
-			fs.rmdirSync(__baseDirName + '\\DataBase\\csrf', { recursive: true });
-			fs.mkdirSync(__baseDirName + '\\DataBase\\csrf');
-			fs.rmdirSync(__baseDirName + '\\DataBase\\pages', { recursive: true });
-			fs.mkdirSync(__baseDirName + '\\DataBase\\pages');
+			fs.rmdirSync(__baseDirName + '/DataBase/sessions', { recursive: true });
+			fs.mkdirSync(__baseDirName + '/DataBase/sessions');
+			fs.rmdirSync(__baseDirName + '/DataBase/csrf', { recursive: true });
+			fs.mkdirSync(__baseDirName + '/DataBase/csrf');
+			fs.rmdirSync(__baseDirName + '/DataBase/pages', { recursive: true });
+			fs.mkdirSync(__baseDirName + '/DataBase/pages');
 			resolve();
 		} catch (err: unknown) {
 			reject(err);

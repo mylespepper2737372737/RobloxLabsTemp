@@ -8,13 +8,12 @@ const fs = require('fs');
 
 (function () {
 	try {
-		const fileName = `${__dirname}\\Source\\Assemblies\\Common\\Constants\\Roblox.Common.Constants\\Directories.ts`;
+		const dir = __dirname.split('\\').join('/');
+		const fileName = `${__dirname}/Source/Assemblies/Common/Constants/Roblox.Common.Constants/Directories.ts`;
 		if (!fs.existsSync(fileName)) {
 			fs.writeFileSync(
 				fileName,
-				`// THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT EDIT\r\n// !DISABLE-AUTO-SELECT-DIR\r\nexport const __baseDirName = '${__dirname
-					.split('\\')
-					.join('\\\\')}';\r\nexport const __sslDirName = __baseDirName + '\\\\SSL';\r\n`,
+				`// THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT EDIT\r\n// !DISABLE-AUTO-SELECT-DIR\r\nexport const __baseDirName = '${dir}';\r\nexport const __sslDirName = __baseDirName + '/SSL';\r\n`,
 			);
 			return;
 		}
@@ -26,7 +25,7 @@ const fs = require('fs');
 			return;
 		}
 		const data = contents.match(/(["'])(?:(?=(\\?))\2.)*?\1/i);
-		contents = contents.replace(data[0], `'${__dirname.split('\\').join('\\\\')}'`);
+		contents = contents.replace(data[0], `'${dir}'`);
 		contents = `// THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT EDIT\r\n// !DISABLE-AUTO-SELECT-DIR\r\n${contents}`;
 		fs.writeFileSync(fileName, contents);
 	} catch {}

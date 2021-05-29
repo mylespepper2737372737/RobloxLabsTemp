@@ -29,7 +29,7 @@ import crypto from 'crypto';
 import headers from '../../../Common/Constants/Roblox.Common.Constants/DefaultHeaders';
 import { RequestHandler } from 'express-serve-static-core';
 // import whitelist from '../constants/urls';
-import { DFFlag, DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5, FLog, LOGGROUP } from '../../Util/Roblox.Web.Util/Logging/FastLog';
+import { DFFlag, DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5 } from '../../Util/Roblox.Web.Util/Logging/FastLog';
 import {
 	GetValueFromFormDataString,
 	GetValuesFromFormDataString,
@@ -38,15 +38,15 @@ import { CommonValidator } from '../../Util/Roblox.Web.Util/Validators/CommonVal
 import { DateTimeConverter } from '../../Util/Roblox.Web.Util/Converters/DateTimeConverter';
 import { OriginMaster } from '../../Util/Roblox.Web.Util/OriginMaster';
 
-LOGGROUP('Protocol77');
+DYNAMIC_LOGGROUP('Protocol77');
 DYNAMIC_LOGGROUP('Tasks');
 
-export const GlobalMiddleware = ((req, res, next) => {
-	const commonValidatorClient = new CommonValidator(res);
+export const GlobalMiddleware = ((request, response, nextExecutingContext) => {
+	const commonValidatorClient = new CommonValidator(response);
 
-	const tracker = GetValuesFromFormDataString(['RBXEventTrackerV2', 'RBXEventTracker'], req.headers.cookie);
+	const tracker = GetValuesFromFormDataString(['RBXEventTrackerV2', 'RBXEventTracker'], request.headers.cookie);
 	if (!tracker)
-		res.cookie(
+		response.cookie(
 			'RBXEventTrackerV2',
 			`CreateDate=${DateTimeConverter.DateToLocaleDate(new Date(Date.now()))}&rbxid=&browserid=${1}`, // Keep the browserid as 1 for now.
 			{
@@ -57,18 +57,19 @@ export const GlobalMiddleware = ((req, res, next) => {
 		);
 	// TODO Move this to it's own middleware.
 	if (
-		(req.path.toLowerCase() !== '/login/maintenance/' &&
-			req.hostname !== 'apis.sitetest4.robloxlabs.com' &&
-			req.hostname !== 'ecsv2.sitetest4.robloxlabs.com' &&
-			req.hostname !== 'metrics.sitetest4.robloxlabs.com') ||
+		(request.path.toLowerCase() !== '/login/maintenance' &&
+			request.hostname !== 'apis.sitetest4.robloxlabs.com' &&
+			request.hostname !== 'ecsv2.sitetest4.robloxlabs.com' &&
+			request.hostname !== 'metrics.sitetest4.robloxlabs.com' &&
+			!request.path.startsWith('/js')) ||
 		DFFlag('NoMaintenance')
 	) {
-		const cookie = GetValueFromFormDataString('RobloxSecurityToken', req.headers.cookie);
+		const cookie = GetValueFromFormDataString('RobloxSecurityToken', request.headers.cookie);
 		if (
 			!commonValidatorClient.ValidateDoesTheWorldGetToViewTheSite(
-				req.method,
-				encodeURIComponent(`${req.protocol}://${req.hostname}${req.url}`),
-				cookie || <string>req.headers['roblox-security-token'],
+				request.method,
+				encodeURIComponent(`${request.protocol}://${request.hostname}${request.url}`),
+				cookie || <string>request.headers['roblox-security-token'],
 				DFFlag('NoMaintenance'),
 				DFFlag('NoMaintenance'),
 			)
@@ -77,31 +78,31 @@ export const GlobalMiddleware = ((req, res, next) => {
 	}
 
 	FASTLOG5(
-		FLog['Protocol77'],
-		`[FLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
-		req.method.toUpperCase(),
-		req.protocol,
-		req.hostname,
-		req.url,
-		(req.headers['user-agent'] || '').toUpperCase(),
+		DFLog('Protocol77'),
+		`[DFLog::Protocol77] %s REQUEST ON %s://%s%s FROM %s`,
+		request.method.toUpperCase(),
+		request.protocol,
+		request.hostname,
+		request.url,
+		request.headers['user-agent'] || '',
 	);
-	res.header(headers);
-	if (!req.headers.cookie || (!req.headers.cookie.match(/__tid/) && req.hostname === 'www.sitetest4.robloxlabs.com'))
-		res.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {
+	response.header(headers);
+	if (!request.headers.cookie || (!request.headers.cookie.match(/__tid/) && request.hostname === 'www.sitetest4.robloxlabs.com'))
+		response.cookie('__tid', crypto.createHash('sha256').update(crypto.randomBytes(1000)).digest('hex'), {
 			maxAge: 3.154e14,
 			domain: 'sitetest4.robloxlabs.com',
 		});
-	res.header(
+	response.header(
 		'Access-Control-Allow-Headers',
 		'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN, Pragma, Cache-Control, expires',
 	);
-	res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+	response.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
 	try {
-		OriginMaster.Do(req.headers['origin'], req.protocol, res);
+		OriginMaster.Do(request.headers['origin'], request.protocol, response);
 	} catch (e) {
 		FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 	}
-	if (req.method !== 'GET') {
+	if (request.method !== 'GET') {
 		try {
 			// let cookie = req.headers.cookie;
 			// if (cookie === undefined) cookie = '';
@@ -125,12 +126,12 @@ export const GlobalMiddleware = ((req, res, next) => {
 
 	// TODO: Validate AuthToken before we redirect, it may be hacked
 	if (
-		req.headers['user-agent'] &&
-		req.headers['user-agent'].includes('RobloxStudio') &&
-		req.hostname === 'www.sitetest4.robloxlabs.com' &&
-		req.path.toLowerCase() === '/'
+		request.headers['user-agent'] &&
+		request.headers['user-agent'].includes('RobloxStudio') &&
+		request.hostname === 'www.sitetest4.robloxlabs.com' &&
+		request.path.toLowerCase() === '/'
 	) {
-		return res.redirect('http://www.sitetest4.robloxlabs.com/roblox.html');
+		return response.redirect('http://www.sitetest4.robloxlabs.com/roblox.html');
 	}
 
 	// if (
@@ -170,5 +171,5 @@ export const GlobalMiddleware = ((req, res, next) => {
 	// 	return res.redirect('https://www.sitetest4.robloxlabs.com/home');
 	// }
 
-	next();
+	nextExecutingContext();
 }) as RequestHandler;

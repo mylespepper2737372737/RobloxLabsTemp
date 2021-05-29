@@ -36,7 +36,7 @@ export default {
 		if (_req.query.assetId === '1')
 			return res.send(
 				JSON.parse(
-					fs.readFileSync(__baseDirName + '\\InternalCDN\\TheAsset.json', {
+					fs.readFileSync(__baseDirName + '/InternalCDN/TheAsset.json', {
 						encoding: 'utf-8',
 					}),
 				),

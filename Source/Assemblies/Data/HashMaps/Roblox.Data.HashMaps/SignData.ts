@@ -6,7 +6,7 @@ import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants
 export function SignFileAndRespond(fileName: string, response: Response, useBaseDirectory: boolean = true) {
 	try {
 		const file = filestream.readFileSync(
-			`${useBaseDirectory ? __baseDirName : ''}${useBaseDirectory && !fileName.startsWith('\\') ? '\\' : ''}${fileName}`,
+			`${useBaseDirectory ? __baseDirName : ''}${useBaseDirectory && !fileName.startsWith('/') ? '/' : ''}${fileName}`,
 			'utf-8',
 		);
 		return SendSignedResponse(file, response);
@@ -21,7 +21,7 @@ export function SendSignedResponse(data: string, response: Response) {
 	signature.write(splitter);
 	signature.end();
 
-	const key = filestream.readFileSync(__baseDirName + '\\InternalCDN\\PrivateKey.pem'); // Change the directory if needed.
+	const key = filestream.readFileSync(__baseDirName + '/InternalCDN/PrivateKey.pem'); // Change the directory if needed.
 	const sig = signature.sign(key, 'base64');
 
 	const out = `--rbxsig%${sig}%${splitter}`;
@@ -34,7 +34,7 @@ export function GetSignedData(data: string) {
 	signature.write(data);
 	signature.end();
 
-	const key = filestream.readFileSync(__baseDirName + '\\InternalCDN\\PrivateKey.pem'); // Change the directory if needed.
+	const key = filestream.readFileSync(__baseDirName + '/InternalCDN/PrivateKey.pem'); // Change the directory if needed.
 	const sig = signature.sign(key, 'base64');
 	return sig;
 }

@@ -7,11 +7,11 @@ export namespace Walkers {
 		paths = paths || [];
 
 		directory.forEach((directoryOrFile) => {
-			const directoryNameV2 = directoryName + '\\' + directoryOrFile;
+			const directoryNameV2 = directoryName + '/' + directoryOrFile;
 			if (filestream.statSync(directoryNameV2).isDirectory()) {
 				paths = FileWalker(directoryNameV2, paths);
 			} else {
-				paths.push(path.join(directoryName, '\\', directoryOrFile));
+				paths.push(path.join(directoryName, '/', directoryOrFile));
 			}
 		});
 

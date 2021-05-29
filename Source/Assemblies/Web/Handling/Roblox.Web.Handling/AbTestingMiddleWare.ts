@@ -39,7 +39,7 @@ export const AbTestingMiddleWare = ((req, res, next) => {
 		req.protocol,
 		req.hostname,
 		req.url,
-		req.headers['user-agent'].toUpperCase(),
+		req.headers['user-agent'],
 	);
 	res.header({
 		expires: -1,

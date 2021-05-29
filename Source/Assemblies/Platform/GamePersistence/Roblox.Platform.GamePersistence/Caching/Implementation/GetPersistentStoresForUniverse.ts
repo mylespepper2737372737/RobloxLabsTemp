@@ -53,12 +53,12 @@ type StoreType = {
  */
 export const GetPersistentStoresForUniverse = (universeId: number): Promise<[boolean, StoreType[] | null]> => {
 	return new Promise<[boolean, StoreType[] | null]>((resumefunction) => {
-		const dir = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const dir = __baseDirName + '/DataBase/persistence/' + universeId;
 		if (!filestream.existsSync(dir)) {
 			if (WriteUniverse(universeId)) return resumefunction([true, null]);
 			return resumefunction([false, null]);
 		}
-		const storesdir = dir + '\\stores\\';
+		const storesdir = dir + '/stores/';
 		const stores = [];
 		filestream.readdirSync(storesdir).forEach(async (b) => {
 			if (filestream.statSync(storesdir + b).isDirectory()) {

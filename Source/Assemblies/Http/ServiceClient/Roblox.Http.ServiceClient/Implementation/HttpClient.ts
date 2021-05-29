@@ -20,12 +20,34 @@ export namespace ServiceClient {
 		public constructor(request: IClientRequest) {
 			this.request = request;
 		}
+
+		public UpdateConfiguration(request: IClientRequest) {
+			if (this.request !== request) this.request = request;
+		}
+
+		public ClearConfiguration() {
+			if (this.request !== null) this.request = null;
+		}
+
+		public async ClearCacheAsync(): Task<void> {
+			return new Promise((resumeFunction) => {
+				return resumeFunction();
+			});
+		}
+
 		/**
 		 * We only ever want this to resume, never error, or the client will receive a call stack
 		 * @returns {Task<[Boolean, IClientResponse]>} Returns a task to be awaited.
 		 */
-		public async execute(): Task<[boolean, IClientResponse, Error]> {
+		public async ExecuteAsync<TResponse = any>(): Task<[boolean, IClientResponse<TResponse>, Error]> {
 			return new Promise<[boolean, IClientResponse, Error]>((resumeFunction) => {
+				if (!this.request)
+					return resumeFunction([
+						false,
+						null,
+						new TypeError("The request was null, please update it via 'UpdateConfiguration'."),
+					]);
+
 				const parsedQs = query.stringify(this.request.QueryString);
 				const requestUrl = `${this.request.Url}?${parsedQs}`;
 				let requestMethod: Method = 'GET';

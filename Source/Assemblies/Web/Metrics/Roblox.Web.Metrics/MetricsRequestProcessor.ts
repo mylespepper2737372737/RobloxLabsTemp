@@ -2,7 +2,7 @@ import { Response } from 'express';
 import { MetricsType } from '../../../../ApiSites/Roblox.Metrics.Api/Enumeration/MetricsType';
 import { MeasurementRequest } from '../../../../ApiSites/Roblox.Metrics.Api/MeasurementRequest';
 import { Convert } from '../../../../System/Convert';
-import { CountersClient } from '../../../ApiClients/Roblox.Counters.Client/Implementation/CountersClient';
+import { CountersClientV2 } from '../../../ApiClients/Roblox.Counters.Client/Implementation/CountersClient';
 import { Task } from '../../../../System/Threading/Task';
 import { SanitizeData } from '../../Parsers/Roblox.Web.Parsers/SanitizeData';
 import { ApiEmptyResponseModel } from '../../WebAPI/ApiEmptyResponseModel';
@@ -19,10 +19,10 @@ export class MetricsRequestProcessor {
 
 		switch (metricsType) {
 			case MetricsType.Counter:
-				await CountersClient.IncrementCounter(key, value);
+				await CountersClientV2.IncrementCounter(key, value);
 				break;
 			case MetricsType.Sequence:
-				await CountersClient.BatchAddToSequences([{ Key: key, Value: value }]);
+				await CountersClientV2.BatchAddToSequences([{ Key: key, Value: value }]);
 				break;
 		}
 

@@ -4,10 +4,10 @@ import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants
 type captchaSessionType = { subject: string; time: number; answer: string; token: string };
 
 export const GetSessions = () => {
-	const map = filestream.readdirSync(__baseDirName + '\\DataBase\\sessions');
+	const map = filestream.readdirSync(__baseDirName + '/DataBase/sessions');
 	const sessions = new Map<string, captchaSessionType>();
 	map.forEach((v) => {
-		const session = filestream.readFileSync(__baseDirName + '\\DataBase\\sessions\\' + v, { encoding: 'utf-8' });
+		const session = filestream.readFileSync(__baseDirName + '/DataBase/sessions/' + v, { encoding: 'utf-8' });
 		sessions.set(v.split('.').shift(), JSON.parse(session));
 	});
 	return sessions;

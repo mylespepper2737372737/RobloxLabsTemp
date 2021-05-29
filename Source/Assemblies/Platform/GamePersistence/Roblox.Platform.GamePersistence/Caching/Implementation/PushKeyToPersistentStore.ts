@@ -27,7 +27,7 @@ export const PushKeyToPersistentStore = (
 	attributes = [],
 ): Promise<boolean> => {
 	return new Promise<boolean>(async (resumefunction) => {
-		const path = __baseDirName + '\\DataBase\\persistence\\' + universeId;
+		const path = __baseDirName + '/DataBase/persistence/' + universeId;
 		const time = new Date(Date.now()).toISOString();
 		if (scope.length === 0) scope = '_';
 		if (!filestream.existsSync(path)) await WriteUniverse(universeId);
@@ -36,38 +36,38 @@ export const PushKeyToPersistentStore = (
 			return resumefunction(false);
 		}
 		if (isSorted) value = parseInt(value.toString());
-		const storePath = path + '\\stores\\' + name;
-		const scopePath = storePath + '\\scopes\\' + scope;
-		const keyPath = scopePath + (isSorted ? '\\entries\\' : '\\keys\\') + key;
+		const storePath = path + '/stores/' + name;
+		const scopePath = storePath + '/scopes/' + scope;
+		const keyPath = scopePath + (isSorted ? '/entries/' : '/keys/') + key;
 
 		if (!filestream.existsSync(storePath)) {
 			await PushPersistentStoreToUniverse(universeId, name.replace('sorted_', ''), scope, isSorted);
 		}
 		if (filestream.existsSync(keyPath)) {
 			const key = <Record<string, unknown>>(
-				JSON.parse(filestream.readFileSync(keyPath + (isSorted ? '\\ENTRY' : '\\KEY') + '.json', 'utf-8'))
+				JSON.parse(filestream.readFileSync(keyPath + (isSorted ? '/ENTRY' : '/KEY') + '.json', 'utf-8'))
 			);
 			const keyversions = <unknown[]>(
-				JSON.parse(filestream.readFileSync(keyPath + (isSorted ? '\\ENTRY' : '\\KEY') + 'VERSIONS.json', 'utf-8'))
+				JSON.parse(filestream.readFileSync(keyPath + (isSorted ? '/ENTRY' : '/KEY') + 'VERSIONS.json', 'utf-8'))
 			);
 
-			const read = filestream.readFileSync(keyPath + '\\VALUE.json', 'utf-8');
+			const read = filestream.readFileSync(keyPath + '/VALUE.json', 'utf-8');
 
 			const record = <{ value: unknown; type: string }>JSON.parse(read);
 			if (value === record['value']) return resumefunction(true);
 			record['value'] = value;
 			record['type'] = typeof value;
 			record['md5'] = Base64.stringify(crpto.MD5(value.toString()));
-			filestream.writeFileSync(keyPath + '\\VALUE.json', JSON.stringify(record, undefined, 4), {
+			filestream.writeFileSync(keyPath + '/VALUE.json', JSON.stringify(record, undefined, 4), {
 				encoding: 'utf-8',
 			});
-			const read1 = filestream.readFileSync(scopePath + '\\SCOPE.json', 'utf-8');
+			const read1 = filestream.readFileSync(scopePath + '/SCOPE.json', 'utf-8');
 			const record1 = <Record<string, unknown>>JSON.parse(read1);
 			record1['lastUpdated'] = time;
-			filestream.writeFileSync(scopePath + '\\SCOPE.json', JSON.stringify(record1, undefined, 4), {
+			filestream.writeFileSync(scopePath + '/SCOPE.json', JSON.stringify(record1, undefined, 4), {
 				encoding: 'utf-8',
 			});
-			const read2 = filestream.readFileSync(scopePath + (isSorted ? '\\entries\\' : '\\keys\\') + 'RECORD.json', 'utf-8');
+			const read2 = filestream.readFileSync(scopePath + (isSorted ? '/entries/' : '/keys/') + 'RECORD.json', 'utf-8');
 			const record2 = <unknown[]>JSON.parse(read2);
 			record2.push({
 				keyName: key,
@@ -76,7 +76,7 @@ export const PushKeyToPersistentStore = (
 				purged: null,
 			});
 			filestream.writeFileSync(
-				scopePath + (isSorted ? '\\entries\\' : '\\keys\\') + 'RECORD.json',
+				scopePath + (isSorted ? '/entries/' : '/keys/') + 'RECORD.json',
 				JSON.stringify(record2, undefined, 4),
 				{
 					encoding: 'utf-8',
@@ -88,17 +88,17 @@ export const PushKeyToPersistentStore = (
 				version: key['version'],
 				date: time,
 			});
-			filestream.writeFileSync(keyPath + (isSorted ? '\\ENTRY' : '\\KEY') + '.json', JSON.stringify(key, undefined, 4), {
+			filestream.writeFileSync(keyPath + (isSorted ? '/ENTRY' : '/KEY') + '.json', JSON.stringify(key, undefined, 4), {
 				encoding: 'utf-8',
 			});
 			filestream.writeFileSync(
-				keyPath + (isSorted ? '\\ENTRY' : '\\KEY') + 'VERSIONS.json',
+				keyPath + (isSorted ? '/ENTRY' : '/KEY') + 'VERSIONS.json',
 				JSON.stringify(keyversions, undefined, 4),
 				{
 					encoding: 'utf-8',
 				},
 			);
-			const read3 = filestream.readFileSync(scopePath + '\\RECORD.json', 'utf-8');
+			const read3 = filestream.readFileSync(scopePath + '/RECORD.json', 'utf-8');
 			const record3 = <unknown[]>JSON.parse(read3);
 			record3.push({
 				action: 'KeyUpdated',
@@ -115,7 +115,7 @@ export const PushKeyToPersistentStore = (
 				],
 				date: time,
 			});
-			filestream.writeFileSync(scopePath + '\\RECORD.json', JSON.stringify(record3, undefined, 4), {
+			filestream.writeFileSync(scopePath + '/RECORD.json', JSON.stringify(record3, undefined, 4), {
 				encoding: 'utf-8',
 			});
 			return resumefunction(true);
@@ -127,7 +127,7 @@ export const PushKeyToPersistentStore = (
 			universe: 1,
 			userIds: userIds,
 			attributes: attributes,
-			root: keyPath + '\\',
+			root: keyPath + '/',
 			version: 1,
 			created: time,
 			lastUpdated: time,
@@ -140,16 +140,16 @@ export const PushKeyToPersistentStore = (
 		];
 		// we don't need to check if it's sorted, it functions the same as a standard store, this is really here for better readability
 		filestream.mkdirSync(keyPath);
-		filestream.writeFileSync(keyPath + (isSorted ? '\\ENTRY' : '\\KEY') + '.json', JSON.stringify(info, undefined, 4), {
+		filestream.writeFileSync(keyPath + (isSorted ? '/ENTRY' : '/KEY') + '.json', JSON.stringify(info, undefined, 4), {
 			encoding: 'utf-8',
 		});
-		filestream.writeFileSync(keyPath + (isSorted ? '\\ENTRY' : '\\KEY') + 'VERSIONS.json', JSON.stringify(keyversions, undefined, 4), {
+		filestream.writeFileSync(keyPath + (isSorted ? '/ENTRY' : '/KEY') + 'VERSIONS.json', JSON.stringify(keyversions, undefined, 4), {
 			encoding: 'utf-8',
 		});
-		filestream.mkdirSync(keyPath + '\\userids');
-		filestream.writeFileSync(keyPath + '\\RECORD.json', '[]', { encoding: 'utf-8' });
+		filestream.mkdirSync(keyPath + '/userids');
+		filestream.writeFileSync(keyPath + '/RECORD.json', '[]', { encoding: 'utf-8' });
 		filestream.writeFileSync(
-			keyPath + '\\VALUE.json',
+			keyPath + '/VALUE.json',
 			JSON.stringify(
 				{
 					value: value,
@@ -161,7 +161,7 @@ export const PushKeyToPersistentStore = (
 			),
 			{ encoding: 'utf-8' },
 		);
-		const read = filestream.readFileSync(scopePath + (isSorted ? '\\entries\\RECORD.json' : '\\keys\\RECORD.json'), 'utf-8');
+		const read = filestream.readFileSync(scopePath + (isSorted ? '/entries/RECORD.json' : '/keys/RECORD.json'), 'utf-8');
 		const record = <unknown[]>JSON.parse(read);
 		record.push({
 			keyName: key,
@@ -170,20 +170,20 @@ export const PushKeyToPersistentStore = (
 			purged: null,
 		});
 		filestream.writeFileSync(
-			scopePath + (isSorted ? '\\entries\\RECORD.json' : '\\keys\\RECORD.json'),
+			scopePath + (isSorted ? '/entries/RECORD.json' : '/keys/RECORD.json'),
 			JSON.stringify(record, undefined, 4),
 			{
 				encoding: 'utf-8',
 			},
 		);
-		const read1 = filestream.readFileSync(scopePath + '\\SCOPE.json', 'utf-8');
+		const read1 = filestream.readFileSync(scopePath + '/SCOPE.json', 'utf-8');
 		const record1 = <Record<string, unknown>>JSON.parse(read1);
 		(<number>record1['keys'])++;
 		record1['lastUpdated'] = time;
-		filestream.writeFileSync(scopePath + '\\SCOPE.json', JSON.stringify(record1, undefined, 4), {
+		filestream.writeFileSync(scopePath + '/SCOPE.json', JSON.stringify(record1, undefined, 4), {
 			encoding: 'utf-8',
 		});
-		const read2 = filestream.readFileSync(scopePath + '\\RECORD.json', 'utf-8');
+		const read2 = filestream.readFileSync(scopePath + '/RECORD.json', 'utf-8');
 		const record2 = <unknown[]>JSON.parse(read2);
 		record2.push({
 			action: 'KeyAdded',
@@ -200,7 +200,7 @@ export const PushKeyToPersistentStore = (
 			],
 			date: time,
 		});
-		filestream.writeFileSync(scopePath + '\\RECORD.json', JSON.stringify(record2, undefined, 4), {
+		filestream.writeFileSync(scopePath + '/RECORD.json', JSON.stringify(record2, undefined, 4), {
 			encoding: 'utf-8',
 		});
 		return resumefunction(true);

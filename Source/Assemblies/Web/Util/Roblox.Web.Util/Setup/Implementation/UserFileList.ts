@@ -39,7 +39,7 @@ LOGGROUP('Pages');
 
 const UseFileList = (app: IApplicationBuilder, opts: PageDirOpts): Promise<void> => {
 	return new Promise((r) => {
-		const path = (opts !== undefined ? opts.path : __baseDirName + '\\StaticPages') || __baseDirName + '\\StaticPages';
+		const path = (opts !== undefined ? opts.path : __baseDirName + '/StaticPages') || __baseDirName + '/StaticPages';
 		if (!fs.existsSync(path)) {
 			FASTLOGS(
 				FLog['Pages'],
@@ -50,7 +50,7 @@ const UseFileList = (app: IApplicationBuilder, opts: PageDirOpts): Promise<void>
 				'The directory %s was not found, make sure you configured your listing directory correctly. Static pages, so this will that return ctx::resumeFunc()',
 			);
 		}
-		app.use('/', Pages(path + '\\listings', { icons: true }));
+		app.use('/', Pages(path + '/listings', { icons: true }));
 		r();
 	});
 };

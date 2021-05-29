@@ -31,7 +31,7 @@ import { __baseDirName } from '../../../../../Assemblies/Common/Constants/Roblox
 export default {
 	method: 'all',
 	func: (_req, res): void => {
-		const template = fs.readFileSync(__baseDirName + '\\InternalCDN\\user.json', {
+		const template = fs.readFileSync(__baseDirName + '/InternalCDN/user.json', {
 			encoding: 'utf-8',
 		});
 		return res.send(template);
