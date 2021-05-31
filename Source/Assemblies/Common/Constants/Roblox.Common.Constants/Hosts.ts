@@ -28,7 +28,7 @@
 // Define all Urls to use here, even if they aren't being used ¯\_(ツ)_/¯
 export default {
 	Apex: 'sitetest4.robloxlabs.com',
-	BaseHost: 'www.sitetest4.robloxlabs.com',
+	WebHost: 'www.sitetest4.robloxlabs.com',
 	ApiProxyHost: 'api.sitetest4.robloxlabs.com',
 	StaticCDN: 'static.sitetest4.robloxlabs.com',
 	JavaScriptCDN: 'js.sitetest4.robloxlabs.com',

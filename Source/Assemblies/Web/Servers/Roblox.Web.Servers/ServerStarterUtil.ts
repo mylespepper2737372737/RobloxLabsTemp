@@ -37,7 +37,7 @@ import Urls from '../../../Common/Constants/Roblox.Common.Constants/Hosts';
 
 dotenv.config({ path: __baseDirName + '/.env' });
 
-SYNCHRONIZED_LOGGROUP(Urls['BaseHost']);
+SYNCHRONIZED_LOGGROUP(Urls['WebHost']);
 SYNCHRONIZED_LOGGROUP(Urls['ApiProxyHost']);
 SYNCHRONIZED_LOGGROUP(Urls['StaticCDN']);
 SYNCHRONIZED_LOGGROUP(Urls['JavaScriptCDN']);
@@ -128,7 +128,7 @@ export const ROBLOX_Starter = (
 			httpsServer = (DFFlag('GlobalHTTP2Enabled') ? https2 : https)
 				.createServer(
 					{
-						cert: filestream.readFileSync(__sslDirName + '/SERVER.crt', 'utf-8'),
+						cert: filestream.readFileSync(__sslDirName + '/ST4.crt', 'utf-8'),
 						key: filestream.readFileSync(__sslDirName + '/ST4.key', 'utf-8'),
 						ca: [filestream.readFileSync(__sslDirName + '/rootCA.crt', 'utf-8')],
 						passphrase: process.env['ST4_pw'],

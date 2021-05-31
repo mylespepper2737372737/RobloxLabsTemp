@@ -38,7 +38,7 @@ interface EndpointOpts {
 	apiName?: string;
 }
 
-SYNCHRONIZED_LOGGROUP(Urls['BaseHost']);
+SYNCHRONIZED_LOGGROUP(Urls['WebHost']);
 SYNCHRONIZED_LOGGROUP(Urls['ApiProxyHost']);
 SYNCHRONIZED_LOGGROUP(Urls['StaticCDN']);
 SYNCHRONIZED_LOGGROUP(Urls['JavaScriptCDN']);
@@ -133,7 +133,8 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 		const r = Walkers.FileWalker(directory);
 		let count = 0;
 		r.forEach((v) => {
-			let name = v.replace(directory, '');
+			let name = v.split('\\').join('/');
+			name = name.replace(directory, '');
 			if (name.match(/.+\.js/)) {
 				name = name.replace('.js', '');
 				name = name.split('_P-').join(':');

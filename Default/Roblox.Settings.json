@@ -71,8 +71,8 @@
 				"CookieLawNoticeTimeout": 20000,
 				"TestCurrency": 0,
 				"UsedMemoryMin": 5.369e7,
-				"UsedMemoryMax": 1.611e10,
-				"CPUTicksConsumedMax": 50000
+				"UsedMemoryMax": 1.611e9,
+				"CPUTicksConsumedMax": 1000
 			},
 			"SFInt": {},
 			"FString": {

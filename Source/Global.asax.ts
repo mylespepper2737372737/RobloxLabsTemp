@@ -371,7 +371,7 @@ FastLogGlobal.Init();
 				RobloxWebsiteServer,
 				'/StaticPages/Websites/Roblox.Website',
 				'/Source/Bin/Websites/Roblox.Website/Controllers',
-				Urls['BaseHost'],
+				Urls['WebHost'],
 				false,
 			),
 		);
@@ -1244,7 +1244,7 @@ FastLogGlobal.Init();
 		await (async () => {
 			try {
 				ROBLOX_Starter(ImagesCDNServer, Urls['ImagesCDN']);
-				ROBLOX_Starter(RobloxWebsiteServer, Urls['BaseHost']);
+				ROBLOX_Starter(RobloxWebsiteServer, Urls['WebHost']);
 				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ROBLOX_Starter(ApiProxyServer, Urls['ApiProxyHost']);
 				ROBLOX_Starter(StaticCDNServer, Urls['StaticCDN']);
 				ROBLOX_Starter(JavaScriptCDNServer, Urls['JavaScriptCDN']);
@@ -1327,7 +1327,7 @@ FastLogGlobal.Init();
 				ROBLOX_Starter(UsersServiceServer, Urls['UsersService']);
 				ROBLOX_Starter(DataWebsiteServer, Urls['DataHost']);
 
-				ROBLOX_Starter(NomadTestServer, '192.168.0.50', false, 4646, 4648);
+				ROBLOX_Starter(NomadTestServer, '192.168.0.50', false, 80, 4648);
 
 				SignalRSetup(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Urls.ApiProxyHost);
 				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '/Source/Bin/WebSockets/Roblox.RealTime', Urls.RealTimeHost);

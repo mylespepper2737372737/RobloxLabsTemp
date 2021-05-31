@@ -53,7 +53,7 @@ export class BaseURL {
 	 * @returns {string} Returns string
 	 */
 	public static GetBaseHost(preferApex: bool = false): string {
-		return preferApex ? Urls.Apex : Urls.BaseHost;
+		return preferApex ? Urls.Apex : Urls.WebHost;
 	}
 
 	/**

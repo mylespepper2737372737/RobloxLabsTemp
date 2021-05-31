@@ -4,9 +4,9 @@
 	"description": "ROBLOXLABS",
 	"main": "Source/bin/Global.asax.js",
 	"scripts": {
-		"Start-Main-Job": "node --no-deprecation --report-filename=server.log --diagnostic-dir=Diagnostiscs Source/bin/Global.asax.js",
+		"Start-Main-Job": "node --no-deprecation Source/bin/Global.asax.js",
 		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
-		"build": "tsc --skipLibCheck",
+		"build": "tsc -b --verbose",
 		"start": "node --trace-deprecation Source/bin/Global.asax.js",
 		"Run-Without-NPM": "node path.js && npm run build"
 	},

@@ -16,6 +16,6 @@
 		"stripInternal": true,
 		"removeComments": true,
 		"declaration": true,
-		"declarationDir": "Source/Bin/PDB"
+		"declarationDir": "Source/bin/PDB"
 	}
 }

@@ -20,7 +20,7 @@ export class FastLogGlobal {
 		LOGVARIABLE('WWWAuthV1', 7);
 		LOGVARIABLE('ClientTelementry', 7);
 		DYNAMIC_LOGVARIABLE('Tasks', 7);
-		SYNCHRONIZED_LOGVARIABLE(Urls['BaseHost'], 6);
+		SYNCHRONIZED_LOGVARIABLE(Urls['WebHost'], 6);
 		SYNCHRONIZED_LOGVARIABLE(Urls['ApiProxyHost'], 6);
 		SYNCHRONIZED_LOGVARIABLE(Urls['StaticCDN'], 6);
 		SYNCHRONIZED_LOGVARIABLE(Urls['JavaScriptCDN'], 6);

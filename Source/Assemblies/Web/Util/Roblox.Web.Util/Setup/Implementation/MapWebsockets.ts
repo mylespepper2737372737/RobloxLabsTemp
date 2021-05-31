@@ -40,7 +40,7 @@ interface wssOpts {
 	logSetups?: boolean;
 }
 
-SYNCHRONIZED_LOGGROUP(Urls['BaseHost']);
+SYNCHRONIZED_LOGGROUP(Urls['WebHost']);
 SYNCHRONIZED_LOGGROUP(Urls['ApiProxyHost']);
 SYNCHRONIZED_LOGGROUP(Urls['StaticCDN']);
 SYNCHRONIZED_LOGGROUP(Urls['JavaScriptCDN']);

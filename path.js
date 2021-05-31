@@ -28,5 +28,5 @@ const fs = require('fs');
 		contents = contents.replace(data[0], `'${dir}'`);
 		contents = `// THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT EDIT\r\n// !DISABLE-AUTO-SELECT-DIR\r\n${contents}`;
 		fs.writeFileSync(fileName, contents);
-	} catch {}
+	} catch (e) {}
 })();
