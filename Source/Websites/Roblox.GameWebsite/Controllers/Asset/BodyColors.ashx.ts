@@ -30,7 +30,7 @@
 import { Request, Response } from 'express';
 import { CachePolicy } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Models/IClientRequest';
 import { AvatarRequestProcessor } from '../../../../Assemblies/Web/Avatars/Roblox.Web.Avatars/AvatarRequestProcessor';
-import { BodyColorsRequest } from '../../Models/Game/BodyColorsReques';
+import { BodyColorsRequest } from '../../Models/Game/BodyColorsRequest';
 
 export default {
 	method: 'all',
