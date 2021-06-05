@@ -39,10 +39,6 @@ export default {
 
 		var [UserID, UserName] = cachedRequestProcessor.ExtractDataFromQueryStringForBodyColorsRequest(request);
 
-		try {
-			await cachedRequestProcessor.GetAvatarBodyColorsAsync(UserID, UserName);
-		} catch (e) {
-			return response.send(e.stack);
-		}
+		await cachedRequestProcessor.GetAvatarBodyColorsAsync(UserID, UserName);
 	},
 };
