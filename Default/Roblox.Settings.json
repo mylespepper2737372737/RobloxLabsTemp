@@ -13,9 +13,9 @@
 				"Tasks": 7,
 				"DataStoresV2": 0,
 				"CacheStore": 0,
-				"RoundRobinRunThrough": 7,
+				"RoundRobinRunThrough": 0,
 				"Protocol77": 0,
-				"RoundRobinCacheBalancer": 7
+				"RoundRobinCacheBalancer": 0
 			},
 			"SFLog": {},
 			"FFlag": {
