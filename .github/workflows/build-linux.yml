@@ -1,4 +1,4 @@
-name: Test
+name: Build Linux
 
 on:
     pull_request:
@@ -7,13 +7,11 @@ on:
         branches: [Roblox.SiteTest4]
 
 jobs:
-    Test:
-        runs-on: windows-latest
+    Build:
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
                   node-version: 12
-            - run: npm update
-            - run: npm i
-            - run: npm run test
+            - run: npm run build-full
