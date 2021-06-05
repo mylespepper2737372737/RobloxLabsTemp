@@ -20,8 +20,8 @@ import {
 LOGGROUP('UnitTestOn');
 LOGGROUP('UnitTestOff');
 
-LOGVARIABLE('UnitTestOn', 1);
-LOGVARIABLE('UnitTestOff', 0);
+LOGVARIABLE('UnitTestOn', 7);
+LOGVARIABLE('UnitTestOff', 7);
 
 DYNAMIC_FASTFLAGVARIABLE('DebugUnitDynamicFlag', true);
 
