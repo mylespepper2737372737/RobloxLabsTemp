@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://data.sitetest4.robloxlabs.com/Error/InstallLog.ashx, Used on ROBLOX Player Launcher for crash logging.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Add global headers that all responses should have to this file when you don't want to keep typing it in.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

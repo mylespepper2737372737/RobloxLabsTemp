@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Creates a random sha512 hash with client signing
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

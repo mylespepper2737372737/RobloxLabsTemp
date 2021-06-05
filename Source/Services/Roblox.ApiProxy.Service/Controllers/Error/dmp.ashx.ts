@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://api.sitetest4.robloxlabs.com/Error/Dmp.ashx, Used on ROBLOX Studio and ROBLOX Clients for crash logging.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

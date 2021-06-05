@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: A mock of ASP.NET and Servers.FX
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

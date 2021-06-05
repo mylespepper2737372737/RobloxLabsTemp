@@ -5,7 +5,7 @@
 	Description: This will soon become obselete
 	Deprecation Notice: This will become obselete and possibly removed when Roblox.Configuration is implemented, which will also replace ClientSettingsUtil.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

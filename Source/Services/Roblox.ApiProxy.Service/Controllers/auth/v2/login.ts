@@ -5,7 +5,7 @@
 	Description: https://api.sitetest4.robloxlabs.com/auth/v2/login,
 				 deprecated for https://www.sitetest4.robloxlabs.com/Authentication/Login.ashx
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 
@@ -47,9 +47,7 @@ export default {
 			headers: { [x: string]: string };
 		},
 		response: {
-			status: (
-				arg0: number,
-			) => {
+			status: (arg0: number) => {
 				(): any;
 				new (): any;
 				send: { (arg0: { code: number; message: string; userfacingmessage?: string }): any; new (): any };

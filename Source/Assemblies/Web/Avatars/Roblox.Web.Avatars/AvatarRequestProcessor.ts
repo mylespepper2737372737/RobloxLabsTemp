@@ -5,7 +5,7 @@ import { AvatarBodyColorsModel } from '../../../../Services/Roblox.ApiProxy.Serv
 import { GetByUserNameResponse } from '../../../../Services/Roblox.ApiProxy.Service/Models/GetByUserNameResponse';
 import { Convert } from '../../../../System/Convert';
 import { Task } from '../../../../System/Threading/Task';
-import { BodyColorsRequest } from '../../../../Websites/Roblox.GameWebsite/Models/Game/BodyColorsReques';
+import { BodyColorsRequest } from '../../../../Websites/Roblox.GameWebsite/Models/Game/BodyColorsRequest';
 import { AvatarAccoutrementsRequest } from '../../../../Websites/Roblox.GameWebsite/Models/Game/IAvatarAccoutrementsRequest';
 import { ApiKeys } from '../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
 import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';

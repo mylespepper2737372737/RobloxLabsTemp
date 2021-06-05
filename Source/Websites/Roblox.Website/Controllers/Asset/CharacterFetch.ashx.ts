@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: This is essentially AvatarAccoutrements.ashx, but all it does is fetch it for a place also.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

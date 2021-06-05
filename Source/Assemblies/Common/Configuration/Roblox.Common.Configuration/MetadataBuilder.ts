@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: Wrapper for server Configurations, used as a helper.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 
@@ -43,7 +43,7 @@ export const MetadataBuilder = (
 ) => {
 	return {
 		app: app,
-		...((config as unknown) as ConfigOpts),
+		...(config as unknown as ConfigOpts),
 		PagesOpts: {
 			path: __baseDirName + PagesDir,
 		},

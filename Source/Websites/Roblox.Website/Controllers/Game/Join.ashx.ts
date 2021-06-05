@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://assetgame.sitetest4.robloxlabs.com/game/Join.ashx, gets join information for the RakPeer in order to connect to that peer.
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

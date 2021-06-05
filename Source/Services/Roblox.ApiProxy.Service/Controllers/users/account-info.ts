@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://api.sitetest4.robloxlabs.com/users/:userId/canmanage/:placeId, Checks if a user has permission to access a specific place
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

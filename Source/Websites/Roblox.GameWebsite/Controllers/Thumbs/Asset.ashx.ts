@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://assetgame.sitetest4.robloxlabs.com/Thumbs/Asset.ashx, return a thumbnail for the given assetId
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

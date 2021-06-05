@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://assetgame.sitetest4.robloxlabs.com/game/MachineConfiguration.ashx, Not Implemented, not really much info on this to be honest
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 

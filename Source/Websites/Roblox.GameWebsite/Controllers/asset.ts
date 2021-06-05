@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://assetgame.sitetest4.robloxlabs.com/asset, This is here incase someone uses assetgame for whatever reason
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 
