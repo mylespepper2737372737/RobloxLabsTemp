@@ -8,7 +8,7 @@ export default {
 	func: async (request: Request<null, string, null, AvatarAccoutrementsRequest>, response: Response<string>) => {
 		const cachedRequestProcessor = new AvatarRequestProcessor(CachePolicy.StaleAfterOneMinute, response);
 
-		var [UserID, UserName, allowSSL] = cachedRequestProcessor.ExtractDataFromQueryString(request);
+		var [UserID, UserName, allowSSL] = cachedRequestProcessor.ExtractDataFromQueryStringForAvatarAccoutrementsRequest(request);
 
 		await cachedRequestProcessor.GetAvatarAccoutrementsAsync(UserID, UserName, allowSSL);
 	},
