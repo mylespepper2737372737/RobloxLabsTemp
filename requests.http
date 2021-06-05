@@ -2136,3 +2136,100 @@ Host: test.sitetest1.robloxlabs.com
 ###
 
 OPTIONS https://test.sitetest3.robloxlabs.com/docs/json/v1
+
+###
+
+GET http://www.sitetest3.jmklabs.com/
+
+###
+
+POST auth.roblox.com/v2/verified-signup/challenge HTTP/1.1
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"
+Accept: application/json
+DNT: 1
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Roblox/ApiClient 4.0.30319.42000 (https://www.roblox.com/ v1.1.2)
+Content-Type: application/json
+Origin: https://auth.sitetest4.robloxlabs.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://www.facebook.com
+Accept-Language: en,en-US;q=0.9
+Cookie: __tid=7bab6b9d931f9014e3e763c6a8818f7504d32e224594012f7889e4b067a28bb0; gig_bootstrap_3_o9pIaHhVOdKXUl_EicMuJA7sx6rJ3-PiqWjhMTtOcHKvyroFTM6R8jHNNJNg_t3Q=_gigya_ver4; gig_bootstrap_3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p=_gigya_ver4; .RBXIDCHECK=d01251b6-2391-4857-9247-3db992456761; RobloxEventTrackerV2=CreateDate=29/3/2021 12:59:42 PM&rbxid=&browserid=1; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3NTM5YzdjZC03YzMxLTRkOGYtYWRiYi02NjE2YjIzMmQ1NjIiLCJzdWIiOjY4MjE3MDR9.9DaHhc67XQARd3pA_f27AclpFjjJEq3P0bXlwSGUFyY; _evidon_consent_cookie={}; _ga=GA1.1.19487232.1619816028; RBXcb=11; GuestData=UserID=-352136386; RBXEventTrackerV2=CreateDate=1/5/2021 2:44:53 PM&rbxid=&browserid=1; RobloxSecurityToken=ljWby%2B%2FHVsZXJLfRkoljWby%2B%2FHVsZXJLfRko9mPQ9mPQ%3D%3D; AuthTokens=R; _ga_0E3DVKZFR1=GS1.1.1622512351.24.1.1622513974.0
+roblox-api-key: 2A04B993-BC10-40AB-B34D-E9FB80CCB34D
+requester: Server
+x-real-ip: 209.206.42.16
+xboxaccesskey: b9309a51-7b54-458c-ad73-7b2c287497e2
+accesskey: idc3clpefw45ssefp6ktk2bvn7gdlud5
+x-csrf-token: m5reLJxC/VfE
+roblox-place-id: 5889263700
+Content-Length: 72
+
+{"deliveryMethod": "Email","deliveryTarget": "mfdnpm@gmail.com"}
+
+###
+
+POST  auth.roblox.com/v2/verified-signup/voucher HTTP/1.1
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"
+Accept: application/json
+DNT: 1
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Roblox/ApiClient 4.0.30319.42000 (https://www.roblox.com/ v1.1.2)
+Content-Type: application/json
+Origin: https://auth.sitetest4.robloxlabs.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://www.facebook.com
+Accept-Language: en,en-US;q=0.9
+Cookie: __tid=7bab6b9d931f9014e3e763c6a8818f7504d32e224594012f7889e4b067a28bb0; gig_bootstrap_3_o9pIaHhVOdKXUl_EicMuJA7sx6rJ3-PiqWjhMTtOcHKvyroFTM6R8jHNNJNg_t3Q=_gigya_ver4; gig_bootstrap_3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p=_gigya_ver4; .RBXIDCHECK=d01251b6-2391-4857-9247-3db992456761; RobloxEventTrackerV2=CreateDate=29/3/2021 12:59:42 PM&rbxid=&browserid=1; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3NTM5YzdjZC03YzMxLTRkOGYtYWRiYi02NjE2YjIzMmQ1NjIiLCJzdWIiOjY4MjE3MDR9.9DaHhc67XQARd3pA_f27AclpFjjJEq3P0bXlwSGUFyY; _evidon_consent_cookie={}; _ga=GA1.1.19487232.1619816028; RBXcb=11; GuestData=UserID=-352136386; RBXEventTrackerV2=CreateDate=1/5/2021 2:44:53 PM&rbxid=&browserid=1; RobloxSecurityToken=ljWby%2B%2FHVsZXJLfRkoljWby%2B%2FHVsZXJLfRko9mPQ9mPQ%3D%3D; AuthTokens=R; _ga_0E3DVKZFR1=GS1.1.1622512351.24.1.1622513974.0
+roblox-api-key: 2A04B993-BC10-40AB-B34D-E9FB80CCB34D
+requester: Server
+x-real-ip: 209.206.42.16
+xboxaccesskey: b9309a51-7b54-458c-ad73-7b2c287497e2
+accesskey: idc3clpefw45ssefp6ktk2bvn7gdlud5
+roblox-place-id: 5889263700
+x-csrf-token: m5reLJxC/VfE
+Content-Length: 64
+
+{"challenge": "0OEVdWGy7UCU1hxtpbK7pQ", "code": "785780"}
+
+###
+
+POST auth.roblox.com/v2/verified-signup HTTP/1.1
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"
+Accept: application/json
+DNT: 1
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Roblox/ApiClient 4.0.30319.42000 (https://www.roblox.com/ v1.1.2)
+Content-Type: application/json
+Origin: https://auth.sitetest4.robloxlabs.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://www.facebook.com
+Accept-Language: en,en-US;q=0.9
+Cookie: __tid=7bab6b9d931f9014e3e763c6a8818f7504d32e224594012f7889e4b067a28bb0; gig_bootstrap_3_o9pIaHhVOdKXUl_EicMuJA7sx6rJ3-PiqWjhMTtOcHKvyroFTM6R8jHNNJNg_t3Q=_gigya_ver4; gig_bootstrap_3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p=_gigya_ver4; .RBXIDCHECK=d01251b6-2391-4857-9247-3db992456761; RobloxEventTrackerV2=CreateDate=29/3/2021 12:59:42 PM&rbxid=&browserid=1; .RBXID=_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3NTM5YzdjZC03YzMxLTRkOGYtYWRiYi02NjE2YjIzMmQ1NjIiLCJzdWIiOjY4MjE3MDR9.9DaHhc67XQARd3pA_f27AclpFjjJEq3P0bXlwSGUFyY; _evidon_consent_cookie={}; _ga=GA1.1.19487232.1619816028; RBXcb=11; GuestData=UserID=-352136386; RBXEventTrackerV2=CreateDate=1/5/2021 2:44:53 PM&rbxid=&browserid=1; RobloxSecurityToken=ljWby%2B%2FHVsZXJLfRkoljWby%2B%2FHVsZXJLfRko9mPQ9mPQ%3D%3D; AuthTokens=R; _ga_0E3DVKZFR1=GS1.1.1622512351.24.1.1622513974.0
+roblox-api-key: 2A04B993-BC10-40AB-B34D-E9FB80CCB34D
+requester: Server
+x-real-ip: 209.206.42.16
+xboxaccesskey: b9309a51-7b54-458c-ad73-7b2c287497e2
+accesskey: idc3clpefw45ssefp6ktk2bvn7gdlud5
+roblox-place-id: 5889263700
+Content-Length: 674
+x-csrf-token: k2P+5BJ9OiaL
+
+{"voucher": "MAp7Ik5vbmNlIjoiXzNkZ3BZeDhsMC1SdmVULXhRVkFSQSIsIkRlbGl2ZXJ5TWV0aG9kIjoxLCJEZWxpdmVyeVRhcmdldCI6Im1mZG5wbUBnbWFpbC5jb20ifQpHNjJWUHlkSVM3WGsrT2NIbWQ4em9mb0o4dGcxbHE1bEVOMnZaRS9UM1l1OFFvUDRCSUFBcUFxUXJEOEo1VithOEhENWYrN0tDL2lZVDFkVEdSSHlmalc3YU5adjlGcmQzZXJ6VjBIWkJ1eFdia1RWUkpDbklnYnVucWJvcWVKUGIxalRVSmlRTHkydi8vK3FEZlRBU044VTQxV1dzUXBsemRWT0ZMVFpta1hIeWQwSW5GMUFKbEsvK2tVZklHY2s0UWgwa3pRRUhJYkc5U1M3aTNmRjZ0OTZoUjdFUnpPUU15WTJ5cUxuS1E1RUxTZTVUZGZ3SVVmWWZTSUxJcDZ3THJidkREQXZkc2thVHY0aG5rcCtMdThmY0lRMVpNcXFWREFmbU1KRlRaTUtnczVpdUN0aDNFTlpmbGJPTW5LZ0ZRb0xNYzlIMm1uL3dIOVd4bzZ1K0E9PQ==","birthdate": "1998-06-04T18:15:10.902Z",  "password": "Io9/9DEF", "captchaProvider": "PROVIDER_ARKOSE_LABS", "captchaToken": ""}

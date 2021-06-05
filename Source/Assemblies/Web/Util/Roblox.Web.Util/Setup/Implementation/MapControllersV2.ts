@@ -51,12 +51,12 @@ const MapControllersV2 = (app?: IApplicationBuilder, opts?: EndpointOpts): Promi
 			);
 			return resumeFunc();
 		}
-		const r = Walkers.FileWalker(directory);
+		const r = Walkers.WalkDirectory(directory);
 		r.forEach((dir) => {
 			if (dir.match(/.+\.js/)) {
 				try {
 					const data = require(dir);
-					const controller = Walkers.ClassWalker(data);
+					const controller = Walkers.WalkClassMap(data);
 					if (controller) {
 						ControllerMethodParser(app, controller, opts.apiName);
 					}

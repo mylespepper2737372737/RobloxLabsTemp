@@ -28,7 +28,6 @@
 import crypto from 'crypto';
 import headers from '../../../Common/Constants/Roblox.Common.Constants/DefaultHeaders';
 import { RequestHandler } from 'express-serve-static-core';
-// import whitelist from '../constants/urls';
 import { DFFlag, DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5 } from '../../Util/Roblox.Web.Util/Logging/FastLog';
 import {
 	GetValueFromFormDataString,

@@ -1,8 +1,9 @@
 /*
-	FileName: urls.ts
+	FileName: Hosts.ts
 	Written By: Aleksej Brovim Pushnak,
 	File Type: Module
-	Description: Add global URLS that are being used or will be used to this.
+	Description: This will soon become obselete
+	Deprecation Notice: This will become obselete and possibly removed when Roblox.Configuration is implemented, which will also replace ClientSettingsUtil.
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 
@@ -25,7 +26,7 @@
 	***
 */
 
-// Define all Urls to use here, even if they aren't being used ¯\_(ツ)_/¯
+// Define all Hosts to use here, even if they aren't being used ¯\_(ツ)_/¯
 export default {
 	Apex: 'sitetest4.robloxlabs.com',
 	WebHost: 'www.sitetest4.robloxlabs.com',

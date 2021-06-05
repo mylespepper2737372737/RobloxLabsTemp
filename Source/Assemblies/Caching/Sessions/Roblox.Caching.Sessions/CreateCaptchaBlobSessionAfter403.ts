@@ -28,9 +28,12 @@
 import filestream from 'fs';
 import { Response } from 'express-serve-static-core';
 import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants/Directories';
-import { ClientSettings, Group } from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
+import {
+	ClientSettings,
+	FastVarType,
+} from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 
-const FInt = ClientSettings.GetSettings(Group.FInt);
+const FInt = ClientSettings.GetSettings(FastVarType.FInt);
 
 export const CreateCaptchaBlobSessionAfter403 = (response: Response, captchaBLOB: string, ip: string) => {
 	const dataToRefer = { sub: ip, iat: Math.floor(new Date(Date.now()).getTime() / 1000) };

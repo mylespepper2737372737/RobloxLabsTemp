@@ -1,11 +1,14 @@
+/// <reference path="./ICounter.ts" />
+
 import { CacheabilitySettings } from '../../../Caching/Roblox.Caching/CacheabilitySettings';
 import { CacheInfo } from '../../../Caching/Roblox.Caching/CacheInfo';
 import { CacheManager } from '../../../Caching/Roblox.Caching/CacheManager';
 import { IRobloxEntity } from '../../../Data/Interfaces/Roblox.Data.Interfaces/IRobloxEntity';
 import { EntityHelper } from '../../../Data/Roblox.Data/Entities/EntityHelper';
 import { CounterDAL } from './DAL/CounterDAL';
+import { ICounter } from './ICounter';
 
-export class Counter implements IRobloxEntity<number, CounterDAL> {
+export class Counter implements IRobloxEntity<number, CounterDAL>, ICounter {
 	private _EntityDAL: CounterDAL;
 
 	public get ID() {

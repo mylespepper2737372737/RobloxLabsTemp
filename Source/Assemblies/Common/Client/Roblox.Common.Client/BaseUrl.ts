@@ -1,5 +1,9 @@
-import Urls from '../../Constants/Roblox.Common.Constants/Hosts';
+import Hosts from '../../Constants/Roblox.Common.Constants/Hosts'; /* we should really be using BaseURL to contruct all of these instead of hardcoding them */
 import qs from 'querystring';
+
+/**
+ * TODO: In the future this should be similar to Roblox.Configuration (USE_CONFIG)
+ */
 
 export class BaseURL {
 	/**
@@ -53,7 +57,7 @@ export class BaseURL {
 	 * @returns {string} Returns string
 	 */
 	public static GetBaseHost(preferApex: bool = false): string {
-		return preferApex ? Urls.Apex : Urls.WebHost;
+		return preferApex ? Hosts.Apex : Hosts.WebHost;
 	}
 
 	/**

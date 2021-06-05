@@ -1,9 +1,12 @@
 import Crypto from 'crypto';
 import filestream from 'fs';
 import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants/Directories';
-import { ClientSettings, Group } from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
+import {
+	ClientSettings,
+	FastVarType,
+} from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 
-const FInt = ClientSettings.GetSettings(Group.FInt, 'Web');
+const FInt = ClientSettings.GetSettings(FastVarType.FInt, 'Web');
 
 export const CreateCsrfSessionFile = (id: string): string => {
 	const sessionFile = `${id}.json`;

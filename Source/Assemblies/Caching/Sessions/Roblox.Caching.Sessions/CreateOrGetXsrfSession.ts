@@ -36,14 +36,17 @@
 */
 
 import { Response } from 'express-serve-static-core';
-import { ClientSettings, Group } from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
+import {
+	ClientSettings,
+	FastVarType,
+} from '../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 import filestream from 'fs';
 import { __baseDirName } from '../../../Common/Constants/Roblox.Common.Constants/Directories';
 import { CreateCsrfSessionFile } from './CreateCsrfSessionFile';
 import { GetCsrfSession } from './GetCsrfSession';
 import { CheckIfAuthTokenExists } from '../../../Web/Auth/Roblox.Web.Auth/CheckIfAuthTokenExists_OLD';
 
-const FString = ClientSettings.GetSettings(Group.FString);
+const FString = ClientSettings.GetSettings(FastVarType.FString);
 
 //Consideration that this will fuck up in some way? Like it will use AuthToken instead of IP address?
 //On the check for hasFoundSession, if false, ask if isBasedOnIpAndAuthToken is true, if yes then look for IP address instead.
@@ -54,7 +57,7 @@ export const CreateOrGetXsrfSession = (
 	response?: Response,
 	isXsrfEndpoint?: boolean,
 ): boolean | void => {
-	const DFFlag = ClientSettings.GetSettings(Group.DFFlag, 'Web');
+	const DFFlag = ClientSettings.GetSettings(FastVarType.DFFlag, 'Web');
 
 	if (!DFFlag['IsCSRFV2Enabled']) return true;
 	if (DFFlag['CanCSRFV2AdminKeyBeUsed'] && token === FString['CSRFV2HardcodedKey']) return true;

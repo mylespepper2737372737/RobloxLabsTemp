@@ -4,14 +4,18 @@
 
 // Refactor, Refator, Refactor!!
 
-import { ClientSettings } from '../../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
+import {
+	ClientSettings,
+	FastVarType,
+} from '../../../../Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
 import fs from 'fs';
 import { __baseDirName } from '../../../../Common/Constants/Roblox.Common.Constants/Directories';
 import dotenv from 'dotenv';
+import { Convert } from '../../../../../System/Convert';
 
 dotenv.config({ path: __baseDirName + '/.env' });
 
-export const cache = {
+export const FastLogCacheStore = {
 	DFLog: new Map<string, number>(),
 	DFFlag: new Map<string, boolean>(),
 	DFInt: new Map<string, number>(),
@@ -25,7 +29,7 @@ export const cache = {
 /**
  * Contains static FastLog variables.
  */
-export const FLog: Record<string, number> = {};
+export let FLog: Record<string, number> = {};
 
 /**
  * A function that refetches the value of the named FastLog variable in {name} and returns it.
@@ -33,19 +37,19 @@ export const FLog: Record<string, number> = {};
  * @returns {number} Returns a number that can be used in the FastLogLibrary.
  */
 export const DFLog = function (name: string): number {
-	const df = ClientSettings.GetDFLogs();
-	if (df) {
-		new Map<string, number>(Object.entries(df)).forEach((value, key) => {
-			cache.DFLog[key] = value;
+	const dynamicFastLogLevelsFromConfiguration = ClientSettings.GetDFLogs();
+	if (dynamicFastLogLevelsFromConfiguration) {
+		new Map<string, number>(Object.entries(dynamicFastLogLevelsFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFLog[key] = value;
 		});
 	}
-	return df[name] || cache.DFLog[name] || 0;
+	return dynamicFastLogLevelsFromConfiguration[name] || FastLogCacheStore.DFLog[name] || 0;
 };
 
 /**
  * Contains server sided FastLog variables.
  */
-export const SFLog: Record<string, number> = {};
+export let SFLog: Record<string, number> = {};
 
 //////////////////////////////////////////////////////////////////
 // FastFlag
@@ -54,7 +58,7 @@ export const SFLog: Record<string, number> = {};
 /**
  * Contains static FastFlag variables.
  */
-export const FFlag: Record<string, boolean> = {};
+export let FFlag: Record<string, boolean> = {};
 
 /**
  * A function that refetches the value of the named FastFlag variable in {name} and returns it.
@@ -62,19 +66,19 @@ export const FFlag: Record<string, boolean> = {};
  * @returns {boolean} Returns a boolean that can be used in the code base to enable certain features.
  */
 export const DFFlag = function (name: string): boolean {
-	const df = ClientSettings.GetDFFlags();
-	if (df) {
-		new Map<string, boolean>(Object.entries(df)).forEach((value, key) => {
-			cache.DFFlag[key] = value;
+	const dynamicFastFlagVariablesFromConfiguration = ClientSettings.GetDFFlags();
+	if (dynamicFastFlagVariablesFromConfiguration) {
+		new Map<string, boolean>(Object.entries(dynamicFastFlagVariablesFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFFlag[key] = value;
 		});
 	}
-	return df[name] || cache.DFFlag[name] || false;
+	return dynamicFastFlagVariablesFromConfiguration[name] || FastLogCacheStore.DFFlag[name] || false;
 };
 
 /**
  * Contains server sided FastFlag variables.
  */
-export const SFFlag: Record<string, boolean> = {};
+export let SFFlag: Record<string, boolean> = {};
 
 //////////////////////////////////////////////////////////////////
 // FastInt or FastNumber
@@ -83,7 +87,7 @@ export const SFFlag: Record<string, boolean> = {};
 /**
  * Contains static FastInt/FastNumber variables.
  */
-export const FInt: Record<string, number> = {};
+export let FInt: Record<string, number> = {};
 
 /**
  * A function that refetches the value of the named FastInt/FastNumber variable in {name} and returns it.
@@ -91,19 +95,19 @@ export const FInt: Record<string, number> = {};
  * @returns {number} Returns a number that can be used in the code base to change certain features.
  */
 export const DFInt = function (name: string): number {
-	const df = ClientSettings.GetDFInts();
-	if (df) {
-		new Map<string, number>(Object.entries(df)).forEach((value, key) => {
-			cache.DFInt[key] = value;
+	const dynamicFastIntegerVariablesFromConfiguration = ClientSettings.GetDFInts();
+	if (dynamicFastIntegerVariablesFromConfiguration) {
+		new Map<string, number>(Object.entries(dynamicFastIntegerVariablesFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFInt[key] = value;
 		});
 	}
-	return df[name] || cache.DFInt[name] || 0;
+	return dynamicFastIntegerVariablesFromConfiguration[name] || FastLogCacheStore.DFInt[name] || 0;
 };
 
 /**
  * Contains server sided FastInt/FastNumber variables.
  */
-export const SFInt: Record<string, number> = {};
+export let SFInt: Record<string, number> = {};
 
 //////////////////////////////////////////////////////////////////
 // FastString
@@ -112,7 +116,7 @@ export const SFInt: Record<string, number> = {};
 /**
  * Contains static FastString variables.
  */
-export const FString: Record<string, string> = {};
+export let FString: Record<string, string> = {};
 
 /**
  * A function that refetches the value of the named FastString variable in {name} and returns it.
@@ -120,19 +124,19 @@ export const FString: Record<string, string> = {};
  * @returns {boolean} Returns a string that can be used in the code base to change certain features.
  */
 export const DFString = function (name: string): string {
-	const df = ClientSettings.GetDFStrings();
-	if (df) {
-		new Map<string, string>(Object.entries(df)).forEach((value, key) => {
-			cache.DFString[key] = value;
+	const dynamicFastStringVariablesFromConfiguration = ClientSettings.GetDFStrings();
+	if (dynamicFastStringVariablesFromConfiguration) {
+		new Map<string, string>(Object.entries(dynamicFastStringVariablesFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFString[key] = value;
 		});
 	}
-	return df[name] || cache.DFString[name] || '';
+	return dynamicFastStringVariablesFromConfiguration[name] || FastLogCacheStore.DFString[name] || '';
 };
 
 /**
  * Contains server sided FastString variables.
  */
-export const SFString: Record<string, string> = {};
+export let SFString: Record<string, string> = {};
 
 //////////////////////////////////////////////////////////////////
 // Misc
@@ -147,8 +151,8 @@ export const FSettings: Array<string> = [];
  * Used to enable certain features.
  * @internal This is internal.
  */
-export const d = {
-	setup: false,
+export const FastLogSetup = {
+	WasSetup: false,
 };
 
 /**
@@ -200,91 +204,91 @@ const parameterizedString = (...args: string[]): string => {
  * Sets up FLog initially.
  * @internal This is internal.
  */
-function setUpFLog() {
-	const f = ClientSettings.GetFLogs();
-	const df = ClientSettings.GetDFLogs();
-	const sf = ClientSettings.GetSFLogs();
-	const ff = ClientSettings.GetFFlags();
-	const dff = ClientSettings.GetDFFlags();
-	const sff = ClientSettings.GetSFFlags();
-	const fi = ClientSettings.GetFInts();
-	const dfi = ClientSettings.GetDFInts();
-	const sfi = ClientSettings.GetSFInts();
-	const fs = ClientSettings.GetFStrings();
-	const dfs = ClientSettings.GetDFStrings();
-	const sfs = ClientSettings.GetSFStrings();
-	const fss = ClientSettings.GetFSettings();
+export function ResetFastLog() {
+	const fastLogLevelsFromConfiguration = ClientSettings.GetFLogs();
+	const dynamicFastLogLevelsFromConfiguration = ClientSettings.GetDFLogs();
+	const serverFastLogLevelsFromConfiguration = ClientSettings.GetSFLogs();
+	const fastFlagVariablesFromConfiguration = ClientSettings.GetFFlags();
+	const dynamicFastFlagVariablesFromConfiguration = ClientSettings.GetDFFlags();
+	const serverFastFlagVariablesFromConfiguration = ClientSettings.GetSFFlags();
+	const fastIntegerVariablesFromConfiguration = ClientSettings.GetFInts();
+	const dynamicFastIntegerVariablesFromConfiguration = ClientSettings.GetDFInts();
+	const serverFastIntegerVariablesFromConfiguration = ClientSettings.GetSFInts();
+	const fastStringVariablesFromConfiguration = ClientSettings.GetFStrings();
+	const dynamicFastStringVariablesFromConfiguration = ClientSettings.GetDFStrings();
+	const serverFastStringVariablesFromConfiguration = ClientSettings.GetSFStrings();
+	const fastSettingsGroupsFromConfiguration = ClientSettings.GetFSettings();
 
-	if (f) {
-		new Map<string, number>(Object.entries(f)).forEach((value, key) => {
+	if (fastLogLevelsFromConfiguration) {
+		new Map<string, number>(Object.entries(fastLogLevelsFromConfiguration)).forEach((value, key) => {
 			FLog[key] = value;
 		});
 	}
-	if (df) {
-		new Map<string, number>(Object.entries(df)).forEach((value, key) => {
-			cache.DFLog[key] = value;
+	if (dynamicFastLogLevelsFromConfiguration) {
+		new Map<string, number>(Object.entries(dynamicFastLogLevelsFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFLog[key] = value;
 		});
 	}
-	if (sf) {
-		new Map<string, number>(Object.entries(sf)).forEach((value, key) => {
+	if (serverFastLogLevelsFromConfiguration) {
+		new Map<string, number>(Object.entries(serverFastLogLevelsFromConfiguration)).forEach((value, key) => {
 			SFLog[key] = value;
 		});
 	}
 
-	if (ff) {
-		new Map<string, boolean>(Object.entries(ff)).forEach((value, key) => {
+	if (fastFlagVariablesFromConfiguration) {
+		new Map<string, boolean>(Object.entries(fastFlagVariablesFromConfiguration)).forEach((value, key) => {
 			FFlag[key] = value;
 		});
 	}
-	if (dff) {
-		new Map<string, boolean>(Object.entries(dff)).forEach((value, key) => {
-			cache.DFFlag[key] = value;
+	if (dynamicFastFlagVariablesFromConfiguration) {
+		new Map<string, boolean>(Object.entries(dynamicFastFlagVariablesFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFFlag[key] = value;
 		});
 	}
-	if (sff) {
-		new Map<string, boolean>(Object.entries(sff)).forEach((value, key) => {
+	if (serverFastFlagVariablesFromConfiguration) {
+		new Map<string, boolean>(Object.entries(serverFastFlagVariablesFromConfiguration)).forEach((value, key) => {
 			SFFlag[key] = value;
 		});
 	}
 
-	if (fi) {
-		new Map<string, number>(Object.entries(fi)).forEach((value, key) => {
+	if (fastIntegerVariablesFromConfiguration) {
+		new Map<string, number>(Object.entries(fastIntegerVariablesFromConfiguration)).forEach((value, key) => {
 			FInt[key] = value;
 		});
 	}
-	if (dfi) {
-		new Map<string, number>(Object.entries(dfi)).forEach((value, key) => {
-			cache.DFInt[key] = value;
+	if (dynamicFastIntegerVariablesFromConfiguration) {
+		new Map<string, number>(Object.entries(dynamicFastIntegerVariablesFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFInt[key] = value;
 		});
 	}
-	if (sfi) {
-		new Map<string, number>(Object.entries(sfi)).forEach((value, key) => {
+	if (serverFastIntegerVariablesFromConfiguration) {
+		new Map<string, number>(Object.entries(serverFastIntegerVariablesFromConfiguration)).forEach((value, key) => {
 			SFInt[key] = value;
 		});
 	}
 
-	if (fs) {
-		new Map<string, string>(Object.entries(fs)).forEach((value, key) => {
+	if (fastStringVariablesFromConfiguration) {
+		new Map<string, string>(Object.entries(fastStringVariablesFromConfiguration)).forEach((value, key) => {
 			FString[key] = value;
 		});
 	}
-	if (dfs) {
-		new Map<string, string>(Object.entries(dfs)).forEach((value, key) => {
-			cache.DFString[key] = value;
+	if (dynamicFastStringVariablesFromConfiguration) {
+		new Map<string, string>(Object.entries(dynamicFastStringVariablesFromConfiguration)).forEach((value, key) => {
+			FastLogCacheStore.DFString[key] = value;
 		});
 	}
-	if (sfs) {
-		new Map<string, string>(Object.entries(sfs)).forEach((value, key) => {
+	if (serverFastStringVariablesFromConfiguration) {
+		new Map<string, string>(Object.entries(serverFastStringVariablesFromConfiguration)).forEach((value, key) => {
 			SFString[key] = value;
 		});
 	}
 
-	if (fss) {
-		(<string[]>fss).forEach((element) => {
+	if (fastSettingsGroupsFromConfiguration) {
+		(<string[]>fastSettingsGroupsFromConfiguration).forEach((element) => {
 			FSettings.push(element);
 		});
 	}
-	d.setup = true;
+	FastLogSetup.WasSetup = true;
 }
 
 /**
@@ -524,8 +528,8 @@ export const FASTLOGNOFILTER2 = (group: number, message: string, arg0: any, arg1
  * @param {string} group The name of the group to reference.
  */
 export const LOGGROUP = (group: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (FLog[group] === undefined) FLog[group] = 0;
 };
@@ -536,8 +540,8 @@ export const LOGGROUP = (group: string) => {
  * @param {number} defaulton The value to set the group by,
  */
 export const LOGVARIABLE = (group: string, defaulton: number) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	FLog[group] = FLog[group] || defaulton;
 };
@@ -547,10 +551,10 @@ export const LOGVARIABLE = (group: string, defaulton: number) => {
  * @param {string} group The name of the group to reference.
  */
 export const DYNAMIC_LOGGROUP = (group: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	if (cache.DFLog[group] === undefined) cache.DFLog[group] = 0;
+	if (FastLogCacheStore.DFLog[group] === undefined) FastLogCacheStore.DFLog[group] = 0;
 };
 
 /**
@@ -559,10 +563,10 @@ export const DYNAMIC_LOGGROUP = (group: string) => {
  * @param {number} defaulton The value to set the group by,
  */
 export const DYNAMIC_LOGVARIABLE = (group: string, defaulton: number) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	cache.DFLog[group] = cache.DFLog[group] || defaulton;
+	FastLogCacheStore.DFLog[group] = FastLogCacheStore.DFLog[group] || defaulton;
 };
 
 /**
@@ -570,8 +574,8 @@ export const DYNAMIC_LOGVARIABLE = (group: string, defaulton: number) => {
  * @param {string} group The name of the group to reference.
  */
 export const SYNCHRONIZED_LOGGROUP = (group: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (SFLog[group] === undefined) SFLog[group] = 0;
 };
@@ -582,125 +586,193 @@ export const SYNCHRONIZED_LOGGROUP = (group: string) => {
  * @param {number} defaulton The value to set the group by,
  */
 export const SYNCHRONIZED_LOGVARIABLE = (group: string, defaulton: number) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	SFLog[group] = SFLog[group] || defaulton;
 };
 
 export const FASTFLAG = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (FFlag[v] === undefined) FFlag[v] = false;
 };
 export const FASTFLAGVARIABLE = (v: string, defaulton: boolean) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	FFlag[v] = FFlag[v] || defaulton;
 };
 
 export const DYNAMIC_FASTFLAG = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	if (cache.DFFlag[v] === undefined) cache.DFFlag[v] = false;
+	if (FastLogCacheStore.DFFlag[v] === undefined) FastLogCacheStore.DFFlag[v] = false;
 };
 export const DYNAMIC_FASTFLAGVARIABLE = (v: string, defaulton: boolean) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	cache.DFFlag[v] = cache.DFFlag[v] || defaulton;
+	FastLogCacheStore.DFFlag[v] = FastLogCacheStore.DFFlag[v] || defaulton;
 };
 
 export const SYNCHRONIZED_FASTFLAG = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (SFFlag[v] === undefined) SFFlag[v] = false;
 };
 export const SYNCHRONIZED_FASTFLAGVARIABLE = (v: string, defaulton: boolean) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	SFFlag[v] = SFFlag[v] || defaulton;
 };
 
 export const FASTINT = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (FInt[v] === undefined) FInt[v] = 0;
 };
 export const FASTINTVARIABLE = (v: string, defaulton: number) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	FInt[v] = FInt[v] || defaulton;
 };
 
 export const DYNAMIC_FASTINT = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	if (cache.DFInt[v] === undefined) cache.DFInt[v] = 0;
+	if (FastLogCacheStore.DFInt[v] === undefined) FastLogCacheStore.DFInt[v] = 0;
 };
 export const DYNAMIC_FASTINTVARIABLE = (v: string, defaulton: number) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	cache.DFInt[v] = cache.DFInt[v] || defaulton;
+	FastLogCacheStore.DFInt[v] = FastLogCacheStore.DFInt[v] || defaulton;
 };
 
 export const SYNCHRONIZED_FASTINT = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (SFInt[v] === undefined) SFInt[v] = 0;
 };
 export const SYNCHRONIZED_FASTINTVARIABLE = (v: string, defaulton: number) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	SFInt[v] = SFInt[v] || defaulton;
 };
 
 export const FASTSTRING = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (FString[v] === undefined) FString[v] = '';
 };
 export const FASTSTRINGVARIABLE = (v: string, defaulton: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	FString[v] = FString[v] || defaulton;
 };
 
 export const DYNAMIC_FASTSTRING = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	if (cache.DFString[v] === undefined) cache.DFString[v] = '';
+	if (FastLogCacheStore.DFString[v] === undefined) FastLogCacheStore.DFString[v] = '';
 };
 export const DYNAMIC_FASTSTRINGVARIABLE = (v: string, defaulton: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
-	cache.DFString[v] = cache.DFString[v] || defaulton;
+	FastLogCacheStore.DFString[v] = FastLogCacheStore.DFString[v] || defaulton;
 };
 
 export const SYNCHRONIZED_FASTSTRING = (v: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	if (SFString[v] === undefined) SFString[v] = '';
 };
 export const SYNCHRONIZED_FASTSTRINGVARIABLE = (v: string, defaulton: string) => {
-	if (!d.setup) {
-		setUpFLog();
+	if (!FastLogSetup.WasSetup) {
+		ResetFastLog();
 	}
 	SFString[v] = SFString[v] || defaulton;
 };
+
+export const ClearFastLog = () => {
+	FLog = {};
+	SFLog = {};
+	FastLogCacheStore.DFLog.clear();
+	FFlag = {};
+	SFFlag = {};
+	FastLogCacheStore.DFFlag.clear();
+	FInt = {};
+	SFInt = {};
+	FastLogCacheStore.DFInt.clear();
+	FString = {};
+	SFString = {};
+	FastLogCacheStore.DFString.clear();
+	FastLogSetup.WasSetup = false;
+};
+
+export function SetValue(fastVarName: string, value: string, type: FastVarType) {
+	switch (type) {
+		case FastVarType.FLog:
+			FLog[fastVarName] = Convert.ToUInt16(value) || 0;
+			break;
+		case FastVarType.DFLog:
+			FastLogCacheStore.DFLog.set(fastVarName, Convert.ToUInt16(value) || 0);
+			break;
+		case FastVarType.SFLog:
+			SFLog[fastVarName] = Convert.ToUInt16(value) || 0;
+			break;
+		case FastVarType.FFlag:
+			FFlag[fastVarName] = Convert.ToBoolean(value, false);
+			break;
+		case FastVarType.DFFlag:
+			FastLogCacheStore.DFFlag.set(fastVarName, Convert.ToBoolean(value, false));
+			break;
+		case FastVarType.SFFlag:
+			SFFlag[fastVarName] = Convert.ToBoolean(value, false);
+			break;
+		case FastVarType.FInt:
+			FInt[fastVarName] = Convert.ToInt64(value) || 0;
+			break;
+		case FastVarType.DFInt:
+			FastLogCacheStore.DFInt.set(fastVarName, Convert.ToInt64(value) || 0);
+			break;
+		case FastVarType.SFInt:
+			SFInt[fastVarName] = Convert.ToInt64(value) || 0;
+			break;
+		case FastVarType.FString:
+			FString[fastVarName] = value !== null ? value : '';
+			break;
+		case FastVarType.DFString:
+			FastLogCacheStore.DFString.set(fastVarName, value !== null ? value : '');
+			break;
+		case FastVarType.SFString:
+			SFString[fastVarName] = value !== null ? value : '';
+			break;
+	}
+}
+
+export function RegisterLogGroup(groupName: string) {
+	FLog[groupName] = 1;
+	return 1;
+}
+
+export function RegisterFlag(groupName: string) {
+	FFlag[groupName] = true;
+
+	return true;
+}

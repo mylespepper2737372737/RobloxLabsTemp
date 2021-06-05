@@ -78,7 +78,7 @@ import { SignalRSetup } from './Assemblies/Web/SignalR/Roblox.Web,SignalR/Signal
 import { __baseDirName } from './Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 import { CDN } from './Assemblies/Web/Errors/Roblox.Web.Errors/CDN';
 import { WWW } from './Assemblies/Web/Errors/Roblox.Web.Errors/WWW';
-import Urls from './Assemblies/Common/Constants/Roblox.Common.Constants/Hosts';
+import Hosts from './Assemblies/Common/Constants/Roblox.Common.Constants/Hosts';
 import { Kestrel404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Kestrel';
 import { Exception } from './System/Exception';
 import { Nomad404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Nomad';
@@ -328,7 +328,7 @@ FastLogGlobal.Init();
 				StaticCDNServer,
 				'/StaticPages/CDN/Roblox.StaticCDN',
 				'/Source/Bin/CDN/Roblox.StaticCDN/Controllers',
-				Urls['StaticCDN'],
+				Hosts['StaticCDN'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -336,18 +336,18 @@ FastLogGlobal.Init();
 				JavaScriptCDNServer,
 				'/StaticPages/CDN/Roblox.JavaScriptCDN',
 				'/Source/Bin/CDN/Roblox.JavaScriptCDN/Controllers',
-				Urls['JavaScriptCDN'],
+				Hosts['JavaScriptCDN'],
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(CSSCDNServer, '/StaticPages/CDN/Roblox.CSSCDN', '/Source/Bin/CDN/Roblox.CSSCDN/Controllers', Urls['CSSCDN']),
+			MetadataBuilder(CSSCDNServer, '/StaticPages/CDN/Roblox.CSSCDN', '/Source/Bin/CDN/Roblox.CSSCDN/Controllers', Hosts['CSSCDN']),
 		);
 		await SystemSDK.Configure(
 			MetadataBuilder(
 				ImagesCDNServer,
 				'/StaticPages/CDN/Roblox.ImagesCDN',
 				'/Source/Bin/CDN/Roblox.ImagesCDN/Controllers',
-				Urls['ImagesCDN'],
+				Hosts['ImagesCDN'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -355,7 +355,7 @@ FastLogGlobal.Init();
 				ApiProxyServer,
 				'/StaticPages/Services/Roblox.ApiProxy.Service',
 				'/Source/Bin/Services/Roblox.ApiProxy.Service/Controllers',
-				Urls['ApiProxyHost'],
+				Hosts['ApiProxyHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -363,7 +363,7 @@ FastLogGlobal.Init();
 				SetupCDNServer,
 				'/StaticPages/CDN/Roblox.SetupCDN',
 				'/Source/Bin/CDN/Roblox.SetupCDN/Controllers',
-				Urls['SetupCDN'],
+				Hosts['SetupCDN'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -371,7 +371,7 @@ FastLogGlobal.Init();
 				RobloxWebsiteServer,
 				'/StaticPages/Websites/Roblox.Website',
 				'/Source/Bin/Websites/Roblox.Website/Controllers',
-				Urls['WebHost'],
+				Hosts['WebHost'],
 				false,
 			),
 		);
@@ -380,7 +380,7 @@ FastLogGlobal.Init();
 				EphemeralCountersServiceServer,
 				'/StaticPages/Services/Roblox.EphemeralCounters.Service',
 				'/Source/Bin/Services/Roblox.EphemeralCounters.Service/Controllers',
-				Urls['EphemeralCountersService'],
+				Hosts['EphemeralCountersService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -388,7 +388,7 @@ FastLogGlobal.Init();
 				EphemeralCountersV2Server,
 				'/StaticPages/ApiSites/Roblox.EphemeralCounters.Api',
 				'/Source/Bin/ApiSites/Roblox.EphemeralCounters.Api/Controllers',
-				Urls['EphemeralCountersV2'],
+				Hosts['EphemeralCountersV2'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -396,7 +396,7 @@ FastLogGlobal.Init();
 				TemporaryImagesCDNServer,
 				'/StaticPages/CDN/Roblox.TemporaryImagesCDN',
 				'/Source/Bin/CDN/Roblox.TemporaryImagesCDN/Controllers',
-				Urls['TemporaryImagesCDN'],
+				Hosts['TemporaryImagesCDN'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -404,7 +404,7 @@ FastLogGlobal.Init();
 				VersionCompatibilityServiceServer,
 				'/StaticPages/Services/Roblox.VersionCompatibility.Service',
 				'/Source/Bin/Services/Roblox.VersionCompatibility.Service/Controllers',
-				Urls['VersionCompatibilityService'],
+				Hosts['VersionCompatibilityService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -412,7 +412,7 @@ FastLogGlobal.Init();
 				ClientSettingsServiceServer,
 				'/StaticPages/Services/Roblox.ClientSettings.Service',
 				'/Source/Bin/Services/Roblox.ClientSettings.Service/Controllers',
-				Urls['ClientSettingsService'],
+				Hosts['ClientSettingsService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -420,7 +420,7 @@ FastLogGlobal.Init();
 				RobloxGameWebsiteServer,
 				'/StaticPages/Websites/Roblox.GameWebsite',
 				'/Source/Bin/Websites/Roblox.GameWebsite/Controllers',
-				Urls['AssetGameHost'],
+				Hosts['AssetGameHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -428,7 +428,7 @@ FastLogGlobal.Init();
 				GamePersistenceApiServer,
 				'/StaticPages/ApiSites/Roblox.GamePersistence.Api',
 				'/Source/Bin/ApiSites/Roblox.GamePersistence.Api/Controllers',
-				Urls['GamePersistenceHost'],
+				Hosts['GamePersistenceHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -436,7 +436,7 @@ FastLogGlobal.Init();
 				MarketplaceServiceServer,
 				'/StaticPages/Services/Roblox.Marketplace.Service',
 				'/Source/Bin/Services/Roblox.Marketplace.Service/Controllers',
-				Urls['MarketplaceService'],
+				Hosts['MarketplaceService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -444,7 +444,7 @@ FastLogGlobal.Init();
 				MetricsApiServer,
 				'/StaticPages/ApiSites/Roblox.Metrics.Api',
 				'/Source/Bin/ApiSites/Roblox.Metrics.Api/Controllers',
-				Urls['MetricsHost'],
+				Hosts['MetricsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -452,7 +452,7 @@ FastLogGlobal.Init();
 				AuthApiServer,
 				'/StaticPages/ApiSites/Roblox.Auth.Api',
 				'/Source/Bin/ApiSites/Roblox.Auth.Api/Controllers',
-				Urls['AuthenticationHost'],
+				Hosts['AuthenticationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -460,7 +460,7 @@ FastLogGlobal.Init();
 				ApiGatewayServer,
 				'/StaticPages/Services/Roblox.ApiGateway.Service',
 				'/Source/Bin/Services/Roblox.ApiGateway.Service/Controllers',
-				Urls['ApiGatewayHost'],
+				Hosts['ApiGatewayHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -468,7 +468,7 @@ FastLogGlobal.Init();
 				LocaleApiServer,
 				'/StaticPages/ApiSites/Roblox.Locale.Api',
 				'/Source/Bin/ApiSites/Roblox.Locale.Api/Controllers',
-				Urls['LocaleHost'],
+				Hosts['LocaleHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -476,7 +476,7 @@ FastLogGlobal.Init();
 				AbTestingApiServer,
 				'/StaticPages/ApiSites/Roblox.AbTesting.Api',
 				'/Source/Bin/ApiSites/Roblox.AbTesting.Api/Controllers',
-				Urls['AbTestingHost'],
+				Hosts['AbTestingHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -484,7 +484,7 @@ FastLogGlobal.Init();
 				AbTestingServiceServer,
 				'/StaticPages/Services/Roblox.AbTesting.Service',
 				'/Source/Bin/Services/Roblox.AbTesting.Service/Controllers',
-				Urls['AbTestingService'],
+				Hosts['AbTestingService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -492,7 +492,7 @@ FastLogGlobal.Init();
 				UsersApiServer,
 				'/StaticPages/ApiSites/Roblox.Users.Api',
 				'/Source/Bin/ApiSites/Roblox.Users.Api/Controllers',
-				Urls['UsersHost'],
+				Hosts['UsersHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -500,7 +500,7 @@ FastLogGlobal.Init();
 				TwoStepVerficationApiServer,
 				'/StaticPages/ApiSites/Roblox.TwoStepVerification.Api',
 				'/Source/Bin/ApiSites/Roblox.TwoStepVerification.Api/Controllers',
-				Urls['TSVHost'],
+				Hosts['TSVHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -508,7 +508,7 @@ FastLogGlobal.Init();
 				LatencyMeasurementsInternalServiceServer,
 				'/StaticPages/InternalWebsites/LatencyMeasurements',
 				'/Source/Bin/InternalWebsites/LatencyMeasurements/Controllers',
-				Urls['LatencyMeasurementsInternalService'],
+				Hosts['LatencyMeasurementsInternalService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -516,7 +516,7 @@ FastLogGlobal.Init();
 				ChatApiServer,
 				'/StaticPages/ApiSites/Roblox.Chat.Api',
 				'/Source/Bin/ApiSites/Roblox.Chat.Api/Controllers',
-				Urls['ChatHost'],
+				Hosts['ChatHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -524,7 +524,7 @@ FastLogGlobal.Init();
 				ContactsApiServer,
 				'/StaticPages/ApiSites/Roblox.Contacts.Api',
 				'/Source/Bin/ApiSites/Roblox.Contacts.Api/Controllers',
-				Urls['ContactsHost'],
+				Hosts['ContactsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -532,7 +532,7 @@ FastLogGlobal.Init();
 				NotificationsApiServer,
 				'/StaticPages/ApiSites/Roblox.Notifications.Api',
 				'/Source/Bin/ApiSites/Roblox.Notifications.Api/Controllers',
-				Urls['NotificationsHost'],
+				Hosts['NotificationsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -540,7 +540,7 @@ FastLogGlobal.Init();
 				AccountSettingsApiServer,
 				'/StaticPages/ApiSites/Roblox.AccountSettings.Api',
 				'/Source/Bin/ApiSites/Roblox.AccountSettings.Api/Controllers',
-				Urls['AccountSettingsHost'],
+				Hosts['AccountSettingsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -548,7 +548,7 @@ FastLogGlobal.Init();
 				AdsApiServer,
 				'/StaticPages/ApiSites/Roblox.Ads.Api',
 				'/Source/Bin/ApiSites/Roblox.Ads.Api/Controllers',
-				Urls['AdsHost'],
+				Hosts['AdsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -556,7 +556,7 @@ FastLogGlobal.Init();
 				TradesApiServer,
 				'/StaticPages/ApiSites/Roblox.Trades.Api',
 				'/Source/Bin/ApiSites/Roblox.Trades.Api/Controllers',
-				Urls['TradesHost'],
+				Hosts['TradesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -564,7 +564,7 @@ FastLogGlobal.Init();
 				FriendsApiServer,
 				'/StaticPages/ApiSites/Roblox.Friends.Api',
 				'/Source/Bin/ApiSites/Roblox.Friends.Api/Controllers',
-				Urls['FriendsHost'],
+				Hosts['FriendsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -572,7 +572,7 @@ FastLogGlobal.Init();
 				PrivateMessagesApiServer,
 				'/StaticPages/ApiSites/Roblox.PrivateMessages.Api',
 				'/Source/Bin/ApiSites/Roblox.PrivateMessages.Api/Controllers',
-				Urls['PrivateMessagesHost'],
+				Hosts['PrivateMessagesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -580,7 +580,7 @@ FastLogGlobal.Init();
 				EconomyApiServer,
 				'/StaticPages/ApiSites/Roblox.Economy.Api',
 				'/Source/Bin/ApiSites/Roblox.Economy.Api/Controllers',
-				Urls['EconomyHost'],
+				Hosts['EconomyHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -588,7 +588,7 @@ FastLogGlobal.Init();
 				GamesApiServer,
 				'/StaticPages/ApiSites/Roblox.Games.Api',
 				'/Source/Bin/ApiSites/Roblox.Games.Api/Controllers',
-				Urls['GamesHost'],
+				Hosts['GamesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -596,7 +596,7 @@ FastLogGlobal.Init();
 				RealTimeApiServer,
 				'/StaticPages/ApiSites/Roblox.RealTime.Api',
 				'/Source/Bin/ApiSites/Roblox.RealTime.Api/Controllers',
-				Urls['RealTimeHost'],
+				Hosts['RealTimeHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -604,7 +604,7 @@ FastLogGlobal.Init();
 				ThumbnailsApiServer,
 				'/StaticPages/ApiSites/Roblox.Thumbnails.Api',
 				'/Source/Bin/ApiSites/Roblox.Thumbnails.Api/Controllers',
-				Urls['ThumbsHost'],
+				Hosts['ThumbsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -612,7 +612,7 @@ FastLogGlobal.Init();
 				PresenceApiServer,
 				'/StaticPages/ApiSites/Roblox.Presence.Api',
 				'/Source/Bin/ApiSites/Roblox.Presence.Api/Controllers',
-				Urls['PresenceHost'],
+				Hosts['PresenceHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -620,7 +620,7 @@ FastLogGlobal.Init();
 				GroupsApiServer,
 				'/StaticPages/ApiSites/Roblox.Groups.Api',
 				'/Source/Bin/ApiSites/Roblox.Groups.Api/Controllers',
-				Urls['GroupsHost'],
+				Hosts['GroupsHost'],
 			),
 		);
 
@@ -629,7 +629,7 @@ FastLogGlobal.Init();
 				AccountInformationServer,
 				'/StaticPages/ApiSites/Roblox.AccountInformation.Api',
 				'/Source/Bin/ApiSites/Roblox.AccountInformation.Api/Controllers',
-				Urls['AccountInformationHost'],
+				Hosts['AccountInformationHost'],
 			),
 		);
 
@@ -638,7 +638,7 @@ FastLogGlobal.Init();
 				BadgesApiServer,
 				'/StaticPages/ApiSites/Roblox.Badges.Api',
 				'/Source/Bin/ApiSites/Roblox.Badges.Api/Controllers',
-				Urls['BadgesHost'],
+				Hosts['BadgesHost'],
 			),
 		);
 
@@ -647,7 +647,7 @@ FastLogGlobal.Init();
 				DeveloperForumWebsiteServer,
 				'/StaticPages/Websites/Roblox.DeveloperForumWebsite',
 				'/Source/Bin/Websites/Roblox.DeveloperForumWebsite/Controllers',
-				Urls['DeveloperForumHost'],
+				Hosts['DeveloperForumHost'],
 			),
 		);
 
@@ -656,7 +656,7 @@ FastLogGlobal.Init();
 				PremiumFeaturesApiServer,
 				'/StaticPages/ApiSites/Roblox.PremiumFeatures.Api',
 				'/Source/Bin/ApiSites/Roblox.PremiumFeatures.Api/Controllers',
-				Urls['PremiumFeaturesHost'],
+				Hosts['PremiumFeaturesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -664,7 +664,7 @@ FastLogGlobal.Init();
 				ClientSettingsApiServer,
 				'/StaticPages/ApiSites/Roblox.ClientSettings.Api',
 				'/Source/Bin/ApiSites/Roblox.ClientSettings.Api/Controllers',
-				Urls['ClientSettingsHost'],
+				Hosts['ClientSettingsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -672,7 +672,7 @@ FastLogGlobal.Init();
 				ClientSettingsCDNApiServer,
 				'/StaticPages/ApiSites/Roblox.ClientSettingsCDN.Api',
 				'/Source/Bin/ApiSites/Roblox.ClientSettingsCDN.Api/Controllers',
-				Urls['ClientSettingsCDNHost'],
+				Hosts['ClientSettingsCDNHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -680,7 +680,7 @@ FastLogGlobal.Init();
 				AdConfigurationApiServer,
 				'/StaticPages/ApiSites/Roblox.AdConfiguration.Api',
 				'/Source/Bin/ApiSites/Roblox.AdConfiguration.Api/Controllers',
-				Urls['AdConfigurationHost'],
+				Hosts['AdConfigurationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -688,7 +688,7 @@ FastLogGlobal.Init();
 				ClientTelementryServiceServer,
 				'/StaticPages/Services/Roblox.ClientTelementry.Service',
 				'/Source/Bin/Services/Roblox.ClientTelementry.Service/Controllers',
-				Urls['ClientTelementryService'],
+				Hosts['ClientTelementryService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -696,7 +696,7 @@ FastLogGlobal.Init();
 				AssetsApi,
 				'/StaticPages/ApiSites/Roblox.Assets.Api',
 				'/Source/Bin/ApiSites/Roblox.Assets.Api/Controllers',
-				Urls['AssetsHost'],
+				Hosts['AssetsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -704,7 +704,7 @@ FastLogGlobal.Init();
 				AvatarApiServer,
 				'/StaticPages/ApiSites/Roblox.Avatar.Api',
 				'/Source/Bin/ApiSites/Roblox.Avatar.Api/Controllers',
-				Urls['AvatarHost'],
+				Hosts['AvatarHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -712,7 +712,7 @@ FastLogGlobal.Init();
 				BillingApiServer,
 				'/StaticPages/ApiSites/Roblox.Billing.Api',
 				'/Source/Bin/ApiSites/Roblox.Billing.Api/Controllers',
-				Urls['BillingHost'],
+				Hosts['BillingHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -720,7 +720,7 @@ FastLogGlobal.Init();
 				CatalogApiServer,
 				'/StaticPages/ApiSites/Roblox.Catalog.Api',
 				'/Source/Bin/ApiSites/Roblox.Catalog.Api/Controllers',
-				Urls['CatalogHost'],
+				Hosts['CatalogHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -728,7 +728,7 @@ FastLogGlobal.Init();
 				CdnProvidersApiServer,
 				'/StaticPages/ApiSites/Roblox.CdnProviders.Api',
 				'/Source/Bin/ApiSites/Roblox.CdnProviders.Api/Controllers',
-				Urls['CdnProvidersHost'],
+				Hosts['CdnProvidersHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -736,7 +736,7 @@ FastLogGlobal.Init();
 				ChatModerationServiceServer,
 				'/StaticPages/ApiSites/Roblox.ChatModeration.Api',
 				'/Source/Bin/ApiSites/Roblox.ChatModeration.Api/Controllers',
-				Urls['ChatModerationHost'],
+				Hosts['ChatModerationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -744,7 +744,7 @@ FastLogGlobal.Init();
 				ContentStoreApiServer,
 				'/StaticPages/ApiSites/Roblox.ContentStore.Api',
 				'/Source/Bin/ApiSites/Roblox.ContentStore.Api/Controllers',
-				Urls['ContentStoreHost'],
+				Hosts['ContentStoreHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -752,7 +752,7 @@ FastLogGlobal.Init();
 				DevelopApiServer,
 				'/StaticPages/ApiSites/Roblox.Develop.Api',
 				'/Source/Bin/ApiSites/Roblox.Develop.Api/Controllers',
-				Urls['DevelopHost'],
+				Hosts['DevelopHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -760,7 +760,7 @@ FastLogGlobal.Init();
 				DiscussionsApiServer,
 				'/StaticPages/ApiSites/Roblox.Discussions.Api',
 				'/Source/Bin/ApiSites/Roblox.Discussions.Api/Controllers',
-				Urls['DiscussionsHost'],
+				Hosts['DiscussionsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -768,7 +768,7 @@ FastLogGlobal.Init();
 				EconomyCreatorStatsApiServer,
 				'/StaticPages/ApiSites/Roblox.EconomyCreatorStats.Api',
 				'/Source/Bin/ApiSites/Roblox.EconomyCreatorStats.Api/Controllers',
-				Urls['EconomyCreatorStatsHost'],
+				Hosts['EconomyCreatorStatsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -776,7 +776,7 @@ FastLogGlobal.Init();
 				EngagementPayoutsServiceServer,
 				'/StaticPages/ApiSites/Roblox.EngagementPayouts.Api',
 				'/Source/Bin/ApiSites/Roblox.EngagementPayouts.Api/Controllers',
-				Urls['EngagementPayoutsHost'],
+				Hosts['EngagementPayoutsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -784,7 +784,7 @@ FastLogGlobal.Init();
 				FollowingsApiServer,
 				'/StaticPages/ApiSites/Roblox.Followings.Api',
 				'/Source/Bin/ApiSites/Roblox.Followings.Api/Controllers',
-				Urls['FollowingsHost'],
+				Hosts['FollowingsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -792,7 +792,7 @@ FastLogGlobal.Init();
 				GameInternationalizationApiServer,
 				'/StaticPages/ApiSites/Roblox.GameInternationalization.Api',
 				'/Source/Bin/ApiSites/Roblox.GameInternationalization.Api/Controllers',
-				Urls['G18NHost'],
+				Hosts['G18NHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -800,7 +800,7 @@ FastLogGlobal.Init();
 				GameJoinApiServer,
 				'/StaticPages/ApiSites/Roblox.GameJoin.Api',
 				'/Source/Bin/ApiSites/Roblox.GameJoin.Api/Controllers',
-				Urls['GameJoinHost'],
+				Hosts['GameJoinHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -808,7 +808,7 @@ FastLogGlobal.Init();
 				GroupsModerationServiceServer,
 				'/StaticPages/ApiSites/Roblox.GroupsModeration.Api',
 				'/Source/Bin/ApiSites/Roblox.GroupsModeration.Api/Controllers',
-				Urls['GroupsModerationHost'],
+				Hosts['GroupsModerationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -816,7 +816,7 @@ FastLogGlobal.Init();
 				InventoryApiServer,
 				'/StaticPages/ApiSites/Roblox.Inventory.Api',
 				'/Source/Bin/ApiSites/Roblox.Inventory.Api/Controllers',
-				Urls['InventoryHost'],
+				Hosts['InventoryHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -824,7 +824,7 @@ FastLogGlobal.Init();
 				ItemConfigurationApiService,
 				'/StaticPages/ApiSites/Roblox.ItemConfiguration.Api',
 				'/Source/Bin/ApiSites/Roblox.ItemConfiguration.Api/Controllers',
-				Urls['ItemConfigurationHost'],
+				Hosts['ItemConfigurationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -832,7 +832,7 @@ FastLogGlobal.Init();
 				AdConfigurationApiServer,
 				'/StaticPages/ApiSites/Roblox.AdConfiguration.Api',
 				'/Source/Bin/ApiSites/Roblox.AdConfiguration.Api/Controllers',
-				Urls['AdConfigurationHost'],
+				Hosts['AdConfigurationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -840,7 +840,7 @@ FastLogGlobal.Init();
 				LocalizationTablesApiServer,
 				'/StaticPages/ApiSites/Roblox.LocalizationTables.Api',
 				'/Source/Bin/ApiSites/Roblox.LocalizationTables.Api/Controllers',
-				Urls['LocalizationTablesHost'],
+				Hosts['LocalizationTablesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -848,7 +848,7 @@ FastLogGlobal.Init();
 				PointsApiServer,
 				'/StaticPages/ApiSites/Roblox.Points.Api',
 				'/Source/Bin/ApiSites/Roblox.Points.Api/Controllers',
-				Urls['PointsHost'],
+				Hosts['PointsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -856,7 +856,7 @@ FastLogGlobal.Init();
 				PublishApiServer,
 				'/StaticPages/ApiSites/Roblox.Publish.Api',
 				'/Source/Bin/ApiSites/Roblox.Publish.Api/Controllers',
-				Urls['PublishHost'],
+				Hosts['PublishHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -864,7 +864,7 @@ FastLogGlobal.Init();
 				PunishmentsServiceServer,
 				'/StaticPages/Services/Roblox.Punishments.Service',
 				'/Source/Bin/Services/Roblox.Punishments.Service/Controllers',
-				Urls['PunishmentsService'],
+				Hosts['PunishmentsService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -872,7 +872,7 @@ FastLogGlobal.Init();
 				MidasShareApiServer,
 				'/StaticPages/ApiSites/Roblox.Share.Api',
 				'/Source/Bin/ApiSites/Roblox.Share.Api/Controllers',
-				Urls['ShareHost'],
+				Hosts['ShareHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -880,7 +880,7 @@ FastLogGlobal.Init();
 				TextFilterApiServer,
 				'/StaticPages/ApiSites/Roblox.TextFilter.Api',
 				'/Source/Bin/ApiSites/Roblox.TextFilter.Api/Controllers',
-				Urls['TextFilterHost'],
+				Hosts['TextFilterHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -888,7 +888,7 @@ FastLogGlobal.Init();
 				ThemesApiServer,
 				'/StaticPages/ApiSites/Roblox.Themes.Api',
 				'/Source/Bin/ApiSites/Roblox.Themes.Api/Controllers',
-				Urls['ThemesHost'],
+				Hosts['ThemesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -896,7 +896,7 @@ FastLogGlobal.Init();
 				ThumbnailsResizerApiServer,
 				'/StaticPages/ApiSites/Roblox.ThumbnailsResizer.Api',
 				'/Source/Bin/ApiSites/Roblox.ThumbnailsResizer.Api/Controllers',
-				Urls['ThumbnailsResizerHost'],
+				Hosts['ThumbnailsResizerHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -904,7 +904,7 @@ FastLogGlobal.Init();
 				TranslationRolesApiServer,
 				'/StaticPages/ApiSites/Roblox.TranslationRoles.Api',
 				'/Source/Bin/ApiSites/Roblox.TranslationRoles.Api/Controllers',
-				Urls['TranslationRolesHost'],
+				Hosts['TranslationRolesHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -912,7 +912,7 @@ FastLogGlobal.Init();
 				TranslationsApiServer,
 				'/StaticPages/ApiSites/Roblox.Translations.Api',
 				'/Source/Bin/ApiSites/Roblox.Translations.Api/Controllers',
-				Urls['TranslationsHost'],
+				Hosts['TranslationsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -920,7 +920,7 @@ FastLogGlobal.Init();
 				UserModerationServiceServer,
 				'/StaticPages/ApiSites/Roblox.UserModeration.Api',
 				'/Source/Bin/ApiSites/Roblox.UserModeration.Api/Controllers',
-				Urls['UserModerationHost'],
+				Hosts['UserModerationHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -928,7 +928,7 @@ FastLogGlobal.Init();
 				VoiceApiServer,
 				'/StaticPages/ApiSites/Roblox.Voice.Api',
 				'/Source/Bin/ApiSites/Roblox.Voice.Api/Controllers',
-				Urls['VoiceHost'],
+				Hosts['VoiceHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -936,7 +936,7 @@ FastLogGlobal.Init();
 				FilesServiceServer,
 				'/StaticPages/Services/Roblox.Files.Service',
 				'/Source/Bin/Services/Roblox.Files.Service/Controllers',
-				Urls['FilesService'],
+				Hosts['FilesService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -944,7 +944,7 @@ FastLogGlobal.Init();
 				MetricsInternalWebsiteServer,
 				'/StaticPages/InternalWebsites/MetricsWebsite',
 				'/Source/Bin/InternalWebsites/MetricsWebsite/Controllers',
-				Urls['MetricsInternalWebsite'],
+				Hosts['MetricsInternalWebsite'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -952,7 +952,7 @@ FastLogGlobal.Init();
 				AdminWebsiteServer,
 				'/StaticPages/InternalWebsites/AdminWebsite',
 				'/Source/Bin/InternalWebsites/AdminWebsite/Controllers',
-				Urls['AdminWebsite'],
+				Hosts['AdminWebsite'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -960,7 +960,7 @@ FastLogGlobal.Init();
 				CSWebsiteServer,
 				'/StaticPages/InternalWebsites/CSWebsite',
 				'/Source/Bin/InternalWebsites/CSWebsite/Controllers',
-				Urls['CSWebsite'],
+				Hosts['CSWebsite'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -968,7 +968,7 @@ FastLogGlobal.Init();
 				ComApisCDNServer,
 				'/StaticPages/CDN/Roblox.COMApisCDN',
 				'/Source/Bin/CDN/Roblox.COMApisCDN/Controllers',
-				Urls['ComApisCDN'],
+				Hosts['ComApisCDN'],
 				false,
 				false,
 				true,
@@ -979,7 +979,7 @@ FastLogGlobal.Init();
 				PointsServiceServer,
 				'/StaticPages/Services/Roblox.Points.Service',
 				'/Source/Bin/Services/Roblox.Points.Service/Controllers',
-				Urls['PointsService'],
+				Hosts['PointsService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -987,7 +987,7 @@ FastLogGlobal.Init();
 				UsersServiceServer,
 				'/StaticPages/Services/Roblox.Users.Service',
 				'/Source/Bin/Services/Roblox.Users.Service/Controllers',
-				Urls['UsersService'],
+				Hosts['UsersService'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -995,7 +995,7 @@ FastLogGlobal.Init();
 				DataWebsiteServer,
 				'/StaticPages/Websites/Roblox.Data.Website',
 				'/Source/Bin/Websites/Roblox.Data.Website/Controllers',
-				Urls['DataHost'],
+				Hosts['DataHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -1243,95 +1243,95 @@ FastLogGlobal.Init();
 
 		await (async () => {
 			try {
-				ROBLOX_Starter(ImagesCDNServer, Urls['ImagesCDN']);
-				ROBLOX_Starter(RobloxWebsiteServer, Urls['WebHost']);
-				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ROBLOX_Starter(ApiProxyServer, Urls['ApiProxyHost']);
-				ROBLOX_Starter(StaticCDNServer, Urls['StaticCDN']);
-				ROBLOX_Starter(JavaScriptCDNServer, Urls['JavaScriptCDN']);
-				ROBLOX_Starter(CSSCDNServer, Urls['CSSCDN']);
-				ROBLOX_Starter(SetupCDNServer, Urls['SetupCDN']);
-				ROBLOX_Starter(TemporaryImagesCDNServer, Urls['TemporaryImagesCDN']);
-				ROBLOX_Starter(VersionCompatibilityServiceServer, Urls['VersionCompatibilityService']);
-				ROBLOX_Starter(ClientSettingsServiceServer, Urls['ClientSettingsService']);
-				ROBLOX_Starter(RobloxGameWebsiteServer, Urls['AssetGameHost']);
-				ROBLOX_Starter(EphemeralCountersServiceServer, Urls['EphemeralCountersService']);
-				ROBLOX_Starter(EphemeralCountersV2Server, Urls['EphemeralCountersV2']);
-				ROBLOX_Starter(GamePersistenceApiServer, Urls['GamePersistenceHost']);
-				ROBLOX_Starter(MetricsApiServer, Urls['MetricsHost']);
-				ROBLOX_Starter(AuthApiServer, Urls['AuthenticationHost']);
-				ROBLOX_Starter(ApiGatewayServer, Urls['ApiGatewayHost']);
-				ROBLOX_Starter(LocaleApiServer, Urls['LocaleHost']);
-				ROBLOX_Starter(MarketplaceServiceServer, Urls['MarketplaceService']);
-				ROBLOX_Starter(AbTestingApiServer, Urls['AbTestingHost']);
-				ROBLOX_Starter(AbTestingServiceServer, Urls['AbTestingService']);
-				ROBLOX_Starter(UsersApiServer, Urls['UsersHost']);
-				ROBLOX_Starter(TwoStepVerficationApiServer, Urls['TSVHost']);
-				ROBLOX_Starter(LatencyMeasurementsInternalServiceServer, Urls['LatencyMeasurementsInternalService']);
-				ROBLOX_Starter(ChatApiServer, Urls['ChatHost']);
-				ROBLOX_Starter(ContactsApiServer, Urls['ContactsHost']);
-				ROBLOX_Starter(NotificationsApiServer, Urls['NotificationsHost']);
-				ROBLOX_Starter(AccountSettingsApiServer, Urls['AccountSettingsHost']);
-				ROBLOX_Starter(AdsApiServer, Urls['AdsHost']);
-				ROBLOX_Starter(TradesApiServer, Urls['TradesHost']);
-				ROBLOX_Starter(FriendsApiServer, Urls['FriendsHost']);
-				ROBLOX_Starter(PrivateMessagesApiServer, Urls['PrivateMessagesHost']);
-				ROBLOX_Starter(EconomyApiServer, Urls['EconomyHost']);
-				ROBLOX_Starter(GamesApiServer, Urls['GamesHost']);
-				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ROBLOX_Starter(RealTimeApiServer, Urls['RealTimeHost']);
-				ROBLOX_Starter(ThumbnailsApiServer, Urls['ThumbsHost']);
-				ROBLOX_Starter(PresenceApiServer, Urls['PresenceHost']);
-				ROBLOX_Starter(GroupsApiServer, Urls['GroupsHost']);
-				ROBLOX_Starter(AccountInformationServer, Urls['AccountInformationHost']);
-				ROBLOX_Starter(BadgesApiServer, Urls['BadgesHost']);
-				ROBLOX_Starter(DeveloperForumWebsiteServer, Urls['DeveloperForumHost']);
-				ROBLOX_Starter(PremiumFeaturesApiServer, Urls['PremiumFeaturesHost']);
-				ROBLOX_Starter(ClientSettingsApiServer, Urls['ClientSettingsHost']);
-				ROBLOX_Starter(ClientSettingsCDNApiServer, Urls['ClientSettingsCDNHost']);
-				ROBLOX_Starter(AdConfigurationApiServer, Urls['AdConfigurationHost']);
-				ROBLOX_Starter(ClientTelementryServiceServer, Urls['ClientTelementryService']);
-				ROBLOX_Starter(AssetsApi, Urls['AssetsHost']);
-				ROBLOX_Starter(AvatarApiServer, Urls['AvatarHost']);
-				ROBLOX_Starter(BillingApiServer, Urls['BillingHost']);
-				ROBLOX_Starter(CatalogApiServer, Urls['CatalogHost']);
-				ROBLOX_Starter(CdnProvidersApiServer, Urls['CdnProvidersHost']);
-				ROBLOX_Starter(ChatModerationServiceServer, Urls['ChatModerationHost']);
-				ROBLOX_Starter(ContentStoreApiServer, Urls['ContentStoreHost']);
-				ROBLOX_Starter(DevelopApiServer, Urls['DevelopHost']);
-				ROBLOX_Starter(DiscussionsApiServer, Urls['DiscussionsHost']);
-				ROBLOX_Starter(EconomyCreatorStatsApiServer, Urls['EconomyCreatorStatsHost']);
-				ROBLOX_Starter(EngagementPayoutsServiceServer, Urls['EngagementPayoutsHost']);
-				ROBLOX_Starter(FollowingsApiServer, Urls['FollowingsHost']);
-				ROBLOX_Starter(GameInternationalizationApiServer, Urls['G18NHost']);
-				ROBLOX_Starter(GameJoinApiServer, Urls['GameJoinHost']);
-				ROBLOX_Starter(GroupsModerationServiceServer, Urls['GroupsModerationHost']);
-				ROBLOX_Starter(InventoryApiServer, Urls['InventoryHost']);
-				ROBLOX_Starter(ItemConfigurationApiService, Urls['ItemConfigurationHost']);
-				ROBLOX_Starter(LocalizationTablesApiServer, Urls['LocalizationTablesHost']);
-				ROBLOX_Starter(PointsApiServer, Urls['PointsHost']);
-				ROBLOX_Starter(PublishApiServer, Urls['PublishHost']);
-				ROBLOX_Starter(PunishmentsServiceServer, Urls['PunishmentsService']);
-				ROBLOX_Starter(MidasShareApiServer, Urls['ShareHost']);
-				ROBLOX_Starter(TextFilterApiServer, Urls['TextFilterHost']);
-				ROBLOX_Starter(ThemesApiServer, Urls['ThemesHost']);
-				ROBLOX_Starter(ThumbnailsResizerApiServer, Urls['ThumbnailsResizerHost']);
-				ROBLOX_Starter(TranslationRolesApiServer, Urls['TranslationRolesHost']);
-				ROBLOX_Starter(TranslationsApiServer, Urls['TranslationsHost']);
-				ROBLOX_Starter(UserModerationServiceServer, Urls['UserModerationHost']);
-				ROBLOX_Starter(VoiceApiServer, Urls['VoiceHost']);
-				ROBLOX_Starter(FilesServiceServer, Urls['FilesService']);
-				ROBLOX_Starter(MetricsInternalWebsiteServer, Urls['MetricsInternalWebsite']);
-				ROBLOX_Starter(AdminWebsiteServer, Urls['AdminWebsite']);
-				ROBLOX_Starter(CSWebsiteServer, Urls['CSWebsite']);
-				ROBLOX_Starter(ComApisCDNServer, Urls['ComApisCDN']);
-				ROBLOX_Starter(PointsServiceServer, Urls['PointsService']);
-				ROBLOX_Starter(UsersServiceServer, Urls['UsersService']);
-				ROBLOX_Starter(DataWebsiteServer, Urls['DataHost']);
+				ROBLOX_Starter(ImagesCDNServer, Hosts['ImagesCDN']);
+				ROBLOX_Starter(RobloxWebsiteServer, Hosts['WebHost']);
+				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ROBLOX_Starter(ApiProxyServer, Hosts['ApiProxyHost']);
+				ROBLOX_Starter(StaticCDNServer, Hosts['StaticCDN']);
+				ROBLOX_Starter(JavaScriptCDNServer, Hosts['JavaScriptCDN']);
+				ROBLOX_Starter(CSSCDNServer, Hosts['CSSCDN']);
+				ROBLOX_Starter(SetupCDNServer, Hosts['SetupCDN']);
+				ROBLOX_Starter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN']);
+				ROBLOX_Starter(VersionCompatibilityServiceServer, Hosts['VersionCompatibilityService']);
+				ROBLOX_Starter(ClientSettingsServiceServer, Hosts['ClientSettingsService']);
+				ROBLOX_Starter(RobloxGameWebsiteServer, Hosts['AssetGameHost']);
+				ROBLOX_Starter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService']);
+				ROBLOX_Starter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2']);
+				ROBLOX_Starter(GamePersistenceApiServer, Hosts['GamePersistenceHost']);
+				ROBLOX_Starter(MetricsApiServer, Hosts['MetricsHost']);
+				ROBLOX_Starter(AuthApiServer, Hosts['AuthenticationHost']);
+				ROBLOX_Starter(ApiGatewayServer, Hosts['ApiGatewayHost']);
+				ROBLOX_Starter(LocaleApiServer, Hosts['LocaleHost']);
+				ROBLOX_Starter(MarketplaceServiceServer, Hosts['MarketplaceService']);
+				ROBLOX_Starter(AbTestingApiServer, Hosts['AbTestingHost']);
+				ROBLOX_Starter(AbTestingServiceServer, Hosts['AbTestingService']);
+				ROBLOX_Starter(UsersApiServer, Hosts['UsersHost']);
+				ROBLOX_Starter(TwoStepVerficationApiServer, Hosts['TSVHost']);
+				ROBLOX_Starter(LatencyMeasurementsInternalServiceServer, Hosts['LatencyMeasurementsInternalService']);
+				ROBLOX_Starter(ChatApiServer, Hosts['ChatHost']);
+				ROBLOX_Starter(ContactsApiServer, Hosts['ContactsHost']);
+				ROBLOX_Starter(NotificationsApiServer, Hosts['NotificationsHost']);
+				ROBLOX_Starter(AccountSettingsApiServer, Hosts['AccountSettingsHost']);
+				ROBLOX_Starter(AdsApiServer, Hosts['AdsHost']);
+				ROBLOX_Starter(TradesApiServer, Hosts['TradesHost']);
+				ROBLOX_Starter(FriendsApiServer, Hosts['FriendsHost']);
+				ROBLOX_Starter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost']);
+				ROBLOX_Starter(EconomyApiServer, Hosts['EconomyHost']);
+				ROBLOX_Starter(GamesApiServer, Hosts['GamesHost']);
+				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ROBLOX_Starter(RealTimeApiServer, Hosts['RealTimeHost']);
+				ROBLOX_Starter(ThumbnailsApiServer, Hosts['ThumbsHost']);
+				ROBLOX_Starter(PresenceApiServer, Hosts['PresenceHost']);
+				ROBLOX_Starter(GroupsApiServer, Hosts['GroupsHost']);
+				ROBLOX_Starter(AccountInformationServer, Hosts['AccountInformationHost']);
+				ROBLOX_Starter(BadgesApiServer, Hosts['BadgesHost']);
+				ROBLOX_Starter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost']);
+				ROBLOX_Starter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost']);
+				ROBLOX_Starter(ClientSettingsApiServer, Hosts['ClientSettingsHost']);
+				ROBLOX_Starter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost']);
+				ROBLOX_Starter(AdConfigurationApiServer, Hosts['AdConfigurationHost']);
+				ROBLOX_Starter(ClientTelementryServiceServer, Hosts['ClientTelementryService']);
+				ROBLOX_Starter(AssetsApi, Hosts['AssetsHost']);
+				ROBLOX_Starter(AvatarApiServer, Hosts['AvatarHost']);
+				ROBLOX_Starter(BillingApiServer, Hosts['BillingHost']);
+				ROBLOX_Starter(CatalogApiServer, Hosts['CatalogHost']);
+				ROBLOX_Starter(CdnProvidersApiServer, Hosts['CdnProvidersHost']);
+				ROBLOX_Starter(ChatModerationServiceServer, Hosts['ChatModerationHost']);
+				ROBLOX_Starter(ContentStoreApiServer, Hosts['ContentStoreHost']);
+				ROBLOX_Starter(DevelopApiServer, Hosts['DevelopHost']);
+				ROBLOX_Starter(DiscussionsApiServer, Hosts['DiscussionsHost']);
+				ROBLOX_Starter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost']);
+				ROBLOX_Starter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost']);
+				ROBLOX_Starter(FollowingsApiServer, Hosts['FollowingsHost']);
+				ROBLOX_Starter(GameInternationalizationApiServer, Hosts['G18NHost']);
+				ROBLOX_Starter(GameJoinApiServer, Hosts['GameJoinHost']);
+				ROBLOX_Starter(GroupsModerationServiceServer, Hosts['GroupsModerationHost']);
+				ROBLOX_Starter(InventoryApiServer, Hosts['InventoryHost']);
+				ROBLOX_Starter(ItemConfigurationApiService, Hosts['ItemConfigurationHost']);
+				ROBLOX_Starter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost']);
+				ROBLOX_Starter(PointsApiServer, Hosts['PointsHost']);
+				ROBLOX_Starter(PublishApiServer, Hosts['PublishHost']);
+				ROBLOX_Starter(PunishmentsServiceServer, Hosts['PunishmentsService']);
+				ROBLOX_Starter(MidasShareApiServer, Hosts['ShareHost']);
+				ROBLOX_Starter(TextFilterApiServer, Hosts['TextFilterHost']);
+				ROBLOX_Starter(ThemesApiServer, Hosts['ThemesHost']);
+				ROBLOX_Starter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost']);
+				ROBLOX_Starter(TranslationRolesApiServer, Hosts['TranslationRolesHost']);
+				ROBLOX_Starter(TranslationsApiServer, Hosts['TranslationsHost']);
+				ROBLOX_Starter(UserModerationServiceServer, Hosts['UserModerationHost']);
+				ROBLOX_Starter(VoiceApiServer, Hosts['VoiceHost']);
+				ROBLOX_Starter(FilesServiceServer, Hosts['FilesService']);
+				ROBLOX_Starter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsite']);
+				ROBLOX_Starter(AdminWebsiteServer, Hosts['AdminWebsite']);
+				ROBLOX_Starter(CSWebsiteServer, Hosts['CSWebsite']);
+				ROBLOX_Starter(ComApisCDNServer, Hosts['ComApisCDN']);
+				ROBLOX_Starter(PointsServiceServer, Hosts['PointsService']);
+				ROBLOX_Starter(UsersServiceServer, Hosts['UsersService']);
+				ROBLOX_Starter(DataWebsiteServer, Hosts['DataHost']);
 
-				ROBLOX_Starter(NomadTestServer, '192.168.0.50', false, 80, 4648);
+				ROBLOX_Starter(NomadTestServer, '192.168.0.50', false, 4646, 4648);
 
-				SignalRSetup(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Urls.ApiProxyHost);
-				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '/Source/Bin/WebSockets/Roblox.RealTime', Urls.RealTimeHost);
-				FASTLOG1F(DFLog('Tasks'), '[DFLog::Tasks] There are %d Services running...', Object.keys(Urls).length);
+				SignalRSetup(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Hosts.ApiProxyHost);
+				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '/Source/Bin/WebSockets/Roblox.RealTime', Hosts.RealTimeHost);
+				FASTLOG1F(DFLog('Tasks'), '[DFLog::Tasks] There are %d Services running...', Object.keys(Hosts).length);
 			} catch (e) {
 				return reportDebatableError(e);
 			}

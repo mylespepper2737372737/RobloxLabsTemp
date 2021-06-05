@@ -14,7 +14,7 @@
 import filestream from 'fs';
 import { __baseDirName } from '../../../../Common/Constants/Roblox.Common.Constants/Directories';
 
-export enum Group {
+export enum FastVarType {
 	'FVariable',
 	'FLog',
 	'DFLog',
@@ -40,51 +40,51 @@ export enum Group {
 export class ClientSettings {
 	// This is helper for grabbing BigSettings, just type cast it if you din't want to say `ClientSettings.GetDFFlag("WebNoOpt")` etc.
 	// it's also used by GetDFFlag, so yeah
-	public static GetSettings<SettingsType extends Group>(
+	public static GetSettings<SettingsType extends FastVarType>(
 		settingsType: SettingsType,
 		settingsGroup: string = 'Web',
 	): Record<string, unknown> | string[] | Error {
 		let settings = JSON.parse(filestream.readFileSync(__baseDirName + '/Default/Roblox.Settings.json', 'ascii'));
 		const fGroup = settings['FGroup'];
-		if (settingsType || settingsType === 0 || settingsType === Group.FFlag) {
-			switch (settingsType as Group) {
-				case Group.FVariable:
+		if (settingsType || settingsType === 0 || settingsType === FastVarType.FFlag) {
+			switch (settingsType as FastVarType) {
+				case FastVarType.FVariable:
 					return fGroup[settingsGroup]['FVariable'];
-				case Group.FLog:
+				case FastVarType.FLog:
 					return fGroup[settingsGroup]['FLog'];
-				case Group.SFLog:
+				case FastVarType.SFLog:
 					return fGroup[settingsGroup]['SFLog'];
-				case Group.DFLog:
+				case FastVarType.DFLog:
 					return fGroup[settingsGroup]['DFLog'];
-				case Group.FFlag:
+				case FastVarType.FFlag:
 					return fGroup[settingsGroup]['FFlag'];
-				case Group.DFFlag:
+				case FastVarType.DFFlag:
 					return fGroup[settingsGroup]['DFFlag'];
-				case Group.SFFlag:
+				case FastVarType.SFFlag:
 					return fGroup[settingsGroup]['SFFlag'];
-				case Group.FInt:
+				case FastVarType.FInt:
 					return fGroup[settingsGroup]['FInt'];
-				case Group.DFInt:
+				case FastVarType.DFInt:
 					return fGroup[settingsGroup]['DFInt'];
-				case Group.SFInt:
+				case FastVarType.SFInt:
 					return fGroup[settingsGroup]['SFInt'];
-				case Group.FString:
+				case FastVarType.FString:
 					return fGroup[settingsGroup]['FString'];
-				case Group.DFString:
+				case FastVarType.DFString:
 					return fGroup[settingsGroup]['DFString'];
-				case Group.SFString:
+				case FastVarType.SFString:
 					return fGroup[settingsGroup]['SFString'];
-				case Group.FPFilter:
+				case FastVarType.FPFilter:
 					return fGroup[settingsGroup]['FPFilter'];
-				case Group.FSettings:
+				case FastVarType.FSettings:
 					return settings['FSettings'];
-				case Group.UExperiment:
+				case FastVarType.UExperiment:
 					return fGroup[settingsGroup]['UExperiment'];
-				case Group.BTExperiment:
+				case FastVarType.BTExperiment:
 					return fGroup[settingsGroup]['BTExperiment'];
-				case Group.SExperiment:
+				case FastVarType.SExperiment:
 					return fGroup[settingsGroup]['SExperiment'];
-				case Group.All:
+				case FastVarType.All:
 					return fGroup[settingsGroup];
 				default:
 					return null;
@@ -92,62 +92,62 @@ export class ClientSettings {
 		}
 	}
 	public static GetFVariables(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.FVariable, ctx);
+		return ClientSettings.GetSettings(FastVarType.FVariable, ctx);
 	}
 	public static GetFLogs(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.FLog, ctx);
+		return ClientSettings.GetSettings(FastVarType.FLog, ctx);
 	}
 	public static GetDFLogs(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.DFLog, ctx);
+		return ClientSettings.GetSettings(FastVarType.DFLog, ctx);
 	}
 	public static GetFFlags(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.FFlag, ctx);
+		return ClientSettings.GetSettings(FastVarType.FFlag, ctx);
 	}
 	public static GetDFFlags(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.DFFlag, ctx);
+		return ClientSettings.GetSettings(FastVarType.DFFlag, ctx);
 	}
 	public static GetSFFlags(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.SFFlag, ctx);
+		return ClientSettings.GetSettings(FastVarType.SFFlag, ctx);
 	}
 	public static GetFInts(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.FInt, ctx);
+		return ClientSettings.GetSettings(FastVarType.FInt, ctx);
 	}
 	public static GetDFInts(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.DFInt, ctx);
+		return ClientSettings.GetSettings(FastVarType.DFInt, ctx);
 	}
 	public static GetSFInts(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.SFInt, ctx);
+		return ClientSettings.GetSettings(FastVarType.SFInt, ctx);
 	}
 	public static GetFStrings(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.FString, ctx);
+		return ClientSettings.GetSettings(FastVarType.FString, ctx);
 	}
 	public static GetDFStrings(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.DFString, ctx);
+		return ClientSettings.GetSettings(FastVarType.DFString, ctx);
 	}
 	public static GetSFStrings(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.SFString, ctx);
+		return ClientSettings.GetSettings(FastVarType.SFString, ctx);
 	}
 	public static GetFPFilters(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.FPFilter, ctx);
+		return ClientSettings.GetSettings(FastVarType.FPFilter, ctx);
 	}
 	public static GetFSettings(): string[] {
-		return <string[]>ClientSettings.GetSettings(Group.FSettings);
+		return <string[]>ClientSettings.GetSettings(FastVarType.FSettings);
 	}
 	public static GetUserExperiments(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.UExperiment, ctx);
+		return ClientSettings.GetSettings(FastVarType.UExperiment, ctx);
 	}
 	public static GetBrowserTrackerExperiments(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.BTExperiment, ctx);
+		return ClientSettings.GetSettings(FastVarType.BTExperiment, ctx);
 	}
 	public static GetSharedExperiments(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.SExperiment, ctx);
+		return ClientSettings.GetSettings(FastVarType.SExperiment, ctx);
 	}
 	public static GetSFLogs(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.SFLog, ctx);
+		return ClientSettings.GetSettings(FastVarType.SFLog, ctx);
 	}
 
 	public static GetAllSettings(ctx: string = 'Web') {
-		return ClientSettings.GetSettings(Group.All, ctx);
+		return ClientSettings.GetSettings(FastVarType.All, ctx);
 	}
 
 	public static GetPlaceIdInPlaceFilter(key: string, placeId: number, ctx: string = 'Web') {

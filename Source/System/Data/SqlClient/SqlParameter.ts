@@ -19,12 +19,24 @@ export class SqlParameter /*  extends DbParameter implements IDbDataParameter, I
 
 	public constructor(parameterName: string, value: any);
 
+	public constructor(parameterName?: string, dbType?: SqlDbType, value?: any);
+
 	public constructor(parameterName?: string, dbType?: SqlDbType, value?: any) {
 		// super();
 		this._parameterName = parameterName;
 		this._dbType = dbType;
 		this._value = value;
 		this._isNull = value === null;
+	}
+
+	public static FromDbType(parameterName: string, dbType: SqlDbType) {
+		const out = new SqlParameter(parameterName, dbType, undefined);
+		return out;
+	}
+
+	public static FromValue(parameterName: string, value: any) {
+		const out = new SqlParameter(parameterName, undefined, value);
+		return out;
 	}
 
 	public get ParameterName() {

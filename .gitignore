@@ -54,3 +54,5 @@ server.log
 /StaticPages/CDN/Roblox.SetupCDN
 /Source/Assemblies/Grid/Roblox.Grid.Rcc
 Nomad2
+DbTest.spec.ts
+ServiceClient.spec.ts

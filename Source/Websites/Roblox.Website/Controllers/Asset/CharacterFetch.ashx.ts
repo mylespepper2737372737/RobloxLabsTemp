@@ -2,7 +2,7 @@
 	FileName: CharacterFetch.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: https://assetgame.sitetest4.robloxlabs.com/Asset/CaharacterFetch.ashx, returns a list of /asset urls based on what items the currently authenticated user is wearing
+	Description: This is essentially AvatarAccoutrements.ashx, but all it does is fetch it for a place also.
 
 	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
 

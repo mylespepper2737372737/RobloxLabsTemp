@@ -26,11 +26,11 @@
 */
 
 import { Express as IApplicationBuilder, Request, Response } from 'express-serve-static-core';
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG3, FASTLOGS, SFLog, SYNCHRONIZED_LOGGROUP } from '../../Logging/FastLog';
+import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG3, FASTLOGS, SFLog } from '../../Logging/FastLog';
 import { __baseDirName } from '../../../../../Common/Constants/Roblox.Common.Constants/Directories';
 import filestream from 'fs';
-import Urls from '../../../../../Common/Constants/Roblox.Common.Constants/Hosts';
 import { Walkers } from '../../Walkers';
+import { FastLogGlobal } from '../../Logging/FastLogGlobal';
 
 interface EndpointOpts {
 	path?: string;
@@ -38,83 +38,7 @@ interface EndpointOpts {
 	apiName?: string;
 }
 
-SYNCHRONIZED_LOGGROUP(Urls['WebHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ApiProxyHost']);
-SYNCHRONIZED_LOGGROUP(Urls['StaticCDN']);
-SYNCHRONIZED_LOGGROUP(Urls['JavaScriptCDN']);
-SYNCHRONIZED_LOGGROUP(Urls['CSSCDN']);
-SYNCHRONIZED_LOGGROUP(Urls['ImagesCDN']);
-SYNCHRONIZED_LOGGROUP(Urls['SetupCDN']);
-SYNCHRONIZED_LOGGROUP(Urls['EphemeralCountersService']);
-SYNCHRONIZED_LOGGROUP(Urls['TemporaryImagesCDN']);
-SYNCHRONIZED_LOGGROUP(Urls['VersionCompatibilityService']);
-SYNCHRONIZED_LOGGROUP(Urls['ClientSettingsService']);
-SYNCHRONIZED_LOGGROUP(Urls['AssetGameHost']);
-SYNCHRONIZED_LOGGROUP(Urls['EphemeralCountersV2']);
-SYNCHRONIZED_LOGGROUP(Urls['GamePersistenceHost']);
-SYNCHRONIZED_LOGGROUP(Urls['MarketplaceService']);
-SYNCHRONIZED_LOGGROUP(Urls['MetricsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AuthenticationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ApiGatewayHost']);
-SYNCHRONIZED_LOGGROUP(Urls['LocaleHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AbTestingHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AbTestingService']);
-SYNCHRONIZED_LOGGROUP(Urls['UsersHost']);
-SYNCHRONIZED_LOGGROUP(Urls['TSVHost']);
-SYNCHRONIZED_LOGGROUP(Urls['LatencyMeasurementsInternalService']);
-SYNCHRONIZED_LOGGROUP(Urls['ChatHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ContactsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['NotificationsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AccountSettingsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AdsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['TradesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['FriendsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['PrivateMessagesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['EconomyHost']);
-SYNCHRONIZED_LOGGROUP(Urls['GamesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['RealTimeHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ThumbsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['PresenceHost']);
-SYNCHRONIZED_LOGGROUP(Urls['GroupsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AccountInformationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['BadgesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['DeveloperForumHost']);
-SYNCHRONIZED_LOGGROUP(Urls['PremiumFeaturesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ClientSettingsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ClientSettingsCDNHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AdConfigurationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ClientTelementryService']);
-SYNCHRONIZED_LOGGROUP(Urls['AssetsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['AvatarHost']);
-SYNCHRONIZED_LOGGROUP(Urls['BillingHost']);
-SYNCHRONIZED_LOGGROUP(Urls['CatalogHost']);
-SYNCHRONIZED_LOGGROUP(Urls['CdnProvidersHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ChatModerationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ContentStoreHost']);
-SYNCHRONIZED_LOGGROUP(Urls['DevelopHost']);
-SYNCHRONIZED_LOGGROUP(Urls['DiscussionsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['EconomyCreatorStatsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['EngagementPayoutsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['FollowingsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['G18NHost']);
-SYNCHRONIZED_LOGGROUP(Urls['GameJoinHost']);
-SYNCHRONIZED_LOGGROUP(Urls['GroupsModerationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['InventoryHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ItemConfigurationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['LocalizationTablesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['PointsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['PublishHost']);
-SYNCHRONIZED_LOGGROUP(Urls['PunishmentsService']);
-SYNCHRONIZED_LOGGROUP(Urls['ShareHost']);
-SYNCHRONIZED_LOGGROUP(Urls['TextFilterHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ThemesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['ThumbnailsResizerHost']);
-SYNCHRONIZED_LOGGROUP(Urls['TranslationRolesHost']);
-SYNCHRONIZED_LOGGROUP(Urls['TranslationsHost']);
-SYNCHRONIZED_LOGGROUP(Urls['UserModerationHost']);
-SYNCHRONIZED_LOGGROUP(Urls['VoiceHost']);
-SYNCHRONIZED_LOGGROUP(Urls['FilesService']);
-SYNCHRONIZED_LOGGROUP(Urls['MetricsInternalWebsite']);
+FastLogGlobal.IncludeHostLogLevels();
 
 DYNAMIC_LOGGROUP('Tasks');
 
@@ -130,9 +54,9 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 			);
 			return resumeFunc();
 		}
-		const r = Walkers.FileWalker(directory);
+		const files = Walkers.WalkDirectory(directory);
 		let count = 0;
-		r.forEach((v) => {
+		files.forEach((v) => {
 			let name = v.split('\\').join('/');
 			name = name.replace(directory, '');
 			if (name.match(/.+\.js/)) {
