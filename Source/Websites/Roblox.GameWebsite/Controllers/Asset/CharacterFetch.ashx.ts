@@ -4,7 +4,7 @@
 	File Type: Module
 	Description: https://assetgame.sitetest4.robloxlabs.com/Asset/CaharacterFetch.ashx, returns a list of /asset urls based on what items the currently authenticated user is wearing
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 
@@ -26,15 +26,14 @@
 */
 
 import { Request, Response } from 'express';
-import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
-
-DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearranceTestString', '');
+import { AvatarAccoutrementsRequest } from '../../Models/Game/IAvatarAccoutrementsRequest';
+import AvatarAccoutrements from './AvatarAccoutrements.ashx';
 
 // TODO: Move the qs to a model.
 
 export default {
 	method: 'all',
-	func: async (_request: Request<null, string, null, { placeId: int; userId: int }>, response: Response<string>) => {
-		return response.send(DFString('CharacterAppearranceTestString'));
+	func: async (request: Request<null, string, null, AvatarAccoutrementsRequest>, response: Response<string>) => {
+		return AvatarAccoutrements.func(request, response);
 	},
 };
