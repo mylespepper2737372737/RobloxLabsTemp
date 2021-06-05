@@ -1,6 +1,8 @@
 127.116.120.3    api.sitetest4.robloxlabs.com
 127.116.120.3    api.sitetest4.roblox.local
+127.116.205.3    api.simulpong.com
 127.116.121.3    www.sitetest4.robloxlabs.com
+127.116.121.3    www.sitetest2.robloxlabs.com
 127.116.121.3    www.sitetest4.roblox.local
 127.116.121.3    sitetest4.robloxlabs.com
 127.116.121.3    sitetest4.roblox.local
@@ -122,6 +124,8 @@
 127.116.192.3    translations.sitetest4.robloxlabs.com
 127.116.193.3    usermoderation.sitetest4.robloxlabs.com
 127.116.194.3    voice.sitetest4.robloxlabs.com
+127.116.194.3    voice.sitetest4.roblox.local
+127.116.194.3    voice.simulpong.com
 127.116.195.3    files.api.sitetest4.robloxlabs.com
 127.116.196.3    rcity.simulpong.com
 127.116.197.3    abtesting.api.sitetest4.robloxlabs.com
@@ -129,10 +133,15 @@
 127.116.198.3    broom.sitetest4.roblox.local
 127.116.198.3    broom.simulpong.com
 127.116.199.3    com-apis.sitetest4.robloxlabs.com
+127.116.199.3    com-apis.sitetest3.robloxlabs.com
+127.116.199.3    com-apis.sitetest2.robloxlabs.com
+127.116.199.3    com-apis.sitetest1.robloxlabs.com
 127.116.200.3	 points.api.sitetest4.robloxlabs.com
 127.116.201.3    users.api.sitetest4.robloxlabs.com
 127.116.202.3    data.sitetest4.robloxlabs.com
 127.116.203.3    sweep.sitetest4.robloxlabs.com
 127.116.203.3    sweep.sitetest4.roblox.local
 127.116.203.3    sweep.simulpong.com
-127.0.0.1        db1.ra.roblox.com
+127.116.204.3    gamepersistence.api.sitetest4.robloxlabs.com
+127.0.0.1        base-ash2.28.us-east-2.73-208-221-23.arccdn.mfdlabs.local
+192.168.0.50     base-ash2.28.us-east-2.73-208-221-23.arccdn.mfdlabs.local
