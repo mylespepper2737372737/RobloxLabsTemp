@@ -3,6 +3,7 @@
 <p align="center">
     <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-analysis.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-analysis.yml/badge.svg?branch=Roblox.SiteTest4" alt="CodeQL"/></a>
     <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build"/></a>
+	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build"/></a>
 </p>
 
 # NOTICE
