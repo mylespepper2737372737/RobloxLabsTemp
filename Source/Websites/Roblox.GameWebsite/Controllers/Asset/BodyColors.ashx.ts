@@ -2,9 +2,11 @@
 	FileName: BodyColors.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: https://asssetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx, Gets a xml body colors object based on userId
+	Description: https://asssetgame.sitetest4.robloxlabs.com/Asset/BodyColors.ashx, Gets a xml body colors object based on userId or userName (Soon to be obselete)
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	Notice: At the moment, anything in /Asset/ will just fetch from production, this will change when this gets a fully working DB
+
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	***
 
@@ -26,42 +28,21 @@
 */
 
 import { Request, Response } from 'express';
-import { ApiKeys } from '../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { BaseURL } from '../../../../Assemblies/Common/Client/Roblox.Common.Client/BaseUrl';
-import { __baseDirName } from '../../../../Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
-import { FetchKeyFromObjectCaseInsensitive } from '../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
-import { HttpRequestMethodEnum } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
-import { ServiceClient } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
+import { CachePolicy } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Models/IClientRequest';
+import { AvatarRequestProcessor } from '../../../../Assemblies/Web/Avatars/Roblox.Web.Avatars/AvatarRequestProcessor';
+import { BodyColorsRequest } from '../../Models/Game/BodyColorsReques';
 
 export default {
 	method: 'all',
-	func: async (request: Request, response: Response) => {
-		const Url = BaseURL.ConstructServicePathFromHostSimple('api.roblox.com', 'v1.1/avatar-fetch', true);
-		const Client = new ServiceClient.HttpClient({
-			Url: Url,
-			QueryString: {
-				ApiKey: ApiKeys.TestApi,
-				userId: FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID'),
-			},
-			AdditionalHeaders: { 'Content-Type': 'application/json' },
-			Payload: null,
-			Method: HttpRequestMethodEnum.GET,
-			FailedMessage: `Error fetching the character for ${FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID')}`,
-		});
-		const [s1, Response] = await Client.ExecuteAsync();
+	func: async (request: Request<null, string, null, BodyColorsRequest>, response: Response<string>) => {
+		const cachedRequestProcessor = new AvatarRequestProcessor(CachePolicy.StaleAfterOneMinute, response);
 
-		if (!s1)
-			return response.render('Game/BodyColors', {
-				bodyColors: {
-					HeadColor: 1004,
-					LeftArmColor: 1004,
-					LeftLegColor: 1004,
-					RightArmColor: 1004,
-					RightLegColor: 1004,
-					TorsoColor: 1004,
-				},
-			});
+		var [UserID, UserName] = cachedRequestProcessor.ExtractDataFromQueryStringForBodyColorsRequest(request);
 
-		return response.render('Game/BodyColors', { bodyColors: Response.ResponsePayload.bodyColors });
+		try {
+			await cachedRequestProcessor.GetAvatarBodyColorsAsync(UserID, UserName);
+		} catch (e) {
+			return response.send(e.stack);
+		}
 	},
 };
