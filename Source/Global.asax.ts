@@ -12,7 +12,7 @@
 	File Type: Script
 	Description: Copy of ROBLOX's Roblox.Global.asax.cs
 
-	All commits will be made on behalf of mfd-co to https://github.com/mfd-core/sitetest4.robloxlabs.com
+	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
 	NOTICE This Application Programming Interface will be hosted on both https://*.sitetest4.robloxlabs.com:443 and http://*.sitetest4.robloxlabs.com:80.
 	DEPRECATED DO NOT USE OutgoingMessage.prototype._headers, silence with --no-deprecation
@@ -47,7 +47,6 @@ import { DefaultAsp404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/aspErro
 import { Points } from './Assemblies/Web/Handling/Roblox.Web.Handling/Points';
 import { PointsApi } from './Assemblies/Web/Handling/Roblox.Web.Handling/PointsApi';
 import { ApiServiceIsAliveValidator } from './Assemblies/Web/Handling/Roblox.Web.Handling/ApiServiceIsAliveValidator';
-import ssl from 'sslkeylog';
 import { User } from './Assemblies/Platform/Membership/Roblox.Platform.Membership/User';
 import { GetValueFromFormDataString } from './Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
 import { UsersApi } from './Assemblies/Web/Handling/Roblox.Web.Handling/UsersApi';
@@ -85,7 +84,11 @@ import { Nomad404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Nomad';
 import { FastLogGlobal } from './Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLogGlobal';
 import { NomadHandler } from './Assemblies/Web/Handling/Roblox.Web.Handling/NomadHandler';
 import compression from 'compression';
-ssl.hookAll();
+
+if (process.env.SSLKEYLOGFILE) {
+	const ssl = require('sslkeylog');
+	ssl.hookAll();
+}
 
 FastLogGlobal.Init();
 
