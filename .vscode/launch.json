@@ -12,7 +12,7 @@
 		},
 		{
 			"name": "Run-Without-NPM",
-			"program": "${workspaceFolder}/Source/bin/Global.asax.js",
+			"program": "${workspaceFolder}/Source/Bin/Global.asax.js",
 			"request": "launch",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "pwa-node",

@@ -46,7 +46,7 @@ dist
 .npmignore
 package-lock.json
 # We don't want the js'
-/Source/bin
+/Source/Bin
 DeploymentTooling
 server.log
 /Default/FormattedSettings.json

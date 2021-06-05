@@ -2,12 +2,12 @@
 	"name": "robloxlabs",
 	"version": "1.313.88764",
 	"description": "ROBLOXLABS",
-	"main": "Source/bin/Global.asax.js",
+	"main": "Source/Bin/Global.asax.js",
 	"scripts": {
-		"Start-Main-Job": "node --no-deprecation Source/bin/Global.asax.js",
+		"Start-Main-Job": "node --no-deprecation Source/Bin/Global.asax.js",
 		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
 		"build": "tsc -b --verbose",
-		"start": "node --trace-deprecation Source/bin/Global.asax.js",
+		"start": "node --trace-deprecation Source/Bin/Global.asax.js",
 		"Run-Without-NPM": "node path.js && npm run build",
 		"test": "node path.js && jest --verbose"
 	},
