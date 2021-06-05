@@ -7,7 +7,7 @@ on:
         branches: [Roblox.SiteTest4]
 
 jobs:
-    Build:
+    BuildWindows:
         runs-on: windows-latest
         steps:
             - uses: actions/checkout@v2

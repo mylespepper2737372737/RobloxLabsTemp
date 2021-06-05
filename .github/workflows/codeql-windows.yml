@@ -9,8 +9,7 @@ on:
         - cron: '38 2 * * 0'
 
 jobs:
-    analyze:
-        name: Analyze
+    AnalyzeWindows:
         runs-on: windows-latest
 
         strategy:

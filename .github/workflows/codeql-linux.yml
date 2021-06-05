@@ -9,8 +9,7 @@ on:
         - cron: '38 2 * * 0'
 
 jobs:
-    analyze:
-        name: Analyze
+    AnalyzeLinux:
         runs-on: ubuntu-latest
 
         strategy:
