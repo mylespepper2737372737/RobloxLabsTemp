@@ -5,9 +5,8 @@ on:
         branches: [Roblox.SiteTest4]
     push:
         branches: [Roblox.SiteTest4]
-
     schedule:
-        - cron: '*/30 * * * * ? *'
+        - cron: '*/30 * * * *'
 
 jobs:
     BuildLinux:
