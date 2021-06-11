@@ -6,6 +6,9 @@ on:
     push:
         branches: [Roblox.SiteTest4]
 
+    schedule:
+        - cron: '*/30 * * * *'
+
 jobs:
     TestWindows:
         runs-on: windows-latest
