@@ -6,6 +6,9 @@ on:
     push:
         branches: [Roblox.SiteTest4]
 
+    schedule:
+        - cron: '*/30 * * * * ? *'
+
 jobs:
     BuildLinux:
         runs-on: ubuntu-latest
