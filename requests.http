@@ -162,13 +162,15 @@ X-CSRF-TOKEN: ufPaIWvguvaEkNVK7jHOgA==
 
 ###
 
-POST /Data/Upload.ashx?assetid=1&type=Lua&name=Lua&description=bruh&genreTypeId=1&ispublic=true&allowcomments=True HTTP/1.1
+POST /Data/Upload.ashx?assetid=0&type=Lua&name=Lua&description=bruh&genreTypeId=1&ispublic=true&allowcomments=True HTTP/1.1
 Host: data.roblox.com
 User-Agent: Roblox/AspNet 4.8.4210.0 (https://www.sitetest4.robloxlabs.com v1.313.13.88764)
+X-Proxied-IP: 128.116.123.3
 Cookie: .ROBLOSECURITY={{Token12}};
-X-Csrf-Token: hIsuzMaA07+F
+X-Csrf-Token: ArYokH3GTDng
 
-<roblox></roblox>
+\0
+
 ###
 GET https://data.sitetest3.robloxlabs.com:443/request-error?code=400&amp;400;https://data.sitetest3.robloxlabs.com:443/Data/Upload.ashx?assetid=0&amp;type=Shirt&amp;name=Shirt&amp;description=bruh&amp;genreTypeId=1&amp;ispublic=True&amp;allowcomments=True
 
@@ -810,9 +812,9 @@ return game:GetService('ThumbnailGenerator'):Click(fileExtension, x, y, true, tr
 
 ###
 
-POST http://localhost:530 HTTP/1.1
+POST http://0.0.0.0:42069 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
-SOAPAction: http://roblox.com/ExecuteEx
+SOAPAction: http://roblox.com/OpenJobEx
 
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope
@@ -824,7 +826,7 @@ SOAPAction: http://roblox.com/ExecuteEx
 	xmlns:ns1="http://roblox.com/"
 	xmlns:ns3="http://roblox.com/RCCServiceSoap12">
 	<SOAP-ENV:Body>
-		<ns1:ExecuteEx>
+		<ns1:OpenJobEx>
 			<ns1:jobID>Test</ns1:jobID>
 			<ns1:script>
 			<ns1:name>SOAP</ns1:name>
@@ -851,11 +853,11 @@ return game:GetService('ThumbnailGenerator'):Click(fileExtension, x, y, true, tr
 			<ns1:arguments>
 			<ns1:LuaValue>
               		<ns1:type>LUA_TSTRING</ns1:type>
-              		<ns1:value>http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx</ns1:value>
+              		<ns1:value>http://assetgame.gtoria.net/Asset/CharacterFetch.ashx</ns1:value>
         		</ns1:LuaValue>
 			 	<ns1:LuaValue>
               		<ns1:type>LUA_TSTRING</ns1:type>
-              		<ns1:value>http://www.sitetest4.robloxlabs.com/</ns1:value>
+              		<ns1:value>http://www.gtoria.net/</ns1:value>
         		</ns1:LuaValue>
 				<ns1:LuaValue>
               		<ns1:type>LUA_TSTRING</ns1:type>
@@ -871,13 +873,13 @@ return game:GetService('ThumbnailGenerator'):Click(fileExtension, x, y, true, tr
         		</ns1:LuaValue>
 			</ns1:arguments>
 		</ns1:script>
-		</ns1:ExecuteEx>
+		</ns1:OpenJobEx>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
 ###
 
-POST http://localhost:530 HTTP/1.1
+POST http://0.0.0.0:42069 HTTP/1.1
 Content-Type: text/xml;charset=utf-8
 SOAPAction: http://roblox.com/GetAllJobsEx
 
@@ -2078,7 +2080,7 @@ POST https://api.roblox.com/assets/award-badge?userId=1
 
 ###
 
-PUT http://ec2-3-251-69-74.eu-west-1.compute.amazonaws.com:4646/v1/system/gc
+PUT http://29.94.122.34.bc.googleusercontent.com:4646/v1/system/gc
 
 ###
 
@@ -2233,3 +2235,13 @@ Content-Length: 674
 x-csrf-token: k2P+5BJ9OiaL
 
 {"voucher": "MAp7Ik5vbmNlIjoiXzNkZ3BZeDhsMC1SdmVULXhRVkFSQSIsIkRlbGl2ZXJ5TWV0aG9kIjoxLCJEZWxpdmVyeVRhcmdldCI6Im1mZG5wbUBnbWFpbC5jb20ifQpHNjJWUHlkSVM3WGsrT2NIbWQ4em9mb0o4dGcxbHE1bEVOMnZaRS9UM1l1OFFvUDRCSUFBcUFxUXJEOEo1VithOEhENWYrN0tDL2lZVDFkVEdSSHlmalc3YU5adjlGcmQzZXJ6VjBIWkJ1eFdia1RWUkpDbklnYnVucWJvcWVKUGIxalRVSmlRTHkydi8vK3FEZlRBU044VTQxV1dzUXBsemRWT0ZMVFpta1hIeWQwSW5GMUFKbEsvK2tVZklHY2s0UWgwa3pRRUhJYkc5U1M3aTNmRjZ0OTZoUjdFUnpPUU15WTJ5cUxuS1E1RUxTZTVUZGZ3SVVmWWZTSUxJcDZ3THJidkREQXZkc2thVHY0aG5rcCtMdThmY0lRMVpNcXFWREFmbU1KRlRaTUtnczVpdUN0aDNFTlpmbGJPTW5LZ0ZRb0xNYzlIMm1uL3dIOVd4bzZ1K0E9PQ==","birthdate": "1998-06-04T18:15:10.902Z",  "password": "Io9/9DEF", "captchaProvider": "PROVIDER_ARKOSE_LABS", "captchaToken": ""}
+
+###
+
+POST https://voice.roblox.qq.com/v1/settings/user-opt-in
+Cookie: .ROBLOSECURITY={{Token12}}
+x-csrf-token: 9y/sYZ5Q64yK
+Content-Type: application/json
+Roblox-Proxied-IP: 128.116.123.3
+
+{}
