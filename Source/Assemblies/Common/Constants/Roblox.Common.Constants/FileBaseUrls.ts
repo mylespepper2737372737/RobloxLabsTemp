@@ -84,4 +84,5 @@ export const FileBaseUrls = {
 	'usermoderation.sitetest4.robloxlabs.com': '/StaticPages/ApiSites/Roblox.UserModeration.Api',
 	'users.sitetest4.robloxlabs.com': '/StaticPages/ApiSites/Roblox.Users.Api',
 	'voice.sitetest4.robloxlabs.com': '/StaticPages/ApiSites/Roblox.Voice.Api',
+	'cser.simulping.com': '/StaticPages/InternalWebsites/CSRWebsite',
 };

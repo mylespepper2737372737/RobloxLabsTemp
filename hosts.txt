@@ -143,5 +143,6 @@
 127.116.203.3    sweep.sitetest4.roblox.local
 127.116.203.3    sweep.simulpong.com
 127.116.204.3    gamepersistence.api.sitetest4.robloxlabs.com
+127.116.205.3	 cser.simulping.com
 127.0.0.1        base-ash2.28.us-east-2.73-208-221-23.arccdn.mfdlabs.local
 192.168.0.50     base-ash2.28.us-east-2.73-208-221-23.arccdn.mfdlabs.local

@@ -116,4 +116,6 @@ export default {
 	DataHost: 'data.sitetest4.robloxlabs.com',
 	MidasHost: 'midas.sitetest4.robloxlabs.com',
 	DEPRECATED_ApiGatewayRCSHost: 'apis.rcs.sitetest4.robloxlabs.com',
+	NomadHost: 'base-ash2.28.us-east-2.73-208-221-23.arccdn.mfdlabs.local',
+	CSRHost: 'cser.simulping.com'
 };
