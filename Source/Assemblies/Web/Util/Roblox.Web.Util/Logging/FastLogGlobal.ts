@@ -108,6 +108,8 @@ export class FastLogGlobal {
 		SYNCHRONIZED_LOGVARIABLE(Hosts['DataHost'], 6);
 		SYNCHRONIZED_LOGVARIABLE(Hosts['MidasHost'], 6);
 		SYNCHRONIZED_LOGVARIABLE(Hosts['DEPRECATED_ApiGatewayRCSHost'], 6);
+		SYNCHRONIZED_LOGVARIABLE(Hosts['NomadHost'], 6);
+		SYNCHRONIZED_LOGVARIABLE(Hosts['CSRHost'], 6);
 
 		FASTFLAGVARIABLE('RequireGlobalHTTPS', true);
 	}
@@ -201,5 +203,7 @@ export class FastLogGlobal {
 		SYNCHRONIZED_LOGGROUP(Hosts['DataHost']);
 		SYNCHRONIZED_LOGGROUP(Hosts['MidasHost']);
 		SYNCHRONIZED_LOGGROUP(Hosts['DEPRECATED_ApiGatewayRCSHost']);
+		SYNCHRONIZED_LOGGROUP(Hosts['NomadHost']);
+		SYNCHRONIZED_LOGGROUP(Hosts['CSRHost']);
 	}
 }
