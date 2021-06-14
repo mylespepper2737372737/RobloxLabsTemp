@@ -1,10 +1,9 @@
-import { Task } from '../../../../../System/Threading/Task';
 import { IClientRequest } from '../Models/IClientRequest';
 import { IClientResponse } from '../Models/IClientResponse';
 import query from 'querystring';
 import { HttpRequestMethodEnum } from '../Enumeration/HttpRequestMethodEnum';
 import Http, { Method } from 'axios';
-import Https from 'https';
+import SSL from 'https';
 import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
 import { Version } from '../../../../Common/Client/Roblox.Common.Client/Version';
 import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
@@ -15,7 +14,7 @@ DYNAMIC_FASTSTRINGVARIABLE('ProxiedIP', '208.223.313.3');
 
 export namespace ServiceClient {
 	// TODO Have 2 variants of this, one with no callback and one with a callback?
-	export class HttpClient {
+	export class HttpClientInvoker {
 		private request: IClientRequest;
 		public constructor(request: IClientRequest) {
 			this.request = request;
@@ -29,7 +28,7 @@ export namespace ServiceClient {
 			if (this.request !== null) this.request = null;
 		}
 
-		public async ClearCacheAsync(): Task<void> {
+		public async ClearCacheAsync(): Promise<void> {
 			return new Promise((resumeFunction) => {
 				return resumeFunction();
 			});
@@ -37,9 +36,9 @@ export namespace ServiceClient {
 
 		/**
 		 * We only ever want this to resume, never error, or the client will receive a call stack
-		 * @returns {Task<[Boolean, IClientResponse]>} Returns a task to be awaited.
+		 * @returns {Promise<[Boolean, IClientResponse]>} Returns a task to be awaited.
 		 */
-		public async ExecuteAsync<TResponse = any>(): Task<[boolean, IClientResponse<TResponse>, Error]> {
+		public async ExecuteAsync<TResponse = any>(): Promise<[boolean, IClientResponse<TResponse>, Error]> {
 			return new Promise<[boolean, IClientResponse, Error]>((resumeFunction) => {
 				if (!this.request)
 					return resumeFunction([
@@ -77,7 +76,7 @@ export namespace ServiceClient {
 				Http.request({
 					url: requestUrl,
 					method: requestMethod,
-					httpsAgent: new Https.Agent({ rejectUnauthorized: false }),
+					httpsAgent: new SSL.Agent({ rejectUnauthorized: false }),
 					headers: {
 						...this.request.AdditionalHeaders,
 						'User-Agent': `Roblox/ApiServiceClientAspNet 4.8.4210.0 (${BaseURL.GetSecureBaseURL()} v${Version.GetVersion()})`,

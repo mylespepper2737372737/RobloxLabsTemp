@@ -15,7 +15,7 @@ export class PointsClient {
 	public static async CheckHealth(isRequestSecure: boolean = true): Task<[Boolean, Number, String, String]> {
 		return new Promise<[Boolean, Number, String, String]>(async (resumeFunction) => {
 			const CheckHealthUrl = BaseURL.ConstructServicePathFromSubDomainSimple('points.api', 'checkhealth', isRequestSecure);
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: CheckHealthUrl,
 				QueryString: {
 					ApiKey: ApiKeys.PointsApi,
@@ -47,7 +47,7 @@ export class PointsClient {
 				universe,
 				user,
 			};
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: Url,
 				QueryString: {
 					ApiKey: ApiKeys.PointsApi,

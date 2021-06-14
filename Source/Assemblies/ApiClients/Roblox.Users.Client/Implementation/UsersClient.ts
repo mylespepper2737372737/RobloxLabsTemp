@@ -10,7 +10,7 @@ export class UsersClient {
 		return new Promise<[boolean, number, any, Error]>(async (resumeFunction) => {
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('users.api', 'v1/Usernames/ValidateUsername', request.IsSecure);
 			const Payload = JSON.stringify({ ...request, IsSecure: undefined });
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: Url,
 				QueryString: {
 					ApiKey: ApiKeys.UsersApi,

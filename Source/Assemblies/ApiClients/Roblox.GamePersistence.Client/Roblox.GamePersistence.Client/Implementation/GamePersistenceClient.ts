@@ -22,7 +22,7 @@ export class GamePersistenceClient {
 				: BaseURL.GetBaseURL()
 			).replace(/www/, 'gamepersistence.api')}/v4/datastores/fetch-this-universe`;
 			const postData = { universeId };
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: GamePersistenceGetTheStoresForThisUniverseUrl,
 				QueryString: {
 					ApiKey: ApiKeys.GamePersistenceApi,

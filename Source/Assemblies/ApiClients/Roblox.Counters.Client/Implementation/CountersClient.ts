@@ -10,7 +10,7 @@ export class CountersClientV2 {
 		return new Promise<[boolean, number, any, Error]>(async (resumeFunction) => {
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('ephemeralcounters.api', 'v1.1/Counters/Increment', true);
 			const Payload = '{}';
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: Url,
 				QueryString: {
 					ApiKey: ApiKeys.EphemeralCountersApi,
@@ -31,7 +31,7 @@ export class CountersClientV2 {
 		return new Promise<[boolean, number, any, Error]>(async (resumeFunction) => {
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('ephemeralcounters.api', 'v1.1/Counters/BatchIncrement', true);
 			const Payload = JSON.stringify(request || {});
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: Url,
 				QueryString: {
 					ApiKey: ApiKeys.EphemeralCountersApi,
@@ -54,7 +54,7 @@ export class CountersClientV2 {
 				true,
 			);
 			const Payload = JSON.stringify(request || []);
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: Url,
 				QueryString: {
 					ApiKey: ApiKeys.EphemeralCountersApi,
@@ -76,7 +76,7 @@ export class CountersClient {
 			const request = counterNamesCsv.join(',');
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('ephemeralcounters.api', 'v1.0/MultiIncrement', true);
 			const Payload = JSON.stringify({ counterNamesCsv: request });
-			const Client = new ServiceClient.HttpClient({
+			const Client = new ServiceClient.HttpClientInvoker({
 				Url: Url,
 				QueryString: {
 					ApiKey: ApiKeys.EphemeralCountersApi,
