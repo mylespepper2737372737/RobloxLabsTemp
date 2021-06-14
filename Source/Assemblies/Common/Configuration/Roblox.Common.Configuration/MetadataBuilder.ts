@@ -40,6 +40,7 @@ export const MetadataBuilder = (
 	useNewControllers?: boolean,
 	doNotParseJSON?: boolean,
 	doNotParseFORM?: boolean,
+	doNotUseEndpoints?: boolean,
 ) => {
 	return {
 		app: app,
@@ -57,5 +58,6 @@ export const MetadataBuilder = (
 		useBetaControllerMapping: useNewControllers,
 		doNotUseUrlEncoded: doNotParseFORM,
 		doNotUseJSON: doNotParseJSON,
-	};
+		UseEndpoints: !doNotUseEndpoints,
+	} as ConfigOpts;
 };
