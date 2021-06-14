@@ -68,13 +68,23 @@ export class AvatarRequestProcessor {
 
 	/* Usable private members */
 	private readonly _response: Response;
-	private readonly _cachedClient: ServiceClient.HttpClient;
+	private readonly _cachedClient: ServiceClient.HttpClientInvoker;
 
 	public constructor(policy: CachePolicy, response: Response) {
 		AvatarRequestProcessor.RegisterTheRoundRobin(this, policy);
 
 		this._response = response;
-		this._cachedClient = new ServiceClient.HttpClient(AvatarRequestProcessor.GLOBAL_CONFIG);
+		this._cachedClient = new ServiceClient.HttpClientInvoker(AvatarRequestProcessor.GLOBAL_CONFIG);
+	}
+
+	public static get IsCacheCleared() {
+		return (
+			AvatarRequestProcessor.GeneralCacheStore.size === 0 &&
+			AvatarRequestProcessor.UserNameCacheStore.size === 0 &&
+			AvatarRequestProcessor.AssetIDsCacheStore.size === 0 &&
+			AvatarRequestProcessor.ColorCacheStore.size === 0 &&
+			AvatarRequestProcessor.SimpleCharacterFetchCacheStore.size === 0
+		);
 	}
 
 	public ExtractDataFromQueryStringForAvatarAccoutrementsRequest(
@@ -137,17 +147,21 @@ export class AvatarRequestProcessor {
 	}
 
 	private RespondWithData(data: string = null) {
-		return this._response.contentType('text/plain').send(data);
+		if (this._response !== null) this._response.contentType('text/plain').send(data);
+		return data;
 	}
 
 	private RespondWithContentTypeAndData(contentType: string = 'text/plain', data: string = null) {
-		return this._response.contentType(contentType).send(data);
+		if (this._response !== null) this._response.contentType(contentType).send(data);
+		return data;
 	}
 
 	private RespondWithStatusAndData(status: int = 200, data: string = null) {
-		this._response.statusCode = status;
+		if (this._response !== null) {
+			this._response.statusCode = status;
 
-		return this.RespondWithData(data);
+			return this.RespondWithData(data);
+		}
 	}
 
 	private UpdateConfiguredMutables(userID: number, userName: string) {
@@ -432,13 +446,14 @@ export class AvatarRequestProcessor {
 	}
 
 	private RespondWithBodyColors(bodyColors: AvatarBodyColorsModel, cb?: (e: Error, r: string) => void) {
-		this._response.render(
-			'Game/BodyColors',
-			{
-				bodyColors: bodyColors,
-			},
-			cb,
-		);
+		if (this._response !== null)
+			this._response.render(
+				'Game/BodyColors',
+				{
+					bodyColors: bodyColors,
+				},
+				cb,
+			);
 	}
 
 	private GetNextResponseStringForSequence(assetID: number, allowUseOfSSL: boolean) {
