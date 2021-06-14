@@ -4,8 +4,8 @@
     <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-windows.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-windows.yml/badge.svg?branch=Roblox.SiteTest4" alt="Analyze Windows"/></a>
 	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/codeql-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="Analyze Linux"/></a>
     <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-windows.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-windows.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build Windows"/></a>
+	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build Linux"/></a>
 	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-windows.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-windows.yml/badge.svg?branch=Roblox.SiteTest4" alt="Test Windows"/></a>
-	 <a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build Linux"/></a>
 	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="Test Linux"/></a>
 </p>
 
