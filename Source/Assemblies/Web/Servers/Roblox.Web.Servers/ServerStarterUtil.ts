@@ -27,7 +27,7 @@
 
 import https2 from 'spdy';
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { Server as Httpserver } from 'http';
+import { Server as HttpServer } from 'http';
 import https, { Server as HttpsServer } from 'https';
 import dotenv from 'dotenv';
 import filestream from 'fs';
@@ -39,15 +39,17 @@ dotenv.config({ path: __baseDirName + '/.env' });
 
 FastLogGlobal.IncludeHostLogLevels();
 
-export const ROBLOX_Starter = (
+export const ServerStarter = (
 	app: IApplicationBuilder,
 	name: string,
 	useHttps: bool = true,
+	useHttp: bool = true,
 	httpPort: int = 80,
 	httpsPort: int = 443,
-): [Httpserver, HttpsServer] => {
+): [HttpServer, HttpsServer] => {
 	try {
 		let httpsServer: HttpsServer;
+		let httpServer: HttpServer;
 		if (useHttps)
 			httpsServer = (DFFlag('GlobalHTTP2Enabled') ? https2 : https)
 				.createServer(
@@ -60,9 +62,8 @@ export const ROBLOX_Starter = (
 					app,
 				)
 				.listen(httpsPort, name, () => FASTLOG3(SFLog[name], `[SFLog::%s] https://%s:%d Started`, name, name, httpsPort));
-		const httpServer = app.listen(httpPort, name, () =>
-			FASTLOG3(SFLog[name], `[SFLog::%s] http://%s:%d Started`, name, name, httpPort),
-		);
+		if (useHttp)
+			httpServer = app.listen(httpPort, name, () => FASTLOG3(SFLog[name], `[SFLog::%s] http://%s:%d Started`, name, name, httpPort));
 		return [httpServer, httpsServer];
 	} catch (err) {
 		throw new Error(err);
