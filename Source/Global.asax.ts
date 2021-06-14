@@ -72,7 +72,7 @@ import { AbTestingMiddleWare } from './Assemblies/Web/Handling/Roblox.Web.Handli
 import { MetadataBuilder } from './Assemblies/Common/Configuration/Roblox.Common.Configuration/MetadataBuilder';
 import { SystemSDK } from './Assemblies/Web/Util/Roblox.Web.Util/Setup/Lib/SystemSDK';
 import { ClearCachedSessions } from './Assemblies/Caching/Sessions/Roblox.Caching.Sessions/ClearCachedSessions';
-import { ROBLOX_Starter } from './Assemblies/Web/Servers/Roblox.Web.Servers/ServerStarterUtil';
+import { ServerStarter } from './Assemblies/Web/Servers/Roblox.Web.Servers/ServerStarterUtil';
 import { SignalRSetup } from './Assemblies/Web/SignalR/Roblox.Web,SignalR/SignalRSetup';
 import { __baseDirName } from './Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 import { CDN } from './Assemblies/Web/Errors/Roblox.Web.Errors/CDN';
@@ -82,8 +82,9 @@ import { Kestrel404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Kestrel';
 import { Exception } from './System/Exception';
 import { Nomad404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Nomad';
 import { FastLogGlobal } from './Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLogGlobal';
-import { NomadHandler } from './Assemblies/Web/Handling/Roblox.Web.Handling/NomadHandler';
-import compression from 'compression';
+import OnlyCompressionFactory from 'compression';
+import { OnlyCORs } from './Assemblies/Web/Handling/Roblox.Web.Handling/OnlyCORs';
+import { Tomcat404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Tomcat';
 
 if (process.env.SSLKEYLOGFILE) {
 	const ssl = require('sslkeylog');
@@ -180,6 +181,8 @@ FastLogGlobal.Init();
 		const DataWebsiteServer = IServer();
 		const CSWebsiteServer = IServer();
 		const NomadTestServer = IServer();
+		const CSRApiServer = IServer();
+		const CSRWebsiteServer = IServer();
 
 		RobloxWebsiteServer.use(GlobalMiddleware);
 		StaticCDNServer.use(GlobalMiddleware);
@@ -264,8 +267,9 @@ FastLogGlobal.Init();
 		PointsServiceServer.use(PointsApi);
 		UsersServiceServer.use(UsersApi);
 		DataWebsiteServer.use(DataWebsite);
-		NomadTestServer.use(compression());
-		NomadTestServer.use(NomadHandler);
+		NomadTestServer.use(OnlyCompressionFactory(), OnlyCORs(Hosts['NomadHost']));
+		CSRApiServer.use(OnlyCompressionFactory(), OnlyCORs(Hosts['CSRHost']));
+		CSRWebsiteServer.use(OnlyCompressionFactory());
 
 		ApiGatewayServer.engine('html', require('ejs').renderFile);
 		ApiGatewayServer.set('views', __baseDirName + '/TestViews');
@@ -325,6 +329,10 @@ FastLogGlobal.Init();
 		NomadTestServer.engine('html', require('ejs').renderFile);
 		NomadTestServer.set('views', [__baseDirName + '/Views/Nomad']);
 		NomadTestServer.set('view engine', 'html');
+
+		CSRWebsiteServer.engine('html', require('ejs').renderFile);
+		CSRWebsiteServer.set('views', [__baseDirName + '/Views/CSRWebsite']);
+		CSRWebsiteServer.set('view engine', 'html');
 
 		await SystemSDK.Configure(
 			MetadataBuilder(
@@ -1002,11 +1010,28 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
+			MetadataBuilder(NomadTestServer, '/StaticPages/Services/Nomad', '/Source/Bin/Services/Nomad/Controllers', Hosts['NomadHost']),
+		);
+		await SystemSDK.Configure(
 			MetadataBuilder(
-				NomadTestServer,
-				'/StaticPages/Services/Nomad',
-				'/Source/Bin/Services/Nomad/Controllers',
-				'base3-omv-eu-west.1773.arkcdn.mfdlabs.local',
+				CSRApiServer,
+				'/StaticPages/InternalWebsites/RobotsDefault',
+				'/Source/Bin/InternalWebsites/CSRWebsite/Controllers',
+				Hosts['CSRHost'],
+			),
+		);
+		await SystemSDK.Configure(
+			MetadataBuilder(
+				CSRWebsiteServer,
+				'/StaticPages/InternalWebsites/CSRWebsite',
+				null,
+				Hosts['CSRHost'],
+				false,
+				false,
+				false,
+				false,
+				false,
+				true,
 			),
 		);
 
@@ -1032,7 +1057,7 @@ FastLogGlobal.Init();
 		AbTestingApiServer.use(DefaultApi404);
 		AbTestingServiceServer.use(DefaultAsp404);
 		UsersApiServer.use(DefaultApi404);
-		LatencyMeasurementsInternalServiceServer.use(Blank);
+		LatencyMeasurementsInternalServiceServer.use(Blank(false));
 		ChatApiServer.use(DefaultApi404);
 		ContactsApiServer.use(DefaultApi404);
 		NotificationsApiServer.use(DefaultApi404);
@@ -1093,6 +1118,8 @@ FastLogGlobal.Init();
 		UsersServiceServer.use(DefaultAsp404);
 		DataWebsiteServer.use(NotFoundRedirect);
 		NomadTestServer.use(Nomad404);
+		CSRApiServer.use(Blank(true));
+		CSRWebsiteServer.use(Tomcat404);
 
 		EphemeralCountersServiceServer.use((error: Error, request: Request, response: Response, next: NextFunction) => {
 			const StackTrace = stack.parse(error);
@@ -1246,91 +1273,92 @@ FastLogGlobal.Init();
 
 		await (async () => {
 			try {
-				ROBLOX_Starter(ImagesCDNServer, Hosts['ImagesCDN']);
-				ROBLOX_Starter(RobloxWebsiteServer, Hosts['WebHost']);
-				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ROBLOX_Starter(ApiProxyServer, Hosts['ApiProxyHost']);
-				ROBLOX_Starter(StaticCDNServer, Hosts['StaticCDN']);
-				ROBLOX_Starter(JavaScriptCDNServer, Hosts['JavaScriptCDN']);
-				ROBLOX_Starter(CSSCDNServer, Hosts['CSSCDN']);
-				ROBLOX_Starter(SetupCDNServer, Hosts['SetupCDN']);
-				ROBLOX_Starter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN']);
-				ROBLOX_Starter(VersionCompatibilityServiceServer, Hosts['VersionCompatibilityService']);
-				ROBLOX_Starter(ClientSettingsServiceServer, Hosts['ClientSettingsService']);
-				ROBLOX_Starter(RobloxGameWebsiteServer, Hosts['AssetGameHost']);
-				ROBLOX_Starter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService']);
-				ROBLOX_Starter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2']);
-				ROBLOX_Starter(GamePersistenceApiServer, Hosts['GamePersistenceHost']);
-				ROBLOX_Starter(MetricsApiServer, Hosts['MetricsHost']);
-				ROBLOX_Starter(AuthApiServer, Hosts['AuthenticationHost']);
-				ROBLOX_Starter(ApiGatewayServer, Hosts['ApiGatewayHost']);
-				ROBLOX_Starter(LocaleApiServer, Hosts['LocaleHost']);
-				ROBLOX_Starter(MarketplaceServiceServer, Hosts['MarketplaceService']);
-				ROBLOX_Starter(AbTestingApiServer, Hosts['AbTestingHost']);
-				ROBLOX_Starter(AbTestingServiceServer, Hosts['AbTestingService']);
-				ROBLOX_Starter(UsersApiServer, Hosts['UsersHost']);
-				ROBLOX_Starter(TwoStepVerficationApiServer, Hosts['TSVHost']);
-				ROBLOX_Starter(LatencyMeasurementsInternalServiceServer, Hosts['LatencyMeasurementsInternalService']);
-				ROBLOX_Starter(ChatApiServer, Hosts['ChatHost']);
-				ROBLOX_Starter(ContactsApiServer, Hosts['ContactsHost']);
-				ROBLOX_Starter(NotificationsApiServer, Hosts['NotificationsHost']);
-				ROBLOX_Starter(AccountSettingsApiServer, Hosts['AccountSettingsHost']);
-				ROBLOX_Starter(AdsApiServer, Hosts['AdsHost']);
-				ROBLOX_Starter(TradesApiServer, Hosts['TradesHost']);
-				ROBLOX_Starter(FriendsApiServer, Hosts['FriendsHost']);
-				ROBLOX_Starter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost']);
-				ROBLOX_Starter(EconomyApiServer, Hosts['EconomyHost']);
-				ROBLOX_Starter(GamesApiServer, Hosts['GamesHost']);
-				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ROBLOX_Starter(RealTimeApiServer, Hosts['RealTimeHost']);
-				ROBLOX_Starter(ThumbnailsApiServer, Hosts['ThumbsHost']);
-				ROBLOX_Starter(PresenceApiServer, Hosts['PresenceHost']);
-				ROBLOX_Starter(GroupsApiServer, Hosts['GroupsHost']);
-				ROBLOX_Starter(AccountInformationServer, Hosts['AccountInformationHost']);
-				ROBLOX_Starter(BadgesApiServer, Hosts['BadgesHost']);
-				ROBLOX_Starter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost']);
-				ROBLOX_Starter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost']);
-				ROBLOX_Starter(ClientSettingsApiServer, Hosts['ClientSettingsHost']);
-				ROBLOX_Starter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost']);
-				ROBLOX_Starter(AdConfigurationApiServer, Hosts['AdConfigurationHost']);
-				ROBLOX_Starter(ClientTelementryServiceServer, Hosts['ClientTelementryService']);
-				ROBLOX_Starter(AssetsApi, Hosts['AssetsHost']);
-				ROBLOX_Starter(AvatarApiServer, Hosts['AvatarHost']);
-				ROBLOX_Starter(BillingApiServer, Hosts['BillingHost']);
-				ROBLOX_Starter(CatalogApiServer, Hosts['CatalogHost']);
-				ROBLOX_Starter(CdnProvidersApiServer, Hosts['CdnProvidersHost']);
-				ROBLOX_Starter(ChatModerationServiceServer, Hosts['ChatModerationHost']);
-				ROBLOX_Starter(ContentStoreApiServer, Hosts['ContentStoreHost']);
-				ROBLOX_Starter(DevelopApiServer, Hosts['DevelopHost']);
-				ROBLOX_Starter(DiscussionsApiServer, Hosts['DiscussionsHost']);
-				ROBLOX_Starter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost']);
-				ROBLOX_Starter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost']);
-				ROBLOX_Starter(FollowingsApiServer, Hosts['FollowingsHost']);
-				ROBLOX_Starter(GameInternationalizationApiServer, Hosts['G18NHost']);
-				ROBLOX_Starter(GameJoinApiServer, Hosts['GameJoinHost']);
-				ROBLOX_Starter(GroupsModerationServiceServer, Hosts['GroupsModerationHost']);
-				ROBLOX_Starter(InventoryApiServer, Hosts['InventoryHost']);
-				ROBLOX_Starter(ItemConfigurationApiService, Hosts['ItemConfigurationHost']);
-				ROBLOX_Starter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost']);
-				ROBLOX_Starter(PointsApiServer, Hosts['PointsHost']);
-				ROBLOX_Starter(PublishApiServer, Hosts['PublishHost']);
-				ROBLOX_Starter(PunishmentsServiceServer, Hosts['PunishmentsService']);
-				ROBLOX_Starter(MidasShareApiServer, Hosts['ShareHost']);
-				ROBLOX_Starter(TextFilterApiServer, Hosts['TextFilterHost']);
-				ROBLOX_Starter(ThemesApiServer, Hosts['ThemesHost']);
-				ROBLOX_Starter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost']);
-				ROBLOX_Starter(TranslationRolesApiServer, Hosts['TranslationRolesHost']);
-				ROBLOX_Starter(TranslationsApiServer, Hosts['TranslationsHost']);
-				ROBLOX_Starter(UserModerationServiceServer, Hosts['UserModerationHost']);
-				ROBLOX_Starter(VoiceApiServer, Hosts['VoiceHost']);
-				ROBLOX_Starter(FilesServiceServer, Hosts['FilesService']);
-				ROBLOX_Starter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsite']);
-				ROBLOX_Starter(AdminWebsiteServer, Hosts['AdminWebsite']);
-				ROBLOX_Starter(CSWebsiteServer, Hosts['CSWebsite']);
-				ROBLOX_Starter(ComApisCDNServer, Hosts['ComApisCDN']);
-				ROBLOX_Starter(PointsServiceServer, Hosts['PointsService']);
-				ROBLOX_Starter(UsersServiceServer, Hosts['UsersService']);
-				ROBLOX_Starter(DataWebsiteServer, Hosts['DataHost']);
-
-				ROBLOX_Starter(NomadTestServer, '192.168.0.50', false, 4646, 4648);
+				ServerStarter(ImagesCDNServer, Hosts['ImagesCDN']);
+				ServerStarter(RobloxWebsiteServer, Hosts['WebHost']);
+				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ServerStarter(ApiProxyServer, Hosts['ApiProxyHost']);
+				ServerStarter(StaticCDNServer, Hosts['StaticCDN']);
+				ServerStarter(JavaScriptCDNServer, Hosts['JavaScriptCDN']);
+				ServerStarter(CSSCDNServer, Hosts['CSSCDN']);
+				ServerStarter(SetupCDNServer, Hosts['SetupCDN']);
+				ServerStarter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN']);
+				ServerStarter(VersionCompatibilityServiceServer, Hosts['VersionCompatibilityService']);
+				ServerStarter(ClientSettingsServiceServer, Hosts['ClientSettingsService']);
+				ServerStarter(RobloxGameWebsiteServer, Hosts['AssetGameHost']);
+				ServerStarter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService']);
+				ServerStarter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2']);
+				ServerStarter(GamePersistenceApiServer, Hosts['GamePersistenceHost']);
+				ServerStarter(MetricsApiServer, Hosts['MetricsHost']);
+				ServerStarter(AuthApiServer, Hosts['AuthenticationHost']);
+				ServerStarter(ApiGatewayServer, Hosts['ApiGatewayHost']);
+				ServerStarter(LocaleApiServer, Hosts['LocaleHost']);
+				ServerStarter(MarketplaceServiceServer, Hosts['MarketplaceService']);
+				ServerStarter(AbTestingApiServer, Hosts['AbTestingHost']);
+				ServerStarter(AbTestingServiceServer, Hosts['AbTestingService']);
+				ServerStarter(UsersApiServer, Hosts['UsersHost']);
+				ServerStarter(TwoStepVerficationApiServer, Hosts['TSVHost']);
+				ServerStarter(LatencyMeasurementsInternalServiceServer, Hosts['LatencyMeasurementsInternalService']);
+				ServerStarter(ChatApiServer, Hosts['ChatHost']);
+				ServerStarter(ContactsApiServer, Hosts['ContactsHost']);
+				ServerStarter(NotificationsApiServer, Hosts['NotificationsHost']);
+				ServerStarter(AccountSettingsApiServer, Hosts['AccountSettingsHost']);
+				ServerStarter(AdsApiServer, Hosts['AdsHost']);
+				ServerStarter(TradesApiServer, Hosts['TradesHost']);
+				ServerStarter(FriendsApiServer, Hosts['FriendsHost']);
+				ServerStarter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost']);
+				ServerStarter(EconomyApiServer, Hosts['EconomyHost']);
+				ServerStarter(GamesApiServer, Hosts['GamesHost']);
+				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ServerStarter(RealTimeApiServer, Hosts['RealTimeHost']);
+				ServerStarter(ThumbnailsApiServer, Hosts['ThumbsHost']);
+				ServerStarter(PresenceApiServer, Hosts['PresenceHost']);
+				ServerStarter(GroupsApiServer, Hosts['GroupsHost']);
+				ServerStarter(AccountInformationServer, Hosts['AccountInformationHost']);
+				ServerStarter(BadgesApiServer, Hosts['BadgesHost']);
+				ServerStarter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost']);
+				ServerStarter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost']);
+				ServerStarter(ClientSettingsApiServer, Hosts['ClientSettingsHost']);
+				ServerStarter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost']);
+				ServerStarter(AdConfigurationApiServer, Hosts['AdConfigurationHost']);
+				ServerStarter(ClientTelementryServiceServer, Hosts['ClientTelementryService']);
+				ServerStarter(AssetsApi, Hosts['AssetsHost']);
+				ServerStarter(AvatarApiServer, Hosts['AvatarHost']);
+				ServerStarter(BillingApiServer, Hosts['BillingHost']);
+				ServerStarter(CatalogApiServer, Hosts['CatalogHost']);
+				ServerStarter(CdnProvidersApiServer, Hosts['CdnProvidersHost']);
+				ServerStarter(ChatModerationServiceServer, Hosts['ChatModerationHost']);
+				ServerStarter(ContentStoreApiServer, Hosts['ContentStoreHost']);
+				ServerStarter(DevelopApiServer, Hosts['DevelopHost']);
+				ServerStarter(DiscussionsApiServer, Hosts['DiscussionsHost']);
+				ServerStarter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost']);
+				ServerStarter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost']);
+				ServerStarter(FollowingsApiServer, Hosts['FollowingsHost']);
+				ServerStarter(GameInternationalizationApiServer, Hosts['G18NHost']);
+				ServerStarter(GameJoinApiServer, Hosts['GameJoinHost']);
+				ServerStarter(GroupsModerationServiceServer, Hosts['GroupsModerationHost']);
+				ServerStarter(InventoryApiServer, Hosts['InventoryHost']);
+				ServerStarter(ItemConfigurationApiService, Hosts['ItemConfigurationHost']);
+				ServerStarter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost']);
+				ServerStarter(PointsApiServer, Hosts['PointsHost']);
+				ServerStarter(PublishApiServer, Hosts['PublishHost']);
+				ServerStarter(PunishmentsServiceServer, Hosts['PunishmentsService']);
+				ServerStarter(MidasShareApiServer, Hosts['ShareHost']);
+				ServerStarter(TextFilterApiServer, Hosts['TextFilterHost']);
+				ServerStarter(ThemesApiServer, Hosts['ThemesHost']);
+				ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost']);
+				ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost']);
+				ServerStarter(TranslationsApiServer, Hosts['TranslationsHost']);
+				ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost']);
+				ServerStarter(VoiceApiServer, Hosts['VoiceHost']);
+				ServerStarter(FilesServiceServer, Hosts['FilesService']);
+				ServerStarter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsite']);
+				ServerStarter(AdminWebsiteServer, Hosts['AdminWebsite']);
+				ServerStarter(CSWebsiteServer, Hosts['CSWebsite']);
+				ServerStarter(ComApisCDNServer, Hosts['ComApisCDN']);
+				ServerStarter(PointsServiceServer, Hosts['PointsService']);
+				ServerStarter(UsersServiceServer, Hosts['UsersService']);
+				ServerStarter(DataWebsiteServer, Hosts['DataHost']);
+				ServerStarter(NomadTestServer, Hosts['NomadHost'], false, true, 4646);
+				ServerStarter(CSRApiServer, Hosts['CSRHost'], true, false, 0, 38183);
+				ServerStarter(CSRWebsiteServer, Hosts['CSRHost']);
 
 				SignalRSetup(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Hosts.ApiProxyHost);
 				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '/Source/Bin/WebSockets/Roblox.RealTime', Hosts.RealTimeHost);
