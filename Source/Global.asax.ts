@@ -519,7 +519,7 @@ FastLogGlobal.Init();
 				LatencyMeasurementsInternalServiceServer,
 				'/StaticPages/InternalWebsites/LatencyMeasurements',
 				'/Source/Bin/InternalWebsites/LatencyMeasurements/Controllers',
-				Hosts['LatencyMeasurementsInternalService'],
+				Hosts['LatencyMeasurementsHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -699,7 +699,7 @@ FastLogGlobal.Init();
 				ClientTelementryServiceServer,
 				'/StaticPages/Services/Roblox.ClientTelementry.Service',
 				'/Source/Bin/Services/Roblox.ClientTelementry.Service/Controllers',
-				Hosts['ClientTelementryService'],
+				Hosts['ClientTelementryServiceHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -955,7 +955,7 @@ FastLogGlobal.Init();
 				MetricsInternalWebsiteServer,
 				'/StaticPages/InternalWebsites/MetricsWebsite',
 				'/Source/Bin/InternalWebsites/MetricsWebsite/Controllers',
-				Hosts['MetricsInternalWebsite'],
+				Hosts['MetricsInternalWebsiteHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -963,7 +963,7 @@ FastLogGlobal.Init();
 				AdminWebsiteServer,
 				'/StaticPages/InternalWebsites/AdminWebsite',
 				'/Source/Bin/InternalWebsites/AdminWebsite/Controllers',
-				Hosts['AdminWebsite'],
+				Hosts['AdminWebsiteHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -971,7 +971,7 @@ FastLogGlobal.Init();
 				CSWebsiteServer,
 				'/StaticPages/InternalWebsites/CSWebsite',
 				'/Source/Bin/InternalWebsites/CSWebsite/Controllers',
-				Hosts['CSWebsite'],
+				Hosts['CSWebsiteHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -979,7 +979,7 @@ FastLogGlobal.Init();
 				ComApisCDNServer,
 				'/StaticPages/CDN/Roblox.COMApisCDN',
 				'/Source/Bin/CDN/Roblox.COMApisCDN/Controllers',
-				Hosts['ComApisCDN'],
+				Hosts['ComApisCDNHost'],
 				false,
 				false,
 				true,
@@ -990,7 +990,7 @@ FastLogGlobal.Init();
 				PointsServiceServer,
 				'/StaticPages/Services/Roblox.Points.Service',
 				'/Source/Bin/Services/Roblox.Points.Service/Controllers',
-				Hosts['PointsService'],
+				Hosts['PointsServiceHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -998,7 +998,7 @@ FastLogGlobal.Init();
 				UsersServiceServer,
 				'/StaticPages/Services/Roblox.Users.Service',
 				'/Source/Bin/Services/Roblox.Users.Service/Controllers',
-				Hosts['UsersService'],
+				Hosts['UsersServiceHost'],
 			),
 		);
 		await SystemSDK.Configure(
@@ -1273,92 +1273,108 @@ FastLogGlobal.Init();
 
 		await (async () => {
 			try {
-				ServerStarter(ImagesCDNServer, Hosts['ImagesCDN']);
-				ServerStarter(RobloxWebsiteServer, Hosts['WebHost']);
-				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ServerStarter(ApiProxyServer, Hosts['ApiProxyHost']);
-				ServerStarter(StaticCDNServer, Hosts['StaticCDN']);
-				ServerStarter(JavaScriptCDNServer, Hosts['JavaScriptCDN']);
-				ServerStarter(CSSCDNServer, Hosts['CSSCDN']);
-				ServerStarter(SetupCDNServer, Hosts['SetupCDN']);
-				ServerStarter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN']);
-				ServerStarter(VersionCompatibilityServiceServer, Hosts['VersionCompatibilityService']);
-				ServerStarter(ClientSettingsServiceServer, Hosts['ClientSettingsService']);
-				ServerStarter(RobloxGameWebsiteServer, Hosts['AssetGameHost']);
-				ServerStarter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService']);
-				ServerStarter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2']);
-				ServerStarter(GamePersistenceApiServer, Hosts['GamePersistenceHost']);
-				ServerStarter(MetricsApiServer, Hosts['MetricsHost']);
-				ServerStarter(AuthApiServer, Hosts['AuthenticationHost']);
-				ServerStarter(ApiGatewayServer, Hosts['ApiGatewayHost']);
-				ServerStarter(LocaleApiServer, Hosts['LocaleHost']);
-				ServerStarter(MarketplaceServiceServer, Hosts['MarketplaceService']);
-				ServerStarter(AbTestingApiServer, Hosts['AbTestingHost']);
-				ServerStarter(AbTestingServiceServer, Hosts['AbTestingService']);
-				ServerStarter(UsersApiServer, Hosts['UsersHost']);
-				ServerStarter(TwoStepVerficationApiServer, Hosts['TSVHost']);
-				ServerStarter(LatencyMeasurementsInternalServiceServer, Hosts['LatencyMeasurementsInternalService']);
-				ServerStarter(ChatApiServer, Hosts['ChatHost']);
-				ServerStarter(ContactsApiServer, Hosts['ContactsHost']);
-				ServerStarter(NotificationsApiServer, Hosts['NotificationsHost']);
-				ServerStarter(AccountSettingsApiServer, Hosts['AccountSettingsHost']);
-				ServerStarter(AdsApiServer, Hosts['AdsHost']);
-				ServerStarter(TradesApiServer, Hosts['TradesHost']);
-				ServerStarter(FriendsApiServer, Hosts['FriendsHost']);
-				ServerStarter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost']);
-				ServerStarter(EconomyApiServer, Hosts['EconomyHost']);
-				ServerStarter(GamesApiServer, Hosts['GamesHost']);
-				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ServerStarter(RealTimeApiServer, Hosts['RealTimeHost']);
-				ServerStarter(ThumbnailsApiServer, Hosts['ThumbsHost']);
-				ServerStarter(PresenceApiServer, Hosts['PresenceHost']);
-				ServerStarter(GroupsApiServer, Hosts['GroupsHost']);
-				ServerStarter(AccountInformationServer, Hosts['AccountInformationHost']);
-				ServerStarter(BadgesApiServer, Hosts['BadgesHost']);
-				ServerStarter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost']);
-				ServerStarter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost']);
-				ServerStarter(ClientSettingsApiServer, Hosts['ClientSettingsHost']);
-				ServerStarter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost']);
-				ServerStarter(AdConfigurationApiServer, Hosts['AdConfigurationHost']);
-				ServerStarter(ClientTelementryServiceServer, Hosts['ClientTelementryService']);
-				ServerStarter(AssetsApi, Hosts['AssetsHost']);
-				ServerStarter(AvatarApiServer, Hosts['AvatarHost']);
-				ServerStarter(BillingApiServer, Hosts['BillingHost']);
-				ServerStarter(CatalogApiServer, Hosts['CatalogHost']);
-				ServerStarter(CdnProvidersApiServer, Hosts['CdnProvidersHost']);
-				ServerStarter(ChatModerationServiceServer, Hosts['ChatModerationHost']);
-				ServerStarter(ContentStoreApiServer, Hosts['ContentStoreHost']);
-				ServerStarter(DevelopApiServer, Hosts['DevelopHost']);
-				ServerStarter(DiscussionsApiServer, Hosts['DiscussionsHost']);
-				ServerStarter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost']);
-				ServerStarter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost']);
-				ServerStarter(FollowingsApiServer, Hosts['FollowingsHost']);
-				ServerStarter(GameInternationalizationApiServer, Hosts['G18NHost']);
-				ServerStarter(GameJoinApiServer, Hosts['GameJoinHost']);
-				ServerStarter(GroupsModerationServiceServer, Hosts['GroupsModerationHost']);
-				ServerStarter(InventoryApiServer, Hosts['InventoryHost']);
-				ServerStarter(ItemConfigurationApiService, Hosts['ItemConfigurationHost']);
-				ServerStarter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost']);
-				ServerStarter(PointsApiServer, Hosts['PointsHost']);
-				ServerStarter(PublishApiServer, Hosts['PublishHost']);
-				ServerStarter(PunishmentsServiceServer, Hosts['PunishmentsService']);
-				ServerStarter(MidasShareApiServer, Hosts['ShareHost']);
-				ServerStarter(TextFilterApiServer, Hosts['TextFilterHost']);
-				ServerStarter(ThemesApiServer, Hosts['ThemesHost']);
-				ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost']);
-				ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost']);
-				ServerStarter(TranslationsApiServer, Hosts['TranslationsHost']);
-				ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost']);
-				ServerStarter(VoiceApiServer, Hosts['VoiceHost']);
-				ServerStarter(FilesServiceServer, Hosts['FilesService']);
-				ServerStarter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsite']);
-				ServerStarter(AdminWebsiteServer, Hosts['AdminWebsite']);
-				ServerStarter(CSWebsiteServer, Hosts['CSWebsite']);
-				ServerStarter(ComApisCDNServer, Hosts['ComApisCDN']);
-				ServerStarter(PointsServiceServer, Hosts['PointsService']);
-				ServerStarter(UsersServiceServer, Hosts['UsersService']);
-				ServerStarter(DataWebsiteServer, Hosts['DataHost']);
+				const httpPort = process.argv.slice(2)[0] === '--closure-after-seconds' ? 8080 : 80;
+				const httpsPort = process.argv.slice(2)[0] === '--closure-after-seconds' ? 4343 : 443;
+				ServerStarter(ImagesCDNServer, Hosts['ImagesCDN'], true, true, httpPort, httpsPort);
+				ServerStarter(RobloxWebsiteServer, Hosts['WebHost'], true, true, httpPort, httpsPort);
+				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ServerStarter(
+					ApiProxyServer,
+					Hosts['ApiProxyHost'],
+					true,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				ServerStarter(StaticCDNServer, Hosts['StaticCDN'], true, true, httpPort, httpsPort);
+				ServerStarter(JavaScriptCDNServer, Hosts['JavaScriptCDN'], true, true, httpPort, httpsPort);
+				ServerStarter(CSSCDNServer, Hosts['CSSCDN'], true, true, httpPort, httpsPort);
+				ServerStarter(SetupCDNServer, Hosts['SetupCDN'], true, true, httpPort, httpsPort);
+				ServerStarter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN'], true, true, httpPort, httpsPort);
+				ServerStarter(VersionCompatibilityServiceServer, Hosts['VersionCompatibilityService'], true, true, httpPort, httpsPort);
+				ServerStarter(ClientSettingsServiceServer, Hosts['ClientSettingsService'], true, true, httpPort, httpsPort);
+				ServerStarter(RobloxGameWebsiteServer, Hosts['AssetGameHost'], true, true, httpPort, httpsPort);
+				ServerStarter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService'], true, true, httpPort, httpsPort);
+				ServerStarter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2'], true, true, httpPort, httpsPort);
+				ServerStarter(GamePersistenceApiServer, Hosts['GamePersistenceHost'], true, true, httpPort, httpsPort);
+				ServerStarter(MetricsApiServer, Hosts['MetricsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AuthApiServer, Hosts['AuthenticationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ApiGatewayServer, Hosts['ApiGatewayHost'], true, true, httpPort, httpsPort);
+				ServerStarter(LocaleApiServer, Hosts['LocaleHost'], true, true, httpPort, httpsPort);
+				ServerStarter(MarketplaceServiceServer, Hosts['MarketplaceService'], true, true, httpPort, httpsPort);
+				ServerStarter(AbTestingApiServer, Hosts['AbTestingHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AbTestingServiceServer, Hosts['AbTestingService'], true, true, httpPort, httpsPort);
+				ServerStarter(UsersApiServer, Hosts['UsersHost'], true, true, httpPort, httpsPort);
+				ServerStarter(TwoStepVerficationApiServer, Hosts['TSVHost'], true, true, httpPort, httpsPort);
+				ServerStarter(LatencyMeasurementsInternalServiceServer, Hosts['LatencyMeasurementsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ChatApiServer, Hosts['ChatHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ContactsApiServer, Hosts['ContactsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(NotificationsApiServer, Hosts['NotificationsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AccountSettingsApiServer, Hosts['AccountSettingsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AdsApiServer, Hosts['AdsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(TradesApiServer, Hosts['TradesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(FriendsApiServer, Hosts['FriendsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(EconomyApiServer, Hosts['EconomyHost'], true, true, httpPort, httpsPort);
+				ServerStarter(GamesApiServer, Hosts['GamesHost'], true, true, httpPort, httpsPort);
+				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ServerStarter(
+					RealTimeApiServer,
+					Hosts['RealTimeHost'],
+					true,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				ServerStarter(ThumbnailsApiServer, Hosts['ThumbsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PresenceApiServer, Hosts['PresenceHost'], true, true, httpPort, httpsPort);
+				ServerStarter(GroupsApiServer, Hosts['GroupsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AccountInformationServer, Hosts['AccountInformationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(BadgesApiServer, Hosts['BadgesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ClientSettingsApiServer, Hosts['ClientSettingsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AdConfigurationApiServer, Hosts['AdConfigurationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ClientTelementryServiceServer, Hosts['ClientTelementryServiceHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AssetsApi, Hosts['AssetsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AvatarApiServer, Hosts['AvatarHost'], true, true, httpPort, httpsPort);
+				ServerStarter(BillingApiServer, Hosts['BillingHost'], true, true, httpPort, httpsPort);
+				ServerStarter(CatalogApiServer, Hosts['CatalogHost'], true, true, httpPort, httpsPort);
+				ServerStarter(CdnProvidersApiServer, Hosts['CdnProvidersHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ChatModerationServiceServer, Hosts['ChatModerationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ContentStoreApiServer, Hosts['ContentStoreHost'], true, true, httpPort, httpsPort);
+				ServerStarter(DevelopApiServer, Hosts['DevelopHost'], true, true, httpPort, httpsPort);
+				ServerStarter(DiscussionsApiServer, Hosts['DiscussionsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(FollowingsApiServer, Hosts['FollowingsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(GameInternationalizationApiServer, Hosts['G18NHost'], true, true, httpPort, httpsPort);
+				ServerStarter(GameJoinApiServer, Hosts['GameJoinHost'], true, true, httpPort, httpsPort);
+				ServerStarter(GroupsModerationServiceServer, Hosts['GroupsModerationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(InventoryApiServer, Hosts['InventoryHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ItemConfigurationApiService, Hosts['ItemConfigurationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PointsApiServer, Hosts['PointsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PublishApiServer, Hosts['PublishHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PunishmentsServiceServer, Hosts['PunishmentsService'], true, true, httpPort, httpsPort);
+				ServerStarter(MidasShareApiServer, Hosts['ShareHost'], true, true, httpPort, httpsPort);
+				ServerStarter(TextFilterApiServer, Hosts['TextFilterHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ThemesApiServer, Hosts['ThemesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost']), true, true, httpPort, httpsPort;
+				ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost'], true, true, httpPort, httpsPort);
+				ServerStarter(TranslationsApiServer, Hosts['TranslationsHost'], true, true, httpPort, httpsPort);
+				ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost'], true, true, httpPort, httpsPort);
+				ServerStarter(VoiceApiServer, Hosts['VoiceHost'], true, true, httpPort, httpsPort);
+				ServerStarter(FilesServiceServer, Hosts['FilesService'], true, true, httpPort, httpsPort);
+				ServerStarter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsiteHost'], true, true, httpPort, httpsPort);
+				ServerStarter(AdminWebsiteServer, Hosts['AdminWebsiteHost'], true, true, httpPort, httpsPort);
+				ServerStarter(CSWebsiteServer, Hosts['CSWebsiteHost'], true, true, httpPort, httpsPort);
+				ServerStarter(ComApisCDNServer, Hosts['ComApisCDNHost'], true, true, httpPort, httpsPort);
+				ServerStarter(PointsServiceServer, Hosts['PointsServiceHost'], true, true, httpPort, httpsPort);
+				ServerStarter(UsersServiceServer, Hosts['UsersServiceHost'], true, true, httpPort, httpsPort);
+				ServerStarter(DataWebsiteServer, Hosts['DataHost'], true, true, httpPort, httpsPort);
 				ServerStarter(NomadTestServer, Hosts['NomadHost'], false, true, 4646);
 				ServerStarter(CSRApiServer, Hosts['CSRHost'], true, false, 0, 38183);
-				ServerStarter(CSRWebsiteServer, Hosts['CSRHost']);
+				ServerStarter(CSRWebsiteServer, Hosts['CSRHost'], true, true, httpPort, httpsPort);
 
 				await (async () => {
 					if (process.argv.slice(2)[0] === '--closure-after-seconds') {
