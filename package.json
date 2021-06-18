@@ -6,8 +6,10 @@
 	"scripts": {
 		"Start-Main-Job": "node --no-deprecation Source/Bin/Global.asax.js",
 		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
-		"RunAll": "npm update && npm i && node path.js && npm run build && npm run Start-Main-Job",
+		"RunAll": "npm update && npm i && node path.js && npm run build && node appendHostsToHostsFile.js && npm run Start-Main-Job",
+		"RunAll-Linux": "npm update && npm i && node path.js && npm run build && sudo node appendHostsToHostsFile.js && npm run Start-Main-Job",
 		"build-full": "npm update && npm i && npm i --save-dev @types/node && node path.js  && tsc -b --verbose",
+		"build-full-linux": "npm update && npm i && npm i --save-dev @types/node && node path.js && tsc -b --verbose",
 		"build": "tsc -b --verbose",
 		"start": "node --trace-deprecation Source/Bin/Global.asax.js",
 		"Run-Without-NPM": "node path.js && npm run build",
