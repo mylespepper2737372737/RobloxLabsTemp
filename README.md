@@ -7,6 +7,8 @@
 	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/build-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="Build Linux"/></a>
 	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-windows.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-windows.yml/badge.svg?branch=Roblox.SiteTest4" alt="Test Windows"/></a>
 	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/test-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="Test Linux"/></a>
+	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/run-test-windows.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/run-test-windows.yml/badge.svg?branch=Roblox.SiteTest4" alt="RunAll Test Windows"/></a>
+	<a href="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/run-test-linux.yml"><img src="https://github.com/mfdlabs/robloxlabs.com/actions/workflows/run-test-linux.yml/badge.svg?branch=Roblox.SiteTest4" alt="RunAll Test Linux"/></a>
 </p>
 
 # NOTICE

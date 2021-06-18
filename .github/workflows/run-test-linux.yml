@@ -7,7 +7,7 @@ on:
         branches: [Roblox.SiteTest4]
 
 jobs:
-    TestLinux:
+    RullAllTestLinux:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
