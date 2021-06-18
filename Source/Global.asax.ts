@@ -1359,7 +1359,7 @@ FastLogGlobal.Init();
 				ServerStarter(MidasShareApiServer, Hosts['ShareHost'], true, true, httpPort, httpsPort);
 				ServerStarter(TextFilterApiServer, Hosts['TextFilterHost'], true, true, httpPort, httpsPort);
 				ServerStarter(ThemesApiServer, Hosts['ThemesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost']), true, true, httpPort, httpsPort;
+				ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost'], true, true, httpPort, httpsPort);
 				ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost'], true, true, httpPort, httpsPort);
 				ServerStarter(TranslationsApiServer, Hosts['TranslationsHost'], true, true, httpPort, httpsPort);
 				ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost'], true, true, httpPort, httpsPort);
