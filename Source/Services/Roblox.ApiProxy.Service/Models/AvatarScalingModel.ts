@@ -1,8 +1,8 @@
 export interface AvatarScalingModel {
-	Width: float;
-	Height: float;
-	Head: float;
-	Depth: float;
-	Proportion: float;
-	BodyType: float;
+	width: float;
+	height: float;
+	head: float;
+	depth: float;
+	proportion: float;
+	bodyType: float;
 }
