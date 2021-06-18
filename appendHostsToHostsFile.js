@@ -50,7 +50,7 @@ const { EOL } = require('os');
 		} else {
 			console.log(
 				'\x1b[31m%s\x1b[37m',
-				`[Error] Could not read or write to ${hostsFileLocation}, because we didn't have permissions. ${e.message}`,
+				`[Error] Could not read or write to ${hostsFileLocation}, because an unkown error occurred, but was caught, see the error message here: ${e.message}.`,
 			);
 		}
 		if (exitWithBadCodeOnFail) {
