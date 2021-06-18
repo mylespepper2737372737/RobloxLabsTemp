@@ -11,9 +11,6 @@ const { EOL } = require('os');
 
 /**
 	@param {string[]} args */ ((args) => {
-	console.log(
-		'If hosts were removed or changed, you will have to remove the old ones then, as this only supports add new hosts, not removing or updating them yet.',
-	);
 	const strArgs = ((args || []).join(' ') || '') + ' ';
 
 	/* Pull this out to a helper that does this regex by itself */
@@ -21,6 +18,10 @@ const { EOL } = require('os');
 	if (showHelpMessage) {
 		return printHelpMessageAndExit();
 	}
+
+	console.log(
+		'If hosts were removed or changed, you will have to remove the old ones then, as this only supports add new hosts, not removing or updating them yet.',
+	);
 
 	const isVerbose = checkIsSingleCommandLineArgValid(strArgs, 'v') || checkIsLongArgIncludedInCommandLineArgs(strArgs, 'verbose');
 	const exitWithBadCodeOnFail = checkIsLongArgIncludedInCommandLineArgs(strArgs, '--exit-with-bad-code-on-failure');
@@ -62,7 +63,7 @@ const { EOL } = require('os');
 			console.log(`Successfully wrote data to ${hostsFileLocation}.`);
 			return process.exit(0);
 		}
-		console.log(`The file didn't need to be written to, exiting.`);
+		console.log(`The file ${hostsFileLocation} didn't need to be written to, exiting.`);
 		return process.exit(0);
 	}
 })(process.argv.slice(2));
