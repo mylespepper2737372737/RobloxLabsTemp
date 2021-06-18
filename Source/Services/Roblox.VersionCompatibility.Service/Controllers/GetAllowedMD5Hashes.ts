@@ -45,9 +45,9 @@ export default {
 
 		if (methodValidatorClient.Validate(request.method, 'GET', true) === HttpRequestMethodEnum.UNKNOWN) return;
 		if (
-			!apiKeyValidatorClient.Validate(
+			!apiKeyValidatorClient.MultiValidate(
 				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
-				ApiKeys.VersionCompatibilityApi,
+				[ApiKeys.VersionCompatibilityApi, 'dac86da7-a4bc-4bff-8ca4-8b54e1ac925b'],
 				true,
 			)
 		)
