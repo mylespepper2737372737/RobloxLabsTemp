@@ -41,7 +41,7 @@
 // import Roblox.Api.Helpers.Web.Util.ROBLOX_Starter from './Roblox.Helpers/Roblox.Helpers/Roblox.Web.Util/Roblox.Server.Starter';
 
 import IServer, { NextFunction, Request, Response } from 'express';
-import { DFFlag, DFLog, DFString, FASTLOG1F, FASTLOG2, FASTLOGS } from './Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
+import { DFFlag, DFLog, DFString, FASTLOG, FASTLOG1F, FASTLOG2, FASTLOGS } from './Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { DefaultApi404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/DefaultApi404';
 import { DefaultAsp404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/aspError404';
 import { Points } from './Assemblies/Web/Handling/Roblox.Web.Handling/Points';
@@ -1359,6 +1359,15 @@ FastLogGlobal.Init();
 				ServerStarter(NomadTestServer, Hosts['NomadHost'], false, true, 4646);
 				ServerStarter(CSRApiServer, Hosts['CSRHost'], true, false, 0, 38183);
 				ServerStarter(CSRWebsiteServer, Hosts['CSRHost']);
+
+				await (async () => {
+					if (process.argv.slice(2)[0] === '--closure-after-seconds') {
+						FASTLOG(DFLog('Tasks'), '[DFLog::Tasks] WARNING: The closure is running, this job will close in 5 minutes.');
+						setTimeout(() => {
+							return process.exit(0);
+						}, 300000);
+					}
+				})();
 
 				SignalRSetup(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Hosts.ApiProxyHost);
 				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '/Source/Bin/WebSockets/Roblox.RealTime', Hosts.RealTimeHost);

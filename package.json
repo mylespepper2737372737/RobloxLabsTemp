@@ -5,9 +5,12 @@
 	"main": "Source/Bin/Global.asax.js",
 	"scripts": {
 		"Start-Main-Job": "node --no-deprecation Source/Bin/Global.asax.js",
+		"Start-Main-Job-Test": "node --no-deprecation Source/Bin/Global.asax.js --closure-after-seconds",
 		"Build-And-Run": "node path.js && npm run build && npm run Start-Main-Job",
 		"RunAll": "npm update && npm i && node path.js && npm run build && node appendHostsToHostsFile.js && npm run Start-Main-Job",
+		"RunAll-Test": "npm update && npm i && node path.js && npm run build && node appendHostsToHostsFile.js && npm run Start-Main-Job-Test",
 		"RunAll-Linux": "npm update && npm i && node path.js && npm run build && sudo node appendHostsToHostsFile.js && npm run Start-Main-Job",
+		"RunAll-Linux-Test": "npm update && npm i && node path.js && npm run build && sudo node appendHostsToHostsFile.js && npm run Start-Main-Job-Test",
 		"build-full": "npm update && npm i && npm i --save-dev @types/node && node path.js  && tsc -b --verbose",
 		"build-full-linux": "npm update && npm i && npm i --save-dev @types/node && node path.js && tsc -b --verbose",
 		"build": "tsc -b --verbose",
