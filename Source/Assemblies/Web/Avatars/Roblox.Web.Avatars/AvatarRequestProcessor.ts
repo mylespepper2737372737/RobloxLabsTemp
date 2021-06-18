@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { AssetIdListModel } from '../../../../ApiSites/Roblox.Avatar.Api/Models/AssetIdListModel';
+import { AvatarFetchModel } from '../../../../ApiSites/Roblox.Avatar.Api/Models/AvatarFetchModel';
+import { AvatarFetchRequest } from '../../../../ApiSites/Roblox.Avatar.Api/Models/AvatarFetchRequest';
 import { AvatarFetchResponseModel } from '../../../../Services/Roblox.ApiProxy.Service/Models/AvatarFetchResponseModel';
 import { AvatarBodyColorsModel } from '../../../../Services/Roblox.ApiProxy.Service/Models/AvtarBodyColorsModel';
 import { GetByUserNameResponse } from '../../../../Services/Roblox.ApiProxy.Service/Models/GetByUserNameResponse';
@@ -51,6 +53,12 @@ export class AvatarRequestProcessor {
 	private static readonly AVATAR_API_SITE_GET_CURRENTLY_WEARING_ASSET_IDS = (userID: number) =>
 		BaseURL.ConstructServicePathFromHostSimple('avatar.roblox.com', `v1/users/${userID}/currently-wearing`, true);
 
+	private static readonly AVATAR_API_SITE_AVATAR_FETCH = BaseURL.ConstructServicePathFromHostSimple(
+		'avatar.roblox.com',
+		'v1/avatar-fetch',
+		true,
+	);
+
 	private static readonly API_PROXY_AVATAR_FETCH = BaseURL.ConstructServicePathFromHostSimple(
 		'api.roblox.com',
 		`v1.1/avatar-fetch`,
@@ -60,8 +68,45 @@ export class AvatarRequestProcessor {
 	private static AVATAR_DEFAULT_COLORS = (userID: long, allowUseOfSSL: bool = false) =>
 		BaseURL.ConstructServicePathFromSubDomain('assetgame', '/Asset/BodyColors.ashx', { userID }, allowUseOfSSL, false, true);
 
+	private static DEFAULT_AVATAR_FETCH_MODEL: AvatarFetchModel = {
+		resolvedAvatarType: 'R15',
+		equippedGearVersionIds: [],
+		backpackGearVersionIds: [],
+		assetAndAssetTypeIds: [
+			{ assetId: 6395566584, assetTypeId: 2 },
+			{ assetId: 11844853, assetTypeId: 8 },
+			{ assetId: 19380685, assetTypeId: 42 },
+		],
+		animationAssetIds: { climb: 837013990, run: 837009922, jump: 619528412, fall: 619527817, idle: 754637456, walk: 754636298 },
+		bodyColors: {
+			HeadColor: 105,
+			TorsoColor: 1003,
+			RightArmColor: 105,
+			LeftArmColor: 105,
+			RightLegColor: 1004,
+			LeftLegColor: 1004,
+		},
+		scales: { height: 1.0, width: 1.0, head: 1.0, depth: 1.0, proportion: 0.0, bodyType: 0.05 },
+		emotes: [
+			{ assetId: 3576686446, assetName: 'Hello', position: 1 },
+			{ assetId: 3360689775, assetName: 'Salute', position: 2 },
+			{ assetId: 3360692915, assetName: 'Tilt', position: 3 },
+		],
+	};
+
+	private static DEFAULT_AVATAR_FETCH_RESPONSE_MODEL: AvatarFetchResponseModel = {
+		ResolvedAvatarType: 'R15',
+		AccessoryVersionIds: [7769558814, 883360292, 883361139],
+		EquippedGearVersionIds: [],
+		BackpackGearVersionIds: [],
+		BodyColors: { HeadColor: 105, LeftArmColor: 105, LeftLegColor: 1004, RightArmColor: 105, RightLegColor: 1004, TorsoColor: 1003 },
+		Animations: { Climb: 1217933913, Run: 1217928502, Jump: 969714026, Fall: 969713293, Idle: 1280065371, Walk: 1128122678 },
+		Scales: { width: 1.0, height: 1.0, head: 1.0, depth: 1.0, proportion: 0.0, bodyType: 0.05 },
+	};
+
 	/* Mutable Data */
 
+	private placeID: long = undefined;
 	private userID: long = undefined;
 	private userName: string = null;
 	private DoNotCache: bool = false;
@@ -102,6 +147,15 @@ export class AvatarRequestProcessor {
 		return [Convert.ToUInt64(UserID), UserName];
 	}
 
+	public ExtractDataFromQueryStringForGetAvatarFetchRequest(
+		request: Request<null, null, null, AvatarFetchRequest>,
+	): [ulong, string, ulong] {
+		const UserID = FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
+		const UserName = FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
+		const PlaceID = FetchKeyFromObjectCaseInsensitiveOrDefault<long>(request.query, 'PlaceID', 1818);
+		return [Convert.ToUInt64(UserID), UserName, Convert.ToUInt64(PlaceID)];
+	}
+
 	public async GetAvatarBodyColorsAsync(userID: long, userName: string) {
 		if (typeof userName === 'string') userName = userName.toLowerCase().trim();
 		this.UpdateConfiguredMutables(userID, userName);
@@ -109,6 +163,15 @@ export class AvatarRequestProcessor {
 		const collectionId = `Avatars_GetAvatarBodyColorsAsync:${this.userID}:${this.userName}`;
 		if (this.TryCheckColorCache(collectionId)) return;
 		return await this.GetBodyColors();
+	}
+
+	public async GetAvatarFetchResponseAsync(userID: long, userName: string, placeID: long) {
+		if (typeof userName === 'string') userName = userName.toLowerCase().trim();
+		this.UpdateConfiguredMutablesV2(userID, userName, placeID);
+		await this.TryUpdateUserIDByUserName();
+		const collectionId = `Avatars_GetAvatarFetchResponseAsync:${this.userID}:${this.userName}:${this.placeID}`;
+		if (this.TryCheckAvatarFetchCache(collectionId)) return;
+		return this._response.send(await this.GetAvatarResponseModelAsync());
 	}
 
 	private TryCheckColorCache(collectionId: string): bool {
@@ -123,6 +186,33 @@ export class AvatarRequestProcessor {
 			return true;
 		}
 		FASTLOGS(DFLog('CacheStore'), "[DFLog::CacheStore] The collection '%s' from the ColorCacheStore is not persistent.", collectionId);
+		return false;
+	}
+
+	private TryCheckAvatarFetchCache(collectionId: string): bool {
+		FASTLOGS(
+			DFLog('CacheStore'),
+			"[DFLog::CacheStore] Try get collection '%s' from the QueriedCharacterFetchCacheStore.",
+			collectionId,
+		);
+		if (this.DoNotCache) {
+			FASTLOG(DFLog('CacheStore'), '[DFLog::CacheStore] DoNotCache 1, returning false.');
+			return false;
+		}
+		if (AvatarRequestProcessor.QueriedCharacterFetchCacheStore.has(collectionId)) {
+			FASTLOGS(
+				DFLog('CacheStore'),
+				"[DFLog::CacheStore] The collection '%s' from the QueriedCharacterFetchCacheStore is persistent.",
+				collectionId,
+			);
+			this._response.send(AvatarRequestProcessor.QueriedCharacterFetchCacheStore.get(collectionId));
+			return true;
+		}
+		FASTLOGS(
+			DFLog('CacheStore'),
+			"[DFLog::CacheStore] The collection '%s' from the QueriedCharacterFetchCacheStore is not persistent.",
+			collectionId,
+		);
 		return false;
 	}
 
@@ -167,6 +257,12 @@ export class AvatarRequestProcessor {
 	private UpdateConfiguredMutables(userID: number, userName: string) {
 		this.userID = userID;
 		this.userName = userName;
+	}
+
+	private UpdateConfiguredMutablesV2(userID: number, userName: string, placeID: long) {
+		this.userID = userID;
+		this.userName = userName;
+		this.placeID = placeID;
 	}
 
 	private async TryUpdateUserIDByUserName() {
@@ -230,32 +326,71 @@ export class AvatarRequestProcessor {
 		});
 	}
 
-	private async GetAvatarFetchModel(): Task<AvatarFetchResponseModel> {
+	private async GetAvatarFetchModel(isBodyColorsRequest: bool = true): Task<AvatarFetchResponseModel> {
 		return new Promise(async (resumeFunction) => {
 			if (this.userID) {
 				const [WasCached, CachedModel] = this.TryGetCachedAvatarFetchModel();
-				if (WasCached) return CachedModel;
+				if (WasCached) return resumeFunction(CachedModel);
 				this.UpdateConfigForAvatarFetchRequest();
-				return resumeFunction(await this.ExecuteGetAvatarFetchAsync());
+				return resumeFunction(await this.ExecuteGetAvatarFetchAsync(isBodyColorsRequest));
 			} else {
-				this.RespondWithDefaultBodyColors(resumeFunction);
+				if (isBodyColorsRequest) return this.RespondWithDefaultBodyColors(resumeFunction);
+				return AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_RESPONSE_MODEL;
 			}
 		});
 	}
 
-	private async ExecuteGetAvatarFetchAsync(): Task<AvatarFetchResponseModel> {
+	private async GetAvatarFetchModelV2(bodyColors: AvatarBodyColorsModel): Task<AvatarFetchModel> {
+		if (this.userID) {
+			const [WasCached, CachedModel] = this.TryGetCachedAvatarFetchModelV2();
+			if (WasCached) return CachedModel;
+			this.UpdateConfigForAvatarFetchRequestV2();
+			return await this.ExecuteGetAvatarFetchAsyncV2(bodyColors);
+		} else {
+			return AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_MODEL;
+		}
+	}
+
+	private async ExecuteGetAvatarFetchAsync(isBodyColorsRequest: bool = true): Task<AvatarFetchResponseModel> {
 		return new Promise(async (resumeFunction) => {
 			const collectionId = `Avatars_GetAvatarSimple:${this.userID}:${this.userName}`;
 			const [WasSuccessful, CachedAvatarResponse] = await this._cachedClient.ExecuteAsync<AvatarFetchResponseModel>();
 
-			this.SetCacheValue(AvatarRequestProcessor.SimpleCharacterFetchCacheStore, collectionId, CachedAvatarResponse.ResponsePayload);
-
 			if (!WasSuccessful) {
-				return this.RespondWithDefaultBodyColors(resumeFunction);
+				if (isBodyColorsRequest) return this.RespondWithDefaultBodyColors(resumeFunction);
+				this.SetCacheValue(
+					AvatarRequestProcessor.SimpleCharacterFetchCacheStore,
+					collectionId,
+					AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_RESPONSE_MODEL,
+				);
+				return AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_RESPONSE_MODEL;
 			}
+
+			this.SetCacheValue(AvatarRequestProcessor.SimpleCharacterFetchCacheStore, collectionId, CachedAvatarResponse.ResponsePayload);
 
 			return resumeFunction(CachedAvatarResponse.ResponsePayload);
 		});
+	}
+
+	private async ExecuteGetAvatarFetchAsyncV2(bodyColors: AvatarBodyColorsModel): Promise<AvatarFetchModel> {
+		const collectionId = `Avatars_GetAvatarFetchResponseAsync:${this.userID}:${this.userName}:${this.placeID}`;
+		const [WasSuccessful, CachedAvatarResponse] = await this._cachedClient.ExecuteAsync<AvatarFetchModel>();
+
+		CachedAvatarResponse.ResponsePayload.bodyColors = bodyColors;
+
+		if (!WasSuccessful) {
+			this.SetCacheValue(
+				AvatarRequestProcessor.QueriedCharacterFetchCacheStore,
+				collectionId,
+				AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_MODEL,
+			);
+
+			return AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_MODEL;
+		}
+
+		this.SetCacheValue(AvatarRequestProcessor.QueriedCharacterFetchCacheStore, collectionId, CachedAvatarResponse.ResponsePayload);
+
+		return CachedAvatarResponse.ResponsePayload;
 	}
 
 	private TryGetCachedAvatarFetchModel(): [bool, AvatarFetchResponseModel] {
@@ -278,6 +413,35 @@ export class AvatarRequestProcessor {
 		FASTLOGS(
 			DFLog('CacheStore'),
 			"[DFLog::CacheStore] The collection '%s' from the SimpleCharacterFetchCacheStore is not persistent.",
+			collectionId,
+		);
+		return [false, null];
+	}
+
+	private TryGetCachedAvatarFetchModelV2(): [bool, AvatarFetchModel] {
+		const collectionId = `Avatars_GetAvatarSimple:${this.userID}:${this.userName}`;
+		FASTLOGS(
+			DFLog('CacheStore'),
+			"[DFLog::CacheStore] Try get collection '%s' from the QueriedCharacterFetchCacheStore.",
+			collectionId,
+		);
+		if (this.DoNotCache) {
+			FASTLOG(DFLog('CacheStore'), '[DFLog::CacheStore] DoNotCache 1, returning false.');
+			return [false, null];
+		}
+
+		if (AvatarRequestProcessor.QueriedCharacterFetchCacheStore.has(collectionId)) {
+			FASTLOGS(
+				DFLog('CacheStore'),
+				"[DFLog::CacheStore] The collection '%s' from the QueriedCharacterFetchCacheStore is persistent.",
+				collectionId,
+			);
+			const cachedData = AvatarRequestProcessor.QueriedCharacterFetchCacheStore.get(collectionId);
+			return [true, cachedData];
+		}
+		FASTLOGS(
+			DFLog('CacheStore'),
+			"[DFLog::CacheStore] The collection '%s' from the QueriedCharacterFetchCacheStore is not persistent.",
 			collectionId,
 		);
 		return [false, null];
@@ -362,6 +526,18 @@ export class AvatarRequestProcessor {
 		});
 	}
 
+	private UpdateConfigForAvatarFetchRequestV2() {
+		this._cachedClient.UpdateConfiguration({
+			...AvatarRequestProcessor.GLOBAL_CONFIG,
+			Url: AvatarRequestProcessor.AVATAR_API_SITE_AVATAR_FETCH,
+			QueryString: {
+				...AvatarRequestProcessor.GLOBAL_CONFIG.QueryString,
+				UserID: this.userID,
+				PlaceID: this.placeID,
+			},
+		});
+	}
+
 	private async ConstructResponseString(allowUseOfSSL: bool = false) {
 		const collectionId = `Avatars_GetAvatarAccoutrementsAsync:${this.userID}:${this.userName}`;
 		const avatarAssetIDs = await this.GetAvatarAssetIDS();
@@ -413,6 +589,19 @@ export class AvatarRequestProcessor {
 				return this.RespondWithDefaultBodyColors(resumeFunction);
 			}
 		});
+	}
+
+	private async GetAvatarResponseModelAsync() {
+		const simpleAvatarResponse = await this.GetAvatarFetchModel(false);
+		if (simpleAvatarResponse === null) {
+			return;
+		}
+		const bodyColors = FetchKeyFromObjectCaseInsensitive<AvatarBodyColorsModel>(simpleAvatarResponse, 'BodyColors');
+		const data = await this.GetAvatarFetchModelV2(bodyColors);
+
+		if (data && !this.isEmptyObject(data)) return data;
+
+		return AvatarRequestProcessor.DEFAULT_AVATAR_FETCH_MODEL;
 	}
 
 	private isEmptyObject(obj: Object) {
@@ -502,6 +691,7 @@ export class AvatarRequestProcessor {
 	private static readonly AssetIDsCacheStore = new Map<string, long[]>();
 	private static readonly ColorCacheStore = new Map<string, string>();
 	private static readonly SimpleCharacterFetchCacheStore = new Map<string, AvatarFetchResponseModel>();
+	private static readonly QueriedCharacterFetchCacheStore = new Map<string, AvatarFetchModel>();
 
 	private static readonly PersistentRoundRobinState = {
 		WasRegisteredForCacheReset: false,
@@ -595,11 +785,12 @@ export class AvatarRequestProcessor {
 						AvatarRequestProcessor.UserNameCacheStore.size > 0 ||
 						AvatarRequestProcessor.AssetIDsCacheStore.size > 0 ||
 						AvatarRequestProcessor.ColorCacheStore.size > 0 ||
-						AvatarRequestProcessor.SimpleCharacterFetchCacheStore.size > 0
+						AvatarRequestProcessor.SimpleCharacterFetchCacheStore.size > 0 ||
+						AvatarRequestProcessor.QueriedCharacterFetchCacheStore.size > 0
 					) {
 						FASTLOGNOFILTER(
 							DFLog('CacheStore'),
-							`[DFlog::CacheStore] Perform Round Robin cache clearance on cache stores, count of GeneralCacheStore(${AvatarRequestProcessor.GeneralCacheStore.size}), UserNameCacheStore(${AvatarRequestProcessor.UserNameCacheStore.size}), AssetIDsCacheStore(${AvatarRequestProcessor.AssetIDsCacheStore.size}), ColorCacheStore(${AvatarRequestProcessor.ColorCacheStore.size}) and SimpleCharacterFetchCacheStore(${AvatarRequestProcessor.SimpleCharacterFetchCacheStore.size})`,
+							`[DFlog::CacheStore] Perform Round Robin cache clearance on cache stores, count of GeneralCacheStore(${AvatarRequestProcessor.GeneralCacheStore.size}), UserNameCacheStore(${AvatarRequestProcessor.UserNameCacheStore.size}), AssetIDsCacheStore(${AvatarRequestProcessor.AssetIDsCacheStore.size}), ColorCacheStore(${AvatarRequestProcessor.ColorCacheStore.size}), SimpleCharacterFetchCacheStore(${AvatarRequestProcessor.SimpleCharacterFetchCacheStore.size}) and QueriedCharacterFetchCacheStore (${AvatarRequestProcessor.QueriedCharacterFetchCacheStore.size})`,
 						);
 
 						AvatarRequestProcessor.RunTheRoundRobinRunThrough(
@@ -609,6 +800,7 @@ export class AvatarRequestProcessor {
 								AvatarRequestProcessor.AssetIDsCacheStore,
 								AvatarRequestProcessor.ColorCacheStore,
 								AvatarRequestProcessor.SimpleCharacterFetchCacheStore,
+								AvatarRequestProcessor.QueriedCharacterFetchCacheStore,
 							],
 							[
 								'GeneralCacheStore',
@@ -616,6 +808,7 @@ export class AvatarRequestProcessor {
 								'AssetIDsCacheStore',
 								'ColorCacheStore',
 								'SimpleCharacterFetchCacheStore',
+								'QueriedCharacterFetchCacheStore',
 							],
 						);
 
@@ -624,6 +817,7 @@ export class AvatarRequestProcessor {
 						AvatarRequestProcessor.AssetIDsCacheStore.clear();
 						AvatarRequestProcessor.ColorCacheStore.clear();
 						AvatarRequestProcessor.SimpleCharacterFetchCacheStore.clear();
+						AvatarRequestProcessor.QueriedCharacterFetchCacheStore.clear();
 					}
 				}, cacheRefreshInterval);
 		}
