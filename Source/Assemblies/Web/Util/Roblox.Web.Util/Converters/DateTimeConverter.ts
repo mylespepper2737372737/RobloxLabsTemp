@@ -1,5 +1,5 @@
-export namespace DateTimeConverter {
-	export function TwentyFourHourToTwelveHour(time: any) {
+export class DateTimeConverter {
+	public static TwentyFourHourToTwelveHour(time: any) {
 		// Check correct time format and split into components
 		time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
 
@@ -12,9 +12,9 @@ export namespace DateTimeConverter {
 		return time.join(''); // return adjusted time or original string
 	}
 
-	export function DateToLocaleDate(date: Date) {
+	public static DateToLocaleDate(date: Date) {
 		const split = date.toLocaleString().replace(',', '').split(' '); // split to [Date, Time]
-		const time = TwentyFourHourToTwelveHour(split[1]);
+		const time = DateTimeConverter.TwentyFourHourToTwelveHour(split[1]);
 		return `${split[0]} ${time}`;
 	}
 }

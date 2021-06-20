@@ -3,7 +3,7 @@ import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from './Logging/FastLog';
 import { ICustomError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { ICustomErrorList } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomErrorList';
 import { IServiceError } from '../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/IServiceError';
-import { StatusCodes } from './Common/StatusCodes';
+import { Common } from './Common/StatusCodes';
 import stack from 'stack-trace';
 import filestream from 'fs';
 import errorText from 'source-code-error';
@@ -62,7 +62,7 @@ export class ErrorsClient<TResponse extends Response> {
 	 * @returns {void} Returns nothing.
 	 */
 	public RespondWithAHttpStatusError(status: number): void {
-		const customErrors: ICustomError[] = [{ code: status || 0, message: StatusCodes[status.toString()] || 'Unknown' }];
+		const customErrors: ICustomError[] = [{ code: status || 0, message: Common.StatusCodes[status.toString()] || 'Unknown' }];
 		this.RespondWithCustomErrors(status, customErrors, true);
 		return;
 	}

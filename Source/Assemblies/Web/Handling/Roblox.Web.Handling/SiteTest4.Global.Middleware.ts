@@ -29,13 +29,10 @@ import crypto from 'crypto';
 import headers from '../../../Common/Constants/Roblox.Common.Constants/DefaultHeaders';
 import { RequestHandler } from 'express-serve-static-core';
 import { DFFlag, DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG5 } from '../../Util/Roblox.Web.Util/Logging/FastLog';
-import {
-	GetValueFromFormDataString,
-	GetValuesFromFormDataString,
-} from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
 import { CommonValidator } from '../../Util/Roblox.Web.Util/Validators/CommonValidator';
 import { DateTimeConverter } from '../../Util/Roblox.Web.Util/Converters/DateTimeConverter';
 import { OriginMaster } from '../../Util/Roblox.Web.Util/OriginMaster';
+import { KeyValueMapping } from '../../../Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 
 DYNAMIC_LOGGROUP('Protocol77');
 DYNAMIC_LOGGROUP('Tasks');
@@ -43,7 +40,7 @@ DYNAMIC_LOGGROUP('Tasks');
 export const GlobalMiddleware = ((request, response, nextExecutingContext) => {
 	const commonValidatorClient = new CommonValidator(response);
 
-	const tracker = GetValuesFromFormDataString(['RBXEventTrackerV2', 'RBXEventTracker'], request.headers.cookie);
+	const tracker = KeyValueMapping.GetValuesFromCookieString(['RBXEventTrackerV2', 'RBXEventTracker'], request.headers.cookie);
 	if (!tracker)
 		response.cookie(
 			'RBXEventTrackerV2',
@@ -63,7 +60,7 @@ export const GlobalMiddleware = ((request, response, nextExecutingContext) => {
 			!request.path.startsWith('/js')) ||
 		DFFlag('NoMaintenance')
 	) {
-		const cookie = GetValueFromFormDataString('RobloxSecurityToken', request.headers.cookie);
+		const cookie = KeyValueMapping.GetValueFromCookieString('RobloxSecurityToken', request.headers.cookie);
 		if (
 			!commonValidatorClient.ValidateDoesTheWorldGetToViewTheSite(
 				request.method,
@@ -97,7 +94,8 @@ export const GlobalMiddleware = ((request, response, nextExecutingContext) => {
 	);
 	response.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
 	try {
-		OriginMaster.Do(request.headers['origin'], request.protocol, response);
+		const om = new OriginMaster(response);
+		om.ExecuteOriginCheck(request.headers['origin'], request.protocol);
 	} catch (e) {
 		FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 	}

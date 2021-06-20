@@ -43,12 +43,13 @@ export const Kestrel = ((req, res, next) => {
 	);
 	res.header({ server: 'Kestrel', 'X-DNS-Prefetch-Control': 'off' });
 	if (req.headers['origin'] === 'https://www.sitetest4.robloxlabs.com' || req.xhr) {
+		const om = new OriginMaster(res);
 		res.header(
 			'Access-Control-Allow-Headers',
 			'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN, Pragma, Cache-Control, expires',
 		);
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-		OriginMaster.Do(req.headers['origin'], req.protocol, res);
+		om.ExecuteOriginCheck(req.headers['origin'], req.protocol);
 	}
 
 	next();

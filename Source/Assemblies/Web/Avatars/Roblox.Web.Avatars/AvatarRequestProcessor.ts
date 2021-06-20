@@ -9,15 +9,10 @@ import { Convert } from '../../../../System/Convert';
 import { Task } from '../../../../System/Threading/Task';
 import { BodyColorsRequest } from '../../../../Websites/Roblox.GameWebsite/Models/Game/BodyColorsRequest';
 import { AvatarAccoutrementsRequest } from '../../../../Websites/Roblox.GameWebsite/Models/Game/IAvatarAccoutrementsRequest';
-import { ApiKeys } from '../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
-import {
-	FetchKeyFromObjectCaseInsensitive,
-	FetchKeyFromObjectCaseInsensitiveOrDefault,
-} from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
-import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
-import { ServiceClient } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
-import { CachePolicy, IClientRequest } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Models/IClientRequest';
+import { BaseURL } from '../../../Common/Roblox.Common/BaseUrl';
+import { HttpRequestMethodEnum } from '../../../Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
+import { HttpClientInvoker } from '../../../Http/HttpClientInvoker/Roblox.Http.HttpClientInvoker/Implementation/HttpClientInvoker';
+import { CachePolicy, IClientRequest } from '../../../Http/HttpClientInvoker/Roblox.Http.HttpClientInvoker/Models/IClientRequest';
 import {
 	DFLog,
 	DYNAMIC_LOGVARIABLE,
@@ -28,6 +23,7 @@ import {
 	FASTLOGNOFILTER,
 	FASTLOGS,
 } from '../../Util/Roblox.Web.Util/Logging/FastLog';
+import { KeyValueMapping } from '../../../Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 
 DYNAMIC_LOGVARIABLE('CacheStore', 7);
 DYNAMIC_LOGVARIABLE('RoundRobinRunThrough', 7);
@@ -39,7 +35,7 @@ export class AvatarRequestProcessor {
 	/* Constants */
 	private static readonly GLOBAL_CONFIG: IClientRequest = {
 		QueryString: {
-			ApiKey: ApiKeys.TestApi,
+			ApiKey: '8DAE2E89-BCFA-4735-AB79-D9A07ABA9263',
 		},
 		Method: HttpRequestMethodEnum.GET,
 		CachePolicy: CachePolicy.StaleAfterOneHour /* 6 */,
@@ -113,13 +109,13 @@ export class AvatarRequestProcessor {
 
 	/* Usable private members */
 	private readonly _response: Response;
-	private readonly _cachedClient: ServiceClient.HttpClientInvoker;
+	private readonly _cachedClient: HttpClientInvoker;
 
 	public constructor(policy: CachePolicy, response: Response) {
 		AvatarRequestProcessor.RegisterTheRoundRobin(this, policy);
 
 		this._response = response;
-		this._cachedClient = new ServiceClient.HttpClientInvoker(AvatarRequestProcessor.GLOBAL_CONFIG);
+		this._cachedClient = new HttpClientInvoker(AvatarRequestProcessor.GLOBAL_CONFIG);
 	}
 
 	public static get IsCacheCleared() {
@@ -135,24 +131,24 @@ export class AvatarRequestProcessor {
 	public ExtractDataFromQueryStringForAvatarAccoutrementsRequest(
 		request: Request<null, string, null, AvatarAccoutrementsRequest>,
 	): [ulong, string, bool] {
-		let UserID = FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
-		const UserName = FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
-		const allowSSL = FetchKeyFromObjectCaseInsensitiveOrDefault<bool>(request.query, 'AllowSSL', false);
+		let UserID = KeyValueMapping.FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
+		const UserName = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
+		const allowSSL = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<bool>(request.query, 'AllowSSL', false);
 		return [Convert.ToUInt64(UserID), UserName, Convert.ToBoolean(allowSSL)];
 	}
 
 	public ExtractDataFromQueryStringForBodyColorsRequest(request: Request<null, string, null, BodyColorsRequest>): [ulong, string] {
-		let UserID = FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
-		const UserName = FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
+		let UserID = KeyValueMapping.FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
+		const UserName = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
 		return [Convert.ToUInt64(UserID), UserName];
 	}
 
 	public ExtractDataFromQueryStringForGetAvatarFetchRequest(
 		request: Request<null, null, null, AvatarFetchRequest>,
 	): [ulong, string, ulong] {
-		const UserID = FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
-		const UserName = FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
-		const PlaceID = FetchKeyFromObjectCaseInsensitiveOrDefault<long>(request.query, 'PlaceID', 1818);
+		const UserID = KeyValueMapping.FetchKeyFromObjectCaseInsensitive<long>(request.query, 'UserID');
+		const UserName = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<string>(request.query, 'UserName', null);
+		const PlaceID = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<long>(request.query, 'PlaceID', 1818);
 		return [Convert.ToUInt64(UserID), UserName, Convert.ToUInt64(PlaceID)];
 	}
 
@@ -306,8 +302,8 @@ export class AvatarRequestProcessor {
 		const collectionId = `Users_TryUpdateUserIDByUserName:${this.userName}`;
 		const [WasSuccessful, CachedResponse] = await this._cachedClient.ExecuteAsync<GetByUserNameResponse>();
 
-		const WasRemotelySuccessful = FetchKeyFromObjectCaseInsensitive<bool>(CachedResponse.ResponsePayload, 'Success');
-		const RemoteUserID = FetchKeyFromObjectCaseInsensitiveOrDefault<long>(CachedResponse.ResponsePayload, 'ID', null);
+		const WasRemotelySuccessful = KeyValueMapping.FetchKeyFromObjectCaseInsensitive<bool>(CachedResponse.ResponsePayload, 'Success');
+		const RemoteUserID = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<long>(CachedResponse.ResponsePayload, 'ID', null);
 
 		this.SetCacheValue(AvatarRequestProcessor.UserNameCacheStore, collectionId, RemoteUserID);
 
@@ -491,7 +487,11 @@ export class AvatarRequestProcessor {
 	private async ExecuteGetAvatarAssetIDsAsync() {
 		const collectionId = `Assets_TryGetCachedAssetIDs:${this.userID}:${this.userName}`;
 		const [WasSuccessful, CachedAvatarResponse] = await this._cachedClient.ExecuteAsync<AssetIdListModel>();
-		const collection = FetchKeyFromObjectCaseInsensitiveOrDefault<long[]>(CachedAvatarResponse.ResponsePayload, 'AssetIDs', null);
+		const collection = KeyValueMapping.FetchKeyFromObjectCaseInsensitiveOrDefault<long[]>(
+			CachedAvatarResponse.ResponsePayload,
+			'AssetIDs',
+			null,
+		);
 
 		this.SetCacheValue(AvatarRequestProcessor.AssetIDsCacheStore, collectionId, collection);
 
@@ -572,7 +572,7 @@ export class AvatarRequestProcessor {
 				return;
 			}
 
-			const bodyColors = FetchKeyFromObjectCaseInsensitive<AvatarBodyColorsModel>(simpleAvatarResponse, 'BodyColors');
+			const bodyColors = KeyValueMapping.FetchKeyFromObjectCaseInsensitive<AvatarBodyColorsModel>(simpleAvatarResponse, 'BodyColors');
 
 			if (bodyColors && !this.isEmptyObject(bodyColors)) {
 				return this.RespondWithBodyColors(bodyColors, (_err, res) => {
@@ -596,7 +596,7 @@ export class AvatarRequestProcessor {
 		if (simpleAvatarResponse === null) {
 			return;
 		}
-		const bodyColors = FetchKeyFromObjectCaseInsensitive<AvatarBodyColorsModel>(simpleAvatarResponse, 'BodyColors');
+		const bodyColors = KeyValueMapping.FetchKeyFromObjectCaseInsensitive<AvatarBodyColorsModel>(simpleAvatarResponse, 'BodyColors');
 		const data = await this.GetAvatarFetchModelV2(bodyColors);
 
 		if (data && !this.isEmptyObject(data)) return data;

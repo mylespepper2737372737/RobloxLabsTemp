@@ -1,5 +1,4 @@
 import { Response } from 'express';
-import { ICustomError } from '../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { ErrorsClient } from '../ErrorsClient';
 import { ISingleValidatorBase } from './Interfaces/ISingleValidatorBase';
 
@@ -7,18 +6,23 @@ export class ProtocolValidator<TResponse extends Response> implements ISingleVal
 	private readonly _errorsClient: ErrorsClient<TResponse>;
 
 	public constructor(response: TResponse) {
-		this._errorsClient = new ErrorsClient(response);
+		if (response !== null) this._errorsClient = new ErrorsClient(response);
 	}
 
 	public Validate(originalValue: string, itShouldBe: string): boolean {
-		const errors: ICustomError[] = [];
 		originalValue = originalValue.toLowerCase();
 		if (originalValue !== itShouldBe) {
-			errors.push({
-				code: 0,
-				message: `${itShouldBe.toUpperCase()} Required`,
-			});
-			this._errorsClient.RespondWithCustomErrors(403, errors, true);
+			if (this._errorsClient !== undefined)
+				this._errorsClient.RespondWithCustomErrors(
+					403,
+					[
+						{
+							code: 0,
+							message: `${itShouldBe.toUpperCase()} Required`,
+						},
+					],
+					true,
+				);
 			return false;
 		}
 		return true;

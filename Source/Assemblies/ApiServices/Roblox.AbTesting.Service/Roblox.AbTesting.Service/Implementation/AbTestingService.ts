@@ -1,4 +1,3 @@
-import { Experiments } from '../../../../Common/ABTesting/Roblox.Common.ABTesting/Experiments';
 import { IEnrollment } from '../../../../Platform/AbTesting/Roblox.Platform.AbTesting/IEnrollment';
 import { ExperimentStatusEnum } from '../../../../Platform/AbTesting/Roblox.Platform.AbTesting/ExperimentStatusEnum';
 import { SubjectTypeEnum } from '../../../../Platform/AbTesting/Roblox.Platform.AbTesting/SubjectTypeEnum';
@@ -11,7 +10,13 @@ export class AbTestingService {
 		enrollments.forEach((enrollment) => {
 			// We are verifying if this enrollment is safe
 			if (enrollment) {
-				const experiment_status = Experiments.GetExperimentStatus(enrollment);
+				const experiment_status = {
+					ExperimentName: enrollment.ExperimentName,
+					SubjectTargetId: enrollment.SubjectTargetId,
+					SubjectType: enrollment.SubjectType,
+					Status: ExperimentStatusEnum.Inactive,
+					Variation: null,
+				};
 				const experiment = {
 					ExperimentName: experiment_status.ExperimentName,
 					SubjectTargetId: experiment_status.SubjectTargetId,

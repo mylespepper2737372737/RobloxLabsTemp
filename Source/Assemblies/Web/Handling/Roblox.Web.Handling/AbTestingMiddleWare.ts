@@ -49,12 +49,13 @@ export const AbTestingMiddleWare = ((req, res, next) => {
 		'x-frame-options': 'SAMEORIGIN',
 	});
 	if (req.method !== 'GET') {
+		const om = new OriginMaster(res);
 		res.header(
 			'Access-Control-Allow-Headers',
 			'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN, Pragma, Cache-Control, expires',
 		);
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-		OriginMaster.Do(req.headers['origin'], req.protocol, res);
+		om.ExecuteOriginCheck(req.headers['origin'], req.protocol);
 	}
 
 	next();

@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { HttpRequestMethodEnum } from '../../../../Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { ICustomError } from '../../../../Platform/ErrorModels/Roblox.Platform.ErrorModels/CustomError';
 import { ErrorsClient } from '../ErrorsClient';
 import { IServiceValidatorBase } from './Interfaces/IServiceValidatorBase';

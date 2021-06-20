@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { BaseURL } from '../../../../Common/Roblox.Common/BaseUrl';
 import { __baseDirName } from '../../../../Common/Constants/Roblox.Common.Constants/Directories';
 import { DYNAMIC_FASTFLAGVARIABLE, DYNAMIC_FASTSTRINGVARIABLE, DFFlag, DFString } from '../Logging/FastLog';
 import filestream from 'fs';

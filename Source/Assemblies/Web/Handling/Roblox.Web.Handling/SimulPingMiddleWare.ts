@@ -42,12 +42,13 @@ export const SimulPingMiddleware = ((req, res, next) => {
 		req.headers['user-agent'].toUpperCase(),
 	);
 	if ((req.path === '/recipe' || req.path === '/report') && req.hostname === 'lms.simulpong.com') {
+		const om = new OriginMaster(res);
 		res.header(
 			'Access-Control-Allow-Headers',
 			'Origin, Referer, X-Requested-With, Content-Type, X-CSRF-TOKEN, Pragma, Cache-Control, expires',
 		);
 		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-		OriginMaster.Do(req.headers['origin'], req.protocol, res);
+		om.ExecuteOriginCheck(req.headers['origin'], req.protocol);
 	}
 	if (!req.headers.cookie && req.hostname === 'rcity.simulpong.com' && req.path.toLocaleLowerCase() === '/') {
 		return res.redirect('https://rcity.simulpong.com/Login/');

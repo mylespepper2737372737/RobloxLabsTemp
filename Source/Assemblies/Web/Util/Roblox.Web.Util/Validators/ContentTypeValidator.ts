@@ -13,7 +13,8 @@ export class ContentTypeValidator<TResponse extends Response> implements IServic
 	}
 
 	public Validate(originalContentType: string, contentTypeToValidate: string, isService: boolean = false) {
-		return this.MultiValidate(originalContentType, [contentTypeToValidate], isService);
+		const contentTypesToValidate = contentTypeToValidate !== null ? [contentTypeToValidate] : [];
+		return this.MultiValidate(originalContentType, contentTypesToValidate, isService);
 	}
 	public MultiValidate(originalContentType: string, contentTypesToValidate: string[], isService: boolean = false): boolean {
 		const errors: ICustomError[] = [];
@@ -38,14 +39,19 @@ export class ContentTypeValidator<TResponse extends Response> implements IServic
 		}
 		originalContentType = originalContentType.toLowerCase();
 		let contentTypeIsValid = false;
-		contentTypesToValidate.every((contentType) => {
-			contentType = contentType.toLowerCase();
-			if (contentType === originalContentType) {
-				contentTypeIsValid = true;
-				return false;
-			}
-			return true;
-		});
+		if (contentTypesToValidate.length > 0) {
+			contentTypesToValidate.every((contentType) => {
+				contentType = contentType.toLowerCase();
+				if (contentType === originalContentType) {
+					contentTypeIsValid = true;
+					return false;
+				}
+				return true;
+			});
+		} else {
+			contentTypeIsValid = true;
+		}
+
 		if (!contentTypeIsValid) {
 			const errorMessage = `The request entity's media type '${originalContentType}' is not supported for this resource.`;
 			if (isService) {

@@ -42,7 +42,7 @@ interface wssOpts {
 
 FastLogGlobal.IncludeHostLogLevels();
 
-export = (
+export const MapWSS = (
 	httpserver: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
 	httpsServer?: { on: (arg0: string, arg1: (r: any, s: any, h: any) => any) => void },
 	opts?: { path: filestream.PathLike; apiName: string; logSetups: any } | wssOpts,

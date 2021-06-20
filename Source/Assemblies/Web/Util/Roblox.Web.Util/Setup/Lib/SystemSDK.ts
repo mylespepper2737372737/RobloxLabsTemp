@@ -26,60 +26,30 @@
 */
 
 import { Express as IApplicationBuilder } from 'express-serve-static-core';
-import { json as jparser } from 'express';
+import { json as jparser, Response } from 'express';
 import bparser from 'body-parser';
-import { OutgoingMessage } from 'http';
 import cparser from 'cookie-parser';
 import DeveloperExceptionPage from '../Implementation/DeveloperExceptionPage';
 import UseRouting from '../Implementation/UseRouting';
 import MapControllers from '../Implementation/MapControllers';
 import UsePages from '../Implementation/UsePages';
-import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2 } from '../../Logging/FastLog';
+import { DFFlag, DFLog, DYNAMIC_LOGGROUP, FASTLOG2, FASTLOG3, SFLog } from '../../Logging/FastLog';
 import UseFileList from '../Implementation/UserFileList';
 import MapControllersV2 from '../Implementation/MapControllersV2';
+import { __baseDirName, __sslDirName } from '../../../../../Common/Constants/Roblox.Common.Constants/Directories';
+import { IConfigOptions } from '../Interfaces/IConfigOptions';
+import { FastLogGlobal } from '../../Logging/FastLogGlobal';
+import { Server as HTTPServer } from 'http';
+import SSL, { Server as SSLServer } from 'https';
+import SSL2 from 'spdy';
+import filestream from 'fs';
+import { MapWSS } from '../Implementation/MapWebsockets';
 
-export interface ConfigOpts<R extends OutgoingMessage = OutgoingMessage> {
-	app: IApplicationBuilder;
-
-	UseEndpoints?: boolean;
-	UseRouting?: boolean;
-	RoutingOpts?: {
-		caseSensitive?: boolean;
-		mergeParams?: boolean;
-		strict?: boolean;
-	};
-	EndpointOpts?: {
-		path: string;
-		logSetups?: boolean;
-		apiName?: string;
-	};
-	PagesOpts?: {
-		path: string;
-	};
-	UsePages?: boolean;
-	PageOpts?: {
-		cacheControl?: boolean;
-		dotfiles?: string;
-		etag?: boolean;
-		extensions?: string[] | false;
-		fallthrough?: boolean;
-		immutable?: boolean;
-		index?: boolean | string | string[];
-		lastModified?: boolean;
-		maxAge?: number | string;
-		redirect?: boolean;
-		setHeaders?: (res: R, path: string, stat: unknown) => unknown;
-	};
-	errorpage?: boolean;
-	fileListings?: boolean;
-	useBetaControllerMapping?: boolean;
-	doNotUseUrlEncoded?: boolean;
-	doNotUseJSON?: boolean;
-}
+FastLogGlobal.IncludeHostLogLevels();
 
 DYNAMIC_LOGGROUP('Tasks');
-export namespace SystemSDK {
-	export const Configure = async (opts: ConfigOpts): Promise<void> => {
+export class SystemSDK {
+	public static async Configure(opts: IConfigOptions): Promise<void> {
 		try {
 			opts.app.disable('etag');
 			opts.app.disable('case sensitive routing');
@@ -111,5 +81,89 @@ export namespace SystemSDK {
 		} catch (e) {
 			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Message: %s, Stack: %s`, e.message, e.stack);
 		}
-	};
+	}
+
+	public static MetadataBuilder(
+		app: IApplicationBuilder,
+		PagesDir: string,
+		EndpointsDir: string,
+		apiName: string,
+		errorpage?: boolean,
+		fileListings?: boolean,
+		useNewControllers?: boolean,
+		doNotParseJSON?: boolean,
+		doNotParseFORM?: boolean,
+		doNotUseEndpoints?: boolean,
+	) {
+		return {
+			app: app,
+			UsePages: true,
+			PageOpts: {
+				etag: false,
+				redirect: true,
+				lastModified: false,
+				setHeaders: (response: Response): void => {
+					response.set('x-powered-by', 'ASP.NET');
+					response.set('server', 'Amazon S3');
+				},
+			},
+			UseRouting: true,
+			PagesOpts: {
+				path: __baseDirName + PagesDir,
+			},
+			EndpointOpts: {
+				path: __baseDirName + EndpointsDir,
+				logSetups: true,
+				apiName: apiName,
+			},
+			errorpage: errorpage,
+			fileListings,
+			useBetaControllerMapping: useNewControllers,
+			doNotUseUrlEncoded: doNotParseFORM,
+			doNotUseJSON: doNotParseJSON,
+			UseEndpoints: !doNotUseEndpoints,
+		} as unknown as IConfigOptions;
+	}
+
+	public static ServerStarter(
+		app: IApplicationBuilder,
+		name: string,
+		useHttps: bool = true,
+		useHttp: bool = true,
+		httpPort: int = 80,
+		httpsPort: int = 443,
+	): [HTTPServer, SSLServer] {
+		try {
+			let httpsServer: SSLServer;
+			let httpServer: HTTPServer;
+			if (useHttps)
+				httpsServer = (DFFlag('GlobalHTTP2Enabled') ? SSL2 : SSL)
+					.createServer(
+						{
+							cert: filestream.readFileSync(__sslDirName + '/ST4.crt', 'utf-8'),
+							key: filestream.readFileSync(__sslDirName + '/ST4.key', 'utf-8'),
+							ca: [filestream.readFileSync(__sslDirName + '/rootCA.crt', 'utf-8')],
+							passphrase: process.env['ST4_pw'],
+						},
+						app,
+					)
+					.listen(httpsPort, name, () => FASTLOG3(SFLog[name], `[SFLog::%s] https://%s:%d Started`, name, name, httpsPort));
+			if (useHttp)
+				httpServer = app.listen(httpPort, name, () =>
+					FASTLOG3(SFLog[name], `[SFLog::%s] http://%s:%d Started`, name, name, httpPort),
+				);
+			return [httpServer, httpsServer];
+		} catch (err) {
+			throw new Error(err);
+		}
+	}
+
+	public static async WebsocketStarter(httpServer: HTTPServer, httpsServer: SSLServer, dir: string, apiName: string) {
+		await MapWSS(httpServer, httpsServer, {
+			path: __baseDirName + dir,
+			shouldHandleUpgrade: true,
+			apiName: apiName,
+			logSetups: true,
+		});
+	}
 }

@@ -71,7 +71,7 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 				try {
 					map = require(v);
 				} catch (err) {
-					return FASTLOG2(SFLog[opts.apiName], '[SFLog::%s] %s', opts.apiName, err.message);
+					return FASTLOG2(SFLog[opts.apiName], '[SFLog::%s] %s', opts.apiName, err.stack);
 				}
 				let func: (request: Request, Response: Response) => unknown;
 				let method: string;
@@ -176,7 +176,7 @@ const MapControllers = (app?: IApplicationBuilder, opts?: EndpointOpts): Promise
 							return FASTLOGS(SFLog[opts.apiName], '[SFLog::%s] Error requesting Controller.', opts.apiName);
 						}
 					} catch (err) {
-						return FASTLOG2(SFLog[opts.apiName], '[SFLog::%s] %s', opts.apiName, err.message);
+						return FASTLOG2(SFLog[opts.apiName], '[SFLog::%s] %s', opts.apiName, err.stack);
 					}
 				} else {
 					return FASTLOGS(SFLog[opts.apiName], '[SFLog::%s] This Controller had no default export.', opts.apiName);

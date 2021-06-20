@@ -29,7 +29,7 @@ import { Express as IApplicationBuilder } from 'express-serve-static-core';
 import { DFLog, DYNAMIC_LOGGROUP, FASTLOG2 } from '../../Logging/FastLog';
 import { __baseDirName } from '../../../../../Common/Constants/Roblox.Common.Constants/Directories';
 import filestream from 'fs';
-import { ControllerMethodParser } from '../../../../Parsers/Roblox.Web.Parsers/ControllerMethodParser';
+import { WebControllerParsers } from '../../../../Parsers/Roblox.Web.Parsers/WebControllerParsers';
 import { Walkers } from '../../Walkers';
 
 interface EndpointOpts {
@@ -58,7 +58,7 @@ const MapControllersV2 = (app?: IApplicationBuilder, opts?: EndpointOpts): Promi
 					const data = require(dir);
 					const controller = Walkers.WalkClassMap(data);
 					if (controller) {
-						ControllerMethodParser(app, controller, opts.apiName);
+						WebControllerParsers.ControllerMethodParser(app, controller, opts.apiName);
 					}
 				} catch (e) {
 					throw new Error('Error while parsing the given controller: ' + e.message + e.stack);

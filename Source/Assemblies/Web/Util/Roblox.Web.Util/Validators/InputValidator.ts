@@ -1,6 +1,6 @@
 import { Profanity } from '../../../../DataV2/Filtering/Roblox.DataV2.Filtering/Profanity';
 import { Whitespace } from '../../../../DataV2/Filtering/Roblox.DataV2.Filtering/Whitespace';
-import { SomeFactory } from '../Factories/SomeFactory';
+import { PredicateLoaders } from '../Factories/PredicateLoaders';
 
 export class InputValidator {
 	public CheckDoesNumberStringIncludeAlphaChars(input: string | number) {
@@ -34,7 +34,7 @@ export class InputValidator {
 	}
 
 	public CheckDoesStringIncludeWhitespace(str: string) {
-		return SomeFactory((char) => str.indexOf(char) > -1, Whitespace);
+		return PredicateLoaders.SomePredicate((char) => str.indexOf(char) > -1, Whitespace);
 	}
 
 	public CheckIfValueIsIncludedInArray<TValue>(value: TValue, array: TValue[]) {

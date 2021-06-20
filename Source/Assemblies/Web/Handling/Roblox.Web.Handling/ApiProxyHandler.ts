@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express-serve-static-core';
-import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { BaseURL } from '../../../Common/Roblox.Common/BaseUrl';
 import { FASTLOG5, DFLog, DYNAMIC_LOGGROUP } from '../../Util/Roblox.Web.Util/Logging/FastLog';
 
 DYNAMIC_LOGGROUP('Protocol77');

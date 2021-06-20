@@ -1,9 +1,12 @@
 import { RequestHandler } from 'express-serve-static-core';
-import { GetValueFromCookieString } from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromCookieString';
-import { GetUserFromCookie } from '../../Auth/Roblox.Web.Auth/GetUserFromCookie';
+import { KeyValueMapping } from '../../../Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
+import { Security } from '../../Auth/Roblox.Web.Auth/Security';
 
 export const CookieHandler = (async (request, response, next) => {
-	if (!(await GetUserFromCookie(request)) && GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie) !== null)
+	if (
+		!(await Security.GetUserFromCookie(request)) &&
+		KeyValueMapping.GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie) !== null
+	)
 		response.clearCookie('.ROBLOSECURITY', { domain: '.sitetest4.robloxlabs.com' });
 	next();
 }) as RequestHandler;

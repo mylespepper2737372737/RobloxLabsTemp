@@ -28,9 +28,9 @@
 import { Request, Response } from 'express';
 import { DFFlag, DFString, DYNAMIC_FASTFLAG, DYNAMIC_FASTSTRING } from '../../Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../Platform/Membership/Roblox.Platform.Membership/User';
-import { GenerateUUIDV4 } from '../../Util/Roblox.Web.Util/Generators/GenerateUUIDV4';
-import { GetValueFromFormDataString } from '../../../Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
 import { InputValidator } from '../../Util/Roblox.Web.Util/Validators/InputValidator';
+import { KeyValueMapping } from '../../../Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
+import { GUID } from '../../Util/Roblox.Web.Util/Generators/Guid';
 
 DYNAMIC_FASTFLAG('IsBannerEnabled');
 DYNAMIC_FASTSTRING('SiteBanner');
@@ -42,9 +42,9 @@ export const WWW = async (request: Request, response: Response) => {
 		return response.status(200).send('not found');
 	}
 	if (inputValidatorClient.CheckDoesStringIncludeASPExtension(request.path)) {
-		return response.redirect(`/request-error?id=${GenerateUUIDV4()}&mode=&code=404`);
+		return response.redirect(`/request-error?id=${GUID.GenerateUUIDV4()}&mode=&code=404`);
 	}
-	let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+	let cookie = KeyValueMapping.GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie);
 	const authenticatedUser = await User.GetByCookie(cookie);
 	if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: '.sitetest4.robloxlabs.com' });
 	return response.status(404).render('Error/NotFound', {

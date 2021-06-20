@@ -1,4 +1,4 @@
-import Hosts from '../../Constants/Roblox.Common.Constants/Hosts'; /* we should really be using BaseURL to contruct all of these instead of hardcoding them */
+import Hosts from '../Constants/Roblox.Common.Constants/Hosts'; /* we should really be using BaseURL to contruct all of these instead of hardcoding them */
 import qs from 'querystring';
 
 /**
