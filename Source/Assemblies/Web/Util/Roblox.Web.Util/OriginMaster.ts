@@ -1,29 +1,42 @@
 import { Response } from 'express';
 import { FileBaseUrls } from '../../../Common/Constants/Roblox.Common.Constants/FileBaseUrls';
-import { StripTheTrailingSlash } from '../../Parsers/Roblox.Web.Parsers/StripTheTrailingSlash';
+import { WebParsers } from '../../Parsers/Roblox.Web.Parsers/WebParsers';
 
 export class OriginMaster {
-	public static Do(origin: string, protocol: string, responseBase: Response) {
+	private _response: Response;
+
+	public constructor(response: Response) {
+		this._response = response;
+	}
+
+	public ExecuteOriginCheck(origin: string, protocol: string) {
 		const host = new URL(origin || `http://no-origin.com`);
 
 		if (host.hostname in FileBaseUrls) {
-			responseBase.setHeader('Access-Control-Allow-Origin', StripTheTrailingSlash(host.toString()));
-			responseBase.setHeader('Access-Control-Allow-Credentials', 'true');
+			this._response.setHeader('Access-Control-Allow-Origin', WebParsers.StripTheTrailingSlash(host.toString()));
+			this._response.setHeader('Access-Control-Allow-Credentials', 'true');
 		} else {
-			if (!origin) responseBase.setHeader('Access-Control-Allow-Origin', `${protocol}://www.sitetest4.robloxlabs.com`);
+			if (!origin) this._response.setHeader('Access-Control-Allow-Origin', `${protocol}://www.sitetest4.robloxlabs.com`);
 		}
 	}
 }
 
 export class OriginMasterDescriptive {
-	public static Do(appHost: string, origin: string, protocol: string, responseBase: Response) {
+	private _response: Response;
+	private _appHost: string;
+
+	public constructor(response: Response, host: string) {
+		this._response = response;
+		this._appHost = host;
+	}
+	public ExecuteOriginCheck(origin: string, protocol: string) {
 		const host = new URL(origin || `http://no-origin.com`);
 
 		if (host.hostname in FileBaseUrls) {
-			responseBase.setHeader('Access-Control-Allow-Origin', StripTheTrailingSlash(host.toString()));
-			responseBase.setHeader('Access-Control-Allow-Credentials', 'true');
+			this._response.setHeader('Access-Control-Allow-Origin', WebParsers.StripTheTrailingSlash(host.toString()));
+			this._response.setHeader('Access-Control-Allow-Credentials', 'true');
 		} else {
-			if (!origin) responseBase.setHeader('Access-Control-Allow-Origin', `${protocol}://${appHost}`);
+			if (!origin) this._response.setHeader('Access-Control-Allow-Origin', `${protocol}://${this._appHost}`);
 		}
 	}
 }

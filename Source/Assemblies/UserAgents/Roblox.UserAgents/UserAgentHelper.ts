@@ -1,16 +1,16 @@
-import { SanitizeData } from '../../Web/Parsers/Roblox.Web.Parsers/SanitizeData';
+import { WebParsers } from '../../Web/Parsers/Roblox.Web.Parsers/WebParsers';
 
 export class UserAgentHelper {
 	public static CheckIsUserAgentRoblox(userAgent: string): bool {
 		if (!userAgent) return false;
-		userAgent = SanitizeData(userAgent);
+		userAgent = WebParsers.SanitizeData(userAgent);
 
 		return userAgent.toLowerCase().includes('roblox');
 	}
 
 	public static CheckIfStringIsValidUrl(str: string): bool {
 		if (!str) return false;
-		str = SanitizeData(str);
+		str = WebParsers.SanitizeData(str);
 
 		return (
 			str

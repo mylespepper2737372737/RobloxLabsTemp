@@ -2,8 +2,8 @@ import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../Web/Util/Roblox.Web.
 import { Task } from '../../../../System/Threading/Task';
 import { PartialDatabase } from '../../../Mssql/Roblox.Mssql.PartialDatabase/Implementation/PartialDatabase';
 import { PartialDatabaseConditionType } from '../../../Mssql/Roblox.Mssql.PartialDatabase/Enumeration/PartialDatabaseConditionType';
-import { SanitizeData } from '../../../Web/Parsers/Roblox.Web.Parsers/SanitizeData';
 import { ICounter } from './ICounter';
+import { WebParsers } from '../../../Web/Parsers/Roblox.Web.Parsers/WebParsers';
 
 DYNAMIC_LOGGROUP('Tasks');
 export class Counter implements ICounter {
@@ -37,7 +37,7 @@ export class Counter implements ICounter {
 
 	public static async CreateOrIncrementCounter(Name: string, Amount: number): Task<boolean> {
 		if (!Amount) Amount = 1;
-		Name = SanitizeData(Name);
+		Name = WebParsers.SanitizeData(Name);
 		if (!this.isConnected) await this.connectIfNotConnected();
 
 		const [, , counters] = this.dataBase.GetTable<ICounter>('counter', 'Id', true);

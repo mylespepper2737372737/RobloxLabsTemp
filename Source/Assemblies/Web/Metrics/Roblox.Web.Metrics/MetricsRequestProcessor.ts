@@ -4,16 +4,16 @@ import { MeasurementRequest } from '../../../../ApiSites/Roblox.Metrics.Api/Meas
 import { Convert } from '../../../../System/Convert';
 import { CountersClientV2 } from '../../../ApiClients/Roblox.Counters.Client/Implementation/CountersClient';
 import { Task } from '../../../../System/Threading/Task';
-import { SanitizeData } from '../../Parsers/Roblox.Web.Parsers/SanitizeData';
 import { ApiEmptyResponseModel } from '../../WebAPI/ApiEmptyResponseModel';
+import { WebParsers } from '../../Parsers/Roblox.Web.Parsers/WebParsers';
 
 export class MetricsRequestProcessor {
 	public async SendMeasurement(request: MeasurementRequest, response?: Response<ApiEmptyResponseModel>) {
-		const featureName = SanitizeData(request.featureName) || 'UnknownFeature';
-		const measureName = SanitizeData(request.measureName) || 'UnknownMeasurement';
-		const value = parseFloat(SanitizeData(request.value)) || 1;
+		const featureName = WebParsers.SanitizeData(request.featureName) || 'UnknownFeature';
+		const measureName = WebParsers.SanitizeData(request.measureName) || 'UnknownMeasurement';
+		const value = parseFloat(WebParsers.SanitizeData(request.value)) || 1;
 		const excludeCountry = Convert.ToBoolean(request.excludeCountry, false);
-		const metricsType = MetricsType[SanitizeData(request.metricsType)] || MetricsType.Sequence;
+		const metricsType = MetricsType[WebParsers.SanitizeData(request.metricsType)] || MetricsType.Sequence;
 
 		const key = `${featureName}_${measureName}${!excludeCountry ? '_US' : ''}`;
 

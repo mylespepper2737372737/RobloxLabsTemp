@@ -26,20 +26,19 @@
 */
 
 import { Request, Response } from 'express';
-import { ApiKeys } from '../../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
-import { SanitizeData } from '../../../../../Assemblies/Web/Parsers/Roblox.Web.Parsers/SanitizeData';
 import { ApiKeyValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
 import { InputValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/InputValidator';
 import { DFLog, FASTLOGS } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { ClientSettings } from '../../../../../Assemblies/Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
+import { KeyValueMapping } from '../../../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
+import { WebParsers } from '../../../../../Assemblies/Web/Parsers/Roblox.Web.Parsers/WebParsers';
 
 export default {
 	method: 'all',
 	func: (request: Request, response: Response) => {
 		const inputValidatorClient = new InputValidator();
 
-		const group = SanitizeData(request.params.group);
+		const group = WebParsers.SanitizeData(request.params.group);
 		const FSettings = ClientSettings.GetFSettings();
 		FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] ClientSettings QuietGet Settings got group %s.', group);
 		if (!inputValidatorClient.CheckIfValueIsIncludedInArray(group, FSettings))
@@ -50,8 +49,8 @@ export default {
 
 		if (
 			!apiKeyValidatorClient.MultiValidate(
-				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
-				[ApiKeys.ClientSettingsApi, ApiKeys.ClientSettingsApiV2],
+				KeyValueMapping.FetchKeyFromObjectCaseInsensitive<string>(request.query, 'ApiKey'),
+				['D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79', '76E5A40C-3AE1-4028-9F10-7C62520BD94F'],
 				true,
 			)
 		)

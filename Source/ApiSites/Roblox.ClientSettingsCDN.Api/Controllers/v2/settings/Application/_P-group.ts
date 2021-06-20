@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ClientSettings } from '../../../../../../Assemblies/Platform/ClientSettings/Roblox.Platform.ClientSettings/Implementation/ClientSettingsUtil';
-import { SanitizeData } from '../../../../../../Assemblies/Web/Parsers/Roblox.Web.Parsers/SanitizeData';
+import { WebParsers } from '../../../../../../Assemblies/Web/Parsers/Roblox.Web.Parsers/WebParsers';
 import { DFLog, FASTLOGS } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { InputValidator } from '../../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/InputValidator';
 
@@ -9,7 +9,7 @@ import { InputValidator } from '../../../../../../Assemblies/Web/Util/Roblox.Web
 export default {
 	method: 'all',
 	func: (request: Request, response: Response) => {
-		const group = SanitizeData(request.params.group);
+		const group = WebParsers.SanitizeData(request.params.group);
 		const FSettings = ClientSettings.GetFSettings();
 		FASTLOGS(DFLog('Tasks'), '[DFLog::Tasks] ClientSettings QuietGet Settings got group %s.', group);
 
