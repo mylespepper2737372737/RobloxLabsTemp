@@ -1,7 +1,6 @@
-import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
-import { ApiKeys } from '../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { ServiceClient } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
-import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { BaseURL } from '../../../Common/Roblox.Common/BaseUrl';
+import { HttpClientInvoker } from '../../../Http/HttpClientInvoker/Roblox.Http.HttpClientInvoker/Implementation/HttpClientInvoker';
+import { HttpRequestMethodEnum } from '../../../Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { Task } from '../../../../System/Threading/Task';
 import { Sequence } from '../../../../Services/Roblox.EphemeralCounters.Service/Sequence';
 
@@ -10,10 +9,10 @@ export class CountersClientV2 {
 		return new Promise<[boolean, number, any, Error]>(async (resumeFunction) => {
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('ephemeralcounters.api', 'v1.1/Counters/Increment', true);
 			const Payload = '{}';
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: Url,
 				QueryString: {
-					ApiKey: ApiKeys.EphemeralCountersApi,
+					ApiKey: '76E5A40C-3AE1-4028-9F10-7C62520BD94F',
 					counterName: Name,
 					amount: Amount,
 				},
@@ -31,10 +30,10 @@ export class CountersClientV2 {
 		return new Promise<[boolean, number, any, Error]>(async (resumeFunction) => {
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('ephemeralcounters.api', 'v1.1/Counters/BatchIncrement', true);
 			const Payload = JSON.stringify(request || {});
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: Url,
 				QueryString: {
-					ApiKey: ApiKeys.EphemeralCountersApi,
+					ApiKey: '76E5A40C-3AE1-4028-9F10-7C62520BD94F',
 				},
 				AdditionalHeaders: { 'Content-Type': 'application/json' },
 				Payload: Payload,
@@ -54,10 +53,10 @@ export class CountersClientV2 {
 				true,
 			);
 			const Payload = JSON.stringify(request || []);
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: Url,
 				QueryString: {
-					ApiKey: ApiKeys.EphemeralCountersApi,
+					ApiKey: '76E5A40C-3AE1-4028-9F10-7C62520BD94F',
 				},
 				AdditionalHeaders: { 'Content-Type': 'application/json' },
 				Payload: Payload,
@@ -76,10 +75,10 @@ export class CountersClient {
 			const request = counterNamesCsv.join(',');
 			const Url = BaseURL.ConstructServicePathFromSubDomainSimple('ephemeralcounters.api', 'v1.0/MultiIncrement', true);
 			const Payload = JSON.stringify({ counterNamesCsv: request });
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: Url,
 				QueryString: {
-					ApiKey: ApiKeys.EphemeralCountersApi,
+					ApiKey: '76E5A40C-3AE1-4028-9F10-7C62520BD94F',
 				},
 				AdditionalHeaders: { 'Content-Type': 'application/json' },
 				Payload: Payload,

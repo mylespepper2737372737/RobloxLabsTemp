@@ -1,7 +1,6 @@
-import { BaseURL } from '../../../Common/Client/Roblox.Common.Client/BaseUrl';
-import { ApiKeys } from '../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { ServiceClient } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
-import { HttpRequestMethodEnum } from '../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { BaseURL } from '../../../Common/Roblox.Common/BaseUrl';
+import { HttpClientInvoker } from '../../../Http/HttpClientInvoker/Roblox.Http.HttpClientInvoker/Implementation/HttpClientInvoker';
+import { HttpRequestMethodEnum } from '../../../Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { Task } from '../../../../System/Threading/Task';
 import { IUser } from '../../../Platform/Membership/Roblox.Platform.Membership/IUser';
 import { IUniverse } from '../../../Platform/Universes/Roblox.Platform.Universes/IUniverse';
@@ -15,10 +14,10 @@ export class PointsClient {
 	public static async CheckHealth(isRequestSecure: boolean = true): Task<[Boolean, Number, String, String]> {
 		return new Promise<[Boolean, Number, String, String]>(async (resumeFunction) => {
 			const CheckHealthUrl = BaseURL.ConstructServicePathFromSubDomainSimple('points.api', 'checkhealth', isRequestSecure);
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: CheckHealthUrl,
 				QueryString: {
-					ApiKey: ApiKeys.PointsApi,
+					ApiKey: 'E3C6F569-496C-47F4-A76E-4F699DF453C4',
 				},
 				AdditionalHeaders: {},
 				Payload: '',
@@ -47,10 +46,10 @@ export class PointsClient {
 				universe,
 				user,
 			};
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: Url,
 				QueryString: {
-					ApiKey: ApiKeys.PointsApi,
+					ApiKey: 'E3C6F569-496C-47F4-A76E-4F699DF453C4',
 				},
 				AdditionalHeaders: { 'Content-Type': 'application/json' },
 				Payload: JSON.stringify(Payload),

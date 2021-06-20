@@ -1,8 +1,7 @@
 import { Task } from '../../../../../System/Threading/Task';
-import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
-import { ServiceClient } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Implementation/HttpClient';
-import { HttpRequestMethodEnum } from '../../../../Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { BaseURL } from '../../../../Common/Roblox.Common/BaseUrl';
+import { HttpClientInvoker } from '../../../../Http/HttpClientInvoker/Roblox.Http.HttpClientInvoker/Implementation/HttpClientInvoker';
+import { HttpRequestMethodEnum } from '../../../../Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 export class GamePersistenceClient {
 	/**
 	 * Try enroll the current IEntrollments.
@@ -22,10 +21,10 @@ export class GamePersistenceClient {
 				: BaseURL.GetBaseURL()
 			).replace(/www/, 'gamepersistence.api')}/v4/datastores/fetch-this-universe`;
 			const postData = { universeId };
-			const Client = new ServiceClient.HttpClientInvoker({
+			const Client = new HttpClientInvoker({
 				Url: GamePersistenceGetTheStoresForThisUniverseUrl,
 				QueryString: {
-					ApiKey: ApiKeys.GamePersistenceApi,
+					ApiKey: '223101C8-6699-4F88-B1BF-E5381531ED27',
 					'Content-Type': 'application/json',
 				},
 				AdditionalHeaders: { Cookie: `.ROBLOSECURITY=${UserAuthToken || ''}` },

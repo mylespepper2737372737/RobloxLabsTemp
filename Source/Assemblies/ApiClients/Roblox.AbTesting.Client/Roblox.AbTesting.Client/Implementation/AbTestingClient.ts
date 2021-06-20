@@ -1,8 +1,7 @@
 import { Task } from '../../../../../System/Threading/Task';
 import { IEnrollment } from '../../../../Platform/AbTesting/Roblox.Platform.AbTesting/IEnrollment';
 import Http from 'axios';
-import { ApiKeys } from '../../../../Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { BaseURL } from '../../../../Common/Client/Roblox.Common.Client/BaseUrl';
+import { BaseURL } from '../../../../Common/Roblox.Common/BaseUrl';
 import { DFLog, DYNAMIC_LOGGROUP, FASTLOGS } from '../../../../Web/Util/Roblox.Web.Util/Logging/FastLog';
 import https from 'https';
 
@@ -25,7 +24,7 @@ export class AbTestingClient {
 			const AbTestingApiEnrollToExperimentsUrl = `${(requireSecureUri ? BaseURL.GetSecureBaseURL() : BaseURL.GetBaseURL()).replace(
 				/www/,
 				'abtesting.api',
-			)}/v1/experiments/enroll-to?ApiKey=${ApiKeys.AbTesingApi}`;
+			)}/v1/experiments/enroll-to?ApiKey=B030971C-2A32-41B3-B808-18BCBE3B3483`;
 			const postData = { data: enrollments };
 			Http.post(AbTestingApiEnrollToExperimentsUrl, postData, {
 				headers: {
@@ -40,7 +39,7 @@ export class AbTestingClient {
 					if (!Err.response) {
 						const message = new Error(`Error enrolling to experiments for the user: ${
 							UserAuthToken || 'NoUser'
-						}. Roblox.Http.ServiceClient.ConnectionException: An error has occurred with your request.
+						}. Roblox.Http.ConnectionException: An error has occurred with your request.
 	Status code: None (None)
 	Url: ${(requireSecureUri ? BaseURL.GetSecureBaseURL() : BaseURL.GetBaseURL()).replace(/www/, 'abtesting.api')}/v1/experiments/enrollto
 	Response Machine Id: RA-WEB114
