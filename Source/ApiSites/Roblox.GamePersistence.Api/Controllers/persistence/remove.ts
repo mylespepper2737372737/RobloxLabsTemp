@@ -25,92 +25,11 @@
 	***
 */
 
-import { Request, Response } from 'express-serve-static-core';
-import { GetUniverseIdFromPlaceId } from '../../../../Assemblies/Caching/Universes/Roblox.Caching.Universes/GetUniverseIdFromPlaceId';
-import { GetKeyOrEntryForScope } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/GetKeyOrEntryForScope';
-import { PurgeKeyFromScope } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/PurgeKeyFromScope';
+import { Request, Response } from 'express';
 
 export default {
 	method: 'all',
-	func: async (request: Request, response: Response) => {
-		let usequery = false;
-		if (request.headers['roblox-place-id'] === undefined) {
-			usequery = true;
-		}
-		if (!usequery) {
-			if (parseInt(<string>request.headers['roblox-place-id']) === NaN)
-				return response.status(403).send({
-					errors: [
-						{
-							code: 0,
-							message: 'Not allowed',
-						},
-					],
-				});
-		}
-		const placeId = parseInt(!usequery ? <string>request.headers['roblox-place-id'] : <string>request.query['placeId']);
-		const [success, universeId] = GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
-		if (!success)
-			return response.status(403).send({
-				errors: [
-					{
-						code: 0,
-						message: 'You do not have permission to manage this place. Universe is null.',
-					},
-				],
-			});
-
-		if (universeId === null)
-			return response.status(403).send({
-				errors: [
-					{
-						code: 0,
-						message: 'You do not have permission to manage this place. Universe is null.',
-					},
-				],
-			});
-
-		const k = <string>request.query['target'];
-		let scope = <string>request.query['scope'];
-		const store = <string>request.query['key'];
-		if (<string>request.query['type'] !== 'standard')
-			if (<string>request.query['type'] !== 'sorted')
-				return response.status(400).send({
-					errors: [
-						{
-							code: 0,
-							message: 'The request is invalid.',
-						},
-					],
-				});
-
-		const [, key] = await GetKeyOrEntryForScope(universeId, store, scope, k, request.query['type'] === 'standard' ? false : true);
-		if (key === null) {
-			return response.status(200).send({
-				data: null,
-			});
-		}
-		const value = key.value.raw;
-
-		if (scope === '') scope = '_';
-		const success2 = await PurgeKeyFromScope(universeId, store, scope, k, request.query['type'] === 'standard' ? false : true);
-		if (!success2)
-			return response.status(200).send({
-				error: 'Unknown error',
-			});
-
-		if (!success2)
-			return response.status(500).send({
-				errors: [
-					{
-						code: 0,
-						message: 'InternalServerError',
-					},
-				],
-			});
-
-		return response.status(200).send({
-			data: value.toString(),
-		});
+	func: async (_request: Request, response: Response) => {
+		return response.send({});
 	},
 };

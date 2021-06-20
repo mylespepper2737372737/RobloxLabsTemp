@@ -25,110 +25,11 @@
 	***
 */
 
-import { Request, Response } from 'express-serve-static-core';
-import { GetUniverseIdFromPlaceId } from '../../../../Assemblies/Caching/Universes/Roblox.Caching.Universes/GetUniverseIdFromPlaceId';
-import { PushKeyToPersistentStore } from '../../../../Assemblies/Platform/GamePersistence/Roblox.Platform.GamePersistence/Caching/Implementation/PushKeyToPersistentStore';
+import { Request, Response } from 'express';
 
 export default {
 	method: 'all',
-	func: async (request: Request, response: Response) => {
-		let usequery = false;
-		if (request.headers['roblox-place-id'] === undefined) {
-			usequery = true;
-		}
-		if (!usequery) {
-			if (parseInt(<string>request.headers['roblox-place-id']) === NaN)
-				return response.status(403).send({
-					errors: [
-						{
-							code: 0,
-							message: 'Not allowed',
-						},
-					],
-				});
-		}
-		const placeId = parseInt(!usequery ? <string>request.headers['roblox-place-id'] : <string>request.query['placeId']);
-		const [success, universeId] = GetUniverseIdFromPlaceId(placeId === NaN ? -1 : placeId);
-		if (!success)
-			return response.status(403).send({
-				errors: [
-					{
-						code: 0,
-						message: 'You do not have permission to manage this place. Universe is null.',
-					},
-				],
-			});
-
-		if (universeId === null)
-			return response.status(403).send({
-				errors: [
-					{
-						code: 0,
-						message: 'You do not have permission to manage this place. Universe is null.',
-					},
-				],
-			});
-
-		const k = <string>request.query['target'];
-		let scope = <string>request.query['scope'];
-		const store = <string>request.query['key'];
-		const value = request.body['value'];
-		if (<string>request.query['type'] !== 'standard')
-			if (<string>request.query['type'] !== 'sorted')
-				return response.status(400).send({
-					errors: [
-						{
-							code: 0,
-							message: 'The request is invalid.',
-						},
-					],
-				});
-		if (request.query['valueLength'] === undefined)
-			return response.status(500).send({
-				errors: [
-					{
-						code: 6,
-						message: 'The provided data length does not match the amount of data.',
-						userFacingMessage: 'Something went wrong',
-					},
-				],
-			});
-		if (parseInt(<string>request.query['valueLength']) !== value.length && (<string>request.query['valueLength']).length !== 0)
-			return response.status(500).send({
-				errors: [
-					{
-						code: 6,
-						message: 'The provided data length does not match the amount of data.',
-						userFacingMessage: 'Something went wrong',
-					},
-				],
-			});
-		if (scope === '') scope = '_';
-		const success2 = await PushKeyToPersistentStore(
-			universeId,
-			store,
-			scope,
-			k,
-			value,
-			request.query['type'] === 'standard' ? false : true,
-		);
-		if (!success2 && request.query['type'] === 'sorted')
-			return response.status(200).send({
-				error: 'Invalid value format for datastore type Sorted.\r\nParameter name: value',
-			});
-
-		if (!success2)
-			return response.status(500).send({
-				errors: [
-					{
-						code: 0,
-						message: 'InternalServerError',
-					},
-				],
-			});
-
-		return response.status(200).send({
-			data: value,
-		});
+	func: async (_request: Request, response: Response) => {
+		return response.send({});
 	},
 };
