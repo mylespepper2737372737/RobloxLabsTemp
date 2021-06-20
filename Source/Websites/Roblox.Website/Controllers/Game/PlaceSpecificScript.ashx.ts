@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import { SendSignedResponse } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { HashingClient } from '../../../../Assemblies/Data/Hashing/Roblox.Data.Hashing/HashingClient';
 
 export default {
 	method: 'all',
 	func: async (_request: Request, response: Response) => {
-		SendSignedResponse('', response);
+		const hashClient = new HashingClient(response);
+
+		hashClient.SendSignedResponse('');
 	},
 };

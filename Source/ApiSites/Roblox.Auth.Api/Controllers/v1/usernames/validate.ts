@@ -24,9 +24,9 @@
 */
 
 import { Request, Response } from 'express';
-import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { AuthRequestProcessor } from '../../../../../Assemblies/Web/Auth/Roblox.Web.Auth/AuthRequestProcessor';
-import { GetUserFromCookie } from '../../../../../Assemblies/Web/Auth/Roblox.Web.Auth/GetUserFromCookie';
+import { Security } from '../../../../../Assemblies/Web/Auth/Roblox.Web.Auth/Security';
 import { ErrorsClient } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { ProtocolValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ProtocolValidator';
@@ -42,20 +42,16 @@ export default {
 		const errorsClient = new ErrorsClient(response);
 		const methodValidatorClient = new MethodValidator(response);
 		const protocolValidatorClient = new ProtocolValidator(response);
+		const processor = new AuthRequestProcessor(request, response);
 
 		if (!protocolValidatorClient.Validate(request.protocol, 'HTTPS')) return;
 		const method = methodValidatorClient.MultiValidate(request.method, ['GET', 'POST']);
 		if (method === HttpRequestMethodEnum.UNKNOWN) return;
 		const isPost = method === HttpRequestMethodEnum.POST;
-		const authenticatedUser = await GetUserFromCookie(request);
-		const [isRequestValid, dataRequest] = AuthRequestProcessor.UsernameValidation.CheckRequest(
-			isPost,
-			authenticatedUser,
-			request,
-			response,
-		);
+		const authenticatedUser = await Security.GetUserFromCookie(request);
+		const [isRequestValid, dataRequest] = processor.CheckRequest(isPost, authenticatedUser);
 		if (!isRequestValid) return;
-		const [WasRequestSuccessful, Response, Exception] = await AuthRequestProcessor.UsernameValidation.ValidateUsername(
+		const [WasRequestSuccessful, Response, Exception] = await processor.ValidateUsername(
 			authenticatedUser,
 			dataRequest,
 			request.secure,

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { HttpRequestMethodEnum } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { HttpRequestMethodEnum } from '../../../../Assemblies/Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 
 export namespace Roblox.ComApis.Api.Controllers.V1 {
 	export const TestController = {

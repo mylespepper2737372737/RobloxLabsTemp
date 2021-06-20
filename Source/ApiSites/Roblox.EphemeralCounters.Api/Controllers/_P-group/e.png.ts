@@ -28,7 +28,7 @@
 */
 
 import { Request, Response } from 'express';
-import { RespondWithA1PXImage } from '../../../../Assemblies/Web/Handling/Roblox.Web.Handling/RespondWithA1PXImage';
+import { ResponseHelper } from '../../../../Assemblies/Web/Handling/Roblox.Web.Handling/ResponseHelper';
 import { FASTLOGS, FLog, LOGGROUP } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 
 LOGGROUP('EphemeralCountersV2');
@@ -38,6 +38,6 @@ export default {
 	func: (request: Request<null, string, any>, response: Response<string>): void => {
 		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.query));
 		FASTLOGS(FLog['EphemeralCountersV2'], '[FLog::EphemeralCountersV2] %s', JSON.stringify(request.body));
-		RespondWithA1PXImage(response);
+		ResponseHelper.RespondWithA1PXImage(response);
 	},
 };

@@ -48,7 +48,6 @@ import { Points } from './Assemblies/Web/Handling/Roblox.Web.Handling/Points';
 import { PointsApi } from './Assemblies/Web/Handling/Roblox.Web.Handling/PointsApi';
 import { ApiServiceIsAliveValidator } from './Assemblies/Web/Handling/Roblox.Web.Handling/ApiServiceIsAliveValidator';
 import { User } from './Assemblies/Platform/Membership/Roblox.Platform.Membership/User';
-import { GetValueFromFormDataString } from './Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
 import { UsersApi } from './Assemblies/Web/Handling/Roblox.Web.Handling/UsersApi';
 import { EphemeralCountersApi } from './Assemblies/Web/Handling/Roblox.Web.Handling/EphemeralCountersApi';
 import { DataWebsite } from './Assemblies/Web/Handling/Roblox.Web.Handling/DataWebsite';
@@ -69,11 +68,7 @@ import { ErrorsClient } from './Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient
 import { GlobalMiddleware } from './Assemblies/Web/Handling/Roblox.Web.Handling/SiteTest4.Global.Middleware';
 import { GamePersistenceMiddleware } from './Assemblies/Web/Handling/Roblox.Web.Handling/GamePersistenceMiddleWare';
 import { AbTestingMiddleWare } from './Assemblies/Web/Handling/Roblox.Web.Handling/AbTestingMiddleWare';
-import { MetadataBuilder } from './Assemblies/Common/Configuration/Roblox.Common.Configuration/MetadataBuilder';
 import { SystemSDK } from './Assemblies/Web/Util/Roblox.Web.Util/Setup/Lib/SystemSDK';
-import { ClearCachedSessions } from './Assemblies/Caching/Sessions/Roblox.Caching.Sessions/ClearCachedSessions';
-import { ServerStarter } from './Assemblies/Web/Servers/Roblox.Web.Servers/ServerStarterUtil';
-import { SignalRSetup } from './Assemblies/Web/SignalR/Roblox.Web,SignalR/SignalRSetup';
 import { __baseDirName } from './Assemblies/Common/Constants/Roblox.Common.Constants/Directories';
 import { CDN } from './Assemblies/Web/Errors/Roblox.Web.Errors/CDN';
 import { WWW } from './Assemblies/Web/Errors/Roblox.Web.Errors/WWW';
@@ -85,6 +80,7 @@ import { FastLogGlobal } from './Assemblies/Web/Util/Roblox.Web.Util/Logging/Fas
 import OnlyCompressionFactory from 'compression';
 import { OnlyCORs } from './Assemblies/Web/Handling/Roblox.Web.Handling/OnlyCORs';
 import { Tomcat404 } from './Assemblies/Web/Errors/Roblox.Web.Errors/Tomcat';
+import { KeyValueMapping } from './Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 
 if (process.env.SSLKEYLOGFILE) {
 	const ssl = require('sslkeylog');
@@ -95,8 +91,6 @@ FastLogGlobal.Init();
 
 (async () => {
 	try {
-		await ClearCachedSessions();
-
 		const RobloxWebsiteServer = IServer();
 		const StaticCDNServer = IServer();
 		const JavaScriptCDNServer = IServer();
@@ -335,7 +329,7 @@ FastLogGlobal.Init();
 		CSRWebsiteServer.set('view engine', 'html');
 
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				StaticCDNServer,
 				'/StaticPages/CDN/Roblox.StaticCDN',
 				'/Source/Bin/CDN/Roblox.StaticCDN/Controllers',
@@ -343,7 +337,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				JavaScriptCDNServer,
 				'/StaticPages/CDN/Roblox.JavaScriptCDN',
 				'/Source/Bin/CDN/Roblox.JavaScriptCDN/Controllers',
@@ -351,10 +345,15 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(CSSCDNServer, '/StaticPages/CDN/Roblox.CSSCDN', '/Source/Bin/CDN/Roblox.CSSCDN/Controllers', Hosts['CSSCDN']),
+			SystemSDK.MetadataBuilder(
+				CSSCDNServer,
+				'/StaticPages/CDN/Roblox.CSSCDN',
+				'/Source/Bin/CDN/Roblox.CSSCDN/Controllers',
+				Hosts['CSSCDN'],
+			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ImagesCDNServer,
 				'/StaticPages/CDN/Roblox.ImagesCDN',
 				'/Source/Bin/CDN/Roblox.ImagesCDN/Controllers',
@@ -362,7 +361,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ApiProxyServer,
 				'/StaticPages/Services/Roblox.ApiProxy.Service',
 				'/Source/Bin/Services/Roblox.ApiProxy.Service/Controllers',
@@ -370,7 +369,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				SetupCDNServer,
 				'/StaticPages/CDN/Roblox.SetupCDN',
 				'/Source/Bin/CDN/Roblox.SetupCDN/Controllers',
@@ -378,7 +377,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				RobloxWebsiteServer,
 				'/StaticPages/Websites/Roblox.Website',
 				'/Source/Bin/Websites/Roblox.Website/Controllers',
@@ -387,7 +386,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				EphemeralCountersServiceServer,
 				'/StaticPages/Services/Roblox.EphemeralCounters.Service',
 				'/Source/Bin/Services/Roblox.EphemeralCounters.Service/Controllers',
@@ -395,7 +394,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				EphemeralCountersV2Server,
 				'/StaticPages/ApiSites/Roblox.EphemeralCounters.Api',
 				'/Source/Bin/ApiSites/Roblox.EphemeralCounters.Api/Controllers',
@@ -403,7 +402,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				TemporaryImagesCDNServer,
 				'/StaticPages/CDN/Roblox.TemporaryImagesCDN',
 				'/Source/Bin/CDN/Roblox.TemporaryImagesCDN/Controllers',
@@ -411,7 +410,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				VersionCompatibilityServiceServer,
 				'/StaticPages/Services/Roblox.VersionCompatibility.Service',
 				'/Source/Bin/Services/Roblox.VersionCompatibility.Service/Controllers',
@@ -419,7 +418,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ClientSettingsServiceServer,
 				'/StaticPages/Services/Roblox.ClientSettings.Service',
 				'/Source/Bin/Services/Roblox.ClientSettings.Service/Controllers',
@@ -427,7 +426,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				RobloxGameWebsiteServer,
 				'/StaticPages/Websites/Roblox.GameWebsite',
 				'/Source/Bin/Websites/Roblox.GameWebsite/Controllers',
@@ -435,7 +434,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				GamePersistenceApiServer,
 				'/StaticPages/ApiSites/Roblox.GamePersistence.Api',
 				'/Source/Bin/ApiSites/Roblox.GamePersistence.Api/Controllers',
@@ -443,7 +442,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				MarketplaceServiceServer,
 				'/StaticPages/Services/Roblox.Marketplace.Service',
 				'/Source/Bin/Services/Roblox.Marketplace.Service/Controllers',
@@ -451,7 +450,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				MetricsApiServer,
 				'/StaticPages/ApiSites/Roblox.Metrics.Api',
 				'/Source/Bin/ApiSites/Roblox.Metrics.Api/Controllers',
@@ -459,7 +458,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AuthApiServer,
 				'/StaticPages/ApiSites/Roblox.Auth.Api',
 				'/Source/Bin/ApiSites/Roblox.Auth.Api/Controllers',
@@ -467,7 +466,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ApiGatewayServer,
 				'/StaticPages/Services/Roblox.ApiGateway.Service',
 				'/Source/Bin/Services/Roblox.ApiGateway.Service/Controllers',
@@ -475,7 +474,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				LocaleApiServer,
 				'/StaticPages/ApiSites/Roblox.Locale.Api',
 				'/Source/Bin/ApiSites/Roblox.Locale.Api/Controllers',
@@ -483,7 +482,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AbTestingApiServer,
 				'/StaticPages/ApiSites/Roblox.AbTesting.Api',
 				'/Source/Bin/ApiSites/Roblox.AbTesting.Api/Controllers',
@@ -491,7 +490,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AbTestingServiceServer,
 				'/StaticPages/Services/Roblox.AbTesting.Service',
 				'/Source/Bin/Services/Roblox.AbTesting.Service/Controllers',
@@ -499,7 +498,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				UsersApiServer,
 				'/StaticPages/ApiSites/Roblox.Users.Api',
 				'/Source/Bin/ApiSites/Roblox.Users.Api/Controllers',
@@ -507,7 +506,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				TwoStepVerficationApiServer,
 				'/StaticPages/ApiSites/Roblox.TwoStepVerification.Api',
 				'/Source/Bin/ApiSites/Roblox.TwoStepVerification.Api/Controllers',
@@ -515,7 +514,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				LatencyMeasurementsInternalServiceServer,
 				'/StaticPages/InternalWebsites/LatencyMeasurements',
 				'/Source/Bin/InternalWebsites/LatencyMeasurements/Controllers',
@@ -523,7 +522,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ChatApiServer,
 				'/StaticPages/ApiSites/Roblox.Chat.Api',
 				'/Source/Bin/ApiSites/Roblox.Chat.Api/Controllers',
@@ -531,7 +530,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ContactsApiServer,
 				'/StaticPages/ApiSites/Roblox.Contacts.Api',
 				'/Source/Bin/ApiSites/Roblox.Contacts.Api/Controllers',
@@ -539,7 +538,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				NotificationsApiServer,
 				'/StaticPages/ApiSites/Roblox.Notifications.Api',
 				'/Source/Bin/ApiSites/Roblox.Notifications.Api/Controllers',
@@ -547,7 +546,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AccountSettingsApiServer,
 				'/StaticPages/ApiSites/Roblox.AccountSettings.Api',
 				'/Source/Bin/ApiSites/Roblox.AccountSettings.Api/Controllers',
@@ -555,7 +554,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AdsApiServer,
 				'/StaticPages/ApiSites/Roblox.Ads.Api',
 				'/Source/Bin/ApiSites/Roblox.Ads.Api/Controllers',
@@ -563,7 +562,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				TradesApiServer,
 				'/StaticPages/ApiSites/Roblox.Trades.Api',
 				'/Source/Bin/ApiSites/Roblox.Trades.Api/Controllers',
@@ -571,7 +570,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				FriendsApiServer,
 				'/StaticPages/ApiSites/Roblox.Friends.Api',
 				'/Source/Bin/ApiSites/Roblox.Friends.Api/Controllers',
@@ -579,7 +578,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PrivateMessagesApiServer,
 				'/StaticPages/ApiSites/Roblox.PrivateMessages.Api',
 				'/Source/Bin/ApiSites/Roblox.PrivateMessages.Api/Controllers',
@@ -587,7 +586,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				EconomyApiServer,
 				'/StaticPages/ApiSites/Roblox.Economy.Api',
 				'/Source/Bin/ApiSites/Roblox.Economy.Api/Controllers',
@@ -595,7 +594,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				GamesApiServer,
 				'/StaticPages/ApiSites/Roblox.Games.Api',
 				'/Source/Bin/ApiSites/Roblox.Games.Api/Controllers',
@@ -603,7 +602,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				RealTimeApiServer,
 				'/StaticPages/ApiSites/Roblox.RealTime.Api',
 				'/Source/Bin/ApiSites/Roblox.RealTime.Api/Controllers',
@@ -611,7 +610,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ThumbnailsApiServer,
 				'/StaticPages/ApiSites/Roblox.Thumbnails.Api',
 				'/Source/Bin/ApiSites/Roblox.Thumbnails.Api/Controllers',
@@ -619,7 +618,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PresenceApiServer,
 				'/StaticPages/ApiSites/Roblox.Presence.Api',
 				'/Source/Bin/ApiSites/Roblox.Presence.Api/Controllers',
@@ -627,7 +626,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				GroupsApiServer,
 				'/StaticPages/ApiSites/Roblox.Groups.Api',
 				'/Source/Bin/ApiSites/Roblox.Groups.Api/Controllers',
@@ -636,7 +635,7 @@ FastLogGlobal.Init();
 		);
 
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AccountInformationServer,
 				'/StaticPages/ApiSites/Roblox.AccountInformation.Api',
 				'/Source/Bin/ApiSites/Roblox.AccountInformation.Api/Controllers',
@@ -645,7 +644,7 @@ FastLogGlobal.Init();
 		);
 
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				BadgesApiServer,
 				'/StaticPages/ApiSites/Roblox.Badges.Api',
 				'/Source/Bin/ApiSites/Roblox.Badges.Api/Controllers',
@@ -654,7 +653,7 @@ FastLogGlobal.Init();
 		);
 
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				DeveloperForumWebsiteServer,
 				'/StaticPages/Websites/Roblox.DeveloperForumWebsite',
 				'/Source/Bin/Websites/Roblox.DeveloperForumWebsite/Controllers',
@@ -663,7 +662,7 @@ FastLogGlobal.Init();
 		);
 
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PremiumFeaturesApiServer,
 				'/StaticPages/ApiSites/Roblox.PremiumFeatures.Api',
 				'/Source/Bin/ApiSites/Roblox.PremiumFeatures.Api/Controllers',
@@ -671,7 +670,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ClientSettingsApiServer,
 				'/StaticPages/ApiSites/Roblox.ClientSettings.Api',
 				'/Source/Bin/ApiSites/Roblox.ClientSettings.Api/Controllers',
@@ -679,7 +678,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ClientSettingsCDNApiServer,
 				'/StaticPages/ApiSites/Roblox.ClientSettingsCDN.Api',
 				'/Source/Bin/ApiSites/Roblox.ClientSettingsCDN.Api/Controllers',
@@ -687,7 +686,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AdConfigurationApiServer,
 				'/StaticPages/ApiSites/Roblox.AdConfiguration.Api',
 				'/Source/Bin/ApiSites/Roblox.AdConfiguration.Api/Controllers',
@@ -695,7 +694,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ClientTelementryServiceServer,
 				'/StaticPages/Services/Roblox.ClientTelementry.Service',
 				'/Source/Bin/Services/Roblox.ClientTelementry.Service/Controllers',
@@ -703,7 +702,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AssetsApi,
 				'/StaticPages/ApiSites/Roblox.Assets.Api',
 				'/Source/Bin/ApiSites/Roblox.Assets.Api/Controllers',
@@ -711,7 +710,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AvatarApiServer,
 				'/StaticPages/ApiSites/Roblox.Avatar.Api',
 				'/Source/Bin/ApiSites/Roblox.Avatar.Api/Controllers',
@@ -719,7 +718,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				BillingApiServer,
 				'/StaticPages/ApiSites/Roblox.Billing.Api',
 				'/Source/Bin/ApiSites/Roblox.Billing.Api/Controllers',
@@ -727,7 +726,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				CatalogApiServer,
 				'/StaticPages/ApiSites/Roblox.Catalog.Api',
 				'/Source/Bin/ApiSites/Roblox.Catalog.Api/Controllers',
@@ -735,7 +734,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				CdnProvidersApiServer,
 				'/StaticPages/ApiSites/Roblox.CdnProviders.Api',
 				'/Source/Bin/ApiSites/Roblox.CdnProviders.Api/Controllers',
@@ -743,7 +742,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ChatModerationServiceServer,
 				'/StaticPages/ApiSites/Roblox.ChatModeration.Api',
 				'/Source/Bin/ApiSites/Roblox.ChatModeration.Api/Controllers',
@@ -751,7 +750,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ContentStoreApiServer,
 				'/StaticPages/ApiSites/Roblox.ContentStore.Api',
 				'/Source/Bin/ApiSites/Roblox.ContentStore.Api/Controllers',
@@ -759,7 +758,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				DevelopApiServer,
 				'/StaticPages/ApiSites/Roblox.Develop.Api',
 				'/Source/Bin/ApiSites/Roblox.Develop.Api/Controllers',
@@ -767,7 +766,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				DiscussionsApiServer,
 				'/StaticPages/ApiSites/Roblox.Discussions.Api',
 				'/Source/Bin/ApiSites/Roblox.Discussions.Api/Controllers',
@@ -775,7 +774,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				EconomyCreatorStatsApiServer,
 				'/StaticPages/ApiSites/Roblox.EconomyCreatorStats.Api',
 				'/Source/Bin/ApiSites/Roblox.EconomyCreatorStats.Api/Controllers',
@@ -783,7 +782,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				EngagementPayoutsServiceServer,
 				'/StaticPages/ApiSites/Roblox.EngagementPayouts.Api',
 				'/Source/Bin/ApiSites/Roblox.EngagementPayouts.Api/Controllers',
@@ -791,7 +790,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				FollowingsApiServer,
 				'/StaticPages/ApiSites/Roblox.Followings.Api',
 				'/Source/Bin/ApiSites/Roblox.Followings.Api/Controllers',
@@ -799,7 +798,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				GameInternationalizationApiServer,
 				'/StaticPages/ApiSites/Roblox.GameInternationalization.Api',
 				'/Source/Bin/ApiSites/Roblox.GameInternationalization.Api/Controllers',
@@ -807,7 +806,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				GameJoinApiServer,
 				'/StaticPages/ApiSites/Roblox.GameJoin.Api',
 				'/Source/Bin/ApiSites/Roblox.GameJoin.Api/Controllers',
@@ -815,7 +814,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				GroupsModerationServiceServer,
 				'/StaticPages/ApiSites/Roblox.GroupsModeration.Api',
 				'/Source/Bin/ApiSites/Roblox.GroupsModeration.Api/Controllers',
@@ -823,7 +822,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				InventoryApiServer,
 				'/StaticPages/ApiSites/Roblox.Inventory.Api',
 				'/Source/Bin/ApiSites/Roblox.Inventory.Api/Controllers',
@@ -831,7 +830,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ItemConfigurationApiService,
 				'/StaticPages/ApiSites/Roblox.ItemConfiguration.Api',
 				'/Source/Bin/ApiSites/Roblox.ItemConfiguration.Api/Controllers',
@@ -839,7 +838,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AdConfigurationApiServer,
 				'/StaticPages/ApiSites/Roblox.AdConfiguration.Api',
 				'/Source/Bin/ApiSites/Roblox.AdConfiguration.Api/Controllers',
@@ -847,7 +846,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				LocalizationTablesApiServer,
 				'/StaticPages/ApiSites/Roblox.LocalizationTables.Api',
 				'/Source/Bin/ApiSites/Roblox.LocalizationTables.Api/Controllers',
@@ -855,7 +854,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PointsApiServer,
 				'/StaticPages/ApiSites/Roblox.Points.Api',
 				'/Source/Bin/ApiSites/Roblox.Points.Api/Controllers',
@@ -863,7 +862,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PublishApiServer,
 				'/StaticPages/ApiSites/Roblox.Publish.Api',
 				'/Source/Bin/ApiSites/Roblox.Publish.Api/Controllers',
@@ -871,7 +870,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PunishmentsServiceServer,
 				'/StaticPages/Services/Roblox.Punishments.Service',
 				'/Source/Bin/Services/Roblox.Punishments.Service/Controllers',
@@ -879,7 +878,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				MidasShareApiServer,
 				'/StaticPages/ApiSites/Roblox.Share.Api',
 				'/Source/Bin/ApiSites/Roblox.Share.Api/Controllers',
@@ -887,7 +886,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				TextFilterApiServer,
 				'/StaticPages/ApiSites/Roblox.TextFilter.Api',
 				'/Source/Bin/ApiSites/Roblox.TextFilter.Api/Controllers',
@@ -895,7 +894,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ThemesApiServer,
 				'/StaticPages/ApiSites/Roblox.Themes.Api',
 				'/Source/Bin/ApiSites/Roblox.Themes.Api/Controllers',
@@ -903,7 +902,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ThumbnailsResizerApiServer,
 				'/StaticPages/ApiSites/Roblox.ThumbnailsResizer.Api',
 				'/Source/Bin/ApiSites/Roblox.ThumbnailsResizer.Api/Controllers',
@@ -911,7 +910,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				TranslationRolesApiServer,
 				'/StaticPages/ApiSites/Roblox.TranslationRoles.Api',
 				'/Source/Bin/ApiSites/Roblox.TranslationRoles.Api/Controllers',
@@ -919,7 +918,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				TranslationsApiServer,
 				'/StaticPages/ApiSites/Roblox.Translations.Api',
 				'/Source/Bin/ApiSites/Roblox.Translations.Api/Controllers',
@@ -927,7 +926,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				UserModerationServiceServer,
 				'/StaticPages/ApiSites/Roblox.UserModeration.Api',
 				'/Source/Bin/ApiSites/Roblox.UserModeration.Api/Controllers',
@@ -935,7 +934,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				VoiceApiServer,
 				'/StaticPages/ApiSites/Roblox.Voice.Api',
 				'/Source/Bin/ApiSites/Roblox.Voice.Api/Controllers',
@@ -943,7 +942,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				FilesServiceServer,
 				'/StaticPages/Services/Roblox.Files.Service',
 				'/Source/Bin/Services/Roblox.Files.Service/Controllers',
@@ -951,7 +950,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				MetricsInternalWebsiteServer,
 				'/StaticPages/InternalWebsites/MetricsWebsite',
 				'/Source/Bin/InternalWebsites/MetricsWebsite/Controllers',
@@ -959,7 +958,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				AdminWebsiteServer,
 				'/StaticPages/InternalWebsites/AdminWebsite',
 				'/Source/Bin/InternalWebsites/AdminWebsite/Controllers',
@@ -967,7 +966,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				CSWebsiteServer,
 				'/StaticPages/InternalWebsites/CSWebsite',
 				'/Source/Bin/InternalWebsites/CSWebsite/Controllers',
@@ -975,7 +974,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				ComApisCDNServer,
 				'/StaticPages/CDN/Roblox.COMApisCDN',
 				'/Source/Bin/CDN/Roblox.COMApisCDN/Controllers',
@@ -986,7 +985,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				PointsServiceServer,
 				'/StaticPages/Services/Roblox.Points.Service',
 				'/Source/Bin/Services/Roblox.Points.Service/Controllers',
@@ -994,7 +993,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				UsersServiceServer,
 				'/StaticPages/Services/Roblox.Users.Service',
 				'/Source/Bin/Services/Roblox.Users.Service/Controllers',
@@ -1002,7 +1001,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				DataWebsiteServer,
 				'/StaticPages/Websites/Roblox.Data.Website',
 				'/Source/Bin/Websites/Roblox.Data.Website/Controllers',
@@ -1010,10 +1009,15 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(NomadTestServer, '/StaticPages/Services/Nomad', '/Source/Bin/Services/Nomad/Controllers', Hosts['NomadHost']),
+			SystemSDK.MetadataBuilder(
+				NomadTestServer,
+				'/StaticPages/Services/Nomad',
+				'/Source/Bin/Services/Nomad/Controllers',
+				Hosts['NomadHost'],
+			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				CSRApiServer,
 				'/StaticPages/InternalWebsites/RobotsDefault',
 				'/Source/Bin/InternalWebsites/CSRWebsite/Controllers',
@@ -1021,7 +1025,7 @@ FastLogGlobal.Init();
 			),
 		);
 		await SystemSDK.Configure(
-			MetadataBuilder(
+			SystemSDK.MetadataBuilder(
 				CSRWebsiteServer,
 				'/StaticPages/InternalWebsites/CSRWebsite',
 				null,
@@ -1209,7 +1213,7 @@ FastLogGlobal.Init();
 		RobloxWebsiteServer.use(async (error: Error, request: Request, response: Response, next: NextFunction) => {
 			FASTLOG2(DFLog('Tasks'), `[DFLog::Tasks] Error: %s, Stack Trace: %s`, error.message, error.stack);
 
-			let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+			let cookie = KeyValueMapping.GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie);
 			const authenticatedUser = await User.GetByCookie(cookie);
 			if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
 
@@ -1275,9 +1279,9 @@ FastLogGlobal.Init();
 			try {
 				const httpPort = process.argv.slice(2)[0] === '--closure-after-seconds' ? 8080 : 80;
 				const httpsPort = process.argv.slice(2)[0] === '--closure-after-seconds' ? 4343 : 443;
-				ServerStarter(ImagesCDNServer, Hosts['ImagesCDN'], true, true, httpPort, httpsPort);
-				ServerStarter(RobloxWebsiteServer, Hosts['WebHost'], true, true, httpPort, httpsPort);
-				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = ServerStarter(
+				SystemSDK.ServerStarter(ImagesCDNServer, Hosts['ImagesCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(RobloxWebsiteServer, Hosts['WebHost'], true, true, httpPort, httpsPort);
+				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = SystemSDK.ServerStarter(
 					ApiProxyServer,
 					Hosts['ApiProxyHost'],
 					true,
@@ -1285,38 +1289,52 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				ServerStarter(StaticCDNServer, Hosts['StaticCDN'], true, true, httpPort, httpsPort);
-				ServerStarter(JavaScriptCDNServer, Hosts['JavaScriptCDN'], true, true, httpPort, httpsPort);
-				ServerStarter(CSSCDNServer, Hosts['CSSCDN'], true, true, httpPort, httpsPort);
-				ServerStarter(SetupCDNServer, Hosts['SetupCDN'], true, true, httpPort, httpsPort);
-				ServerStarter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN'], true, true, httpPort, httpsPort);
-				ServerStarter(VersionCompatibilityServiceServer, Hosts['VersionCompatibilityService'], true, true, httpPort, httpsPort);
-				ServerStarter(ClientSettingsServiceServer, Hosts['ClientSettingsService'], true, true, httpPort, httpsPort);
-				ServerStarter(RobloxGameWebsiteServer, Hosts['AssetGameHost'], true, true, httpPort, httpsPort);
-				ServerStarter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService'], true, true, httpPort, httpsPort);
-				ServerStarter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2'], true, true, httpPort, httpsPort);
-				ServerStarter(GamePersistenceApiServer, Hosts['GamePersistenceHost'], true, true, httpPort, httpsPort);
-				ServerStarter(MetricsApiServer, Hosts['MetricsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AuthApiServer, Hosts['AuthenticationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ApiGatewayServer, Hosts['ApiGatewayHost'], true, true, httpPort, httpsPort);
-				ServerStarter(LocaleApiServer, Hosts['LocaleHost'], true, true, httpPort, httpsPort);
-				ServerStarter(MarketplaceServiceServer, Hosts['MarketplaceService'], true, true, httpPort, httpsPort);
-				ServerStarter(AbTestingApiServer, Hosts['AbTestingHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AbTestingServiceServer, Hosts['AbTestingService'], true, true, httpPort, httpsPort);
-				ServerStarter(UsersApiServer, Hosts['UsersHost'], true, true, httpPort, httpsPort);
-				ServerStarter(TwoStepVerficationApiServer, Hosts['TSVHost'], true, true, httpPort, httpsPort);
-				ServerStarter(LatencyMeasurementsInternalServiceServer, Hosts['LatencyMeasurementsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ChatApiServer, Hosts['ChatHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ContactsApiServer, Hosts['ContactsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(NotificationsApiServer, Hosts['NotificationsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AccountSettingsApiServer, Hosts['AccountSettingsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AdsApiServer, Hosts['AdsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(TradesApiServer, Hosts['TradesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(FriendsApiServer, Hosts['FriendsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(EconomyApiServer, Hosts['EconomyHost'], true, true, httpPort, httpsPort);
-				ServerStarter(GamesApiServer, Hosts['GamesHost'], true, true, httpPort, httpsPort);
-				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = ServerStarter(
+				SystemSDK.ServerStarter(StaticCDNServer, Hosts['StaticCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(JavaScriptCDNServer, Hosts['JavaScriptCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(CSSCDNServer, Hosts['CSSCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(SetupCDNServer, Hosts['SetupCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					VersionCompatibilityServiceServer,
+					Hosts['VersionCompatibilityService'],
+					true,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(ClientSettingsServiceServer, Hosts['ClientSettingsService'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(RobloxGameWebsiteServer, Hosts['AssetGameHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(GamePersistenceApiServer, Hosts['GamePersistenceHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(MetricsApiServer, Hosts['MetricsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AuthApiServer, Hosts['AuthenticationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ApiGatewayServer, Hosts['ApiGatewayHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(LocaleApiServer, Hosts['LocaleHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(MarketplaceServiceServer, Hosts['MarketplaceService'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AbTestingApiServer, Hosts['AbTestingHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AbTestingServiceServer, Hosts['AbTestingService'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(UsersApiServer, Hosts['UsersHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(TwoStepVerficationApiServer, Hosts['TSVHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					LatencyMeasurementsInternalServiceServer,
+					Hosts['LatencyMeasurementsHost'],
+					true,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(ChatApiServer, Hosts['ChatHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ContactsApiServer, Hosts['ContactsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(NotificationsApiServer, Hosts['NotificationsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AccountSettingsApiServer, Hosts['AccountSettingsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AdsApiServer, Hosts['AdsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(TradesApiServer, Hosts['TradesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(FriendsApiServer, Hosts['FriendsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(EconomyApiServer, Hosts['EconomyHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(GamesApiServer, Hosts['GamesHost'], true, true, httpPort, httpsPort);
+				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = SystemSDK.ServerStarter(
 					RealTimeApiServer,
 					Hosts['RealTimeHost'],
 					true,
@@ -1324,57 +1342,64 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				ServerStarter(ThumbnailsApiServer, Hosts['ThumbsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PresenceApiServer, Hosts['PresenceHost'], true, true, httpPort, httpsPort);
-				ServerStarter(GroupsApiServer, Hosts['GroupsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AccountInformationServer, Hosts['AccountInformationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(BadgesApiServer, Hosts['BadgesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ClientSettingsApiServer, Hosts['ClientSettingsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AdConfigurationApiServer, Hosts['AdConfigurationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ClientTelementryServiceServer, Hosts['ClientTelementryServiceHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AssetsApi, Hosts['AssetsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AvatarApiServer, Hosts['AvatarHost'], true, true, httpPort, httpsPort);
-				ServerStarter(BillingApiServer, Hosts['BillingHost'], true, true, httpPort, httpsPort);
-				ServerStarter(CatalogApiServer, Hosts['CatalogHost'], true, true, httpPort, httpsPort);
-				ServerStarter(CdnProvidersApiServer, Hosts['CdnProvidersHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ChatModerationServiceServer, Hosts['ChatModerationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ContentStoreApiServer, Hosts['ContentStoreHost'], true, true, httpPort, httpsPort);
-				ServerStarter(DevelopApiServer, Hosts['DevelopHost'], true, true, httpPort, httpsPort);
-				ServerStarter(DiscussionsApiServer, Hosts['DiscussionsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(FollowingsApiServer, Hosts['FollowingsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(GameInternationalizationApiServer, Hosts['G18NHost'], true, true, httpPort, httpsPort);
-				ServerStarter(GameJoinApiServer, Hosts['GameJoinHost'], true, true, httpPort, httpsPort);
-				ServerStarter(GroupsModerationServiceServer, Hosts['GroupsModerationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(InventoryApiServer, Hosts['InventoryHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ItemConfigurationApiService, Hosts['ItemConfigurationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PointsApiServer, Hosts['PointsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PublishApiServer, Hosts['PublishHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PunishmentsServiceServer, Hosts['PunishmentsService'], true, true, httpPort, httpsPort);
-				ServerStarter(MidasShareApiServer, Hosts['ShareHost'], true, true, httpPort, httpsPort);
-				ServerStarter(TextFilterApiServer, Hosts['TextFilterHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ThemesApiServer, Hosts['ThemesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost'], true, true, httpPort, httpsPort);
-				ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost'], true, true, httpPort, httpsPort);
-				ServerStarter(TranslationsApiServer, Hosts['TranslationsHost'], true, true, httpPort, httpsPort);
-				ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost'], true, true, httpPort, httpsPort);
-				ServerStarter(VoiceApiServer, Hosts['VoiceHost'], true, true, httpPort, httpsPort);
-				ServerStarter(FilesServiceServer, Hosts['FilesService'], true, true, httpPort, httpsPort);
-				ServerStarter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsiteHost'], true, true, httpPort, httpsPort);
-				ServerStarter(AdminWebsiteServer, Hosts['AdminWebsiteHost'], true, true, httpPort, httpsPort);
-				ServerStarter(CSWebsiteServer, Hosts['CSWebsiteHost'], true, true, httpPort, httpsPort);
-				ServerStarter(ComApisCDNServer, Hosts['ComApisCDNHost'], true, true, httpPort, httpsPort);
-				ServerStarter(PointsServiceServer, Hosts['PointsServiceHost'], true, true, httpPort, httpsPort);
-				ServerStarter(UsersServiceServer, Hosts['UsersServiceHost'], true, true, httpPort, httpsPort);
-				ServerStarter(DataWebsiteServer, Hosts['DataHost'], true, true, httpPort, httpsPort);
-				ServerStarter(NomadTestServer, Hosts['NomadHost'], false, true, 4646);
-				ServerStarter(CSRApiServer, Hosts['CSRHost'], true, false, 0, 38183);
-				ServerStarter(CSRWebsiteServer, Hosts['CSRHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ThumbnailsApiServer, Hosts['ThumbsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PresenceApiServer, Hosts['PresenceHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(GroupsApiServer, Hosts['GroupsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AccountInformationServer, Hosts['AccountInformationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(BadgesApiServer, Hosts['BadgesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ClientSettingsApiServer, Hosts['ClientSettingsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AdConfigurationApiServer, Hosts['AdConfigurationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					ClientTelementryServiceServer,
+					Hosts['ClientTelementryServiceHost'],
+					true,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(AssetsApi, Hosts['AssetsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AvatarApiServer, Hosts['AvatarHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(BillingApiServer, Hosts['BillingHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(CatalogApiServer, Hosts['CatalogHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(CdnProvidersApiServer, Hosts['CdnProvidersHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ChatModerationServiceServer, Hosts['ChatModerationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ContentStoreApiServer, Hosts['ContentStoreHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(DevelopApiServer, Hosts['DevelopHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(DiscussionsApiServer, Hosts['DiscussionsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(FollowingsApiServer, Hosts['FollowingsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(GameInternationalizationApiServer, Hosts['G18NHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(GameJoinApiServer, Hosts['GameJoinHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(GroupsModerationServiceServer, Hosts['GroupsModerationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(InventoryApiServer, Hosts['InventoryHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ItemConfigurationApiService, Hosts['ItemConfigurationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PointsApiServer, Hosts['PointsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PublishApiServer, Hosts['PublishHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PunishmentsServiceServer, Hosts['PunishmentsService'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(MidasShareApiServer, Hosts['ShareHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(TextFilterApiServer, Hosts['TextFilterHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ThemesApiServer, Hosts['ThemesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(TranslationsApiServer, Hosts['TranslationsHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(VoiceApiServer, Hosts['VoiceHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(FilesServiceServer, Hosts['FilesService'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsiteHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(AdminWebsiteServer, Hosts['AdminWebsiteHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(CSWebsiteServer, Hosts['CSWebsiteHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(ComApisCDNServer, Hosts['ComApisCDNHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(PointsServiceServer, Hosts['PointsServiceHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(UsersServiceServer, Hosts['UsersServiceHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(DataWebsiteServer, Hosts['DataHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(NomadTestServer, Hosts['NomadHost'], false, true, 4646);
+				SystemSDK.ServerStarter(CSRApiServer, Hosts['CSRHost'], true, false, 0, 38183);
+				SystemSDK.ServerStarter(CSRWebsiteServer, Hosts['CSRHost'], true, true, httpPort, httpsPort);
 
 				await (async () => {
 					if (process.argv.slice(2)[0] === '--closure-after-seconds') {
@@ -1385,8 +1410,13 @@ FastLogGlobal.Init();
 					}
 				})();
 
-				SignalRSetup(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Hosts.ApiProxyHost);
-				SignalRSetup(ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS, '/Source/Bin/WebSockets/Roblox.RealTime', Hosts.RealTimeHost);
+				SystemSDK.WebsocketStarter(ROBLOX_API_HTTP, ROBLOX_API_HTTPS, '/Source/Bin/WebSockets/Roblox.Api', Hosts.ApiProxyHost);
+				SystemSDK.WebsocketStarter(
+					ROBLOX_REAL_TIME_HTTP,
+					ROBLOX_REAL_TIME_HTTPS,
+					'/Source/Bin/WebSockets/Roblox.RealTime',
+					Hosts.RealTimeHost,
+				);
 				FASTLOG1F(DFLog('Tasks'), '[DFLog::Tasks] There are %d Services running...', Object.keys(Hosts).length);
 			} catch (e) {
 				return reportDebatableError(e);

@@ -27,14 +27,15 @@
 
 import { Request, Response } from 'express';
 import { DFString, DYNAMIC_FASTSTRINGVARIABLE } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
-import { GetSignedData, SendSignedResponse } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
 import { DateTimeConverter } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Converters/DateTimeConverter';
+import { HashingClient } from '../../../../Assemblies/Data/Hashing/Roblox.Data.Hashing/HashingClient';
 
 DYNAMIC_FASTSTRINGVARIABLE('CharacterAppearanceUrl', 'http://assetgame.sitetest4.robloxlabs.com/Asset/CharacterFetch.ashx');
 
 export default {
 	method: 'all',
 	func: (request: Request, response: Response): void => {
+		const hashClient = new HashingClient(response);
 		const date = DateTimeConverter.DateToLocaleDate(new Date(Date.now()));
 		const txt = {
 			ClientPort: 0,
@@ -49,11 +50,13 @@ export default {
 			GameLocale: 'en_us',
 			SuperSafeChat: false,
 			CharacterAppearance: DFString('CharacterAppearanceUrl'),
-			ClientTicket: `${date};${GetSignedData(
+			ClientTicket: `${date};${HashingClient.GetSignedData(
 				`${parseInt(<string>request.query['userId']) || 1}\n${request.query['username'] || 'Default'}\n${DFString(
 					'CharacterAppearanceUrl',
 				)}\n00000000-0000-0000-0000-000000000000\n${date}`,
-			)};${GetSignedData(`${parseInt(<string>request.query['userId']) || 1}\n00000000-0000-0000-0000-000000000000\n${date}`)}`,
+			)};${HashingClient.GetSignedData(
+				`${parseInt(<string>request.query['userId']) || 1}\n00000000-0000-0000-0000-000000000000\n${date}`,
+			)}`,
 			GameId: '00000000-0000-0000-0000-000000000000',
 			PlaceId: parseInt(<string>request.query['placeId']) || 1,
 			MeasurementUrl: '',
@@ -83,6 +86,6 @@ export default {
 			characterAppearanceId: 0,
 			CountryCode: 'US',
 		};
-		SendSignedResponse(JSON.stringify(txt), response);
+		return hashClient.SendSignedResponse(JSON.stringify(txt));
 	},
 };

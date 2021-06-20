@@ -2245,3 +2245,7 @@ Content-Type: application/json
 Roblox-Proxied-IP: 128.116.123.3
 
 {}
+
+###
+
+OPTIONS https://apis.roblox.com/purchase-warning-service/v1/purchase-warnings/acknowledge

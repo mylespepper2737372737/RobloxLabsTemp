@@ -25,13 +25,14 @@
 	***
 */
 
-import { ApiKeys } from '../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { FetchKeyFromObjectCaseInsensitive } from '../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
+import { Request, Response } from 'express';
+import { KeyValueMapping } from '../../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 
 export default {
 	method: 'all',
-	func: async (_req, res) => {
-		if (FetchKeyFromObjectCaseInsensitive(_req.query, 'ApiKey') !== ApiKeys.TestApi) return res.status(404).send();
-		res.send('Your apiKey is very funny');
+	func: async (request: Request, response: Response) => {
+		if (KeyValueMapping.FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey') !== '8DAE2E89-BCFA-4735-AB79-D9A07ABA9263')
+			return response.status(404).send();
+		response.send('Your apiKey is very funny');
 	},
 };

@@ -28,7 +28,7 @@
 import { Request, Response } from 'express';
 import { DFFlag, DFString, DYNAMIC_FASTFLAG, DYNAMIC_FASTSTRING } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/User';
-import { GetValueFromFormDataString } from '../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
+import { KeyValueMapping } from '../../../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 
 DYNAMIC_FASTFLAG('IsBannerEnabled');
 DYNAMIC_FASTSTRING('SiteBanner');
@@ -36,7 +36,7 @@ DYNAMIC_FASTSTRING('SiteBanner');
 export default {
 	method: 'all',
 	func: async (request: Request, response: Response): Promise<void> => {
-		let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+		let cookie = KeyValueMapping.GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie);
 		const authenticatedUser = await User.GetByCookie(cookie);
 		if (!authenticatedUser && cookie !== undefined) response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });
 		const user = await User.Get(parseInt(request.params.userId));

@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { UsersService } from '../../../../../Assemblies/ApiServices/Roblox.Users.Service/Roblox.Users.Service/UsersService';
-import { ApiKeys } from '../../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { FetchKeyFromObjectCaseInsensitive } from '../../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
-import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { KeyValueMapping } from '../../../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
+import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { ErrorsClient } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/ErrorsClient';
 import { ApiKeyValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
@@ -23,7 +22,14 @@ export default {
 			);
 
 		if (typeof request.body.Request !== 'object') return errorsClient.RespondWithAServiceError(500, 'An Error occured.', true);
-		if (!apiKeyValidatorClient.Validate(FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'), ApiKeys.UsersApi, true)) return;
+		if (
+			!apiKeyValidatorClient.Validate(
+				KeyValueMapping.FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
+				'E9DADB63-5BF6-42FF-A964-79D5E97E7068',
+				true,
+			)
+		)
+			return;
 
 		return UsersService.Validators.ValidateUsername(request.body, response);
 	},

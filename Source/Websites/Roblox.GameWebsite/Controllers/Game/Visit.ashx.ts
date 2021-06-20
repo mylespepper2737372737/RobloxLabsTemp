@@ -26,11 +26,13 @@
 */
 
 import { Request, Response } from 'express';
-import { SignFileAndRespond } from '../../../../Assemblies/Data/HashMaps/Roblox.Data.HashMaps/SignData';
+import { HashingClient } from '../../../../Assemblies/Data/Hashing/Roblox.Data.Hashing/HashingClient';
 
 export default {
 	method: 'all',
 	func: async (_request: Request, response: Response) => {
-		SignFileAndRespond('/InternalCDN/visit.lua', response, true);
+		const hashClient = new HashingClient(response);
+
+		return hashClient.SignFileAndRespond('/InternalCDN/visit.lua', true);
 	},
 };

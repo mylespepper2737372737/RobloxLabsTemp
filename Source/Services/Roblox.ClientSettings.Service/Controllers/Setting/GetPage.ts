@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { ClientSettingsService } from '../../../../Assemblies/ApiServices/Roblox.ClientSettings.Service/Roblox.ClientSettings.Service/ClientSettingsService';
-import { ApiKeys } from '../../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { FetchKeyFromObjectCaseInsensitive } from '../../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
-import { HttpRequestMethodEnum } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { ClientSettingsHandler } from '../../../../Assemblies/ApiServices/Roblox.ClientSettings.Handler/ClientSettingsHandler';
+import { KeyValueMapping } from '../../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
+import { HttpRequestMethodEnum } from '../../../../Assemblies/Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { ApiKeyValidator } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
 import { MethodValidator } from '../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
+import { Convert } from '../../../../System/Convert';
 import { Page } from '../../Models/Page';
 import { PageRequest } from '../../Models/PageRequest';
 
@@ -13,18 +13,19 @@ export default {
 	func: (request: Request<null, Page, null, PageRequest>, response: Response<Page>) => {
 		const apiKeyValidatorClient = new ApiKeyValidator(response, 'The service is unavailable.');
 		const methodValidatorClient = new MethodValidator(response);
+		const handler = new ClientSettingsHandler(response);
 
 		if (methodValidatorClient.Validate(request.method, 'GET', true) === HttpRequestMethodEnum.UNKNOWN) return;
 		if (
 			!apiKeyValidatorClient.MultiValidate(
-				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
-				[ApiKeys.ClientSettingsApi, ApiKeys.ClientSettingsApiV2],
+				KeyValueMapping.FetchKeyFromObjectCaseInsensitive<string>(request.query, 'ApiKey'),
+				['D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79', '76E5A40C-3AE1-4028-9F10-7C62520BD94F'],
 				true,
 			)
 		)
 			return;
 
-		const pageIndex = parseInt(<System.String>request.query.PageIndex) || 0;
-		return ClientSettingsService.Setting.HandleGetPage({ PageIndex: pageIndex }, response);
+		const pageIndex = Convert.ToInt32(KeyValueMapping.FetchKeyFromObjectCaseInsensitive<long>(request.query, 'PageIndex')) || 0;
+		return handler.HandleGetPage({ PageIndex: pageIndex });
 	},
 };

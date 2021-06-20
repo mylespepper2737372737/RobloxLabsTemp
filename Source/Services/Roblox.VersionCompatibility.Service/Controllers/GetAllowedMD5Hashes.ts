@@ -26,10 +26,9 @@
 */
 
 import { Request, Response } from 'express';
-import { ApiKeys } from '../../../Assemblies/Common/Client/Roblox.Common.Client/Api/ApiKeys';
-import { FetchKeyFromObjectCaseInsensitive } from '../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/FetchKeyFromObjectCaseInsensitive';
+import { KeyValueMapping } from '../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 import { ClientVersion } from '../../../Assemblies/Data/Versioning/Roblox.Data.Versioning/ClientVersion';
-import { HttpRequestMethodEnum } from '../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { HttpRequestMethodEnum } from '../../../Assemblies/Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 import { DFFlag, DYNAMIC_FASTFLAGVARIABLE } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { ApiKeyValidator } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/ApiKeyValidator';
 import { MethodValidator } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
@@ -46,8 +45,8 @@ export default {
 		if (methodValidatorClient.Validate(request.method, 'GET', true) === HttpRequestMethodEnum.UNKNOWN) return;
 		if (
 			!apiKeyValidatorClient.MultiValidate(
-				FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
-				[ApiKeys.VersionCompatibilityApi, 'dac86da7-a4bc-4bff-8ca4-8b54e1ac925b'],
+				KeyValueMapping.FetchKeyFromObjectCaseInsensitive(request.query, 'ApiKey'),
+				['2B4BA7FC-5843-44CF-B107-BA22D3319DCD', 'DAC86DA7-A4BC-4BFF-8CA4-8B54E1AC925B'],
 				true,
 			)
 		)

@@ -28,7 +28,7 @@
 */
 
 import { Request, Response } from 'express';
-import { CachePolicy } from '../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Models/IClientRequest';
+import { CachePolicy } from '../../../../Assemblies/Http/HttpClientInvoker/Roblox.Http.HttpClientInvoker/Models/IClientRequest';
 import { AvatarRequestProcessor } from '../../../../Assemblies/Web/Avatars/Roblox.Web.Avatars/AvatarRequestProcessor';
 import { BodyColorsRequest } from '../../Models/Game/BodyColorsRequest';
 

@@ -28,7 +28,7 @@
 import { Request, Response } from 'express';
 import { DFFlag, DFString } from '../../../Assemblies/Web/Util/Roblox.Web.Util/Logging/FastLog';
 import { User } from '../../../Assemblies/Platform/Membership/Roblox.Platform.Membership/User';
-import { GetValueFromFormDataString } from '../../../Assemblies/Common/KeyValueMapping/Roblox.Common.KeyValueMapping/GetValueFromFormDataString';
+import { KeyValueMapping } from '../../../Assemblies/Common/Mapping/Roblox.Common.Mapping/KeyValueMapping';
 
 export default {
 	method: 'all',
@@ -122,7 +122,7 @@ export default {
 					},
 				});
 			case 404:
-				let cookie = GetValueFromFormDataString('.ROBLOSECURITY', request.headers.cookie);
+				let cookie = KeyValueMapping.GetValueFromCookieString('.ROBLOSECURITY', request.headers.cookie);
 				const authenticatedUser = await User.GetByCookie(cookie);
 				if (!authenticatedUser && cookie !== undefined)
 					response.clearCookie('.ROBLOSECURITY', { domain: 'sitetest4.robloxlabs.com' });

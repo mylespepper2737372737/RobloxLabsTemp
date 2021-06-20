@@ -1,8 +1,8 @@
 /*
-	FileName: checkhealth.ts
+	FileName: LoadPlaceInfo.ashx.ts
 	Written By: Nikita Nikolaevich Petko
 	File Type: Module
-	Description: Health page for points.api, essentially the same as __pageIndex
+	Description: Load Place info script
 			
 	All commits will be made on behalf of mfd-co to https://github.com/mfdlabs/robloxlabs.com
 
@@ -25,11 +25,11 @@
 	***
 */
 
-import { Request, Response } from 'express';
+import { Response } from 'express';
 
 export default {
 	method: 'all',
-	func: async (_req: Request, res: Response) => {
-		res.status(200).send('"RPS OK"'); // Should be application/json
+	func: async (_request, response: Response) => {
+		return response.send({ ClientSettingsApiUrl: 'http://clientsettingscdn.sitetest4.robloxlabs.com/' });
 	},
 };

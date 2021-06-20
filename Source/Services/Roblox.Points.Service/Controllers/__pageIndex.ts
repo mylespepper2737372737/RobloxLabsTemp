@@ -26,12 +26,10 @@
 */
 
 import { Request, Response } from 'express';
-import { PointsService } from '../../../Assemblies/ApiServices/Roblox.Points.Service/Implementation/PointsService';
 
 export default {
 	method: 'all',
 	func: async (_request: Request, response: Response) => {
-		if (!PointsService.AskIfWeAreAvailable(response)) return;
 		response.status(200).send('"RPS OK"');
 	},
 };

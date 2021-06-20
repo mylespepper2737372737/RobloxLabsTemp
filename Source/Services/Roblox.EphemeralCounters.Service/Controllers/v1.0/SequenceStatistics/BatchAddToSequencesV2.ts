@@ -32,7 +32,7 @@ import { ContentTypeValidator } from '../../../../../Assemblies/Web/Util/Roblox.
 import { MethodValidator } from '../../../../../Assemblies/Web/Util/Roblox.Web.Util/Validators/MethodValidator';
 import { Sequence } from '../../../Sequence';
 import { ISequencesItem } from '../../../ISequencesItem';
-import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/ServiceClient/Roblox.Http.ServiceClient/Enumeration/HttpRequestMethodEnum';
+import { HttpRequestMethodEnum } from '../../../../../Assemblies/Http/Roblox.Http/Enumeration/HttpRequestMethodEnum';
 
 export default {
 	method: 'all',
