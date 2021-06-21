@@ -1277,10 +1277,32 @@ FastLogGlobal.Init();
 
 		await (async () => {
 			try {
-				const httpPort = process.argv.slice(2)[0] === '--closure-after-seconds' ? 8080 : 80;
-				const httpsPort = process.argv.slice(2)[0] === '--closure-after-seconds' ? 4343 : 443;
-				SystemSDK.ServerStarter(ImagesCDNServer, Hosts['ImagesCDN'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(RobloxWebsiteServer, Hosts['WebHost'], true, true, httpPort, httpsPort);
+				const httpPort =
+					process.argv.slice(2).join(' ').toLowerCase().includes('--closure-after-seconds') ||
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx')
+						? 8080
+						: 80;
+				const httpsPort =
+					process.argv.slice(2).join(' ').toLowerCase().includes('--closure-after-seconds') ||
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx')
+						? 4343
+						: 443;
+				SystemSDK.ServerStarter(
+					ImagesCDNServer,
+					Hosts['ImagesCDN'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					RobloxWebsiteServer,
+					Hosts['WebHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 				const [ROBLOX_API_HTTP, ROBLOX_API_HTTPS] = SystemSDK.ServerStarter(
 					ApiProxyServer,
 					Hosts['ApiProxyHost'],
@@ -1289,11 +1311,46 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				SystemSDK.ServerStarter(StaticCDNServer, Hosts['StaticCDN'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(JavaScriptCDNServer, Hosts['JavaScriptCDN'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(CSSCDNServer, Hosts['CSSCDN'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(SetupCDNServer, Hosts['SetupCDN'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(TemporaryImagesCDNServer, Hosts['TemporaryImagesCDN'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					StaticCDNServer,
+					Hosts['StaticCDN'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					JavaScriptCDNServer,
+					Hosts['JavaScriptCDN'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					CSSCDNServer,
+					Hosts['CSSCDN'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					SetupCDNServer,
+					Hosts['SetupCDN'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					TemporaryImagesCDNServer,
+					Hosts['TemporaryImagesCDN'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 				SystemSDK.ServerStarter(
 					VersionCompatibilityServiceServer,
 					Hosts['VersionCompatibilityService'],
@@ -1302,20 +1359,118 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				SystemSDK.ServerStarter(ClientSettingsServiceServer, Hosts['ClientSettingsService'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(RobloxGameWebsiteServer, Hosts['AssetGameHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(EphemeralCountersServiceServer, Hosts['EphemeralCountersService'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(EphemeralCountersV2Server, Hosts['EphemeralCountersV2'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(GamePersistenceApiServer, Hosts['GamePersistenceHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(MetricsApiServer, Hosts['MetricsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AuthApiServer, Hosts['AuthenticationHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ApiGatewayServer, Hosts['ApiGatewayHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(LocaleApiServer, Hosts['LocaleHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(MarketplaceServiceServer, Hosts['MarketplaceService'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AbTestingApiServer, Hosts['AbTestingHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AbTestingServiceServer, Hosts['AbTestingService'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(UsersApiServer, Hosts['UsersHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(TwoStepVerficationApiServer, Hosts['TSVHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					ClientSettingsServiceServer,
+					Hosts['ClientSettingsService'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					RobloxGameWebsiteServer,
+					Hosts['AssetGameHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					EphemeralCountersServiceServer,
+					Hosts['EphemeralCountersService'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					EphemeralCountersV2Server,
+					Hosts['EphemeralCountersV2'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					GamePersistenceApiServer,
+					Hosts['GamePersistenceHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					MetricsApiServer,
+					Hosts['MetricsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AuthApiServer,
+					Hosts['AuthenticationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ApiGatewayServer,
+					Hosts['ApiGatewayHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					LocaleApiServer,
+					Hosts['LocaleHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					MarketplaceServiceServer,
+					Hosts['MarketplaceService'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AbTestingApiServer,
+					Hosts['AbTestingHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AbTestingServiceServer,
+					Hosts['AbTestingService'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					UsersApiServer,
+					Hosts['UsersHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					TwoStepVerficationApiServer,
+					Hosts['TSVHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 				SystemSDK.ServerStarter(
 					LatencyMeasurementsInternalServiceServer,
 					Hosts['LatencyMeasurementsHost'],
@@ -1324,16 +1479,86 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				SystemSDK.ServerStarter(ChatApiServer, Hosts['ChatHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ContactsApiServer, Hosts['ContactsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(NotificationsApiServer, Hosts['NotificationsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AccountSettingsApiServer, Hosts['AccountSettingsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AdsApiServer, Hosts['AdsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(TradesApiServer, Hosts['TradesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(FriendsApiServer, Hosts['FriendsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PrivateMessagesApiServer, Hosts['PrivateMessagesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(EconomyApiServer, Hosts['EconomyHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(GamesApiServer, Hosts['GamesHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					ChatApiServer,
+					Hosts['ChatHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ContactsApiServer,
+					Hosts['ContactsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					NotificationsApiServer,
+					Hosts['NotificationsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AccountSettingsApiServer,
+					Hosts['AccountSettingsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AdsApiServer,
+					Hosts['AdsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					TradesApiServer,
+					Hosts['TradesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					FriendsApiServer,
+					Hosts['FriendsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PrivateMessagesApiServer,
+					Hosts['PrivateMessagesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					EconomyApiServer,
+					Hosts['EconomyHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					GamesApiServer,
+					Hosts['GamesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 				const [ROBLOX_REAL_TIME_HTTP, ROBLOX_REAL_TIME_HTTPS] = SystemSDK.ServerStarter(
 					RealTimeApiServer,
 					Hosts['RealTimeHost'],
@@ -1342,16 +1567,86 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				SystemSDK.ServerStarter(ThumbnailsApiServer, Hosts['ThumbsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PresenceApiServer, Hosts['PresenceHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(GroupsApiServer, Hosts['GroupsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AccountInformationServer, Hosts['AccountInformationHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(BadgesApiServer, Hosts['BadgesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(DeveloperForumWebsiteServer, Hosts['DeveloperForumHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PremiumFeaturesApiServer, Hosts['PremiumFeaturesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ClientSettingsApiServer, Hosts['ClientSettingsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ClientSettingsCDNApiServer, Hosts['ClientSettingsCDNHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AdConfigurationApiServer, Hosts['AdConfigurationHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					ThumbnailsApiServer,
+					Hosts['ThumbsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PresenceApiServer,
+					Hosts['PresenceHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					GroupsApiServer,
+					Hosts['GroupsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AccountInformationServer,
+					Hosts['AccountInformationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					BadgesApiServer,
+					Hosts['BadgesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					DeveloperForumWebsiteServer,
+					Hosts['DeveloperForumHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PremiumFeaturesApiServer,
+					Hosts['PremiumFeaturesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ClientSettingsApiServer,
+					Hosts['ClientSettingsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ClientSettingsCDNApiServer,
+					Hosts['ClientSettingsCDNHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AdConfigurationApiServer,
+					Hosts['AdConfigurationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 				SystemSDK.ServerStarter(
 					ClientTelementryServiceServer,
 					Hosts['ClientTelementryServiceHost'],
@@ -1360,46 +1655,312 @@ FastLogGlobal.Init();
 					httpPort,
 					httpsPort,
 				);
-				SystemSDK.ServerStarter(AssetsApi, Hosts['AssetsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AvatarApiServer, Hosts['AvatarHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(BillingApiServer, Hosts['BillingHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(CatalogApiServer, Hosts['CatalogHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(CdnProvidersApiServer, Hosts['CdnProvidersHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ChatModerationServiceServer, Hosts['ChatModerationHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ContentStoreApiServer, Hosts['ContentStoreHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(DevelopApiServer, Hosts['DevelopHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(DiscussionsApiServer, Hosts['DiscussionsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(EconomyCreatorStatsApiServer, Hosts['EconomyCreatorStatsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(EngagementPayoutsServiceServer, Hosts['EngagementPayoutsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(FollowingsApiServer, Hosts['FollowingsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(GameInternationalizationApiServer, Hosts['G18NHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(GameJoinApiServer, Hosts['GameJoinHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(GroupsModerationServiceServer, Hosts['GroupsModerationHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(InventoryApiServer, Hosts['InventoryHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ItemConfigurationApiService, Hosts['ItemConfigurationHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(LocalizationTablesApiServer, Hosts['LocalizationTablesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PointsApiServer, Hosts['PointsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PublishApiServer, Hosts['PublishHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PunishmentsServiceServer, Hosts['PunishmentsService'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(MidasShareApiServer, Hosts['ShareHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(TextFilterApiServer, Hosts['TextFilterHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ThemesApiServer, Hosts['ThemesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ThumbnailsResizerApiServer, Hosts['ThumbnailsResizerHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(TranslationRolesApiServer, Hosts['TranslationRolesHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(TranslationsApiServer, Hosts['TranslationsHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(UserModerationServiceServer, Hosts['UserModerationHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(VoiceApiServer, Hosts['VoiceHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(FilesServiceServer, Hosts['FilesService'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(MetricsInternalWebsiteServer, Hosts['MetricsInternalWebsiteHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(AdminWebsiteServer, Hosts['AdminWebsiteHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(CSWebsiteServer, Hosts['CSWebsiteHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(ComApisCDNServer, Hosts['ComApisCDNHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(PointsServiceServer, Hosts['PointsServiceHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(UsersServiceServer, Hosts['UsersServiceHost'], true, true, httpPort, httpsPort);
-				SystemSDK.ServerStarter(DataWebsiteServer, Hosts['DataHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					AssetsApi,
+					Hosts['AssetsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AvatarApiServer,
+					Hosts['AvatarHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					BillingApiServer,
+					Hosts['BillingHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					CatalogApiServer,
+					Hosts['CatalogHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					CdnProvidersApiServer,
+					Hosts['CdnProvidersHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ChatModerationServiceServer,
+					Hosts['ChatModerationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ContentStoreApiServer,
+					Hosts['ContentStoreHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					DevelopApiServer,
+					Hosts['DevelopHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					DiscussionsApiServer,
+					Hosts['DiscussionsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					EconomyCreatorStatsApiServer,
+					Hosts['EconomyCreatorStatsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					EngagementPayoutsServiceServer,
+					Hosts['EngagementPayoutsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					FollowingsApiServer,
+					Hosts['FollowingsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					GameInternationalizationApiServer,
+					Hosts['G18NHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					GameJoinApiServer,
+					Hosts['GameJoinHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					GroupsModerationServiceServer,
+					Hosts['GroupsModerationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					InventoryApiServer,
+					Hosts['InventoryHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ItemConfigurationApiService,
+					Hosts['ItemConfigurationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					LocalizationTablesApiServer,
+					Hosts['LocalizationTablesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PointsApiServer,
+					Hosts['PointsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PublishApiServer,
+					Hosts['PublishHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PunishmentsServiceServer,
+					Hosts['PunishmentsService'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					MidasShareApiServer,
+					Hosts['ShareHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					TextFilterApiServer,
+					Hosts['TextFilterHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ThemesApiServer,
+					Hosts['ThemesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ThumbnailsResizerApiServer,
+					Hosts['ThumbnailsResizerHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					TranslationRolesApiServer,
+					Hosts['TranslationRolesHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					TranslationsApiServer,
+					Hosts['TranslationsHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					UserModerationServiceServer,
+					Hosts['UserModerationHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					VoiceApiServer,
+					Hosts['VoiceHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					FilesServiceServer,
+					Hosts['FilesService'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					MetricsInternalWebsiteServer,
+					Hosts['MetricsInternalWebsiteHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					AdminWebsiteServer,
+					Hosts['AdminWebsiteHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					CSWebsiteServer,
+					Hosts['CSWebsiteHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					ComApisCDNServer,
+					Hosts['ComApisCDNHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					PointsServiceServer,
+					Hosts['PointsServiceHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					UsersServiceServer,
+					Hosts['UsersServiceHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
+				SystemSDK.ServerStarter(
+					DataWebsiteServer,
+					Hosts['DataHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 				SystemSDK.ServerStarter(NomadTestServer, Hosts['NomadHost'], false, true, 4646);
 				SystemSDK.ServerStarter(CSRApiServer, Hosts['CSRHost'], true, false, 0, 38183);
-				SystemSDK.ServerStarter(CSRWebsiteServer, Hosts['CSRHost'], true, true, httpPort, httpsPort);
+				SystemSDK.ServerStarter(
+					CSRWebsiteServer,
+					Hosts['CSRHost'],
+					process.argv.slice(2).join(' ').toLowerCase().includes('--nginx') === null,
+					true,
+					httpPort,
+					httpsPort,
+				);
 
 				await (async () => {
 					if (process.argv.slice(2)[0] === '--closure-after-seconds') {
