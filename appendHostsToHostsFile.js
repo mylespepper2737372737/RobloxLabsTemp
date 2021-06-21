@@ -7,24 +7,22 @@
 
 const filestream = require('fs');
 const path = require('path');
+const parser = require('args-parser');
 const { EOL } = require('os');
 
 /**
 	@param {string[]} args */ ((args) => {
-	const strArgs = ((args || []).join(' ') || '') + ' ';
-
-	/* Pull this out to a helper that does this regex by itself */
-	const showHelpMessage = checkIsSingleCommandLineArgValid(strArgs, 'h');
+	const showHelpMessage = args['h'] === true || args['help'] === true;
 	if (showHelpMessage) {
 		return printHelpMessageAndExit();
 	}
 
 	console.log(
-		'If hosts were removed or changed, you will have to remove the old ones then, as this only supports add new hosts, not removing or updating them yet.',
+		'\x1b[33mIf hosts were removed or changed, you will have to remove the old ones then, as this only supports add new hosts, not removing or updating them yet.\x1b[37m',
 	);
 
-	const isVerbose = checkIsSingleCommandLineArgValid(strArgs, 'v') || checkIsLongArgIncludedInCommandLineArgs(strArgs, 'verbose');
-	const exitWithBadCodeOnFail = checkIsLongArgIncludedInCommandLineArgs(strArgs, '--exit-with-bad-code-on-failure');
+	const isVerbose = args['v'] === true || args['verbose'] === true;
+	const exitWithBadCodeOnFail = args['exit-with-bad-code-on-failure'] === true;
 	if (!checkIfOSIsAllowed()) {
 		if (isVerbose) console.log(`The OS ${process.platform} is not allowed.`);
 		return;
@@ -66,7 +64,7 @@ const { EOL } = require('os');
 		console.log(`The file ${hostsFileLocation} didn't need to be written to, exiting.`);
 		return process.exit(0);
 	}
-})(process.argv.slice(2));
+})(parser(process.argv));
 
 /**
  * Compares the already existing hosts file, and compares the new hosts file to see similarities.
@@ -82,7 +80,7 @@ function compareAndGiveStringIfDoesNotMatch(toBeWritten, alreadyWritten, isVerbo
 
 		if (element === undefined) {
 			if (!didWrite) didWrite = true;
-			if (isVerbose) console.log(`The entry was not in the hosts file, add. ${toBeWritten[i].trim()}.`);
+			if (isVerbose) console.log(`\x1b[32mThe entry was not in the hosts file, add. ${toBeWritten[i].trim()}.\x1b[37m`);
 			alreadyWritten.push(toBeWritten[i]);
 		}
 	}
@@ -125,31 +123,11 @@ function checkIfOSIsAllowed() {
 }
 
 function printHelpMessageAndExit() {
-	console.log(`Written by Yaakov Tesviniski and Nikita Petko, a simple javascript runtime that writes to hosts files for (https://github.com/mfdlabs/robloxlabs.com) for Linux, Win32 and Darwin
+	console.log(`\x1b[36mWritten by Yaakov Tesviniski and Nikita Petko, a simple javascript runtime that writes to hosts files for Linux, Win32 and Darwin\x1b[37m
 
 -h, --help 					Display the help message.
--v, --verbose 					Verbose.
---exit-with-bad-code-on-failure 		If catch is hit, exit with code 1.
+\x1b[31m-v, --verbose 					Verbose.\x1b[37m Red because you shouldn't use this in a production environment.
+\x1b[32m--exit-with-bad-code-on-failure 		If catch is hit, exit with code 1.\x1b[37m Green because this should be used in a production environment.
 `);
 	return process.exit(0);
-}
-
-/**
- * @param {string} args
- * @param {string} singleArg
- * @returns {boolean}
- */
-function checkIsSingleCommandLineArgValid(args, singleArg) {
-	const regex = new RegExp(`[\s]?-[${singleArg}][^a-zA-Z][\s]?`, 'i');
-	return args.match(regex) !== null;
-}
-
-/**
- * @param {string} args
- * @param {string} longArg
- * @returns {boolean}
- */
-function checkIsLongArgIncludedInCommandLineArgs(args, longArg) {
-	const regex = new RegExp(`--${longArg}[^a-zA-Z][\s]?`, 'i');
-	return args.match(regex) !== null;
 }
