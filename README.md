@@ -37,7 +37,7 @@
 
 There has been a major update with how the `__baseDirName` is selected, run the npm script `Build-And-Run` to automatically select the Directory and build the project,<br />
 and then run it, if you wish not to build an run, then just run the file [./path.js](./path.js)
-
+I will add more stuff to it like it did with roblox 2014
 # Setup
 
 There is a few things you will need to do before you can use this.
