@@ -1,1 +1,0 @@
-type Variant = any;

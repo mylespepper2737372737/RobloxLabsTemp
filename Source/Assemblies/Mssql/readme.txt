@@ -1,1 +1,0 @@
-MSSQL Mock for Node.js
